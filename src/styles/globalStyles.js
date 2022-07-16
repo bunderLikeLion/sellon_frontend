@@ -7,7 +7,6 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body{
-    background-color: ${COLOR.BACKGROUND};
     font-family: 'NS-R';
     color: #000000;
     font-size: 15px;
