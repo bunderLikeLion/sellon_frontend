@@ -1,6 +1,6 @@
 import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Home } from 'pages';
+import { Home, Login } from 'pages';
 
 const App = () => {
   return (
@@ -9,6 +9,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>
