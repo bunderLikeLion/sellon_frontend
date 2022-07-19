@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ history }) => {
+const Register = ({ history }) => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
   const userActions = useUserActions();
@@ -20,20 +20,22 @@ const Login = ({ history }) => {
   // form validation rules
   const validationSchema = Yup.object().shape({
     username: Yup.string().required('Username is required'),
-    password: Yup.string().required('Password is required'),
+    email: Yup.string().required('Email is required'),
+    password1: Yup.string().required('password1 is required'),
+    password2: Yup.string().required('Password2 is required'),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
   const { register, handleSubmit, setError, formState } = useForm(formOptions);
   const { errors, isSubmitting } = formState;
 
-  const onSubmit = ({ username, password }) => {
-    userActions.login(username, password);
+  const onSubmit = ({ username, email, password1, password2 }) => {
+    userActions.register(username, email, password1, password2);
   };
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>Username</label>
@@ -41,8 +43,18 @@ const Login = ({ history }) => {
           <div>{errors.username?.message}</div>
         </div>
         <div>
-          <label>Password</label>
-          <input type="text" {...register('password')} />
+          <label>Email</label>
+          <input type="text" {...register('email')} />
+          <div>{errors.username?.message}</div>
+        </div>
+        <div>
+          <label>Password1</label>
+          <input type="password" {...register('password1')} />
+          <div>{errors.username?.message}</div>
+        </div>
+        <div>
+          <label>Password2</label>
+          <input type="password" {...register('password2')} />
           <div>{errors.password?.message}</div>
         </div>
         <button disabled={isSubmitting}>
@@ -55,4 +67,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default Login;
+export default Register;

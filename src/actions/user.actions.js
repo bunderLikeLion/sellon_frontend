@@ -26,6 +26,25 @@ const useUserActions = () => {
     return data;
   };
 
+  const register = (username, email, password1, password2) => {
+    const option = {
+      method: 'post',
+      url: `${baseUrl}/users/`,
+      responseType: 'type',
+      data: { username, email, password1, password2 },
+    };
+    axios(option)
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          return Promise.reject(error.status);
+        }
+      })
+      .then(() => navigate('/login'));
+  };
+
   const login = (username, password) => {
     const option = {
       method: 'get',
@@ -48,7 +67,7 @@ const useUserActions = () => {
     navigate('/login');
   };
 
-  return { login, logout };
+  return { register, login, logout };
 };
 
 export { useUserActions };
