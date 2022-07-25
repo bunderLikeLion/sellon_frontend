@@ -1,6 +1,6 @@
 # Sellon Frontend
 
-## Available Scripts
+## 사용 가능한 명령어
 
 ### `npm start`
 
