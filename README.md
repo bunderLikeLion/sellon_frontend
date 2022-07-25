@@ -1,9 +1,7 @@
 # Sellon Frontend
 
-## Available Scripts
+## 사용 가능한 명령어
 
-### `npm start`
-
-### `npm test`
-
-### `npm run build`
+- `npm start`
+- `npm test`
+- `npm run build`
