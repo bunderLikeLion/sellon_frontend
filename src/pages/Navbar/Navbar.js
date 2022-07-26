@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { userAtom } from '../../state';
+import { userAtom } from '../../states';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {

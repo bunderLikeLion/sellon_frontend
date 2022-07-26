@@ -1,4 +1,4 @@
-import { userAtom } from 'state';
+import { userAtom } from 'states';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';

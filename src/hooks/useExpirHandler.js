@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { userAtom } from '../state';
+import { userAtom } from '../states';
 
-const useExpirationHandler = (res) => {
+const useExpirationHandler = () => {
   const [setUser] = useRecoilState(userAtom);
   const accessToken = localStorage.getItem('access_token');
   const navigate = useNavigate();
