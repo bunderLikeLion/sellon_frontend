@@ -1,19 +1,16 @@
-import { userAtom } from 'state';
+import { userAtom } from 'states';
 import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import userRelatedAPI from 'apis/userRelatedAPI';
-import { useMutation } from '@tanstack/react-query';
 import loginValidation from 'validations/loginValidation';
-import toast from 'react-hot-toast';
 import { useEffect } from 'react';
+import useLoginMutation from 'queries/auth/useLoginMutation';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useRecoilState(userAtom);
+  const [user] = useRecoilState(userAtom);
 
   useEffect(() => {
-    // redirect to home if already logged in
     if (user) navigate('/');
   }, []);
 
@@ -21,28 +18,10 @@ const Login = () => {
 
   const { errors, isSubmitting } = formState;
 
-  const { mutate } = useMutation(
-    (payload) => {
-      toast.loading('로그인 시도중...');
-      return userRelatedAPI.postLogin(payload);
-    },
-    {
-      onSuccess: (res) => {
-        toast.dismiss();
-        toast.success('로그인 성공 👍');
-        localStorage.setItem('access_token', res?.access_token);
-        setUser(res?.user);
-        navigate('/');
-      },
-      onError: (res) => {
-        toast.dismiss();
-        toast.error(res.message);
-      },
-    }
-  );
+  const { mutate: loginMutate } = useLoginMutation();
 
-  const submit = async (inputData) => {
-    mutate(inputData);
+  const submit = (inputData) => {
+    loginMutate(inputData);
   };
 
   return (

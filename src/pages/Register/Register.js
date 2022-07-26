@@ -1,12 +1,10 @@
-import { userAtom } from 'state';
+import { userAtom } from 'states';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import registerValidation from 'validations/registerValidation';
-import userRelatedAPI from '../../apis/userRelatedAPI';
+import useSignInMutation from 'queries/auth/useSignInMutation';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,26 +18,11 @@ const Register = () => {
   const { register, handleSubmit, formState } = useForm(registerValidation);
 
   const { errors, isSubmitting } = formState;
-  const { mutate } = useMutation(
-    (payload) => {
-      toast.loading('회원가입 처리중...');
-      return userRelatedAPI.postSignup(payload);
-    },
-    {
-      onSuccess: () => {
-        toast.dismiss();
-        toast.success('회원가입 성공 👍');
-        navigate('/');
-      },
-      onError: (res) => {
-        toast.dismiss();
-        toast.error(res.message);
-      },
-    }
-  );
+
+  const { mutate: signInMutate } = useSignInMutation();
 
   const submit = async (inputData) => {
-    mutate(inputData);
+    signInMutate(inputData);
   };
 
   return (
