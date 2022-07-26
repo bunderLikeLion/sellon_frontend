@@ -1,42 +1,51 @@
 import { userAtom } from 'state';
-import { useUserActions } from '../../actions';
 import { useEffect } from 'react';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import registerValidation from 'validations/registerValidation';
+import userRelatedAPI from '../../apis/userRelatedAPI';
 
-const Register = ({ history }) => {
+const Register = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
-  const userActions = useUserActions();
 
   useEffect(() => {
     // redirect to home if already logged in
     if (user) navigate('/');
   }, []);
 
-  // form validation rules
-  const validationSchema = Yup.object().shape({
-    username: Yup.string().required('Username is required'),
-    email: Yup.string().required('Email is required'),
-    password1: Yup.string().required('password1 is required'),
-    password2: Yup.string().required('Password2 is required'),
-  });
-  const formOptions = { resolver: yupResolver(validationSchema) };
+  const { register, handleSubmit, formState } = useForm(registerValidation);
 
-  const { register, handleSubmit, setError, formState } = useForm(formOptions);
   const { errors, isSubmitting } = formState;
+  const { mutate } = useMutation(
+    (payload) => {
+      toast.loading('회원가입 처리중...');
+      return userRelatedAPI.postSignup(payload);
+    },
+    {
+      onSuccess: () => {
+        toast.dismiss();
+        toast.success('회원가입 성공 👍');
+        navigate('/');
+      },
+      onError: (res) => {
+        toast.dismiss();
+        toast.error(res.message);
+      },
+    }
+  );
 
-  const onSubmit = ({ username, email, password1, password2 }) => {
-    userActions.register(username, email, password1, password2);
+  const submit = async (inputData) => {
+    mutate(inputData);
   };
 
   return (
     <div>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submit)}>
         <div>
           <label>Username</label>
           <input type="text" {...register('username')} />
@@ -59,7 +68,7 @@ const Register = ({ history }) => {
         </div>
         <button disabled={isSubmitting}>
           {isSubmitting && 'Submitting...'}
-          Login
+          Signup
         </button>
         {errors.apiError && <div>{errors.apiError?.message}</div>}
       </form>

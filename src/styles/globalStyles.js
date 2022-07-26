@@ -15,10 +15,11 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-  input, button {
-    background-color: transparent;
+  button {
+/*    background-color: transparent;
     border: none;
-    outline: none;
+    outline: none;*/
+    cursor: pointer;
   }
   h1, h2, h3, h4, h5, h6{
     font-family: 'NS-B';
