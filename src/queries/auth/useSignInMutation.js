@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import userRelatedAPI from 'apis/userRelatedAPI';
 import { useNavigate } from 'react-router-dom';
+import errorMsgHandler from '../../utils/errorMsgHandler';
 
 const useSignInMutation = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const useSignInMutation = () => {
       },
       onError: (res) => {
         toast.dismiss();
-        toast.error(res.message);
+        toast.error(errorMsgHandler(res.response.data));
       },
     }
   );
