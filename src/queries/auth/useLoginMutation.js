@@ -4,6 +4,7 @@ import userRelatedAPI from '../../apis/userRelatedAPI';
 import { useRecoilState } from 'recoil';
 import { userAtom } from 'states';
 import { useNavigate } from 'react-router-dom';
+import errorMsgHandler from '../../utils/errorMsgHandler';
 
 const useLoginMutation = () => {
   const navigate = useNavigate();
@@ -24,8 +25,7 @@ const useLoginMutation = () => {
       },
       onError: (res) => {
         toast.dismiss();
-        console.log(res, 'resss');
-        toast.error(res.message);
+        toast.error(errorMsgHandler(res.response.data));
       },
     }
   );
