@@ -55,6 +55,9 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         >
           <Typography textAlign="center">Logout</Typography>
         </MenuItem>
+        <MenuItem onClick={closeUserMenu}>
+          <Typography textAlign="center">쪽지함</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

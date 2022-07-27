@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
-const AnchorNav = ({ anchorElNav, closeUserMenu, openUserMenu }) => {
+const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
       <IconButton
@@ -13,7 +13,7 @@ const AnchorNav = ({ anchorElNav, closeUserMenu, openUserMenu }) => {
         aria-label="account of current user"
         aria-controls="menu-appbar"
         aria-haspopup="true"
-        onClick={openUserMenu}
+        onClick={openNavMenu}
         color="inherit"
       >
         <MenuIcon />
@@ -31,15 +31,15 @@ const AnchorNav = ({ anchorElNav, closeUserMenu, openUserMenu }) => {
           horizontal: 'left',
         }}
         open={Boolean(anchorElNav)}
-        onClose={closeUserMenu}
+        onClose={closeNavMenu}
         sx={{
           display: { xs: 'block', md: 'none' },
         }}
       >
-        <MenuItem onClick={closeUserMenu}>
+        <MenuItem onClick={closeNavMenu}>
           <Typography textAlign="center">소개페이지</Typography>
         </MenuItem>
-        <MenuItem onClick={closeUserMenu}>
+        <MenuItem onClick={closeNavMenu}>
           <Typography textAlign="center">경매장</Typography>
         </MenuItem>
       </Menu>

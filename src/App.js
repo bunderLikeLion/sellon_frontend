@@ -1,6 +1,6 @@
 import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Home, Login, Register, Navbar, NavbarTest } from 'pages';
+import { Home, Login, Register, Navbar } from 'pages';
 import { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '@mui/material';
@@ -23,7 +23,6 @@ const App = () => {
         <Toaster />
         <Router>
           <AxiosInterceptor>
-            <NavbarTest />
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
