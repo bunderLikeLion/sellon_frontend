@@ -1,7 +1,7 @@
 import { userAtom } from 'states';
 import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loginValidation from 'validations/loginValidation';
 import { useEffect } from 'react';
 import useLoginMutation from 'queries/auth/useLoginMutation';
@@ -44,6 +44,10 @@ const Login = () => {
         </button>
         {errors.apiError && <div>{errors.apiError?.message}</div>}
       </form>
+      <p>계정이 없으신가요?</p>
+      <Link to="/register">
+        <button>회원가입 하러 가기</button>
+      </Link>
     </div>
   );
 };
