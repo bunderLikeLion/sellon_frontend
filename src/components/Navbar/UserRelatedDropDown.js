@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import toast from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
 import { userAtom } from 'states';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
   const [user, setUser] = useRecoilState(userAtom);
@@ -45,7 +45,9 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         onClose={closeUserMenu}
       >
         <MenuItem onClick={closeUserMenu}>
-          <Typography textAlign="center">Profile</Typography>
+          <Link to="/mypage">
+            <Typography textAlign="center">My Page</Typography>
+          </Link>
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -56,7 +58,9 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
           <Typography textAlign="center">Logout</Typography>
         </MenuItem>
         <MenuItem onClick={closeUserMenu}>
-          <Typography textAlign="center">쪽지함</Typography>
+          <Link to="/chat">
+            <Typography textAlign="center">쪽지함</Typography>
+          </Link>
         </MenuItem>
       </Menu>
     </Box>

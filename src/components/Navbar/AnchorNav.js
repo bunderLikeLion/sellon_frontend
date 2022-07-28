@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
   return (
@@ -37,10 +38,14 @@ const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
         }}
       >
         <MenuItem onClick={closeNavMenu}>
-          <Typography textAlign="center">소개페이지</Typography>
+          <Link to="/about">
+            <Typography textAlign="center">소개페이지</Typography>
+          </Link>
         </MenuItem>
         <MenuItem onClick={closeNavMenu}>
-          <Typography textAlign="center">경매장</Typography>
+          <Link to="/auction">
+            <Typography textAlign="center">경매장</Typography>
+          </Link>
         </MenuItem>
       </Menu>
     </Box>

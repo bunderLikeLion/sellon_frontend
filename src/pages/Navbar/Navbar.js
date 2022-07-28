@@ -79,18 +79,22 @@ const ResponsiveAppBar = () => {
             <Link to="/">SELLON</Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              소개페이지
-            </Button>
-            <Button
-              onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              경매장
-            </Button>
+            <Link to="/about">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                소개페이지
+              </Button>
+            </Link>
+            <Link to="/auction">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                경매장
+              </Button>
+            </Link>
             {!user && (
               <Link to="/login">
                 <Button
