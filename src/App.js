@@ -16,6 +16,7 @@ import {
   MyPage,
   Chat,
 } from 'pages';
+import WrapContainer from './layouts/WrapContainer';
 
 const App = () => {
   const [user] = useRecoilState(userAtom);

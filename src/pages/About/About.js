@@ -1,5 +1,11 @@
+import WrapContainer from 'layouts/WrapContainer';
+
 const About = () => {
-  return <h1>소개페이지</h1>;
+  return (
+    <WrapContainer>
+      <h1>소개페이지</h1>
+    </WrapContainer>
+  );
 };
 
 export default About;
