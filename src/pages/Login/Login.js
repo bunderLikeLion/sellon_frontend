@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import loginValidation from 'validations/loginValidation';
 import { useEffect } from 'react';
 import useLoginMutation from 'queries/auth/useLoginMutation';
+import WrapContainer from 'layouts/WrapContainer';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <WrapContainer>
       <h1>Login</h1>
       <form onSubmit={handleSubmit(submit)}>
         <div>
@@ -48,7 +49,7 @@ const Login = () => {
       <Link to="/register">
         <button>회원가입 하러 가기</button>
       </Link>
-    </div>
+    </WrapContainer>
   );
 };
 

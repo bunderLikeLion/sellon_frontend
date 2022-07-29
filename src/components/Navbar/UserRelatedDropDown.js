@@ -16,8 +16,8 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
 
   const logout = async () => {
     toast.success('로그아웃 성공 👍');
-    await setUser(null);
-    await localStorage.clear();
+    setUser(null);
+    localStorage.clear();
     navigate('/');
   };
 

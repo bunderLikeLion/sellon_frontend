@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { Link, useNavigate } from 'react-router-dom';
 import registerValidation from 'validations/registerValidation';
 import useSignInMutation from 'queries/auth/useSignInMutation';
+import WrapContainer from 'layouts/WrapContainer';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <WrapContainer>
       <h1>Register</h1>
       <form onSubmit={handleSubmit(submit)}>
         <div>
@@ -59,7 +60,7 @@ const Register = () => {
       <Link to="/login">
         <button>로그인 하러 가기</button>
       </Link>
-    </div>
+    </WrapContainer>
   );
 };
 

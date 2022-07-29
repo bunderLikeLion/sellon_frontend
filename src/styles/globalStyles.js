@@ -8,8 +8,9 @@ const GlobalStyles = createGlobalStyle`
   }
   body{
     font-family: 'NS-R';
-    color: #000000;
     font-size: 15px;
+    background: #232323;
+
   }
   a {
     color: inherit;
