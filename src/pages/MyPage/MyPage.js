@@ -2,9 +2,16 @@ import { TabBar } from 'components/MyPage';
 import WrapContainer from 'layouts/WrapContainer';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
+  const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
+
+  useEffect(() => {
+    if (!user) navigate('/');
+  }, [user]);
 
   return (
     <WrapContainer>
