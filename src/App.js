@@ -4,8 +4,6 @@ import { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '@mui/material';
 import darkTheme from './themes/darkTheme';
-import { useRecoilState } from 'recoil';
-import { userAtom } from './states';
 import {
   Home,
   Login,
@@ -18,8 +16,6 @@ import {
 } from 'pages';
 
 const App = () => {
-  const [user] = useRecoilState(userAtom);
-
   return (
     <>
       <GlobalStyles />

@@ -7,13 +7,11 @@ import Button from '@mui/material/Button';
 import AdbIcon from '@mui/icons-material/Adb';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { userAtom } from 'states';
 import { AnchorNav, UserRelatedDropDown } from 'components/Navbar';
 import { Link } from 'react-router-dom';
 
 const ResponsiveAppBar = () => {
-  const [user] = useRecoilState(userAtom);
+  const user = JSON.parse(localStorage.getItem('user_info'));
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 

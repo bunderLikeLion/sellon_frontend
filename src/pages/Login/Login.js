@@ -1,5 +1,3 @@
-import { userAtom } from 'states';
-import { useRecoilState } from 'recoil';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import loginValidation from 'validations/loginValidation';
@@ -9,7 +7,7 @@ import WrapContainer from 'layouts/WrapContainer';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [user] = useRecoilState(userAtom);
+  const user = localStorage.getItem('user');
 
   useEffect(() => {
     if (user) navigate('/');

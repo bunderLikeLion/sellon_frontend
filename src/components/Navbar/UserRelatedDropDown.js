@@ -6,17 +6,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import toast from 'react-hot-toast';
-import { useRecoilState } from 'recoil';
-import { userAtom } from 'states';
 import { Link, useNavigate } from 'react-router-dom';
 
 const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
-  const [user, setUser] = useRecoilState(userAtom);
   const navigate = useNavigate();
 
   const logout = async () => {
     toast.success('로그아웃 성공 👍');
-    setUser(null);
     localStorage.clear();
     navigate('/');
   };

@@ -9,7 +9,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { FormControl, InputLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
-import { DropzoneArea } from 'material-ui-dropzone';
+import ImageDragDrop from './ImageDragDrop';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -97,14 +97,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           🌃 아이템 추가
         </Typography>
         <h1>대표사진 등록</h1>
-        <DropzoneArea
-          acceptedFiles={['image/*']}
-          dropzoneText={"아이템의 대표 '이미지'를 등록해주세요."}
-          dropzoneClass="dropzone-container"
-          dropzoneParagraphClass="dropzone-text"
-          filesLimit={1}
-          onChange={(files) => console.log('Files:', files)}
-        />
+        <ImageDragDrop />
         <p>
           {thumbnailPic
             ? `File name: ${thumbnailPic[0].name}`
@@ -167,13 +160,6 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             <MenuItem value="앨범">앨범</MenuItem>
           </Select>
         </FormControl>
-
-        <DropzoneArea
-          acceptedFiles={['image/*']}
-          dropzoneText={'Drag and drop an image here or click'}
-          filesLimit={1}
-          onChange={(files) => console.log(files)}
-        />
       </ModalContainer>
     </Modal>
   );
