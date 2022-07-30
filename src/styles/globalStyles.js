@@ -16,6 +16,9 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+  p {
+    display: block;
+  }
   button {
 /*    background-color: transparent;
     border: none;

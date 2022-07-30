@@ -3,13 +3,12 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
-import { FileUploader } from 'react-drag-drop-files';
 import { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { FormControl, InputLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
-import ImageDragDrop from './ImageDragDrop';
+import ImageDragDrop from './ItemAddForm/ImageDragDropStyles/ImageDragDrop';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -97,12 +96,10 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           🌃 아이템 추가
         </Typography>
         <h1>대표사진 등록</h1>
-        <ImageDragDrop />
-        <p>
-          {thumbnailPic
-            ? `File name: ${thumbnailPic[0].name}`
-            : 'no files uploaded yet'}
-        </p>
+        <ImageDragDrop isSingleNeeded={true} />
+        <p>추가사진 등록</p>
+        <ImageDragDrop isSingleNeeded={false} />
+
         <p>아이템 설명 </p>
         <EditorBlock>
           <Editor
@@ -115,19 +112,6 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             onEditorStateChange={handleEditorTextChange}
           />
         </EditorBlock>
-        <p>추가사진 등록</p>
-        <FileUploader
-          multiple={true}
-          handleChange={handleExtraPicsChange}
-          name="file"
-          label="아이템의 대표 사진을 등록해주세요"
-          types={fileTypes}
-        />
-        <p>
-          {extraPics
-            ? `File name: ${extraPics[0].name}`
-            : 'no files uploaded yet'}
-        </p>
         <p>상태</p>
         <FormControl>
           <InputLabel id="demo-simple-select-label">상태</InputLabel>

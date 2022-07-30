@@ -1,7 +1,5 @@
-import { userAtom } from 'states';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
 import { Link, useNavigate } from 'react-router-dom';
 import registerValidation from 'validations/registerValidation';
 import useSignInMutation from 'queries/auth/useSignInMutation';
@@ -9,7 +7,7 @@ import WrapContainer from 'layouts/WrapContainer';
 
 const Register = () => {
   const navigate = useNavigate();
-  const user = useRecoilValue(userAtom);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     // redirect to home if already logged in

@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
   const navigate = useNavigate();
 
-  const logout = async () => {
+  const logout = () => {
     toast.success('로그아웃 성공 👍');
     localStorage.clear();
     navigate('/');
