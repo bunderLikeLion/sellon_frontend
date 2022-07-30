@@ -9,21 +9,26 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { FormControl, InputLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
+import { DropzoneArea } from 'material-ui-dropzone';
 
-const style = {
-  position: 'relative',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 800,
-  height: 800,
-  bgcolor: '#3d3d3d',
-  color: 'white',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  overflowY: 'scroll',
-};
+const ModalContainer = styled(Box)`
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background-color: #3d3d3d;
+  color: white;
+  border: 2px solid #000;
+  padding: 20px;
+  //box-shadow: 24px;
+  overflow-y: scroll;
+
+  .dropzone-text {
+    color: blue;
+  }
+`;
 
 const CloseBtn = styled(CloseIcon)`
   position: absolute;
@@ -59,6 +64,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   const [extraPics, setExtraPics] = useState(null);
   const [text, setText] = useState(null);
   const [status, setStatus] = useState(3);
+  const [category, setCategory] = useState(null);
 
   const handleThumbnailPicChange = (file) => {
     setThumbNailPic(file);
@@ -85,18 +91,19 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <ModalContainer>
         <CloseBtn onClick={handleModal} />
         <Typography id="modal-modal-title" variant="h6" component="h2">
           🌃 아이템 추가
         </Typography>
         <h1>대표사진 등록</h1>
-        <FileUploader
-          multiple={true}
-          handleChange={handleThumbnailPicChange}
-          name="file"
-          label="아이템의 대표 사진을 등록해주세요"
-          types={fileTypes}
+        <DropzoneArea
+          acceptedFiles={['image/*']}
+          dropzoneText={"아이템의 대표 '이미지'를 등록해주세요."}
+          dropzoneClass="dropzone-container"
+          dropzoneParagraphClass="dropzone-text"
+          filesLimit={1}
+          onChange={(files) => console.log('Files:', files)}
         />
         <p>
           {thumbnailPic
@@ -145,7 +152,29 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             <MenuItem value={5}>최하</MenuItem>
           </Select>
         </FormControl>
-      </Box>
+        <p>카테고리</p>
+        <FormControl>
+          <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={category}
+            label="Age"
+            onChange={handleChange}
+          >
+            <MenuItem value="상의">상의</MenuItem>
+            <MenuItem value="신발">신발</MenuItem>
+            <MenuItem value="앨범">앨범</MenuItem>
+          </Select>
+        </FormControl>
+
+        <DropzoneArea
+          acceptedFiles={['image/*']}
+          dropzoneText={'Drag and drop an image here or click'}
+          filesLimit={1}
+          onChange={(files) => console.log(files)}
+        />
+      </ModalContainer>
     </Modal>
   );
 };
