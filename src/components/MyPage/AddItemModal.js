@@ -9,7 +9,7 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useRef, useState } from 'react';
-import { FormControl, InputLabel, Select } from '@mui/material';
+import { FormControl, InputLabel, Select, TextField } from '@mui/material';
 import ImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ImageDragDrop';
 
 const ModalContainer = styled(Box)`
@@ -39,15 +39,20 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   const [extraPics, setExtraPics] = useState([]);
   const [status, setStatus] = useState('');
   const [category, setCategory] = useState('');
+  const [quantity, setQuantity] = useState('');
 
   const editorRef = useRef();
 
-  const handleStatusChange = (event) => {
-    setStatus(event.target.value);
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
   };
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
   };
 
   const submit = () => {
@@ -112,6 +117,18 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             <MenuItem value={5}>최하</MenuItem>
           </Select>
         </FormControl>
+        <TextField
+          type="number"
+          value={quantity}
+          onChange={handleQuantityChange}
+          InputProps={{
+            inputProps: {
+              max: 100,
+              min: 1,
+            },
+          }}
+          label="갯수"
+        />
         <p>아이템 설명 </p>
         <Editor
           ref={editorRef} // DOM 선택용 useRef
