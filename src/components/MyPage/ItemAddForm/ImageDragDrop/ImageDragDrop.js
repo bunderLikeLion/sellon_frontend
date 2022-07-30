@@ -10,7 +10,13 @@ import {
   ThumbInner,
 } from './styles';
 
-const ImageDragDrop = ({ isSingleNeeded }) => {
+const ImageDragDrop = ({
+  isSingleNeeded,
+  thumbnailPic,
+  extraPics,
+  setThumbNailPic,
+  setExtraPics,
+}) => {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -18,7 +24,7 @@ const ImageDragDrop = ({ isSingleNeeded }) => {
     },
     onDrop: (acceptedFiles) => {
       if (isSingleNeeded) {
-        setFiles([
+        setThumbNailPic([
           acceptedFiles.map((file) =>
             Object.assign(file, {
               preview: URL.createObjectURL(file),
@@ -26,9 +32,8 @@ const ImageDragDrop = ({ isSingleNeeded }) => {
           )[0],
         ]);
       } else {
-        console.log(files.length);
         if (files.length <= 2) {
-          setFiles([
+          setExtraPics([
             ...files,
             acceptedFiles.map((file) =>
               Object.assign(file, {
@@ -37,7 +42,7 @@ const ImageDragDrop = ({ isSingleNeeded }) => {
             )[0],
           ]);
         } else {
-          setFiles([
+          setExtraPics([
             files[1],
             files[2],
             acceptedFiles.map((file) =>
@@ -56,20 +61,35 @@ const ImageDragDrop = ({ isSingleNeeded }) => {
     setFiles(newList);
   };
 
-  const thumbs = files.map((file) => (
-    <Thumb key={file.name}>
-      <ThumbInner>
-        <RemoveBtn onClick={() => removePic(file.name)} />
-        <ThumbImg
-          src={file.preview}
-          // Revoke data uri after image is loaded
-          onLoad={() => {
-            URL.revokeObjectURL(file.preview);
-          }}
-        />
-      </ThumbInner>
-    </Thumb>
-  ));
+  const thumbs = isSingleNeeded
+    ? thumbnailPic.map((file) => (
+        <Thumb key={file.name}>
+          <ThumbInner>
+            <RemoveBtn onClick={() => removePic(file.name)} />
+            <ThumbImg
+              src={file.preview}
+              // Revoke data uri after image is loaded
+              onLoad={() => {
+                URL.revokeObjectURL(file.preview);
+              }}
+            />
+          </ThumbInner>
+        </Thumb>
+      ))
+    : extraPics.map((file) => (
+        <Thumb key={file.name}>
+          <ThumbInner>
+            <RemoveBtn onClick={() => removePic(file.name)} />
+            <ThumbImg
+              src={file.preview}
+              // Revoke data uri after image is loaded
+              onLoad={() => {
+                URL.revokeObjectURL(file.preview);
+              }}
+            />
+          </ThumbInner>
+        </Thumb>
+      ));
 
   useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
