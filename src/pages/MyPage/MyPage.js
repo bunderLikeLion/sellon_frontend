@@ -2,6 +2,7 @@ import { TabBar } from 'components/MyPage';
 import WrapContainer from 'layouts/WrapContainer';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProfileBackground from 'components/MyPage/ProfileBackground/ProfileBackground';
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -13,8 +14,7 @@ const MyPage = () => {
 
   return (
     <WrapContainer>
-      <h1>마이페이지</h1>
-      <p>안녕하세요 {user.username}님!</p>
+      <ProfileBackground />
       <TabBar />
     </WrapContainer>
   );
