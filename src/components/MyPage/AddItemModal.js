@@ -10,7 +10,8 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useRef, useState } from 'react';
 import { FormControl, InputLabel, Select, TextField } from '@mui/material';
-import ImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ImageDragDrop';
+import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
+import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -72,21 +73,12 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           🌃 아이템 추가
         </Typography>
         <h1>대표사진 등록</h1>
-        <ImageDragDrop
-          isSingleNeeded={true}
+        <ThumbnailImageDragDrop
           thumbnailPic={thumbnailPic}
-          extraPics={extraPics}
           setThumbNailPic={setThumbNailPic}
-          setExtraPics={setExtraPics}
         />
         <p>추가사진 등록</p>
-        <ImageDragDrop
-          isSingleNeeded={false}
-          thumbnailPic={thumbnailPic}
-          extraPics={extraPics}
-          setThumbNailPic={setThumbNailPic}
-          setExtraPics={setExtraPics}
-        />
+        <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
         <FormControl sx={{ m: 1, minWidth: 100 }}>
           <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
           <Select
