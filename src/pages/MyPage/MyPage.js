@@ -1,4 +1,4 @@
-import { TabBar } from 'components/MyPage';
+import { ItemListCard, TabBar } from 'components/MyPage';
 import WrapContainer from 'layouts/WrapContainer';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
