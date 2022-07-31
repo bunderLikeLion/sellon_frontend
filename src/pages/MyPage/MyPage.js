@@ -3,10 +3,12 @@ import WrapContainer from 'layouts/WrapContainer';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileBackground from 'components/MyPage/ProfileBackground/ProfileBackground';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const MyPage = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user_info'));
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
     if (!user) navigate('/');

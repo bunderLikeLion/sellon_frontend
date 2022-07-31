@@ -9,9 +9,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useState } from 'react';
 import { AnchorNav, UserRelatedDropDown } from 'components/Navbar';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const ResponsiveAppBar = () => {
-  const user = JSON.parse(localStorage.getItem('user_info'));
+  const user = useRecoilValue(userAtom);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 

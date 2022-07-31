@@ -1,8 +1,10 @@
 import backgroundPic from 'images/profile_background.png';
 import { Container, UsernameText, CircleProfileImgContainer } from './styles';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const ProfileBackground = () => {
-  const user = JSON.parse(localStorage.getItem('user_info'));
+  const user = useRecoilValue(userAtom);
 
   return (
     <Container>

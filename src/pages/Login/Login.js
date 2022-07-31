@@ -4,10 +4,12 @@ import loginValidation from 'validations/loginValidation';
 import { useEffect } from 'react';
 import useLoginMutation from 'queries/auth/useLoginMutation';
 import WrapContainer from 'layouts/WrapContainer';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const Login = () => {
   const navigate = useNavigate();
-  const user = localStorage.getItem('user');
+  const user = useRecoilValue(userAtom);
 
   useEffect(() => {
     if (user) navigate('/');
