@@ -32,7 +32,7 @@ export const ThumbImg = styled.img`
 export const Container = styled.section`
   margin-top: 1rem;
   border: 1px solid #0965be;
-  width: 50%;
+  width: 80%;
   font-size: 0.6rem;
 
   .dropzone {

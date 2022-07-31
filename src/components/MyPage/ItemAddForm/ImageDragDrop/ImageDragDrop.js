@@ -17,7 +17,6 @@ const ImageDragDrop = ({
   setThumbNailPic,
   setExtraPics,
 }) => {
-  const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': [],
@@ -32,9 +31,9 @@ const ImageDragDrop = ({
           )[0],
         ]);
       } else {
-        if (files.length <= 2) {
+        if (extraPics.length <= 2) {
           setExtraPics([
-            ...files,
+            ...extraPics,
             acceptedFiles.map((file) =>
               Object.assign(file, {
                 preview: URL.createObjectURL(file),
@@ -43,8 +42,8 @@ const ImageDragDrop = ({
           ]);
         } else {
           setExtraPics([
-            files[1],
-            files[2],
+            extraPics[1],
+            extraPics[2],
             acceptedFiles.map((file) =>
               Object.assign(file, {
                 preview: URL.createObjectURL(file),
@@ -57,8 +56,13 @@ const ImageDragDrop = ({
   });
 
   const removePic = (name) => {
-    const newList = files.filter((item) => item.name !== name);
-    setFiles(newList);
+    if (isSingleNeeded) {
+      const newList = [];
+      setThumbNailPic(newList);
+    } else {
+      const newList = extraPics.filter((elem) => elem.name !== name);
+      setExtraPics(newList);
+    }
   };
 
   const thumbs = isSingleNeeded
@@ -91,10 +95,10 @@ const ImageDragDrop = ({
         </Thumb>
       ));
 
-  useEffect(() => {
+  /*  useEffect(() => {
     // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, []);
+  }, []);*/
 
   return (
     <Container>
