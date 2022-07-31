@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import userRelatedAPI from 'apis/userRelatedAPI';
 import { useNavigate } from 'react-router-dom';
 
-const useWithdrawl = () => {
+const useWithdrawlMutation = () => {
   const navigate = useNavigate();
 
   return useMutation(
@@ -26,4 +26,4 @@ const useWithdrawl = () => {
   );
 };
 
-export default useWithdrawl;
+export default useWithdrawlMutation;
