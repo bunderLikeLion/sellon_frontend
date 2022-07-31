@@ -10,6 +10,10 @@ const userRelatedAPI = {
   postLogin: (data) => {
     return client.post('users/login/', data);
   },
+
+  deleteWithdrawl: () => {
+    return client.delete('users/user/destroy/');
+  }
 };
 
 export default userRelatedAPI;
