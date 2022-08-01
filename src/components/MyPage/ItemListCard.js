@@ -16,12 +16,12 @@ const ItemListCard = () => {
   return (
     <Container>
       <Card sx={{ maxWidth: '100%' }}>
-        <CardHeader title="나이키 덩크 로우" />
         <CardMedia
           component="img"
           height="150"
           image="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580"
         />
+        <CardHeader title="나이키 덩크 로우" />
         <CardContent>
           <div style={{ width: '100%' }}>
             <Box
@@ -84,26 +84,6 @@ const ItemListCard = () => {
               }}
             >
               1개
-            </Box>
-            <Box
-              component="div"
-              sx={{
-                display: 'inline',
-                p: 1,
-                m: 1,
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark' ? '#101010' : '#fff',
-                color: (theme) =>
-                  theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-                border: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-                borderRadius: 2,
-                fontSize: '0.875rem',
-                fontWeight: '700',
-              }}
-            >
-              ₩180,000
             </Box>
           </div>
         </CardContent>

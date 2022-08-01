@@ -10,9 +10,15 @@ const WithDrawlBtn = styled(Button)`
   && {
     position: absolute;
     right: 0;
-    bottom: -3rem;
+    bottom: -4rem;
     background-color: #6315af;
     color: pink;
+  }
+`;
+
+const EditBtn = styled(WithDrawlBtn)`
+  && {
+    right: 7rem;
   }
 `;
 
@@ -28,6 +34,7 @@ const ProfileBackground = () => {
       <WithDrawlBtn onClick={() => withDrawlMutate()} variant="contained">
         회원탈퇴
       </WithDrawlBtn>
+      <EditBtn variant="contained">회원정보 수정</EditBtn>
     </Container>
   );
 };
