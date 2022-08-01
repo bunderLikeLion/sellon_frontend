@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { userAtom } from 'states';
+import axiosInstance from 'apis/config';
 
 const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
     toast.success('로그아웃 성공 👍');
     setUser(() => null);
     localStorage.clear();
+    axiosInstance.defaults.headers.common['Authorization'] = null;
     navigate('/');
   };
 
