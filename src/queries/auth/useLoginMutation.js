@@ -20,7 +20,7 @@ const useLoginMutation = () => {
         toast.dismiss();
         toast.success('로그인 성공 👍');
         await localStorage.setItem('user_info', JSON.stringify(res?.user));
-        await setUserInfo(localStorage.getItem('user_info'));
+        await setUserInfo(JSON.parse(localStorage.getItem('user_info')));
         localStorage.setItem('access_token', res?.access_token);
         navigate('/');
       },
