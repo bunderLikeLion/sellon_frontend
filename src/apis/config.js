@@ -5,10 +5,7 @@ import { useEffect } from 'react';
 
 const createInstance = () => {
   const timeout = 2000;
-  const accessToken = localStorage.getItem('access_token');
-  const headers = {
-    Authorization: accessToken && `Bearer ${accessToken}`,
-  };
+  const headers = {};
 
   return axios.create({
     baseURL: baseUrl,
