@@ -4,6 +4,7 @@ import { Container, UsernameText, CircleProfileImgContainer } from './styles';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { Button } from '@mui/material';
+import useWithdrawlMutation from 'queries/auth/useWithdrawlMutation';
 
 const WithDrawlBtn = styled(Button)`
   && {
@@ -17,13 +18,16 @@ const WithDrawlBtn = styled(Button)`
 
 const ProfileBackground = () => {
   const user = useRecoilValue(userAtom);
+  const { mutate: withDrawlMutate } = useWithdrawlMutation();
 
   return (
     <Container>
       <img src={backgroundPic} alt="" />
-      <UsernameText>{user.username}</UsernameText>
+      <UsernameText>{user?.username}</UsernameText>
       <CircleProfileImgContainer />
-      <WithDrawlBtn variant="contained">회원탈퇴</WithDrawlBtn>
+      <WithDrawlBtn onClick={() => withDrawlMutate()} variant="contained">
+        회원탈퇴
+      </WithDrawlBtn>
     </Container>
   );
 };
