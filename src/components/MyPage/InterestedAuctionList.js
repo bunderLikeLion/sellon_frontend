@@ -4,6 +4,7 @@ import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import InterestedAuctionListCard from './InterestedAuctionListCard';
+import InterestedAuctionListCardFinished from './InterestedAuctionListCardFinished';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ const InterestedAuctionList = () => {
     <ItemListContainer>
       <p>총 3개</p>
       <FlexContainer>
+        <InterestedAuctionListCardFinished />
         <InterestedAuctionListCard />
         <InterestedAuctionListCard />
         <InterestedAuctionListCard />
