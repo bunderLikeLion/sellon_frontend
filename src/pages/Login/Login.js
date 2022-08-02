@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import loginValidation from 'validations/loginValidation';
@@ -29,7 +28,6 @@ const Button = styled.button`
   padding: 0.6rem 0.8rem;
   color: rgb(253, 249, 243);
   font-weight: 600;
-  text-transform: uppercase;
   background: #f03d4e;
   border: none;
   border-radius: 0.35em;
@@ -38,11 +36,6 @@ const Button = styled.button`
   margin-top: 0.6rem;
   margin-bottom: 0.2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-out;
-  :hover {
-    background: rgb(200, 50, 70);
-    transform: translateY(-0.3rem);
-  }
 `;
 
 const Login = () => {
