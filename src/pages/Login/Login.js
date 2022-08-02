@@ -7,6 +7,7 @@ import WrapContainer from 'layouts/WrapContainer';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 
+
 const Login = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
@@ -49,6 +50,7 @@ const Login = () => {
       <Link to="/register">
         <button>회원가입 하러 가기</button>
       </Link>
+     
     </WrapContainer>
   );
 };
