@@ -9,6 +9,11 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import styled from 'styled-components';
 
+const InputContainer = styled.div`
+  display: flex;
+  width: 10rem;
+`;
+
 const Button = styled.button`
   max-width: 100%;
   padding: 0.6rem 0.8rem;
@@ -50,13 +55,11 @@ const Login = () => {
   return (
     <WrapContainer>
       <form onSubmit={handleSubmit(submit)}>
-        <div>
-          {/*<label>ID</label>*/}
+        <InputContainer>
           <input placeholder="ID" type="text" {...register('username')} />
           <div>{errors.username?.message}</div>
-        </div>
+        </InputContainer>
         <div>
-          {/*<label>Password</label>*/}
           <input
             placeholder="Password"
             type="password"
@@ -73,7 +76,6 @@ const Login = () => {
       <Link to="/register">
         <Button>회원가입</Button>
       </Link>
-      {/*<p>계정이 없으신가요?</p>*/}
     </WrapContainer>
   );
 };
