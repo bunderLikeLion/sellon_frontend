@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import loginValidation from 'validations/loginValidation';
@@ -6,6 +7,27 @@ import useLoginMutation from 'queries/auth/useLoginMutation';
 import WrapContainer from 'layouts/WrapContainer';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  max-width: 100%;
+  padding: 0.6rem 0.8rem;
+  color: rgb(253, 249, 243);
+  font-weight: 600;
+  text-transform: uppercase;
+  background: #f03d4e;
+  border: none;
+  border-radius: 0.35em;
+  outline: 0;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-out;
+  :hover {
+    background: rgb(200, 50, 70);
+    transform: translateY(-0.3rem);
+  }
+`;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,28 +49,31 @@ const Login = () => {
 
   return (
     <WrapContainer>
-      <h1>Login</h1>
       <form onSubmit={handleSubmit(submit)}>
         <div>
-          <label>Username</label>
-          <input type="text" {...register('username')} />
+          {/*<label>ID</label>*/}
+          <input placeholder="ID" type="text" {...register('username')} />
           <div>{errors.username?.message}</div>
         </div>
         <div>
-          <label>Password</label>
-          <input type="password" {...register('password')} />
+          {/*<label>Password</label>*/}
+          <input
+            placeholder="Password"
+            type="password"
+            {...register('password')}
+          />
           <div>{errors.password?.message}</div>
         </div>
-        <button disabled={isSubmitting}>
+        <Button disabled={isSubmitting}>
           {isSubmitting && 'Submitting...'}
-          Login
-        </button>
+          Sign In
+        </Button>
         {errors.apiError && <div>{errors.apiError?.message}</div>}
       </form>
-      <p>계정이 없으신가요?</p>
       <Link to="/register">
-        <button>회원가입 하러 가기</button>
+        <Button>회원가입</Button>
       </Link>
+      {/*<p>계정이 없으신가요?</p>*/}
     </WrapContainer>
   );
 };
