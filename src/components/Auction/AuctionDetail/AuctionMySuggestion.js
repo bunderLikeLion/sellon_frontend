@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import { useState } from 'react';
+import ValidationModal from './ValidationModal';
 
 const MySuggestion = styled.div`
   position: absolute;
@@ -106,6 +108,9 @@ const InventoryContainer = styled.div`
 `;
 
 const AuctionMySuggestion = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   return (
     <InventoryContainer>
       <Inventory>
@@ -145,7 +150,11 @@ const AuctionMySuggestion = () => {
           </ConfirmButtonContainer>
         </InventoryItem>
         <AfterIcon />
-        <AllInButton>올인</AllInButton>
+        <AllInButton onClick={handleModal}>올인</AllInButton>
+        <ValidationModal
+          handleModal={handleModal}
+          isModalOpened={isModalOpened}
+        />
       </Inventory>
     </InventoryContainer>
   );
