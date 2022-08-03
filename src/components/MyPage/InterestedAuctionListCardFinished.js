@@ -1,10 +1,13 @@
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
 import styled from 'styled-components';
+import Box from '@mui/material/Box';
 import PersonIcon from '@mui/icons-material/Person';
 
 const Container = styled.div`
+  position: relative;
   margin-top: 3rem;
   width: 30%;
 `;
@@ -50,7 +53,20 @@ const EnterBox = styled(PersonCntBox)`
   text-align: center;
 `;
 
-const ItemListCard = () => {
+const FinishedOverlay = styled(Card)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(57, 57, 65, 0.83) !important;
+  font-size: 2rem;
+`;
+
+const InterestedAuctionListCardFinished = () => {
   return (
     <Container>
       <Card sx={{ maxWidth: '100%' }}>
@@ -66,13 +82,16 @@ const ItemListCard = () => {
         <CardBottom style={{ width: '100%' }}>
           <PersonCntBox>
             <PersonIcon />
-            10명
+            11명
           </PersonCntBox>
           <EnterBox>들어가기</EnterBox>
         </CardBottom>
-      </Card>{' '}
+      </Card>
+      <FinishedOverlay>
+        <p>종료된 거래입니다.</p>
+      </FinishedOverlay>
     </Container>
   );
 };
 
-export default ItemListCard;
+export default InterestedAuctionListCardFinished;

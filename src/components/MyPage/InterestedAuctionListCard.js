@@ -1,7 +1,9 @@
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
 import styled from 'styled-components';
+import Box from '@mui/material/Box';
 import PersonIcon from '@mui/icons-material/Person';
 
 const Container = styled.div`
@@ -50,7 +52,7 @@ const EnterBox = styled(PersonCntBox)`
   text-align: center;
 `;
 
-const ItemListCard = () => {
+const InterestedAuctionListCard = () => {
   return (
     <Container>
       <Card sx={{ maxWidth: '100%' }}>
@@ -70,9 +72,9 @@ const ItemListCard = () => {
           </PersonCntBox>
           <EnterBox>들어가기</EnterBox>
         </CardBottom>
-      </Card>{' '}
+      </Card>
     </Container>
   );
 };
 
-export default ItemListCard;
+export default InterestedAuctionListCard;
