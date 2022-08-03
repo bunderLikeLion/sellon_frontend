@@ -8,7 +8,7 @@ const ItemImg = styled.div`
 `;
 
 const AuctionOtherSuggestionItem = () => {
-  return <ItemImg />;
+  return <ItemImg>아이템</ItemImg>;
 };
 
 export default AuctionOtherSuggestionItem;

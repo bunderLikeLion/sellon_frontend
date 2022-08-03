@@ -1,8 +1,8 @@
 import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
-import AuctionItem from './AuctionItem';
-import AuctionOtherSuggestion from './AuctionOtherSuggestion';
-import AuctionMySuggestion from './AuctionMySuggestion';
+import AuctionItem from '../../components/Auction/AuctionDetail/AuctionItem';
+import AuctionOtherSuggestion from '../../components/Auction/AuctionDetail/AuctionOtherSuggestion';
+import AuctionMySuggestion from '../../components/Auction/AuctionDetail/AuctionMySuggestion';
 
 const ItemContainer = styled.div`
   display: flex;

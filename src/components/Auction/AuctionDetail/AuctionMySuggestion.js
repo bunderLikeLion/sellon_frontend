@@ -111,6 +111,7 @@ const AuctionMySuggestion = () => {
       <Inventory>
         <MySuggestion>
           <MyItem>
+            내아이템
             <DeleteIcon />
           </MyItem>
           <MyItem>
@@ -125,6 +126,7 @@ const AuctionMySuggestion = () => {
         </MySuggestion>
         <BeforeIcon />
         <InventoryItem>
+          제시할아이템
           <SuggestionButton>제시</SuggestionButton>
         </InventoryItem>
         <InventoryItem>
