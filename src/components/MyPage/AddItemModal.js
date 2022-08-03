@@ -12,6 +12,7 @@ import { useRef, useState } from 'react';
 import { FormControl, InputLabel, Select, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
+import useCategoryQuery from 'queries/product/useCategoryQuery';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -36,13 +37,16 @@ const CloseBtn = styled(CloseIcon)`
 `;
 
 const AddItemModal = ({ handleModal, isModalOpened }) => {
+  const editorRef = useRef();
   const [thumbnailPic, setThumbNailPic] = useState([]);
   const [extraPics, setExtraPics] = useState([]);
   const [status, setStatus] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setQuantity] = useState('');
 
-  const editorRef = useRef();
+  const { data: catData, isSuccess: catFetched } = useCategoryQuery([
+    'formCategories',
+  ]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
@@ -81,16 +85,15 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
         <FormControl sx={{ m: 1, minWidth: 100 }}>
           <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={category}
-            label="Age"
-            onChange={handleCategoryChange}
-          >
-            <MenuItem value="상의">상의</MenuItem>
-            <MenuItem value="신발">신발</MenuItem>
-            <MenuItem value="앨범">앨범</MenuItem>
+          <Select value={category} onChange={handleCategoryChange}>
+            {catFetched &&
+              catData.map((singleCat) => {
+                return (
+                  <MenuItem key={singleCat.id} value={singleCat.id}>
+                    {singleCat.name}
+                  </MenuItem>
+                );
+              })}
           </Select>
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 100 }}>
@@ -102,11 +105,11 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             label="Age"
             onChange={handleStatusChange}
           >
-            <MenuItem value={1}>최상</MenuItem>
-            <MenuItem value={2}>중상</MenuItem>
-            <MenuItem value={3}>중</MenuItem>
-            <MenuItem value={4}>중하</MenuItem>
-            <MenuItem value={5}>최하</MenuItem>
+            <MenuItem value="excellent">최상</MenuItem>
+            <MenuItem value="very_good">중상</MenuItem>
+            <MenuItem value="good">중</MenuItem>
+            <MenuItem value="poor">중하</MenuItem>
+            <MenuItem value="very_poor">최하</MenuItem>
           </Select>
         </FormControl>
         <TextField
