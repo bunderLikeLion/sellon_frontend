@@ -1,10 +1,10 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
+import { useState } from 'react';
 
 const Form = styled.div`
   width: 100%;
@@ -33,7 +33,6 @@ const ProductPic = styled.div`
 const AuctionContainor = styled.div`
   margin: 3rem;
   padding: 2rem;
-
   background: gray;
   border-radius: 2rem;
 `;
@@ -52,9 +51,10 @@ const SubNav2 = styled.div`
 
 const SubNav2_left = styled.div`
   display: flex;
-  h1 {
-    margin: 1.5rem;
-  }
+`;
+
+const HomegroundTitle = styled.div`
+  margin: 1.5rem;
 `;
 
 const SubmitAuctionButton = styled.button`
@@ -89,12 +89,18 @@ const SubNav3 = styled.div`
 
 const SubNav3_left = styled.div`
   display: flex;
-  h1 {
-    margin: 1.5rem;
-  }
-  button {
-    margin: 1rem;
-  }
+`;
+
+const HomegroundAuction = styled.div`
+  margin: 1.5rem;
+`;
+
+const CategoryButton = styled.button`
+  margin: 1rem;
+`;
+
+const MostPopluar = styled.div`
+  margin: 1.5rem;
 `;
 
 const Containor = styled.div`
@@ -103,7 +109,7 @@ const Containor = styled.div`
 `;
 
 const Home = () => {
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = useState('');
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -113,7 +119,7 @@ const Home = () => {
       <Search placeholder="검색" />
       <SubNav2>
         <SubNav2_left>
-          <h1>홈그라운드 거래</h1>
+          <HomegroundTitle>홈그라운드 거래</HomegroundTitle>
           <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
             <InputLabel id="demo-select-small">홈그라운드 설정</InputLabel>
             <Select
@@ -135,21 +141,21 @@ const Home = () => {
         <FameShortcut>명예의 전당 바로가기➡️</FameShortcut>
       </SubNav>
       <AuctionContainor>
-        <h1>가장 인기있는 거래 1</h1>
+        <MostPopluar>가장 인기있는 거래 1</MostPopluar>
         <UserPic />
         <ProductPic />
         <InterestedUser>참여자수</InterestedUser>
       </AuctionContainor>
       <AuctionContainor>
-        <h1>가장 인기있는 거래 2</h1>
+        <MostPopluar>가장 인기있는 거래 2</MostPopluar>
         <UserPic />
         <ProductPic />
         <InterestedUser>참여자수</InterestedUser>
       </AuctionContainor>
       <SubNav3>
         <SubNav3_left>
-          <h1>홈그라운드의 모든 거래</h1>
-          <button>카테고리</button>
+          <HomegroundAuction>홈그라운드의 모든 거래</HomegroundAuction>
+          <CategoryButton>카테고리</CategoryButton>
         </SubNav3_left>
         <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
           <InputLabel id="demo-select-small">정렬</InputLabel>

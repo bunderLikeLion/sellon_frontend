@@ -77,7 +77,7 @@ const HomeAuctionListCard = () => {
           image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
         />
         <CardTop>
-          <CardTopImg>img</CardTopImg>
+          <CardTopImg>profile</CardTopImg>
           <CardHeader title="경매글 제목" />
         </CardTop>
         <CardBottom style={{ width: '100%' }}>
