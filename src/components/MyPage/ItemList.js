@@ -4,6 +4,7 @@ import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import { Pagination } from '@mui/material';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -29,10 +30,16 @@ const PlusBtn = styled(AddBoxIcon)`
 
 const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const handleModal = () => setIsModalOpened(!isModalOpened);
+  const [pageNum, setPageNum] = useState(1);
 
   const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery();
+    useMyProductsQuery(pageNum);
+
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
+  const handleChange = (event, value) => {
+    setPageNum(value);
+  };
 
   return (
     <ItemListContainer>
@@ -46,6 +53,12 @@ const ItemList = () => {
             );
           })}
       </FlexContainer>
+      <Pagination
+        count={myProductsData?.total_pages}
+        page={pageNum}
+        onChange={handleChange}
+      />
+
       <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
     </ItemListContainer>
   );

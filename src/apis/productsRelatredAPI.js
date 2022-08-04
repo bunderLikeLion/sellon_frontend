@@ -15,8 +15,8 @@ const productsRelatedAPI = {
     });
   },
 
-  getMyProducts: () => {
-    return client.get('products/', { params: { per_page: 6 } });
+  getMyProducts: (pageNum) => {
+    return client.get('products/', { params: { per_page: 6, page: pageNum } });
   },
 };
 
