@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import userIcon from '../../images/user.png';
-import userIconW from '../../images/user_w.png';
 import { Checkbox, Avatar, Button } from '@material-ui/core';
+import PersonIcon from '@mui/icons-material/Person';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 
 const Container = styled.div`
@@ -95,9 +96,14 @@ const MoreButton = styled(Button)`
     }
 `;
 
-const StyledAvatar = styled(Avatar)`
+const StyledPersonOutlinedIcon = styled(PersonOutlineOutlinedIcon)`
     && {
-        background-color: #757575;
+        margin-right: 8%;
+    }
+`;
+
+const StyledPersonIcon = styled(PersonIcon)`
+    && {
         margin-right: 7%;
     }
 `;
@@ -112,7 +118,7 @@ const AuctionFinished = () => {
                 <TopTextContainer>
                     <BigText>WELL DONE!</BigText>
                     <CountParticipant>
-                        <CountParticipantIcon><img src={userIcon} /></CountParticipantIcon>
+                        <StyledPersonOutlinedIcon size="small" />
                         <p>~ 명</p>
                     </CountParticipant>
                 </TopTextContainer>
@@ -125,7 +131,7 @@ const AuctionFinished = () => {
                 <StyledButton variant="contained" size="small">선택</StyledButton>
                 <Participant>
                     <Checkbox {...label} color="default" />
-                    <StyledAvatar alt="participant" src={userIconW} />
+                    <StyledPersonIcon alt="participant" fontSize="large" />
                     <ParticipantItemImage></ParticipantItemImage>
                     <ParticipantItemImage></ParticipantItemImage>
                     <ParticipantItemImage></ParticipantItemImage>
@@ -134,7 +140,7 @@ const AuctionFinished = () => {
                 </Participant>
                 <Participant>
                     <Checkbox {...label} color="default" />
-                    <StyledAvatar alt="participant" src={userIconW} />
+                    <StyledPersonIcon alt="participant" fontSize="large" />
                     <ParticipantItemImage></ParticipantItemImage>
                     <ParticipantItemImage></ParticipantItemImage>
                     <ParticipantItemImage></ParticipantItemImage>
@@ -147,7 +153,7 @@ const AuctionFinished = () => {
                 </Participant>
                 <Participant>
                     <Checkbox {...label} color="default" />
-                    <StyledAvatar alt="participant" src={userIconW} />
+                    <StyledPersonIcon alt="participant" fontSize="large" />
                     <ParticipantItemImage></ParticipantItemImage>
                     <ParticipantItemImage></ParticipantItemImage>
                     <ParticipantItemImage></ParticipantItemImage>
