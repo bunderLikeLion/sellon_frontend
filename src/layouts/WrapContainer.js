@@ -10,7 +10,6 @@ const WrapContainer = ({ children }) => {
     <MaxContainer
       sx={{
         height: '92vh',
-        color: '#FFFFFF',
         pt: '2vh',
       }}
     >
