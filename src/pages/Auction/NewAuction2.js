@@ -10,6 +10,7 @@ const BigContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Container = styled.div`
   width: 100%;
   height: 38rem;
@@ -40,6 +41,7 @@ const ItemImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 `;
+
 const ItemExtraImage = styled.div`
   width: 20%;
   margin: 1rem;
@@ -48,6 +50,7 @@ const ItemExtraImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 `;
+
 const ItemImageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,6 +58,7 @@ const ItemImageContainer = styled.div`
   margin: 1rem;
   clear: both;
 `;
+
 const ItemExtraImageContainer = styled.div`
   height: 8rem;
   float: left;
@@ -86,6 +90,7 @@ const AuctionTitleContainer = styled.div`
   clear: both;
   margin: 2rem 1rem;
 `;
+
 const AuctionTitle = styled.input.attrs((props) => ({
   type: 'text',
 }))`
@@ -97,7 +102,8 @@ const TextareaContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const AuctionText = styled.textarea.attrs((props) => ({}))`
+
+const AuctionText = styled.textarea`
   height: 10rem;
 `;
 
@@ -106,9 +112,11 @@ const AuctionPeriodContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const AuctionPeriod = styled.div`
   display: flex;
 `;
+
 const AuctionPeriodInput = styled.input.attrs((props) => ({
   type: 'datetime-local',
 }))``;
@@ -118,6 +126,7 @@ const TradeTypeContainer = styled.div`
   margin: 1rem;
   align-items: center;
 `;
+
 const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`
   & {
     margin-left: 1rem;

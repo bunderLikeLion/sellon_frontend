@@ -56,6 +56,7 @@ const AuctionTitleContainer = styled.div`
   clear: both;
   margin: 2rem 1rem;
 `;
+
 const AuctionTitle = styled.input.attrs((props) => ({
   type: 'text',
 }))`
@@ -67,7 +68,8 @@ const TextareaContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const AuctionText = styled.textarea.attrs((props) => ({}))`
+
+const AuctionText = styled.textarea`
   height: 10rem;
 `;
 
@@ -76,9 +78,11 @@ const AuctionPeriodContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const AuctionPeriod = styled.div`
   display: flex;
 `;
+
 const AuctionPeriodInput = styled.input.attrs((props) => ({
   type: 'datetime-local',
 }))``;
@@ -88,6 +92,7 @@ const TradeTypeContainer = styled.div`
   margin: 1rem;
   align-items: center;
 `;
+
 const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`
   & {
     margin-left: 1rem;
