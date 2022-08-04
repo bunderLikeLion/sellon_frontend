@@ -5,6 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import { useState } from 'react';
+import WrapContainer from '../../layouts/WrapContainer';
 
 const Form = styled.div`
   width: 100%;
@@ -172,16 +173,6 @@ const Home = () => {
           </Select>
         </FormControl>
       </SubNav3>
-      <Containor>
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-      </Containor>
-      <Containor>
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-      </Containor>
       <Containor>
         <HomeAuctionListCard />
         <HomeAuctionListCard />

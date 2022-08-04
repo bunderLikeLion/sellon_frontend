@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import AuctionPublishModal from '../../components/Auction/AuctionPublish/AuctionPublishModal';
 
 const BigContainer = styled.div`
   width: 80%;
@@ -10,7 +12,6 @@ const BigContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-
 const Container = styled.div`
   width: 100%;
   height: 38rem;
@@ -18,6 +19,14 @@ const Container = styled.div`
   padding: 1.5rem 0.5rem;
   background-color: grey;
   position: relative;
+`;
+
+const BtnContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Button = styled.button`
@@ -31,54 +40,13 @@ const Button = styled.button`
   bottom: 1rem;
 `;
 
-const ItemImage = styled.div`
-  width: 70%;
-  height: 100%;
-  float: left;
-  margin: 0 auto;
-  background-image: ${(props) => `url(${props.imgUrl})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
-
-const ItemExtraImage = styled.div`
-  width: 20%;
-  margin: 1rem;
-  background-image: ${(props) => `url(${props.imgUrl})`};
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
-
-const ItemImageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 15rem;
-  margin: 1rem;
-  clear: both;
-`;
-
-const ItemExtraImageContainer = styled.div`
-  height: 8rem;
-  float: left;
-  clear: both;
-  display: flex;
-  justify-content: center;
-`;
-
-const ItemDetailInformationContainer = styled.div`
-  margin: 1rem;
-`;
-
-const ItemDetailTitle = styled.p`
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin: 1rem;
-`;
-
-const ContentText = styled.p`
-  margin: 0.5rem;
+const InventoryBtn = styled.button`
+  font-size: x-large;
+  background-color: dimgrey;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  height: 5rem;
 `;
 
 const SubHeader = styled.p`
@@ -136,42 +104,18 @@ const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`
   }
 `;
 
-const ItemDetailInformation = styled.div`
-  background-color: darkgrey;
-  padding: 1rem;
-`;
+const NewAuction1 = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
 
-const ItemDetailText = styled.div`
-  background-color: darkgrey;
-  height: 8rem;
-  clear: both;
-  padding: 1rem;
-  margin: 1rem;
-  overflow: scroll;
-`;
-
-const NewAuction2 = () => {
   return (
     <BigContainer>
       <Container>
-        <ItemImageContainer>
-          <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-          <ItemExtraImageContainer>
-            <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-          </ItemExtraImageContainer>
-        </ItemImageContainer>
-
-        <ItemDetailInformationContainer>
-          <ItemDetailTitle>나이키 덩크 로우</ItemDetailTitle>
-          <ItemDetailInformation>
-            <ContentText>개수 : 1개</ContentText>
-            <ContentText>상태 : 좋음</ContentText>
-            <ContentText>카테고리 : 스포츠</ContentText>
-          </ItemDetailInformation>
-        </ItemDetailInformationContainer>
-        <ItemDetailText>아끼는 신발 입니다.</ItemDetailText>
+        <BtnContainer>
+          <InventoryBtn onClick={handleModal}>
+            인벤토리에서 가져오기
+          </InventoryBtn>
+        </BtnContainer>
       </Container>
 
       <Container>
@@ -204,8 +148,12 @@ const NewAuction2 = () => {
         </TradeTypeContainer>
         <Button>경매 발행하기</Button>
       </Container>
+      <AuctionPublishModal
+        handleModal={handleModal}
+        isModalOpened={isModalOpened}
+      />
     </BigContainer>
   );
 };
 
-export default NewAuction2;
+export default NewAuction1;

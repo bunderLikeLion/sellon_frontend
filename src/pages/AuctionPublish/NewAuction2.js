@@ -3,13 +3,14 @@ import styled from 'styled-components';
 const BigContainer = styled.div`
   width: 80%;
   height: 100%;
-  margin: 0rem auto;
+  margin: 0 auto;
   padding: 2rem 1rem;
   background-color: #121212;
   color: white;
   display: flex;
   align-items: center;
 `;
+
 const Container = styled.div`
   width: 100%;
   height: 38rem;
@@ -17,14 +18,6 @@ const Container = styled.div`
   padding: 1.5rem 0.5rem;
   background-color: grey;
   position: relative;
-`;
-
-const BtnContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Button = styled.button`
@@ -38,13 +31,54 @@ const Button = styled.button`
   bottom: 1rem;
 `;
 
-const InventoryBtn = styled.button`
-  font-size: x-large;
-  background-color: dimgrey;
-  color: white;
-  border-radius: 1rem;
-  border: none;
-  height: 5rem;
+const ItemImage = styled.div`
+  width: 70%;
+  height: 100%;
+  float: left;
+  margin: 0 auto;
+  background-image: ${(props) => `url(${props.imgUrl})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const ItemExtraImage = styled.div`
+  width: 20%;
+  margin: 1rem;
+  background-image: ${(props) => `url(${props.imgUrl})`};
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const ItemImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  margin: 1rem;
+  clear: both;
+`;
+
+const ItemExtraImageContainer = styled.div`
+  height: 8rem;
+  float: left;
+  clear: both;
+  display: flex;
+  justify-content: center;
+`;
+
+const ItemDetailInformationContainer = styled.div`
+  margin: 1rem;
+`;
+
+const ItemDetailTitle = styled.p`
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin: 1rem;
+`;
+
+const ContentText = styled.p`
+  margin: 0.5rem;
 `;
 
 const SubHeader = styled.p`
@@ -102,13 +136,42 @@ const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`
   }
 `;
 
-const NewAuction1 = () => {
+const ItemDetailInformation = styled.div`
+  background-color: darkgrey;
+  padding: 1rem;
+`;
+
+const ItemDetailText = styled.div`
+  background-color: darkgrey;
+  height: 8rem;
+  clear: both;
+  padding: 1rem;
+  margin: 1rem;
+  overflow: scroll;
+`;
+
+const NewAuction2 = () => {
   return (
     <BigContainer>
       <Container>
-        <BtnContainer>
-          <InventoryBtn>인벤토리에서 가져오기</InventoryBtn>
-        </BtnContainer>
+        <ItemImageContainer>
+          <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+          <ItemExtraImageContainer>
+            <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+            <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+            <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+          </ItemExtraImageContainer>
+        </ItemImageContainer>
+
+        <ItemDetailInformationContainer>
+          <ItemDetailTitle>나이키 덩크 로우</ItemDetailTitle>
+          <ItemDetailInformation>
+            <ContentText>개수 : 1개</ContentText>
+            <ContentText>상태 : 좋음</ContentText>
+            <ContentText>카테고리 : 스포츠</ContentText>
+          </ItemDetailInformation>
+        </ItemDetailInformationContainer>
+        <ItemDetailText>아끼는 신발 입니다.</ItemDetailText>
       </Container>
 
       <Container>
@@ -145,4 +208,4 @@ const NewAuction1 = () => {
   );
 };
 
-export default NewAuction1;
+export default NewAuction2;
