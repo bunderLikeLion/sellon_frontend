@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FormControl, InputLabel, Select, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
@@ -47,11 +47,22 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   const [category, handleCategory, categoryReset] = useInput('');
   const [quantity, handleQuantity, quantityReset] = useInput('');
 
+  const closeModal = () => {
+    itemNameReset();
+    statusReset();
+    categoryReset();
+    quantityReset();
+    setThumbNailPic([]);
+    setExtraPics([]);
+    handleModal();
+  };
+
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
   ]);
 
-  const { mutate: postSubmit } = useCreateProductMutation();
+  const { mutate: postSubmit, isSuccess: createdSuccessfully } =
+    useCreateProductMutation();
 
   const submit = () => {
     const frm = new FormData();
@@ -67,15 +78,9 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     postSubmit(frm);
   };
 
-  const closeModal = () => {
-    itemNameReset();
-    statusReset();
-    categoryReset();
-    quantityReset();
-    setThumbNailPic([]);
-    setExtraPics([]);
-    handleModal();
-  };
+  useEffect(() => {
+    if (createdSuccessfully) closeModal();
+  }, [createdSuccessfully]);
 
   return (
     <Modal
