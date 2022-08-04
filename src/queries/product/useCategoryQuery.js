@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import productRelatedAPI from 'apis/productRelatredAPI';
+import productRelatedAPI from 'apis/productsRelatredAPI';
 import errorMsgHandler from 'utils/errorMsgHandler';
 
 const useCategoryQuery = () => {

@@ -51,20 +51,20 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     'formCategories',
   ]);
 
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
-  };
-
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
-
-  const handleQuantityChange = (e) => {
-    setQuantity(e.target.value);
-  };
+  const { mutate: postSubmit } = useCreateProductMutation();
 
   const submit = () => {
-    const desc = editorRef.current?.getInstance().getHTML();
+    const frm = new FormData();
+    frm.append('thumbnail.file', thumbnailPic[0]);
+    extraPics.forEach((single, idx) => {
+      frm.append(`images[${idx}]file`, single);
+    });
+    frm.append('product_category_id', category);
+    frm.append('name', itemName);
+    frm.append('quality', status);
+    frm.append('quantity', quantity);
+    frm.append('description', editorRef.current?.getInstance().getHTML());
+    postSubmit(frm);
   };
 
   const closeModal = () => {
@@ -72,6 +72,8 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     statusReset();
     categoryReset();
     quantityReset();
+    setThumbNailPic([]);
+    setExtraPics([]);
     handleModal();
   };
 
@@ -123,11 +125,11 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             label="Age"
             onChange={handleStatus}
           >
-            <MenuItem value="excellent">최상</MenuItem>
-            <MenuItem value="very_good">중상</MenuItem>
-            <MenuItem value="good">중</MenuItem>
-            <MenuItem value="poor">중하</MenuItem>
-            <MenuItem value="very_poor">최하</MenuItem>
+            <MenuItem value={1}>최상</MenuItem>
+            <MenuItem value={2}>중상</MenuItem>
+            <MenuItem value={3}>중</MenuItem>
+            <MenuItem value={4}>중하</MenuItem>
+            <MenuItem value={5}>최하</MenuItem>
           </Select>
         </FormControl>
         <TextField
