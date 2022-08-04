@@ -19,6 +19,7 @@ const AuctionDetail = lazy(() => import('pages/AuctionDetail/AuctionDetail'));
 const MyPage = lazy(() => import('pages/MyPage/MyPage'));
 const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
+const TopRank = lazy(() => import('pages/TopRank/TopRank'));
 
 const App = () => {
   const user = useRecoilValue(userAtom);
@@ -46,6 +47,7 @@ const App = () => {
                 <Route path="/auction/detail" element={<AuctionDetail />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/mypage/itemdetail" element={<ItemDetail />} />
+                <Route path="/toprank" element={<TopRank />} />
               </Routes>
             </Suspense>
           </AxiosInterceptor>
