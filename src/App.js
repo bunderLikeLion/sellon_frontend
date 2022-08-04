@@ -17,9 +17,11 @@ const AuctionDetail = lazy(() => import('pages/AuctionDetail/AuctionDetail'));
 const MyPage = lazy(() => import('pages/MyPage/MyPage'));
 const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
+const AuctionFinished = lazy(() => import('pages/Auction/AuctionFinished'));
 const NewAuction1 = lazy(() => import('pages/Auction/NewAuction1'));
 const NewAuction2 = lazy(() => import('pages/Auction/NewAuction2'));
 const TopRank = lazy(() => import('pages/TopRank/TopRank'));
+
 
 const App = () => {
   useEffect(() => {
@@ -52,6 +54,7 @@ const App = () => {
                 <Route path="/toprank" element={<TopRank />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/mypage/itemdetail" element={<ItemDetail />} />
+                <Route path="/auctionfinished" element={<AuctionFinished />} />
                 <Route path="/auction/newauction1" element={<NewAuction1 />} />
                 <Route path="/auction/newauction2" element={<NewAuction2 />} />
               </Routes>
