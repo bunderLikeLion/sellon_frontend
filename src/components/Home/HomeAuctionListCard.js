@@ -21,6 +21,7 @@ const CardTop = styled.div`
   display: flex;
   justify-content: start;
   padding: 0.5rem;
+  align-items: center;
 `;
 
 const CardTopImg = styled.div`
@@ -29,6 +30,9 @@ const CardTopImg = styled.div`
   padding: 1.5rem;
   border-radius: 50%;
   background: darkgray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const CardBottom = styled.div`
@@ -41,7 +45,9 @@ const CardBottom = styled.div`
 `;
 
 const PersonCntBox = styled.span`
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0.3rem;
   padding: 0.4rem 0.8rem;
   height: 2.4rem;
@@ -53,7 +59,6 @@ const PersonCntBox = styled.span`
 `;
 
 const EnterBox = styled(PersonCntBox)`
-  display: inline-block;
   margin-left: 3rem;
   width: 10rem;
   text-align: center;
@@ -61,8 +66,8 @@ const EnterBox = styled(PersonCntBox)`
 
 const HeartIcon = styled(FavoriteBorderIcon)`
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1.5rem;
+  right: 1.5rem;
   color: black;
 `;
 
