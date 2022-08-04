@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import useMyProductsQuery from 'queries/product/useMyProductsQuery';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -30,19 +31,20 @@ const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery();
+
   return (
     <ItemListContainer>
       <PlusBtn onClick={handleModal} />
       <p>총 5개</p>
       <FlexContainer>
-        <ItemListCard />
-        <ItemListCard />
-        <ItemListCard />
-        <ItemListCard />
-        <ItemListCard />
-        <ItemListCard />
-        <ItemListCard />
-        <ItemListCard />
+        {myProductFetched &&
+          myProductsData.results.map((productData) => {
+            return (
+              <ItemListCard key={productData.id} productData={productData} />
+            );
+          })}
       </FlexContainer>
       <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
     </ItemListContainer>

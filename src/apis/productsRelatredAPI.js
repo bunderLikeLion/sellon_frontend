@@ -16,7 +16,7 @@ const productsRelatedAPI = {
   },
 
   getMyProducts: () => {
-    return client.get('products/');
+    return client.get('products/', { params: { per_page: 6 } });
   },
 };
 
