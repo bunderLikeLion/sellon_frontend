@@ -1,13 +1,11 @@
 import { lazy, Suspense, useEffect } from 'react';
 import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AxiosInterceptor } from './apis/config';
+import axiosInstance, { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '@mui/material';
 import darkTheme from './themes/darkTheme';
 import { WaveLoading } from 'react-loadingg';
-import { userAtom } from './states';
-import { useRecoilValue } from 'recoil';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
@@ -20,11 +18,15 @@ const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
 
 const App = () => {
-  const user = useRecoilValue(userAtom);
-
   useEffect(() => {
-    console.log(user, 'userInfo');
-  }, [user]);
+    if (performance.navigation.type === 1) {
+      if (localStorage.getItem('access_token')) {
+        axiosInstance.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${localStorage.getItem('access_token')}`;
+      }
+    }
+  });
 
   return (
     <>
