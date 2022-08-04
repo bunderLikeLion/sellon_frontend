@@ -5,7 +5,10 @@ const useInput = (initialValue = null) => {
   const handler = useCallback((e) => {
     setValue(e.target.value);
   }, []);
-  return [value, handler, setValue];
+  const reset = useCallback(() => {
+    setValue('');
+  }, []);
+  return [value, handler, reset, setValue];
 };
 
 export default useInput;

@@ -13,6 +13,8 @@ import { FormControl, InputLabel, Select, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
 import useCategoryQuery from 'queries/product/useCategoryQuery';
+import useCreateProductMutation from 'queries/product/useCreateProductMutation';
+import useInput from 'hooks/useInput';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -40,9 +42,10 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   const editorRef = useRef();
   const [thumbnailPic, setThumbNailPic] = useState([]);
   const [extraPics, setExtraPics] = useState([]);
-  const [status, setStatus] = useState('');
-  const [category, setCategory] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [itemName, handleItemName, itemNameReset] = useInput('');
+  const [status, handleStatus, statusReset] = useInput('');
+  const [category, handleCategory, categoryReset] = useInput('');
+  const [quantity, handleQuantity, quantityReset] = useInput('');
 
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
@@ -64,10 +67,18 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     const desc = editorRef.current?.getInstance().getHTML();
   };
 
+  const closeModal = () => {
+    itemNameReset();
+    statusReset();
+    categoryReset();
+    quantityReset();
+    handleModal();
+  };
+
   return (
     <Modal
       open={isModalOpened}
-      onClose={handleModal}
+      onClose={closeModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -76,6 +87,13 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <Typography id="modal-modal-title" variant="h6" component="h2">
           🌃 아이템 추가
         </Typography>
+        <h1>아이템 이름</h1>
+        <TextField
+          id="outlined-name"
+          label="Name"
+          value={itemName}
+          onChange={handleItemName}
+        />
         <h1>대표사진 등록</h1>
         <ThumbnailImageDragDrop
           thumbnailPic={thumbnailPic}
@@ -85,7 +103,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
         <FormControl sx={{ m: 1, minWidth: 100 }}>
           <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-          <Select value={category} onChange={handleCategoryChange}>
+          <Select value={category} onChange={handleCategory}>
             {catFetched &&
               catData.map((singleCat) => {
                 return (
@@ -103,7 +121,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             id="demo-simple-select"
             value={status}
             label="Age"
-            onChange={handleStatusChange}
+            onChange={handleStatus}
           >
             <MenuItem value="excellent">최상</MenuItem>
             <MenuItem value="very_good">중상</MenuItem>
@@ -115,7 +133,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <TextField
           type="number"
           value={quantity}
-          onChange={handleQuantityChange}
+          onChange={handleQuantity}
           InputProps={{
             inputProps: {
               max: 100,
