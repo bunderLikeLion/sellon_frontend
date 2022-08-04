@@ -49,11 +49,12 @@ const ValidationCancelButton = styled(ClearIcon)`
 
 const InventoryContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
   width: 100%;
   height: 85%;
-  background: red;
 `;
 
 const AuctionPublishModal = ({ handleModal, isModalOpened }) => {
@@ -71,6 +72,14 @@ const AuctionPublishModal = ({ handleModal, isModalOpened }) => {
           </TextContainer>
           <ValidationCancelButton onClick={handleModal} />
           <InventoryContainer>
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
+            <InventoryItem />
             <InventoryItem />
             <InventoryItem />
             <InventoryItem />

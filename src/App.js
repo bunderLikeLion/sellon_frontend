@@ -3,8 +3,6 @@ import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axiosInstance, { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
-import { ThemeProvider } from '@mui/material';
-import darkTheme from './themes/darkTheme';
 import { WaveLoading } from 'react-loadingg';
 
 const Home = lazy(() => import('pages/Home/Home'));
@@ -39,31 +37,29 @@ const App = () => {
   return (
     <>
       <GlobalStyles />
-      <ThemeProvider theme={darkTheme}>
-        <Toaster />
-        <Router>
-          <AxiosInterceptor>
-            <Suspense fallback={<WaveLoading />}>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/mypage" element={<MyPage />} />
-                <Route path="/auction" element={<Auction />} />
-                <Route path="/auction/detail" element={<AuctionDetail />} />
-                <Route path="/toprank" element={<TopRank />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/mypage/itemdetail" element={<ItemDetail />} />
-                <Route path="/auctionfinished" element={<AuctionFinished />} />
-                <Route path="/auction/newauction1" element={<NewAuction1 />} />
-                <Route path="/auction/newauction2" element={<NewAuction2 />} />
-              </Routes>
-            </Suspense>
-          </AxiosInterceptor>
-        </Router>
-      </ThemeProvider>
+      <Toaster />
+      <Router>
+        <AxiosInterceptor>
+          <Suspense fallback={<WaveLoading />}>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/mypage" element={<MyPage />} />
+              <Route path="/auction" element={<Auction />} />
+              <Route path="/auction/detail" element={<AuctionDetail />} />
+              <Route path="/toprank" element={<TopRank />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/mypage/itemdetail" element={<ItemDetail />} />
+              <Route path="/auctionfinished" element={<AuctionFinished />} />
+              <Route path="/auction/newauction1" element={<NewAuction1 />} />
+              <Route path="/auction/newauction2" element={<NewAuction2 />} />
+            </Routes>
+          </Suspense>
+        </AxiosInterceptor>
+      </Router>
     </>
   );
 };
