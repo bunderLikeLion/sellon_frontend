@@ -6,6 +6,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import { useState } from 'react';
 import { ItemList } from './index';
 import InterestedAuctionList from './InterestedAuctionList';
+import TransactionHistory from './TransactionHistory';
 
 const TabBar = () => {
   const [value, setValue] = useState('1');
@@ -24,7 +25,9 @@ const TabBar = () => {
             <Tab label="관심거래" value="3" />
           </TabList>
         </Box>
-        <TabPanel value="1">히스토리</TabPanel>
+        <TabPanel value="1">
+          <TransactionHistory />
+        </TabPanel>
         <TabPanel value="2">
           <ItemList />
         </TabPanel>
