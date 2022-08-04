@@ -3,8 +3,6 @@ import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axiosInstance, { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
-import { ThemeProvider } from '@mui/material';
-import darkTheme from './themes/darkTheme';
 import { WaveLoading } from 'react-loadingg';
 
 const Home = lazy(() => import('pages/Home/Home'));
