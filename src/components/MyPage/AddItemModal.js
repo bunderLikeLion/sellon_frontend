@@ -62,9 +62,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   ]);
 
   const { mutate: postSubmit, isSuccess: createdSuccessfully } =
-    useCreateProductMutation({
-      // onSuccess: () => closeModal(),
-    });
+    useCreateProductMutation();
 
   const submit = () => {
     const frm = new FormData();
