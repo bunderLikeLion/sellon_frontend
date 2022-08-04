@@ -3,7 +3,8 @@ const theme = {
   color_background__primary: '#252040',
   color_background__secondary: '#171626',
   color_background__third: '#3A335C',
-  color_background__success: '#5931A4',
+  color_background__success:
+    'linear-gradient(135deg, #5931A4 1.65%, #B55EDE 100%)',
   color_background__error: '#252040',
   color_background__info: '#272242',
   color_background__warning:
