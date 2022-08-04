@@ -4,22 +4,23 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
+import statusHandler from 'utils/statusHandler';
 
 const Container = styled.div`
   margin-top: 3rem;
   width: 30%;
 `;
 
-const ItemListCard = () => {
+const ItemListCard = ({ productData }) => {
   return (
     <Container>
       <Card sx={{ maxWidth: '100%' }}>
         <CardMedia
           component="img"
           height="150"
-          image="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580"
+          image={productData.thumbnail.file}
         />
-        <CardHeader title="나이키 덩크 로우" />
+        <CardHeader title={productData.name} />
         <CardContent>
           <div style={{ width: '100%' }}>
             <Box
@@ -41,7 +42,7 @@ const ItemListCard = () => {
                 textAlign: 'center',
               }}
             >
-              카테고리
+              {productData.product_category.name}
             </Box>
             <Box
               component="div"
@@ -61,7 +62,7 @@ const ItemListCard = () => {
                 fontWeight: '700',
               }}
             >
-              최상급
+              {statusHandler(productData.quality)}
             </Box>
             <Box
               component="div"
@@ -81,7 +82,7 @@ const ItemListCard = () => {
                 fontWeight: '700',
               }}
             >
-              1개
+              {productData.quantity}개
             </Box>
           </div>
         </CardContent>

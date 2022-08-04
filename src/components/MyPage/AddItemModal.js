@@ -8,10 +8,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FormControl, InputLabel, Select, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
+import useCategoryQuery from 'queries/product/useCategoryQuery';
+import useCreateProductMutation from 'queries/product/useCreateProductMutation';
+import useInput from 'hooks/useInput';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -36,34 +39,53 @@ const CloseBtn = styled(CloseIcon)`
 `;
 
 const AddItemModal = ({ handleModal, isModalOpened }) => {
+  const editorRef = useRef();
   const [thumbnailPic, setThumbNailPic] = useState([]);
   const [extraPics, setExtraPics] = useState([]);
-  const [status, setStatus] = useState('');
-  const [category, setCategory] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [itemName, handleItemName, itemNameReset] = useInput('');
+  const [status, handleStatus, statusReset] = useInput('');
+  const [category, handleCategory, categoryReset] = useInput('');
+  const [quantity, handleQuantity, quantityReset] = useInput('');
 
-  const editorRef = useRef();
-
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
+  const closeModal = () => {
+    itemNameReset();
+    statusReset();
+    categoryReset();
+    quantityReset();
+    setThumbNailPic([]);
+    setExtraPics([]);
+    handleModal();
   };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
-  };
+  const { data: catData, isSuccess: catFetched } = useCategoryQuery([
+    'formCategories',
+  ]);
 
-  const handleQuantityChange = (e) => {
-    setQuantity(e.target.value);
-  };
+  const { mutate: postSubmit, isSuccess: createdSuccessfully } =
+    useCreateProductMutation();
 
   const submit = () => {
-    const desc = editorRef.current?.getInstance().getHTML();
+    const frm = new FormData();
+    frm.append('thumbnail.file', thumbnailPic[0]);
+    extraPics.forEach((single, idx) => {
+      frm.append(`images[${idx}]file`, single);
+    });
+    frm.append('product_category_id', category);
+    frm.append('name', itemName);
+    frm.append('quality', status);
+    frm.append('quantity', quantity);
+    frm.append('description', editorRef.current?.getInstance().getHTML());
+    postSubmit(frm);
   };
+
+  useEffect(() => {
+    if (createdSuccessfully) closeModal();
+  }, [createdSuccessfully]);
 
   return (
     <Modal
       open={isModalOpened}
-      onClose={handleModal}
+      onClose={closeModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -72,6 +94,13 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <Typography id="modal-modal-title" variant="h6" component="h2">
           🌃 아이템 추가
         </Typography>
+        <h1>아이템 이름</h1>
+        <TextField
+          id="outlined-name"
+          label="Name"
+          value={itemName}
+          onChange={handleItemName}
+        />
         <h1>대표사진 등록</h1>
         <ThumbnailImageDragDrop
           thumbnailPic={thumbnailPic}
@@ -81,16 +110,15 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
         <FormControl sx={{ m: 1, minWidth: 100 }}>
           <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={category}
-            label="Age"
-            onChange={handleCategoryChange}
-          >
-            <MenuItem value="상의">상의</MenuItem>
-            <MenuItem value="신발">신발</MenuItem>
-            <MenuItem value="앨범">앨범</MenuItem>
+          <Select value={category} onChange={handleCategory}>
+            {catFetched &&
+              catData.map((singleCat) => {
+                return (
+                  <MenuItem key={singleCat.id} value={singleCat.id}>
+                    {singleCat.name}
+                  </MenuItem>
+                );
+              })}
           </Select>
         </FormControl>
         <FormControl sx={{ m: 1, minWidth: 100 }}>
@@ -100,7 +128,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             id="demo-simple-select"
             value={status}
             label="Age"
-            onChange={handleStatusChange}
+            onChange={handleStatus}
           >
             <MenuItem value={1}>최상</MenuItem>
             <MenuItem value={2}>중상</MenuItem>
@@ -112,7 +140,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <TextField
           type="number"
           value={quantity}
-          onChange={handleQuantityChange}
+          onChange={handleQuantity}
           InputProps={{
             inputProps: {
               max: 100,
