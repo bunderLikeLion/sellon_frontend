@@ -49,11 +49,11 @@ const App = () => {
                 <Route path="/mypage" element={<MyPage />} />
                 <Route path="/auction" element={<Auction />} />
                 <Route path="/auction/detail" element={<AuctionDetail />} />
+                <Route path="/toprank" element={<TopRank />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/mypage/itemdetail" element={<ItemDetail />} />
                 <Route path="/auction/newauction1" element={<NewAuction1 />} />
                 <Route path="/auction/newauction2" element={<NewAuction2 />} />
-                <Route path="/toprank" element={<TopRank />} />
               </Routes>
             </Suspense>
           </AxiosInterceptor>
