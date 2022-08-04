@@ -17,7 +17,8 @@ const useLoginMutation = () => {
       return userRelatedAPI.postLogin(payload);
     },
     {
-      onSuccess: async (res) => {
+      onSuccess: (res) => {
+        console.log('success');
         toast.dismiss();
         toast.success('로그인 성공 👍');
         localStorage.setItem('user_info', JSON.stringify(res?.user));
@@ -30,7 +31,12 @@ const useLoginMutation = () => {
       },
       onError: (res) => {
         toast.dismiss();
-        toast.error(errorMsgHandler(res.response.data));
+        const detail = res.response.data.error.details;
+        if (detail?.non_field_errors) {
+          toast.error('아이디/비밀번호를 확인해주세요 😭');
+        } else {
+          toast.error('예기치 않은 오류가 발생했습니다. 😭');
+        }
       },
     }
   );

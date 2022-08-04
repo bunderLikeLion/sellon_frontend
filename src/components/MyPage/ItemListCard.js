@@ -11,11 +11,17 @@ const Container = styled.div`
   width: 30%;
 `;
 
+const ImageContainer = styled(CardMedia)`
+  width: 3rem;
+  height: 13rem;
+  background-size: cover;
+`;
+
 const ItemListCard = ({ productData }) => {
   return (
     <Container>
       <Card sx={{ maxWidth: '100%' }}>
-        <CardMedia
+        <ImageContainer
           component="img"
           height="150"
           image={productData.thumbnail.file}

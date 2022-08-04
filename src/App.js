@@ -23,9 +23,12 @@ const App = () => {
   useEffect(() => {
     if (performance.navigation.type === 1) {
       if (localStorage.getItem('access_token')) {
+        console.log('yes');
         axiosInstance.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${localStorage.getItem('access_token')}`;
+      } else {
+        console.log('no');
       }
     }
   });
