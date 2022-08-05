@@ -105,14 +105,18 @@ const DeleteButton = styled.button`
 
 const InventoryContainer = styled.div`
   position: relative;
+  transition: 2s;
+  transform: ${(props) =>
+    props.isInventoryOpened ? 'translateY(14rem)' : 'translateY(0rem)'};
 `;
 
-const AuctionMySuggestion = () => {
+const AuctionMySuggestion = (props) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
   return (
-    <InventoryContainer>
+    <InventoryContainer isInventoryOpened={props.isInventoryOpened}>
+      <button onClick={props.handleInventory}>올리기</button>
       <Inventory>
         <MySuggestion>
           <MyItem>
