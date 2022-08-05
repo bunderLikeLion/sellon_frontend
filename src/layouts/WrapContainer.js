@@ -3,8 +3,8 @@ import Container from '@mui/material/Container';
 
 const MaxContainer = styled(Container)`
   max-width: 1060px;
-  color: ${(props) => props.theme.color_white};
-  background: ${(props) => props.theme.color_background__default};
+  color: ${(props) => props.theme.color_white} !important;
+  background: ${(props) => props.theme.color_background__default} !important;
 `;
 
 const WrapContainer = ({ children }) => {
