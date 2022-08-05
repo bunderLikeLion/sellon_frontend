@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { useState } from 'react';
+import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublishModal';
 
 const BigContainer = styled.div`
   width: 80%;
@@ -103,11 +105,16 @@ const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`
 `;
 
 const NewAuction1 = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   return (
     <BigContainer>
       <Container>
         <BtnContainer>
-          <InventoryBtn>인벤토리에서 가져오기</InventoryBtn>
+          <InventoryBtn onClick={handleModal}>
+            인벤토리에서 가져오기
+          </InventoryBtn>
         </BtnContainer>
       </Container>
 
@@ -141,6 +148,10 @@ const NewAuction1 = () => {
         </TradeTypeContainer>
         <Button>경매 발행하기</Button>
       </Container>
+      <AuctionPublishModal
+        handleModal={handleModal}
+        isModalOpened={isModalOpened}
+      />
     </BigContainer>
   );
 };

@@ -28,6 +28,24 @@ const PlusBtn = styled(AddBoxIcon)`
   cursor: pointer;
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2%;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
+`;
+
 const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [pageNum, setPageNum] = useState(1);
@@ -53,12 +71,13 @@ const ItemList = () => {
             );
           })}
       </FlexContainer>
-      <Pagination
-        count={myProductsData?.total_pages}
-        page={pageNum}
-        onChange={handleChange}
-      />
-
+      <PaginationContainer>
+        <StyledPagination
+          count={myProductsData?.total_pages}
+          page={pageNum}
+          onChange={handleChange}
+        />
+      </PaginationContainer>
       <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
     </ItemListContainer>
   );
