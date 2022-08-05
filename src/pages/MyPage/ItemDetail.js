@@ -5,14 +5,16 @@ import Right_Component from 'components/MyPage/ItemDetail/Right_Component';
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 35rem;
   color: white;
   display: flex;
   overflow: hidden;
+  padding-top: 0.5rem;
 `;
 
 const ItemDetail_Left = styled.div`
-  width: 55%;
+  width: 60%;
+  padding: 0 5rem 0 5rem;
 `;
 
 const ItemDetail_Right = styled.div`
