@@ -50,10 +50,8 @@ const AuctionContainer = styled.div`
   width: 100%;
   margin: 1rem;
   padding: 2rem;
-  // background: ${(props) => props.theme.color_background__secondary};
   background: gray;
   border-radius: 2rem;
-  // border: 0.1rem solid white;
 `;
 
 const InterestedUser = styled.div`
@@ -116,7 +114,6 @@ const SubNav = styled.div`
   border-radius: 1rem;
   margin-bottom: 3rem;
   height: 4rem;
-  background-color: gray;
   justify-content: space-between;
   color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_background__success};
