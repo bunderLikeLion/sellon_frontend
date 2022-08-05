@@ -22,6 +22,7 @@ const theme = {
   color_font__number: '#9454B5',
   color_border__topleft: '#4E4166',
   color_border__bottomright: '#4F5B71',
+  color_white: '#ffffff',
 };
 
 export default theme;

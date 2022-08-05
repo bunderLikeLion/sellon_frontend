@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,6 +12,10 @@ import { AnchorNav, UserRelatedDropDown } from 'components/Navbar';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+
+const Navbar = styled(AppBar)`
+  background: ${(props) => props.theme.color_background__primary} !important;
+`;
 
 const ResponsiveAppBar = () => {
   const user = useRecoilValue(userAtom);
@@ -33,7 +38,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" color="primary" sx={{ height: '8vh' }}>
+    <Navbar position="static" sx={{ height: '8vh' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -118,7 +123,7 @@ const ResponsiveAppBar = () => {
           )}
         </Toolbar>
       </Container>
-    </AppBar>
+    </Navbar>
   );
 };
 export default ResponsiveAppBar;
