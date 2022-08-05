@@ -177,16 +177,6 @@ const Home = () => {
         <HomeAuctionListCard />
         <HomeAuctionListCard />
       </Containor>
-      <Containor>
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-      </Containor>
-      <Containor>
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-        <HomeAuctionListCard />
-      </Containor>
     </Form>
   );
 };

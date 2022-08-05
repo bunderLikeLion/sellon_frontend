@@ -38,7 +38,6 @@ const Button = styled.button`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
-
 const Login = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
@@ -82,7 +81,6 @@ const Login = () => {
       <Link to="/register">
         <Button>회원가입</Button>
       </Link>
-     
     </WrapContainer>
   );
 };
