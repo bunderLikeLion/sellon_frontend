@@ -20,6 +20,7 @@ const theme = {
   color_font__secondary: '#DFDCEF',
   color_font__tertiary: '#817C97',
   color_font__number: '#9454B5',
+  color_border__hover: 'linear-gradient(135deg, #5931A4 1.65%, #B55EDE 100%)',
   color_border__topleft: '#4E4166',
   color_border__bottomright: '#4F5B71',
   color_white: '#ffffff',

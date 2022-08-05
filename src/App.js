@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axiosInstance, { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { WaveLoading } from 'react-loadingg';
+import styled from 'styled-components';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
@@ -19,6 +20,12 @@ const AuctionFinished = lazy(() => import('pages/Auction/AuctionFinished'));
 const NewAuction1 = lazy(() => import('pages/Auction/NewAuction1'));
 const NewAuction2 = lazy(() => import('pages/Auction/NewAuction2'));
 const TopRank = lazy(() => import('pages/TopRank/TopRank'));
+
+const EntireContainer = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  background: ${(props) => props.theme.color_background__default};
+`;
 
 const App = () => {
   useEffect(() => {
@@ -40,24 +47,26 @@ const App = () => {
       <Toaster />
       <Router>
         <AxiosInterceptor>
-          <Suspense fallback={<WaveLoading />}>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/mypage" element={<MyPage />} />
-              <Route path="/auction" element={<Auction />} />
-              <Route path="/auction/detail" element={<AuctionDetail />} />
-              <Route path="/toprank" element={<TopRank />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/mypage/itemdetail" element={<ItemDetail />} />
-              <Route path="/auctionfinished" element={<AuctionFinished />} />
-              <Route path="/auction/newauction1" element={<NewAuction1 />} />
-              <Route path="/auction/newauction2" element={<NewAuction2 />} />
-            </Routes>
-          </Suspense>
+          <EntireContainer>
+            <Suspense fallback={<WaveLoading />}>
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/mypage" element={<MyPage />} />
+                <Route path="/auction" element={<Auction />} />
+                <Route path="/auction/detail" element={<AuctionDetail />} />
+                <Route path="/toprank" element={<TopRank />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/mypage/itemdetail" element={<ItemDetail />} />
+                <Route path="/auctionfinished" element={<AuctionFinished />} />
+                <Route path="/auction/newauction1" element={<NewAuction1 />} />
+                <Route path="/auction/newauction2" element={<NewAuction2 />} />
+              </Routes>
+            </Suspense>
+          </EntireContainer>
         </AxiosInterceptor>
       </Router>
     </>
