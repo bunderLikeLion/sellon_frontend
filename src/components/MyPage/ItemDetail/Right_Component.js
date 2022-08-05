@@ -40,7 +40,6 @@ const ItemDetailContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
-  background: plum;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
