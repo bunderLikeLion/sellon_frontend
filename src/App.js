@@ -16,8 +16,8 @@ const MyPage = lazy(() => import('pages/MyPage/MyPage'));
 const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
 const AuctionFinished = lazy(() => import('pages/Auction/AuctionFinished'));
-const NewAuction1 = lazy(() => import('pages/Auction/NewAuction1'));
-const NewAuction2 = lazy(() => import('pages/Auction/NewAuction2'));
+const NewAuction1 = lazy(() => import('pages/AuctionPublish/NewAuction1'));
+const NewAuction2 = lazy(() => import('pages/AuctionPublish/NewAuction2'));
 const TopRank = lazy(() => import('pages/TopRank/TopRank'));
 
 const App = () => {
