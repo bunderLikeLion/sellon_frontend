@@ -4,7 +4,7 @@ const client = axiosInstance;
 
 const productsRelatedAPI = {
   getProductCategoryLists: () => {
-    return client.get('products/category/');
+    return client.get('product_categories/');
   },
 
   postProduct: (payload) => {

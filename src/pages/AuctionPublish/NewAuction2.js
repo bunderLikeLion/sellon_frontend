@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const BigContainer = styled.div`
   width: 80%;
   height: 100%;
-  margin: 0rem auto;
+  margin: 0 auto;
   padding: 2rem 1rem;
   background-color: #121212;
   color: white;
