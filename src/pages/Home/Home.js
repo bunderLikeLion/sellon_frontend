@@ -5,7 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import { useState } from 'react';
-import WrapContainer from '../../layouts/WrapContainer';
 
 const Form = styled.div`
   width: 100%;

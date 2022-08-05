@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import AuctionPublishModal from '../../components/Auction/AuctionPublish/AuctionPublishModal';
+import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublishModal';
 
 const BigContainer = styled.div`
   width: 80%;
