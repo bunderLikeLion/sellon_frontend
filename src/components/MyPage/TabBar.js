@@ -9,6 +9,12 @@ import { ItemList } from './index';
 import InterestedAuctionList from './InterestedAuctionList';
 import TransactionHistory from './TransactionHistory';
 
+const StyledBox = styled(Box)`
+  .MuiTabs-indicator {
+    background: ${(props) => props.theme.color_border__hover} !important;
+  }
+`;
+
 const StyledTabList = styled(Tab)`
   width: 10vw !important;
   max-width: 500px !important;
@@ -25,13 +31,13 @@ const TabBar = () => {
   return (
     <Box sx={{ width: '100%', mt: '3rem', typography: 'body1' }}>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <StyledBox sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <StyledTabList label="히스토리" value="1" />
             <StyledTabList label="인벤토리" value="2" />
             <StyledTabList label="관심거래" value="3" />
           </TabList>
-        </Box>
+        </StyledBox>
         <TabPanel value="1">
           <TransactionHistory />
         </TabPanel>
