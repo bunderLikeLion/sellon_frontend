@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 const ModalContainer = styled(Box)`
   position: absolute;
