@@ -6,53 +6,101 @@ const OtherSuggestionContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 70%;
-  margin-left: 1rem;
+  background: ${(props) => props.theme.color_background__primary};
+  border-radius: 0.5rem;
   overflow-y: scroll;
 `;
 
-const OtherSuggestion = styled.div`
+const GuideContainer = styled.div`
   display: flex;
-  flex-wrap: nowrap;
+  align-items: end;
+  width: 95%;
+  height: 10%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const GuideComment = styled.h1`
+  font-size: 1.1rem;
+  font-weight: 400;
+`;
+
+const OtherSuggestion = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  height: 6rem;
-  border-radius: 0.2rem;
-  background: saddlebrown;
   padding: 1rem;
-  margin: 1rem;
+  margin: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__secondary};
+`;
+
+const ProfileContainer = styled.div`
+  position: relative;
+  width: 13%;
+  height: 100%;
 `;
 
 const Profile = styled.div`
-  width: 14%;
-  height: 100%;
+  width: 100%;
+  height: 4.2rem;
   border-radius: 50%;
   background: red;
+`;
+
+const AuctionOtherSuggestionItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 87%;
 `;
 
 const AuctionOtherSuggestion = () => {
   return (
     <OtherSuggestionContainer>
+      <GuideContainer>
+        <GuideComment>다른 참가자가 제시한 물건</GuideComment>
+      </GuideContainer>
+
       <OtherSuggestion>
-        <Profile>프로필</Profile>
-        <AuctionOtherSuggestionItem />
+        <ProfileContainer>
+          <Profile />
+        </ProfileContainer>
+        <AuctionOtherSuggestionItemContainer>
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+        </AuctionOtherSuggestionItemContainer>
       </OtherSuggestion>
+
       <OtherSuggestion>
-        <Profile />
-        <AuctionOtherSuggestionItem />
-        <AuctionOtherSuggestionItem />
-        <AuctionOtherSuggestionItem />
-        <AuctionOtherSuggestionItem />
+        <ProfileContainer>
+          <Profile />
+        </ProfileContainer>
+        <AuctionOtherSuggestionItemContainer>
+          <AuctionOtherSuggestionItem />
+        </AuctionOtherSuggestionItemContainer>
       </OtherSuggestion>
+
       <OtherSuggestion>
-        <Profile />
-      </OtherSuggestion>
-      <OtherSuggestion>
-        <Profile />
-      </OtherSuggestion>
-      <OtherSuggestion>
-        <Profile />
-      </OtherSuggestion>
-      <OtherSuggestion>
-        <Profile />
+        <ProfileContainer>
+          <Profile />
+        </ProfileContainer>
+        <AuctionOtherSuggestionItemContainer>
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+          <AuctionOtherSuggestionItem />
+        </AuctionOtherSuggestionItemContainer>
       </OtherSuggestion>
     </OtherSuggestionContainer>
   );
