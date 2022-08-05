@@ -19,18 +19,18 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     border: 2px solid ${(props) => props.theme.color_border__topleft};
+    border-radius: 20px !important;
   }
 
   &:hover:before {
-    content: '';
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover};
-    border-image-slice: 1;
+    top: -2.5%;
+    left: -2.5%;
+    width: 103%;
+    height: 103%;
+    z-index: -1;
+    border-radius: 20px;
+    background: ${(props) => props.theme.color_border__hover};
   }
 `;
 
@@ -43,6 +43,7 @@ const ImageContainer = styled(CardMedia)`
 const ProductCard = styled(Card)`
   background: ${(props) => props.theme.color_background__primary} !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
+  border-radius: 20px !important;
 `;
 
 const StyledCardHeader = styled(CardHeader)`
@@ -66,29 +67,7 @@ const ItemListCard = ({ productData }) => {
           image={productData.thumbnail.file}
         />
         <StyledCardHeader title={productData.name} />
-        <StyledCardContent>
-          {/*          <Box
-            component="div"
-            sx={{
-              display: 'block',
-              p: 1,
-              m: 1,
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? '#101010' : '#fff',
-              color: (theme) =>
-                theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-              border: '1px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-              borderRadius: 2,
-              fontSize: '0.875rem',
-              fontWeight: '700',
-              textAlign: 'center',
-            }}
-          >*/}
-          상세보기
-          {/*</Box>*/}
-        </StyledCardContent>
+        <StyledCardContent>상세보기</StyledCardContent>
       </ProductCard>
     </Container>
   );
