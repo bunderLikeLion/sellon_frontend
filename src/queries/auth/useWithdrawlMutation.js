@@ -4,7 +4,6 @@ import userRelatedAPI from 'apis/userRelatedAPI';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { userAtom } from 'states';
-import axiosInstance from 'apis/config';
 
 const useWithdrawlMutation = () => {
   const navigate = useNavigate();
@@ -21,7 +20,6 @@ const useWithdrawlMutation = () => {
         toast.success('회원탈퇴 성공 !');
         await localStorage.clear();
         await setUser(null);
-        axiosInstance.defaults.headers.common['Authorization'] = null;
         navigate('/');
       },
       onError: (res) => {

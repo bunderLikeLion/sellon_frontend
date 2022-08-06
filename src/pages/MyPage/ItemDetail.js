@@ -4,7 +4,6 @@ import Right_Component from 'components/MyPage/ItemDetail/Right_Component';
 import { useParams } from 'react-router-dom';
 import useSingleProductQuery from 'queries/product/useSingleProductQuery';
 import WrapContainer from 'layouts/WrapContainer';
-import { useEffect } from 'react';
 
 const Container = styled.div`
   width: 100%;
@@ -28,10 +27,6 @@ const ItemDetail = () => {
   const { id: itemId } = useParams();
   const { data: singleItem, isSuccess: singleItemFetched } =
     useSingleProductQuery(itemId);
-
-  useEffect(() => {
-    console.log(singleItem, singleItemFetched, 'status');
-  }, [singleItem, singleItemFetched]);
 
   return (
     <>
