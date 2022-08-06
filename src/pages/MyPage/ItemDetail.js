@@ -4,14 +4,12 @@ import Right_Component from 'components/MyPage/ItemDetail/Right_Component';
 import { useParams } from 'react-router-dom';
 import useSingleProductQuery from 'queries/product/useSingleProductQuery';
 import WrapContainer from 'layouts/WrapContainer';
-import { useEffect } from 'react';
 
 const Container = styled.div`
   width: 100%;
   height: 35rem;
-  color: white;
+  color: ${(props) => props.theme.color_white};
   display: flex;
-  overflow: hidden;
   padding-top: 0.5rem;
 `;
 
@@ -27,13 +25,8 @@ const ItemDetail_Right = styled.div`
 
 const ItemDetail = () => {
   const { id: itemId } = useParams();
-  const {
-    data: singleItem,
-    isSuccess: singleItemFetched,
-    isFetching,
-  } = useSingleProductQuery(itemId);
-
-  if (isFetching) return <h1>Fetching...</h1>;
+  const { data: singleItem, isSuccess: singleItemFetched } =
+    useSingleProductQuery(itemId);
 
   return (
     <>
@@ -45,7 +38,9 @@ const ItemDetail = () => {
             )}
           </ItemDetail_Left>
           <ItemDetail_Right>
-            <Right_Component />
+            {singleItemFetched && (
+              <Right_Component singleItemData={singleItem} />
+            )}
           </ItemDetail_Right>
         </Container>
       </WrapContainer>

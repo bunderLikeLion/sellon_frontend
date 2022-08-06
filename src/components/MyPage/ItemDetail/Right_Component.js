@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import statusHandler from 'utils/statusHandler';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+// import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
+import { Viewer } from '@toast-ui/react-editor';
 
 const EditButtonContainer = styled.div`
   width: 100%;
@@ -91,10 +95,15 @@ const ItemCategoryDetail = styled.div`
 const ItemInfoContainer = styled.div`
   width: 90%;
   height: 50%;
-  background: hotpink;
-  border-radius: 1rem;
   margin-top: 2rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
+  overflow-y: scroll;
+
+  .toastui-editor-contents p {
+    color: ${(props) => props.theme.color_white};
+  }
 `;
 
 const ItemInfo = styled.p`
@@ -102,25 +111,31 @@ const ItemInfo = styled.p`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const Right_Component = () => {
+const Right_Component = ({ singleItemData }) => {
+  const { name, quality, quantity, description, product_category } =
+    singleItemData;
   return (
     <>
       <EditButtonContainer>
         <EditButton>수정하기</EditButton>
       </EditButtonContainer>
       <ItemTitleContainer>
-        <ItemTitle>보스 헤드폰</ItemTitle>
+        <ItemTitle>{name}</ItemTitle>
       </ItemTitleContainer>
       <ItemDetailContainer>
         <ItemCondition>아이템 상태</ItemCondition>
-        <ItemConditionDetail>좋음</ItemConditionDetail>
+        <ItemConditionDetail>{statusHandler(quality)}</ItemConditionDetail>
       </ItemDetailContainer>
       <ItemCategoryContainer>
         <ItemCategory>카테고리</ItemCategory>
-        <ItemCategoryDetail>전자기기</ItemCategoryDetail>
+        <ItemCategoryDetail>{product_category.name}</ItemCategoryDetail>
+      </ItemCategoryContainer>
+      <ItemCategoryContainer>
+        <ItemCategory>개수</ItemCategory>
+        <ItemCategoryDetail>{quantity}</ItemCategoryDetail>
       </ItemCategoryContainer>
       <ItemInfoContainer>
-        <ItemInfo>헤드폰 사세요 애플워치랑 맞교환 원해용</ItemInfo>
+        <Viewer initialValue={description} />
       </ItemInfoContainer>
     </>
   );
