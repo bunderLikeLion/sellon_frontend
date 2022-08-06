@@ -26,7 +26,7 @@ const ChatMessageText = styled.div`
 
 const UserNickname = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 0.5rem;
 `;
 
@@ -54,7 +54,7 @@ const ChatBoxButton = styled.button`
   border-radius: 0.7rem;
   height: 2rem;
   width: 6rem;
-  font-weight: bold;
+  font-weight: 700;
 `;
 
 const ChatLists = () => {

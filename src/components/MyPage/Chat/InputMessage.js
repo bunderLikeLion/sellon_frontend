@@ -29,7 +29,7 @@ const SendMessageIcon = styled(SendIcon)`
 const InputMessage = () => {
   return (
     <ChatInputContainor>
-      <MyProfile></MyProfile>
+      <MyProfile />
       <ChatInput />
       <SendMessageIcon />
     </ChatInputContainor>
