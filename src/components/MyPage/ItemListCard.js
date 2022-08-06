@@ -1,12 +1,16 @@
+import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import styled from 'styled-components';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 
 const Container = styled.div`
   position: relative;
-  margin-top: 3rem;
+  margin: 3rem 0 0 1rem;
   width: 30%;
   height: 100%;
   z-index: 1;
@@ -57,9 +61,50 @@ const StyledCardContent = styled(CardContent)`
   height: 1vh;
 `;
 
+const StyledDeleteIcon = styled(DeleteForeverIcon)`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: red;
+`;
+
+const CategoryBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  height: 2rem;
+  background: ${(props) => props.theme.color_background__success};
+  border-radius: 20px;
+  color: ${(props) => props.theme.color_buttontext__ok};
+  margin-bottom: 1rem;
+`;
+
+const StyledModal = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  background: ${(props) => props.theme.color_border__topleft};
+  color: ${(props) => props.theme.color_white};
+  border: 2px solid #000;
+`;
+
 const ItemListCard = ({ productData }) => {
+  const [isShown, setIsShown] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setIsShown(false);
+  };
+
   return (
-    <Container>
+    <Container
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+    >
       <ProductCard sx={{ maxWidth: '100%' }}>
         <ImageContainer
           component="img"
@@ -67,8 +112,23 @@ const ItemListCard = ({ productData }) => {
           image={productData.thumbnail.file}
         />
         <StyledCardHeader title={productData.name} />
-        <StyledCardContent>상세보기</StyledCardContent>
+        <StyledCardContent>
+          <CategoryBox>{productData.product_category.name}</CategoryBox>
+        </StyledCardContent>
       </ProductCard>
+      {isShown && <StyledDeleteIcon onClick={handleOpen} />}
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <StyledModal>
+          정말 '{productData.name}'을 삭제하시겠습니까?
+          <button onClick={handleClose}>close</button>
+        </StyledModal>
+      </Modal>
     </Container>
   );
 };

@@ -2,16 +2,16 @@ import { AddItemModal } from './index';
 import { useState } from 'react';
 import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import useMyProductsQuery from 'queries/product/useMyProductsQuery';
 import { Pagination } from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: space-around;
+  justify-content: left;
 `;
 
 const ItemListContainer = styled.div`
@@ -20,11 +20,11 @@ const ItemListContainer = styled.div`
   min-height: 80vh;
 `;
 
-const PlusBtn = styled(AddBoxIcon)`
-  color: #5d0fa2;
-  font-size: 3rem !important;
+const PlusBtn = styled(AddCircleIcon)`
   position: absolute;
   right: 0;
+  color: ${(props) => props.theme.color_font__secondary};
+  font-size: 2.5rem !important;
   cursor: pointer;
 `;
 

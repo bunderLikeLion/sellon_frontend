@@ -17,7 +17,6 @@ const useCreateProductMutation = () => {
         return queryClient.invalidateQueries(['myProductsData']);
       },
       onError: (res) => {
-        console.log(res.response, 'ressss');
         toast.dismiss();
         toast.error(errorMsgHandler(res.response.data));
       },
