@@ -33,7 +33,7 @@ const ItemTitle = styled.div`
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 65%;
+  width: 70%;
   height: 10%;
   border-radius: 1rem;
   display: flex;
@@ -55,7 +55,7 @@ const ItemConditionDetail = styled.div`
   font-size: 1rem;
   width: 5rem;
   height: 2rem;
-  margin: 1rem;
+  margin: 1rem 2rem;
   padding-top: 0.5rem;
   text-align: center;
   border-radius: 0.8rem;
@@ -63,7 +63,7 @@ const ItemConditionDetail = styled.div`
 
 const ItemCategoryContainer = styled.div`
   background: ${(props) => props.theme.color_background__primary};
-  width: 65%;
+  width: 70%;
   height: 10%;
   border-radius: 1rem;
   display: flex;
@@ -82,7 +82,7 @@ const ItemCategoryDetail = styled.div`
   font-size: 0.8rem;
   width: 5rem;
   height: 2rem;
-  margin: 1rem;
+  margin: 1rem 2rem;
   padding-top: 0.5rem;
   text-align: center;
   color: ${(props) => props.theme.color_font__secondary};
@@ -120,9 +120,7 @@ const Right_Component = () => {
         <ItemCategoryDetail>전자기기</ItemCategoryDetail>
       </ItemCategoryContainer>
       <ItemInfoContainer>
-        <ItemInfo>
-          헤드폰 사세요 애플워치랑 맞교환 원해용
-        </ItemInfo>
+        <ItemInfo>헤드폰 사세요 애플워치랑 맞교환 원해용</ItemInfo>
       </ItemInfoContainer>
     </>
   );
