@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CardMedia from '@mui/material/CardMedia';
 import dateFormatter from 'utils/dateFormatter';
+import { Link } from 'react-router-dom';
 
 const ArrowIconContainer = styled.div`
   width: 100%;
@@ -66,11 +67,14 @@ const UploadDate = styled.p`
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const Left_Component = ({ user, thumbnail, images, date }) => {
+const Left_Component = ({ singleItemData }) => {
+  const { thumbnail, images, user, created_at } = singleItemData;
   return (
     <>
       <ArrowIconContainer>
-        <ArrowIcon />
+        <Link to={'/mypage/'}>
+          <ArrowIcon />
+        </Link>
       </ArrowIconContainer>
       <MainPicContainer>
         <MainPic image={thumbnail?.file} />
@@ -83,7 +87,7 @@ const Left_Component = ({ user, thumbnail, images, date }) => {
       <UserInfo>
         <UserPic />
         <UserName>{user?.username}</UserName>
-        <UploadDate>{dateFormatter(date)}</UploadDate>
+        <UploadDate>{dateFormatter(created_at)}</UploadDate>
       </UserInfo>
     </>
   );
