@@ -33,10 +33,6 @@ const ItemDetail = () => {
     isFetching,
   } = useSingleProductQuery(itemId);
 
-  useEffect(() => {
-    console.log(singleItem, singleItemFetched, 'status');
-  }, [singleItem, singleItemFetched]);
-
   if (isFetching) return <h1>Fetching...</h1>;
 
   return (

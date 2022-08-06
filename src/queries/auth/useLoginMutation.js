@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import { useSetRecoilState } from 'recoil';
 import { userAtom } from 'states';
-import axiosInstance from 'apis/config';
+
 
 const useLoginMutation = () => {
   const navigate = useNavigate();
@@ -23,9 +23,6 @@ const useLoginMutation = () => {
         toast.success('로그인 성공 👍');
         localStorage.setItem('user_info', JSON.stringify(res?.user));
         setUserInfo(JSON.parse(localStorage.getItem('user_info')));
-        axiosInstance.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${res?.access_token}`;
         localStorage.setItem('access_token', res?.access_token);
         navigate('/');
       },

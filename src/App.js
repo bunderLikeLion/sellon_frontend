@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import axiosInstance, { AxiosInterceptor } from './apis/config';
+import { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { WaveLoading } from 'react-loadingg';
 import styled from 'styled-components';
@@ -28,18 +28,6 @@ const EntireContainer = styled.div`
 `;
 
 const App = () => {
-  useEffect(() => {
-    if (performance.navigation.type === 1) {
-      if (localStorage.getItem('access_token')) {
-        axiosInstance.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${localStorage.getItem('access_token')}`;
-      } else {
-        console.log('no');
-      }
-    }
-  });
-
   return (
     <>
       <GlobalStyles />
