@@ -7,6 +7,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import useDeleteProductMutation from 'queries/product/useDeleteProductMutation';
 
 const Container = styled.div`
   position: relative;
@@ -85,19 +86,38 @@ const StyledModal = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
+  width: 50%;
+  height: 30%;
   background: ${(props) => props.theme.color_border__topleft};
   color: ${(props) => props.theme.color_white};
   border: 2px solid #000;
+  border-radius: 20px;
+`;
+
+const StyledModalContent = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 const ItemListCard = ({ productData }) => {
   const [isShown, setIsShown] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { mutate: deleteItemMutate } = useDeleteProductMutation();
+
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => {
     setOpen(false);
     setIsShown(false);
+  };
+
+  const deleteHandler = () => {
+    deleteItemMutate(productData.id);
   };
 
   return (
@@ -125,8 +145,13 @@ const ItemListCard = ({ productData }) => {
         aria-describedby="modal-modal-description"
       >
         <StyledModal>
-          정말 '{productData.name}'을 삭제하시겠습니까?
-          <button onClick={handleClose}>close</button>
+          <StyledModalContent>
+            <div>
+              <p>정말 '{productData.name}'을 삭제하시겠습니까?</p>
+              <button onClick={deleteHandler}>네</button>
+              <button onClick={handleClose}>아니요</button>
+            </div>
+          </StyledModalContent>
         </StyledModal>
       </Modal>
     </Container>

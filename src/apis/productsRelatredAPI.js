@@ -18,6 +18,10 @@ const productsRelatedAPI = {
   getMyProducts: (pageNum) => {
     return client.get('products/', { params: { per_page: 6, page: pageNum } });
   },
+
+  deleteProduct: (productId) => {
+    return client.delete(`products/${productId}`);
+  },
 };
 
 export default productsRelatedAPI;
