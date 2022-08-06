@@ -1,56 +1,34 @@
 import styled from 'styled-components';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+
 const OnchatProfileContainor = styled.div`
   display: flex;
-  height: 8rem;
-  background: grey;
+  height: 6rem;
+  background: ${(props) => props.theme.color_background__secondary};
   position: relative;
-  border-radius: 0.5rem;
-  margin: 1rem;
-  position: relative;
+  border-radius: 0.5rem 0.5rem 0 0;
   padding: 1rem;
+  align-items: center;
 `;
 
 const OnchatProfileImg = styled.div`
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   background: blue;
-  margin-top: 1rem;
-  margin-right: 1rem;
+  margin: 1rem;
 `;
 
 const OnchatProfileNickname = styled.div`
-  margin-top: 1.5rem;
-  color: black;
-  font-size: 2rem;
-`;
-
-const StarIcon = styled(StarBorderIcon)`
-  width: 0.7rem;
-  height: 0.7rem;
-  bottom: 0;
-  position: absolute;
-  bottom: 9%;
-  right: 15%;
-  margin-right: 0.5rem;
-  color: yellow;
-`;
-
-const StarIconText = styled.div`
-  position: absolute;
-  bottom: 10%;
-  right: 4%;
+  color: ${(props) => props.theme.color_font__secondary};
   font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const OnChatUserProfile = () => {
   return (
     <OnchatProfileContainor>
       <OnchatProfileImg>UserImg</OnchatProfileImg>
-      <OnchatProfileNickname>상대 아이디</OnchatProfileNickname>
-      <StarIcon />
-      <StarIconText>별점</StarIconText>
+      <OnchatProfileNickname>상대 닉네임</OnchatProfileNickname>
     </OnchatProfileContainor>
   );
 };

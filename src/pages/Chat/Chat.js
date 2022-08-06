@@ -3,34 +3,32 @@ import styled from 'styled-components';
 import ChatLists from 'components/MyPage/Chat/ChatLists';
 import InputMessage from 'components/MyPage/Chat/InputMessage';
 import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
-import MyProfile from 'components/MyPage/Chat/MyProfile';
-import ChatMessages from 'components/MyPage/Chat/ChatMessages';
 
 const ChatForm = styled.div`
   display: flex;
-  height: 100%;
+  height: 42rem;
   overflow: hidden;
+  justify-content: space-around;
 `;
 
 const Chat_Left = styled.div`
-  width: 30%;
-  background: lightgray;
-  padding: 0.5rem;
+  width: 48%;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__primary};
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Chat_Right = styled.div`
-  width: 70%;
-  background: white;
+  width: 48%;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__primary};
   position: relative;
-`;
-
-const ChatLine = styled.div`
-  border: 1px solid grey;
-  margin: 1rem;
-`;
-
-const MyProfileContainor = styled.div`
-  height: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const OnChatContainor = styled.div`
@@ -38,14 +36,39 @@ const OnChatContainor = styled.div`
 `;
 
 const MessageTitle = styled.div`
-  margin-top: 2rem;
+  margin: 1rem 0 0.5rem 0;
   font-size: 1.5rem;
-  color: black;
+  font-weight: bold;
 `;
 
 const ChatContainor = styled.div`
   overflow-y: scroll;
-  height: 75%;
+  height: 85%;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ChatContentContainer = styled.div`
+  height: 100%;
+  padding: 1rem;
+  overflow: scroll;
+`;
+
+const ChatBox = styled.div`
+  color: ${(props) => props.theme.color_font__secondary};
+  padding: 0.5rem;
+  line-height: 1.5rem;
+`;
+
+const OnChatContainerBottom = styled.div`
+  height: 6rem;
+  background: ${(props) => props.theme.color_background__secondary};
+  position: relative;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 1rem;
+  align-items: center;
 `;
 
 const Chat = () => {
@@ -53,20 +76,8 @@ const Chat = () => {
     <WrapContainer>
       <ChatForm>
         <Chat_Left>
-          <MyProfileContainor>
-            <MyProfile />
-            <ChatLine />
-          </MyProfileContainor>
-          <OnChatContainor>
-            <OnChatUserProfile />
-          </OnChatContainor>
-          <MessageTitle>Messages</MessageTitle>
+          <MessageTitle>진행중인 거래</MessageTitle>
           <ChatContainor>
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
             <ChatLists />
             <ChatLists />
             <ChatLists />
@@ -76,8 +87,39 @@ const Chat = () => {
           </ChatContainor>
         </Chat_Left>
         <Chat_Right>
-          <ChatMessages />
-          <InputMessage />
+          <OnChatContainor>
+            <OnChatUserProfile />
+          </OnChatContainor>
+          <ChatContentContainer>
+            <ChatBox>
+              상대방:
+              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+            </ChatBox>
+            <ChatBox>나: 네~</ChatBox>
+            <ChatBox>
+              상대방:
+              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+            </ChatBox>
+            <ChatBox>나: 네~</ChatBox>
+            <ChatBox>
+              상대방:
+              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+            </ChatBox>
+            <ChatBox>나: 네~</ChatBox>
+            <ChatBox>
+              상대방:
+              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+            </ChatBox>
+            <ChatBox>나: 네~</ChatBox>
+            <ChatBox>
+              상대방:
+              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+            </ChatBox>
+            <ChatBox>나: 네~</ChatBox>
+          </ChatContentContainer>
+          <OnChatContainerBottom>
+            <InputMessage />
+          </OnChatContainerBottom>
         </Chat_Right>
       </ChatForm>
     </WrapContainer>
