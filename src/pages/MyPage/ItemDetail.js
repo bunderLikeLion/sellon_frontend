@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import WrapContainer from 'layouts/WrapContainer';
 import Left_Component from 'components/MyPage/ItemDetail/Left_Component';
 import Right_Component from 'components/MyPage/ItemDetail/Right_Component';
+import { useParams } from 'react-router-dom';
+import useSingleProductQuery from 'queries/product/useSingleProductQuery';
+import WrapContainer from 'layouts/WrapContainer';
 
 const Container = styled.div`
   width: 100%;
@@ -23,17 +25,30 @@ const ItemDetail_Right = styled.div`
 `;
 
 const ItemDetail = () => {
+  const { id: itemId } = useParams();
+  const { data: singleItem, isSuccess: singleItemFetched } =
+    useSingleProductQuery(itemId);
+
   return (
-    <WrapContainer>
-      <Container>
-        <ItemDetail_Left>
-          <Left_Component />
-        </ItemDetail_Left>
-        <ItemDetail_Right>
-          <Right_Component />
-        </ItemDetail_Right>
-      </Container>
-    </WrapContainer>
+    <>
+      {singleItemFetched && (
+        <WrapContainer>
+          <Container>
+            <ItemDetail_Left>
+              <Left_Component
+                user={singleItem?.user}
+                thumbnail={singleItem?.thumbnail}
+                images={singleItem?.images}
+                date={singleItem?.created_at}
+              />
+            </ItemDetail_Left>
+            <ItemDetail_Right>
+              <Right_Component />
+            </ItemDetail_Right>
+          </Container>
+        </WrapContainer>
+      )}
+    </>
   );
 };
 

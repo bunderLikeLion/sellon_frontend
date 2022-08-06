@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import useDeleteProductMutation from 'queries/product/useDeleteProductMutation';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   position: relative;
@@ -67,6 +68,7 @@ const StyledDeleteIcon = styled(DeleteForeverIcon)`
   top: 0.5rem;
   right: 0.5rem;
   color: red;
+  cursor: pointer;
 `;
 
 const CategoryBox = styled.div`
@@ -125,17 +127,19 @@ const ItemListCard = ({ productData }) => {
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
     >
-      <ProductCard sx={{ maxWidth: '100%' }}>
-        <ImageContainer
-          component="img"
-          height="150"
-          image={productData.thumbnail.file}
-        />
-        <StyledCardHeader title={productData.name} />
-        <StyledCardContent>
-          <CategoryBox>{productData.product_category.name}</CategoryBox>
-        </StyledCardContent>
-      </ProductCard>
+      <Link to={`/itemdetail/${productData.id}`}>
+        <ProductCard sx={{ maxWidth: '100%' }}>
+          <ImageContainer
+            component="img"
+            height="150"
+            image={productData.thumbnail.file}
+          />
+          <StyledCardHeader title={productData.name} />
+          <StyledCardContent>
+            <CategoryBox>{productData.product_category.name}</CategoryBox>
+          </StyledCardContent>
+        </ProductCard>
+      </Link>
       {isShown && <StyledDeleteIcon onClick={handleOpen} />}
 
       <Modal

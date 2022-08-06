@@ -22,6 +22,10 @@ const productsRelatedAPI = {
   deleteProduct: (productId) => {
     return client.delete(`products/${productId}`);
   },
+
+  getSingleProduct: (productId) => {
+    return client.get(`products/${productId}`);
+  },
 };
 
 export default productsRelatedAPI;

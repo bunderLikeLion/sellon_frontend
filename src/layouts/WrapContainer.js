@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Container from '@mui/material/Container';
 
 const MaxContainer = styled(Container)`
-  max-width: 1060px;
+  max-width: 1060px !important;
   min-height: 92vh;
   height: 100% !important;
   color: ${(props) => props.theme.color_white} !important;

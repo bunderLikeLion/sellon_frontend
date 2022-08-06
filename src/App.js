@@ -31,7 +31,6 @@ const App = () => {
   useEffect(() => {
     if (performance.navigation.type === 1) {
       if (localStorage.getItem('access_token')) {
-        console.log('yes');
         axiosInstance.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${localStorage.getItem('access_token')}`;
@@ -60,7 +59,7 @@ const App = () => {
                 <Route path="/auction/detail" element={<AuctionDetail />} />
                 <Route path="/toprank" element={<TopRank />} />
                 <Route path="/chat" element={<Chat />} />
-                <Route path="/mypage/itemdetail" element={<ItemDetail />} />
+                <Route path="/itemdetail/:id" element={<ItemDetail />} />
                 <Route path="/auctionfinished" element={<AuctionFinished />} />
                 <Route path="/auction/newauction1" element={<NewAuction1 />} />
                 <Route path="/auction/newauction2" element={<NewAuction2 />} />

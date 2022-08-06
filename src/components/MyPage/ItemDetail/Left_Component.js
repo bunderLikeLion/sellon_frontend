@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CardMedia from '@mui/material/CardMedia';
+import dateFormatter from 'utils/dateFormatter';
 
 const ArrowIconContainer = styled.div`
   width: 100%;
@@ -11,6 +13,7 @@ const ArrowIcon = styled(ArrowBackIosNewIcon)`
   width: 0.8rem;
   height: 0.8rem;
   margin-top: 1rem;
+  cursor: pointer;
 `;
 
 const MainPicContainer = styled.div`
@@ -18,13 +21,9 @@ const MainPicContainer = styled.div`
   height: 15rem;
 `;
 
-const MainPic = styled.div`
+const MainPic = styled(CardMedia)`
   height: 100%;
   border-radius: 1rem;
-  background-image: url(https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165474316294015711.jpg?gif=1&w=1280&h=1280&c=c&webp=1);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 `;
 
 const SubPicContainer = styled.div`
@@ -34,17 +33,11 @@ const SubPicContainer = styled.div`
   height: 25%;
 `;
 
-const SubPic = styled.div`
+const SubPic = styled(CardMedia)`
   width: 40%;
   height: 75%;
-  background: white;
   border-radius: 1rem;
   margin-right: 1rem;
-  background-image: url(https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165474316294015711.jpg?gif=1&w=1280&h=1280&c=c&webp=1);
-  background-position: center;
-  background-size: cover;
-  object-fit: cover;
-  background-repeat: no-repeat;
 `;
 
 const UserInfo = styled.div`
@@ -73,23 +66,24 @@ const UploadDate = styled.p`
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const Left_Component = () => {
+const Left_Component = ({ user, thumbnail, images, date }) => {
   return (
     <>
       <ArrowIconContainer>
         <ArrowIcon />
       </ArrowIconContainer>
       <MainPicContainer>
-        <MainPic imgUrl="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165474316294015711.jpg?gif=1&w=1280&h=1280&c=c&webp=1" />
+        <MainPic image={thumbnail?.file} />
       </MainPicContainer>
       <SubPicContainer>
-        <SubPic />
-        <SubPic />
+        {images.map((singleImg) => {
+          return <SubPic key={singleImg?.id} image={singleImg?.file} />;
+        })}
       </SubPicContainer>
       <UserInfo>
         <UserPic />
-        <UserName>허유라</UserName>
-        <UploadDate>2022.08.05</UploadDate>
+        <UserName>{user?.username}</UserName>
+        <UploadDate>{dateFormatter(date)}</UploadDate>
       </UserInfo>
     </>
   );
