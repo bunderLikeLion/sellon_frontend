@@ -5,15 +5,15 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 
 const useSingleProductQuery = (itemId) => {
   return useQuery(
-    [`singleItem${itemId}`, itemId],
+    [`singleItem${itemId}`],
     () => productRelatedAPI.getSingleProduct(itemId),
     {
       onError: (res) => {
         toast.dismiss();
         toast.error(errorMsgHandler(res.response.data));
       },
-    },
-    { keepPreviousData: true }
+      keepPreviousData: false,
+    }
   );
 };
 
