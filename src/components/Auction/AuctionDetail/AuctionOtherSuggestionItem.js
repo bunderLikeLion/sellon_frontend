@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 const ItemImg = styled.div`
-  width: 15%;
-  height: 100%;
+  width: 17%;
+  height: 5rem;
   background: black;
+  border-radius: 0.5rem;
   margin-left: 2rem;
+  margin-bottom: 0.5rem;
 `;
 
 const AuctionOtherSuggestionItem = () => {
-  return <ItemImg>아이템</ItemImg>;
+  return <ItemImg>Item</ItemImg>;
 };
 
 export default AuctionOtherSuggestionItem;

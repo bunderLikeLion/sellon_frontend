@@ -1,8 +1,13 @@
-import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import AuctionItem from 'components/Auction/AuctionDetail/AuctionItem';
 import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOtherSuggestion';
 import AuctionMySuggestion from 'components/Auction/AuctionDetail/AuctionMySuggestion';
+import { useState } from 'react';
+
+const Container = styled.div`
+  width: 100%;
+  overflow-y: hidden;
+`;
 
 const ItemContainer = styled.div`
   display: flex;
@@ -24,18 +29,24 @@ const TopContainer = styled.div`
 `;
 
 const AuctionDetail = () => {
+  const [isInventoryOpened, setIsInventoryOpened] = useState(false);
+  const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
+
   return (
-    <WrapContainer>
+    <Container>
       <ItemContainer>
         <TopContainer>
-          <AuctionItem />
+          <AuctionItem isInventoryOpened={isInventoryOpened} />
           <SuggestionContainer>
             <AuctionOtherSuggestion />
           </SuggestionContainer>
         </TopContainer>
       </ItemContainer>
-      <AuctionMySuggestion />
-    </WrapContainer>
+      <AuctionMySuggestion
+        isInventoryOpened={isInventoryOpened}
+        handleInventory={handleInventory}
+      />
+    </Container>
   );
 };
 
