@@ -64,33 +64,31 @@ const TransactionHistory = () => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          {expanded !== 'panel1' && (
-            <>
-              <SummaryLeft>
-                <SummaryLeftImg
-                  component="img"
-                  image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
-                />
-                <ExchangeIcon />
-              </SummaryLeft>
-              {/*좌측 33%*/}
-              <SummaryRight>
-                <SummaryRightImg
-                  component="img"
-                  image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
-                />
-                <SummaryRightImg
-                  component="img"
-                  image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
-                />
-                <SummaryRightImg
-                  component="img"
-                  image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
-                />
-              </SummaryRight>
-              {/*우측 66%*/}
-            </>
-          )}
+          <>
+            <SummaryLeft>
+              <SummaryLeftImg
+                component="img"
+                image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
+              />
+              <ExchangeIcon />
+            </SummaryLeft>
+            {/*좌측 33%*/}
+            <SummaryRight>
+              <SummaryRightImg
+                component="img"
+                image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
+              />
+              <SummaryRightImg
+                component="img"
+                image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
+              />
+              <SummaryRightImg
+                component="img"
+                image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
+              />
+            </SummaryRight>
+            {/*우측 66%*/}
+          </>
         </AccordionSummary>
         <AccordionDetails>
           <DetailLeft></DetailLeft>
