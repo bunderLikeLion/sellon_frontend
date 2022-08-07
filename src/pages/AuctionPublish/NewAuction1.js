@@ -6,7 +6,6 @@ import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublis
 const TopContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin: 0 auto 15rem auto;
   padding: 2rem 1rem;
   color: white;
   display: flex;
@@ -23,7 +22,6 @@ const BigContainer = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  margin: 1rem;
   position: relative;
 `;
 
@@ -74,7 +72,7 @@ const SubHeader = styled.p`
 
 const AuctionTitleContainer = styled.div`
   clear: both;
-  margin: 2rem 1rem;
+  margin: 0 1rem;
 `;
 
 const AuctionTitle = styled.input.attrs((props) => ({

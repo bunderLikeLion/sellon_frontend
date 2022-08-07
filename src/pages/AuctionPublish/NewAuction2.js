@@ -4,7 +4,6 @@ import WrapContainer from 'layouts/WrapContainer';
 const TopContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin: 0 auto 15rem auto;
   padding: 2rem 1rem;
   color: white;
   display: flex;
