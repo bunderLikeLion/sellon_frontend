@@ -9,7 +9,13 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useEffect, useRef, useState } from 'react';
-import { FormControl, InputLabel, Select, TextField } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  Radio,
+  Select,
+  TextField,
+} from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
 import useCategoryQuery from 'queries/product/useCategoryQuery';
@@ -21,21 +27,89 @@ const ModalContainer = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
+  width: 80%;
   height: 70%;
-  background-color: #3d3d3d;
-  color: white;
-  border: 2px solid #000;
-  padding: 20px;
+  background: ${(props) => props.theme.color_background__default};
+  color: ${(props) => props.theme.color_white};
+  padding: 3rem;
   overflow-y: scroll;
+  border-radius: 1rem;
 `;
 
 const CloseBtn = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;
-  color: blue;
+  color: ${(props) => props.theme.color_font__number};
   cursor: pointer;
+`;
+
+const StyledLabel = styled.p`
+  margin: 1rem 0;
+  font-size: 1rem;
+`;
+
+const StyledTextField = styled(TextField)`
+  & label.Mui-focused {
+    border: 2px solid transparent;
+    border-image: ${(props) => props.theme.color_border__hover} 1;
+  }
+  & .MuiInput-underline:after {
+    border: 2px solid transparent;
+    border-image: ${(props) => props.theme.color_border__hover} 1;
+  }
+  & .MuiOutlinedInput-root {
+    color: ${(props) => props.theme.color_white} !important;
+    & fieldset {
+      border: 2px solid transparent;
+      border-image: ${(props) => props.theme.color_border__hover} 1;
+    }
+    &:hover fieldset {
+      border: 2px solid transparent;
+      border-image: ${(props) => props.theme.color_border__hover} 1;
+    }
+    &.Mui-focused fieldset {
+      border: 2px solid transparent;
+      border-image: ${(props) => props.theme.color_border__hover} 1;
+    }
+  }
+`;
+
+const CategoryRadioBox = styled.div`
+  width: 40rem;
+  min-height: 3rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  background: ${(props) => props.theme.color_background__default};
+  border-radius: 0.3rem;
+  border: 2px solid transparent;
+  border-image: ${(props) => props.theme.color_border__hover} 1;
+`;
+
+const CategoryContentBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const SingleRadio = styled.span`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25%;
+  margin-bottom: 0.3rem;
+`;
+
+const RadioLabel = styled.label`
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const StyledRadio = styled(Radio)`
+  color: ${(props) => props.theme.color_white} !important;
+`;
+
+const StatusRadio = styled(SingleRadio)`
+  width: 20%;
 `;
 
 const AddItemModal = ({ handleModal, isModalOpened }) => {
@@ -63,6 +137,22 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
 
   const { mutate: postSubmit, isSuccess: createdSuccessfully } =
     useCreateProductMutation();
+
+  const catControlProps = (item) => ({
+    checked: category === item,
+    onChange: handleCategory,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const statusControlProps = (item) => ({
+    checked: status === item,
+    onChange: handleStatus,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
 
   const submit = () => {
     const frm = new FormData();
@@ -92,51 +182,62 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
       <ModalContainer>
         <CloseBtn onClick={handleModal} />
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          🌃 아이템 추가
+          아이템 추가
         </Typography>
-        <h1>아이템 이름</h1>
-        <TextField
-          id="outlined-name"
-          label="Name"
-          value={itemName}
-          onChange={handleItemName}
-        />
-        <h1>대표사진 등록</h1>
+
+        <StyledLabel>상품명</StyledLabel>
+        <StyledTextField id="outlined-name" onChange={handleItemName} />
+
+        <StyledLabel>대표사진 등록</StyledLabel>
         <ThumbnailImageDragDrop
           thumbnailPic={thumbnailPic}
           setThumbNailPic={setThumbNailPic}
         />
-        <p>추가사진 등록</p>
+
+        <StyledLabel>추가사진 등록</StyledLabel>
         <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
-        <FormControl sx={{ m: 1, minWidth: 100 }}>
-          <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-          <Select value={category} onChange={handleCategory}>
+
+        <CategoryRadioBox>
+          <StyledLabel>카테고리</StyledLabel>
+          <CategoryContentBox>
             {catFetched &&
               catData.map((singleCat) => {
                 return (
-                  <MenuItem key={singleCat.id} value={singleCat.id}>
-                    {singleCat.name}
-                  </MenuItem>
+                  <SingleRadio>
+                    <StyledRadio {...catControlProps(`${singleCat.name}`)} />
+                    <RadioLabel>{singleCat.name}</RadioLabel>
+                  </SingleRadio>
                 );
               })}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ m: 1, minWidth: 100 }}>
-          <InputLabel id="demo-simple-select-label">상태</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={status}
-            label="Age"
-            onChange={handleStatus}
-          >
-            <MenuItem value={1}>최상</MenuItem>
-            <MenuItem value={2}>중상</MenuItem>
-            <MenuItem value={3}>중</MenuItem>
-            <MenuItem value={4}>중하</MenuItem>
-            <MenuItem value={5}>최하</MenuItem>
-          </Select>
-        </FormControl>
+          </CategoryContentBox>
+        </CategoryRadioBox>
+
+        <CategoryRadioBox>
+          <StyledLabel>상태</StyledLabel>
+          <CategoryContentBox>
+            <StatusRadio>
+              <StyledRadio {...statusControlProps('1')} />
+              <RadioLabel>최상</RadioLabel>
+            </StatusRadio>
+            <StatusRadio>
+              <StyledRadio {...statusControlProps('2')} />
+              <RadioLabel>중상</RadioLabel>
+            </StatusRadio>
+            <StatusRadio>
+              <StyledRadio {...statusControlProps('3')} />
+              <RadioLabel>중</RadioLabel>
+            </StatusRadio>
+            <StatusRadio>
+              <StyledRadio {...statusControlProps('4')} />
+              <RadioLabel>중하</RadioLabel>
+            </StatusRadio>
+            <StatusRadio>
+              <StyledRadio {...statusControlProps('5')} />
+              <RadioLabel>최하</RadioLabel>
+            </StatusRadio>
+          </CategoryContentBox>
+        </CategoryRadioBox>
+
         <TextField
           type="number"
           value={quantity}
@@ -149,7 +250,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           }}
           label="갯수"
         />
-        <p>아이템 설명 </p>
+        <StyledLabel>아이템 설명 </StyledLabel>
         <Editor
           ref={editorRef} // DOM 선택용 useRef
           placeholder="내용을 입력해주세요."
