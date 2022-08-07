@@ -77,10 +77,13 @@ const Left_Component = ({ singleItemData }) => {
         </Link>
       </ArrowIconContainer>
       <MainPicContainer>
-        <MainPic image={thumbnail?.file} />
+        {
+          thumbnail && (<MainPic image={thumbnail?.file} />)
+        }
       </MainPicContainer>
       <SubPicContainer>
-        {images.map((singleImg) => {
+        {images && images.map((singleImg) => {
+          if (!singleImg) return null;
           return <SubPic key={singleImg?.id} image={singleImg?.file} />;
         })}
       </SubPicContainer>

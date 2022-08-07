@@ -1,4 +1,4 @@
-import axiosInstance from './config';
+import { axiosInstance } from './config';
 
 const client = axiosInstance;
 
@@ -20,11 +20,11 @@ const productsRelatedAPI = {
   },
 
   deleteProduct: (productId) => {
-    return client.delete(`products/${productId}`);
+    return client.delete(`products/${productId}/`);
   },
 
   getSingleProduct: (productId) => {
-    return client.get(`products/${productId}`);
+    return client.get(`products/${productId}/`, {});
   },
 };
 
