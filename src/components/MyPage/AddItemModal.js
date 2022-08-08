@@ -160,7 +160,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     extraPics.forEach((single, idx) => {
       frm.append(`images[${idx}]file`, single);
     });
-    frm.append('product_category_id', category);
+    frm.append('product_category_id', +category);
     frm.append('name', itemName);
     frm.append('quality', status);
     frm.append('quantity', quantity);
@@ -204,7 +204,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
               catData.map((singleCat) => {
                 return (
                   <SingleRadio>
-                    <StyledRadio {...catControlProps(`${singleCat.name}`)} />
+                    <StyledRadio {...catControlProps(`${singleCat.id}`)} />
                     <RadioLabel>{singleCat.name}</RadioLabel>
                   </SingleRadio>
                 );

@@ -62,7 +62,7 @@ const ItemList = () => {
   return (
     <ItemListContainer>
       <PlusBtn onClick={handleModal} />
-      <p>총 5개</p>
+      <p>총 {myProductsData?.total_count}개</p>
       <FlexContainer>
         {myProductFetched &&
           myProductsData.results.map((productData) => {
