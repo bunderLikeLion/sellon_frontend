@@ -83,6 +83,7 @@ const AccordionContainer = styled.div`
 
 const StyledAccordion = styled(Accordion)`
   margin-bottom: 3%;
+  border-radius: 1rem !important;
   background: ${(props) => props.theme.color_background__primary} !important;
 `;
 
@@ -137,7 +138,7 @@ const RightSmallContainer = styled.div`
   margin-bottom: 1rem;
   padding-top: 5%;
   padding-left: 5%;
-  border-radius: 7%;
+  border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary}
 `;
 
@@ -162,7 +163,6 @@ const TransactionHistory = () => {
         <StyledAccordion
           expanded={expanded === 'panel1'}
           onChange={handleChange('panel1')}
-          sx={{borderRadius: 3}}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
