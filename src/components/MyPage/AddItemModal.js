@@ -308,7 +308,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             </CategoryContentBox>
           </InsideRadioBox>
         </StatusRadioBox>
-
+        
         <CategoryRadioBox>
           <InsideRadioBox>
             <StyledLabel>카테고리</StyledLabel>
