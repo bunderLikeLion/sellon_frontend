@@ -5,10 +5,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import WrapContainer from 'layouts/WrapContainer';
-import useCategoryQuery from 'queries/product/useCategoryQuery';
-import useInput from 'hooks/useInput';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
+import useInput from 'hooks/useInput';
 
 const Form = styled.div`
   width: 100%;
@@ -171,10 +170,7 @@ const Home = () => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
   const [cat, setCat] = useState('');
-
-  const { data: catData, isSuccess: catFetched } = useCategoryQuery([
-    'formCategories',
-  ]);
+  const [sort, handleSort] = useInput('');
 
   const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
 
@@ -234,12 +230,12 @@ const Home = () => {
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
-              value=""
-              label="Age"
+              value={sort}
+              onChange={handleSort}
             >
-              <MenuItemBox value={10}>인기순</MenuItemBox>
-              <MenuItemBox value={20}>최신순</MenuItemBox>
-              <MenuItemBox value={30}>관심순</MenuItemBox>
+              <MenuItemBox value={'인기'}>인기순</MenuItemBox>
+              <MenuItemBox value={'최신'}>최신순</MenuItemBox>
+              {/*<MenuItemBox value={30}>관심순</MenuItemBox>*/}
             </SelectBox>
           </FormControl>
         </SubNav3>
