@@ -9,6 +9,7 @@ const useCategoryQuery = () => {
       toast.dismiss();
       toast.error(errorMsgHandler(res.response.data));
     },
+    staleTime: 1000 * 60 * 10,
   });
 };
 

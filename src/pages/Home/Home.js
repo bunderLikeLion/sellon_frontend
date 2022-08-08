@@ -4,8 +4,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
-import { useState } from 'react';
 import WrapContainer from 'layouts/WrapContainer';
+import useCategoryQuery from 'queries/product/useCategoryQuery';
+import useInput from 'hooks/useInput';
+import { useEffect, useState } from 'react';
+import FilterModal from 'components/Home/FilterModal';
 
 const Form = styled.div`
   width: 100%;
@@ -159,16 +162,22 @@ const InputLabelBox = styled(InputLabel)`
 `;
 
 const MenuItemBox = styled(MenuItem)`
-  background: black
+  background: black;
   color: white;
 `;
 
 const Home = () => {
-  const [age, setAge] = useState('');
+  const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
+  const [filterKeyword, setFilterKeyword] = useState('');
+  const [areaRestriction, setAreaRestriction] = useState(1);
+  const [cat, setCat] = useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  const { data: catData, isSuccess: catFetched } = useCategoryQuery([
+    'formCategories',
+  ]);
+
+  const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
+
   return (
     <WrapContainer>
       <Form>
@@ -182,9 +191,8 @@ const Home = () => {
               <SelectBox
                 labelId="demo-select-small"
                 id="demo-select-small"
-                value={age}
+                value=""
                 label="Age"
-                onChange={handleChange}
               >
                 <MenuItemBox value={10}>기본모드</MenuItemBox>
                 <MenuItemBox value={20}>여행모드</MenuItemBox>
@@ -219,29 +227,15 @@ const Home = () => {
         <SubNav3>
           <SubNav3_left>
             <HomegroundAuction>홈그라운드의 모든 거래</HomegroundAuction>
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-              <InputLabelBox id="demo-select-small">카테고리</InputLabelBox>
-              <SelectBox
-                labelId="demo-select-small"
-                id="demo-select-small"
-                value={age}
-                label="Age"
-                onChange={handleChange}
-              >
-                <MenuItemBox value={10}>전체</MenuItemBox>
-                <MenuItemBox value={20}>스포츠</MenuItemBox>
-                <MenuItemBox value={30}>의류</MenuItemBox>
-              </SelectBox>
-            </FormControl>
+            <button onClick={handleFilterModal}>필터 및 검색</button>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabelBox id="demo-select-small">정렬</InputLabelBox>
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
-              value={age}
+              value=""
               label="Age"
-              onChange={handleChange}
             >
               <MenuItemBox value={10}>인기순</MenuItemBox>
               <MenuItemBox value={20}>최신순</MenuItemBox>
@@ -261,8 +255,17 @@ const Home = () => {
           <HomeAuctionListCard />
         </Container>
       </Form>
+      <FilterModal
+        isFilterModalOpened={isFilterModalOpened}
+        handleFilterModal={handleFilterModal}
+        filterKeyword={filterKeyword}
+        setFilterKeyword={setFilterKeyword}
+        areaRestriction={areaRestriction}
+        setAreaRestriction={setAreaRestriction}
+        cat={cat}
+        setCat={setCat}
+      />
     </WrapContainer>
   );
 };
-
 export default Home;
