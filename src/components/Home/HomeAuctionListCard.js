@@ -93,7 +93,7 @@ const MyCardHeader = styled.div`
   padding: 0.5rem;
 `;
 
-const HomeAuctionListCard = () => {
+const HomeAuctionListCard = ({ auctionData }) => {
   return (
     <Container>
       <CardContainor sx={{ maxWidth: '100%' }}>
@@ -101,18 +101,19 @@ const HomeAuctionListCard = () => {
         <MyCardMedia
           component="img"
           height="150"
-          image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
+          image={auctionData?.product?.thumbnail?.file}
         />
         <CardTop>
           <CardTopImg>profile</CardTopImg>
-          <MyCardHeader>경매글 제목이 길면 어떻게 될까요?????????</MyCardHeader>
+          <MyCardHeader>{auctionData?.title}</MyCardHeader>
         </CardTop>
         <CardBottom style={{ width: '100%' }}>
           <PersonCntBox>
             <PersonIcon />
-            30명
+            {auctionData?.product_groups_count}명
           </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
+          {/*<EnterBox>{auctionData?.end_at}</EnterBox>*/}
+          <EnterBox>D-1</EnterBox>
         </CardBottom>
       </CardContainor>
     </Container>

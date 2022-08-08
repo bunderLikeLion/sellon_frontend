@@ -8,6 +8,7 @@ import WrapContainer from 'layouts/WrapContainer';
 import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
+import useAuctionsQuery from 'queries/auction/useAuctionsQuery';
 
 const Form = styled.div`
   width: 100%;
@@ -174,6 +175,9 @@ const Home = () => {
 
   const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
 
+  const { data: auctionList, isSuccess: auctionListFetched } =
+    useAuctionsQuery(sort);
+
   return (
     <WrapContainer>
       <Form>
@@ -233,22 +237,18 @@ const Home = () => {
               value={sort}
               onChange={handleSort}
             >
-              <MenuItemBox value={'인기'}>인기순</MenuItemBox>
-              <MenuItemBox value={'최신'}>최신순</MenuItemBox>
+              <MenuItemBox value={'popular'}>인기순</MenuItemBox>
+              <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
               {/*<MenuItemBox value={30}>관심순</MenuItemBox>*/}
             </SelectBox>
           </FormControl>
         </SubNav3>
 
         <Container>
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
-          <HomeAuctionListCard />
+          {auctionListFetched &&
+            auctionList.results.map((singleAuction) => {
+              return <HomeAuctionListCard auctionData={singleAuction} />;
+            })}
         </Container>
       </Form>
       <FilterModal
