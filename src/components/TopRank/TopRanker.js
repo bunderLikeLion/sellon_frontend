@@ -3,45 +3,45 @@ import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`
-  width: 90%;
-  height: 50%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  width: 90%;
+  height: 50%;
 `;
 
 const TopDealer = styled.div`
+  position: relative;
   width: 18.5rem;
   height: 13rem;
+  margin: 1rem 0;
+  padding: 1rem;
   background: ${(props) => props.theme.color_background__success};
   border-radius: 1rem;
-  padding: 1rem;
-  margin: 1rem 0;
-  position: relative;
 `;
 
 const TopDealerImg = styled(CardMedia)`
+  position: absolute;
   width: 10rem;
   height: 10rem;
   background: red;
   border-radius: 50%;
   float: right;
-  position: absolute;
   right: 5%;
   top: -10%;
-  box-shadow: 3px 3px 6px 0;
+  box-shadow: 0.2rem 0.2rem 0.6rem 0 lightgray;
 `;
 
 const TopDealerInfo = styled.div`
+  position: absolute;
   width: 100%;
   height: auto;
-  position: absolute;
   bottom: 0;
 `;
 
 const TopDealerTitle = styled.p`
-  font-size: 1rem;
   margin-bottom: 1rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -51,8 +51,8 @@ const TopDealerUserContainer = styled.div`
 `;
 
 const TopDealerUser = styled.p`
-  font-size: 1.2rem;
   margin-right: 0.5rem;
+  font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -62,43 +62,42 @@ const TopDealCount = styled.p`
 `;
 
 const QuestionIcon = styled(HelpIcon)`
-  float: right;
   margin-right: 2rem;
   margin-bottom: 1rem;
+  float: right;
 `;
 
 const MonthlyChampionImg = styled(CardMedia)`
+  position: absolute;
   width: 10rem;
   height: 10rem;
-  background: red;
-  border-radius: 50%;
   float: right;
-  position: absolute;
   right: 5%;
   top: -10%;
-  box-shadow: 3px 3px 6px 0;
+  border-radius: 50%;
+  box-shadow: 0.2rem 0.2rem 0.6rem 0 lightgray;
 `;
 
 const MonthlyChampion = styled.div`
+  position: relative;
   width: 18.5rem;
   height: 13rem;
+  margin: 1rem 0;
+  padding: 1rem;
   background: ${(props) => props.theme.color_background__success};
   border-radius: 1rem;
-  padding: 1rem;
-  margin: 1rem 0;
-  position: relative;
 `;
 
 const MonthlyChampionInfo = styled.div`
+  position: absolute;
   width: 100%;
   height: auto;
-  position: absolute;
   bottom: 0;
 `;
 
 const MonthlyTitle = styled.p`
-  font-size: 1rem;
   margin-bottom: 1rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -108,8 +107,8 @@ const MonthlyUserContainer = styled.div`
 `;
 
 const MonthlyChampionUser = styled.p`
-  font-size: 1.2rem;
   margin-right: 0.5rem;
+  font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 

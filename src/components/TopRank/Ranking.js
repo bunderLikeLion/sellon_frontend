@@ -5,17 +5,16 @@ import CardMedia from '@mui/material/CardMedia';
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 1rem;
   padding: 1rem;
-
+  border-radius: 1rem;
 `;
 
 const TopContainer = styled.div`
-  width: 100%;
-  height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 10%;
   margin-bottom: 0.5rem;
 `;
 
@@ -34,14 +33,14 @@ const BottomContainer = styled.div`
 `;
 
 const RankerContainer = styled.div`
-  border-radius: 0.5rem;
-  width: 100%;
-  height: 3rem;
-  background: ${(props) => props.theme.color_background__secondary};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 3rem;
   margin-bottom: 0.5rem;
+  background: ${(props) => props.theme.color_background__secondary};
+  border-radius: 0.5rem;
 `;
 
 const RankerContainerLeft = styled.div`
@@ -50,8 +49,6 @@ const RankerContainerLeft = styled.div`
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const RankerContainerRight = styled.div``;
-
 const RankerNumber = styled.p`
   margin: 0.7rem;
 `;
@@ -59,7 +56,6 @@ const RankerNumber = styled.p`
 const RankerImg = styled(CardMedia)`
   width: 1.7rem;
   height: 1.7rem;
-  background: green;
   border-radius: 50%;
 `;
 
@@ -82,22 +78,22 @@ const Ranking = () => {
         <RankerContainer>
           <RankerContainerLeft>
             <RankerNumber>1</RankerNumber>
-            <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU"/>
+            <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
             <RankerNickname>허유라</RankerNickname>
           </RankerContainerLeft>
-          <RankerContainerRight>
+          <div>
             <RankerDealCount>총 50 회</RankerDealCount>
-          </RankerContainerRight>
+          </div>
         </RankerContainer>
         <RankerContainer>
           <RankerContainerLeft>
             <RankerNumber>1</RankerNumber>
-            <RankerImg image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU'/>
+            <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
             <RankerNickname>허유라</RankerNickname>
           </RankerContainerLeft>
-          <RankerContainerRight>
+          <div>
             <RankerDealCount>총 50 회</RankerDealCount>
-          </RankerContainerRight>
+          </div>
         </RankerContainer>
       </BottomContainer>
     </Container>

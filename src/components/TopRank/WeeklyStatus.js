@@ -5,62 +5,61 @@ import CardMedia from '@mui/material/CardMedia';
 const Container = styled.div`
   width: 90%;
   height: 50%;
+  margin: 1rem 0;
   background: ${(props) => props.theme.color_background__primary};
   border-radius: 1rem;
-  margin: 1rem 0;
 `;
 
 const WeeklyStatusContainer = styled.div`
-  width: 100%;
-  height: 20%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 20%;
   padding: 0.5rem;
 `;
 
 const WeeklyStatusTitle = styled.p`
-  font-size: 1.2rem;
   margin-left: 1rem;
   margin-top: 1rem;
+  font-size: 1.2rem;
 `;
 
 const QuestionIcon = styled(HelpIcon)`
-  font-size: 0.5rem;
   margin-right: 1rem;
   margin-top: 1rem;
+  font-size: 0.5rem;
 `;
 
 const WeeklyStatusUserContainer = styled.div`
+  display: flex;
   width: 100%;
   height: 80%;
-  display: flex;
 `;
 
 const Usercontainer = styled.div`
-  width: 30%;
-  height: 50%;
-  background: ${(props) => props.theme.color_background__third};
-  margin: 1rem;
-  border-radius: 1rem;
+  position: relative;
   display: block;
   align-items: center;
-  position: relative;
+  width: 30%;
+  height: 50%;
+  margin: 1rem;
+  background: ${(props) => props.theme.color_background__third};
+  border-radius: 1rem;
 `;
 
 const UserTopcontainer = styled.div`
-  width: 100%;
-  height: auto;
   display: flex;
   align-items: center;
+  width: 100%;
+  height: auto;
 `;
 
 const UserImg = styled(CardMedia)`
   width: 2.2rem;
   height: 2.2rem;
-  border-radius: 50%;
-  background: green;
   margin: 0.5rem;
+  border-radius: 50%;
 `;
 
 const UserNickname = styled.p`
@@ -74,36 +73,31 @@ const UserBottomcontainer = styled.div`
 `;
 
 const RecentRank = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
-  background: red;
-  background: ${(props) => props.theme.color_font__tertiary};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
   right: 55%;
   bottom: 20%;
+  border-radius: 50%;
+  background: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const RecentRankTitle = styled.p``;
-
 const UserRank = styled.div`
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background: ${(props) => props.theme.color_background__success};
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  z-index: 1;
+  width: 3rem;
+  height: 3rem;
   bottom: 10%;
-  box-shadow: 4px 4px 8px black;
+  z-index: 1;
+  border-radius: 50%;
+  background: ${(props) => props.theme.color_background__success};
+  box-shadow: 0.4rem 0.4rem 0.6rem black;
 `;
-
-const RankTitle = styled.p``;
 
 const WeeklyStatus = () => {
   return (
@@ -120,10 +114,10 @@ const WeeklyStatus = () => {
           </UserTopcontainer>
           <UserBottomcontainer>
             <RecentRank>
-              <RecentRankTitle>A</RecentRankTitle>
+              <p>A</p>
             </RecentRank>
             <UserRank>
-              <RankTitle>S</RankTitle>
+              <p>S</p>
             </UserRank>
           </UserBottomcontainer>
         </Usercontainer>
