@@ -3,8 +3,8 @@ import { axiosInstance } from './config';
 const client = axiosInstance;
 
 const productsRelatedAPI = {
-  getProductCategoryLists: async () => {
-    return client.get('/product_categories/').then((res) => res.data);
+  getProductCategoryLists: () => {
+    return client.get('product_categories/').then((res) => res.data);
   },
 
   postProduct: (payload) => {
