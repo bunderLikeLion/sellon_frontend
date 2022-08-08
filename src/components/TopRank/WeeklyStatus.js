@@ -20,14 +20,12 @@ const WeeklyStatusContainer = styled.div`
 `;
 
 const WeeklyStatusTitle = styled.p`
-  margin-left: 1rem;
-  margin-top: 1rem;
+  margin: 1rem 0 0 1rem;
   font-size: 1.2rem;
 `;
 
 const QuestionIcon = styled(HelpIcon)`
-  margin-right: 1rem;
-  margin-top: 1rem;
+  margin: 1rem 1rem 0 0;
   font-size: 0.5rem;
 `;
 
@@ -96,7 +94,7 @@ const UserRank = styled.div`
   z-index: 1;
   border-radius: 50%;
   background: ${(props) => props.theme.color_background__success};
-  box-shadow: 0.4rem 0.4rem 0.6rem black;
+  box-shadow: 0.4rem 0.4rem 0.6rem #252040;
 `;
 
 const WeeklyStatus = () => {

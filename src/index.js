@@ -8,7 +8,22 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'styled-components';
 import theme from 'themes/theme';
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      suspense: true,
+      useErrorBoundary: true,
+      onSuccess: () => console.log('yes'),
+      onError: () => console.log('no'),
+    },
+    mutations: {
+      useErrorBoundary: true,
+      onSuccess: () => console.log('yes'),
+      onError: () => console.log('no'),
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>

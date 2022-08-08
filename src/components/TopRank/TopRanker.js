@@ -29,7 +29,7 @@ const TopDealerImg = styled(CardMedia)`
   float: right;
   right: 5%;
   top: -10%;
-  box-shadow: 0.2rem 0.2rem 0.6rem 0 lightgray;
+  box-shadow: 0.2rem 0.2rem 0.6rem 0 #d3d3d3;
 `;
 
 const TopDealerInfo = styled.div`
@@ -75,7 +75,7 @@ const MonthlyChampionImg = styled(CardMedia)`
   right: 5%;
   top: -10%;
   border-radius: 50%;
-  box-shadow: 0.2rem 0.2rem 0.6rem 0 lightgray;
+  box-shadow: 0.2rem 0.2rem 0.6rem 0 #d3d3d3;
 `;
 
 const MonthlyChampion = styled.div`

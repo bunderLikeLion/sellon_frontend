@@ -1,21 +1,18 @@
 import { useDropzone } from 'react-dropzone';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import {
-  Container,
   DropzoneContainer,
   MultipleContainer,
   MultiThumbContainer,
   RemoveBtn,
   Thumb,
-  ThumbContainer,
   ThumbImg,
   ThumbInner,
 } from './styles';
-import styled from 'styled-components';
 
 const ExtraImageDragDrop = ({ extraPics, setExtraPics }) => {
   const uploadFileFunc = (acceptedFiles) => {
-    if (extraPics.length <= 2) {
+    if (extraPics.length <= 1) {
       setExtraPics([
         ...extraPics,
         acceptedFiles.map((file) =>
@@ -27,7 +24,7 @@ const ExtraImageDragDrop = ({ extraPics, setExtraPics }) => {
     } else {
       setExtraPics([
         extraPics[1],
-        extraPics[2],
+        // extraPics[2],
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
@@ -65,7 +62,7 @@ const ExtraImageDragDrop = ({ extraPics, setExtraPics }) => {
             </ThumbInner>
           </Thumb>
         ))}
-        {extraPics.length < 3 && (
+        {extraPics.length < 2 && (
           <DropzoneContainer {...getRootProps({ className: 'dropzone' })}>
             <input {...getInputProps()} />
             <AddAPhotoIcon />

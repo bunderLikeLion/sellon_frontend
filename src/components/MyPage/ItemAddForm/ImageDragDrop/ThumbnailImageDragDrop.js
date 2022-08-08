@@ -38,7 +38,6 @@ const ThumbnailImageDragDrop = ({ thumbnailPic, setThumbNailPic }) => {
       {!thumbnailPic.length && (
         <DropzoneContainer {...getRootProps({ className: 'dropzone' })}>
           <input {...getInputProps()} />
-          <p>끌어서 놓으시거나, 클릭하여 1장의 대표 이미지를 등록해주세요</p>
           <AddAPhotoIcon />
         </DropzoneContainer>
       )}
