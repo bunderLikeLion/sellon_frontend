@@ -27,13 +27,17 @@ const ModalContainer = styled(Box)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
+  width: 50rem;
   height: 70%;
   background: ${(props) => props.theme.color_background__default};
   color: ${(props) => props.theme.color_white};
   padding: 3rem;
   overflow-y: scroll;
   border-radius: 1rem;
+`;
+
+const StyledTypography = styled(Typography)`
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const CloseBtn = styled(CloseIcon)`
@@ -44,46 +48,95 @@ const CloseBtn = styled(CloseIcon)`
   cursor: pointer;
 `;
 
+const AddBtn = styled(Button)`
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_white} !important;
+  margin-top: 1.5rem !important;
+  width: 7rem;
+  height: 2.5rem;
+  font-size: 1.2rem !important;
+  float: right;
+  border: none !important;
+`;
+
 const StyledLabel = styled.p`
-  margin: 1rem 0;
+  margin: 1.5rem 0 0.5rem 0.5rem;
   font-size: 1rem;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const StyledTextField = styled(TextField)`
   & label.Mui-focused {
-    border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover} 1;
+    border: 3px solid transparent;
   }
   & .MuiInput-underline:after {
-    border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover} 1;
+    border: 3px solid transparent;
   }
   & .MuiOutlinedInput-root {
-    color: ${(props) => props.theme.color_white} !important;
+    border: 3px solid transparent;
+    background-image: linear-gradient(
+        ${(props) => props.theme.color_background__default},
+        ${(props) => props.theme.color_background__default}
+      ),
+      ${(props) => props.theme.color_border__hover} !important;
+    color: #ffffff !important;
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important;
+    padding: 0rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+    height: 2.5rem;
     & fieldset {
       border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
     }
     &:hover fieldset {
       border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
     }
     &.Mui-focused fieldset {
       border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
     }
   }
+`;
+
+const StatusRadioBox = styled.div`
+  width: 40rem;
+  min-height: 2rem;
+  margin-top: 2rem;
+  border: 3px solid transparent;
+  background-image: linear-gradient(
+      ${(props) => props.theme.color_background__default},
+      ${(props) => props.theme.color_background__default}
+    ),
+    ${(props) => props.theme.color_border__hover} !important;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
+  padding: 0rem;
+  font-size: 1rem;
+  border-radius: 1rem;
 `;
 
 const CategoryRadioBox = styled.div`
   width: 40rem;
   min-height: 3rem;
-  padding: 1rem;
   margin-top: 2rem;
-  background: ${(props) => props.theme.color_background__default};
-  border-radius: 0.3rem;
-  border: 2px solid transparent;
-  border-image: ${(props) => props.theme.color_border__hover} 1;
+  border: 3px solid transparent;
+  background-image: linear-gradient(
+      ${(props) => props.theme.color_background__default},
+      ${(props) => props.theme.color_background__default}
+    ),
+    ${(props) => props.theme.color_border__hover} !important;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
+  padding: 0rem;
+  font-size: 1rem;
+  border-radius: 1rem;
+`;
+
+const InsideRadioBox = styled.div`
+  padding: 0 1rem;
 `;
 
 const CategoryContentBox = styled.div`
@@ -112,6 +165,37 @@ const StatusRadio = styled(SingleRadio)`
   width: 20%;
 `;
 
+const InputQuantityBox = styled.div`
+  border: 3px solid transparent;
+  background-image: linear-gradient(
+      ${(props) => props.theme.color_background__default},
+      ${(props) => props.theme.color_background__default}
+    ),
+    ${(props) => props.theme.color_border__hover} !important;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
+  font-size: 1rem;
+  border-radius: 1rem;
+  width: 30%;
+  height: 2.5rem;
+`;
+
+const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
+  & {
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+    color: white;
+    font-size: 1rem;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+`;
+
 const AddItemModal = ({ handleModal, isModalOpened }) => {
   const editorRef = useRef();
   const [thumbnailPic, setThumbNailPic] = useState([]);
@@ -119,7 +203,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   const [itemName, handleItemName, itemNameReset] = useInput('');
   const [status, handleStatus, statusReset] = useInput('');
   const [category, handleCategory, categoryReset] = useInput('');
-  const [quantity, handleQuantity, quantityReset] = useInput('');
+  const [quantity, handleQuantity, quantityReset] = useInput('1');
 
   const closeModal = () => {
     itemNameReset();
@@ -162,7 +246,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     });
     frm.append('product_category_id', +category);
     frm.append('name', itemName);
-    frm.append('quality', status);
+    frm.append('quality', +status);
     frm.append('quantity', quantity);
     frm.append('description', editorRef.current?.getInstance().getHTML());
     postSubmit(frm);
@@ -181,9 +265,9 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     >
       <ModalContainer>
         <CloseBtn onClick={handleModal} />
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <StyledTypography id="modal-modal-title" variant="h5" component="h2">
           아이템 추가
-        </Typography>
+        </StyledTypography>
 
         <StyledLabel>상품명</StyledLabel>
         <StyledTextField id="outlined-name" onChange={handleItemName} />
@@ -197,59 +281,56 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <StyledLabel>추가사진 등록</StyledLabel>
         <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
 
+        <StatusRadioBox>
+          <InsideRadioBox>
+            <StyledLabel>상태</StyledLabel>
+            <CategoryContentBox>
+              <StatusRadio>
+                <StyledRadio {...statusControlProps('1')} />
+                <RadioLabel>최상</RadioLabel>
+              </StatusRadio>
+              <StatusRadio>
+                <StyledRadio {...statusControlProps('2')} />
+                <RadioLabel>중상</RadioLabel>
+              </StatusRadio>
+              <StatusRadio>
+                <StyledRadio {...statusControlProps('3')} />
+                <RadioLabel>중</RadioLabel>
+              </StatusRadio>
+              <StatusRadio>
+                <StyledRadio {...statusControlProps('4')} />
+                <RadioLabel>중하</RadioLabel>
+              </StatusRadio>
+              <StatusRadio>
+                <StyledRadio {...statusControlProps('5')} />
+                <RadioLabel>최하</RadioLabel>
+              </StatusRadio>
+            </CategoryContentBox>
+          </InsideRadioBox>
+        </StatusRadioBox>
+        
         <CategoryRadioBox>
-          <StyledLabel>카테고리</StyledLabel>
-          <CategoryContentBox>
-            {catFetched &&
-              catData.map((singleCat) => {
-                return (
-                  <SingleRadio>
-                    <StyledRadio {...catControlProps(`${singleCat.id}`)} />
-                    <RadioLabel>{singleCat.name}</RadioLabel>
-                  </SingleRadio>
-                );
-              })}
-          </CategoryContentBox>
+          <InsideRadioBox>
+            <StyledLabel>카테고리</StyledLabel>
+            <CategoryContentBox>
+              {catFetched &&
+                catData.map((singleCat) => {
+                  return (
+                    <SingleRadio>
+                      <StyledRadio {...catControlProps(`${singleCat.id}`)} />
+                      <RadioLabel>{singleCat.name}</RadioLabel>
+                    </SingleRadio>
+                  );
+                })}
+            </CategoryContentBox>
+          </InsideRadioBox>
         </CategoryRadioBox>
 
-        <CategoryRadioBox>
-          <StyledLabel>상태</StyledLabel>
-          <CategoryContentBox>
-            <StatusRadio>
-              <StyledRadio {...statusControlProps('1')} />
-              <RadioLabel>최상</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
-              <StyledRadio {...statusControlProps('2')} />
-              <RadioLabel>중상</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
-              <StyledRadio {...statusControlProps('3')} />
-              <RadioLabel>중</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
-              <StyledRadio {...statusControlProps('4')} />
-              <RadioLabel>중하</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
-              <StyledRadio {...statusControlProps('5')} />
-              <RadioLabel>최하</RadioLabel>
-            </StatusRadio>
-          </CategoryContentBox>
-        </CategoryRadioBox>
+        <StyledLabel>개수</StyledLabel>
+        <InputQuantityBox>
+          <InputQuantity value={quantity} onChange={handleQuantity} />
+        </InputQuantityBox>
 
-        <TextField
-          type="number"
-          value={quantity}
-          onChange={handleQuantity}
-          InputProps={{
-            inputProps: {
-              max: 100,
-              min: 1,
-            },
-          }}
-          label="갯수"
-        />
         <StyledLabel>아이템 설명 </StyledLabel>
         <Editor
           ref={editorRef} // DOM 선택용 useRef
@@ -268,9 +349,9 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           useCommandShortcut={false} // 키보드 입력 컨트롤 방지
           theme="dark"
         />
-        <Button variant="outlined" onClick={submit}>
+        <AddBtn variant="outlined" onClick={submit}>
           추가
-        </Button>
+        </AddBtn>
       </ModalContainer>
     </Modal>
   );
