@@ -3,28 +3,32 @@ import { axiosInstance } from './config';
 const client = axiosInstance;
 
 const productsRelatedAPI = {
-  getProductCategoryLists: () => {
-    return client.get('product_categories/');
+  getProductCategoryLists: async () => {
+    return client.get('/product_categories/').then((res) => res.data);
   },
 
   postProduct: (payload) => {
-    return client.post('products/', payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    return client
+      .post('products/', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => res.data);
   },
 
   getMyProducts: (pageNum) => {
-    return client.get('products/', { params: { per_page: 6, page: pageNum } });
+    return client
+      .get('products/', { params: { per_page: 6, page: pageNum } })
+      .then((res) => res.data);
   },
 
   deleteProduct: (productId) => {
-    return client.delete(`products/${productId}/`);
+    return client.delete(`products/${productId}/`).then((res) => res.data);
   },
 
   getSingleProduct: (productId) => {
-    return client.get(`products/${productId}/`, {});
+    return client.get(`products/${productId}/`, {}).then((res) => res.data);
   },
 };
 
