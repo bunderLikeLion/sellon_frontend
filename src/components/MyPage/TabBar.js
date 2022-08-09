@@ -41,7 +41,7 @@ const TabBar = () => {
         </StyledBox>
         <TabPanel value="1">
           <TransactionHistory />
-          {/*<NoTransactionHistory />*/}
+          {/* <NoTransactionHistory /> */}
         </TabPanel>
         <TabPanel value="2">
           <ItemList />

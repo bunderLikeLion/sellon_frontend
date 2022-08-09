@@ -38,8 +38,6 @@ const StyledLinkBox = styled(Box)`
   color: ${(props) => props.theme.color_font__secondary} !important;
 `;
 
-const preventDefault = (event) => event.preventDefault();
-
 const StyledLink = styled(Link)`
   color: ${(props) => props.theme.color_font__secondary} !important;
   border-bottom: 1px solid ${(props) => props.theme.color_font__secondary} !important;
@@ -80,7 +78,10 @@ const TransactionHistory = () => {
       <LeftContainer>
         <LeftContainerTxt>
           진행중인 거래가 없습니다.
-          <StyledLinkBox sx={{ typography: 'body1', '& > :not(style) + :not(style)': { ml: 2, }, }} onClick={preventDefault}>
+          <StyledLinkBox
+            sx={{ typography: 'body1', '& > :not(style) + :not(style)': { ml: 2, }, }}
+            onClick={(event) => event.preventDefault()}
+          >
             <StyledLink href="#" underline="none">
               {'거래를_만들러_가봅시다!'}
             </StyledLink>
