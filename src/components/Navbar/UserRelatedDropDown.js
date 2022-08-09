@@ -15,7 +15,7 @@ import { userAtom } from 'states';
 import { Stack } from '@mui/material';
 import styled from 'styled-components';
 
-const Tmp = styled(Menu)`
+const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
     background: black !important;
     color: white;
@@ -43,7 +43,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
           />
         </IconButton>
       </Tooltip>
-      <Tmp
+      <UserDropDownContainer
         sx={{ mt: '45px' }}
         id="menu-appbar"
         anchorEl={anchorElUser}
@@ -116,7 +116,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
             <Typography textAlign="center">로그아웃</Typography>
           </Stack>
         </MenuItem>
-      </Tmp>
+      </UserDropDownContainer>
     </Box>
   );
 };
