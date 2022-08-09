@@ -4,6 +4,8 @@ import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOthe
 import AuctionMySuggestion from 'components/Auction/AuctionDetail/AuctionMySuggestion';
 import { useState } from 'react';
 import WrapContainer from 'layouts/WrapContainer';
+import useSingleAuctionQuery from 'queries/auction/useSingleAuctionQuery';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -31,15 +33,22 @@ const TopContainer = styled.div`
 `;
 
 const AuctionDetail = () => {
+  const { id: auctionId } = useParams();
   const [isInventoryOpened, setIsInventoryOpened] = useState(false);
   const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
+
+  const { data: singleAuctionData, isSuccess } =
+    useSingleAuctionQuery(auctionId);
 
   return (
     <WrapContainer>
       <Container>
         <ItemContainer>
           <TopContainer>
-            <AuctionItem isInventoryOpened={isInventoryOpened} />
+            <AuctionItem
+              isInventoryOpened={isInventoryOpened}
+              singleAuctionData={singleAuctionData}
+            />
             <SuggestionContainer>
               <AuctionOtherSuggestion isInventoryOpened={isInventoryOpened} />
             </SuggestionContainer>
