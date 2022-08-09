@@ -64,7 +64,7 @@ const ErrorMsg = styled.div`
 
 const ButtonContainer = styled.div`
   width: 50%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 `;
 
 const Button = styled.button`
