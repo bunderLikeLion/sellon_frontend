@@ -3,10 +3,10 @@ import toast from 'react-hot-toast';
 import productRelatedAPI from 'apis/productsRelatredAPI';
 import errorMsgHandler from 'utils/errorMsgHandler';
 
-const useMyProductsQuery = (pageNum) => {
+const useMyProductsQuery = (pageNum, perPage) => {
   return useQuery(
     ['myProductsData', pageNum],
-    () => productRelatedAPI.getMyProducts(pageNum),
+    () => productRelatedAPI.getMyProducts(pageNum, perPage),
     {
       onError: (res) => {
         toast.dismiss();

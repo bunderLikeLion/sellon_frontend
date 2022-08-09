@@ -17,9 +17,9 @@ const productsRelatedAPI = {
       .then((res) => res.data);
   },
 
-  getMyProducts: (pageNum) => {
+  getMyProducts: (pageNum, perPage) => {
     return client
-      .get('products/', { params: { per_page: 6, page: pageNum } })
+      .get('products/', { params: { per_page: perPage, page: pageNum } })
       .then((res) => res.data);
   },
 

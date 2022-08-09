@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useState } from 'react';
 
 const Container = styled.div`
   position: absolute;

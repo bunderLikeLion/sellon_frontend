@@ -37,28 +37,30 @@ const AuctionDetail = () => {
   const [isInventoryOpened, setIsInventoryOpened] = useState(false);
   const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
 
-  const { data: singleAuctionData, isSuccess } =
+  const { data: singleAuctionData, isSuccess: singleAuctionDataFetched } =
     useSingleAuctionQuery(auctionId);
 
   return (
     <WrapContainer>
-      <Container>
-        <ItemContainer>
-          <TopContainer>
-            <AuctionItem
-              isInventoryOpened={isInventoryOpened}
-              singleAuctionData={singleAuctionData}
-            />
-            <SuggestionContainer>
-              <AuctionOtherSuggestion isInventoryOpened={isInventoryOpened} />
-            </SuggestionContainer>
-          </TopContainer>
-        </ItemContainer>
-        <AuctionMySuggestion
-          isInventoryOpened={isInventoryOpened}
-          handleInventory={handleInventory}
-        />
-      </Container>
+      {singleAuctionDataFetched && (
+        <Container>
+          <ItemContainer>
+            <TopContainer>
+              <AuctionItem
+                isInventoryOpened={isInventoryOpened}
+                singleAuctionData={singleAuctionData}
+              />
+              <SuggestionContainer>
+                <AuctionOtherSuggestion isInventoryOpened={isInventoryOpened} />
+              </SuggestionContainer>
+            </TopContainer>
+          </ItemContainer>
+          <AuctionMySuggestion
+            isInventoryOpened={isInventoryOpened}
+            handleInventory={handleInventory}
+          />
+        </Container>
+      )}
     </WrapContainer>
   );
 };
