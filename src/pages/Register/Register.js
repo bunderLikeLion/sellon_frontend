@@ -1,44 +1,86 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import registerValidation from 'validations/registerValidation';
-import useSignInMutation from 'queries/auth/useSignInMutation';
-import WrapContainer from 'layouts/WrapContainer';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import registerValidation from 'validations/registerValidation';
+import useSignInMutation from 'queries/auth/useSignInMutation';
 import styled from 'styled-components';
+import SignPic from 'images/Sign_Img.jpeg';
 
-const Title = styled.div`
-  font-size: 3rem;
-  margin: 0.5rem;
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 92vh;
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 27rem;
+  margin-top: 4%;
+`;
+
+const GuideContainer = styled.div`
+  width: 50%;
+  margin-bottom: 3rem;
+`;
+
+const Guide = styled.h1`
+  font-size: 2rem;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const Input = styled.input`
-  margin-bottom: 0.7rem;
-  width: 20rem;
-  height: 3rem;
-  border-radius: 0.7rem;
-  background-color: gray;
-  color: white;
-  font-size: 1rem;
+  width: 27rem;
+  height: 4rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-left: 5rem;
+  padding: 2rem;
+  font-size: 1.4rem;
+  opacity: 70%;
+  background: ${(props) => props.theme.color_background__primary};
+  color: ${(props) => props.theme.color_font__secondary};
   ::placeholder {
-    color: black;
+    font-size: 1.4rem;
+    color: ${(props) => props.theme.color_font__secondary};
+  }
+  //자동완성 글씨, 배경 자동 변경 방지 설정
+  :-webkit-autofill {
+    -webkit-text-fill-color: ${(props) =>
+      props.theme.color_font__secondary} !important;
+    transition: background-color 5000s ease-in-out 0s;
   }
 `;
 
+const ErrorMsg = styled.div`
+  margin: 1rem 0 0.5rem 6rem;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const ButtonContainer = styled.div`
+  width: 50%;
+  margin-top: 1.5rem;
+`;
+
 const Button = styled.button`
-  max-width: 100%;
-  padding: 0.6rem 0.8rem;
-  color: rgb(253, 249, 243);
-  font-weight: 600;
-  text-transform: uppercase;
-  background: #f03d4e;
+  width: 8.4rem;
+  height: 2.6rem;
+  border-radius: 0.5rem;
   border: none;
-  border-radius: 0.35em;
-  outline: 0;
-  cursor: pointer;
-  margin-top: 0.6rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1.3rem;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__secondary};
+  }
+`;
+
+const Img = styled.img`
+  width: 50%;
+  height: 100%;
 `;
 
 const Register = () => {
@@ -61,44 +103,52 @@ const Register = () => {
   };
 
   return (
-    <WrapContainer>
-      <Title>Create New Account</Title>
-      <form onSubmit={handleSubmit(submit)}>
+    <Container>
+      <Form onSubmit={handleSubmit(submit)}>
+        <GuideContainer>
+          <Guide>Create New Account</Guide>
+        </GuideContainer>
+
         <div>
-          <Input placeholder="닉네임" type="text" {...register('username')} />
-          <div>{errors.username?.message}</div>
+          <Input placeholder="ID" type="text" {...register('username')} />
+          <ErrorMsg>{errors.username?.message}</ErrorMsg>
         </div>
+
+        <div>
+          <Input placeholder="PW" type="password" {...register('password1')} />
+          <ErrorMsg>{errors.username?.message}</ErrorMsg>
+        </div>
+
         <div>
           <Input
-            placeholder="비밀번호"
-            type="password"
-            {...register('password1')}
-          />
-          <div>{errors.username?.message}</div>
-        </div>
-        <div>
-          <Input
-            placeholder="비밀번호 확인"
+            placeholder="PW 확인"
             type="password"
             {...register('password2')}
           />
-          <div>{errors.password?.message}</div>
+          <ErrorMsg>{errors.password?.message}</ErrorMsg>
         </div>
+
         <div>
-          <Input placeholder="이메일" type="text" {...register('email')} />
-          <div>{errors.username?.message}</div>
+          <Input placeholder="닉네임" type="text" {...register('email')} />
+          <ErrorMsg>{errors.username?.message}</ErrorMsg>
         </div>
+
         <div>
           <Input placeholder="홈그라운드" type="text" />
-          <div>{errors.username?.message}</div>
+          <ErrorMsg>{errors.username?.message}</ErrorMsg>
         </div>
-        <Button disabled={isSubmitting}>
-          {isSubmitting && 'Submitting...'}
-          회원가입
-        </Button>
+
+        <ButtonContainer>
+          <Button disabled={isSubmitting}>
+            {isSubmitting && 'Submitting...'}
+            가입
+          </Button>
+        </ButtonContainer>
+
         {errors.apiError && <div>{errors.apiError?.message}</div>}
-      </form>
-    </WrapContainer>
+      </Form>
+      <Img src={SignPic} />
+    </Container>
   );
 };
 

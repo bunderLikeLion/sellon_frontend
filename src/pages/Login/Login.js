@@ -1,41 +1,98 @@
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import loginValidation from 'validations/loginValidation';
 import { useEffect } from 'react';
-import useLoginMutation from 'queries/auth/useLoginMutation';
-import WrapContainer from 'layouts/WrapContainer';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import loginValidation from 'validations/loginValidation';
+import useLoginMutation from 'queries/auth/useLoginMutation';
 import styled from 'styled-components';
+import SignPic from 'images/Sign_Img.jpeg';
 
-const Logo = styled.div`
-  width: 7rem;
-  height: 7rem;
-  background: red;
-  border-radius: 50%;
-  margin-bottom: 1.5rem;
+//전체 컨테이너
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 92vh;
 `;
 
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 27rem;
+  margin-top: 7%;
+`;
+
+//상단 Log-In 글씨 컨테이너
+const GuideContainer = styled.div`
+  width: 50%;
+  margin-bottom: 2rem;
+`;
+
+const Guide = styled.h1`
+  font-size: 3rem;
+  color: ${(props) => props.theme.color_font__primary};
+`;
+
+//입력 폼
 const Input = styled.input`
-  margin-bottom: 0.7rem;
-  width: 13rem;
-  height: 2rem;
-  border-radius: 0.3rem;
+  width: 27rem;
+  height: 4rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-left: 5rem;
+  padding: 2rem;
+  font-size: 1.4rem;
+  opacity: 70%;
+  background: ${(props) => props.theme.color_background__primary};
+  color: ${(props) => props.theme.color_font__secondary};
+  ::placeholder {
+    font-size: 1.4rem;
+    color: ${(props) => props.theme.color_font__secondary};
+  }
+  //자동완성 글씨, 배경 자동 변경 방지 설정
+  :-webkit-autofill {
+    -webkit-text-fill-color: ${(props) =>
+      props.theme.color_font__secondary} !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 `;
 
+//하단 에러 메세지
+const ErrorMsg = styled.div`
+  margin: 1rem 0 0.5rem 6rem;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+//버튼 전체 컨테이너
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 30%;
+  margin: 1rem 9rem 0 0;
+`;
+
+//개별 버튼
 const Button = styled.button`
-  max-width: 100%;
-  padding: 0.6rem 0.8rem;
-  color: rgb(253, 249, 243);
-  font-weight: 600;
-  background: #f03d4e;
+  width: 8.4rem;
+  height: 2.6rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
   border: none;
-  border-radius: 0.35em;
-  outline: 0;
-  cursor: pointer;
-  margin-top: 0.6rem;
-  margin-bottom: 0.2rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__secondary};
+  :last-child {
+    background: ${(props) => props.theme.color_button__ok};
+    color: ${(props) => props.theme.color_buttontext__ok};
+  }
+`;
+
+const Img = styled.img`
+  width: 50%;
+  height: 100%;
 `;
 
 const Login = () => {
@@ -57,31 +114,32 @@ const Login = () => {
   };
 
   return (
-    <WrapContainer>
-      <Logo />
-      <form onSubmit={handleSubmit(submit)}>
+    <Container>
+      <Form onSubmit={handleSubmit(submit)}>
+        <GuideContainer>
+          <Guide>Log-In</Guide>
+        </GuideContainer>
         <div>
           <Input placeholder="ID" type="text" {...register('username')} />
-          <div>{errors.username?.message}</div>
+          <ErrorMsg>{errors.username?.message}</ErrorMsg>
         </div>
         <div>
-          <Input
-            placeholder="Password"
-            type="password"
-            {...register('password')}
-          />
-          <div>{errors.password?.message}</div>
+          <Input placeholder="PW" type="password" {...register('password')} />
+          <ErrorMsg>{errors.password?.message}</ErrorMsg>
         </div>
-        <Button disabled={isSubmitting}>
-          {isSubmitting && 'Submitting...'}
-          Sign In
-        </Button>
-        {errors.apiError && <div>{errors.apiError?.message}</div>}
-      </form>
-      <Link to="/register">
-        <Button>회원가입</Button>
-      </Link>
-    </WrapContainer>
+        <ButtonContainer>
+          <Button disabled={isSubmitting}>
+            {isSubmitting && 'Submitting...'}
+            Sign In
+          </Button>
+          {errors.apiError && <div>{errors.apiError?.message}</div>}
+          <Link to="/register">
+            <Button>회원가입</Button>
+          </Link>
+        </ButtonContainer>
+      </Form>
+      <Img src={SignPic} />
+    </Container>
   );
 };
 
