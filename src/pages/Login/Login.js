@@ -8,11 +8,20 @@ import useLoginMutation from 'queries/auth/useLoginMutation';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
 
+const Card = styled.div`
+  position: absolute;
+  top: 17%;
+  left: 15%;
+  width: 70%;
+  height: 70vh;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+`;
+
 //전체 컨테이너
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 92vh;
+  height: 70vh;
 `;
 
 const Form = styled.form`
@@ -26,23 +35,23 @@ const Form = styled.form`
 
 //상단 Log-In 글씨 컨테이너
 const GuideContainer = styled.div`
-  width: 50%;
+  width: 60%;
   margin-bottom: 2rem;
 `;
 
 const Guide = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 //입력 폼
 const Input = styled.input`
-  width: 27rem;
+  width: 20rem;
   height: 4rem;
   border: none;
   border-radius: 0.5rem;
-  margin-left: 5rem;
-  padding: 2rem;
+  margin-left: 1rem;
+  padding: 1.2rem;
   font-size: 1.4rem;
   opacity: 70%;
   background: ${(props) => props.theme.color_background__primary};
@@ -61,7 +70,7 @@ const Input = styled.input`
 
 //하단 에러 메세지
 const ErrorMsg = styled.div`
-  margin: 1rem 0 0.5rem 6rem;
+  margin: 1rem 0 0.5rem 2rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
@@ -114,32 +123,34 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit(submit)}>
-        <GuideContainer>
-          <Guide>Log-In</Guide>
-        </GuideContainer>
-        <div>
-          <Input placeholder="ID" type="text" {...register('username')} />
-          <ErrorMsg>{errors.username?.message}</ErrorMsg>
-        </div>
-        <div>
-          <Input placeholder="PW" type="password" {...register('password')} />
-          <ErrorMsg>{errors.password?.message}</ErrorMsg>
-        </div>
-        <ButtonContainer>
-          <Button disabled={isSubmitting}>
-            {isSubmitting && 'Submitting...'}
-            Sign In
-          </Button>
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
-          <Link to="/register">
-            <Button>회원가입</Button>
-          </Link>
-        </ButtonContainer>
-      </Form>
-      <Img src={SignPic} />
-    </Container>
+    <Card>
+      <Container>
+        <Form onSubmit={handleSubmit(submit)}>
+          <GuideContainer>
+            <Guide>Log-In</Guide>
+          </GuideContainer>
+          <div>
+            <Input placeholder="ID" type="text" {...register('username')} />
+            <ErrorMsg>{errors.username?.message}</ErrorMsg>
+          </div>
+          <div>
+            <Input placeholder="PW" type="password" {...register('password')} />
+            <ErrorMsg>{errors.password?.message}</ErrorMsg>
+          </div>
+          <ButtonContainer>
+            <Button disabled={isSubmitting}>
+              {isSubmitting && 'Submitting...'}
+              Sign In
+            </Button>
+            {errors.apiError && <div>{errors.apiError?.message}</div>}
+            <Link to="/register">
+              <Button>회원가입</Button>
+            </Link>
+          </ButtonContainer>
+        </Form>
+        <Img src={SignPic} />
+      </Container>
+    </Card>
   );
 };
 
