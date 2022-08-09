@@ -51,7 +51,7 @@ const ItemList = () => {
   const [pageNum, setPageNum] = useState(1);
 
   const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum);
+    useMyProductsQuery(pageNum, 6);
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
 

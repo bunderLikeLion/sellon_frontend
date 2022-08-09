@@ -3,11 +3,13 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { useState } from 'react';
 import ValidationModal from './ValidationModal';
+import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
 `;
@@ -32,7 +34,7 @@ const InventoryItemContainer = styled.div`
   background: ${(props) => props.theme.color_background__third};
 `;
 
-const InventoryItem = styled.div`
+const InventoryItem = styled(CardMedia)`
   display: flex;
   justify-content: center;
   width: 9rem;
@@ -43,9 +45,24 @@ const InventoryItem = styled.div`
 
 const BeforeIcon = styled(NavigateBeforeIcon)`
   font-size: 5rem !important;
+  cursor: pointer;
 `;
+
+const DisabledBeforeIcon = styled(BeforeIcon)`
+  font-size: 5rem !important;
+  color: ${(props) => props.theme.color_background__third};
+  cursor: not-allowed;
+`;
+
 const AfterIcon = styled(NavigateNextIcon)`
   font-size: 5rem !important;
+  cursor: pointer;
+`;
+
+const DisabledAfterIcon = styled(AfterIcon)`
+  font-size: 5rem !important;
+  color: ${(props) => props.theme.color_background__third};
+  cursor: not-allowed;
 `;
 
 const SuggestionButton = styled.button`
@@ -102,54 +119,60 @@ const AllInButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
-const MySuggesting = (props) => {
+const MySuggesting = () => {
   const [isButtonOpened, setIsButtonOpened] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [inventoryPageNum, setInventoryPageNum] = useState(1);
+
   const handleButton = () => setIsButtonOpened(!isButtonOpened);
 
-  const [isModalOpened, setIsModalOpened] = useState(false);
   const handleModal = () => setIsModalOpened(!isModalOpened);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(inventoryPageNum, 4);
 
   return (
     <Container>
       <GuideContainer>
         <GuideComment>인벤토리</GuideComment>
       </GuideContainer>
-      <BeforeIcon />
-      <InventoryItemContainer>
-        <InventoryItem>
-          <SuggestionButton
-            onClick={handleButton}
-            isButtonOpened={isButtonOpened}
-            handleButton={handleButton}
-          >
-            제시
-          </SuggestionButton>
-          <ConfirmButtonContainer
-            isButtonOpened={isButtonOpened}
-            handleButton={handleButton}
-          >
-            <ConfirmButton>확인</ConfirmButton>
-            <DeleteButton onClick={handleButton}>취소</DeleteButton>
-          </ConfirmButtonContainer>
-        </InventoryItem>
-      </InventoryItemContainer>
-      <InventoryItemContainer>
-        <InventoryItem>
-          <SuggestionButton>제시</SuggestionButton>
-        </InventoryItem>
-      </InventoryItemContainer>
-      <InventoryItemContainer>
-        <InventoryItem></InventoryItem>
-      </InventoryItemContainer>
-      <InventoryItemContainer>
-        <InventoryItem>
-          <ConfirmButtonContainer>
-            <ConfirmButton>확인</ConfirmButton>
-            <DeleteButton>취소</DeleteButton>
-          </ConfirmButtonContainer>
-        </InventoryItem>
-      </InventoryItemContainer>
-      <AfterIcon />
+
+      {inventoryPageNum !== 1 ? (
+        <BeforeIcon onClick={() => setInventoryPageNum(inventoryPageNum - 1)} />
+      ) : (
+        <DisabledBeforeIcon />
+      )}
+
+      {myProductFetched &&
+        myProductsData.results.map((singleProduct) => {
+          return (
+            <InventoryItemContainer key={singleProduct?.id}>
+              <InventoryItem image={singleProduct?.thumbnail?.file}>
+                <SuggestionButton
+                  onClick={handleButton}
+                  isButtonOpened={isButtonOpened}
+                  handleButton={handleButton}
+                >
+                  제시
+                </SuggestionButton>
+                <ConfirmButtonContainer
+                  isButtonOpened={isButtonOpened}
+                  handleButton={handleButton}
+                >
+                  <ConfirmButton>확인</ConfirmButton>
+                  <DeleteButton onClick={handleButton}>취소</DeleteButton>
+                </ConfirmButtonContainer>
+              </InventoryItem>
+            </InventoryItemContainer>
+          );
+        })}
+
+      {inventoryPageNum !== myProductsData?.total_pages ? (
+        <AfterIcon onClick={() => setInventoryPageNum(inventoryPageNum + 1)} />
+      ) : (
+        <DisabledAfterIcon />
+      )}
+
       <AllInButton onClick={handleModal}>올인</AllInButton>
       <ValidationModal
         handleModal={handleModal}

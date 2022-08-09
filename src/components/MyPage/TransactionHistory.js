@@ -12,7 +12,6 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
@@ -79,6 +78,7 @@ const SummaryParticipantsTxt = styled.div`
 const AccordionContainer = styled.div`
   width: 65%;
   margin-right: 10%;
+  border-radius: 1rem;
 `;
 
 const StyledAccordion = styled(Accordion)`
@@ -114,7 +114,7 @@ const StyledCardButton = styled(Button)`
   overflow: hidden !important;
   font-weight: bold !important;
   color: black !important;
-  background: #D9D9D9 !important;
+  background: #d9d9d9 !important;
 `;
 
 const DetailsRightContainer = styled(DetailsLeftContainer)`
@@ -139,7 +139,7 @@ const RightSmallContainer = styled.div`
   padding-top: 5%;
   padding-left: 5%;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__primary}
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 //우측 명예의 전당 실적
@@ -147,14 +147,12 @@ const RightSmallContainer2 = styled(RightSmallContainer)`
   height: 11rem;
 `;
 
-
 const TransactionHistory = () => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-
 
   return (
     <StyledWrapContainer>
@@ -188,7 +186,7 @@ const TransactionHistory = () => {
               <StyledCard sx={{ maxWidth: 280 }}>
                 <StyledCardMediaImg
                   component="img"
-                  image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                  image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
                 />
                 <CardContent>
                   <StyledTypography gutterBottom variant="h5" component="div">
@@ -197,47 +195,47 @@ const TransactionHistory = () => {
                 </CardContent>
                 <StyledCardActions>
                   <StyledCardButton variant="contained" size="small">
-                      상세보기
+                    상세보기
                   </StyledCardButton>
                 </StyledCardActions>
               </StyledCard>
             </DetailsLeftContainer>
             <DetailsRightContainer>
-              <StyledDetailItemImg 
+              <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
-              />
-              <StyledDetailItemImg 
-                component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
               <StyledDetailItemImg
                 component="img"
-                image='https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800'
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
+              />
+              <StyledDetailItemImg
+                component="img"
+                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
               />
             </DetailsRightContainer>
           </StyledAccordionDetails>
