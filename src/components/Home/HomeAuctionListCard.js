@@ -4,6 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { StyledLink } from 'styles/StyledComponetStyles';
 
 const Container = styled.div`
   margin: 2% 1.5%;
@@ -96,26 +97,28 @@ const MyCardHeader = styled.div`
 const HomeAuctionListCard = ({ auctionData }) => {
   return (
     <Container>
-      <CardContainor sx={{ maxWidth: '100%' }}>
-        <HeartIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image={auctionData?.product?.thumbnail?.file}
-        />
-        <CardTop>
-          <CardTopImg>profile</CardTopImg>
-          <MyCardHeader>{auctionData?.title}</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            {auctionData?.product_groups_count}명
-          </PersonCntBox>
-          {/*<EnterBox>{auctionData?.end_at}</EnterBox>*/}
-          <EnterBox>D-1</EnterBox>
-        </CardBottom>
-      </CardContainor>
+      <StyledLink to={`/auction/${auctionData.id}`}>
+        <CardContainor sx={{ maxWidth: '100%' }}>
+          <HeartIcon />
+          <MyCardMedia
+            component="img"
+            height="150"
+            image={auctionData?.product?.thumbnail?.file}
+          />
+          <CardTop>
+            <CardTopImg>profile</CardTopImg>
+            <MyCardHeader>{auctionData?.title}</MyCardHeader>
+          </CardTop>
+          <CardBottom style={{ width: '100%' }}>
+            <PersonCntBox>
+              <PersonIcon />
+              {auctionData?.product_groups_count}명
+            </PersonCntBox>
+            {/*<EnterBox>{auctionData?.end_at}</EnterBox>*/}
+            <EnterBox>D-1</EnterBox>
+          </CardBottom>
+        </CardContainor>
+      </StyledLink>
     </Container>
   );
 };

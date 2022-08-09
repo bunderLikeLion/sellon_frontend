@@ -13,7 +13,10 @@ const auctionRelatedAPI = {
         .get('auctions/?ordering=created_at')
         .then((res) => res.data);
     return client.get('auctions/?ordering=-created_at').then((res) => res.data);
-    // .get('products/', { params: { per_page: 6, page: pageNum } })
+  },
+
+  getSingleAuctionInfo: (id) => {
+    return client.get(`auctions/${id}`).then((res) => res.data);
   },
 };
 

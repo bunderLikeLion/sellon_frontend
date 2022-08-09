@@ -9,6 +9,8 @@ import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import useAuctionsQuery from 'queries/auction/useAuctionsQuery';
+import { Link } from 'react-router-dom';
+import { StyledLink } from 'styles/StyledComponetStyles';
 
 const Form = styled.div`
   width: 100%;

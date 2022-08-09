@@ -38,7 +38,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <Navbar position="static" sx={{ height: '8vh' }}>
+    <Navbar position="static" sx={{ height: '8vh', justifyContent: 'center' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -83,21 +83,35 @@ const ResponsiveAppBar = () => {
           >
             <Link to="/">SELLON</Link>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Link to="/about">
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                소개페이지
-              </Button>
-            </Link>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'space-evenly',
+            }}
+          >
             <Link to="/auction">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 경매장
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                기능소개
+              </Button>
+            </Link>
+            <Link to="/toprank">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                명예의 전당
               </Button>
             </Link>
             {!user && (

@@ -1,28 +1,13 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+  clear: both;
   display: flex;
   flex-direction: column;
-  height: 20rem;
-  clear: both;
-  padding: 1rem;
+  justify-content: center;
   width: auto;
   height: 100%;
-`;
-
-const TitleContainer = styled.div``;
-
-const SubHeader = styled.p`
-  width: 6rem;
-  margin: 0.5rem;
-  font-weight: 700;
-  font-size: 1rem;
-`;
-
-const AuctionTitle = styled.p`
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin: 1rem;
+  padding: 1rem;
 `;
 
 const TextareaContainer = styled.div`
@@ -36,7 +21,7 @@ const AuctionInfoContainer = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__primary};
+  background: ${(props) => props.theme.color_background__secondary};
   color: ${(props) => props.theme.color_font__secondary};
   overflow-y: scroll;
 
@@ -45,46 +30,56 @@ const AuctionInfoContainer = styled.div`
   }
 `;
 
-const DetailSubHeader = styled.p`
-  font-weight: 700;
-  font-size: 1rem;
+const AuctionDetailInfo = styled.div`
   margin: 1.2rem;
-  color: ${(props) => props.theme.color_font__secondary};
+  line-height: 1.2rem;
+`;
+
+const DetailSubHeader = styled.p`
+  width: 10rem;
+
+  margin: 1.2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const AuctionDetail = styled.div`
-  font-size: 1rem;
-  width: 5rem;
+  width: 100%;
   margin: 1rem 2rem;
   text-align: center;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const AuctionDetailContainers = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   height: 3.5rem;
+  margin-top: 1rem;
   padding: 0 1rem;
   border-radius: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-  background: ${(props) => props.theme.color_background__primary};
+
+  background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const ItemDetailContainer = () => {
   return (
     <Container>
-      <TitleContainer>
-        <SubHeader>경매 제목</SubHeader>
-        <AuctionTitle>나이키 신발 사세요!</AuctionTitle>
-      </TitleContainer>
+      <AuctionDetailContainers>
+        <DetailSubHeader>경매 제목</DetailSubHeader>
+        <AuctionDetail>나이키 신발 사세요!</AuctionDetail>
+      </AuctionDetailContainers>
 
       <TextareaContainer>
-        <SubHeader>경매 내용</SubHeader>
         <AuctionInfoContainer>
-          이 신발은 제가 직접 영국에서 공수해온 것으로 매우 훌륭한 천으로
-          제작되었습니다.
+          <DetailSubHeader>경매 내용</DetailSubHeader>
+          <AuctionDetailInfo>
+            이 신발은 제가 직접 영국에서 공수해온 것으로 매우 훌륭한 천으로
+            제작되었습니다.
+          </AuctionDetailInfo>
         </AuctionInfoContainer>
       </TextareaContainer>
 
