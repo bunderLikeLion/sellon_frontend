@@ -4,43 +4,43 @@ import Box from '@mui/material/Box';
 
 const ModalContainer = styled(Box)`
   position: absolute;
-  width: 50%;
-  height: 20%;
-  border-radius: 1rem;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: black;
-  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50%;
+  height: 20%;
+  border-radius: 1rem;
+  padding: 1rem;
+  transform: translate(-50%, -50%);
+  background-color: #000;
 `;
 
 const Text = styled.h1`
-  color: red;
   font-weight: 700;
   font-size: 1.8rem;
+  color: #f30000;
 `;
 
 const ValidationButton = styled.button`
   position: absolute;
+  right: 15%;
+  bottom: 1rem;
   width: 8%;
   height: 15%;
   font-size: 1rem;
   font-weight: 600;
-  bottom: 1rem;
-  right: 15%;
 `;
 
 const ValidationCancelButton = styled.button`
   position: absolute;
+  bottom: 1rem;
+  right: 3%;
   width: 8%;
   height: 15%;
   font-size: 1rem;
   font-weight: 600;
-  bottom: 1rem;
-  right: 3%;
 `;
 
 const ValidationModal = ({ handleModal, isModalOpened }) => {

@@ -5,10 +5,10 @@ import styled from 'styled-components';
 const Container = styled(Card)`
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
-  height: ${(props) => (props.isInventoryOpened ? '92vh' : '63.5vh')};
   align-items: center;
   justify-content: center;
+  width: 50%;
+  height: ${(props) => (props.isInventoryOpened ? '92vh' : '63.5vh')};
   background: transparent !important;
 `;
 
@@ -29,12 +29,12 @@ const ItemImg = styled(CardMedia)`
 const ItemDurationContainer = styled.div`
   position: absolute;
   top: 3%;
-  right: 15%;
+  right: 7%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12%;
-  height: 9%;
+  width: 15%;
+  height: 8%;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__success};
 `;
@@ -42,6 +42,27 @@ const ItemDurationContainer = styled.div`
 const ItemDuration = styled.h1`
   font-size: 1rem;
   font-weight: 400;
+  line-height: 1.2;
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const ExchangeWayContainer = styled.div`
+  position: absolute;
+  top: 13%;
+  right: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  height: 8%;
+  border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__success};
+`;
+
+const ExchangeWay = styled.h1`
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -58,30 +79,30 @@ const ItemNameContainer = styled.div`
 `;
 
 const ItemName = styled.h1`
-  color: #fff;
   font-size: 2rem;
   font-weight: 350;
+  color: #fff;
 `;
 
 const ItemDescriptionContainer = styled.div`
   width: 80%;
-  overflow-y: scroll;
   @media (min-height: 300px) and (max-height: 800px) {
-    height: ${(props) => (props.isInventoryOpened ? '38vh' : '13vh')};
+    height: ${(props) => (props.isInventoryOpened ? '31vh' : '10vh')};
   }
   @media (min-height: 800px) and (max-height: 1000px) {
-    height: ${(props) => (props.isInventoryOpened ? '40vh' : '19vh')};
+    height: ${(props) => (props.isInventoryOpened ? '37vh' : '16vh')};
   }
   @media (min-height: 1000px) and (max-height: 1200px) {
-    height: ${(props) => (props.isInventoryOpened ? '42vh' : '26vh')};
+    height: ${(props) => (props.isInventoryOpened ? '44vh' : '24vh')};
   }
+  overflow-y: scroll;
 `;
 
 const ItemDescription = styled.p`
-  color: #fff;
-  line-height: 1.6rem;
   font-size: 1.3rem;
   font-weight: 200;
+  line-height: 1.6rem;
+  color: #fff;
 `;
 
 const AuctionItem = (props) => {
@@ -98,6 +119,9 @@ const AuctionItem = (props) => {
         <ItemDurationContainer>
           <ItemDuration>D - 7</ItemDuration>
         </ItemDurationContainer>
+        <ExchangeWayContainer>
+          <ExchangeWay>직거래</ExchangeWay>
+        </ExchangeWayContainer>
       </ItemImgContainer>
       <ItemContentContainer>
         <ItemNameContainer>
@@ -126,7 +150,7 @@ const AuctionItem = (props) => {
             Evil) by Cicero, written in 45 BC. This book is a treatise on the
             theory of ethics, very popular during the Renaissance. The first
             line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a
-            line in section 1.10.32.
+            line in section 1.10.32.끝!
           </ItemDescription>
         </ItemDescriptionContainer>
       </ItemContentContainer>

@@ -3,6 +3,7 @@ import AuctionItem from 'components/Auction/AuctionDetail/AuctionItem';
 import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOtherSuggestion';
 import AuctionMySuggestion from 'components/Auction/AuctionDetail/AuctionMySuggestion';
 import { useState } from 'react';
+import WrapContainer from 'layouts/WrapContainer';
 
 const Container = styled.div`
   width: 100%;
@@ -16,16 +17,17 @@ const ItemContainer = styled.div`
 `;
 
 const SuggestionContainer = styled.div`
-  width: 50%;
-  height: 100%;
   display: flex;
   flex-wrap: wrap;
+  width: 50%;
+  height: 100%;
 `;
 
 const TopContainer = styled.div`
-  width: 100%;
   display: flex;
   height: 60vh;
+  width: 100%;
+  margin-top: 1rem;
 `;
 
 const AuctionDetail = () => {
@@ -33,20 +35,22 @@ const AuctionDetail = () => {
   const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
 
   return (
-    <Container>
-      <ItemContainer>
-        <TopContainer>
-          <AuctionItem isInventoryOpened={isInventoryOpened} />
-          <SuggestionContainer>
-            <AuctionOtherSuggestion />
-          </SuggestionContainer>
-        </TopContainer>
-      </ItemContainer>
-      <AuctionMySuggestion
-        isInventoryOpened={isInventoryOpened}
-        handleInventory={handleInventory}
-      />
-    </Container>
+    <WrapContainer>
+      <Container>
+        <ItemContainer>
+          <TopContainer>
+            <AuctionItem isInventoryOpened={isInventoryOpened} />
+            <SuggestionContainer>
+              <AuctionOtherSuggestion isInventoryOpened={isInventoryOpened} />
+            </SuggestionContainer>
+          </TopContainer>
+        </ItemContainer>
+        <AuctionMySuggestion
+          isInventoryOpened={isInventoryOpened}
+          handleInventory={handleInventory}
+        />
+      </Container>
+    </WrapContainer>
   );
 };
 
