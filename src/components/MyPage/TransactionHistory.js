@@ -78,6 +78,7 @@ const SummaryParticipantsTxt = styled.div`
 const AccordionContainer = styled.div`
   width: 65%;
   margin-right: 10%;
+  border-radius: 1rem;
 `;
 
 const StyledAccordion = styled(Accordion)`

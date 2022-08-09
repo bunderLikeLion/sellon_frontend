@@ -80,7 +80,7 @@ const RecentRank = styled.div`
   right: 55%;
   bottom: 20%;
   border-radius: 50%;
-  background: ${(props) => props.theme.color_font__tertiary};
+  background: ${(props) => props.theme.color_font__disabled};
 `;
 
 const UserRank = styled.div`
@@ -94,7 +94,6 @@ const UserRank = styled.div`
   z-index: 1;
   border-radius: 50%;
   background: ${(props) => props.theme.color_background__success};
-  box-shadow: 0.4rem 0.4rem 0.6rem #252040;
 `;
 
 const WeeklyStatus = () => {
@@ -108,7 +107,7 @@ const WeeklyStatus = () => {
         <Usercontainer>
           <UserTopcontainer>
             <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-            <UserNickname>안유진</UserNickname>
+            <UserNickname>양유진</UserNickname>
           </UserTopcontainer>
           <UserBottomcontainer>
             <RecentRank>
