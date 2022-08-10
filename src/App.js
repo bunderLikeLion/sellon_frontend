@@ -51,7 +51,7 @@ const App = () => {
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
                 <Route path="/auctionfinished" element={<AuctionFinished />} />
-                <Route path="/auction/newauction1" element={<NewAuction1 />} />
+                <Route path="/auction/newauction" element={<NewAuction1 />} />
                 <Route path="/auction/newauction2" element={<NewAuction2 />} />
               </Routes>
             </Suspense>
