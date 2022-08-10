@@ -11,8 +11,8 @@ const ModalContainer = styled(Box)`
   align-items: center;
   width: 50%;
   height: 20%;
-  border-radius: 1rem;
   padding: 1rem;
+  border-radius: 1rem;
   transform: translate(-50%, -50%);
   background-color: #000;
 `;

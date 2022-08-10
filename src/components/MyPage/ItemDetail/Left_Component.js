@@ -51,8 +51,8 @@ const UserInfo = styled.div`
 const UserPic = styled.div`
   width: 3rem;
   height: 3rem;
-  border-radius: 50%;
   margin-right: 0.5rem;
+  border-radius: 50%;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

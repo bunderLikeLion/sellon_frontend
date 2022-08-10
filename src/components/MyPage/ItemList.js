@@ -23,9 +23,9 @@ const ItemListContainer = styled.div`
 const PlusBtn = styled(AddCircleIcon)`
   position: absolute;
   right: 0;
-  color: ${(props) => props.theme.color_font__secondary};
-  font-size: 2.5rem !important;
   cursor: pointer;
+  font-size: 2.5rem !important;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const PaginationContainer = styled.div`

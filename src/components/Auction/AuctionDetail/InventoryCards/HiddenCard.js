@@ -43,20 +43,20 @@ const ConfirmButtonContainer = styled.div`
 const ConfirmButton = styled.button`
   width: 40%;
   height: 70%;
+  margin-top: 4%;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0.7rem;
-  margin-top: 4%;
   background: ${(props) => props.theme.color_button__ok};
 `;
 
 const DeleteButton = styled.button`
   width: 40%;
   height: 70%;
+  margin-top: 4%;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0.7rem;
-  margin-top: 4%;
   background: ${(props) => props.theme.color_button__delete};
 `;
 

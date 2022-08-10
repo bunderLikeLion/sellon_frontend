@@ -6,11 +6,11 @@ import useSingleProductQuery from 'queries/product/useSingleProductQuery';
 import WrapContainer from 'layouts/WrapContainer';
 
 const Container = styled.div`
+  display: flex;
   width: 100%;
   height: 35rem;
-  color: ${(props) => props.theme.color_white};
-  display: flex;
   padding-top: 0.5rem;
+  color: ${(props) => props.theme.color_white};
 `;
 
 const ItemDetail_Left = styled.div`

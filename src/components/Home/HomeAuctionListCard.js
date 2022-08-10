@@ -1,5 +1,4 @@
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
@@ -16,7 +15,7 @@ const CardContainor = styled(Card)`
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0px 0px 4px 7px ${(props) => props.theme.color_border__topleft} !important;
+  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
 `;
 
 const CardTop = styled.div`

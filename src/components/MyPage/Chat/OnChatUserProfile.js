@@ -1,24 +1,23 @@
 import styled from 'styled-components';
 
-const OnchatProfileContainor = styled.div`
+const OnChatProfileContainer = styled.div`
   display: flex;
-  height: 6rem;
-  background: ${(props) => props.theme.color_background__secondary};
-  position: relative;
-  border-radius: 0.5rem 0.5rem 0 0;
-  padding: 1rem;
   align-items: center;
+  height: 6rem;
+  padding: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const OnchatProfileImg = styled.div`
+const OnChatProfileImg = styled.div`
   width: 4rem;
   height: 4rem;
-  border-radius: 50%;
-  background: blue;
   margin: 1rem;
+  border-radius: 50%;
+  background: #0f0;
 `;
 
-const OnchatProfileNickname = styled.div`
+const OnChatProfileNickname = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
   font-size: 1.2rem;
   font-weight: bold;
@@ -26,10 +25,10 @@ const OnchatProfileNickname = styled.div`
 
 const OnChatUserProfile = () => {
   return (
-    <OnchatProfileContainor>
-      <OnchatProfileImg>UserImg</OnchatProfileImg>
-      <OnchatProfileNickname>상대 닉네임</OnchatProfileNickname>
-    </OnchatProfileContainor>
+    <OnChatProfileContainer>
+      <OnChatProfileImg>UserImg</OnChatProfileImg>
+      <OnChatProfileNickname>상대 닉네임</OnChatProfileNickname>
+    </OnChatProfileContainer>
   );
 };
 
