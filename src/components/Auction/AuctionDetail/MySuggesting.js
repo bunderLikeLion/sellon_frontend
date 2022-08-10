@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ValidationModal from './ValidationModal';
 import useMyProductsQuery from 'queries/product/useMyProductsQuery';
 import CardMedia from '@mui/material/CardMedia';
+import useCreateProductGroupMutation from 'queries/auction/useCreateProductGroupMutation';
+import { QueryCache } from '@tanstack/react-query';
+import { queryClient } from 'index';
+import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
 
 const Container = styled.div`
   display: flex;
@@ -124,12 +128,26 @@ const MySuggesting = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [inventoryPageNum, setInventoryPageNum] = useState(1);
 
+  const queryCache = new QueryCache({
+    onSuccess: (data) => {
+      console.log(data, 'dddd');
+    },
+    onError: (error) => {
+      console.log(error, 'errr');
+    },
+  });
+
   const handleButton = () => setIsButtonOpened(!isButtonOpened);
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
+  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+
   const { data: myProductsData, isSuccess: myProductFetched } =
     useMyProductsQuery(inventoryPageNum, 4);
+
+  const { mutate: createProductGroup } =
+    useCreateProductGroupMutation(relatedAuctionId);
 
   return (
     <Container>
@@ -145,26 +163,38 @@ const MySuggesting = () => {
 
       {myProductFetched &&
         myProductsData.results.map((singleProduct) => {
-          return (
-            <InventoryItemContainer key={singleProduct?.id}>
-              <InventoryItem image={singleProduct?.thumbnail?.file}>
-                <SuggestionButton
-                  onClick={handleButton}
-                  isButtonOpened={isButtonOpened}
-                  handleButton={handleButton}
-                >
-                  제시
-                </SuggestionButton>
-                <ConfirmButtonContainer
-                  isButtonOpened={isButtonOpened}
-                  handleButton={handleButton}
-                >
-                  <ConfirmButton>확인</ConfirmButton>
-                  <DeleteButton onClick={handleButton}>취소</DeleteButton>
-                </ConfirmButtonContainer>
-              </InventoryItem>
-            </InventoryItemContainer>
-          );
+          console.log(singleProduct, 'single');
+          if (singleProduct?.status === 'hidden')
+            return (
+              <InventoryItemContainer key={singleProduct?.id}>
+                <InventoryItem image={singleProduct?.thumbnail?.file}>
+                  <SuggestionButton
+                    onClick={handleButton}
+                    isButtonOpened={isButtonOpened}
+                    handleButton={handleButton}
+                  >
+                    제시
+                  </SuggestionButton>
+                  <ConfirmButtonContainer
+                    isButtonOpened={isButtonOpened}
+                    handleButton={handleButton}
+                  >
+                    <ConfirmButton
+                      onClick={() =>
+                        createProductGroup({
+                          auction_id: relatedAuctionId,
+                          product_ids: [singleProduct?.id],
+                        })
+                      }
+                    >
+                      확인
+                    </ConfirmButton>
+                    <DeleteButton onClick={handleButton}>취소</DeleteButton>
+                  </ConfirmButtonContainer>
+                </InventoryItem>
+              </InventoryItemContainer>
+            );
+          // return singleProduct?.status === 'hidden' ? <p>asdad</p> : null;
         })}
 
       {inventoryPageNum !== myProductsData?.total_pages ? (
