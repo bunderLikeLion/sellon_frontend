@@ -1,8 +1,4 @@
-import { AddItemModal } from './index';
-import { useState } from 'react';
-import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import InterestedAuctionListCard from './InterestedAuctionListCard';
 import InterestedAuctionListCardFinished from './InterestedAuctionListCardFinished';
 
@@ -11,7 +7,7 @@ const FlexContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: space-around;
+  justify-content: left;
 `;
 
 const ItemListContainer = styled.div`
@@ -26,6 +22,7 @@ const InterestedAuctionList = () => {
       <p>총 3개</p>
       <FlexContainer>
         <InterestedAuctionListCardFinished />
+        <InterestedAuctionListCard />
         <InterestedAuctionListCard />
         <InterestedAuctionListCard />
         <InterestedAuctionListCard />

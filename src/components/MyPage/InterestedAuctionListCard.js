@@ -1,76 +1,117 @@
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const Container = styled.div`
-  margin-top: 3rem;
+  position: relative;
   width: 30%;
+  margin: 2% 1.5%;
+`;
+
+const CardContainer = styled(Card)`
+  border-radius: 3rem !important;
+  color: ${(props) => props.theme.color_font__secondary} !important;
+  background: ${(props) => props.theme.color_background__primary} !important;
+  box-shadow: 0px 0px 4px 7px ${(props) => props.theme.color_border__topleft} !important;
 `;
 
 const CardTop = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  padding: 0.5rem;
+  width: 100%;
+  padding: 1rem 1rem 1rem 1.5rem;
 `;
 
 const CardTopImg = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2rem;
   height: 2rem;
+  padding: 1.5rem;
   border-radius: 50%;
-  background: red;
+  background: grey;
 `;
 
 const CardBottom = styled.div`
-  width: 100%;
   display: flex;
-  position: relative;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  padding: 0 1rem 1rem 1rem;
 `;
 
 const PersonCntBox = styled.span`
-  display: inline-flex;
-  margin: 0.3rem;
-  padding: 0.4rem 0.8rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 5rem;
   height: 2.4rem;
-  background: #101010;
-  border: 1px solid grey;
-  border-radius: 1rem;
-  font-size: 0.875rem;
+  margin: 0.3rem;
+  background: transparent;
+  border-radius: 4rem;
+  font-size: 1.1rem;
   font-weight: 700;
+  color: ${(props) => props.theme.color_font__number} !important;
 `;
 
 const EnterBox = styled(PersonCntBox)`
-  display: inline-block;
-  margin-left: 3rem;
-  width: 10rem;
+  width: 7rem;
+  border: none;
+  color: ${(props) => props.theme.color_font__secondary} !important;
+  background: ${(props) => props.theme.color_background__success} !important;
   text-align: center;
+`;
+
+const MyCardMedia = styled(CardMedia)`
+  object-fit: cover;
+  height: 14rem;
+`;
+
+const MyCardHeader = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
+  font-size: 1.4rem;
+`;
+
+const StyledDeleteIcon = styled(DeleteForeverIcon)`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: red;
+  cursor: pointer;
 `;
 
 const InterestedAuctionListCard = () => {
   return (
     <Container>
-      <Card sx={{ maxWidth: '100%' }}>
-        <CardMedia
+      <CardContainer sx={{ maxWidth: '100%' }}>
+        <StyledDeleteIcon />
+        <MyCardMedia
           component="img"
           height="150"
           image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
         />
         <CardTop>
-          <CardTopImg>img</CardTopImg>
-          <CardHeader title="Stussy 8  ball Tee 팔..." />
+          <CardTopImg>profile</CardTopImg>
+          <MyCardHeader>사탕 살래?사탕 살래?사탕 살래?사탕 살래?</MyCardHeader>
         </CardTop>
         <CardBottom style={{ width: '100%' }}>
           <PersonCntBox>
             <PersonIcon />
             10명
           </PersonCntBox>
-          <EnterBox>들어가기</EnterBox>
+          <EnterBox>D-1</EnterBox>
         </CardBottom>
-      </Card>
+      </CardContainer>
     </Container>
   );
 };
