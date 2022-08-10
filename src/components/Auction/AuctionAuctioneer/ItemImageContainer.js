@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  clear: both;
   display: flex;
   flex-direction: column;
+  clear: both;
   width: 50%;
   height: 20rem;
-
   margin: auto 0;
   padding: 1rem;
 `;
@@ -17,7 +16,6 @@ const ItemImage = styled.div`
   height: 100%;
   margin: 0 auto;
   border-radius: 1rem;
-
   background-image: ${(props) => `url(${props.imgUrl})`};
   background-size: cover;
   background-repeat: no-repeat;
@@ -35,10 +33,10 @@ const ItemExtraImage = styled.div`
 `;
 
 const ItemExtraImageContainer = styled.div`
-  float: left;
-  clear: both;
   display: flex;
   justify-content: flex-start;
+  float: left;
+  clear: both;
   height: 8rem;
   margin-top: 1rem;
 `;

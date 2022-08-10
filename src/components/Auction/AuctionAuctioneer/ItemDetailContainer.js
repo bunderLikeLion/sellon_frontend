@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  clear: both;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  clear: both;
   width: auto;
   height: 100%;
   padding: 1rem;
@@ -37,7 +37,6 @@ const AuctionDetailInfo = styled.div`
 
 const DetailSubHeader = styled.p`
   width: 10rem;
-
   margin: 1.2rem;
   font-weight: 700;
   font-size: 1.1rem;
@@ -61,7 +60,6 @@ const AuctionDetailContainers = styled.div`
   margin-top: 1rem;
   padding: 0 1rem;
   border-radius: 1rem;
-
   background: ${(props) => props.theme.color_background__secondary};
 `;
 

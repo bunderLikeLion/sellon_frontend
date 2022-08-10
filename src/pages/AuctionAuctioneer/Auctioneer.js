@@ -6,8 +6,8 @@ import ByerSingleBox from 'components/Auction/AuctionAuctioneer/ByerSingleBox';
 import { Pagination } from '@mui/material';
 
 const Container = styled.div`
-weight: 100%  
-height: 100%;
+  weight: 100%  
+  height: 100%;
   margin: 1rem;
 `;
 
@@ -30,9 +30,8 @@ const ByerListContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  float: left;
   display: flex;
-
+  float: left;
   margin: 1rem;
 `;
 
@@ -45,9 +44,9 @@ const BigText = styled.div`
 `;
 
 const SmallText = styled.div`
-  margin: 0.5rem;
   display: flex;
   align-items: flex-end;
+  margin: 0.5rem;
   color: ${(props) => props.theme.color_font__secondary};
   font-size: 1.2rem;
   font-weight: 700;
@@ -55,16 +54,15 @@ const SmallText = styled.div`
 
 const SelectBtn = styled.button`
   float: right;
-  margin: 1rem;
-  color: ${(props) => props.theme.color_font__primary};
   width: 7rem;
   height: 2.5rem;
-
-  font-size: 1rem;
-  font-weight: 700;
+  margin: 1rem;
   border: none;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__primary};
+  font-size: 1rem;
+  font-weight: 700;
 `;
 
 const ByerList = styled.div`

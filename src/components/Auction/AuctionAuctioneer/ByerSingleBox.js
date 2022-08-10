@@ -38,7 +38,6 @@ const ByerImageContainer = styled.div`
 const ByerImage = styled.div`
   width: 3rem;
   height: 3rem;
-
   margin: 0 auto;
   border-radius: 50%;
   background-position: center;
