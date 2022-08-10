@@ -3,11 +3,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  clear: both;
   width: 50%;
   height: 20rem;
   margin: auto 0;
   padding: 1rem;
+  clear: both;
 `;
 
 const ItemImage = styled.div`
@@ -16,29 +16,29 @@ const ItemImage = styled.div`
   height: 100%;
   margin: 0 auto;
   border-radius: 1rem;
-  background-image: ${(props) => `url(${props.imgUrl})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-image: ${(props) => `url(${props.imgUrl})`};
 `;
 
 const ItemExtraImage = styled.div`
   width: 40%;
   margin-right: 1rem;
   border-radius: 1rem;
-  background-image: ${(props) => `url(${props.imgUrl})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-image: ${(props) => `url(${props.imgUrl})`};
 `;
 
 const ItemExtraImageContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   float: left;
-  clear: both;
   height: 8rem;
   margin-top: 1rem;
+  clear: both;
 `;
 
 const ItemImageContainer = () => {

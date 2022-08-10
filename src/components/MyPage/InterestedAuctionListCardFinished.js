@@ -33,14 +33,14 @@ const CardTopImg = styled.div`
   height: 2rem;
   padding: 1.5rem;
   border-radius: 50%;
-  background: grey;
+  background: #f00;
 `;
 
 const CardBottom = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
   width: 100%;
   padding: 0 1rem 1rem 1rem;
 `;
@@ -91,12 +91,12 @@ const StyledDeleteIcon = styled(DeleteForeverIcon)`
 `;
 
 const FinishedOverlay = styled(Card)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: absolute;
   left: 0;
   top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 3rem;

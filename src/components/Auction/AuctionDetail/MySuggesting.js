@@ -55,8 +55,8 @@ const BeforeIcon = styled(NavigateBeforeIcon)`
 
 const DisabledBeforeIcon = styled(BeforeIcon)`
   font-size: 5rem !important;
-  color: ${(props) => props.theme.color_background__third};
   cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
 `;
 
 const AfterIcon = styled(NavigateNextIcon)`
@@ -66,14 +66,14 @@ const AfterIcon = styled(NavigateNextIcon)`
 
 const DisabledAfterIcon = styled(AfterIcon)`
   font-size: 5rem !important;
-  color: ${(props) => props.theme.color_background__third};
   cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
 `;
 
 const SuggestionButton = styled.button`
-  display: ${(props) => (props.isButtonOpened ? 'none' : 'relative')};
   position: relative;
   top: 104%;
+  display: ${(props) => (props.isButtonOpened ? 'none' : 'relative')};
   width: 45%;
   height: 22%;
   font-size: 1rem;
@@ -88,27 +88,27 @@ const ConfirmButtonContainer = styled.div`
   display: ${(props) => (props.isButtonOpened ? 'flex' : 'none')};
   justify-content: space-around;
   align-items: center;
-  height: 30%;
   width: 100%;
+  height: 30%;
 `;
 
 const ConfirmButton = styled.button`
   width: 40%;
   height: 70%;
+  margin-top: 4%;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0.7rem;
-  margin-top: 4%;
   background: ${(props) => props.theme.color_button__ok};
 `;
 
 const DeleteButton = styled.button`
   width: 40%;
   height: 70%;
+  margin-top: 4%;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0.7rem;
-  margin-top: 4%;
   background: ${(props) => props.theme.color_button__delete};
 `;
 

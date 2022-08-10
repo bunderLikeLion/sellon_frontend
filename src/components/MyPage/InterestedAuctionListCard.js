@@ -33,7 +33,7 @@ const CardTopImg = styled.div`
   height: 2rem;
   padding: 1.5rem;
   border-radius: 50%;
-  background: grey;
+  background: #f00;
 `;
 
 const CardBottom = styled.div`
@@ -52,11 +52,12 @@ const PersonCntBox = styled.span`
   width: 5rem;
   height: 2.4rem;
   margin: 0.3rem;
-  background: transparent;
-  border-radius: 4rem;
-  font-size: 1.1rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  color: ${(props) => props.theme.color_font__number} !important;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  background: #101010;
 `;
 
 const EnterBox = styled(PersonCntBox)`

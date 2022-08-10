@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import WrapContainer from 'layouts/WrapContainer';
 import ItemImageContainer from 'components/Auction/AuctionAuctioneer/ItemImageContainer';
 import ItemDetailContainer from 'components/Auction/AuctionAuctioneer/ItemDetailContainer';
-import ByerSingleBox from 'components/Auction/AuctionAuctioneer/ByerSingleBox';
+import BuyerSingleBox from 'components/Auction/AuctionAuctioneer/ByerSingleBox';
 import { Pagination } from '@mui/material';
 
 const Container = styled.div`
-  weight: 100%  
   height: 100%;
   margin: 1rem;
 `;
@@ -21,7 +20,7 @@ const ItemContainer = styled.div`
   background: ${(props) => props.theme.color_background__primary};
 `;
 
-const ByerListContainer = styled.div`
+const BuyerListContainer = styled.div`
   height: fit-content;
   margin: 1rem;
   padding: 1rem 2rem;
@@ -38,18 +37,18 @@ const TextContainer = styled.div`
 const BigText = styled.div`
   width: 6rem;
   margin: 0.5rem;
-  color: ${(props) => props.theme.color_font__primary};
   font-size: 2rem;
   font-weight: 700;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const SmallText = styled.div`
   display: flex;
   align-items: flex-end;
   margin: 0.5rem;
-  color: ${(props) => props.theme.color_font__secondary};
   font-size: 1.2rem;
   font-weight: 700;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const SelectBtn = styled.button`
@@ -59,13 +58,13 @@ const SelectBtn = styled.button`
   margin: 1rem;
   border: none;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__success};
-  color: ${(props) => props.theme.color_font__primary};
   font-size: 1rem;
   font-weight: 700;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_background__success};
 `;
 
-const ByerList = styled.div`
+const BuyerList = styled.div`
   clear: both;
   height: 100%;
   margin: 1rem;
@@ -97,18 +96,18 @@ const Auctioneer = () => {
           <ItemImageContainer />
           <ItemDetailContainer />
         </ItemContainer>
-        <ByerListContainer>
+        <BuyerListContainer>
           <TextContainer>
             <BigText>참여자</BigText>
             <SmallText>총 98명</SmallText>
           </TextContainer>
 
           <SelectBtn>선택</SelectBtn>
-          <ByerList>
-            <ByerSingleBox />
-            <ByerSingleBox />
-            <ByerSingleBox />
-          </ByerList>
+          <BuyerList>
+            <BuyerSingleBox />
+            <BuyerSingleBox />
+            <BuyerSingleBox />
+          </BuyerList>
           <PaginationContainer>
             <StyledPagination
               // count={myProductsData?.total_pages}
@@ -118,7 +117,7 @@ const Auctioneer = () => {
               page="1"
             />
           </PaginationContainer>
-        </ByerListContainer>
+        </BuyerListContainer>
       </Container>
     </WrapContainer>
   );

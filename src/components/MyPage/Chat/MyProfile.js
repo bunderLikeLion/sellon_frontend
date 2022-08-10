@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-const MyprofileImg = styled.div`
+const MyProfileImg = styled.div`
   width: 3rem;
   height: 3rem;
-  border-radius: 50%;
-  background: red;
   margin: 1rem;
+  border-radius: 50%;
+  background: #f00;
 `;
 
 const MyProfile = () => {
-  return <MyprofileImg>Myprofile</MyprofileImg>;
+  return <MyProfileImg>Myprofile</MyProfileImg>;
 };
 
 export default MyProfile;

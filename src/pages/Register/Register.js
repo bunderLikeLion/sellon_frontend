@@ -25,9 +25,9 @@ const Card = styled.div`
 
 const Form = styled.form`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   width: 50%;
   height: 80%;
   margin-top: 7%;
@@ -45,8 +45,8 @@ const Guide = styled.h1`
 
 const InputContainer = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   width: 70%;
   height: 4rem;
 `;
@@ -54,9 +54,9 @@ const InputContainer = styled.div`
 const Input = styled.input`
   width: 20rem;
   height: 3rem;
+  padding: 1rem;
   border: none;
   border-radius: 0.5rem;
-  padding: 1rem;
   font-size: 1rem;
   opacity: 70%;
   background: ${(props) => props.theme.color_background__primary};
@@ -90,8 +90,8 @@ const Button = styled.button`
   border-radius: 0.5rem;
   border: none;
   font-size: 1.3rem;
-  background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__success};
   }
 `;
 

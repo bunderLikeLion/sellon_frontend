@@ -2,67 +2,67 @@ import styled from 'styled-components';
 import WrapContainer from 'layouts/WrapContainer';
 
 const TopContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 2rem 1rem;
-  color: white;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+  color: #fff;
 `;
 
 const BigContainer = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
 `;
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 1rem;
-  position: relative;
 `;
 
 const BigText = styled.div`
+  margin: 0.5rem 2rem;
   font-size: 2rem;
   font-weight: 700;
-  margin: 0.5rem 2rem;
 `;
 
 const Button = styled.button`
-  margin: 4rem 1rem 1rem 1rem;
-  background: ${(props) => props.theme.color_background__success};
-  color: white;
-  border-radius: 1rem;
+  float: right;
   height: 3.5rem;
   width: 9rem;
-  float: right;
+  margin: 4rem 1rem 1rem 1rem;
+  border-radius: 1rem;
   font-size: 1rem;
   font-weight: 700;
   border: none;
+  color: #fff;
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const ItemImage = styled.div`
+  float: left;
   width: 100%;
   height: 100%;
-  float: left;
-  border-radius: 1rem;
   margin: 0 auto;
-  background-image: ${(props) => `url(${props.imgUrl})`};
+  border-radius: 1rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-image: ${(props) => `url(${props.imgUrl})`};
 `;
 
 const ItemExtraImage = styled.div`
   width: 40%;
   margin-right: 1rem;
   border-radius: 1rem;
-  background-image: ${(props) => `url(${props.imgUrl})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-image: ${(props) => `url(${props.imgUrl})`};
 `;
 
 const ItemImageContainer = styled.div`
@@ -74,12 +74,12 @@ const ItemImageContainer = styled.div`
 `;
 
 const ItemExtraImageContainer = styled.div`
-  height: 8rem;
-  margin-top: 1rem;
-  float: left;
-  clear: both;
   display: flex;
   justify-content: flex-start;
+  float: left;
+  height: 8rem;
+  margin-top: 1rem;
+  clear: both;
 `;
 
 const ItemDetailInformationContainer = styled.div`
@@ -88,42 +88,42 @@ const ItemDetailInformationContainer = styled.div`
 `;
 
 const ItemTitle = styled.p`
+  margin: 1rem;
   font-weight: bold;
   font-size: 1.5rem;
-  margin: 1rem;
 `;
 
 const ItemCondition = styled.p`
+  margin: 1.2rem;
   font-size: 1rem;
   font-weight: 700;
-  margin: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemConditionDetail = styled.div`
-  background: ${(props) => props.theme.color_background__success};
-  color: ${(props) => props.theme.color_font__secondary};
-  font-size: 1rem;
   width: 5rem;
   height: 1.5rem;
-  line-height: normal;
   margin: 1rem 2rem;
   text-align: center;
+  line-height: normal;
+  font-size: 1rem;
   border-radius: 0.8rem;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const ItemCategory = styled.p`
+  margin: 1.2rem;
   font-weight: 700;
   font-size: 1rem;
-  margin: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryDetail = styled.div`
-  font-size: 1rem;
   width: 5rem;
   margin: 1rem 2rem;
   text-align: center;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -133,9 +133,9 @@ const ItemInfoContainer = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__primary};
-  color: ${(props) => props.theme.color_font__secondary};
   overflow-y: scroll;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__primary};
 
   .toastui-editor-contents p {
     color: ${(props) => props.theme.color_white};
@@ -144,52 +144,51 @@ const ItemInfoContainer = styled.div`
 
 const SubHeader = styled.p`
   width: 6rem;
-  margin: 0.5rem;
-  margin-left: 0;
+  margin: 0.5rem 0.5rem 0.5rem 0;
   font-weight: 700;
   font-size: 1rem;
 `;
 
 const AuctionTitleContainer = styled.div`
-  clear: both;
   margin: 2rem 1rem;
+  clear: both;
 `;
 
 const AuctionTitle = styled.input.attrs((props) => ({
   type: 'text',
 }))`
-  background: grey;
-  border: none;
-  border-radius: 0.5rem;
   width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
+  border: none;
+  border-radius: 0.5rem;
   font-size: 1rem;
+  background: grey;
 `;
 
 const TextareaContainer = styled.div`
-  margin: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  margin: 2rem 1rem;
 `;
 
 const AuctionText = styled.textarea`
-  background: grey;
   height: 20rem;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
+  background: grey;
 `;
 
 const AuctionDetailInformationContainer = styled.div`
-  background: ${(props) => props.theme.color_background__primary};
   display: flex;
+  align-items: center;
+  height: 4.5rem;
   margin: 1rem;
   padding: 1rem 2rem;
-  align-items: center;
   border-radius: 1rem;
-  height: 4.5rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`
@@ -208,14 +207,14 @@ const RadioLabel = styled.label`
 const RadioContainer = styled.div``;
 
 const ItemDetailContainer = styled.div`
-  width: 100%;
-  height: 3.5rem;
-  padding: 0 1rem;
-  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 3.5rem;
   margin-top: 1rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
