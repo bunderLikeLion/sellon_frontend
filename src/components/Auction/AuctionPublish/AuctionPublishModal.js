@@ -34,18 +34,18 @@ const TextContainer = styled.div`
 
 const Text = styled.h1`
   letter-spacing: 0.1rem;
-  color: #fff;
   font-weight: 600;
   font-size: 2rem;
+  color: #fff;
 `;
 
 const ValidationCancelButton = styled(ClearIcon)`
   position: absolute;
-  color: #fff;
-  font-size: 2.5rem !important;
   top: 2%;
   right: 2%;
   cursor: pointer;
+  font-size: 2.5rem !important;
+  color: #fff;
 `;
 
 const InventoryContainer = styled.div`
@@ -53,9 +53,9 @@ const InventoryContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  overflow-y: scroll;
   width: 100%;
   height: 85%;
+  overflow-y: scroll;
 `;
 
 const AuctionPublishModal = (props) => {

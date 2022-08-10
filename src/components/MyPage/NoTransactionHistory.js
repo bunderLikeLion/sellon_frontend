@@ -5,7 +5,6 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
-
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
@@ -16,12 +15,12 @@ const StyledWrapContainer = styled.div`
 //전체화면 좌측 영역
 const LeftContainer = styled.div`
   display: flex;
+  justify-content: center !important;
+  align-items: center;
   width: 65%;
   height: 35rem;
   margin-right: 10%;
   border-radius: 1rem;
-  justify-content: center !important;
-  align-items: center;
   background: ${(props) => props.theme.color_background__primary} !important;
 `;
 
@@ -39,8 +38,8 @@ const StyledLinkBox = styled(Box)`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${(props) => props.theme.color_font__secondary} !important;
   border-bottom: 1px solid ${(props) => props.theme.color_font__secondary} !important;
+  color: ${(props) => props.theme.color_font__secondary} !important;
 `;
 
 //전체화면 우측 영역
@@ -55,14 +54,13 @@ const RightSmallContainer = styled.div`
   padding-top: 5%;
   padding-left: 5%;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__primary}
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 //우측 명예의 전당 실적
 const RightSmallContainer2 = styled(RightSmallContainer)`
   height: 11rem;
 `;
-
 
 const TransactionHistory = () => {
   const [expanded, setExpanded] = useState(false);
@@ -71,7 +69,6 @@ const TransactionHistory = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-
   return (
     <StyledWrapContainer>
       {/*좌측 contents*/}
@@ -79,7 +76,10 @@ const TransactionHistory = () => {
         <LeftContainerTxt>
           진행중인 거래가 없습니다.
           <StyledLinkBox
-            sx={{ typography: 'body1', '& > :not(style) + :not(style)': { ml: 2, }, }}
+            sx={{
+              typography: 'body1',
+              '& > :not(style) + :not(style)': { ml: 2 },
+            }}
             onClick={(event) => event.preventDefault()}
           >
             <StyledLink href="#" underline="none">
