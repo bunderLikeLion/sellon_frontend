@@ -7,40 +7,48 @@ const ModalContainer = styled(Box)`
   top: 50%;
   left: 50%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   width: 50%;
-  height: 20%;
-  padding: 1rem;
+  height: 13rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
-  background-color: #000;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const Text = styled.h1`
-  font-weight: 700;
+  margin-top: 10%;
+  font-weight: 600;
   font-size: 1.8rem;
-  color: #f30000;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ValidationButton = styled.button`
   position: absolute;
-  right: 15%;
-  bottom: 1rem;
-  width: 8%;
+  left: 32%;
+  bottom: 10%;
+  width: 15%;
   height: 15%;
+  border: none;
+  border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_background__warning};
 `;
 
 const ValidationCancelButton = styled.button`
   position: absolute;
-  bottom: 1rem;
-  right: 3%;
-  width: 8%;
+  right: 32%;
+  bottom: 10%;
+  width: 15%;
   height: 15%;
+  border: none;
+  border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_font__disabled};
 `;
 
 const ValidationModal = ({ handleModal, isModalOpened }) => {
