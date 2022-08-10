@@ -10,7 +10,7 @@ const useAuctionsQuery = (sort) => {
     {
       onError: (res) => {
         toast.dismiss();
-        toast.error(errorMsgHandler(res.response.data));
+        toast.error(errorMsgHandler(res));
       },
     }
   );

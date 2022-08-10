@@ -5,12 +5,12 @@ import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 
 const useSingleAuctionQuery = (id) => {
   return useQuery(
-    [`auctionInfo ${id}`],
+    ['auctionInfo'],
     () => auctionRelatedAPI.getSingleAuctionInfo(id),
     {
       onError: (res) => {
         toast.dismiss();
-        toast.error(errorMsgHandler(res.response.data));
+        toast.error(errorMsgHandler(res));
       },
     }
   );

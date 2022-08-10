@@ -20,7 +20,7 @@ const useSignInMutation = () => {
       },
       onError: (res) => {
         toast.dismiss();
-        toast.error(errorMsgHandler(res.response.data.error.details));
+        toast.error(errorMsgHandler(res));
       },
     }
   );

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import productRelatedAPI from 'apis/productsRelatredAPI';
 import errorMsgHandler from 'utils/errorMsgHandler';
+import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 
-const useMyProductsQuery = (pageNum, perPage) => {
+const useProductGroupsQuery = (relatedAuctionId) => {
   return useQuery(
-    ['myProductsData', pageNum],
-    () => productRelatedAPI.getMyProducts(pageNum, perPage),
+    ['productGroups'],
+    () => auctionRelatedAPI.getProductGroups(relatedAuctionId),
     {
       onError: (res) => {
         toast.dismiss();
@@ -16,4 +16,4 @@ const useMyProductsQuery = (pageNum, perPage) => {
   );
 };
 
-export default useMyProductsQuery;
+export default useProductGroupsQuery;

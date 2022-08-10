@@ -7,7 +7,7 @@ const useCategoryQuery = () => {
   return useQuery(['formCatData'], productRelatedAPI.getProductCategoryLists, {
     onError: (res) => {
       toast.dismiss();
-      toast.error(errorMsgHandler(res.response.data));
+      toast.error(errorMsgHandler(res));
     },
     staleTime: 1000 * 60 * 10,
   });

@@ -18,6 +18,16 @@ const auctionRelatedAPI = {
   getSingleAuctionInfo: (id) => {
     return client.get(`auctions/${id}`).then((res) => res.data);
   },
+
+  getProductGroups: (relatedAuctionId) => {
+    return client
+      .get(`product_groups/`, { params: { auction: relatedAuctionId } })
+      .then((res) => res.data);
+  },
+
+  postProductGroups: (payload) => {
+    return client.post('product_groups/', payload).then((res) => res.data);
+  },
 };
 
 export default auctionRelatedAPI;

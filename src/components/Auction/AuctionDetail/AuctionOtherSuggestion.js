@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
+import { queryClient } from 'index';
+import CardMedia from '@mui/material/CardMedia';
 
 const OtherSuggestionContainer = styled.div`
   display: flex;
@@ -55,7 +58,7 @@ const AuctionOtherSuggestionItemContainer = styled.div`
   width: 85%;
 `;
 
-const ItemImg = styled.div`
+const ItemImg = styled(CardMedia)`
   width: 16%;
   height: 3.8rem;
   margin: 0 0 0.5rem 2rem;
@@ -65,72 +68,39 @@ const ItemImg = styled.div`
 `;
 
 const AuctionOtherSuggestion = (props) => {
+  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+
+  const { data: productGroups, isSuccess: productGroupsFetched } =
+    useProductGroupsQuery(relatedAuctionId);
+
   return (
     <OtherSuggestionContainer isInventoryOpened={props.isInventoryOpened}>
       <GuideContainer>
         <GuideComment>다른 참가자가 제시한 물건</GuideComment>
       </GuideContainer>
-
-      <OtherSuggestion>
-        <ProfileContainer>
-          <Profile />
-          프로필
-        </ProfileContainer>
-        <AuctionOtherSuggestionItemContainer>
-          <ItemImg>아이템이미지</ItemImg>
-          <ItemImg>아이템이미지</ItemImg>
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-        </AuctionOtherSuggestionItemContainer>
-      </OtherSuggestion>
-
-      <OtherSuggestion>
-        <ProfileContainer>
-          <Profile />
-        </ProfileContainer>
-        <AuctionOtherSuggestionItemContainer>
-          <ItemImg />
-        </AuctionOtherSuggestionItemContainer>
-      </OtherSuggestion>
-
-      <OtherSuggestion>
-        <ProfileContainer>
-          <Profile />
-        </ProfileContainer>
-        <AuctionOtherSuggestionItemContainer>
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-        </AuctionOtherSuggestionItemContainer>
-      </OtherSuggestion>
-
-      <OtherSuggestion>
-        <ProfileContainer>
-          <Profile />
-        </ProfileContainer>
-        <AuctionOtherSuggestionItemContainer>
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-        </AuctionOtherSuggestionItemContainer>
-      </OtherSuggestion>
+      {productGroupsFetched &&
+        productGroups.results.map((singleProductGroup) => {
+          return (
+            <OtherSuggestion key={singleProductGroup?.id}>
+              <ProfileContainer>
+                <Profile />
+                {singleProductGroup?.user?.username}
+              </ProfileContainer>
+              <AuctionOtherSuggestionItemContainer>
+                {singleProductGroup?.products.map((singleProduct) => {
+                  return (
+                    <ItemImg
+                      key={singleProduct.id}
+                      image={singleProduct?.thumbnail?.file}
+                    >
+                      아이템이미지
+                    </ItemImg>
+                  );
+                })}
+              </AuctionOtherSuggestionItemContainer>
+            </OtherSuggestion>
+          );
+        })}
     </OtherSuggestionContainer>
   );
 };

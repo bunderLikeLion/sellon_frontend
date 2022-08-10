@@ -10,7 +10,7 @@ const useSingleProductQuery = (itemId) => {
     {
       onError: (res) => {
         toast.dismiss();
-        toast.error(errorMsgHandler(res.response.data));
+        toast.error(errorMsgHandler(res));
       },
       keepPreviousData: false,
     }
