@@ -8,34 +8,35 @@ import useLoginMutation from 'queries/auth/useLoginMutation';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+`;
+
 const Card = styled.div`
-  position: absolute;
-  top: 17%;
-  left: 15%;
-  width: 70%;
-  height: 70vh;
+  display: flex;
+  width: 60rem;
+  height: 34rem;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 `;
 
 //전체 컨테이너
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  height: 70vh;
-`;
-
 const Form = styled.form`
   display: flex;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   width: 50%;
-  height: 27rem;
+  height: 80%;
   margin-top: 7%;
 `;
 
 //상단 Log-In 글씨 컨테이너
 const GuideContainer = styled.div`
-  width: 60%;
+  width: 70%;
   margin-bottom: 2rem;
 `;
 
@@ -44,13 +45,20 @@ const Guide = styled.h1`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 4rem;
+`;
+
 //입력 폼
 const Input = styled.input`
   width: 20rem;
   height: 4rem;
   border: none;
   border-radius: 0.5rem;
-  margin-left: 1rem;
   padding: 1.2rem;
   font-size: 1.4rem;
   opacity: 70%;
@@ -79,7 +87,7 @@ const ErrorMsg = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 30%;
+  width: 40%;
   margin: 1rem 9rem 0 0;
 `;
 
@@ -123,20 +131,20 @@ const Login = () => {
   };
 
   return (
-    <Card>
-      <Container>
+    <Container>
+      <Card>
         <Form onSubmit={handleSubmit(submit)}>
           <GuideContainer>
             <Guide>Log-In</Guide>
           </GuideContainer>
-          <div>
+          <InputContainer>
             <Input placeholder="ID" type="text" {...register('username')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <Input placeholder="PW" type="password" {...register('password')} />
             <ErrorMsg>{errors.password?.message}</ErrorMsg>
-          </div>
+          </InputContainer>
           <ButtonContainer>
             <Button disabled={isSubmitting}>
               {isSubmitting && 'Submitting...'}
@@ -149,8 +157,8 @@ const Login = () => {
           </ButtonContainer>
         </Form>
         <Img src={SignPic} />
-      </Container>
-    </Card>
+      </Card>
+    </Container>
   );
 };
 

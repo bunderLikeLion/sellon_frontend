@@ -16,27 +16,27 @@ const TopDealer = styled.div`
   height: 13rem;
   margin: 1rem 0;
   padding: 1rem;
-  background: ${(props) => props.theme.color_background__success};
   border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const TopDealerImg = styled(CardMedia)`
   position: absolute;
-  width: 10rem;
-  height: 10rem;
-  background: red;
-  border-radius: 50%;
-  float: right;
   right: 5%;
   top: -10%;
+  float: right;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
   box-shadow: 0.2rem 0.2rem 0.6rem 0 #d3d3d3;
+  background: red;
 `;
 
 const TopDealerInfo = styled.div`
   position: absolute;
+  bottom: 0;
   width: 100%;
   height: auto;
-  bottom: 0;
 `;
 
 const TopDealerTitle = styled.p`
@@ -62,18 +62,17 @@ const TopDealCount = styled.p`
 `;
 
 const QuestionIcon = styled(HelpIcon)`
-  margin-right: 2rem;
-  margin-bottom: 1rem;
   float: right;
+  margin: 0 2rem 1rem 0;
 `;
 
 const MonthlyChampionImg = styled(CardMedia)`
   position: absolute;
-  width: 10rem;
-  height: 10rem;
-  float: right;
   right: 5%;
   top: -10%;
+  float: right;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
   box-shadow: 0.2rem 0.2rem 0.6rem 0 #d3d3d3;
 `;
@@ -84,15 +83,15 @@ const MonthlyChampion = styled.div`
   height: 13rem;
   margin: 1rem 0;
   padding: 1rem;
-  background: ${(props) => props.theme.color_background__success};
   border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const MonthlyChampionInfo = styled.div`
   position: absolute;
+  bottom: 0;
   width: 100%;
   height: auto;
-  bottom: 0;
 `;
 
 const MonthlyTitle = styled.p`
