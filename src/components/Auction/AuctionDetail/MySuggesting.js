@@ -163,7 +163,6 @@ const MySuggesting = () => {
 
       {myProductFetched &&
         myProductsData.results.map((singleProduct) => {
-          console.log(singleProduct, 'single');
           if (singleProduct?.status === 'hidden')
             return (
               <InventoryItemContainer key={singleProduct?.id}>
@@ -194,7 +193,37 @@ const MySuggesting = () => {
                 </InventoryItem>
               </InventoryItemContainer>
             );
-          // return singleProduct?.status === 'hidden' ? <p>asdad</p> : null;
+
+          if (singleProduct?.status === 'in_auction')
+            return (
+              <InventoryItemContainer key={singleProduct?.id}>
+                <InventoryItem image={singleProduct?.thumbnail?.file}>
+                  <SuggestionButton
+                    onClick={handleButton}
+                    isButtonOpened={isButtonOpened}
+                    handleButton={handleButton}
+                  >
+                    제시
+                  </SuggestionButton>
+                  <ConfirmButtonContainer
+                    isButtonOpened={isButtonOpened}
+                    handleButton={handleButton}
+                  >
+                    <ConfirmButton
+                      onClick={() =>
+                        createProductGroup({
+                          auction_id: relatedAuctionId,
+                          product_ids: [singleProduct?.id],
+                        })
+                      }
+                    >
+                      확인
+                    </ConfirmButton>
+                    <DeleteButton onClick={handleButton}>취소</DeleteButton>
+                  </ConfirmButtonContainer>
+                </InventoryItem>
+              </InventoryItemContainer>
+            );
         })}
 
       {inventoryPageNum !== myProductsData?.total_pages ? (

@@ -6,7 +6,6 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { useSetRecoilState } from 'recoil';
 import { userAtom } from 'states';
 
-
 const useLoginMutation = () => {
   const navigate = useNavigate();
   const setUserInfo = useSetRecoilState(userAtom);
@@ -18,7 +17,6 @@ const useLoginMutation = () => {
     },
     {
       onSuccess: (res) => {
-        console.log('success');
         toast.dismiss();
         toast.success('로그인 성공 👍');
         localStorage.setItem('user_info', JSON.stringify(res?.user));
