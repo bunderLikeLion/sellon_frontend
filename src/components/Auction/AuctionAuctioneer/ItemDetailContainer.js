@@ -4,10 +4,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  clear: both;
   width: auto;
   height: 100%;
   padding: 1rem;
+  clear: both;
 `;
 
 const TextareaContainer = styled.div`
@@ -21,9 +21,9 @@ const AuctionInfoContainer = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
+  overflow-y: scroll;
   background: ${(props) => props.theme.color_background__secondary};
   color: ${(props) => props.theme.color_font__secondary};
-  overflow-y: scroll;
 
   .toastui-editor-contents p {
     color: ${(props) => props.theme.color_white};

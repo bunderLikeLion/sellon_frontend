@@ -63,7 +63,7 @@ const MyItem = styled(CardMedia)`
   width: 5.5rem;
   height: 5.5rem;
   border-radius: 1rem;
-  background: red;
+  background: #f00;
 `;
 
 const DeleteIcon = styled(HighlightOffIcon)`

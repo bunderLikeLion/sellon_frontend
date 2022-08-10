@@ -20,6 +20,7 @@ const Card = styled.div`
   display: flex;
   width: 60rem;
   height: 34rem;
+  border: ${(props) => props.theme.color_border__topleft};
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 `;
 
@@ -57,9 +58,9 @@ const InputContainer = styled.div`
 const Input = styled.input`
   width: 20rem;
   height: 4rem;
+  padding: 1.2rem;
   border: none;
   border-radius: 0.5rem;
-  padding: 1.2rem;
   font-size: 1.4rem;
   opacity: 70%;
   background: ${(props) => props.theme.color_background__primary};

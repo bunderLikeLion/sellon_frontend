@@ -5,32 +5,32 @@ export const ThumbContainer = styled.aside``;
 
 export const MultiThumbContainer = styled.aside`
   display: flex;
-  width: 13rem;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
+  width: 13rem;
   border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
   background-image: linear-gradient(
       ${(props) => props.theme.color_background__default},
       ${(props) => props.theme.color_background__default}
     ),
     ${(props) => props.theme.color_border__hover} !important;
-  color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  border-radius: 1rem;
 `;
 
 export const Thumb = styled.div`
   display: inline-flex;
-  border-radius: 2px;
-  margin: 10px;
-  height: 5rem;
   box-sizing: border-box;
+  height: 5rem;
+  margin: 10px;
+  border-radius: 2px;
 `;
 
 export const ThumbInner = styled.div`
-  display: flex;
   position: relative;
+  display: flex;
   min-width: 0;
   overflow: hidden;
 `;
@@ -45,35 +45,35 @@ export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 6rem;
   border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
   background-image: linear-gradient(
       ${(props) => props.theme.color_background__default},
       ${(props) => props.theme.color_background__default}
     ),
     ${(props) => props.theme.color_border__hover} !important;
-  color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  border-radius: 1rem;
-  width: 6rem;
 
   .dropzone {
-    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 4rem;
+    margin: 10px;
     border: 3px solid transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important;
     background-image: linear-gradient(
         ${(props) => props.theme.color_background__default},
         ${(props) => props.theme.color_background__default}
       ),
       ${(props) => props.theme.color_border__hover} !important;
-    background-origin: border-box !important;
-    background-clip: content-box, border-box !important;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
   }
 `;
 
@@ -83,30 +83,30 @@ export const MultipleContainer = styled.section`
   font-size: 0.6rem;
 
   .dropzone {
-    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 5rem;
     height: 5rem;
+    margin: 10px;
     border: 3px solid transparent;
+    border-radius: 1rem;
+    cursor: pointer;
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important;
     background-image: linear-gradient(
         ${(props) => props.theme.color_background__default},
         ${(props) => props.theme.color_background__default}
       ),
       ${(props) => props.theme.color_border__hover} !important;
-    background-origin: border-box !important;
-    background-clip: content-box, border-box !important;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
   }
 `;
 
 export const RemoveBtn = styled(RemoveCircleIcon)`
   position: absolute;
   right: 0;
-  color: red;
   cursor: pointer;
+  color: #f00;
 `;
 
 export const DropzoneContainer = styled.div``;

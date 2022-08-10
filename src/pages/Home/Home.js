@@ -16,38 +16,31 @@ const Form = styled.div`
   width: 100%;
 `;
 
-const Search = styled.input`
-  display: block;
-  float: right;
-  width: 5rem;
-  border: none;
-`;
-
 const UserPic = styled.div`
   width: 3.5rem;
   height: 3.5rem;
-  background: orange;
   border-radius: 50%;
+  background: #000;
 `;
 
 const ProductPic = styled.div`
   width: 7rem;
   height: 7rem;
-  background: lightblue;
+  background: #fff;
 `;
 
 const BestAuctionContainer = styled.div`
-  width: 100%;
   display: flex;
-  margin: 2rem auto;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  margin: 2rem auto;
 `;
 
 const BestAuctionTitle = styled.div`
+  width: 100%;
   font-size: 1.8rem;
   font-weight: bold;
-  width: 100%;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -55,20 +48,20 @@ const AuctionContainer = styled.div`
   width: 100%;
   margin: 1rem;
   padding: 2rem;
-  background: gray;
   border-radius: 2rem;
+  background: gray;
 `;
 
 const InterestedUser = styled.div`
-  font-size: 0.8rem;
   float: right;
+  font-size: 0.8rem;
 `;
 
 const SubNav2 = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   margin-top: 1rem;
 `;
 
@@ -77,59 +70,59 @@ const SubNav2_left = styled.div`
   align-items: center;
 `;
 
-const HomegroundTitle = styled.div`
+const HomeGroundTitle = styled.div`
+  margin-right: 1rem;
   font-weight: bold;
   font-size: 1.2rem;
-  margin-right: 1rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const SubmitAuctionButton = styled.button`
-  margin: 0.3rem;
   width: 7rem;
   height: 2rem;
-  background: ${(props) => props.theme.color_button_ok};
+  margin: 0.3rem;
   border-radius: 1rem;
   font-size: 1rem;
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
 const DealComplete = styled.div`
+  padding-left: 3rem;
   font-size: 1.2rem;
   font-weight: bold;
   color: ${(props) => props.theme.color_font__secondary};
-  padding-left: 3rem;
 `;
 
 const FameShortcut = styled.button`
-  margin: 0;
+  display: flex;
+  align-items: flex-end;
   float: right;
   width: 13rem;
   height: 3rem;
-  background: transparent;
+  margin: 0;
   border: none;
-  display: flex;
-  align-items: flex-end;
   color: ${(props) => props.theme.color_font__primary};
+  background: transparent;
 `;
 
 const SubNav = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1rem;
-  border-radius: 1rem;
-  margin-bottom: 3rem;
-  height: 4rem;
   justify-content: space-between;
+  height: 4rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_background__success};
 `;
 
 const SubNav3 = styled.div`
-  width: 100%;
-  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 2rem;
 `;
 
 const SubNav3_left = styled.div`
@@ -137,14 +130,14 @@ const SubNav3_left = styled.div`
   align-items: center;
 `;
 
-const HomegroundAuction = styled.div`
+const HomeGroundAuction = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
   margin-right: 1rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
-const MostPopluar = styled.div`
+const MostPopular = styled.div`
   margin: 1.5rem;
 `;
 
@@ -164,8 +157,8 @@ const InputLabelBox = styled(InputLabel)`
 `;
 
 const MenuItemBox = styled(MenuItem)`
-  background: black;
-  color: white;
+  background: #000;
+  color: #fff;
 `;
 
 const Home = () => {
@@ -185,7 +178,7 @@ const Home = () => {
       <Form>
         <SubNav2>
           <SubNav2_left>
-            <HomegroundTitle>홈그라운드 거래</HomegroundTitle>
+            <HomeGroundTitle>홈그라운드 거래</HomeGroundTitle>
             <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
               <InputLabelBox id="demo-select-small">
                 홈그라운드 설정
@@ -212,14 +205,14 @@ const Home = () => {
         <BestAuctionContainer>
           <BestAuctionTitle>실시간 인기 경매</BestAuctionTitle>
           <AuctionContainer>
-            <MostPopluar>가장 인기있는 거래 1</MostPopluar>
+            <MostPopular>가장 인기있는 거래 1</MostPopular>
             <UserPic />
             <ProductPic />
             <InterestedUser>참여자수</InterestedUser>
           </AuctionContainer>
 
           <AuctionContainer>
-            <MostPopluar>가장 인기있는 거래 2</MostPopluar>
+            <MostPopular>가장 인기있는 거래 2</MostPopular>
             <UserPic />
             <ProductPic />
             <InterestedUser>참여자수</InterestedUser>
@@ -228,7 +221,7 @@ const Home = () => {
 
         <SubNav3>
           <SubNav3_left>
-            <HomegroundAuction>홈그라운드의 모든 거래</HomegroundAuction>
+            <HomeGroundAuction>홈그라운드의 모든 거래</HomeGroundAuction>
             <button onClick={handleFilterModal}>필터 및 검색</button>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">

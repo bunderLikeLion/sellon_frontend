@@ -26,7 +26,7 @@ const StyledAccordionSummary = styled(AccordionSummary)`
   height: 6rem;
 `;
 
-const ByerImageContainer = styled.div`
+const BuyerImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -35,7 +35,7 @@ const ByerImageContainer = styled.div`
   margin: 0 auto;
 `;
 
-const ByerImage = styled.div`
+const BuyerImage = styled.div`
   width: 3rem;
   height: 3rem;
   margin: 0 auto;
@@ -65,18 +65,18 @@ const ItemImage = styled.div`
   width: 15%;
   height: 4rem;
   margin: 0.5rem 1rem;
-  background-image: ${(props) => `url(${props.imgUrl})`};
+  border-radius: 1rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 1rem;
+  background-image: ${(props) => `url(${props.imgUrl})`};
 `;
 
 const EmptyBox = styled.div`
   width: 1.9rem;
 `;
 
-const ByerSingleBox = () => {
+const BuyerSingleBox = () => {
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -94,10 +94,10 @@ const ByerSingleBox = () => {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <ByerImageContainer>
-            <ByerImage />
+          <BuyerImageContainer>
+            <BuyerImage />
             <DivisionLine />
-          </ByerImageContainer>
+          </BuyerImageContainer>
 
           <ItemListContainer>
             <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
@@ -108,7 +108,7 @@ const ByerSingleBox = () => {
           </ItemListContainer>
         </StyledAccordionSummary>
         <StyledAccordionDetails>
-          <ByerImageContainer></ByerImageContainer>
+          <BuyerImageContainer></BuyerImageContainer>
 
           <ItemListContainer>
             <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
@@ -125,4 +125,4 @@ const ByerSingleBox = () => {
   );
 };
 
-export default ByerSingleBox;
+export default BuyerSingleBox;

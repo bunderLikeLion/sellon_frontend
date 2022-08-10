@@ -35,10 +35,8 @@ const WeeklyStatusUserContainer = styled.div`
   height: 80%;
 `;
 
-const Usercontainer = styled.div`
+const UserContainer = styled.div`
   position: relative;
-  display: block;
-  align-items: center;
   width: 30%;
   height: 50%;
   margin: 1rem;
@@ -46,11 +44,10 @@ const Usercontainer = styled.div`
   background: ${(props) => props.theme.color_background__third};
 `;
 
-const UserTopcontainer = styled.div`
+const UserTopContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: auto;
 `;
 
 const UserImg = styled(CardMedia)`
@@ -64,7 +61,7 @@ const UserNickname = styled.p`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const UserBottomcontainer = styled.div`
+const UserBottomContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,20 +101,20 @@ const WeeklyStatus = () => {
         <QuestionIcon />
       </WeeklyStatusContainer>
       <WeeklyStatusUserContainer>
-        <Usercontainer>
-          <UserTopcontainer>
+        <UserContainer>
+          <UserTopContainer>
             <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
             <UserNickname>양유진</UserNickname>
-          </UserTopcontainer>
-          <UserBottomcontainer>
+          </UserTopContainer>
+          <UserBottomContainer>
             <RecentRank>
               <p>A</p>
             </RecentRank>
             <UserRank>
               <p>S</p>
             </UserRank>
-          </UserBottomcontainer>
-        </Usercontainer>
+          </UserBottomContainer>
+        </UserContainer>
       </WeeklyStatusUserContainer>
     </Container>
   );

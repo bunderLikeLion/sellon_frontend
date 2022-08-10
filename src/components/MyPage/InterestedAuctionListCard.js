@@ -5,15 +5,15 @@ import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 
 const Container = styled.div`
-  margin-top: 3rem;
   width: 30%;
+  margin-top: 3rem;
 `;
 
 const CardTop = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   padding: 0.5rem;
 `;
 
@@ -21,32 +21,32 @@ const CardTopImg = styled.div`
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: red;
+  background: #f00;
 `;
 
 const CardBottom = styled.div`
-  width: 100%;
-  display: flex;
   position: relative;
+  display: flex;
   align-items: center;
+  width: 100%;
 `;
 
 const PersonCntBox = styled.span`
   display: inline-flex;
+  height: 2.4rem;
   margin: 0.3rem;
   padding: 0.4rem 0.8rem;
-  height: 2.4rem;
-  background: #101010;
-  border: 1px solid grey;
-  border-radius: 1rem;
   font-size: 0.875rem;
   font-weight: 700;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  background: #101010;
 `;
 
 const EnterBox = styled(PersonCntBox)`
   display: inline-block;
-  margin-left: 3rem;
   width: 10rem;
+  margin-left: 3rem;
   text-align: center;
 `;
 
