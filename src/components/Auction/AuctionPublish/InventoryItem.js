@@ -8,9 +8,9 @@ const Container = styled(Card)`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 30%;
+  width: 25%;
   height: 55%;
-  margin: 2% 0;
+  margin: 2%;
   border-radius: 1rem !important;
 `;
 
@@ -42,20 +42,22 @@ const AddButton = styled.button`
   border-radius: 1rem;
 `;
 
-const InventoryItem = () => {
+const InventoryItem = ({ singleItem, setSelectedItem, handleModal }) => {
+  const selectFromInventoryFunc = () => {
+    setSelectedItem(singleItem);
+    handleModal();
+  };
+
   return (
     <Container sx={{ maxWidth: '100%' }}>
       <ImgContainer>
-        <CardMedia
-          component="img"
-          image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
-        />
+        <CardMedia component="img" image={singleItem?.thumbnail?.file} />
       </ImgContainer>
       <ItemContentContainer>
         <CardTop>
-          <CardHeader title="Stussy 8  ball Tee" />
+          <CardHeader title={singleItem?.name} />
         </CardTop>
-        <AddButton>추가</AddButton>
+        <AddButton onClick={selectFromInventoryFunc}>추가</AddButton>
       </ItemContentContainer>
     </Container>
   );

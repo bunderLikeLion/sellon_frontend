@@ -9,7 +9,6 @@ import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import useAuctionsQuery from 'queries/auction/useAuctionsQuery';
-import { Link } from 'react-router-dom';
 import { StyledLink } from 'styles/StyledComponetStyles';
 
 const Form = styled.div`
@@ -201,7 +200,9 @@ const Home = () => {
               </SelectBox>
             </FormControl>
           </SubNav2_left>
-          <SubmitAuctionButton>경매올리기</SubmitAuctionButton>
+          <SubmitAuctionButton>
+            <StyledLink to={'/auction/newauction'}>경매 올리기</StyledLink>
+          </SubmitAuctionButton>
         </SubNav2>
 
         <SubNav>

@@ -59,7 +59,7 @@ const AddBtn = styled(Button)`
   border: none !important;
 `;
 
-const StyledLabel = styled.p`
+export const StyledLabel = styled.p`
   margin: 1.5rem 0 0.5rem 0.5rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
@@ -99,7 +99,7 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-const StatusRadioBox = styled.div`
+export const StatusRadioBox = styled.div`
   width: 40rem;
   min-height: 2rem;
   margin-top: 2rem;
@@ -135,11 +135,11 @@ const CategoryRadioBox = styled.div`
   border-radius: 1rem;
 `;
 
-const InsideRadioBox = styled.div`
+export const InsideRadioBox = styled.div`
   padding: 0 1rem;
 `;
 
-const CategoryContentBox = styled.div`
+export const CategoryContentBox = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -157,11 +157,11 @@ const RadioLabel = styled.label`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const StyledRadio = styled(Radio)`
+export const StyledRadio = styled(Radio)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StatusRadio = styled(SingleRadio)`
+export const StatusRadio = styled(SingleRadio)`
   width: 20%;
 `;
 
@@ -308,7 +308,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             </CategoryContentBox>
           </InsideRadioBox>
         </StatusRadioBox>
-        
+
         <CategoryRadioBox>
           <InsideRadioBox>
             <StyledLabel>카테고리</StyledLabel>

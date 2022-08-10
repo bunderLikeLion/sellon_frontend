@@ -3,6 +3,10 @@ import { axiosInstance } from './config';
 const client = axiosInstance;
 
 const auctionRelatedAPI = {
+  postAuction: (payload) => {
+    return client.post('auctions/', payload).then((res) => res.data);
+  },
+
   getAuctionLists: (sort) => {
     if (sort === 'popular')
       return client
