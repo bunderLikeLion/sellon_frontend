@@ -39,8 +39,8 @@ const RankerContainer = styled.div`
   width: 100%;
   height: 3rem;
   margin-bottom: 0.5rem;
-  background: ${(props) => props.theme.color_background__secondary};
   border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const RankerContainerLeft = styled.div`

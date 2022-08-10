@@ -37,15 +37,15 @@ const SubPicContainer = styled.div`
 const SubPic = styled(CardMedia)`
   width: 40%;
   height: 75%;
-  border-radius: 1rem;
   margin-right: 1rem;
+  border-radius: 1rem;
 `;
 
 const UserInfo = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   height: 15%;
-  align-items: center;
 `;
 
 const UserPic = styled.div`
@@ -77,15 +77,14 @@ const Left_Component = ({ singleItemData }) => {
         </Link>
       </ArrowIconContainer>
       <MainPicContainer>
-        {
-          thumbnail && (<MainPic image={thumbnail?.file} />)
-        }
+        {thumbnail && <MainPic image={thumbnail?.file} />}
       </MainPicContainer>
       <SubPicContainer>
-        {images && images.map((singleImg) => {
-          if (!singleImg) return null;
-          return <SubPic key={singleImg?.id} image={singleImg?.file} />;
-        })}
+        {images &&
+          images.map((singleImg) => {
+            if (!singleImg) return null;
+            return <SubPic key={singleImg?.id} image={singleImg?.file} />;
+          })}
       </SubPicContainer>
       <UserInfo>
         <UserPic />

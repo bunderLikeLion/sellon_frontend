@@ -6,8 +6,8 @@ const Container = styled.div`
   width: 90%;
   height: 50%;
   margin: 1rem 0;
-  background: ${(props) => props.theme.color_background__primary};
   border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const WeeklyStatusContainer = styled.div`
@@ -42,8 +42,8 @@ const Usercontainer = styled.div`
   width: 30%;
   height: 50%;
   margin: 1rem;
-  background: ${(props) => props.theme.color_background__third};
   border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__third};
 `;
 
 const UserTopcontainer = styled.div`
@@ -72,25 +72,25 @@ const UserBottomcontainer = styled.div`
 
 const RecentRank = styled.div`
   position: absolute;
+  right: 55%;
+  bottom: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  right: 55%;
-  bottom: 20%;
   border-radius: 50%;
   background: ${(props) => props.theme.color_font__disabled};
 `;
 
 const UserRank = styled.div`
   position: absolute;
+  height: 3rem;
+  bottom: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 3rem;
-  height: 3rem;
-  bottom: 10%;
   z-index: 1;
   border-radius: 50%;
   background: ${(props) => props.theme.color_background__success};
