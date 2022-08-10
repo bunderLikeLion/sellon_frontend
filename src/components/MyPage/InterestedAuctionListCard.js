@@ -73,10 +73,10 @@ const MyCardMedia = styled(CardMedia)`
 `;
 
 const MyCardHeader = styled.div`
-  overflow: hidden;
   width: 100%;
   height: 100%;
   padding: 0.5rem;
+  overflow-x: hidden;
   text-overflow: ellipsis !important;
   white-space: nowrap;
   font-size: 1.4rem;

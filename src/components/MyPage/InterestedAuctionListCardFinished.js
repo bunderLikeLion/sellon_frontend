@@ -73,7 +73,7 @@ const MyCardMedia = styled(CardMedia)`
 `;
 
 const MyCardHeader = styled.div`
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   padding: 0.5rem;
@@ -99,7 +99,7 @@ const FinishedOverlay = styled(Card)`
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 3rem;
   border-radius: 3rem !important;
   box-shadow: 0px 0px 4px 14px
     ${(props) => props.theme.color_background__default} !important;
@@ -132,11 +132,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       <FinishedOverlay>
-        <p>
-          종료된 거래
-          <br />
-          입니다.
-        </p>
+        <p>종료된 거래입니다.</p>
       </FinishedOverlay>
     </Container>
   );
