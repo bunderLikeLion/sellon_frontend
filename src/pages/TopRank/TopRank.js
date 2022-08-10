@@ -2,9 +2,18 @@ import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 
+const StyledContainer = styled.div`
+  display: flex !important;
+  align-items: center !important;
+  height: 88vh;
+`;
+
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: 40rem;
+  height: 100%;
 `;
 
 const NavContainer = styled.div`
@@ -12,8 +21,7 @@ const NavContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 15%;
-  margin-top: 1rem;
+  height: 6rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
@@ -28,19 +36,18 @@ const NavTitle = styled.p`
 
 const RankContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 85%;
+  padding-top: 1.2rem;
+  height: 70%;
 `;
 
 const LeftContainer = styled.div`
   width: 70%;
-  height: 100%;
 `;
 
 const RightContainer = styled.div`
   width: 30%;
   height: 32rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
@@ -48,20 +55,22 @@ const RightContainer = styled.div`
 const TopRank = () => {
   return (
     <WrapContainer>
-      <Container>
-        <NavContainer>
-          <NavTitle>오늘의 거래는 총 23건입니다!</NavTitle>
-        </NavContainer>
-        <RankContainer>
-          <LeftContainer>
-            <TopRanker />
-            <WeeklyStatus />
-          </LeftContainer>
-          <RightContainer>
-            <Ranking />
-          </RightContainer>
-        </RankContainer>
-      </Container>
+      <StyledContainer>
+        <Container>
+          <NavContainer>
+            <NavTitle>오늘의 거래는 총 23건입니다!</NavTitle>
+          </NavContainer>
+          <RankContainer>
+            <LeftContainer>
+              <TopRanker />
+              <WeeklyStatus />
+            </LeftContainer>
+            <RightContainer>
+              <Ranking />
+            </RightContainer>
+          </RankContainer>
+        </Container>
+      </StyledContainer>
     </WrapContainer>
   );
 };

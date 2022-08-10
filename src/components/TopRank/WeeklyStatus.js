@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`
   width: 90%;
-  height: 50%;
+  height: 49%;
   margin: 1rem 0;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
@@ -36,11 +36,10 @@ const WeeklyStatusUserContainer = styled.div`
 `;
 
 const Usercontainer = styled.div`
-  position: relative;
   display: block;
   align-items: center;
   width: 30%;
-  height: 50%;
+  height: 75%;
   margin: 1rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__third};
@@ -71,7 +70,6 @@ const UserBottomcontainer = styled.div`
 `;
 
 const RecentRank = styled.div`
-  position: absolute;
   right: 55%;
   bottom: 20%;
   display: flex;
@@ -84,7 +82,6 @@ const RecentRank = styled.div`
 `;
 
 const UserRank = styled.div`
-  position: absolute;
   height: 3rem;
   bottom: 10%;
   display: flex;
