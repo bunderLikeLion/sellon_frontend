@@ -53,7 +53,7 @@ const ChatContainor = styled.div`
 const ChatContentContainer = styled.div`
   height: 100%;
   padding: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 const ChatBox = styled.div`

@@ -1,26 +1,25 @@
 import styled from 'styled-components';
 import statusHandler from 'utils/statusHandler';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-// import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { Viewer } from '@toast-ui/react-editor';
 
 const EditButtonContainer = styled.div`
-  width: 100%;
-  height: 10%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 10%;
 `;
 
 const EditButton = styled.button`
+  position: absolute;
+  right: 15%;
   width: 5rem;
   height: 2rem;
-  background: ${(props) => props.theme.color_button_delete};
   border: none;
   border-radius: 0.5rem;
-  right: 15%;
-  position: absolute;
+  background: ${(props) => props.theme.color_button__delete};
 `;
 
 const ItemTitleContainer = styled.div`
@@ -30,65 +29,65 @@ const ItemTitleContainer = styled.div`
 `;
 
 const ItemTitle = styled.div`
-  font-size: 2rem;
   position: absolute;
   margin: 1rem;
-  color: ${(props) => props.theme.color_font__frimary};
+  font-size: 2rem;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 70%;
-  height: 10%;
-  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 70%;
+  height: 10%;
   margin-top: 1rem;
+  border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCondition = styled.p`
-  font-size: 1.2rem;
   margin: 1.2rem;
+  font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemConditionDetail = styled.div`
-  background: ${(props) => props.theme.color_background__success};
-  color: ${(props) => props.theme.color_font__secondary};
-  font-size: 1rem;
+  text-align: center;
   width: 5rem;
   height: 2rem;
   margin: 1rem 2rem;
   padding-top: 0.5rem;
-  text-align: center;
   border-radius: 0.8rem;
+  font-size: 1rem;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryContainer = styled.div`
-  background: ${(props) => props.theme.color_background__primary};
-  width: 70%;
-  height: 10%;
-  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 70%;
+  height: 10%;
   margin-top: 1rem;
+  border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCategory = styled.p`
-  font-size: 1.2rem;
   margin: 1.2rem;
+  font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryDetail = styled.div`
-  font-size: 0.8rem;
+  text-align: center;
   width: 5rem;
   height: 2rem;
   margin: 1rem 2rem;
   padding-top: 0.5rem;
-  text-align: center;
+  font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -98,17 +97,11 @@ const ItemInfoContainer = styled.div`
   margin-top: 2rem;
   padding: 0.5rem;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__primary};
   overflow-y: scroll;
-
+  background: ${(props) => props.theme.color_background__primary};
   .toastui-editor-contents p {
     color: ${(props) => props.theme.color_white};
   }
-`;
-
-const ItemInfo = styled.p`
-  padding: 2rem;
-  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const Right_Component = ({ singleItemData }) => {
