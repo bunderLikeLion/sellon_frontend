@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
 import { queryClient } from 'index';
 import CardMedia from '@mui/material/CardMedia';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../../../states';
 
 const OtherSuggestionContainer = styled.div`
   display: flex;
@@ -69,7 +71,7 @@ const ItemImg = styled(CardMedia)`
 
 const AuctionOtherSuggestion = (props) => {
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
-
+  const { pk: userId } = useRecoilValue(userAtom);
   const { data: productGroups, isSuccess: productGroupsFetched } =
     useProductGroupsQuery(relatedAuctionId);
 
@@ -80,26 +82,28 @@ const AuctionOtherSuggestion = (props) => {
       </GuideContainer>
       {productGroupsFetched &&
         productGroups.results.map((singleProductGroup) => {
-          return (
-            <OtherSuggestion key={singleProductGroup?.id}>
-              <ProfileContainer>
-                <Profile />
-                {singleProductGroup?.user?.username}
-              </ProfileContainer>
-              <AuctionOtherSuggestionItemContainer>
-                {singleProductGroup?.products.map((singleProduct) => {
-                  return (
-                    <ItemImg
-                      key={singleProduct.id}
-                      image={singleProduct?.thumbnail?.file}
-                    >
-                      아이템이미지
-                    </ItemImg>
-                  );
-                })}
-              </AuctionOtherSuggestionItemContainer>
-            </OtherSuggestion>
-          );
+          if (singleProductGroup.user.id !== userId) {
+            return (
+              <OtherSuggestion key={singleProductGroup?.id}>
+                <ProfileContainer>
+                  <Profile />
+                  {singleProductGroup?.user?.username}
+                </ProfileContainer>
+                <AuctionOtherSuggestionItemContainer>
+                  {singleProductGroup?.products.map((singleProduct) => {
+                    return (
+                      <ItemImg
+                        key={singleProduct.id}
+                        image={singleProduct?.thumbnail?.file}
+                      >
+                        아이템이미지
+                      </ItemImg>
+                    );
+                  })}
+                </AuctionOtherSuggestionItemContainer>
+              </OtherSuggestion>
+            );
+          }
         })}
     </OtherSuggestionContainer>
   );

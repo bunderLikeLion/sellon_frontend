@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
+import { queryClient } from 'index';
+import { useEffect, useState } from 'react';
+import useMyProductGroupQuery from 'queries/auction/useMyProductGroupQuery';
+import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`
   position: absolute;
@@ -39,7 +44,7 @@ const Comment = styled.h1`
 
 const MyItemContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 80%;
@@ -54,11 +59,11 @@ const AfterIcon = styled(NavigateNextIcon)`
   color: #d9d9d9;
 `;
 
-const MyItem = styled.div`
+const MyItem = styled(CardMedia)`
   width: 5.5rem;
   height: 5.5rem;
   border-radius: 1rem;
-  background: #d9d9d9;
+  background: red;
 `;
 
 const DeleteIcon = styled(HighlightOffIcon)`
@@ -69,6 +74,24 @@ const DeleteIcon = styled(HighlightOffIcon)`
 `;
 
 const MySuggested = (props) => {
+  const [page, setPage] = useState(1);
+  const [productGroupExists, setProductGroupExists] = useState(false);
+  const { pk: userId } = useRecoilValue(userAtom);
+  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+
+  const { data: myProductGroup, isSuccess: myProductGroupFetched } =
+    useMyProductGroupQuery(relatedAuctionId, userId, page, 4);
+
+  useEffect(() => {
+    if (myProductGroup.results.length) {
+      setProductGroupExists(true);
+      console.log('exists');
+    } else {
+      setProductGroupExists(false);
+      console.log('not exists');
+    }
+  }, [myProductGroup]);
+
   return (
     <Container>
       <ButtonContainer onClick={props.handleInventory}>
@@ -77,19 +100,15 @@ const MySuggested = (props) => {
       <Comment>내가 제시한 물건</Comment>
       <MyItemContainer>
         <BeforeIcon />
-        <MyItem>
-          내아이템
-          <DeleteIcon />
-        </MyItem>
-        <MyItem>
-          <DeleteIcon />
-        </MyItem>
-        <MyItem>
-          <DeleteIcon />
-        </MyItem>
-        <MyItem>
-          <DeleteIcon />
-        </MyItem>
+        {myProductGroupFetched &&
+          myProductGroup?.results[0]?.products.map((singleItem) => {
+            return (
+              <MyItem key={singleItem?.id} image={singleItem?.thumbnail?.file}>
+                내아이템
+                <DeleteIcon />
+              </MyItem>
+            );
+          })}
         <AfterIcon />
       </MyItemContainer>
     </Container>

@@ -9,6 +9,7 @@ import useCreateProductGroupMutation from 'queries/auction/useCreateProductGroup
 import { QueryCache } from '@tanstack/react-query';
 import { queryClient } from 'index';
 import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
+import HiddenCard from './InventoryCards/HiddenCard';
 
 const Container = styled.div`
   display: flex;
@@ -165,33 +166,11 @@ const MySuggesting = () => {
         myProductsData.results.map((singleProduct) => {
           if (singleProduct?.status === 'hidden')
             return (
-              <InventoryItemContainer key={singleProduct?.id}>
-                <InventoryItem image={singleProduct?.thumbnail?.file}>
-                  <SuggestionButton
-                    onClick={handleButton}
-                    isButtonOpened={isButtonOpened}
-                    handleButton={handleButton}
-                  >
-                    제시
-                  </SuggestionButton>
-                  <ConfirmButtonContainer
-                    isButtonOpened={isButtonOpened}
-                    handleButton={handleButton}
-                  >
-                    <ConfirmButton
-                      onClick={() =>
-                        createProductGroup({
-                          auction_id: relatedAuctionId,
-                          product_ids: [singleProduct?.id],
-                        })
-                      }
-                    >
-                      확인
-                    </ConfirmButton>
-                    <DeleteButton onClick={handleButton}>취소</DeleteButton>
-                  </ConfirmButtonContainer>
-                </InventoryItem>
-              </InventoryItemContainer>
+              <HiddenCard
+                singleProduct={singleProduct}
+                createProductGroup={createProductGroup}
+                relatedAuctionId={relatedAuctionId}
+              />
             );
 
           if (singleProduct?.status === 'in_auction')

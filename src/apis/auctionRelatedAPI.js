@@ -19,9 +19,16 @@ const auctionRelatedAPI = {
     return client.get(`auctions/${id}`).then((res) => res.data);
   },
 
-  getProductGroups: (relatedAuctionId) => {
+  getProductGroups: (relatedAuctionId, userId, page, perPage) => {
     return client
-      .get(`product_groups/`, { params: { auction: relatedAuctionId } })
+      .get(`product_groups/`, {
+        params: {
+          auction: relatedAuctionId,
+          user: userId,
+          page: page,
+          per_page: perPage,
+        },
+      })
       .then((res) => res.data);
   },
 
