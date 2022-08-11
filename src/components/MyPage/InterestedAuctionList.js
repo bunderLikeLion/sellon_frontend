@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import InterestedAuctionListCard from './InterestedAuctionListCard';
 import InterestedAuctionListCardFinished from './InterestedAuctionListCardFinished';
-import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQuery';
+import { useInterestedAuctionsQuery } from 'queries/auction';
 
 const FlexContainer = styled.div`
   display: flex;

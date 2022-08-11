@@ -3,8 +3,10 @@ import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
 import { queryClient } from 'index';
-import useCreateInterestedAuctionMutation from 'queries/auction/useCreateInterestedAuctionMutation';
-import useDeleteInterestedAuctionMutation from 'queries/auction/useDeleteInterestedAuctionMutation';
+import {
+  useDeleteInterestedAuctionMutation,
+  useCreateInterestedAuctionMutation,
+} from 'queries/auction';
 
 const Container = styled(Card)`
   display: flex;

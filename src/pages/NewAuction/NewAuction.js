@@ -5,7 +5,7 @@ import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublis
 import InfoContainerWithItem from 'components/NewAuction/InfoContainerWithItem';
 import NewAuctionInput from 'components/NewAuction/NewAuctionInput';
 import useInput from 'hooks/useInput';
-import useCreateAuctionMutation from 'queries/auction/useCreateAuctionMutation';
+import { useCreateAuctionMutation } from 'queries/auction';
 
 export const Container = styled.div`
   position: relative;
