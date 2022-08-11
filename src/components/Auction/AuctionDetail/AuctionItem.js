@@ -2,6 +2,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
+import { queryClient } from '../../../index';
 
 const Container = styled(Card)`
   display: flex;
@@ -107,11 +108,14 @@ const ItemDescription = styled.p`
 `;
 
 const AuctionItem = (props) => {
+  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+
   return (
     <Container
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
+      <button>관심거래 등록</button>
       <ItemImgContainer>
         <ItemImg
           component="img"

@@ -2,7 +2,6 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { StyledLink } from 'styles/StyledComponetStyles';
 
 const Container = styled.div`
@@ -70,14 +69,6 @@ const EnterBox = styled(PersonCntBox)`
   background: ${(props) => props.theme.color_background__success} !important;
 `;
 
-const HeartIcon = styled(FavoriteBorderIcon)`
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  color: black;
-  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff !important;
-`;
-
 const MyCardMedia = styled(CardMedia)`
   object-fit: cover;
   height: 14rem;
@@ -98,7 +89,6 @@ const HomeAuctionListCard = ({ auctionData }) => {
     <Container>
       <StyledLink to={`/auction/${auctionData.id}`}>
         <CardContainor sx={{ maxWidth: '100%' }}>
-          <HeartIcon />
           <MyCardMedia
             component="img"
             height="150"

@@ -9,7 +9,7 @@ const auctionRelatedAPI = {
 
   getAuctionLists: (sort) => {
     return client
-      .get('auctions/?ordering=-product_groups_count', {
+      .get('auctions/?ordering=-product_groups_count/', {
         params: {
           ordering:
             sort === 'popular'
@@ -24,8 +24,12 @@ const auctionRelatedAPI = {
       .then((res) => res.data);
   },
 
+  getInterestedAuctionLists: () => {
+    return client.get('auctions/interested/').then((res) => res.data);
+  },
+
   getSingleAuctionInfo: (id) => {
-    return client.get(`auctions/${id}`).then((res) => res.data);
+    return client.get(`auctions/${id}/`).then((res) => res.data);
   },
 
   getProductGroups: (relatedAuctionId, userId, page, perPage) => {
