@@ -60,7 +60,7 @@ const DeleteButton = styled.button`
   background: ${(props) => props.theme.color_button__delete};
 `;
 
-const HiddenCard = ({
+const InventoryCard = ({
   singleProduct,
   createProductGroup,
   relatedAuctionId,
@@ -100,4 +100,4 @@ const HiddenCard = ({
   );
 };
 
-export default HiddenCard;
+export default InventoryCard;
