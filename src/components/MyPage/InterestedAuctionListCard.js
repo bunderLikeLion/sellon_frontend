@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 
 const Container = styled.div`
-  width: 30%;
-  margin-top: 3rem;
+  width: 28%;
+  margin: 1rem;
 `;
 
 const CardTop = styled.div`

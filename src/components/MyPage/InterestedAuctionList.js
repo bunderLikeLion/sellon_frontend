@@ -7,8 +7,9 @@ const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
   align-content: center;
-  justify-content: space-around;
+  margin-top: 3rem;
 `;
 
 const ItemListContainer = styled.div`
@@ -25,18 +26,19 @@ const InterestedAuctionList = () => {
 
   return (
     <ItemListContainer>
-      <p>총 {interestedAuctionLists?.total_count}개</p>
-      <FlexContainer>
-        <InterestedAuctionListCardFinished />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-      </FlexContainer>
+      {interestedAuctionListsFetched && (
+        <>
+          <p>총 {interestedAuctionLists?.total_count}개</p>
+          <FlexContainer>
+            <InterestedAuctionListCardFinished />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+          </FlexContainer>
+        </>
+      )}
     </ItemListContainer>
   );
 };
