@@ -8,7 +8,7 @@ const useCreateInterestedAuctionMutation = () => {
   return useMutation(
     (auctionId) => {
       toast.loading('관심 경매 등록 시도 중입니다....');
-      return auctionRelatedAPI.postCreateInterestedAuction(auctionId);
+      return auctionRelatedAPI.postInterestedAuction(auctionId);
     },
     {
       onSuccess: () => {

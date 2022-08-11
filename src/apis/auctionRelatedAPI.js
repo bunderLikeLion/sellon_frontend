@@ -30,7 +30,7 @@ const auctionRelatedAPI = {
       .then((res) => res.data);
   },
 
-  postCreateInterestedAuction: (auctionId) => {
+  postInterestedAuction: (auctionId) => {
     return client
       .post('auctions/interested/', { auction_id: auctionId })
       .then((res) => res.data);
