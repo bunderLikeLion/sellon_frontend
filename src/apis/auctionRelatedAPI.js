@@ -36,6 +36,12 @@ const auctionRelatedAPI = {
       .then((res) => res.data);
   },
 
+  deleteInterestedAuction: (auctionId) => {
+    return client
+      .delete(`auctions/interested/${auctionId}`)
+      .then((res) => res.data);
+  },
+
   getSingleAuctionInfo: (id) => {
     return client.get(`auctions/${id}/`).then((res) => res.data);
   },
