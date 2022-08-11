@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
@@ -14,8 +15,8 @@ const ModalContainer = styled(Box)`
   height: 80%;
   top: 50%;
   left: 50%;
-  padding: 2rem 4rem;
   transform: translate(-50%, -50%);
+  padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
 `;
@@ -30,15 +31,14 @@ const DealEvaluate = styled.p`
 const EvaluateContainer = styled.div`
   width: 100%;
   height: 50%;
-  top: 10%;
   margin-bottom: 1.5rem;
   border-radius: 1rem;
+  overflow: hidden;
 `;
 
 const EvaluateTopContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
   height: 30%;
   padding: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
@@ -62,9 +62,11 @@ const ItemUploadDate = styled.p`
 `;
 
 const EvaluateBottomContainer = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   height: 70%;
-  padding: 1.5rem;
+  padding: 0 2.5rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
@@ -93,7 +95,7 @@ const DealSummarize = styled.p`
   padding-bottom: 1rem;
   font-size: 1.6rem;
   font-weight: 600;
-  color: white;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const DealSummarizeContainer = styled.div`
@@ -104,8 +106,8 @@ const DealSummarizeContainer = styled.div`
   height: 20%;
   bottom: 15%;
   margin-bottom: 2rem;
-  background: ${(props) => props.theme.color_background__secondary};
   border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const MyItemImgSummarize = styled(CardMedia)`
@@ -116,9 +118,9 @@ const MyItemImgSummarize = styled(CardMedia)`
 `;
 
 const ArrowIcon = styled(SyncAltIcon)`
-  font-size: 10rem;
-  color: white;
+  color: ${(props) => props.theme.color_font__primary};
 `;
+
 const OpponentItemImg = styled(CardMedia)`
   width: 4rem;
   height: 4rem;
@@ -127,23 +129,36 @@ const OpponentItemImg = styled(CardMedia)`
 `;
 
 const ExtraIcon = styled(MoreHorizIcon)`
-  color: white;
-`;
-
-const EvaluateConfirmButton = styled.button`
-  width: 5rem;
-  height: 1.7rem;
-  border-radius: 0.5rem;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ConfirmButton = styled.button`
+  position: absolute;
   width: 5rem;
   height: 1.7rem;
+  right: 8%;
+  border: none;
   border-radius: 0.5rem;
+  color: ${(props) => props.theme.color_buttontext__ok};
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
+const StyledRating = withStyles({
+  iconEmpty: {
+    fontSize: 40,
+  },
+  iconFilled: {
+    color: '#FEFEFF',
+    fontSize: 40,
+  },
+  iconHover: {
+    color: '#7B749D',
+    fontSize: 45,
+  },
+})(Rating);
+
 const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = useState(2);
   return (
     <Modal
       open={isModalOpened}
@@ -168,8 +183,10 @@ const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
             <StarRatingContainer>
               <StarRating component="fieldset" mb={0} borderColor="transparent">
                 <Typography component="legend"></Typography>
-                <Rating
+                <StyledRating
                   name="simple-controlled"
+                  size="large"
+                  precision={1}
                   value={value}
                   onChange={(event, newValue) => {
                     setValue(newValue);
@@ -177,7 +194,6 @@ const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
                 />
               </StarRating>
             </StarRatingContainer>
-            <EvaluateConfirmButton>확인</EvaluateConfirmButton>
           </EvaluateBottomContainer>
         </EvaluateContainer>
         <DealSummarize>이번 거래, 요약하기</DealSummarize>
@@ -190,7 +206,7 @@ const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
           <OpponentItemImg />
           <ExtraIcon />
         </DealSummarizeContainer>
-        <ConfirmButton>확인</ConfirmButton>
+        <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
       </ModalContainer>
     </Modal>
   );
