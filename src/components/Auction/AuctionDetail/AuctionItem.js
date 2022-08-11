@@ -18,6 +18,18 @@ const Container = styled(Card)`
   background: transparent !important;
 `;
 
+const InterestedButton = styled.button`
+  position: absolute;
+  bottom: 1%;
+  right: 5%;
+  width: 20%;
+  height: 8%;
+  border: none;
+  border-radius: 0.5rem;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__warning};
+`;
+
 const ItemImgContainer = styled.div`
   position: relative;
   width: 100%;
@@ -144,15 +156,6 @@ const AuctionItem = (props) => {
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
-      {isInterested ? (
-        <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
-          관심거래 삭제
-        </button>
-      ) : (
-        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
-          관심거래 등록
-        </button>
-      )}
       <ItemImgContainer>
         <ItemImg
           component="img"
@@ -166,6 +169,19 @@ const AuctionItem = (props) => {
             {dealingTypeHandler(props?.singleAuctionData?.dealing_type)}
           </ExchangeWay>
         </ExchangeWayContainer>
+        {isInterested ? (
+          <InterestedButton
+            onClick={() => deleteInterestedAuction(relatedAuctionId)}
+          >
+            관심거래 삭제
+          </InterestedButton>
+        ) : (
+          <InterestedButton
+            onClick={() => createInterestedAuction(relatedAuctionId)}
+          >
+            관심거래 등록
+          </InterestedButton>
+        )}
       </ItemImgContainer>
       <ItemContentContainer>
         <ItemNameContainer>
