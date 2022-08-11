@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import InterestedAuctionListCard from './InterestedAuctionListCard';
-import InterestedAuctionListCardFinished from './InterestedAuctionListCardFinished';
 import { useInterestedAuctionsQuery } from 'queries/auction';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -30,12 +30,29 @@ const InterestedAuctionList = () => {
         <>
           <p>총 {interestedAuctionLists?.total_count}개</p>
           <FlexContainer>
-            <InterestedAuctionListCardFinished />
-            <InterestedAuctionListCard />
-            <InterestedAuctionListCard />
-            <InterestedAuctionListCard />
-            <InterestedAuctionListCard />
-            <InterestedAuctionListCard />
+            {interestedAuctionLists?.results.map((singleInterestedAuction) => {
+              if (
+                isAuctionFinishedHandler(
+                  singleInterestedAuction?.auction?.end_at
+                )
+              ) {
+                // 끝난 경매
+                return (
+                  <InterestedAuctionListCard
+                    data={singleInterestedAuction.auction}
+                    isFinished={true}
+                  />
+                );
+              } else {
+                // 진행중인 경매
+                return (
+                  <InterestedAuctionListCard
+                    data={singleInterestedAuction.auction}
+                    isFinished={false}
+                  />
+                );
+              }
+            })}
           </FlexContainer>
         </>
       )}
