@@ -5,6 +5,7 @@ import dealingTypeHandler from 'utils/dealingTypeHandler';
 import { queryClient } from 'index';
 import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQuery';
 import { useEffect, useState } from 'react';
+import useCreateInterestedAuctionMutation from 'queries/auction/useCreateInterestedAuctionMutation';
 
 const Container = styled(Card)`
   display: flex;
@@ -113,19 +114,39 @@ const AuctionItem = (props) => {
   const [isInterested, setIsInterested] = useState(false);
 
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+
   const {
     data: interestedAuctionLists,
     isSuccess: interestedAuctionListsFetched,
   } = useInterestedAuctionsQuery();
 
-  useEffect(() => {}, [interestedAuctionLists]);
+  const { mutate: createInterestedAuction } =
+    useCreateInterestedAuctionMutation();
+
+  useEffect(() => {
+    if (interestedAuctionListsFetched) {
+      interestedAuctionLists?.results.map((singleInterestedAuction) => {
+        if (singleInterestedAuction?.auction?.id === relatedAuctionId) {
+          setIsInterested(true);
+        }
+      });
+    }
+  }, [interestedAuctionLists]);
 
   return (
     <Container
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
-      <button>관심거래 등록</button>
+      {interestedAuctionListsFetched && isInterested ? (
+        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
+          관심거래 삭제
+        </button>
+      ) : (
+        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
+          관심거래 등록
+        </button>
+      )}
       <ItemImgContainer>
         <ItemImg
           component="img"

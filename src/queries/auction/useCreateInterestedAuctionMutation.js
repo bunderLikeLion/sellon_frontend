@@ -7,13 +7,13 @@ import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 const useCreateInterestedAuctionMutation = () => {
   return useMutation(
     (auctionId) => {
-      toast.loading('아이템 등록 시도 중입니다....');
+      toast.loading('관심 경매 등록 시도 중입니다....');
       return auctionRelatedAPI.postCreateInterestedAuction(auctionId);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('아이템 생성 성공했습니다 👍');
+        toast.success('관심 경매 등록 성공했습니다 👍');
         return queryClient.invalidateQueries(['interestedAuctionList']);
       },
       onError: (res) => {
