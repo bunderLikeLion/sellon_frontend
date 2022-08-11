@@ -166,6 +166,7 @@ const MySuggesting = () => {
           if (singleProduct?.status === 'hidden') {
             return (
               <InventoryCard
+                key={singleProduct.id}
                 singleProduct={singleProduct}
                 createProductGroup={createProductGroup}
                 relatedAuctionId={relatedAuctionId}
@@ -175,6 +176,7 @@ const MySuggesting = () => {
           } else {
             return (
               <InventoryCard
+                key={singleProduct.id}
                 singleProduct={singleProduct}
                 createProductGroup={createProductGroup}
                 relatedAuctionId={relatedAuctionId}

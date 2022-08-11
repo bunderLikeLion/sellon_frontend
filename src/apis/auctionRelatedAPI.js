@@ -62,6 +62,12 @@ const auctionRelatedAPI = {
   postProductGroups: (payload) => {
     return client.post('product_groups/', payload).then((res) => res.data);
   },
+
+  postInventoryItem: (auctionId, payload) => {
+    return client
+      .post(`auctions/${auctionId}/add_product`, payload)
+      .then((res) => res.data);
+  },
 };
 
 export default auctionRelatedAPI;

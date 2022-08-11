@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
+import { FinishedOverlay } from '../../MyPage/InterestedAuctionListCard';
 
 const InventoryItemContainer = styled.div`
+  position: relative;
   width: 9rem;
   height: 9rem;
   border-radius: 1rem;
@@ -64,6 +66,7 @@ const InventoryCard = ({
   singleProduct,
   createProductGroup,
   relatedAuctionId,
+  isUsable,
 }) => {
   const [isButtonOpened, setIsButtonOpened] = useState(false);
 
@@ -96,6 +99,9 @@ const InventoryCard = ({
           <DeleteButton onClick={handleButton}>취소</DeleteButton>
         </ConfirmButtonContainer>
       </InventoryItem>
+      <FinishedOverlay isFinished={!isUsable}>
+        <p>사용할 수 없는 아이템입니다.</p>
+      </FinishedOverlay>
     </InventoryItemContainer>
   );
 };
