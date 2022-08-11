@@ -5,113 +5,94 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Viewer } from '@toast-ui/react-editor';
 
 const EditButtonContainer = styled.div`
-  width: 100%;
-  height: 10%;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 90%;
+  height: 5vh;
 `;
 
 const EditButton = styled.button`
+  position: absolute;
   width: 5rem;
   height: 2rem;
-  background: ${(props) => props.theme.color_button_delete};
+  right: 0%;
   border: none;
   border-radius: 0.5rem;
-  right: 15%;
-  position: absolute;
+  background: ${(props) => props.theme.color_button_delete};
 `;
 
-const ItemTitleContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 10%;
-`;
-
-const ItemTitle = styled.div`
-  font-size: 2rem;
-  position: absolute;
+const ItemTitle = styled.p`
   margin: 1rem;
+  font-size: 2rem;
   color: ${(props) => props.theme.color_font__frimary};
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 70%;
-  height: 10%;
-  border-radius: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  width: 77%;
+  height: 8vh;
   margin-top: 1rem;
+  border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCondition = styled.p`
-  font-size: 1.2rem;
   margin: 1.2rem;
+  font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemConditionDetail = styled.div`
-  background: ${(props) => props.theme.color_background__success};
-  color: ${(props) => props.theme.color_font__secondary};
-  font-size: 1rem;
   width: 5rem;
   height: 2rem;
-  margin: 1rem 2rem;
   padding-top: 0.5rem;
+  font-size: 1rem;
   text-align: center;
   border-radius: 0.8rem;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryContainer = styled.div`
-  background: ${(props) => props.theme.color_background__primary};
-  width: 70%;
-  height: 10%;
-  border-radius: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  width: 77%;
+  height: 8vh;
   margin-top: 1rem;
+  border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCategory = styled.p`
   font-size: 1.2rem;
-  margin: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryDetail = styled.div`
-  font-size: 0.8rem;
   width: 5rem;
   height: 2rem;
-  margin: 1rem 2rem;
   padding-top: 0.5rem;
   text-align: center;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const ItemInfoContainer = styled.div`
+const ItemDescriptionContainer = styled.div`
   width: 90%;
-  height: 50%;
+  height: 35vh;
   margin-top: 2rem;
-  padding: 0.5rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__primary};
   overflow-y: scroll;
-
+  background: ${(props) => props.theme.color_background__primary};
   .toastui-editor-contents p {
     color: ${(props) => props.theme.color_white};
   }
 `;
 
-const ItemInfo = styled.p`
-  padding: 2rem;
-  color: ${(props) => props.theme.color_font__secondary};
-`;
-
-const Right_Component = ({ singleItemData }) => {
+const ItemInfoContainer = ({ singleItemData }) => {
   const { name, quality, quantity, description, product_category } =
     singleItemData;
   return (
@@ -119,9 +100,7 @@ const Right_Component = ({ singleItemData }) => {
       <EditButtonContainer>
         <EditButton>수정하기</EditButton>
       </EditButtonContainer>
-      <ItemTitleContainer>
-        <ItemTitle>{name}</ItemTitle>
-      </ItemTitleContainer>
+      <ItemTitle>{name}</ItemTitle>
       <ItemDetailContainer>
         <ItemCondition>아이템 상태</ItemCondition>
         <ItemConditionDetail>{statusHandler(quality)}</ItemConditionDetail>
@@ -134,11 +113,11 @@ const Right_Component = ({ singleItemData }) => {
         <ItemCategory>개수</ItemCategory>
         <ItemCategoryDetail>{quantity}</ItemCategoryDetail>
       </ItemCategoryContainer>
-      <ItemInfoContainer>
+      <ItemDescriptionContainer>
         <Viewer initialValue={description} />
-      </ItemInfoContainer>
+      </ItemDescriptionContainer>
     </>
   );
 };
 
-export default Right_Component;
+export default ItemInfoContainer;

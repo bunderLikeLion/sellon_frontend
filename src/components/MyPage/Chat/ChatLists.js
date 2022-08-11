@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import UserEvaluationModal from './UserEvaluationModal';
+import { useState } from 'react';
 
 const ChatMessageListContainor = styled.div`
   width: 100%;
@@ -57,7 +59,13 @@ const ChatBoxButton = styled.button`
   font-weight: 700;
 `;
 
-const ChatLists = () => {
+const ChatLists = (props) => {
+  const [isButtonOpened, setIsButtonOpened] = useState(false);
+  const handleButton = () => setIsButtonOpened(!isButtonOpened);
+
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   return (
     <ChatMessageListContainor>
       <UserProfileImg />
@@ -68,7 +76,11 @@ const ChatLists = () => {
         </ChatTimeContainor>
         <ChatButtonContainer>
           <ChatBoxButton>상세보기</ChatBoxButton>
-          <ChatBoxButton>거래종료</ChatBoxButton>
+          <ChatBoxButton onClick={handleModal}>평가하기</ChatBoxButton>
+          <UserEvaluationModal
+        handleModal={handleModal}
+        isModalOpened={isModalOpened}
+      />
         </ChatButtonContainer>
       </ChatMessageText>
     </ChatMessageListContainor>

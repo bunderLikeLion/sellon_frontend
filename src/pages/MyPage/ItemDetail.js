@@ -1,25 +1,28 @@
 import styled from 'styled-components';
-import Left_Component from 'components/MyPage/ItemDetail/Left_Component';
-import Right_Component from 'components/MyPage/ItemDetail/Right_Component';
+import ItemImage from 'components/MyPage/ItemDetail/ItemImage';
+import ItemInfoContainer from 'components/MyPage/ItemDetail/ItemInfoContainer';
+import UserInformation from 'components/MyPage/ItemDetail/UserInformation';
 import { useParams } from 'react-router-dom';
 import useSingleProductQuery from 'queries/product/useSingleProductQuery';
 import WrapContainer from 'layouts/WrapContainer';
 
 const Container = styled.div`
-  width: 100%;
-  height: 35rem;
-  color: ${(props) => props.theme.color_white};
   display: flex;
+  width: 100%;
+  height: 85vh;
+  margin: 2rem;
   padding-top: 0.5rem;
+  color: ${(props) => props.theme.color_white};
 `;
 
-const ItemDetail_Left = styled.div`
+const LeftContainer = styled.div`
   width: 60%;
+  height: 100%;
   padding: 0 5rem 0 5rem;
 `;
 
-const ItemDetail_Right = styled.div`
-  width: 45%;
+const RightContainer = styled.div`
+  width: 40%;
   height: 100%;
 `;
 
@@ -32,16 +35,17 @@ const ItemDetail = () => {
     <>
       <WrapContainer>
         <Container>
-          <ItemDetail_Left>
+          <LeftContainer>
+            {singleItemFetched && <ItemImage singleItemData={singleItem} />}
             {singleItemFetched && (
-              <Left_Component singleItemData={singleItem} />
+              <UserInformation singleItemData={singleItem} />
             )}
-          </ItemDetail_Left>
-          <ItemDetail_Right>
+          </LeftContainer>
+          <RightContainer>
             {singleItemFetched && (
-              <Right_Component singleItemData={singleItem} />
+              <ItemInfoContainer singleItemData={singleItem} />
             )}
-          </ItemDetail_Right>
+          </RightContainer>
         </Container>
       </WrapContainer>
     </>

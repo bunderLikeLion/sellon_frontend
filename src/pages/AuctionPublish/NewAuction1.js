@@ -143,7 +143,7 @@ const NewAuction1 = () => {
               </InventoryBtn>
             </BtnContainer>
           </Container>
-
+          
           <Container>
             <AuctionTitleContainer>
               <SubHeader>경매글 제목</SubHeader>
