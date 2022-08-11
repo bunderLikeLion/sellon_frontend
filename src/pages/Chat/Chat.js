@@ -6,32 +6,31 @@ import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
 
 const ChatForm = styled.div`
   display: flex;
+  justify-content: space-around;
   height: 42rem;
   overflow: hidden;
-  justify-content: space-around;
 `;
 
 const Chat_Left = styled.div`
-  width: 48%;
-  border-radius: 0.5rem;
-  background: ${(props) => props.theme.color_background__primary};
-  padding: 1rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 48%;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const Chat_Right = styled.div`
-  width: 48%;
-  border-radius: 0.5rem;
-  background: ${(props) => props.theme.color_background__primary};
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 48%;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
-const OnChatContainor = styled.div`
+const OnChatContainer = styled.div`
   height: 15%;
 `;
 
@@ -41,34 +40,32 @@ const MessageTitle = styled.div`
   font-weight: bold;
 `;
 
-const ChatContainor = styled.div`
-  overflow-y: scroll;
-  height: 85%;
-  margin: 1rem 0;
+const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 85%;
+  margin: 1rem 0;
+  overflow-y: scroll;
 `;
 
 const ChatContentContainer = styled.div`
   height: 100%;
   padding: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 const ChatBox = styled.div`
-  color: ${(props) => props.theme.color_font__secondary};
   padding: 0.5rem;
   line-height: 1.5rem;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const OnChatContainerBottom = styled.div`
   height: 6rem;
-  background: ${(props) => props.theme.color_background__secondary};
-  position: relative;
-  border-radius: 0 0 0.5rem 0.5rem;
   padding: 1rem;
-  align-items: center;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const Chat = () => {
@@ -77,19 +74,19 @@ const Chat = () => {
       <ChatForm>
         <Chat_Left>
           <MessageTitle>진행중인 거래</MessageTitle>
-          <ChatContainor>
+          <ChatContainer>
             <ChatLists />
             <ChatLists />
             <ChatLists />
             <ChatLists />
             <ChatLists />
             <ChatLists />
-          </ChatContainor>
+          </ChatContainer>
         </Chat_Left>
         <Chat_Right>
-          <OnChatContainor>
+          <OnChatContainer>
             <OnChatUserProfile />
-          </OnChatContainor>
+          </OnChatContainer>
           <ChatContentContainer>
             <ChatBox>
               상대방:

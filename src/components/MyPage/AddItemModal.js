@@ -26,14 +26,14 @@ const ModalContainer = styled(Box)`
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 50rem;
   height: 70%;
-  background: ${(props) => props.theme.color_background__default};
-  color: ${(props) => props.theme.color_white};
   padding: 3rem;
   overflow-y: scroll;
   border-radius: 1rem;
+  transform: translate(-50%, -50%);
+  background: ${(props) => props.theme.color_background__default};
+  color: ${(props) => props.theme.color_white};
 `;
 
 const StyledTypography = styled(Typography)`
@@ -44,22 +44,22 @@ const CloseBtn = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;
-  color: ${(props) => props.theme.color_font__number};
   cursor: pointer;
+  color: ${(props) => props.theme.color_font__number};
 `;
 
 const AddBtn = styled(Button)`
-  background: ${(props) => props.theme.color_background__success};
-  color: ${(props) => props.theme.color_white} !important;
-  margin-top: 1.5rem !important;
+  float: right;
   width: 7rem;
   height: 2.5rem;
-  font-size: 1.2rem !important;
-  float: right;
+  margin-top: 1.5rem !important;
   border: none !important;
+  font-size: 1.2rem !important;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StyledLabel = styled.p`
+export const StyledLabel = styled.p`
   margin: 1.5rem 0 0.5rem 0.5rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
@@ -73,20 +73,20 @@ const StyledTextField = styled(TextField)`
     border: 3px solid transparent;
   }
   & .MuiOutlinedInput-root {
+    width: 100%;
+    height: 2.5rem;
+    padding: 0;
+    font-size: 1rem;
     border: 3px solid transparent;
+    border-radius: 1rem;
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important;
     background-image: linear-gradient(
         ${(props) => props.theme.color_background__default},
         ${(props) => props.theme.color_background__default}
       ),
       ${(props) => props.theme.color_border__hover} !important;
     color: #ffffff !important;
-    background-origin: border-box !important;
-    background-clip: content-box, border-box !important;
-    padding: 0rem;
-    font-size: 1rem;
-    border-radius: 1rem;
-    width: 100%;
-    height: 2.5rem;
     & fieldset {
       border: 2px solid transparent;
     }
@@ -99,50 +99,50 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-const StatusRadioBox = styled.div`
+export const StatusRadioBox = styled.div`
   width: 40rem;
   min-height: 2rem;
   margin-top: 2rem;
+  padding: 0;
+  font-size: 1rem;
   border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
   background-image: linear-gradient(
       ${(props) => props.theme.color_background__default},
       ${(props) => props.theme.color_background__default}
     ),
     ${(props) => props.theme.color_border__hover} !important;
-  color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  padding: 0rem;
-  font-size: 1rem;
-  border-radius: 1rem;
 `;
 
 const CategoryRadioBox = styled.div`
   width: 40rem;
   min-height: 3rem;
   margin-top: 2rem;
+  padding: 0;
+  font-size: 1rem;
   border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
   background-image: linear-gradient(
       ${(props) => props.theme.color_background__default},
       ${(props) => props.theme.color_background__default}
     ),
     ${(props) => props.theme.color_border__hover} !important;
-  color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  padding: 0rem;
-  font-size: 1rem;
-  border-radius: 1rem;
 `;
 
-const InsideRadioBox = styled.div`
+export const InsideRadioBox = styled.div`
   padding: 0 1rem;
 `;
 
-const CategoryContentBox = styled.div`
-  width: 100%;
+export const CategoryContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 `;
 
 const SingleRadio = styled.span`
@@ -157,39 +157,39 @@ const RadioLabel = styled.label`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const StyledRadio = styled(Radio)`
+export const StyledRadio = styled(Radio)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StatusRadio = styled(SingleRadio)`
+export const StatusRadio = styled(SingleRadio)`
   width: 20%;
 `;
 
 const InputQuantityBox = styled.div`
+  width: 30%;
+  height: 2.5rem;
+  font-size: 1rem;
   border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background-origin: border-box !important;
+  background-clip: content-box, border-box !important;
   background-image: linear-gradient(
       ${(props) => props.theme.color_background__default},
       ${(props) => props.theme.color_background__default}
     ),
     ${(props) => props.theme.color_border__hover} !important;
-  color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  font-size: 1rem;
-  border-radius: 1rem;
-  width: 30%;
-  height: 2.5rem;
 `;
 
 const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
   & {
-    background: transparent;
-    border: none;
     width: 100%;
     height: 100%;
     padding: 0 1rem;
-    color: white;
     font-size: 1rem;
+    border: none;
+    background: transparent;
+    color: #fff;
   }
   &:focus-visible {
     outline: none;
@@ -308,7 +308,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
             </CategoryContentBox>
           </InsideRadioBox>
         </StatusRadioBox>
-        
+
         <CategoryRadioBox>
           <InsideRadioBox>
             <StyledLabel>카테고리</StyledLabel>

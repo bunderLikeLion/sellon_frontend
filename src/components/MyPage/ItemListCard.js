@@ -12,9 +12,9 @@ import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   position: relative;
-  margin: 3rem 0 0 1rem;
   width: 30%;
   height: 100%;
+  margin: 3rem 0 0 1rem;
   z-index: 1;
 
   &:before {
@@ -47,9 +47,9 @@ const ImageContainer = styled(CardMedia)`
 `;
 
 const ProductCard = styled(Card)`
+  border-radius: 20px !important;
   background: ${(props) => props.theme.color_background__primary} !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
-  border-radius: 20px !important;
 `;
 
 const StyledCardHeader = styled(CardHeader)`
@@ -67,8 +67,8 @@ const StyledDeleteIcon = styled(DeleteForeverIcon)`
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  color: red;
   cursor: pointer;
+  color: #f00;
 `;
 
 const CategoryBox = styled.div`
@@ -77,23 +77,23 @@ const CategoryBox = styled.div`
   align-items: center;
   width: 5rem;
   height: 2rem;
-  background: ${(props) => props.theme.color_background__success};
+  margin-bottom: 1rem;
   border-radius: 20px;
   color: ${(props) => props.theme.color_buttontext__ok};
-  margin-bottom: 1rem;
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const StyledModal = styled(Box)`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 50%;
   height: 30%;
-  background: ${(props) => props.theme.color_border__topleft};
-  color: ${(props) => props.theme.color_white};
+  transform: translate(-50%, -50%);
   border: 2px solid #000;
   border-radius: 20px;
+  background: ${(props) => props.theme.color_border__topleft};
+  color: ${(props) => props.theme.color_white};
 `;
 
 const StyledModalContent = styled.div`

@@ -4,63 +4,63 @@ import { useState } from 'react';
 import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublishModal';
 
 const TopContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 2rem 1rem;
-  color: white;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem;
+  color: #fff;
 `;
 
 const BigContainer = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
 `;
 
 const Container = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
 `;
 
 const BigText = styled.div`
+  margin: 0.5rem 2rem;
   font-size: 2rem;
   font-weight: 700;
-  margin: 0.5rem 2rem;
 `;
 
 const BtnContainer = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const Button = styled.button`
-  margin: 4rem 1rem 1rem 1rem;
-  background: ${(props) => props.theme.color_background__success};
-  color: white;
-  border-radius: 1rem;
+  float: right;
   height: 3.5rem;
   width: 9rem;
-  float: right;
+  margin: 4rem 1rem 1rem 1rem;
   font-size: 1rem;
   font-weight: 700;
   border: none;
+  border-radius: 1rem;
+  color: #fff;
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const InventoryBtn = styled.button`
-  font-size: x-large;
-  background: ${(props) => props.theme.color_background__primary};
-  color: ${(props) => props.theme.color_font__tertiary};
-  border: none;
   height: 95%;
   width: 100%;
+  font-size: x-large;
+  border: none;
+  color: ${(props) => props.theme.color_font__tertiary};
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const SubHeader = styled.p`
@@ -78,38 +78,38 @@ const AuctionTitleContainer = styled.div`
 const AuctionTitle = styled.input.attrs((props) => ({
   type: 'text',
 }))`
-  background: grey;
-  border: none;
-  border-radius: 0.5rem;
   width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
   font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: grey;
 `;
 
 const TextareaContainer = styled.div`
-  margin: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  margin: 2rem 1rem;
 `;
 
 const AuctionText = styled.textarea`
-  background: grey;
   height: 20rem;
   padding: 1rem;
+  font-size: 1rem;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  background: grey;
 `;
 
 const AuctionDetailInformationContainer = styled.div`
-  background: ${(props) => props.theme.color_background__primary};
   display: flex;
+  align-items: center;
+  height: 4.5rem;
   margin: 1rem;
   padding: 1rem 2rem;
-  align-items: center;
   border-radius: 1rem;
-  height: 4.5rem;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const Radio = styled.input.attrs((props) => ({ type: 'radio' }))`

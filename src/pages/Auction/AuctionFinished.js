@@ -10,17 +10,17 @@ const Container = styled.div`
 `;
 
 const TopContainer = styled.div`
+  display: inline-flex;
   width: 100%;
   height: 45%;
   background-color: white;
-  display: inline-flex;
 `;
 
 const TopTextContainer = styled.div`
-  width: 30%;
-  height: 40%;
   display: flex;
   flex-direction: column;
+  width: 30%;
+  height: 40%;
   margin-left: 2%;
 `;
 
@@ -37,60 +37,53 @@ const CountParticipant = styled.div`
   margin-top: 7%;
 `;
 
-const CountParticipantIcon = styled.div`
-  width: 15%;
-  height: 100%;
-  margin-right: 15%;
-`;
-
 const TopImageContainer = styled.div`
-  background-color: lightgray;
-  width: 25%;
-  height: 30%;
-  text-align: center;
-  margin-top: 3rem;
   position: absolute;
   right: 0;
-  margin-right: 10%;
+  width: 25%;
+  height: 30%;
+  margin: 3rem 10% 0 0;
+  text-align: center;
+  background-color: #f5f5f5;
 `;
 
 const BottomContainer = styled.div`
-  background-color: #262626;
   height: 50%;
+  background-color: #262626;
 `;
 
 const Participant = styled.div`
-  background-color: white;
+  display: inline-flex;
+  align-items: center;
   height: 20%;
   width: 80%;
   margin-left: 2%;
   margin-top: 2%;
-  display: inline-flex;
-  align-items: center;
+  background-color: #fff;
 `;
 
 const ParticipantItemImage = styled.div`
-  background-color: #a1a1a1;
   width: 4.5%;
   height: 80%;
   margin-right: 2%;
+  background-color: #a1a1a1;
 `;
 
 const StyledButton = styled(Button)`
   && {
-    background-color: #c9c9c9;
     position: absolute;
     right: 0;
     margin-right: 2%;
     border-radius: 0;
+    background-color: #c9c9c9;
   }
 `;
 
 const MoreButton = styled(Button)`
   && {
+    width: 1rem;
     font-weight: bold;
     font-size: 1.5rem;
-    width: 1rem;
   }
 `;
 

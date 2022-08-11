@@ -10,7 +10,7 @@ const theme = {
   color_background__warning:
     'linear-gradient(90deg, rgba(226, 115, 171, 0.81) 0%, #C5270A 63.54%)',
   color_button__delete: '#A6A6A6',
-  color_button__ok: '#FCFCFC',
+  color_button__ok: 'linear-gradient(135deg, #52458F 0%, #B293C4 100%);',
   color_button__filter: '#848484',
   color_buttontext__ok: '#848484',
   color_buttontext__delete: '#848484',

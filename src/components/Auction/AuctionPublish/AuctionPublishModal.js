@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import ClearIcon from '@mui/icons-material/Clear';
 import InventoryItem from './InventoryItem';
+import useMyProductsQuery from '../../../queries/product/useMyProductsQuery';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -33,35 +34,37 @@ const TextContainer = styled.div`
 
 const Text = styled.h1`
   letter-spacing: 0.1rem;
-  color: #fff;
   font-weight: 600;
   font-size: 2rem;
+  color: #fff;
 `;
 
 const ValidationCancelButton = styled(ClearIcon)`
   position: absolute;
-  color: #fff;
-  font-size: 2.5rem !important;
   top: 2%;
   right: 2%;
   cursor: pointer;
+  font-size: 2.5rem !important;
+  color: #fff;
 `;
 
 const InventoryContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  overflow-y: scroll;
   width: 100%;
   height: 85%;
+  overflow-y: scroll;
 `;
 
-const AuctionPublishModal = ({ handleModal, isModalOpened }) => {
+const AuctionPublishModal = (props) => {
+  const { data: myProducts, isSuccess } = useMyProductsQuery(1, 30);
+
   return (
     <Modal
-      open={isModalOpened}
-      onClose={handleModal}
+      open={props.isModalOpened}
+      onClose={props.handleModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -70,19 +73,19 @@ const AuctionPublishModal = ({ handleModal, isModalOpened }) => {
           <TextContainer>
             <Text>인벤토리</Text>
           </TextContainer>
-          <ValidationCancelButton onClick={handleModal} />
+          <ValidationCancelButton onClick={props.handleModal} />
           <InventoryContainer>
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
-            <InventoryItem />
+            {isSuccess &&
+              myProducts.results.map((singleItem) => {
+                return (
+                  <InventoryItem
+                    key={singleItem.id}
+                    singleItem={singleItem}
+                    setSelectedItem={props.setSelectedItem}
+                    handleModal={props.handleModal}
+                  />
+                );
+              })}
           </InventoryContainer>
         </ContentContainer>
       </ModalContainer>

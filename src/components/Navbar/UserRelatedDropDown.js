@@ -10,21 +10,21 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { userAtom } from 'states';
 import { Stack } from '@mui/material';
 import styled from 'styled-components';
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
-    background: black !important;
-    color: white;
+    background: #000 !important;
+    color: #fff;
   }
 `;
 
 const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
   const navigate = useNavigate();
-  const setUser = useSetRecoilState(userAtom);
+  const [user, setUser] = useRecoilState(userAtom);
 
   const logout = () => {
     toast.success('로그아웃 성공 👍');
@@ -70,7 +70,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
             <IconButton>
               <Avatar src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg" />
             </IconButton>
-            <Typography textAlign="center">김유민</Typography>
+            <Typography textAlign="center">{user?.username}</Typography>
           </Stack>
         </MenuItem>
         <MenuItem onClick={closeUserMenu}>
