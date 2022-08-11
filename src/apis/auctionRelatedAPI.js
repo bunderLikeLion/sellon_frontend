@@ -8,19 +8,20 @@ const auctionRelatedAPI = {
   },
 
   getAuctionLists: (sort) => {
-    if (sort === 'popular')
-      return client
-        .get('auctions/?ordering=-product_groups_count')
-        .then((res) => res.data);
-    if (sort === 'oldest')
-      return client
-        .get('auctions/?ordering=created_at')
-        .then((res) => res.data);
-    if (sort === 'interest')
-      return client
-        .get('auctions/?ordering=-interested_auctions_count')
-        .then((res) => res.data);
-    return client.get('auctions/?ordering=-created_at').then((res) => res.data);
+    return client
+      .get('auctions/?ordering=-product_groups_count', {
+        params: {
+          ordering:
+            sort === 'popular'
+              ? '-product_groups_count'
+              : sort === 'oldest'
+              ? 'created_at'
+              : sort === 'interest'
+              ? '-interested_auctions_count'
+              : '-created_at',
+        },
+      })
+      .then((res) => res.data);
   },
 
   getSingleAuctionInfo: (id) => {
