@@ -4,7 +4,7 @@ import { Container, UsernameText, CircleProfileImgContainer } from './styles';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { Button } from '@mui/material';
-import useWithdrawlMutation from 'queries/auth/useWithdrawlMutation';
+import { useWithdrawlMutation } from 'queries/auth';
 
 const WithDrawlBtn = styled(Button)`
   && {

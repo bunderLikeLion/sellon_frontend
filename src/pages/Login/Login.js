@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import loginValidation from 'validations/loginValidation';
-import useLoginMutation from 'queries/auth/useLoginMutation';
+import { useLoginMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
 
