@@ -6,6 +6,7 @@ import { queryClient } from 'index';
 import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQuery';
 import { useEffect, useState } from 'react';
 import useCreateInterestedAuctionMutation from 'queries/auction/useCreateInterestedAuctionMutation';
+import useDeleteInterestedAuctionMutation from 'queries/auction/useDeleteInterestedAuctionMutation';
 
 const Container = styled(Card)`
   display: flex;
@@ -123,11 +124,16 @@ const AuctionItem = (props) => {
   const { mutate: createInterestedAuction } =
     useCreateInterestedAuctionMutation();
 
+  const { mutate: deleteInterestedAuction } =
+    useDeleteInterestedAuctionMutation();
+
   useEffect(() => {
     if (interestedAuctionListsFetched) {
       interestedAuctionLists?.results.map((singleInterestedAuction) => {
         if (singleInterestedAuction?.auction?.id === relatedAuctionId) {
           setIsInterested(true);
+        } else {
+          setIsInterested(false);
         }
       });
     }
@@ -138,8 +144,8 @@ const AuctionItem = (props) => {
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
-      {interestedAuctionListsFetched && isInterested ? (
-        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
+      {isInterested ? (
+        <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
           관심거래 삭제
         </button>
       ) : (
