@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
 import { useState } from 'react';
+import { useProductGroupsQuery } from 'queries/auction';
 import { queryClient } from 'index';
 import CardMedia from '@mui/material/CardMedia';
 import { useRecoilValue } from 'recoil';

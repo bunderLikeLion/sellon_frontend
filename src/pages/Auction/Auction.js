@@ -8,10 +8,10 @@ import WrapContainer from 'layouts/WrapContainer';
 import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
-import useAuctionsQuery from 'queries/auction/useAuctionsQuery';
 import { StyledLink } from 'styles/StyledComponetStyles';
-import useTodayCompletedQuery from 'queries/dealing/useTodayCompletedQuery';
 import { Link } from 'react-router-dom';
+import { useTodayCompletedQuery } from 'queries/dealing';
+import { useAuctionsQuery } from 'queries/auction';
 
 const Form = styled.div`
   width: 100%;

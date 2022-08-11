@@ -5,7 +5,8 @@ import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublis
 import InfoContainerWithItem from 'components/NewAuction/InfoContainerWithItem';
 import NewAuctionInput from 'components/NewAuction/NewAuctionInput';
 import useInput from 'hooks/useInput';
-import useCreateAuctionMutation from 'queries/auction/useCreateAuctionMutation';
+import { useCreateAuctionMutation } from 'queries/auction';
+import moment from 'moment';
 
 export const Container = styled.div`
   position: relative;
@@ -98,6 +99,7 @@ const NewAuction = () => {
       title: auctionTitle,
       description: auctionDesc,
       dealing_type: auctionMethod,
+      end_at: moment().add(auctionTime === '1' ? 1 : 7, 'd'),
     });
   };
 

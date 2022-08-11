@@ -3,8 +3,7 @@ import toast from 'react-hot-toast';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
-import productsRelatedAPI from 'apis/productsRelatredAPI';
-import useDeleteProductMutation from 'queries/product/useDeleteProductMutation';
+import { useDeleteProductMutation } from 'queries/product';
 
 const useCreateProductGroupMutation = (relatedAuctionId) => {
   let itemId = 0;
