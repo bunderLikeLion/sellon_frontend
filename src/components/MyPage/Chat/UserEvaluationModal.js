@@ -148,7 +148,7 @@ const StyledRating = withStyles({
     fontSize: 40,
   },
   iconFilled: {
-    color: '#FEFEFF',
+    color: '#7B749D',
     fontSize: 40,
   },
   iconHover: {

@@ -7,8 +7,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import useDeleteProductMutation from 'queries/product/useDeleteProductMutation';
 import { Link } from 'react-router-dom';
+import { useDeleteProductMutation } from 'queries/product';
 
 const Container = styled.div`
   position: relative;

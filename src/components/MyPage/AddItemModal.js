@@ -18,8 +18,8 @@ import {
 } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
-import useCategoryQuery from 'queries/product/useCategoryQuery';
-import useCreateProductMutation from 'queries/product/useCreateProductMutation';
+import { useCategoryQuery } from 'queries/product';
+import { useCreateProductMutation } from 'queries/product';
 import useInput from 'hooks/useInput';
 
 const ModalContainer = styled(Box)`

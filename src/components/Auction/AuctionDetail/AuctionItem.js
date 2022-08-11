@@ -3,10 +3,13 @@ import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
 import { queryClient } from 'index';
-import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQuery';
-import { useEffect, useState } from 'react';
-import useCreateInterestedAuctionMutation from 'queries/auction/useCreateInterestedAuctionMutation';
-import useDeleteInterestedAuctionMutation from 'queries/auction/useDeleteInterestedAuctionMutation';
+import {
+  useDeleteInterestedAuctionMutation,
+  useCreateInterestedAuctionMutation,
+} from 'queries/auction';
+import timeLimitHandler from 'utils/timeLimitHandler';
+import { useState } from 'react';
+import AuctionDetailModal from './AuctionDetailModal';
 
 const Container = styled(Card)`
   display: flex;
@@ -16,18 +19,6 @@ const Container = styled(Card)`
   width: 50%;
   height: ${(props) => (props.isInventoryOpened ? '92vh' : '63.5vh')};
   background: transparent !important;
-`;
-
-const InterestedButton = styled.button`
-  position: absolute;
-  bottom: 1%;
-  right: 5%;
-  width: 20%;
-  height: 8%;
-  border: none;
-  border-radius: 0.5rem;
-  color: ${(props) => props.theme.color_font__secondary};
-  background: ${(props) => props.theme.color_background__warning};
 `;
 
 const ItemImgContainer = styled.div`
@@ -124,14 +115,9 @@ const ItemDescription = styled.p`
 `;
 
 const AuctionItem = (props) => {
-  const [isInterested, setIsInterested] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
 
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
-
-  const {
-    data: interestedAuctionLists,
-    isSuccess: interestedAuctionListsFetched,
-  } = useInterestedAuctionsQuery();
 
   const { mutate: createInterestedAuction } =
     useCreateInterestedAuctionMutation();
@@ -139,49 +125,42 @@ const AuctionItem = (props) => {
   const { mutate: deleteInterestedAuction } =
     useDeleteInterestedAuctionMutation();
 
-  useEffect(() => {
-    if (interestedAuctionListsFetched) {
-      interestedAuctionLists?.results.map((singleInterestedAuction) => {
-        if (singleInterestedAuction?.auction?.id === relatedAuctionId) {
-          setIsInterested(true);
-        } else {
-          setIsInterested(false);
-        }
-      });
-    }
-  }, [interestedAuctionLists]);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
 
   return (
     <Container
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
+      {props?.singleAuctionData?.is_interested ? (
+        <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
+          관심거래 삭제
+        </button>
+      ) : (
+        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
+          관심거래 등록
+        </button>
+      )}
       <ItemImgContainer>
         <ItemImg
+          onClick={handleModal}
           component="img"
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
+        <AuctionDetailModal
+          handleModal={handleModal}
+          isModalOpened={isModalOpened}
+        />
         <ItemDurationContainer>
-          <ItemDuration>D - 7</ItemDuration>
+          <ItemDuration>
+            {timeLimitHandler(props?.singleAuctionData?.end_at)}
+          </ItemDuration>
         </ItemDurationContainer>
         <ExchangeWayContainer>
           <ExchangeWay>
             {dealingTypeHandler(props?.singleAuctionData?.dealing_type)}
           </ExchangeWay>
         </ExchangeWayContainer>
-        {isInterested ? (
-          <InterestedButton
-            onClick={() => deleteInterestedAuction(relatedAuctionId)}
-          >
-            관심거래 삭제
-          </InterestedButton>
-        ) : (
-          <InterestedButton
-            onClick={() => createInterestedAuction(relatedAuctionId)}
-          >
-            관심거래 등록
-          </InterestedButton>
-        )}
       </ItemImgContainer>
       <ItemContentContainer>
         <ItemNameContainer>

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ValidationModal from './ValidationModal';
-import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import { useMyProductsQuery } from 'queries/product';
 import CardMedia from '@mui/material/CardMedia';
-import useCreateProductGroupMutation from 'queries/auction/useCreateProductGroupMutation';
+import { useCreateProductGroupMutation } from 'queries/auction';
 import { QueryCache } from '@tanstack/react-query';
 import { queryClient } from 'index';
-import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
 import HiddenCard from './InventoryCards/HiddenCard';
 
 const Container = styled.div`

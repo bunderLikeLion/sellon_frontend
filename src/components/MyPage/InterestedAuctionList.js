@@ -1,17 +1,15 @@
-import { AddItemModal } from './index';
-import { useState } from 'react';
-import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import InterestedAuctionListCard from './InterestedAuctionListCard';
 import InterestedAuctionListCardFinished from './InterestedAuctionListCardFinished';
+import { useInterestedAuctionsQuery } from 'queries/auction';
 
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
   align-content: center;
-  justify-content: space-around;
+  margin-top: 3rem;
 `;
 
 const ItemListContainer = styled.div`
@@ -21,20 +19,26 @@ const ItemListContainer = styled.div`
 `;
 
 const InterestedAuctionList = () => {
+  const {
+    data: interestedAuctionLists,
+    isSuccess: interestedAuctionListsFetched,
+  } = useInterestedAuctionsQuery();
+
   return (
     <ItemListContainer>
-      <p>총 3개</p>
-      <FlexContainer>
-        <InterestedAuctionListCardFinished />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-        <InterestedAuctionListCard />
-      </FlexContainer>
+      {interestedAuctionListsFetched && (
+        <>
+          <p>총 {interestedAuctionLists?.total_count}개</p>
+          <FlexContainer>
+            <InterestedAuctionListCardFinished />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+            <InterestedAuctionListCard />
+          </FlexContainer>
+        </>
+      )}
     </ItemListContainer>
   );
 };

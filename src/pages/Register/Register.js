@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import registerValidation from 'validations/registerValidation';
-import useSignInMutation from 'queries/auth/useSignInMutation';
+import { useSignInMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
 

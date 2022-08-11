@@ -3,6 +3,7 @@ import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import { StyledLink } from 'styles/StyledComponetStyles';
+import timeLimitHandler from 'utils/timeLimitHandler';
 
 const Container = styled.div`
   margin: 2% 1.5%;
@@ -103,8 +104,7 @@ const HomeAuctionListCard = ({ auctionData }) => {
               <PersonIcon />
               {auctionData?.product_groups_count}명
             </PersonCntBox>
-            {/*<EnterBox>{auctionData?.end_at}</EnterBox>*/}
-            <EnterBox>D-1</EnterBox>
+            <EnterBox>{timeLimitHandler(auctionData?.end_at)}</EnterBox>
           </CardBottom>
         </CardContainor>
       </StyledLink>

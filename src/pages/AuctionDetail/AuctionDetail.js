@@ -4,7 +4,7 @@ import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOthe
 import AuctionMySuggestion from 'components/Auction/AuctionDetail/AuctionMySuggestion';
 import { useState } from 'react';
 import WrapContainer from 'layouts/WrapContainer';
-import useSingleAuctionQuery from 'queries/auction/useSingleAuctionQuery';
+import { useSingleAuctionQuery } from 'queries/auction';
 import { useParams } from 'react-router-dom';
 
 const Container = styled.div`

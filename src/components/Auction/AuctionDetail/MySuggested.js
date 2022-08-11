@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { queryClient } from 'index';
 import { useEffect, useState } from 'react';
-import useMyProductGroupQuery from 'queries/auction/useMyProductGroupQuery';
+import { useMyProductGroupQuery } from 'queries/auction';
 import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`

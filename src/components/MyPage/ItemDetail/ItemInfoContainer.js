@@ -80,7 +80,7 @@ const ItemCategoryDetail = styled.div`
 
 const ItemDescriptionContainer = styled.div`
   width: 90%;
-  height: 35vh;
+  height: 30vh;
   margin-top: 2rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
