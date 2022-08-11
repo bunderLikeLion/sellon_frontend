@@ -8,7 +8,8 @@ import {
   useCreateInterestedAuctionMutation,
 } from 'queries/auction';
 import timeLimitHandler from 'utils/timeLimitHandler';
-
+import { useState } from 'react';
+import AuctionDetailModal from './AuctionDetailModal';
 
 const Container = styled(Card)`
   display: flex;
@@ -125,18 +126,6 @@ const AuctionItem = (props) => {
     useDeleteInterestedAuctionMutation();
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
-
-  useEffect(() => {
-    if (interestedAuctionListsFetched) {
-      interestedAuctionLists?.results.map((singleInterestedAuction) => {
-        if (singleInterestedAuction?.auction?.id === relatedAuctionId) {
-          setIsInterested(true);
-        } else {
-          setIsInterested(false);
-        }
-      });
-    }
-  }, [interestedAuctionLists]);
 
   return (
     <Container
