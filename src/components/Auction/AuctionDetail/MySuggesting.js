@@ -3,7 +3,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { useState } from 'react';
 import ValidationModal from './ValidationModal';
-import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import { useMyProductsQuery } from 'queries/product';
 import CardMedia from '@mui/material/CardMedia';
 import { useCreateProductGroupMutation } from 'queries/auction';
 import { QueryCache } from '@tanstack/react-query';

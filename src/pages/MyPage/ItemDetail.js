@@ -3,7 +3,7 @@ import ItemImage from 'components/MyPage/ItemDetail/ItemImage';
 import ItemInfoContainer from 'components/MyPage/ItemDetail/ItemInfoContainer';
 import UserInformation from 'components/MyPage/ItemDetail/UserInformation';
 import { useParams } from 'react-router-dom';
-import useSingleProductQuery from 'queries/product/useSingleProductQuery';
+import { useSingleProductQuery } from 'queries/product';
 import WrapContainer from 'layouts/WrapContainer';
 
 const Container = styled.div`

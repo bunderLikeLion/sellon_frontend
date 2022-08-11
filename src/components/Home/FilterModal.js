@@ -7,8 +7,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { Radio, TextField } from '@mui/material';
-import useCategoryQuery from 'queries/product/useCategoryQuery';
 import useInput from 'hooks/useInput';
+import { useCategoryQuery } from 'queries/product';
 
 const ModalContainer = styled(Box)`
   position: relative;
