@@ -63,7 +63,7 @@ const InterestedAuctionListCardImage = styled(CardMedia)`
   height: 20vh;
 `;
 
-const FinishedOverlay = styled(Card)`
+export const FinishedOverlay = styled(Card)`
   display: ${(props) => (props.isFinished ? 'flex' : 'none')};
   position: absolute;
   left: 0;
@@ -99,7 +99,7 @@ const InterestedAuctionListCard = ({ isFinished, data }) => {
         </StyledCard>
       </ConditionalLink>
       <FinishedOverlay isFinished={isFinished}>
-        <p>종료된 거래입니다.</p>
+        <p>종료된 경매입니다.</p>
       </FinishedOverlay>
     </Container>
   );
