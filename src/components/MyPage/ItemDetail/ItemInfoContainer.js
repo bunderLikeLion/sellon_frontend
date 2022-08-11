@@ -5,42 +5,32 @@ import { Viewer } from '@toast-ui/react-editor';
 
 const EditButtonContainer = styled.div`
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 10%;
+  width: 90%;
+  height: 5vh;
 `;
 
 const EditButton = styled.button`
   position: absolute;
-  right: 15%;
   width: 5rem;
   height: 2rem;
+  right: 0%;
   border: none;
   border-radius: 0.5rem;
-  background: ${(props) => props.theme.color_button__delete};
+  background: ${(props) => props.theme.color_button_delete};
 `;
 
-const ItemTitleContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 10%;
-`;
-
-const ItemTitle = styled.div`
-  position: absolute;
+const ItemTitle = styled.p`
   margin: 1rem;
   font-size: 2rem;
-  color: ${(props) => props.theme.color_font__primary};
+  color: ${(props) => props.theme.color_font__frimary};
 `;
 
 const ItemDetailContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  width: 70%;
-  height: 10%;
+  width: 77%;
+  height: 8vh;
   margin-top: 1rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
@@ -53,49 +43,46 @@ const ItemCondition = styled.p`
 `;
 
 const ItemConditionDetail = styled.div`
-  text-align: center;
   width: 5rem;
   height: 2rem;
-  margin: 1rem 2rem;
   padding-top: 0.5rem;
-  border-radius: 0.8rem;
   font-size: 1rem;
+  text-align: center;
+  border-radius: 0.8rem;
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  width: 70%;
-  height: 10%;
+  width: 77%;
+  height: 8vh;
   margin-top: 1rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCategory = styled.p`
-  margin: 1.2rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryDetail = styled.div`
-  text-align: center;
   width: 5rem;
   height: 2rem;
-  margin: 1rem 2rem;
   padding-top: 0.5rem;
-  font-size: 0.8rem;
+  text-align: center;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const ItemInfoContainer = styled.div`
+const ItemDescriptionContainer = styled.div`
   width: 90%;
-  height: 50%;
+  height: 35vh;
   margin-top: 2rem;
-  padding: 0.5rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
   overflow-y: scroll;
   background: ${(props) => props.theme.color_background__primary};
@@ -104,7 +91,7 @@ const ItemInfoContainer = styled.div`
   }
 `;
 
-const Right_Component = ({ singleItemData }) => {
+const ItemInfoContainer = ({ singleItemData }) => {
   const { name, quality, quantity, description, product_category } =
     singleItemData;
   return (
@@ -112,9 +99,7 @@ const Right_Component = ({ singleItemData }) => {
       <EditButtonContainer>
         <EditButton>수정하기</EditButton>
       </EditButtonContainer>
-      <ItemTitleContainer>
-        <ItemTitle>{name}</ItemTitle>
-      </ItemTitleContainer>
+      <ItemTitle>{name}</ItemTitle>
       <ItemDetailContainer>
         <ItemCondition>아이템 상태</ItemCondition>
         <ItemConditionDetail>{statusHandler(quality)}</ItemConditionDetail>
@@ -127,11 +112,11 @@ const Right_Component = ({ singleItemData }) => {
         <ItemCategory>개수</ItemCategory>
         <ItemCategoryDetail>{quantity}</ItemCategoryDetail>
       </ItemCategoryContainer>
-      <ItemInfoContainer>
+      <ItemDescriptionContainer>
         <Viewer initialValue={description} />
-      </ItemInfoContainer>
+      </ItemDescriptionContainer>
     </>
   );
 };
 
-export default Right_Component;
+export default ItemInfoContainer;
