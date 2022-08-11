@@ -81,12 +81,14 @@ const HomeGroundTitle = styled.div`
 `;
 
 const SubmitAuctionButton = styled.button`
-  width: 7rem;
+  width: 10rem;
   height: 2rem;
   margin: 0.3rem;
-  border-radius: 1rem;
+  border: none;
+  border-radius: 0.5rem;
   font-size: 1rem;
   background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const DealComplete = styled.div`
@@ -145,6 +147,13 @@ const HomeGroundAuction = styled.div`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
+const FilterButton = styled.button`
+  width: 7rem;
+  height: 1.7rem;
+  border: none;
+  border-radius: 0.5rem;
+`;
+
 const MostPopular = styled.div`
   margin: 1.5rem;
 `;
@@ -157,15 +166,15 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
-  background-color: ${(props) => props.theme.color_button__filter};
+  background: #3a335c !important;
 `;
 
 const InputLabelBox = styled(InputLabel)`
   font-weight: bold !important;
+  color: ${(props) => props.theme.color_font__tertiary} !important;
 `;
 
 const MenuItemBox = styled(MenuItem)`
-  background: #000;
   color: #fff;
 `;
 
@@ -240,7 +249,9 @@ const Auction = () => {
         <SubNav3>
           <SubNav3_left>
             <HomeGroundAuction>홈그라운드의 모든 거래</HomeGroundAuction>
-            <button onClick={handleFilterModal}>필터 및 검색</button>
+            <FilterButton onClick={handleFilterModal}>
+              필터 및 검색
+            </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabelBox id="demo-select-small">정렬</InputLabelBox>
