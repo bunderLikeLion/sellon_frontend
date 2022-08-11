@@ -90,20 +90,20 @@ const ResponsiveAppBar = () => {
               justifyContent: 'space-evenly',
             }}
           >
+            <Link to="/">
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                기능소개
+              </Button>
+            </Link>
             <Link to="/auction">
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 경매장
-              </Button>
-            </Link>
-            <Link to="/about">
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                기능소개
               </Button>
             </Link>
             <Link to="/toprank">

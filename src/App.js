@@ -38,8 +38,7 @@ const App = () => {
             <Suspense fallback={<WaveLoading />}>
               <Navbar />
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/mypage" element={<MyPage />} />
