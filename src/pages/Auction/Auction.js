@@ -106,6 +106,11 @@ const FameShortcut = styled.button`
   border: none;
   color: ${(props) => props.theme.color_font__primary};
   background: transparent;
+  :hover {
+    color: #e273ab;
+    transition: 0.5s;
+    transform: translateX(1rem);
+  }
 `;
 
 const SubNav = styled.div`
