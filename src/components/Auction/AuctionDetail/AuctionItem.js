@@ -3,8 +3,6 @@ import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
 import { queryClient } from 'index';
-import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQuery';
-import { useEffect, useState } from 'react';
 import useCreateInterestedAuctionMutation from 'queries/auction/useCreateInterestedAuctionMutation';
 import useDeleteInterestedAuctionMutation from 'queries/auction/useDeleteInterestedAuctionMutation';
 
@@ -112,14 +110,7 @@ const ItemDescription = styled.p`
 `;
 
 const AuctionItem = (props) => {
-  const [isInterested, setIsInterested] = useState(false);
-
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
-
-  const {
-    data: interestedAuctionLists,
-    isSuccess: interestedAuctionListsFetched,
-  } = useInterestedAuctionsQuery();
 
   const { mutate: createInterestedAuction } =
     useCreateInterestedAuctionMutation();
@@ -127,24 +118,12 @@ const AuctionItem = (props) => {
   const { mutate: deleteInterestedAuction } =
     useDeleteInterestedAuctionMutation();
 
-  useEffect(() => {
-    if (interestedAuctionListsFetched) {
-      interestedAuctionLists?.results.map((singleInterestedAuction) => {
-        if (singleInterestedAuction?.auction?.id === relatedAuctionId) {
-          setIsInterested(true);
-        } else {
-          setIsInterested(false);
-        }
-      });
-    }
-  }, [interestedAuctionLists]);
-
   return (
     <Container
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
-      {isInterested ? (
+      {props?.singleAuctionData?.is_interested ? (
         <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
           관심거래 삭제
         </button>

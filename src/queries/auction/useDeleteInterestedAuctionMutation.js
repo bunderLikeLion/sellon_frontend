@@ -14,7 +14,9 @@ const useDeleteInterestedAuctionMutation = () => {
       onSuccess: () => {
         toast.dismiss();
         toast.success('관심 경매 해제 성공했습니다 👍');
-        return queryClient.invalidateQueries(['interestedAuctionList']);
+        queryClient.invalidateQueries(['auctionInfo']).then(() => {
+          return queryClient.invalidateQueries(['interestedAuctionList']);
+        });
       },
       onError: (res) => {
         toast.dismiss();
