@@ -14,14 +14,13 @@ const ModalContainer = styled(Box)`
   position: relative;
   top: 50%;
   left: 50%;
+  width: 50rem;
+  height: 40rem;
+  padding: 3rem;
+  border-radius: 1rem;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 70%;
   background: ${(props) => props.theme.color_background__default};
   color: ${(props) => props.theme.color_white};
-  padding: 3rem;
-  overflow-y: scroll;
-  border-radius: 1rem;
 `;
 
 const CloseBtn = styled(CloseIcon)`
@@ -32,9 +31,20 @@ const CloseBtn = styled(CloseIcon)`
   cursor: pointer;
 `;
 
+const GuideContainer = styled.div`
+  width: 100%;
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  margin-top: 2rem;
+`;
+
 const StyledLabel = styled.p`
+  width: 8rem;
   margin: 1rem 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.color_font__tertiary};
 `;
 
 const StyledTextField = styled(TextField)`
@@ -61,10 +71,25 @@ const StyledTextField = styled(TextField)`
       border-image: ${(props) => props.theme.color_border__hover} 1;
     }
   }
+  width: 25rem;
+`;
+
+const LocationRadioBox = styled.div`
+  display: flex;
+  width: 25rem;
+  height: 5rem;
+  min-height: 3rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 0.3rem;
+  border: 2px solid transparent;
+  border-image: ${(props) => props.theme.color_border__hover} 1;
+  background: ${(props) => props.theme.color_background__default};
 `;
 
 const CategoryRadioBox = styled.div`
   width: 40rem;
+  height: 17rem;
   min-height: 3rem;
   padding: 1rem;
   margin-top: 2rem;
@@ -89,6 +114,7 @@ const SingleRadio = styled.span`
 `;
 
 const RadioLabel = styled.label`
+  width: 10rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -97,7 +123,14 @@ const StyledRadio = styled(Radio)`
 `;
 
 const StatusRadio = styled(SingleRadio)`
-  width: 20%;
+  width: 40%;
+  margin-top: 0.2rem;
+`;
+
+const ApplyButton = styled(Button)`
+  position: absolute !important;
+  bottom: 2%;
+  right: 2%;
 `;
 
 const FilterModal = (props) => {
@@ -154,18 +187,22 @@ const FilterModal = (props) => {
     >
       <ModalContainer>
         <CloseBtn onClick={closeModalFunc} />
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          아이템 추가
-        </Typography>
+        <GuideContainer>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            아이템 추가
+          </Typography>
+        </GuideContainer>
+        <SearchContainer>
+          {/*<StyledLabel>상품명</StyledLabel>*/}
+          <StyledTextField
+            id="outlined-name"
+            value={filterKeyword}
+            onChange={handleFilterKeyword}
+            placeholder="상품명"
+          />
+        </SearchContainer>
 
-        <StyledLabel>상품명</StyledLabel>
-        <StyledTextField
-          id="outlined-name"
-          value={filterKeyword}
-          onChange={handleFilterKeyword}
-        />
-
-        <CategoryRadioBox>
+        <LocationRadioBox>
           <StyledLabel>경매 지역</StyledLabel>
           <CategoryContentBox>
             <StatusRadio>
@@ -177,7 +214,7 @@ const FilterModal = (props) => {
               <RadioLabel>홈그라운드</RadioLabel>
             </StatusRadio>
           </CategoryContentBox>
-        </CategoryRadioBox>
+        </LocationRadioBox>
 
         <CategoryRadioBox>
           <StyledLabel>상품 카테고리</StyledLabel>
@@ -194,9 +231,9 @@ const FilterModal = (props) => {
           </CategoryContentBox>
         </CategoryRadioBox>
 
-        <Button variant="outlined" onClick={submitFilter}>
+        <ApplyButton variant="outlined" onClick={submitFilter}>
           적용
-        </Button>
+        </ApplyButton>
       </ModalContainer>
     </Modal>
   );
