@@ -7,6 +7,7 @@ import {
   useDeleteInterestedAuctionMutation,
   useCreateInterestedAuctionMutation,
 } from 'queries/auction';
+import timeLimitHandler from 'utils/timeLimitHandler';
 
 const Container = styled(Card)`
   display: flex;
@@ -140,7 +141,9 @@ const AuctionItem = (props) => {
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
         <ItemDurationContainer>
-          <ItemDuration>D - 7</ItemDuration>
+          <ItemDuration>
+            {timeLimitHandler(props?.singleAuctionData?.end_at)}
+          </ItemDuration>
         </ItemDurationContainer>
         <ExchangeWayContainer>
           <ExchangeWay>
