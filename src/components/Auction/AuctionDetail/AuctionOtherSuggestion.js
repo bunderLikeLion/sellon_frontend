@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
+import { useState } from 'react';
 import { queryClient } from 'index';
 import CardMedia from '@mui/material/CardMedia';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../../../states';
+import AuctionDetailModal from './AuctionDetailModal';
 
 const OtherSuggestionContainer = styled.div`
   display: flex;
@@ -13,7 +15,6 @@ const OtherSuggestionContainer = styled.div`
   border-radius: 0.5rem;
   overflow-y: scroll;
   background: ${(props) => props.theme.color_background__primary};
-  }
 `;
 
 const GuideContainer = styled.div`
@@ -75,6 +76,9 @@ const AuctionOtherSuggestion = (props) => {
   const { data: productGroups, isSuccess: productGroupsFetched } =
     useProductGroupsQuery(relatedAuctionId);
 
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   return (
     <OtherSuggestionContainer isInventoryOpened={props.isInventoryOpened}>
       <GuideContainer>
@@ -92,12 +96,18 @@ const AuctionOtherSuggestion = (props) => {
                 <AuctionOtherSuggestionItemContainer>
                   {singleProductGroup?.products.map((singleProduct) => {
                     return (
-                      <ItemImg
+                    <>
+                      <ItemImg onClick={handleModal}
                         key={singleProduct.id}
                         image={singleProduct?.thumbnail?.file}
                       >
                         아이템이미지
                       </ItemImg>
+                      <AuctionDetailModal
+                      handleModal={handleModal}
+                      isModalOpened={isModalOpened}
+                    />
+                    </>
                     );
                   })}
                 </AuctionOtherSuggestionItemContainer>

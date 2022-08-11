@@ -7,6 +7,7 @@ import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQue
 import { useEffect, useState } from 'react';
 import useCreateInterestedAuctionMutation from 'queries/auction/useCreateInterestedAuctionMutation';
 import useDeleteInterestedAuctionMutation from 'queries/auction/useDeleteInterestedAuctionMutation';
+import AuctionDetailModal from './AuctionDetailModal';
 
 const Container = styled(Card)`
   display: flex;
@@ -127,6 +128,9 @@ const AuctionItem = (props) => {
   const { mutate: deleteInterestedAuction } =
     useDeleteInterestedAuctionMutation();
 
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   useEffect(() => {
     if (interestedAuctionListsFetched) {
       interestedAuctionLists?.results.map((singleInterestedAuction) => {
@@ -155,8 +159,13 @@ const AuctionItem = (props) => {
       )}
       <ItemImgContainer>
         <ItemImg
+          onClick={handleModal}
           component="img"
           image={props?.singleAuctionData?.product?.thumbnail?.file}
+        />
+        <AuctionDetailModal
+          handleModal={handleModal}
+          isModalOpened={isModalOpened}
         />
         <ItemDurationContainer>
           <ItemDuration>D - 7</ItemDuration>
