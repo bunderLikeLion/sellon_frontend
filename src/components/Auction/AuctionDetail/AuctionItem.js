@@ -2,7 +2,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
-import { queryClient } from '../../../index';
+import { queryClient } from 'index';
+import useInterestedAuctionsQuery from 'queries/auction/useInterestedAuctionsQuery';
+import { useEffect, useState } from 'react';
 
 const Container = styled(Card)`
   display: flex;
@@ -108,7 +110,15 @@ const ItemDescription = styled.p`
 `;
 
 const AuctionItem = (props) => {
+  const [isInterested, setIsInterested] = useState(false);
+
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+  const {
+    data: interestedAuctionLists,
+    isSuccess: interestedAuctionListsFetched,
+  } = useInterestedAuctionsQuery();
+
+  useEffect(() => {}, [interestedAuctionLists]);
 
   return (
     <Container
