@@ -65,7 +65,7 @@ const auctionRelatedAPI = {
 
   postInventoryItem: (auctionId, payload) => {
     return client
-      .post(`auctions/${auctionId}/add_product`, payload)
+      .post(`auctions/${auctionId}/add_product/`, payload)
       .then((res) => res.data);
   },
 };
