@@ -16,6 +16,10 @@ const auctionRelatedAPI = {
       return client
         .get('auctions/?ordering=created_at')
         .then((res) => res.data);
+    if (sort === 'interest')
+      return client
+        .get('auctions/?ordering=-interested_auctions_count')
+        .then((res) => res.data);
     return client.get('auctions/?ordering=-created_at').then((res) => res.data);
   },
 

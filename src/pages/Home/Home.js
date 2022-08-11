@@ -10,6 +10,8 @@ import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import useAuctionsQuery from 'queries/auction/useAuctionsQuery';
 import { StyledLink } from 'styles/StyledComponetStyles';
+import useTodayCompletedQuery from 'queries/dealing/useTodayCompletedQuery';
+import { Link } from 'react-router-dom';
 
 const Form = styled.div`
   width: 100%;
@@ -169,6 +171,9 @@ const Home = () => {
 
   const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
 
+  const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
+    useTodayCompletedQuery();
+
   const { data: auctionList, isSuccess: auctionListFetched } =
     useAuctionsQuery(sort);
 
@@ -199,8 +204,13 @@ const Home = () => {
         </SubNav2>
 
         <SubNav>
-          <DealComplete>오늘 총 ~건의 거래가 성사되었습니다!</DealComplete>
-          <FameShortcut>명예의 전당 바로가기 →</FameShortcut>
+          <DealComplete>
+            오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
+            거래가 성사되었습니다!
+          </DealComplete>
+          <FameShortcut>
+            <Link to={'/toprank'}>명예의 전당 바로가기 →</Link>
+          </FameShortcut>
         </SubNav>
 
         <BestAuctionContainer>
@@ -235,7 +245,7 @@ const Home = () => {
             >
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
               <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
-              {/*<MenuItemBox value={30}>관심순</MenuItemBox>*/}
+              <MenuItemBox value={'interest'}>관심순</MenuItemBox>
             </SelectBox>
           </FormControl>
         </SubNav3>
