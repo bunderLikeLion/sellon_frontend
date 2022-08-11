@@ -3,19 +3,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import CloseIcon from '@mui/icons-material/Close';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useEffect, useRef, useState } from 'react';
-import {
-  FormControl,
-  InputLabel,
-  Radio,
-  Select,
-  TextField,
-} from '@mui/material';
+import { Radio, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
 import { useCategoryQuery } from 'queries/product';
@@ -40,7 +33,7 @@ const StyledTypography = styled(Typography)`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
-const CloseBtn = styled(CloseIcon)`
+export const CloseBtn = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;

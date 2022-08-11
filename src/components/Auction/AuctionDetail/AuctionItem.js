@@ -33,6 +33,7 @@ const ItemImg = styled(CardMedia)`
   border-radius: 0.5rem;
   object-fit: cover !important;
   object-position: center;
+  cursor: pointer;
 `;
 
 const ItemDurationContainer = styled.div`
@@ -150,6 +151,7 @@ const AuctionItem = (props) => {
         <AuctionDetailModal
           handleModal={handleModal}
           isModalOpened={isModalOpened}
+          isTriggeredFromBigImg={true}
         />
         <ItemDurationContainer>
           <ItemDuration>

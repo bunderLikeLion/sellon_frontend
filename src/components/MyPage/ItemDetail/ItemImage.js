@@ -41,15 +41,17 @@ const SubPic = styled(CardMedia)`
   border-radius: 1rem;
 `;
 
-const ItemImage = ({ singleItemData }) => {
+const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
   const { thumbnail, images } = singleItemData;
   return (
     <>
-      <ArrowIconContainer>
-        <Link to={'/mypage/'}>
-          <ArrowIcon />
-        </Link>
-      </ArrowIconContainer>
+      {!isTriggeredFromModal && (
+        <ArrowIconContainer>
+          <Link to={'/mypage/'}>
+            <ArrowIcon />
+          </Link>
+        </ArrowIconContainer>
+      )}
       <MainPicContainer>
         {thumbnail && <MainPic image={thumbnail?.file} />}
       </MainPicContainer>

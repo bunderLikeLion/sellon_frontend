@@ -12,6 +12,8 @@ import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery } from 'queries/auction';
+import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
+import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 
 const Form = styled.div`
   width: 100%;
@@ -251,10 +253,30 @@ const Auction = () => {
         </SubNav3>
 
         <Container>
-          {auctionListFetched &&
-            auctionList.results.map((singleAuction) => {
-              return <HomeAuctionListCard auctionData={singleAuction} />;
-            })}
+          {auctionListFetched && (
+            <>
+              {auctionList?.results.map((singleAuction) => {
+                console.log(singleAuction, 'single');
+                if (isAuctionFinishedHandler(singleAuction?.end_at)) {
+                  // 끝난 경매
+                  return (
+                    <HomeAuctionListCard
+                      auctionData={singleAuction}
+                      isFinished={true}
+                    />
+                  );
+                } else {
+                  // 진행중인 경매
+                  return (
+                    <HomeAuctionListCard
+                      auctionData={singleAuction}
+                      isFinished={false}
+                    />
+                  );
+                }
+              })}
+            </>
+          )}
         </Container>
       </Form>
       <FilterModal

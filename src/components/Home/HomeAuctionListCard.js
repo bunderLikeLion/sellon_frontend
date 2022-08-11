@@ -2,8 +2,9 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
-import { StyledLink } from 'styles/StyledComponetStyles';
 import timeLimitHandler from 'utils/timeLimitHandler';
+import ConditionalLink from 'components/ConditionalLink';
+import { FinishedOverlay } from '../MyPage/InterestedAuctionListCard';
 
 const Container = styled.div`
   margin: 2% 1.5%;
@@ -85,10 +86,13 @@ const MyCardHeader = styled.div`
   padding: 0.5rem;
 `;
 
-const HomeAuctionListCard = ({ auctionData }) => {
+const HomeAuctionListCard = ({ isFinished, auctionData }) => {
   return (
     <Container>
-      <StyledLink to={`/auction/${auctionData.id}`}>
+      <ConditionalLink
+        to={`/auction/${auctionData.id}`}
+        condition={!isFinished}
+      >
         <CardContainor sx={{ maxWidth: '100%' }}>
           <MyCardMedia
             component="img"
@@ -107,7 +111,10 @@ const HomeAuctionListCard = ({ auctionData }) => {
             <EnterBox>{timeLimitHandler(auctionData?.end_at)}</EnterBox>
           </CardBottom>
         </CardContainor>
-      </StyledLink>
+      </ConditionalLink>
+      <FinishedOverlay isFinished={isFinished}>
+        <p>종료된 경매입니다.</p>
+      </FinishedOverlay>
     </Container>
   );
 };
