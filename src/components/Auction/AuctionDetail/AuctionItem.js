@@ -9,6 +9,7 @@ import {
 } from 'queries/auction';
 import timeLimitHandler from 'utils/timeLimitHandler';
 
+
 const Container = styled(Card)`
   display: flex;
   flex-wrap: wrap;
@@ -113,6 +114,8 @@ const ItemDescription = styled.p`
 `;
 
 const AuctionItem = (props) => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
 
   const { mutate: createInterestedAuction } =
@@ -120,6 +123,20 @@ const AuctionItem = (props) => {
 
   const { mutate: deleteInterestedAuction } =
     useDeleteInterestedAuctionMutation();
+
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
+  useEffect(() => {
+    if (interestedAuctionListsFetched) {
+      interestedAuctionLists?.results.map((singleInterestedAuction) => {
+        if (singleInterestedAuction?.auction?.id === relatedAuctionId) {
+          setIsInterested(true);
+        } else {
+          setIsInterested(false);
+        }
+      });
+    }
+  }, [interestedAuctionLists]);
 
   return (
     <Container
@@ -137,8 +154,13 @@ const AuctionItem = (props) => {
       )}
       <ItemImgContainer>
         <ItemImg
+          onClick={handleModal}
           component="img"
           image={props?.singleAuctionData?.product?.thumbnail?.file}
+        />
+        <AuctionDetailModal
+          handleModal={handleModal}
+          isModalOpened={isModalOpened}
         />
         <ItemDurationContainer>
           <ItemDuration>
