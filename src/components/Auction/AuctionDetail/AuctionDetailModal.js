@@ -7,6 +7,8 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useSingleProductQuery from 'queries/product/useSingleProductQuery';
+import { queryClient } from 'index';
+import { CloseBtn } from 'components/MyPage/AddItemModal';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -22,6 +24,7 @@ const ModalContainer = styled(Box)`
 
 const Container = styled.div`
   display: flex;
+  position: relative;
   width: 100%;
   height: 80vh;
   margin: 2rem;
@@ -40,12 +43,26 @@ const ItemDetailContainer = styled.div`
   height: 70%;
 `;
 
-const AuctionDetailModal = ({ handleModal, isModalOpened }) => {
-  const [value, setValue] = useState(2);
+const StyledCloseBtn = styled(CloseBtn)`
+  top: 1rem;
+  right: 1rem;
+  color: ${(props) => props.theme.color_button__delete};
+`;
 
-  const { id: itemId } = useParams();
-  const { data: singleItem, isSuccess: singleItemFetched } =
-    useSingleProductQuery(itemId);
+const AuctionDetailModal = ({
+  handleModal,
+  isModalOpened,
+  isTriggeredFromBigImg,
+  smallImgRelatedItemId,
+}) => {
+  const { product: relatedProductObj } = queryClient.getQueryData([
+    'auctionInfo',
+  ]);
+
+  const { data: singleItemData, isSuccess: singleItemDataFetched } =
+    useSingleProductQuery(isTriggeredFromBigImg ? relatedProductObj?.id : 3);
+
+  console.log(smallImgRelatedItemId, 'id');
 
   return (
     <Modal
@@ -55,16 +72,25 @@ const AuctionDetailModal = ({ handleModal, isModalOpened }) => {
       aria-describedby="modal-modal-description"
     >
       <ModalContainer>
-      <Container>
+        <StyledCloseBtn onClick={handleModal} />
+        <Container>
           <UserUploadContainer>
-            {singleItemFetched && <ItemImage singleItemData={singleItem} />}
-            {singleItemFetched && (
-              <UserInformation singleItemData={singleItem} />
+            {singleItemDataFetched && (
+              <ItemImage
+                singleItemData={singleItemData}
+                isTriggeredFromModal={true}
+              />
+            )}
+            {singleItemDataFetched && (
+              <UserInformation singleItemData={singleItemData} />
             )}
           </UserUploadContainer>
           <ItemDetailContainer>
-            {singleItemFetched && (
-              <ItemInfoContainer singleItemData={singleItem} />
+            {singleItemDataFetched && (
+              <ItemInfoContainer
+                singleItemData={singleItemData}
+                isTriggeredFromModal={true}
+              />
             )}
           </ItemDetailContainer>
         </Container>

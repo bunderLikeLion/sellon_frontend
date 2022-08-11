@@ -91,14 +91,16 @@ const ItemDescriptionContainer = styled.div`
   }
 `;
 
-const ItemInfoContainer = ({ singleItemData }) => {
+const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
   const { name, quality, quantity, description, product_category } =
     singleItemData;
   return (
     <>
-      <EditButtonContainer>
-        <EditButton>수정하기</EditButton>
-      </EditButtonContainer>
+      {!isTriggeredFromModal && (
+        <EditButtonContainer>
+          <EditButton>수정하기</EditButton>
+        </EditButtonContainer>
+      )}
       <ItemTitle>{name}</ItemTitle>
       <ItemDetailContainer>
         <ItemCondition>아이템 상태</ItemCondition>

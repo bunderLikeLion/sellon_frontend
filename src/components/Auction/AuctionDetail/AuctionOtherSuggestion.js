@@ -96,18 +96,20 @@ const AuctionOtherSuggestion = (props) => {
                 <AuctionOtherSuggestionItemContainer>
                   {singleProductGroup?.products.map((singleProduct) => {
                     return (
-                    <>
-                      <ItemImg onClick={handleModal}
-                        key={singleProduct.id}
-                        image={singleProduct?.thumbnail?.file}
-                      >
-                        아이템이미지
-                      </ItemImg>
-                      <AuctionDetailModal
-                      handleModal={handleModal}
-                      isModalOpened={isModalOpened}
-                    />
-                    </>
+                      <>
+                        <ItemImg
+                          onClick={handleModal}
+                          key={singleProduct.id}
+                          image={singleProduct?.thumbnail?.file}
+                        >
+                          아이템이미지
+                        </ItemImg>
+                        <AuctionDetailModal
+                          handleModal={handleModal}
+                          isModalOpened={isModalOpened}
+                          smallImgRelatedItemId={singleProduct?.id}
+                        />
+                      </>
                     );
                   })}
                 </AuctionOtherSuggestionItemContainer>
