@@ -25,7 +25,15 @@ const auctionRelatedAPI = {
   },
 
   getInterestedAuctionLists: () => {
-    return client.get('auctions/interested/').then((res) => res.data);
+    return client
+      .get('auctions/interested/', { params: { page: 1, per_page: 30 } })
+      .then((res) => res.data);
+  },
+
+  postCreateInterestedAuction: (auctionId) => {
+    return client
+      .post('auctions/interested/', { auction_id: auctionId })
+      .then((res) => res.data);
   },
 
   getSingleAuctionInfo: (id) => {
