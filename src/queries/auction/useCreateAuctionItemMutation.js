@@ -16,7 +16,7 @@ const useCreateAuctionItemMutation = () => {
         toast.success('아이템 제시 성공했습니다 👍');
         queryClient.invalidateQueries(['myProductsData']).then(() => {
           queryClient.invalidateQueries(['myProductGroup']).then(() => {
-            return queryClient.invalidateQueries(['productGroups']
+            return queryClient.invalidateQueries(['productGroups']);
           });
         });
       },
