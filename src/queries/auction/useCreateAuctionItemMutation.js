@@ -4,9 +4,9 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 
-const useCreateAuctionItemMutation = () => {
+const useCreateAuctionItemMutation = (auctionId) => {
   return useMutation(
-    (auctionId, itemIdObj) => {
+    (itemIdObj) => {
       toast.loading('아이템 제시 시도 중입니다....');
       return auctionRelatedAPI.postInventoryItem(auctionId, itemIdObj);
     },

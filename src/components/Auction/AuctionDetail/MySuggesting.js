@@ -5,8 +5,6 @@ import { useState } from 'react';
 import ValidationModal from './ValidationModal';
 import { useMyProductsQuery } from 'queries/product';
 import CardMedia from '@mui/material/CardMedia';
-import { useCreateProductGroupMutation } from 'queries/auction';
-import { QueryCache } from '@tanstack/react-query';
 import { queryClient } from 'index';
 import InventoryCard from './InventoryCard';
 
@@ -124,20 +122,8 @@ const AllInButton = styled.button`
 `;
 
 const MySuggesting = () => {
-  const [isButtonOpened, setIsButtonOpened] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [inventoryPageNum, setInventoryPageNum] = useState(1);
-
-  const queryCache = new QueryCache({
-    onSuccess: (data) => {
-      console.log(data, 'dddd');
-    },
-    onError: (error) => {
-      console.log(error, 'errr');
-    },
-  });
-
-  const handleButton = () => setIsButtonOpened(!isButtonOpened);
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
@@ -145,9 +131,6 @@ const MySuggesting = () => {
 
   const { data: myProductsData, isSuccess: myProductFetched } =
     useMyProductsQuery(inventoryPageNum, 4);
-
-  const { mutate: createProductGroup } =
-    useCreateProductGroupMutation(relatedAuctionId);
 
   return (
     <Container>
@@ -168,7 +151,6 @@ const MySuggesting = () => {
               <InventoryCard
                 key={singleProduct.id}
                 singleProduct={singleProduct}
-                createProductGroup={createProductGroup}
                 relatedAuctionId={relatedAuctionId}
                 isUsable={true}
               />
@@ -178,7 +160,6 @@ const MySuggesting = () => {
               <InventoryCard
                 key={singleProduct.id}
                 singleProduct={singleProduct}
-                createProductGroup={createProductGroup}
                 relatedAuctionId={relatedAuctionId}
                 isUsable={false}
               />

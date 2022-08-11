@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
 import { FinishedOverlay } from '../../MyPage/InterestedAuctionListCard';
+import useCreateAuctionItemMutation from '../../../queries/auction/useCreateAuctionItemMutation';
 
 const InventoryItemContainer = styled.div`
   position: relative;
@@ -62,15 +63,13 @@ const DeleteButton = styled.button`
   background: ${(props) => props.theme.color_button__delete};
 `;
 
-const InventoryCard = ({
-  singleProduct,
-  createProductGroup,
-  relatedAuctionId,
-  isUsable,
-}) => {
+const InventoryCard = ({ singleProduct, relatedAuctionId, isUsable }) => {
   const [isButtonOpened, setIsButtonOpened] = useState(false);
 
   const handleButton = () => setIsButtonOpened(!isButtonOpened);
+
+  const { mutate: createAuctionItem } =
+    useCreateAuctionItemMutation(relatedAuctionId);
 
   return (
     <InventoryItemContainer key={singleProduct?.id}>
@@ -88,9 +87,8 @@ const InventoryCard = ({
         >
           <ConfirmButton
             onClick={() =>
-              createProductGroup({
-                auction_id: relatedAuctionId,
-                product_ids: [singleProduct?.id],
+              createAuctionItem({
+                product_id: singleProduct?.id,
               })
             }
           >
