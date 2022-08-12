@@ -2,6 +2,13 @@ import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 
+const AlignContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 83vh;
+`;
+
 const Container = styled.div`
   width: 100%;
   height: 40rem;
@@ -48,20 +55,22 @@ const RightContainer = styled.div`
 const TopRank = () => {
   return (
     <WrapContainer>
-      <Container>
-        <NavContainer>
-          <NavTitle>오늘의 거래는 총 23건입니다!</NavTitle>
-        </NavContainer>
-        <RankContainer>
-          <LeftContainer>
-            <TopRanker />
-            <WeeklyStatus />
-          </LeftContainer>
-          <RightContainer>
-            <Ranking />
-          </RightContainer>
-        </RankContainer>
-      </Container>
+      <AlignContainer>
+        <Container>
+          <NavContainer>
+            <NavTitle>오늘의 거래는 총 23건입니다!</NavTitle>
+          </NavContainer>
+          <RankContainer>
+            <LeftContainer>
+              <TopRanker />
+              <WeeklyStatus />
+            </LeftContainer>
+            <RightContainer>
+              <Ranking />
+            </RightContainer>
+          </RankContainer>
+        </Container>
+      </AlignContainer>
     </WrapContainer>
   );
 };

@@ -30,16 +30,12 @@ const ItemDetail = () => {
   const { id: itemId } = useParams();
   const { data: singleItem, isSuccess: singleItemFetched } =
     useSingleProductQuery(itemId);
-
   return (
     <>
       <WrapContainer>
         <Container>
           <UserUploadContainer>
             {singleItemFetched && <ItemImage singleItemData={singleItem} />}
-            {singleItemFetched && (
-              <UserInformation singleItemData={singleItem} />
-            )}
           </UserUploadContainer>
           <ItemDetailContainer>
             {singleItemFetched && (

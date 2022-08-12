@@ -17,6 +17,22 @@ const Navbar = styled(AppBar)`
   background: ${(props) => props.theme.color_background__primary} !important;
 `;
 
+const LinkText = styled(Link)`
+  transition: 0.5s;
+  :hover {
+    color: ${(props) => props.theme.color_font__tertiary} !important;
+    transform: translateY(-0.2rem);
+  }
+`;
+
+const LinkButton = styled(Button)`
+  transition: 0.5s !important;
+  :hover {
+    color: ${(props) => props.theme.color_font__tertiary} !important;
+    transform: translateY(-0.2rem);
+  }
+`;
+
 const ResponsiveAppBar = () => {
   const user = useRecoilValue(userAtom);
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -42,7 +58,7 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Link to="/">
+          <LinkText to="/">
             <Typography
               variant="h6"
               noWrap
@@ -59,13 +75,12 @@ const ResponsiveAppBar = () => {
             >
               SELLON
             </Typography>
-          </Link>
+          </LinkText>
           <AnchorNav
             anchorElNav={anchorElNav}
             openNavMenu={handleOpenNavMenu}
             closeNavMenu={handleCloseNavMenu}
           />
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -81,7 +96,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <Link to="/">SELLON</Link>
+            <LinkText to="/">SELLON</LinkText>
           </Typography>
           <Box
             sx={{
@@ -91,38 +106,38 @@ const ResponsiveAppBar = () => {
             }}
           >
             <Link to="/">
-              <Button
+              <LinkButton
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 기능소개
-              </Button>
+              </LinkButton>
             </Link>
-            <Link to="/auction">
-              <Button
+            <LinkText to="/auction">
+              <LinkButton
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 경매장
-              </Button>
-            </Link>
-            <Link to="/toprank">
-              <Button
+              </LinkButton>
+            </LinkText>
+            <LinkText to="/toprank">
+              <LinkButton
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 명예의 전당
-              </Button>
-            </Link>
+              </LinkButton>
+            </LinkText>
             {!user && (
-              <Link to="/login">
-                <Button
+              <LinkText to="/login">
+                <LinkButton
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   로그인/회원가입
-                </Button>
-              </Link>
+                </LinkButton>
+              </LinkText>
             )}
           </Box>
           {user && (

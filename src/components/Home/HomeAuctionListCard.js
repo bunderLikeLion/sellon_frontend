@@ -12,19 +12,24 @@ const Container = styled.div`
   position: relative;
 `;
 
-const CardContainor = styled(Card)`
+const CardContainer = styled(Card)`
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
+  box-shadow: 0 0 4px 7px ${(props) =>
+    props.theme.color_border__topleft} !important;
+  :hover{
+    transition: 0.5s;
+    transform: translateY(-0.5rem);
+  };
+  }
 `;
 
 const CardTop = styled.div`
   width: 100%;
   display: flex;
   justify-content: start;
-  padding: 1rem;
-  padding-left: 1.5rem;
+  padding: 1rem 1rem 1rem 1.5rem;
   align-items: center;
 `;
 
@@ -41,8 +46,7 @@ const CardTopImg = styled.div`
 
 const CardBottom = styled.div`
   width: 100%;
-  padding: 1rem;
-  padding-top: 0;
+  padding: 0 1rem 1rem 1rem;
   display: flex;
   position: relative;
   align-items: center;
@@ -93,7 +97,7 @@ const HomeAuctionListCard = ({ isFinished, auctionData }) => {
         to={`/auction/${auctionData.id}`}
         condition={!isFinished}
       >
-        <CardContainor sx={{ maxWidth: '100%' }}>
+        <CardContainer sx={{ maxWidth: '100%' }}>
           <MyCardMedia
             component="img"
             height="150"
@@ -110,7 +114,7 @@ const HomeAuctionListCard = ({ isFinished, auctionData }) => {
             </PersonCntBox>
             <EnterBox>{timeLimitHandler(auctionData?.end_at)}</EnterBox>
           </CardBottom>
-        </CardContainor>
+        </CardContainer>
       </ConditionalLink>
       <FinishedOverlay isFinished={isFinished}>
         <p>종료된 경매입니다.</p>

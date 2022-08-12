@@ -9,8 +9,14 @@ const UserInfo = styled.div`
   height: 15%;
 `;
 
+const ProfileImg = styled(Avatar)`
+  height: 4rem !important;
+  width: 4rem !important;
+`;
+
 const UserName = styled.div`
-  margin: 0 1rem 0 .5rem;
+  margin: 0 1rem 0 1rem;
+  font-size: 1.8rem;
 `;
 
 const UploadDate = styled.p`
@@ -22,7 +28,7 @@ const UserInformation = ({ singleItemData }) => {
   return (
     <>
       <UserInfo>
-        <Avatar
+        <ProfileImg
           alt="Remy Sharp"
           src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg"
         />

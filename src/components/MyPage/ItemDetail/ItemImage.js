@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CardMedia from '@mui/material/CardMedia';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import UserInformation from './UserInformation';
+import { useSingleProductQuery } from '../../../queries/product';
 
 const ArrowIconContainer = styled.div`
   width: 100%;
-  height: 5vh;
-  margin-bottom: 1rem;
+  height: 0.2rem;
+  margin-bottom: 2rem;
 `;
 
 const ArrowIcon = styled(ArrowBackIosNewIcon)`
@@ -31,7 +33,7 @@ const SubPicContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 13vh;
+  height: 25%;
 `;
 
 const SubPic = styled(CardMedia)`
@@ -43,6 +45,10 @@ const SubPic = styled(CardMedia)`
 
 const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
   const { thumbnail, images } = singleItemData;
+  const { id: itemId } = useParams();
+  const { data: singleItem, isSuccess: singleItemFetched } =
+    useSingleProductQuery(itemId);
+
   return (
     <>
       {!isTriggeredFromModal && (
@@ -52,15 +58,11 @@ const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
           </Link>
         </ArrowIconContainer>
       )}
+      {singleItemFetched && <UserInformation singleItemData={singleItem} />}
       <MainPicContainer>
         {thumbnail && <MainPic image={thumbnail?.file} />}
       </MainPicContainer>
       <SubPicContainer>
-        {images &&
-          images.map((singleImg) => {
-            if (!singleImg) return null;
-            return <SubPic key={singleImg?.id} image={singleImg?.file} />;
-          })}
         {images &&
           images.map((singleImg) => {
             if (!singleImg) return null;
