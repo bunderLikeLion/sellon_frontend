@@ -21,7 +21,7 @@ const LinkText = styled(Link)`
   transition: 0.5s;
   :hover {
     color: ${(props) => props.theme.color_font__tertiary} !important;
-    transform: translateY(-0.3rem);
+    transform: translateY(-0.2rem);
   }
 `;
 
@@ -29,7 +29,7 @@ const LinkButton = styled(Button)`
   transition: 0.5s !important;
   :hover {
     color: ${(props) => props.theme.color_font__tertiary} !important;
-    transform: translateY(-0.3rem);
+    transform: translateY(-0.2rem);
   }
 `;
 
