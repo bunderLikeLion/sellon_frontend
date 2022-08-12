@@ -8,3 +8,4 @@ export { default as useMyProductGroupQuery } from './useMyProductGroupQuery';
 export { default as useProductGroupsQuery } from './useProductGroupsQuery';
 export { default as useSingleAuctionQuery } from './useSingleAuctionQuery';
 export { default as useCreateAuctionItemMutation } from './useCreateAuctionItemMutation';
+export { default as useDeleteAuctionItemMutation } from './useDeleteAuctionItemMutation';
