@@ -11,9 +11,10 @@ import useInput from 'hooks/useInput';
 import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
-import { useAuctionsQuery } from 'queries/auction';
+import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
 import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
+import CardMedia from '@mui/material/CardMedia';
 
 const Form = styled.div`
   width: 100%;
@@ -26,7 +27,7 @@ const UserPic = styled.div`
   background: #000;
 `;
 
-const ProductPic = styled.div`
+const ProductPic = styled(CardMedia)`
   width: 7rem;
   height: 7rem;
   background: #fff;
@@ -179,6 +180,9 @@ const Auction = () => {
   const { data: auctionList, isSuccess: auctionListFetched } =
     useAuctionsQuery(sort);
 
+  const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
+    usePopularAuctionsQuery();
+
   return (
     <WrapContainer>
       <Form>
@@ -217,19 +221,23 @@ const Auction = () => {
 
         <BestAuctionContainer>
           <BestAuctionTitle>실시간 인기 경매</BestAuctionTitle>
-          <AuctionContainer>
-            <MostPopular>가장 인기있는 거래 1</MostPopular>
-            <UserPic />
-            <ProductPic />
-            <InterestedUser>참여자수</InterestedUser>
-          </AuctionContainer>
-
-          <AuctionContainer>
-            <MostPopular>가장 인기있는 거래 2</MostPopular>
-            <UserPic />
-            <ProductPic />
-            <InterestedUser>참여자수</InterestedUser>
-          </AuctionContainer>
+          {popularAuctionListFetched &&
+            popularAuctionList.map((singlePopularAuctionItem) => {
+              return (
+                <StyledLink to={`/auction/${singlePopularAuctionItem?.id}`}>
+                  <AuctionContainer key={singlePopularAuctionItem?.id}>
+                    <MostPopular>{singlePopularAuctionItem?.title}</MostPopular>
+                    <UserPic />
+                    <ProductPic
+                      image={singlePopularAuctionItem?.product?.thumbnail?.file}
+                    />
+                    <InterestedUser>
+                      참여자수: {singlePopularAuctionItem?.product_groups_count}
+                    </InterestedUser>
+                  </AuctionContainer>
+                </StyledLink>
+              );
+            })}
         </BestAuctionContainer>
 
         <SubNav3>
