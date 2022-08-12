@@ -119,8 +119,8 @@ const TopRanker = () => {
         <TopDealerInfo>
           <TopDealerTitle>이달의 거래왕</TopDealerTitle>
           <TopDealerUserContainer>
-            <TopDealerUser>김지형</TopDealerUser>
-            <TopDealCount>총 53회</TopDealCount>
+            <TopDealerUser>아직 안함(사람이름)</TopDealerUser>
+            <TopDealCount>총 (숫자)회</TopDealCount>
           </TopDealerUserContainer>
           <QuestionIcon />
         </TopDealerInfo>
