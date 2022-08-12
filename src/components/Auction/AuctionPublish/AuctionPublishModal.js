@@ -12,31 +12,31 @@ const ModalContainer = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 75%;
+  width: 70%;
+  height: 35rem;
   padding: 1rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
-  background-color: #000;
+  background: ${(props) => props.theme.color_background__default};
 `;
 
 const ContentContainer = styled.div`
-  width: 70%;
+  width: 80%;
   height: 100%;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 50%;
   height: 12%;
+  margin-left: 1rem;
 `;
 
 const Text = styled.h1`
   letter-spacing: 0.1rem;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 2rem;
-  color: #fff;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ValidationCancelButton = styled(ClearIcon)`

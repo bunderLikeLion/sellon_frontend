@@ -10,17 +10,15 @@ const Container = styled.div`
 const ItemImageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 20rem;
+  height: 23rem;
+  padding: 1rem 1rem 0 1rem;
   clear: both;
-  padding: 1rem;
 `;
 
 const ItemImage = styled.div`
   width: 100%;
   height: 100%;
-  float: left;
   border-radius: 1rem;
-  margin: 0 auto;
   background-image: ${(props) => `url(${props.imgUrl})`};
   background-size: cover;
   background-repeat: no-repeat;
@@ -28,16 +26,16 @@ const ItemImage = styled.div`
 `;
 
 const ItemExtraImageContainer = styled.div`
-  height: 8rem;
-  margin-top: 1rem;
-  float: left;
-  clear: both;
   display: flex;
   justify-content: flex-start;
+  height: 8rem;
+  clear: both;
+  margin-top: 1rem;
 `;
 
 const ItemExtraImage = styled.div`
   width: 40%;
+  height: 100%;
   margin-right: 1rem;
   border-radius: 1rem;
   background-image: ${(props) => `url(${props.imgUrl})`};
@@ -47,71 +45,87 @@ const ItemExtraImage = styled.div`
 `;
 
 const ItemDetailInformationContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
   margin: 1rem;
   height: 100%;
 `;
 
 const ItemTitle = styled.p`
+  margin-left: 0.5rem;
   font-weight: bold;
   font-size: 1.5rem;
-  margin: 1rem;
+  line-height: 2rem;
+`;
+
+const ItemQuantityContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 19%;
+  height: 2.5rem;
+  margin-left: 18.3rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 100%;
-  height: 3.5rem;
-  padding: 0 1rem;
-  border-radius: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  width: 48%;
+  height: 3rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
+`;
+
+const ItemConditionCategoryContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const ItemCondition = styled.p`
   font-size: 1rem;
-  font-weight: 700;
-  margin: 1.2rem;
+  font-weight: 500;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemConditionDetail = styled.div`
-  background: ${(props) => props.theme.color_background__success};
-  color: ${(props) => props.theme.color_font__secondary};
-  font-size: 1rem;
-  width: 5rem;
-  height: 1.5rem;
-  line-height: normal;
-  margin: 1rem 2rem;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7rem;
+  height: 2rem;
   border-radius: 0.8rem;
+  font-size: 1rem;
+  background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategory = styled.p`
   font-weight: 700;
   font-size: 1rem;
-  margin: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemCategoryDetail = styled.div`
-  font-size: 1rem;
-  width: 5rem;
-  margin: 1rem 2rem;
+  width: 2rem;
+  margin: 1rem;
   text-align: center;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemInfoContainer = styled.div`
   width: 100%;
-  height: 14rem;
+  height: 7rem;
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
+  overflow-y: scroll;
   background: ${(props) => props.theme.color_background__primary};
   color: ${(props) => props.theme.color_font__secondary};
-  overflow-y: scroll;
 
   .toastui-editor-contents p {
     color: ${(props) => props.theme.color_white};
@@ -134,22 +148,24 @@ const InfoContainerWithItem = ({ selectedItem }) => {
 
       <ItemDetailInformationContainer>
         <ItemTitle>{selectedItem?.name}</ItemTitle>
-        <ItemDetailContainer>
-          <ItemCondition>아이템 상태</ItemCondition>
-          <ItemConditionDetail>
-            {statusHandler(selectedItem?.quality)}
-          </ItemConditionDetail>
-        </ItemDetailContainer>
-        <ItemDetailContainer>
-          <ItemCategory>카테고리</ItemCategory>
-          <ItemCategoryDetail>
-            {selectedItem?.product_category?.name}
-          </ItemCategoryDetail>
-        </ItemDetailContainer>
-        <ItemDetailContainer>
-          <ItemCategory>개수</ItemCategory>
+        <ItemQuantityContainer>
           <ItemCategoryDetail>{selectedItem?.quantity}개</ItemCategoryDetail>
-        </ItemDetailContainer>
+        </ItemQuantityContainer>
+        <ItemConditionCategoryContainer>
+          <ItemDetailContainer>
+            <ItemCondition>상태</ItemCondition>
+            <ItemConditionDetail>
+              {statusHandler(selectedItem?.quality)}
+            </ItemConditionDetail>
+          </ItemDetailContainer>
+          <ItemDetailContainer>
+            <ItemCategory>카테고리</ItemCategory>
+            <ItemConditionDetail>
+              {selectedItem?.product_category?.name}
+            </ItemConditionDetail>
+          </ItemDetailContainer>
+        </ItemConditionCategoryContainer>
+
         <ItemInfoContainer>{selectedItem?.description}</ItemInfoContainer>
       </ItemDetailInformationContainer>
     </Container>

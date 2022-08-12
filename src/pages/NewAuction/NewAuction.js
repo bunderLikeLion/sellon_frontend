@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import WrapContainer from 'layouts/WrapContainer';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublishModal';
 import InfoContainerWithItem from 'components/NewAuction/InfoContainerWithItem';
 import NewAuctionInput from 'components/NewAuction/NewAuctionInput';
 import useInput from 'hooks/useInput';
 import { useCreateAuctionMutation } from 'queries/auction';
 import moment from 'moment';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export const Container = styled.div`
   position: relative;
@@ -14,11 +16,17 @@ export const Container = styled.div`
   height: 100%;
 `;
 
+const ArrowBackIcon = styled(ArrowBackIosNewIcon)`
+  position: absolute;
+  top: 2rem;
+  left: -1.5rem;
+`;
+
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 89vh;
+  height: 86vh;
 `;
 
 const InstructContainer = styled.div`
@@ -27,6 +35,7 @@ const InstructContainer = styled.div`
 `;
 
 const TopContainer = styled.div`
+  position: relative;
   width: 100%;
   padding: 2rem 1rem;
   display: flex;
@@ -41,6 +50,8 @@ const BigContainer = styled.div`
 `;
 
 const BigText = styled.div`
+  width: 9rem;
+  text-align: center;
   font-size: 2rem;
   font-weight: 350;
 `;
@@ -69,21 +80,24 @@ const InventoryBtn = styled.button`
 const ReselectBtn = styled.button`
   width: 8rem;
   height: 2rem;
-  border-radius: 1rem;
-  background: ${(props) => props.theme.color_button__ok};
+  margin-left: 13rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const StyledButton = styled.button`
-  margin: 1rem;
-  background: ${(props) => props.theme.color_background__success};
-  color: white;
-  border-radius: 1rem;
+  float: right;
   height: 3.5rem;
   width: 9rem;
-  float: right;
+  margin: 1rem;
+  border: none;
+  border-radius: 1rem;
   font-size: 1rem;
   font-weight: 700;
-  border: none;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const NewAuction = () => {
@@ -111,6 +125,9 @@ const NewAuction = () => {
     <WrapContainer>
       <FlexContainer>
         <TopContainer>
+          <Link to={'/auction/'}>
+            <ArrowBackIcon />
+          </Link>
           <InstructContainer>
             <BigText>경매 열기</BigText>
             {selectedItem && (

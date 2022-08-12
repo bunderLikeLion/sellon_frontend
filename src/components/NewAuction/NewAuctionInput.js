@@ -39,8 +39,8 @@ const TextareaContainer = styled.div`
 `;
 
 const RadioContainer = styled(StatusRadioBox)`
-  margin-left: 1rem;
-  width: 29rem;
+  margin: 0 1rem 1rem 1rem;
+  width: 28rem;
   height: 4rem;
 `;
 
@@ -58,7 +58,7 @@ const StyledLabelText = styled(StyledLabel)`
 const AuctionText = styled.textarea`
   width: 100%;
   height: 12rem;
-  padding: 0 1rem;
+  padding: 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;

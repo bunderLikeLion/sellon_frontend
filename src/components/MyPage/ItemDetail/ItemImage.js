@@ -3,7 +3,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CardMedia from '@mui/material/CardMedia';
 import { Link, useParams } from 'react-router-dom';
 import UserInformation from './UserInformation';
-import { useSingleProductQuery } from '../../../queries/product';
+import { useSingleProductQuery } from 'queries/product';
 
 const ArrowIconContainer = styled.div`
   width: 100%;
