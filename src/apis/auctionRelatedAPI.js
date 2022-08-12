@@ -74,6 +74,10 @@ const auctionRelatedAPI = {
       .post(`auctions/${auctionId}/remove_product/`, payload)
       .then((res) => res.data);
   },
+
+  getPopularAuctions: () => {
+    return client.get('auctions/popular/').then((res) => res.data);
+  },
 };
 
 export default auctionRelatedAPI;
