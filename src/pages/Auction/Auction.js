@@ -94,6 +94,11 @@ const SubmitAuctionButton = styled.button`
   font-size: 1rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
+  :hover {
+    transition: 0.5s;
+    transform: translateY(-0.2rem);
+    border: 1px solid ${(props) => props.theme.color_border__bottomright} !important;
+  }
 `;
 
 const DealComplete = styled.div`
