@@ -188,11 +188,7 @@ const InputLabelBox = styled(InputLabel)`
 `;
 
 const MenuItemBox = styled(MenuItem)`
-  color: #fff;
-  background: red !important;
-  &.MuiMenu-list {
-      background: red !important;
-    }
+  color: #ffffff !important;
 `;
 
 const Auction = () => {
@@ -224,11 +220,18 @@ const Auction = () => {
                 홈그라운드 설정
               </InputLabelBox>
               <SelectBox
-              
                 labelId="demo-select-small"
                 id="demo-select-small"
                 value=""
                 label="Age"
+                border= 'none'
+                MenuProps={{
+                  sx: {
+                    '& .MuiMenu-list': {
+                      backgroundColor: '#3A335C'
+                    },
+                  },
+                }}
               >
                 <MenuItemBox value={10}>기본모드</MenuItemBox>
                 <MenuItemBox value={20}>여행모드</MenuItemBox>
@@ -285,6 +288,13 @@ const Auction = () => {
               id="demo-select-small"
               value={sort}
               onChange={handleSort}
+              MenuProps={{
+                sx: {
+                  '& .MuiMenu-list': {
+                    backgroundColor: '#3A335C'
+                  },
+                },
+              }}
             >
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
               <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
