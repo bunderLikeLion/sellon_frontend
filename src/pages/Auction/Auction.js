@@ -80,6 +80,11 @@ const HomeGroundTitle = styled.div`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
+const AuctionPublishLink = styled(Link)`
+  width: 10.5rem;
+  height: 2rem;
+`;
+
 const SubmitAuctionButton = styled.button`
   width: 10rem;
   height: 2rem;
@@ -214,9 +219,9 @@ const Auction = () => {
               </SelectBox>
             </FormControl>
           </SubNav2_left>
-          <SubmitAuctionButton>
-            <StyledLink to={'/auction/newauction'}>경매 올리기</StyledLink>
-          </SubmitAuctionButton>
+          <AuctionPublishLink to={'/auction/newauction'}>
+            <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
+          </AuctionPublishLink>
         </SubNav2>
 
         <SubNav>
