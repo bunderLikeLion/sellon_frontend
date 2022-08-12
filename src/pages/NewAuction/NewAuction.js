@@ -10,8 +10,15 @@ import moment from 'moment';
 
 export const Container = styled.div`
   position: relative;
-  width: 100%;
+  width: 50%;
   height: 100%;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 89vh;
 `;
 
 const InstructContainer = styled.div`
@@ -21,9 +28,7 @@ const InstructContainer = styled.div`
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 100%;
   padding: 2rem 1rem;
-  color: white;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -37,19 +42,18 @@ const BigContainer = styled.div`
 
 const BigText = styled.div`
   font-size: 2rem;
-  font-weight: 700;
-  margin: 0.5rem 2rem;
+  font-weight: 350;
 `;
 
 const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 55vh;
-  margin-top: 2rem;
   align-items: center;
+  width: 100%;
+  height: 35rem;
+  margin-top: 1rem;
   border-radius: 1rem;
+  cursor: pointer;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
@@ -70,7 +74,7 @@ const ReselectBtn = styled.button`
 `;
 
 const StyledButton = styled.button`
-  margin: 4rem 1rem 1rem 1rem;
+  margin: 1rem;
   background: ${(props) => props.theme.color_background__success};
   color: white;
   border-radius: 1rem;
@@ -105,52 +109,52 @@ const NewAuction = () => {
 
   return (
     <WrapContainer>
-      <TopContainer>
-        <InstructContainer>
-          <BigText>경매 열기</BigText>
-          {selectedItem && (
-            <ReselectBtn onClick={() => setSelectedItem(null)}>
-              아이템 다시 선택
-            </ReselectBtn>
-          )}
-        </InstructContainer>
+      <FlexContainer>
+        <TopContainer>
+          <InstructContainer>
+            <BigText>경매 열기</BigText>
+            {selectedItem && (
+              <ReselectBtn onClick={() => setSelectedItem(null)}>
+                아이템 다시 선택
+              </ReselectBtn>
+            )}
+          </InstructContainer>
 
-        <BigContainer>
-          {!selectedItem ? (
+          <BigContainer>
+            {!selectedItem ? (
+              <Container>
+                <BtnContainer onClick={handleModal}>
+                  <InventoryBtn>인벤토리에서 가져오기</InventoryBtn>
+                </BtnContainer>
+              </Container>
+            ) : (
+              <InfoContainerWithItem selectedItem={selectedItem} />
+            )}
+
             <Container>
-              <BtnContainer>
-                <InventoryBtn onClick={handleModal}>
-                  인벤토리에서 가져오기
-                </InventoryBtn>
-              </BtnContainer>
+              <NewAuctionInput
+                auctionTitle={auctionTitle}
+                auctionTitleHandler={auctionTitleHandler}
+                auctionDesc={auctionDesc}
+                auctionDescHandler={auctionDescHandler}
+                auctionTime={auctionTime}
+                auctionTimeHandler={auctionTimeHandler}
+                auctionMethod={auctionMethod}
+                auctionMethodHandler={auctionMethodHandler}
+              />
+              <StyledButton onClick={submitAuctionCreationForm}>
+                경매 발행하기
+              </StyledButton>
             </Container>
-          ) : (
-            <InfoContainerWithItem selectedItem={selectedItem} />
-          )}
 
-          <Container>
-            <NewAuctionInput
-              auctionTitle={auctionTitle}
-              auctionTitleHandler={auctionTitleHandler}
-              auctionDesc={auctionDesc}
-              auctionDescHandler={auctionDescHandler}
-              auctionTime={auctionTime}
-              auctionTimeHandler={auctionTimeHandler}
-              auctionMethod={auctionMethod}
-              auctionMethodHandler={auctionMethodHandler}
+            <AuctionPublishModal
+              handleModal={handleModal}
+              isModalOpened={isModalOpened}
+              setSelectedItem={setSelectedItem}
             />
-            <StyledButton onClick={submitAuctionCreationForm}>
-              경매 발행하기
-            </StyledButton>
-          </Container>
-
-          <AuctionPublishModal
-            handleModal={handleModal}
-            isModalOpened={isModalOpened}
-            setSelectedItem={setSelectedItem}
-          />
-        </BigContainer>
-      </TopContainer>
+          </BigContainer>
+        </TopContainer>
+      </FlexContainer>
     </WrapContainer>
   );
 };
