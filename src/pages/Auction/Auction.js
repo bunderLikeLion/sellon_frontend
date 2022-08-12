@@ -163,6 +163,8 @@ const FilterButton = styled.button`
   height: 1.7rem;
   border: none;
   border-radius: 0.5rem;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
 const MostPopular = styled.div`
@@ -187,6 +189,10 @@ const InputLabelBox = styled(InputLabel)`
 
 const MenuItemBox = styled(MenuItem)`
   color: #fff;
+  background: red !important;
+  &.MuiMenu-list {
+      background: red !important;
+    }
 `;
 
 const Auction = () => {
@@ -218,6 +224,7 @@ const Auction = () => {
                 홈그라운드 설정
               </InputLabelBox>
               <SelectBox
+              
                 labelId="demo-select-small"
                 id="demo-select-small"
                 value=""
