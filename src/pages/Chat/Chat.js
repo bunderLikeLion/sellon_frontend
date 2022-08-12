@@ -4,10 +4,17 @@ import ChatLists from 'components/MyPage/Chat/ChatLists';
 import InputMessage from 'components/MyPage/Chat/InputMessage';
 import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
 
+const AlignContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 85vh;
+`;
+
 const ChatForm = styled.div`
   display: flex;
-  justify-content: space-around;
-  height: 42rem;
+  justify-content: space-between;
+  height: 38rem;
   overflow: hidden;
 `;
 
@@ -71,6 +78,7 @@ const OnChatContainerBottom = styled.div`
 const Chat = () => {
   return (
     <WrapContainer>
+      <AlignContainer>
       <ChatForm>
         <Chat_Left>
           <MessageTitle>진행중인 거래</MessageTitle>
@@ -119,6 +127,7 @@ const Chat = () => {
           </OnChatContainerBottom>
         </Chat_Right>
       </ChatForm>
+      </AlignContainer>
     </WrapContainer>
   );
 };
