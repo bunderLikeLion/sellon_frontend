@@ -68,6 +68,12 @@ const auctionRelatedAPI = {
       .post(`auctions/${auctionId}/add_product/`, payload)
       .then((res) => res.data);
   },
+
+  deleteInventoryItem: (auctionId, payload) => {
+    return client
+      .post(`auctions/${auctionId}/remove_product/`, payload)
+      .then((res) => res.data);
+  },
 };
 
 export default auctionRelatedAPI;
