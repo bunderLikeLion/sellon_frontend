@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
 import { FinishedOverlay } from '../../MyPage/InterestedAuctionListCard';
-import useCreateAuctionItemMutation from '../../../queries/auction/useCreateAuctionItemMutation';
+import { useCreateAuctionItemMutation } from 'queries/auction';
 
 const InventoryItemContainer = styled.div`
   position: relative;
