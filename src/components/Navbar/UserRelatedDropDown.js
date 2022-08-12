@@ -17,7 +17,7 @@ import styled from 'styled-components';
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
-    background: #000 !important;
+    background: ${(props) => props.theme.color_background__default} !important;
     color: #fff;
   }
 `;
