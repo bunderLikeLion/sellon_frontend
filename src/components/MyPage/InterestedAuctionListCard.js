@@ -1,5 +1,6 @@
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import CardHeader from '@mui/material/CardHeader';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import ConditionalLink from 'components/ConditionalLink';
