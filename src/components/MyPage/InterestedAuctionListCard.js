@@ -16,16 +16,19 @@ const StyledWrapContainer = styled.div`
 const CardContainer = styled(Card)`
   position: relative;
   width: 30%;
-  margin:  0 2rem 4.5rem 0;
+  margin-bottom: 4.5rem;
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) =>
-    props.theme.color_border__topleft} !important;
-  :hover{
+  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
+  :hover {
     transition: 0.5s;
     transform: translateY(-0.5rem);
-  };
+  }
+
+  :nth-child(2),
+  :nth-child(5) {
+    margin: 0 3rem 4.5rem 3rem;
   }
 `;
 

@@ -4,6 +4,7 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 import { useDeleteProductMutation } from 'queries/product';
+import queryKeys from 'utils/queryKeys';
 
 const useCreateProductGroupMutation = (relatedAuctionId) => {
   let itemId = 0;
@@ -22,7 +23,9 @@ const useCreateProductGroupMutation = (relatedAuctionId) => {
         for (let singleId of itemId) {
           deleteProductFromInventory(singleId);
         }
-        return queryClient.invalidateQueries(['productGroups']);
+        return queryClient.invalidateQueries([
+          queryKeys.productGroups(relatedAuctionId),
+        ]);
       },
       onError: (res) => {
         toast.dismiss();
