@@ -17,8 +17,10 @@ import styled from 'styled-components';
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
-    background: #000 !important;
+    width: 15rem;
+    border: 0.1rem solid #fff;
     color: #fff;
+    background: ${(props) => props.theme.color_background__default} !important;
   }
 `;
 
@@ -44,7 +46,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         </IconButton>
       </Tooltip>
       <UserDropDownContainer
-        sx={{ mt: '45px' }}
+        sx={{ mt: '50px' }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
@@ -60,19 +62,14 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         onClose={closeUserMenu}
       >
         <MenuItem onClick={closeUserMenu}>
-          <Stack
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            spacing={1}
-            borderBottom={1}
-          >
+          <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton>
               <Avatar src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg" />
             </IconButton>
             <Typography textAlign="center">{user?.username}</Typography>
           </Stack>
         </MenuItem>
+        <hr size="1" width="200rem" />
         <MenuItem onClick={closeUserMenu}>
           <Link to="/mypage">
             <Stack

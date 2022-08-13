@@ -163,6 +163,8 @@ const FilterButton = styled.button`
   height: 1.7rem;
   border: none;
   border-radius: 0.5rem;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
 const MostPopular = styled.div`
@@ -186,7 +188,7 @@ const InputLabelBox = styled(InputLabel)`
 `;
 
 const MenuItemBox = styled(MenuItem)`
-  color: #fff;
+  color: ${(props) => props.theme.color_font__primary} !important;
 `;
 
 const Auction = () => {
@@ -222,6 +224,14 @@ const Auction = () => {
                 id="demo-select-small"
                 value=""
                 label="Age"
+                border= 'none'
+                MenuProps={{
+                  sx: {
+                    '& .MuiMenu-list': {
+                      backgroundColor: '#3A335C'
+                    },
+                  },
+                }}
               >
                 <MenuItemBox value={10}>기본모드</MenuItemBox>
                 <MenuItemBox value={20}>여행모드</MenuItemBox>
@@ -278,6 +288,13 @@ const Auction = () => {
               id="demo-select-small"
               value={sort}
               onChange={handleSort}
+              MenuProps={{
+                sx: {
+                  '& .MuiMenu-list': {
+                    backgroundColor: '#3A335C'
+                  },
+                },
+              }}
             >
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
               <MenuItemBox value={'oldest'}>과거순</MenuItemBox>

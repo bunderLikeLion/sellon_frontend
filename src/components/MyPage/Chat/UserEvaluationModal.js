@@ -9,20 +9,25 @@ import Box from '@material-ui/core/Box';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
+const AlignContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`;
+
 const ModalContainer = styled(Box)`
   position: relative;
-  width: 60%;
-  height: 80%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 55rem;
+  height: 45rem;
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
 `;
 
 const DealEvaluate = styled.p`
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   font-size: 1.6rem;
   font-weight: 600;
   color: ${(props) => props.theme.color_white};
@@ -31,7 +36,7 @@ const DealEvaluate = styled.p`
 const EvaluateContainer = styled.div`
   width: 100%;
   height: 50%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   border-radius: 1rem;
   overflow: hidden;
 `;
@@ -71,14 +76,14 @@ const EvaluateBottomContainer = styled.div`
 `;
 
 const UserEvaluate = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: ${(props) => props.theme.color_white};
 `;
 
 const StarRatingContainer = styled.div`
-  width: 55%;
-  height: 40%;
+  width: 45%;
+  height: 30%;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__third};
 `;
@@ -92,7 +97,7 @@ const StarRating = styled(Box)`
 `;
 
 const DealSummarize = styled.p`
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   font-size: 1.6rem;
   font-weight: 600;
   color: ${(props) => props.theme.color_font__primary};
@@ -148,7 +153,7 @@ const StyledRating = withStyles({
     fontSize: 40,
   },
   iconFilled: {
-    color: '#7B749D',
+    color: '#9454B5',
     fontSize: 40,
   },
   iconHover: {
@@ -166,48 +171,54 @@ const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <ModalContainer>
-        <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
-        <EvaluateContainer>
-          <EvaluateTopContainer>
-            <MyItemImg />
-            <div>
-              <ItemTitle>
-                커피 온도를 그대로 담을 수 있는 하얀색 컵 입양하세요.
-              </ItemTitle>
-              <ItemUploadDate>2022.08.07</ItemUploadDate>
-            </div>
-          </EvaluateTopContainer>
-          <EvaluateBottomContainer>
-            <UserEvaluate>허유라님과의 거래를 평가하기.</UserEvaluate>
-            <StarRatingContainer>
-              <StarRating component="fieldset" mb={0} borderColor="transparent">
-                <Typography component="legend"></Typography>
-                <StyledRating
-                  name="simple-controlled"
-                  size="large"
-                  precision={1}
-                  value={value}
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                />
-              </StarRating>
-            </StarRatingContainer>
-          </EvaluateBottomContainer>
-        </EvaluateContainer>
-        <DealSummarize>이번 거래, 요약하기</DealSummarize>
-        <DealSummarizeContainer>
-          <MyItemImgSummarize />
-          <ArrowIcon />
-          <OpponentItemImg />
-          <OpponentItemImg />
-          <OpponentItemImg />
-          <OpponentItemImg />
-          <ExtraIcon />
-        </DealSummarizeContainer>
-        <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
-      </ModalContainer>
+      <AlignContainer>
+        <ModalContainer>
+          <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
+          <EvaluateContainer>
+            <EvaluateTopContainer>
+              <MyItemImg />
+              <div>
+                <ItemTitle>
+                  커피 온도를 그대로 담을 수 있는 하얀색 컵 입양하세요.
+                </ItemTitle>
+                <ItemUploadDate>2022.08.07</ItemUploadDate>
+              </div>
+            </EvaluateTopContainer>
+            <EvaluateBottomContainer>
+              <UserEvaluate>허유라님과의 거래를 평가하기.</UserEvaluate>
+              <StarRatingContainer>
+                <StarRating
+                  component="fieldset"
+                  mb={0}
+                  borderColor="transparent"
+                >
+                  <Typography component="legend"></Typography>
+                  <StyledRating
+                    name="simple-controlled"
+                    size="large"
+                    precision={1}
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                  />
+                </StarRating>
+              </StarRatingContainer>
+            </EvaluateBottomContainer>
+          </EvaluateContainer>
+          <DealSummarize>이번 거래, 요약하기</DealSummarize>
+          <DealSummarizeContainer>
+            <MyItemImgSummarize />
+            <ArrowIcon />
+            <OpponentItemImg />
+            <OpponentItemImg />
+            <OpponentItemImg />
+            <OpponentItemImg />
+            <ExtraIcon />
+          </DealSummarizeContainer>
+          <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
+        </ModalContainer>
+      </AlignContainer>
     </Modal>
   );
 };
