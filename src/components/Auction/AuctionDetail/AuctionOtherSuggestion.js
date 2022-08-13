@@ -68,6 +68,7 @@ const ItemImg = styled(CardMedia)`
   border-radius: 0.5rem;
   background: #000;
   color: #fff;
+  cursor: pointer;
 `;
 
 const AuctionOtherSuggestion = (props) => {
@@ -76,8 +77,14 @@ const AuctionOtherSuggestion = (props) => {
   const { data: productGroups, isSuccess: productGroupsFetched } =
     useProductGroupsQuery(relatedAuctionId);
 
+  const [singleProduct, setSingleProduct] = useState(null);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const handleModal = () => setIsModalOpened(!isModalOpened);
+
+  const clickImgFunc = (singleProductData) => {
+    setSingleProduct(singleProductData);
+    handleModal();
+  };
 
   return (
     <OtherSuggestionContainer isInventoryOpened={props.isInventoryOpened}>
@@ -101,20 +108,20 @@ const AuctionOtherSuggestion = (props) => {
                     return (
                       <>
                         <ItemImg
-                          onClick={handleModal}
+                          onClick={() => clickImgFunc(singleProduct)}
                           key={singleProduct.id}
                           image={singleProduct?.thumbnail?.file}
                         >
                           아이템이미지
                         </ItemImg>
-                        <AuctionDetailModal
-                          handleModal={handleModal}
-                          isModalOpened={isModalOpened}
-                          smallImgRelatedItemId={singleProduct?.id}
-                        />
                       </>
                     );
                   })}
+                  <AuctionDetailModal
+                    handleModal={handleModal}
+                    isModalOpened={isModalOpened}
+                    smallImgRelatedItemId={singleProduct}
+                  />
                 </AuctionOtherSuggestionItemContainer>
               </OtherSuggestion>
             );

@@ -8,6 +8,7 @@ const useSingleProductQuery = (itemId) => {
     [`singleItem${itemId}`],
     () => productRelatedAPI.getSingleProduct(itemId),
     {
+      enabled: !!itemId,
       onError: (res) => {
         toast.dismiss();
         toast.error(errorMsgHandler(res));
