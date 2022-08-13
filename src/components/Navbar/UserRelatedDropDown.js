@@ -16,35 +16,35 @@ import { Stack } from '@mui/material';
 import styled from 'styled-components';
 
 const UserDropDownContainertail = styled.div`
-
   background: blue;
-  
 `;
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
     position: relative;
+    display: inline-block;
     width: 12rem;
     border-radius: 0.5rem;
     color: ${(props) => props.theme.color_font__primary};
     background: #33305b !important;
-    display: inline-block;
   }
 
   .MuiMenu-list:after {
     content: '';
     display: block;
     position: absolute;
-    border-bottom: 10px solid red;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    top:-6px;
+    top: -0.9rem;
     right: 1rem;
+    border-bottom: 1rem solid #33305b;
+    border-right: .7rem solid transparent;
+    border-left: .7rem solid transparent;
   }
 
   & .MuiPaper-root {
+    height: 15rem;
+    padding-top: 1rem;
     border-radius: 0.5rem;
-    background: #33305b;
+    background: transparent;
   }
 `;
 
