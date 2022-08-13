@@ -4,6 +4,8 @@ import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import ConditionalLink from 'components/ConditionalLink';
+import { FinishedOverlay } from 'styles/StyledComponetStyles';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const Container = styled.div`
   position: relative;
@@ -63,17 +65,12 @@ const InterestedAuctionListCardImage = styled(CardMedia)`
   height: 20vh;
 `;
 
-export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
+const StyledDeleteIcon = styled(DeleteForeverIcon)`
   position: absolute;
-  left: 0;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;
-  background-color: rgba(57, 57, 65, 0.83) !important;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
+  color: #f00;
 `;
 
 const InterestedAuctionListCard = ({ isFinished, data }) => {
@@ -99,7 +96,8 @@ const InterestedAuctionListCard = ({ isFinished, data }) => {
         </StyledCard>
       </ConditionalLink>
       <FinishedOverlay isFinished={isFinished}>
-        <p>종료된 경매입니다.</p>
+        {<StyledDeleteIcon />}
+        <p>종료된 경매입니다!</p>
       </FinishedOverlay>
     </Container>
   );

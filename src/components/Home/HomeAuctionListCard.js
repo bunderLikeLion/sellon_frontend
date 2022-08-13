@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import ConditionalLink from 'components/ConditionalLink';
-import { FinishedOverlay } from '../MyPage/InterestedAuctionListCard';
+import { FinishedOverlay } from 'styles/StyledComponetStyles';
 
 const Container = styled.div`
   margin: 2% 1.5%;
@@ -68,6 +68,7 @@ const PersonCntBox = styled.span`
 `;
 
 const EnterBox = styled(PersonCntBox)`
+  display: ${(props) => (props.isFinished ? 'none' : '')};
   width: 7rem;
   text-align: center;
   border: none;
@@ -88,6 +89,11 @@ const MyCardHeader = styled.div`
   white-space: nowrap;
   font-size: 1.4rem;
   padding: 0.5rem;
+`;
+
+const FinishedCard = styled(FinishedOverlay)`
+  border-radius: 3rem !important;
+  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
 `;
 
 const HomeAuctionListCard = ({ isFinished, auctionData }) => {
@@ -116,9 +122,9 @@ const HomeAuctionListCard = ({ isFinished, auctionData }) => {
           </CardBottom>
         </CardContainer>
       </ConditionalLink>
-      <FinishedOverlay isFinished={isFinished}>
+      <FinishedCard isFinished={isFinished}>
         <p>종료된 경매입니다.</p>
-      </FinishedOverlay>
+      </FinishedCard>
     </Container>
   );
 };

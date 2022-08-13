@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
+import { useMostProductGroupDealingQuery } from 'queries/statistics';
 
 const Container = styled.div`
   display: flex;
@@ -112,27 +113,42 @@ const MonthlyChampionDealCount = styled.p`
 `;
 
 const TopRanker = () => {
+  const {
+    data: MostProductGroupDealingData,
+    isSuccess: MostProductGroupDealingDataFetched,
+  } = useMostProductGroupDealingQuery();
+
   return (
     <Container>
-      <TopDealer>
-        <TopDealerImg image="https://pbs.twimg.com/media/EBq0k5qUEAE3h1u.jpg" />
-        <TopDealerInfo>
-          <TopDealerTitle>이달의 거래왕</TopDealerTitle>
-          <TopDealerUserContainer>
-            <TopDealerUser>김지형</TopDealerUser>
-            <TopDealCount>총 53회</TopDealCount>
-          </TopDealerUserContainer>
-          <QuestionIcon />
-        </TopDealerInfo>
-      </TopDealer>
+      {MostProductGroupDealingDataFetched && (
+        <TopDealer>
+          <TopDealerImg
+            image={MostProductGroupDealingData?.user?.avatar?.file}
+          />
+          <TopDealerInfo>
+            <TopDealerTitle>이달의 거래왕</TopDealerTitle>
+            {MostProductGroupDealingData?.user && (
+              <TopDealerUserContainer>
+                <TopDealerUser>
+                  {MostProductGroupDealingData?.user?.username}
+                </TopDealerUser>
+                <TopDealCount>
+                  총 {MostProductGroupDealingData?.count}회
+                </TopDealCount>
+              </TopDealerUserContainer>
+            )}
+            <QuestionIcon />
+          </TopDealerInfo>
+        </TopDealer>
+      )}
       <MonthlyChampion>
         <MonthlyChampionImg image="https://img.animalplanet.co.kr/news/2019/12/29/700/1z668em06l04f8kj0qqm.jpg" />
         <MonthlyChampionInfo>
           <MonthlyTitle>이달의 챔피언</MonthlyTitle>
           <MonthlyUserContainer>
-            <MonthlyChampionUser>남채원</MonthlyChampionUser>
+            <MonthlyChampionUser>api X(str이름)</MonthlyChampionUser>
             <MonthlyChampionDealCount>
-              총 92명 참여 경매
+              총 (int)명 경매 참여
             </MonthlyChampionDealCount>
           </MonthlyUserContainer>
           <QuestionIcon />
