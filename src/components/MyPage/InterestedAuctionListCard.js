@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
-
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
   flex-direction: row;
@@ -105,18 +104,8 @@ const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
 `;
 
 export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
-  position: absolute;
-  left: 0;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;
   background-color: rgba(57, 57, 65, 0.83) !important;
 `;
-
 
 const InterestedAuctionListCard = () => {
   return (
@@ -241,7 +230,6 @@ const InterestedAuctionListCard = () => {
           <EnterBox>D-7</EnterBox>
         </CardBottom>
       </CardContainer>
-
     </StyledWrapContainer>
   );
 };

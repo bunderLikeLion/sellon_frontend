@@ -42,6 +42,8 @@ export const CloseBtn = styled(CloseIcon)`
 `;
 
 const AddBtn = styled(Button)`
+  display: flex;
+  align-items: stretch;
   float: right;
   width: 7rem;
   height: 2.5rem;
@@ -65,6 +67,14 @@ const StyledTextField = styled(TextField)`
   & .MuiInput-underline:after {
     border: 3px solid transparent;
   }
+
+  //자동완성 글씨, 배경 자동 변경 방지 설정
+  input:-webkit-autofill {
+    -webkit-text-fill-color: ${(props) =>
+      props.theme.color_font__secondary} !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   & .MuiOutlinedInput-root {
     width: 100%;
     height: 2.5rem;

@@ -10,9 +10,19 @@ const AlignContainer = styled.div`
   height: 83vh;
 `;
 
+const StyledContainer = styled.div`
+  display: flex !important;
+  align-items: center !important;
+  height: 88vh;
+`;
+
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
-  height: 40rem;
+  height: 100%;
+  margin-top: 1rem;
 `;
 
 const NavContainer = styled.div`
@@ -20,8 +30,7 @@ const NavContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 15%;
-  margin-top: 1rem;
+  height: 6rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
@@ -36,19 +45,20 @@ const NavTitle = styled.p`
 
 const RankContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 85%;
+  padding-top: 1.2rem;
 `;
 
 const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 70%;
-  height: 100%;
 `;
 
 const RightContainer = styled.div`
   width: 30%;
   height: 32rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
