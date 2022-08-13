@@ -5,6 +5,7 @@ import { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { WaveLoading } from 'react-loadingg';
 import styled from 'styled-components';
+import UserInfoChange from 'pages/MyPage/UserInfoChange';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
@@ -50,6 +51,7 @@ const App = () => {
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
                 <Route path="/auctionfinished" element={<AuctionFinished />} />
                 <Route path="/auction/newauction" element={<NewAuction />} />
+                <Route path="/mypage/infochange" element={<UserInfoChange />} />
               </Routes>
             </Suspense>
           </EntireContainer>

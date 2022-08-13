@@ -9,18 +9,15 @@ import Box from '@material-ui/core/Box';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
-const AlignContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`;
-
 const ModalContainer = styled(Box)`
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
   width: 55rem;
   height: 45rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
@@ -142,6 +139,7 @@ const ConfirmButton = styled.button`
   width: 5rem;
   height: 1.7rem;
   right: 8%;
+  bottom: 3%;
   border: none;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.color_buttontext__ok};
@@ -171,7 +169,7 @@ const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <AlignContainer>
+      
         <ModalContainer>
           <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
           <EvaluateContainer>
@@ -218,7 +216,7 @@ const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
           </DealSummarizeContainer>
           <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
         </ModalContainer>
-      </AlignContainer>
+     
     </Modal>
   );
 };
