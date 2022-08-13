@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import ClearIcon from '@mui/icons-material/Clear';
 import InventoryItem from './InventoryItem';
-import useMyProductsQuery from '../../../queries/product/useMyProductsQuery';
+import useMyProductsQuery from 'queries/product/useMyProductsQuery';
 
 const ModalContainer = styled(Box)`
   position: absolute;
