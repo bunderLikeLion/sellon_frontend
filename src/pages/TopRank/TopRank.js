@@ -22,6 +22,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  margin-top: 1rem;
 `;
 
 const NavContainer = styled.div`
@@ -45,10 +46,12 @@ const NavTitle = styled.p`
 const RankContainer = styled.div`
   display: flex;
   padding-top: 1.2rem;
-  height: 70%;
 `;
 
 const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 70%;
 `;
 

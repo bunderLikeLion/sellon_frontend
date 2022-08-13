@@ -4,8 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`
   width: 90%;
-  height: 49%;
-  margin: 1rem 0;
+  height: 50%;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
@@ -31,16 +30,19 @@ const QuestionIcon = styled(HelpIcon)`
 
 const WeeklyStatusUserContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 80%;
+  justify-content: flex-start;
+  width: 90%;
+  height: 75%;
+  margin: 0 auto;
 `;
 
 const UserContainer = styled.div`
   display: block;
   align-item: center;
   width: 30%;
-  height: 75%;
-  margin: 1rem;
+  height: 90%;
+  margin: 0.5rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__third};
 `;
