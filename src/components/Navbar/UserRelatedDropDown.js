@@ -24,7 +24,6 @@ const UserDropDownContainer = styled(Menu)`
     color: ${(props) => props.theme.color_font__primary};
     background: #33305b !important;
   }
-
   .MuiMenu-list:after {
     content: '';
     display: block;
@@ -32,10 +31,9 @@ const UserDropDownContainer = styled(Menu)`
     top: -0.9rem;
     right: 1rem;
     border-bottom: 1rem solid #33305b;
-    border-right: .7rem solid transparent;
-    border-left: .7rem solid transparent;
+    border-right: 0.7rem solid transparent;
+    border-left: 0.7rem solid transparent;
   }
-
   & .MuiPaper-root {
     height: 14.2rem;
     padding-top: 1rem;
@@ -72,77 +70,78 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
           />
         </IconButton>
       </Tooltip>
-        <UserDropDownContainer
-          sx={{ mt: '50px' }}
-          id="menu-appbar"
-          anchorEl={anchorElUser}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          keepMounted
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-          open={Boolean(anchorElUser)}
-          onClose={closeUserMenu}
-        >
-          <MenuItem onClick={closeUserMenu}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <IconButton>
-                <Avatar src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg" />
-              </IconButton>
-              <Typography textAlign="center">{user?.username}</Typography>
-            </Stack>
-          </MenuItem>
-          <Underline />
-          <MenuItem onClick={closeUserMenu}>
-            <Link to="/mypage">
-              <Stack
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <PersonIcon />
-                <Typography textAlign="center">마이페이지</Typography>
-              </Stack>
-            </Link>
-          </MenuItem>
-          <MenuItem onClick={closeUserMenu}>
-            <Link to="/chat">
-              <Stack
-                direction="row"
-                justifyContent="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <MailIcon />
-                <Typography textAlign="center">진행중인 거래</Typography>
-              </Stack>
-            </Link>
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              closeUserMenu();
-              logout();
-            }}
-          >
+      <UserDropDownContainer
+        sx={{ mt: '50px' }}
+        id="menu-appbar"
+        anchorEl={anchorElUser}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={Boolean(anchorElUser)}
+        onClose={closeUserMenu}
+      >
+        <MenuItem onClick={closeUserMenu}>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <IconButton>
+              <Avatar src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg" />
+            </IconButton>
+            <Typography textAlign="center">{user?.username}</Typography>
+          </Stack>
+        </MenuItem>
+        <Underline />
+        <MenuItem onClick={closeUserMenu}>
+          <Link to="/mypage">
             <Stack
               direction="row"
               justifyContent="center"
               alignItems="center"
               spacing={1}
-              color="#FF4E4E"
             >
-              <LogoutIcon />
-              <Typography textAlign="center">로그아웃</Typography>
+              <PersonIcon />
+              <Typography textAlign="center">마이페이지</Typography>
             </Stack>
-          </MenuItem>
-        </UserDropDownContainer>
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={closeUserMenu}>
+          <Link to="/chat">
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              spacing={1}
+            >
+              <MailIcon />
+              <Typography textAlign="center">진행중인 거래</Typography>
+            </Stack>
+          </Link>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            closeUserMenu();
+            logout();
+          }}
+        >
+          <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            spacing={1}
+            color="#FF4E4E"
+          >
+            <LogoutIcon />
+            <Typography textAlign="center">로그아웃</Typography>
+          </Stack>
+        </MenuItem>
+      </UserDropDownContainer>
     </Box>
   );
 };
 
 export default UserRelatedDropDown;
+

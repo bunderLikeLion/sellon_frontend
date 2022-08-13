@@ -61,7 +61,7 @@ const ValidationModal = ({ handleModal, isModalOpened }) => {
     >
       <ModalContainer>
         <Text>정말 올인하시겠습니까?</Text>
-        <ValidationButton>확인</ValidationButton>
+        <ValidationButton>올인</ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>

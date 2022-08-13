@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
-import { FinishedOverlay } from '../../MyPage/InterestedAuctionListCard';
+import { FinishedOverlay } from 'styles/StyledComponetStyles';
 import { useCreateAuctionItemMutation } from 'queries/auction';
 
 const InventoryItemContainer = styled.div`
@@ -63,6 +63,11 @@ const DeleteButton = styled.button`
   background: ${(props) => props.theme.color_button__delete};
 `;
 
+const FinishedCard = styled(FinishedOverlay)`
+  font-size: 1.5rem;
+  border-radius: 1rem !important;
+`;
+
 const InventoryCard = ({ singleProduct, relatedAuctionId, isUsable }) => {
   const [isButtonOpened, setIsButtonOpened] = useState(false);
 
@@ -97,9 +102,11 @@ const InventoryCard = ({ singleProduct, relatedAuctionId, isUsable }) => {
           <DeleteButton onClick={handleButton}>취소</DeleteButton>
         </ConfirmButtonContainer>
       </InventoryItem>
-      <FinishedOverlay isFinished={!isUsable}>
-        <p>사용할 수 없는 아이템입니다.</p>
-      </FinishedOverlay>
+      <FinishedCard isFinished={!isUsable}>
+        <p>
+          사용할 수 없는 <br /> 아이템입니다.
+        </p>
+      </FinishedCard>
     </InventoryItemContainer>
   );
 };
