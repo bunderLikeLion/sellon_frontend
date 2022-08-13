@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
-
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
 `;
@@ -17,7 +16,7 @@ const StyledWrapContainer = styled.div`
 const CardContainer = styled(Card)`
   position: relative;
   width: 30%;
-  margin-bottom: 4.5rem;
+  margin:  0 2rem 4.5rem 0;
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
@@ -115,7 +114,6 @@ export const FinishedOverlay = styled(Card)`
   font-size: 2rem;
   background-color: rgba(57, 57, 65, 0.83) !important;
 `;
-
 
 const InterestedAuctionListCard = () => {
   return (
@@ -240,7 +238,6 @@ const InterestedAuctionListCard = () => {
           <EnterBox>D-7</EnterBox>
         </CardBottom>
       </CardContainer>
-
     </StyledWrapContainer>
   );
 };
