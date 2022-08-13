@@ -81,6 +81,9 @@ const AuctionDetailModal = ({
                 isTriggeredFromModal={true}
               />
             )}
+            {/*{singleItemDataFetched && (*/}
+            {/*  <UserInformation singleItemData={singleItemData} />*/}
+            {/*)}*/}
           </UserUploadContainer>
           <ItemDetailContainer>
             {singleItemDataFetched && (
