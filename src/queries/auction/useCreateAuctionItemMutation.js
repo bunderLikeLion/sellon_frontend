@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
+import queryKeys from 'utils/queryKeys';
 
 const useCreateAuctionItemMutation = (auctionId) => {
   return useMutation(
@@ -15,9 +16,13 @@ const useCreateAuctionItemMutation = (auctionId) => {
         toast.dismiss();
         toast.success('아이템 제시 성공했습니다 👍');
         queryClient.invalidateQueries(['myProductsData']).then(() => {
-          queryClient.invalidateQueries(['myProductGroup']).then(() => {
-            return queryClient.invalidateQueries(['productGroups']);
-          });
+          queryClient
+            .invalidateQueries([queryKeys.myProductGroup(auctionId)])
+            .then(() => {
+              return queryClient.invalidateQueries([
+                queryKeys.productGroups(auctionId),
+              ]);
+            });
         });
       },
       onError: (res) => {
