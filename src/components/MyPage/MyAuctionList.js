@@ -65,14 +65,6 @@ const InterestedAuctionListCardImage = styled(CardMedia)`
   height: 20vh;
 `;
 
-const StyledDeleteIcon = styled(DeleteForeverIcon)`
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  cursor: pointer;
-  color: #f00;
-`;
-
 const InterestedAuctionListCard = ({ isFinished, data }) => {
   return (
     <Container>
