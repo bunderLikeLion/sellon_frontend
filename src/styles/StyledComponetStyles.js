@@ -17,6 +17,6 @@ export const FinishedOverlay = styled(Card)`
   width: 100%;
   height: 100%;
   font-size: 2rem;
-  background-color: rgba(57, 57, 65, 0.83) !important;
+  background: rgba(57, 57, 65, 0.83) !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
 `;

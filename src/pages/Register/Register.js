@@ -92,7 +92,6 @@ const Button = styled.button`
   font-size: 1.3rem;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_background__success};
-  }
 `;
 
 const Img = styled.img`
