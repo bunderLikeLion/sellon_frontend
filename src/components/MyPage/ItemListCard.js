@@ -14,7 +14,7 @@ const Container = styled.div`
   position: relative;
   width: 30%;
   height: 100%;
-  margin: 3rem 0 0 1rem;
+  margin: 3rem 0 4.5rem 0;
   z-index: 1;
 
   &:before {
@@ -37,6 +37,10 @@ const Container = styled.div`
     z-index: -1;
     border-radius: 20px;
     background: ${(props) => props.theme.color_border__hover};
+  }
+  :nth-child(2),
+  :nth-child(5) {
+    margin: 3rem 3rem 4.5rem 3rem;
   }
 `;
 
