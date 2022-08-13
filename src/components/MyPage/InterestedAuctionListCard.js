@@ -20,15 +20,17 @@ const CardContainer = styled(Card)`
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
-  :hover {
+  box-shadow: 0 0 4px 7px ${(props) =>
+    props.theme.color_border__topleft} !important;
+  :hover{
     transition: 0.5s;
     transform: translateY(-0.5rem);
-  }
+  };
 
   :nth-child(2),
   :nth-child(5) {
     margin: 0 3rem 4.5rem 3rem;
+  }
   }
 `;
 
