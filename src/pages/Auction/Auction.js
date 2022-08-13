@@ -224,11 +224,11 @@ const Auction = () => {
                 id="demo-select-small"
                 value=""
                 label="Age"
-                border= 'none'
+                border="none"
                 MenuProps={{
                   sx: {
                     '& .MuiMenu-list': {
-                      backgroundColor: '#3A335C'
+                      backgroundColor: '#3A335C',
                     },
                   },
                 }}
@@ -291,7 +291,7 @@ const Auction = () => {
               MenuProps={{
                 sx: {
                   '& .MuiMenu-list': {
-                    backgroundColor: '#3A335C'
+                    backgroundColor: '#3A335C',
                   },
                 },
               }}
