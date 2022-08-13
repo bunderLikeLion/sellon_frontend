@@ -1,6 +1,14 @@
 import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
+import { useTodayCompletedQuery } from 'queries/dealing';
+
+const AlignContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 83vh;
+`;
 
 const StyledContainer = styled.div`
   display: flex !important;
@@ -53,12 +61,19 @@ const RightContainer = styled.div`
 `;
 
 const TopRank = () => {
+  const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
+    useTodayCompletedQuery();
+
   return (
     <WrapContainer>
-      <StyledContainer>
+      <AlignContainer>
         <Container>
           <NavContainer>
-            <NavTitle>오늘의 거래는 총 23건입니다!</NavTitle>
+            <NavTitle>
+              오늘의 거래는 총{' '}
+              {todayCompletedCntFetched && todayCompletedCnt.count}
+              건입니다!
+            </NavTitle>
           </NavContainer>
           <RankContainer>
             <LeftContainer>
@@ -70,7 +85,7 @@ const TopRank = () => {
             </RightContainer>
           </RankContainer>
         </Container>
-      </StyledContainer>
+      </AlignContainer>
     </WrapContainer>
   );
 };

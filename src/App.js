@@ -18,8 +18,7 @@ const MyPage = lazy(() => import('pages/MyPage/MyPage'));
 const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
 const AuctionFinished = lazy(() => import('pages/Auction/AuctionFinished'));
-const NewAuction1 = lazy(() => import('pages/AuctionPublish/NewAuction1'));
-const NewAuction2 = lazy(() => import('pages/AuctionPublish/NewAuction2'));
+const NewAuction = lazy(() => import('pages/NewAuction/NewAuction'));
 const TopRank = lazy(() => import('pages/TopRank/TopRank'));
 
 const EntireContainer = styled.div`
@@ -39,8 +38,7 @@ const App = () => {
             <Suspense fallback={<WaveLoading />}>
               <Navbar />
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/mypage" element={<MyPage />} />
@@ -51,8 +49,7 @@ const App = () => {
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
                 <Route path="/auctionfinished" element={<AuctionFinished />} />
-                <Route path="/auction/newauction" element={<NewAuction1 />} />
-                <Route path="/auction/newauction2" element={<NewAuction2 />} />
+                <Route path="/auction/newauction" element={<NewAuction />} />
               </Routes>
             </Suspense>
           </EntireContainer>

@@ -2,7 +2,7 @@ import { AddItemModal } from './index';
 import { useState } from 'react';
 import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
-import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import { useMyProductsQuery } from 'queries/product';
 import { Pagination } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 

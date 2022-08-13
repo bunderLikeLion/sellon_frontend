@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
+import { useMostProductGroupDealingQuery } from 'queries/statistics';
 
 const Container = styled.div`
   display: flex;
@@ -111,6 +112,8 @@ const MonthlyChampionDealCount = styled.p`
 `;
 
 const TopRanker = () => {
+  // const { data } = useMostProductGroupDealingQuery();
+
   return (
     <Container>
       <TopDealer>
@@ -118,8 +121,8 @@ const TopRanker = () => {
         <TopDealerInfo>
           <TopDealerTitle>이달의 거래왕</TopDealerTitle>
           <TopDealerUserContainer>
-            <TopDealerUser>김지형</TopDealerUser>
-            <TopDealCount>총 53회</TopDealCount>
+            <TopDealerUser>discussion (str이름)</TopDealerUser>
+            <TopDealCount>총 (int)회</TopDealCount>
           </TopDealerUserContainer>
           <QuestionIcon />
         </TopDealerInfo>
@@ -129,9 +132,9 @@ const TopRanker = () => {
         <MonthlyChampionInfo>
           <MonthlyTitle>이달의 챔피언</MonthlyTitle>
           <MonthlyUserContainer>
-            <MonthlyChampionUser>남채원</MonthlyChampionUser>
+            <MonthlyChampionUser>api X(str이름)</MonthlyChampionUser>
             <MonthlyChampionDealCount>
-              총 92명 참여 경매
+              총 (int)명 경매 참여
             </MonthlyChampionDealCount>
           </MonthlyUserContainer>
           <QuestionIcon />

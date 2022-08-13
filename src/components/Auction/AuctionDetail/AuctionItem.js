@@ -2,6 +2,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
+import { queryClient } from 'index';
+import {
+  useDeleteInterestedAuctionMutation,
+  useCreateInterestedAuctionMutation,
+} from 'queries/auction';
+import timeLimitHandler from 'utils/timeLimitHandler';
+import { useState } from 'react';
+import AuctionDetailModal from './AuctionDetailModal';
 
 const Container = styled(Card)`
   display: flex;
@@ -25,6 +33,7 @@ const ItemImg = styled(CardMedia)`
   border-radius: 0.5rem;
   object-fit: cover !important;
   object-position: center;
+  cursor: pointer;
 `;
 
 const ItemDurationContainer = styled.div`
@@ -107,18 +116,47 @@ const ItemDescription = styled.p`
 `;
 
 const AuctionItem = (props) => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+
+  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+
+  const { mutate: createInterestedAuction } =
+    useCreateInterestedAuctionMutation();
+
+  const { mutate: deleteInterestedAuction } =
+    useDeleteInterestedAuctionMutation();
+
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   return (
     <Container
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
+      {props?.singleAuctionData?.is_interested ? (
+        <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
+          관심거래 삭제
+        </button>
+      ) : (
+        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
+          관심거래 등록
+        </button>
+      )}
       <ItemImgContainer>
         <ItemImg
+          onClick={handleModal}
           component="img"
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
+        <AuctionDetailModal
+          handleModal={handleModal}
+          isModalOpened={isModalOpened}
+          isTriggeredFromBigImg={true}
+        />
         <ItemDurationContainer>
-          <ItemDuration>D - 7</ItemDuration>
+          <ItemDuration>
+            {timeLimitHandler(props?.singleAuctionData?.end_at)}
+          </ItemDuration>
         </ItemDurationContainer>
         <ExchangeWayContainer>
           <ExchangeWay>

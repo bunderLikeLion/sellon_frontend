@@ -3,23 +3,16 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import CloseIcon from '@mui/icons-material/Close';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useEffect, useRef, useState } from 'react';
-import {
-  FormControl,
-  InputLabel,
-  Radio,
-  Select,
-  TextField,
-} from '@mui/material';
+import { Radio, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import ExtraImageDragDrop from './ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
-import useCategoryQuery from 'queries/product/useCategoryQuery';
-import useCreateProductMutation from 'queries/product/useCreateProductMutation';
+import { useCategoryQuery } from 'queries/product';
+import { useCreateProductMutation } from 'queries/product';
 import useInput from 'hooks/useInput';
 
 const ModalContainer = styled(Box)`
@@ -40,7 +33,7 @@ const StyledTypography = styled(Typography)`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
-const CloseBtn = styled(CloseIcon)`
+export const CloseBtn = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;
@@ -59,7 +52,7 @@ const AddBtn = styled(Button)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StyledLabel = styled.p`
+export const StyledLabel = styled.p`
   margin: 1.5rem 0 0.5rem 0.5rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
@@ -99,7 +92,7 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-const StatusRadioBox = styled.div`
+export const StatusRadioBox = styled.div`
   width: 40rem;
   min-height: 2rem;
   margin-top: 2rem;
@@ -135,11 +128,11 @@ const CategoryRadioBox = styled.div`
     ${(props) => props.theme.color_border__hover} !important;
 `;
 
-const InsideRadioBox = styled.div`
+export const InsideRadioBox = styled.div`
   padding: 0 1rem;
 `;
 
-const CategoryContentBox = styled.div`
+export const CategoryContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -157,11 +150,11 @@ const RadioLabel = styled.label`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const StyledRadio = styled(Radio)`
+export const StyledRadio = styled(Radio)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StatusRadio = styled(SingleRadio)`
+export const StatusRadio = styled(SingleRadio)`
   width: 20%;
 `;
 

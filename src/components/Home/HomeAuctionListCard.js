@@ -2,8 +2,9 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { StyledLink } from 'styles/StyledComponetStyles';
+import timeLimitHandler from 'utils/timeLimitHandler';
+import ConditionalLink from 'components/ConditionalLink';
+import { FinishedOverlay } from '../MyPage/InterestedAuctionListCard';
 
 const Container = styled.div`
   margin: 2% 1.5%;
@@ -11,19 +12,24 @@ const Container = styled.div`
   position: relative;
 `;
 
-const CardContainor = styled(Card)`
+const CardContainer = styled(Card)`
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
+  box-shadow: 0 0 4px 7px ${(props) =>
+    props.theme.color_border__topleft} !important;
+  :hover{
+    transition: 0.5s;
+    transform: translateY(-0.5rem);
+  };
+  }
 `;
 
 const CardTop = styled.div`
   width: 100%;
   display: flex;
   justify-content: start;
-  padding: 1rem;
-  padding-left: 1.5rem;
+  padding: 1rem 1rem 1rem 1.5rem;
   align-items: center;
 `;
 
@@ -40,8 +46,7 @@ const CardTopImg = styled.div`
 
 const CardBottom = styled.div`
   width: 100%;
-  padding: 1rem;
-  padding-top: 0;
+  padding: 0 1rem 1rem 1rem;
   display: flex;
   position: relative;
   align-items: center;
@@ -70,14 +75,6 @@ const EnterBox = styled(PersonCntBox)`
   background: ${(props) => props.theme.color_background__success} !important;
 `;
 
-const HeartIcon = styled(FavoriteBorderIcon)`
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  color: black;
-  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff !important;
-`;
-
 const MyCardMedia = styled(CardMedia)`
   object-fit: cover;
   height: 14rem;
@@ -93,12 +90,14 @@ const MyCardHeader = styled.div`
   padding: 0.5rem;
 `;
 
-const HomeAuctionListCard = ({ auctionData }) => {
+const HomeAuctionListCard = ({ isFinished, auctionData }) => {
   return (
     <Container>
-      <StyledLink to={`/auction/${auctionData.id}`}>
-        <CardContainor sx={{ maxWidth: '100%' }}>
-          <HeartIcon />
+      <ConditionalLink
+        to={`/auction/${auctionData.id}`}
+        condition={!isFinished}
+      >
+        <CardContainer sx={{ maxWidth: '100%' }}>
           <MyCardMedia
             component="img"
             height="150"
@@ -113,11 +112,13 @@ const HomeAuctionListCard = ({ auctionData }) => {
               <PersonIcon />
               {auctionData?.product_groups_count}명
             </PersonCntBox>
-            {/*<EnterBox>{auctionData?.end_at}</EnterBox>*/}
-            <EnterBox>D-1</EnterBox>
+            <EnterBox>{timeLimitHandler(auctionData?.end_at)}</EnterBox>
           </CardBottom>
-        </CardContainor>
-      </StyledLink>
+        </CardContainer>
+      </ConditionalLink>
+      <FinishedOverlay isFinished={isFinished}>
+        <p>종료된 경매입니다.</p>
+      </FinishedOverlay>
     </Container>
   );
 };

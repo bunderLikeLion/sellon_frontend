@@ -6,7 +6,10 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { queryClient } from 'index';
 import { useEffect, useState } from 'react';
-import useMyProductGroupQuery from 'queries/auction/useMyProductGroupQuery';
+import {
+  useDeleteAuctionItemMutation,
+  useMyProductGroupQuery,
+} from 'queries/auction';
 import CardMedia from '@mui/material/CardMedia';
 
 const Container = styled.div`
@@ -82,6 +85,8 @@ const MySuggested = (props) => {
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
     useMyProductGroupQuery(relatedAuctionId, userId, page, 4);
 
+  const { mutate: deleteAuctionItem } = useDeleteAuctionItemMutation(userId);
+
   useEffect(() => {
     if (myProductGroup.results.length) {
       setProductGroupExists(true);
@@ -105,7 +110,13 @@ const MySuggested = (props) => {
             return (
               <MyItem key={singleItem?.id} image={singleItem?.thumbnail?.file}>
                 내아이템
-                <DeleteIcon />
+                <DeleteIcon
+                  onClick={() => {
+                    deleteAuctionItem({
+                      product_id: singleItem?.id,
+                    });
+                  }}
+                />
               </MyItem>
             );
           })}

@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ValidationModal from './ValidationModal';
-import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import { useMyProductsQuery } from 'queries/product';
 import CardMedia from '@mui/material/CardMedia';
-import useCreateProductGroupMutation from 'queries/auction/useCreateProductGroupMutation';
-import { QueryCache } from '@tanstack/react-query';
 import { queryClient } from 'index';
-import useProductGroupsQuery from 'queries/auction/useProductGroupsQuery';
-import HiddenCard from './InventoryCards/HiddenCard';
+import InventoryCard from './InventoryCard';
 
 const Container = styled.div`
   display: flex;
@@ -125,20 +122,8 @@ const AllInButton = styled.button`
 `;
 
 const MySuggesting = () => {
-  const [isButtonOpened, setIsButtonOpened] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [inventoryPageNum, setInventoryPageNum] = useState(1);
-
-  const queryCache = new QueryCache({
-    onSuccess: (data) => {
-      console.log(data, 'dddd');
-    },
-    onError: (error) => {
-      console.log(error, 'errr');
-    },
-  });
-
-  const handleButton = () => setIsButtonOpened(!isButtonOpened);
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
@@ -146,9 +131,6 @@ const MySuggesting = () => {
 
   const { data: myProductsData, isSuccess: myProductFetched } =
     useMyProductsQuery(inventoryPageNum, 4);
-
-  const { mutate: createProductGroup } =
-    useCreateProductGroupMutation(relatedAuctionId);
 
   return (
     <Container>
@@ -164,45 +146,25 @@ const MySuggesting = () => {
 
       {myProductFetched &&
         myProductsData.results.map((singleProduct) => {
-          if (singleProduct?.status === 'hidden')
+          if (singleProduct?.status === 'hidden') {
             return (
-              <HiddenCard
+              <InventoryCard
+                key={singleProduct.id}
                 singleProduct={singleProduct}
-                createProductGroup={createProductGroup}
                 relatedAuctionId={relatedAuctionId}
+                isUsable={true}
               />
             );
-
-          if (singleProduct?.status === 'in_auction')
+          } else {
             return (
-              <InventoryItemContainer key={singleProduct?.id}>
-                <InventoryItem image={singleProduct?.thumbnail?.file}>
-                  <SuggestionButton
-                    onClick={handleButton}
-                    isButtonOpened={isButtonOpened}
-                    handleButton={handleButton}
-                  >
-                    제시
-                  </SuggestionButton>
-                  <ConfirmButtonContainer
-                    isButtonOpened={isButtonOpened}
-                    handleButton={handleButton}
-                  >
-                    <ConfirmButton
-                      onClick={() =>
-                        createProductGroup({
-                          auction_id: relatedAuctionId,
-                          product_ids: [singleProduct?.id],
-                        })
-                      }
-                    >
-                      확인
-                    </ConfirmButton>
-                    <DeleteButton onClick={handleButton}>취소</DeleteButton>
-                  </ConfirmButtonContainer>
-                </InventoryItem>
-              </InventoryItemContainer>
+              <InventoryCard
+                key={singleProduct.id}
+                singleProduct={singleProduct}
+                relatedAuctionId={relatedAuctionId}
+                isUsable={false}
+              />
             );
+          }
         })}
 
       {inventoryPageNum !== myProductsData?.total_pages ? (

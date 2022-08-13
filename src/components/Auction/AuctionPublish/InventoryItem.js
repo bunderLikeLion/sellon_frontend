@@ -8,54 +8,55 @@ const Container = styled(Card)`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 30%;
+  width: 28%;
   height: 55%;
-  margin: 2% 0;
+  margin: 2%;
   border-radius: 1rem !important;
+  cursor: pointer;
+  border: 3.5px solid ${(props) => props.theme.color_border__topleft};
+  border-right: 3.5px solid ${(props) => props.theme.color_border__bottomright};
+  border-bottom: 3.5px solid ${(props) => props.theme.color_border__bottomright};
+  background: ${(props) => props.theme.color_background__primary} !important;
+  :hover {
+    transition: 0.2s;
+    box-shadow: 0 5px 15px 5px ${(props) => props.theme.color_border__topleft};
+    transform: translateY(-5px);
+  }
 `;
 
 const ImgContainer = styled.div`
   width: 100%;
   height: 70%;
-  border-bottom: 0.2rem solid black;
 `;
 
 const ItemContentContainer = styled.div`
-  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 30%;
+  background: ${(props) => props.theme.color_background__primary};
+  font-size: 100rem !important;
 `;
 
 const CardTop = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const AddButton = styled.button`
-  position: absolute;
-  right: 5%;
-  bottom: 10%;
-  width: 40%;
-  height: 30%;
-  border-radius: 1rem;
-`;
+const InventoryItem = ({ singleItem, setSelectedItem, handleModal }) => {
+  const selectFromInventoryFunc = () => {
+    setSelectedItem(singleItem);
+    handleModal();
+  };
 
-const InventoryItem = () => {
   return (
-    <Container sx={{ maxWidth: '100%' }}>
+    <Container onClick={selectFromInventoryFunc} sx={{ maxWidth: '100%' }}>
       <ImgContainer>
-        <CardMedia
-          component="img"
-          image="https://cdn.shopify.com/s/files/1/0087/6193/3920/products/1904760_SMOK_1_300x300@2x.jpg?v=1656086629"
-        />
+        <CardMedia component="img" image={singleItem?.thumbnail?.file} />
       </ImgContainer>
       <ItemContentContainer>
         <CardTop>
-          <CardHeader title="Stussy 8  ball Tee" />
+          <CardHeader title={singleItem?.name} />
         </CardTop>
-        <AddButton>추가</AddButton>
       </ItemContentContainer>
     </Container>
   );

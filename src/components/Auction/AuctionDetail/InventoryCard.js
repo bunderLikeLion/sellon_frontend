@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
+import { FinishedOverlay } from '../../MyPage/InterestedAuctionListCard';
+import { useCreateAuctionItemMutation } from 'queries/auction';
 
 const InventoryItemContainer = styled.div`
+  position: relative;
   width: 9rem;
   height: 9rem;
   border-radius: 1rem;
@@ -60,14 +63,13 @@ const DeleteButton = styled.button`
   background: ${(props) => props.theme.color_button__delete};
 `;
 
-const HiddenCard = ({
-  singleProduct,
-  createProductGroup,
-  relatedAuctionId,
-}) => {
+const InventoryCard = ({ singleProduct, relatedAuctionId, isUsable }) => {
   const [isButtonOpened, setIsButtonOpened] = useState(false);
 
   const handleButton = () => setIsButtonOpened(!isButtonOpened);
+
+  const { mutate: createAuctionItem } =
+    useCreateAuctionItemMutation(relatedAuctionId);
 
   return (
     <InventoryItemContainer key={singleProduct?.id}>
@@ -85,9 +87,8 @@ const HiddenCard = ({
         >
           <ConfirmButton
             onClick={() =>
-              createProductGroup({
-                auction_id: relatedAuctionId,
-                product_ids: [singleProduct?.id],
+              createAuctionItem({
+                product_id: singleProduct?.id,
               })
             }
           >
@@ -96,8 +97,11 @@ const HiddenCard = ({
           <DeleteButton onClick={handleButton}>취소</DeleteButton>
         </ConfirmButtonContainer>
       </InventoryItem>
+      <FinishedOverlay isFinished={!isUsable}>
+        <p>사용할 수 없는 아이템입니다.</p>
+      </FinishedOverlay>
     </InventoryItemContainer>
   );
 };
 
-export default HiddenCard;
+export default InventoryCard;
