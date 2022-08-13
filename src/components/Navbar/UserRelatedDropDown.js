@@ -37,7 +37,7 @@ const UserDropDownContainer = styled(Menu)`
   }
 
   & .MuiPaper-root {
-    height: 15rem;
+    height: 14.2rem;
     padding-top: 1rem;
     border-radius: 0.5rem;
     background: transparent;
@@ -72,7 +72,6 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
           />
         </IconButton>
       </Tooltip>
-      <UserDropDownContainertail>
         <UserDropDownContainer
           sx={{ mt: '50px' }}
           id="menu-appbar"
@@ -142,7 +141,6 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
             </Stack>
           </MenuItem>
         </UserDropDownContainer>
-      </UserDropDownContainertail>
     </Box>
   );
 };
