@@ -4,7 +4,7 @@ import { useProductGroupsQuery } from 'queries/auction';
 import { queryClient } from 'index';
 import CardMedia from '@mui/material/CardMedia';
 import { useRecoilValue } from 'recoil';
-import { userAtom } from '../../../states';
+import { userAtom } from 'states';
 import AuctionDetailModal from './AuctionDetailModal';
 
 const OtherSuggestionContainer = styled.div`
@@ -47,7 +47,7 @@ const ProfileContainer = styled.div`
   height: 15%;
 `;
 
-const Profile = styled.div`
+const Profile = styled(CardMedia)`
   width: 100%;
   height: 4rem;
   border-radius: 50%;
@@ -86,11 +86,14 @@ const AuctionOtherSuggestion = (props) => {
       </GuideContainer>
       {productGroupsFetched &&
         productGroups.results.map((singleProductGroup) => {
-          if (singleProductGroup.user.id !== userId) {
+          if (
+            singleProductGroup.user.id !== userId &&
+            singleProductGroup?.products?.length
+          ) {
             return (
               <OtherSuggestion key={singleProductGroup?.id}>
                 <ProfileContainer>
-                  <Profile />
+                  <Profile image={singleProductGroup?.user?.avatar?.file} />
                   {singleProductGroup?.user?.username}
                 </ProfileContainer>
                 <AuctionOtherSuggestionItemContainer>

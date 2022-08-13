@@ -112,21 +112,34 @@ const MonthlyChampionDealCount = styled.p`
 `;
 
 const TopRanker = () => {
-  // const { data } = useMostProductGroupDealingQuery();
+  const {
+    data: MostProductGroupDealingData,
+    isSuccess: MostProductGroupDealingDataFetched,
+  } = useMostProductGroupDealingQuery();
 
   return (
     <Container>
-      <TopDealer>
-        <TopDealerImg image="https://pbs.twimg.com/media/EBq0k5qUEAE3h1u.jpg" />
-        <TopDealerInfo>
-          <TopDealerTitle>이달의 거래왕</TopDealerTitle>
-          <TopDealerUserContainer>
-            <TopDealerUser>discussion (str이름)</TopDealerUser>
-            <TopDealCount>총 (int)회</TopDealCount>
-          </TopDealerUserContainer>
-          <QuestionIcon />
-        </TopDealerInfo>
-      </TopDealer>
+      {MostProductGroupDealingDataFetched && (
+        <TopDealer>
+          <TopDealerImg
+            image={MostProductGroupDealingData?.user?.avatar?.file}
+          />
+          <TopDealerInfo>
+            <TopDealerTitle>이달의 거래왕</TopDealerTitle>
+            {MostProductGroupDealingData?.user && (
+              <TopDealerUserContainer>
+                <TopDealerUser>
+                  {MostProductGroupDealingData?.user?.username}
+                </TopDealerUser>
+                <TopDealCount>
+                  총 {MostProductGroupDealingData?.count}회
+                </TopDealCount>
+              </TopDealerUserContainer>
+            )}
+            <QuestionIcon />
+          </TopDealerInfo>
+        </TopDealer>
+      )}
       <MonthlyChampion>
         <MonthlyChampionImg image="https://img.animalplanet.co.kr/news/2019/12/29/700/1z668em06l04f8kj0qqm.jpg" />
         <MonthlyChampionInfo>
