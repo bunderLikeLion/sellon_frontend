@@ -24,7 +24,6 @@ const UserDropDownContainer = styled(Menu)`
     color: ${(props) => props.theme.color_font__primary};
     background: #33305b !important;
   }
-
   .MuiMenu-list:after {
     content: '';
     display: block;
@@ -35,9 +34,8 @@ const UserDropDownContainer = styled(Menu)`
     border-right: 0.7rem solid transparent;
     border-left: 0.7rem solid transparent;
   }
-
   & .MuiPaper-root {
-    height: 15rem;
+    height: 14.2rem;
     padding-top: 1rem;
     border-radius: 0.5rem;
     background: transparent;
@@ -146,3 +144,4 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
 };
 
 export default UserRelatedDropDown;
+
