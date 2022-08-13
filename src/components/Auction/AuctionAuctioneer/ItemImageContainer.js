@@ -3,11 +3,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  clear: both;
   width: 50%;
-  height: 20rem;
+  height: 24rem;
   margin: auto 0;
   padding: 1rem;
-  clear: both;
 `;
 
 const ItemImage = styled.div`

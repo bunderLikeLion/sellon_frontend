@@ -27,6 +27,7 @@ const QuestionIcon = styled(HelpIcon)`
 `;
 
 const BottomContainer = styled.div`
+  overflow-y: scroll;
   width: 100%;
   height: 85%;
   border-radius: 0.5rem;

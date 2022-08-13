@@ -108,15 +108,6 @@ const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
 `;
 
 export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
-  position: absolute;
-  left: 0;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;
   background-color: rgba(57, 57, 65, 0.83) !important;
 `;
 
