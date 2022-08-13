@@ -68,6 +68,8 @@ const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
             if (!singleImg) return null;
             return <SubPic key={singleImg?.id} image={singleImg?.file} />;
           })}
+        {thumbnail && <MainPic image={thumbnail?.file} />}
+        {thumbnail && <MainPic image={thumbnail?.file} />}
       </SubPicContainer>
     </>
   );
