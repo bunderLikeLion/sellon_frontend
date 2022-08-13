@@ -14,7 +14,7 @@ const theme = {
   color_button__filter:
     'linear-gradient(180deg, rgba(193, 168, 202, 0.7) 0%, #9855AF 100%)',
   color_buttontext__ok: '#E9E6FC',
-  color_buttontext__delete: '#848484',
+  color_buttontext__delete: '#7C58A0',
   color_font__default: '#2C2747',
   color_font__disabled: '#7B749D',
   color_font__primary: '#FEFEFF',

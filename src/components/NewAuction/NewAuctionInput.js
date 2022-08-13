@@ -1,4 +1,3 @@
-import { Container } from 'pages/NewAuction/NewAuction';
 import styled from 'styled-components';
 import {
   CategoryContentBox,
@@ -16,36 +15,59 @@ const AuctionTitleContainer = styled.div`
 
 const SubHeader = styled.p`
   width: 6rem;
-  margin: 0.5rem 0.5rem 0.5rem 0;
-  font-weight: 700;
-  font-size: 1rem;
+  margin: 0 0.5rem 0.5rem 0;
+  font-weight: 300;
+  font-size: 1.2rem;
 `;
 
 const AuctionTitle = styled.input.attrs((props) => ({
   type: 'text',
 }))`
-  background: grey;
-  border: none;
-  border-radius: 0.5rem;
   width: 100%;
   height: 2.5rem;
   padding: 0 1rem;
+  border: none;
+  border-radius: 0.5rem;
   font-size: 1rem;
+  background: #d9d9d9;
 `;
 
 const TextareaContainer = styled.div`
-  margin: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  margin: 2rem 1rem;
+`;
+
+const RadioContainer = styled(StatusRadioBox)`
+  margin: 0 1rem 1rem 1rem;
+  width: 28rem;
+  height: 4rem;
+`;
+
+const InsideRadioBoxContainer = styled(InsideRadioBox)`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
+const StyledLabelText = styled(StyledLabel)`
+  width: 7rem;
+  margin: 0;
 `;
 
 const AuctionText = styled.textarea`
-  background: grey;
-  height: 20rem;
+  width: 100%;
+  height: 12rem;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
+  background: #d9d9d9;
+`;
+
+const StatusRadioContainer = styled(StatusRadio)`
+  width: 8rem;
+  margin: 0 0 0 2rem;
 `;
 
 const RadioLabel = styled.label`
@@ -72,7 +94,7 @@ const NewAuctionInput = (props) => {
   return (
     <>
       <AuctionTitleContainer>
-        <SubHeader>경매글 제목</SubHeader>
+        <SubHeader>경매 제목</SubHeader>
         <AuctionTitle
           value={props.auctionTitle}
           onChange={props.auctionTitleHandler}
@@ -80,44 +102,44 @@ const NewAuctionInput = (props) => {
       </AuctionTitleContainer>
 
       <TextareaContainer>
-        <SubHeader>경매글 내용</SubHeader>
+        <SubHeader>글 작성</SubHeader>
         <AuctionText
           value={props.auctionDesc}
           onChange={props.auctionDescHandler}
         />
       </TextareaContainer>
 
-      <StatusRadioBox>
-        <InsideRadioBox>
-          <StyledLabel>경매 기간</StyledLabel>
+      <RadioContainer>
+        <InsideRadioBoxContainer>
+          <StyledLabelText>경매 기간</StyledLabelText>
           <CategoryContentBox>
-            <StatusRadio>
+            <StatusRadioContainer>
               <StyledRadio {...timeControlProps('1')} />
               <RadioLabel>하루</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
+            </StatusRadioContainer>
+            <StatusRadioContainer>
               <StyledRadio {...timeControlProps('7')} />
               <RadioLabel>일주일</RadioLabel>
-            </StatusRadio>
+            </StatusRadioContainer>
           </CategoryContentBox>
-        </InsideRadioBox>
-      </StatusRadioBox>
+        </InsideRadioBoxContainer>
+      </RadioContainer>
 
-      <StatusRadioBox>
-        <InsideRadioBox>
-          <StyledLabel>거래 방법</StyledLabel>
+      <RadioContainer>
+        <InsideRadioBoxContainer>
+          <StyledLabelText>거래 방법</StyledLabelText>
           <CategoryContentBox>
-            <StatusRadio>
+            <StatusRadioContainer>
               <StyledRadio {...methodControlProps('direct')} />
               <RadioLabel>직거래</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
+            </StatusRadioContainer>
+            <StatusRadioContainer>
               <StyledRadio {...methodControlProps('delivery')} />
               <RadioLabel>택배</RadioLabel>
-            </StatusRadio>
+            </StatusRadioContainer>
           </CategoryContentBox>
-        </InsideRadioBox>
-      </StatusRadioBox>
+        </InsideRadioBoxContainer>
+      </RadioContainer>
     </>
   );
 };

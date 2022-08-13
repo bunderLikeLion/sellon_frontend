@@ -1,17 +1,32 @@
 import styled from 'styled-components';
 import WrapContainer from 'layouts/WrapContainer';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AuctionPublishModal from 'components/Auction/AuctionPublish/AuctionPublishModal';
 import InfoContainerWithItem from 'components/NewAuction/InfoContainerWithItem';
 import NewAuctionInput from 'components/NewAuction/NewAuctionInput';
 import useInput from 'hooks/useInput';
 import { useCreateAuctionMutation } from 'queries/auction';
 import moment from 'moment';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export const Container = styled.div`
   position: relative;
-  width: 100%;
+  width: 50%;
   height: 100%;
+`;
+
+const ArrowBackIcon = styled(ArrowBackIosNewIcon)`
+  position: absolute;
+  top: 2rem;
+  left: -1.5rem;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 86vh;
 `;
 
 const InstructContainer = styled.div`
@@ -20,10 +35,9 @@ const InstructContainer = styled.div`
 `;
 
 const TopContainer = styled.div`
+  position: relative;
   width: 100%;
-  height: 100%;
   padding: 2rem 1rem;
-  color: white;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -36,20 +50,21 @@ const BigContainer = styled.div`
 `;
 
 const BigText = styled.div`
+  width: 9rem;
+  text-align: center;
   font-size: 2rem;
-  font-weight: 700;
-  margin: 0.5rem 2rem;
+  font-weight: 350;
 `;
 
 const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  min-height: 55vh;
-  margin-top: 2rem;
   align-items: center;
+  width: 100%;
+  height: 35rem;
+  margin-top: 1rem;
   border-radius: 1rem;
+  cursor: pointer;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
@@ -65,21 +80,24 @@ const InventoryBtn = styled.button`
 const ReselectBtn = styled.button`
   width: 8rem;
   height: 2rem;
-  border-radius: 1rem;
-  background: ${(props) => props.theme.color_button__ok};
+  margin-left: 13rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const StyledButton = styled.button`
-  margin: 4rem 1rem 1rem 1rem;
-  background: ${(props) => props.theme.color_background__success};
-  color: white;
-  border-radius: 1rem;
+  float: right;
   height: 3.5rem;
   width: 9rem;
-  float: right;
+  margin: 1rem;
+  border: none;
+  border-radius: 1rem;
   font-size: 1rem;
   font-weight: 700;
-  border: none;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const NewAuction = () => {
@@ -105,52 +123,55 @@ const NewAuction = () => {
 
   return (
     <WrapContainer>
-      <TopContainer>
-        <InstructContainer>
-          <BigText>경매 열기</BigText>
-          {selectedItem && (
-            <ReselectBtn onClick={() => setSelectedItem(null)}>
-              아이템 다시 선택
-            </ReselectBtn>
-          )}
-        </InstructContainer>
+      <FlexContainer>
+        <TopContainer>
+          <Link to={'/auction/'}>
+            <ArrowBackIcon />
+          </Link>
+          <InstructContainer>
+            <BigText>경매 열기</BigText>
+            {selectedItem && (
+              <ReselectBtn onClick={() => setSelectedItem(null)}>
+                아이템 다시 선택
+              </ReselectBtn>
+            )}
+          </InstructContainer>
 
-        <BigContainer>
-          {!selectedItem ? (
+          <BigContainer>
+            {!selectedItem ? (
+              <Container>
+                <BtnContainer onClick={handleModal}>
+                  <InventoryBtn>인벤토리에서 가져오기</InventoryBtn>
+                </BtnContainer>
+              </Container>
+            ) : (
+              <InfoContainerWithItem selectedItem={selectedItem} />
+            )}
+
             <Container>
-              <BtnContainer>
-                <InventoryBtn onClick={handleModal}>
-                  인벤토리에서 가져오기
-                </InventoryBtn>
-              </BtnContainer>
+              <NewAuctionInput
+                auctionTitle={auctionTitle}
+                auctionTitleHandler={auctionTitleHandler}
+                auctionDesc={auctionDesc}
+                auctionDescHandler={auctionDescHandler}
+                auctionTime={auctionTime}
+                auctionTimeHandler={auctionTimeHandler}
+                auctionMethod={auctionMethod}
+                auctionMethodHandler={auctionMethodHandler}
+              />
+              <StyledButton onClick={submitAuctionCreationForm}>
+                경매 발행하기
+              </StyledButton>
             </Container>
-          ) : (
-            <InfoContainerWithItem selectedItem={selectedItem} />
-          )}
 
-          <Container>
-            <NewAuctionInput
-              auctionTitle={auctionTitle}
-              auctionTitleHandler={auctionTitleHandler}
-              auctionDesc={auctionDesc}
-              auctionDescHandler={auctionDescHandler}
-              auctionTime={auctionTime}
-              auctionTimeHandler={auctionTimeHandler}
-              auctionMethod={auctionMethod}
-              auctionMethodHandler={auctionMethodHandler}
+            <AuctionPublishModal
+              handleModal={handleModal}
+              isModalOpened={isModalOpened}
+              setSelectedItem={setSelectedItem}
             />
-            <StyledButton onClick={submitAuctionCreationForm}>
-              경매 발행하기
-            </StyledButton>
-          </Container>
-
-          <AuctionPublishModal
-            handleModal={handleModal}
-            isModalOpened={isModalOpened}
-            setSelectedItem={setSelectedItem}
-          />
-        </BigContainer>
-      </TopContainer>
+          </BigContainer>
+        </TopContainer>
+      </FlexContainer>
     </WrapContainer>
   );
 };
