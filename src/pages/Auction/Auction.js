@@ -188,7 +188,7 @@ const InputLabelBox = styled(InputLabel)`
 `;
 
 const MenuItemBox = styled(MenuItem)`
-  color: #ffffff !important;
+  color: ${(props) => props.theme.color_font__primary} !important;
 `;
 
 const Auction = () => {
