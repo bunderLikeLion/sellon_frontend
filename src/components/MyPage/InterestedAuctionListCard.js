@@ -8,7 +8,7 @@ const StyledWrapContainer = styled.div`
   display: inline-flex !important;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
 `;
@@ -16,6 +16,7 @@ const StyledWrapContainer = styled.div`
 const CardContainer = styled(Card)`
   position: relative;
   width: 30%;
+  margin-right: 2rem;
   margin-bottom: 4.5rem;
   border-radius: 3rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
