@@ -60,7 +60,9 @@ const AuctionDetailModal = ({
   ]);
 
   const { data: singleItemData, isSuccess: singleItemDataFetched } =
-    useSingleProductQuery(isTriggeredFromBigImg ? relatedProductObj?.id : 3);
+    useSingleProductQuery(
+      isTriggeredFromBigImg ? relatedProductObj?.id : smallImgRelatedItemId?.id
+    );
 
   console.log(smallImgRelatedItemId, 'id');
 
