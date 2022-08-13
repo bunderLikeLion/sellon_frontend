@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@material-ui/core/Box';
-import { useState } from 'react';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -18,7 +17,6 @@ const ModalContainer = styled(Box)`
 `;
 
 const UserInfoDetailModal = ({ handleModal, isModalOpened }) => {
-  const [value, setValue] = useState(2);
   return (
     <Modal
       open={isModalOpened}

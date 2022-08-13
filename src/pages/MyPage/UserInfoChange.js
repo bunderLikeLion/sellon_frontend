@@ -133,6 +133,13 @@ const UserInfoChange = () => {
           </InputContainer>
 
           <InputContainer>
+            <Input type="text" value="닉네임 수정" {...register('username')} />
+            <ErrorMsg>{errors.username?.message}</ErrorMsg>
+          </InputContainer>
+
+          
+
+          <InputContainer>
             <Input
               type="password"
               value="1234"

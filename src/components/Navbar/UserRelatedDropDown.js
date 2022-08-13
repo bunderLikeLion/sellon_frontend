@@ -15,10 +15,6 @@ import { userAtom } from 'states';
 import { Stack } from '@mui/material';
 import styled from 'styled-components';
 
-const UserDropDownContainertail = styled.div`
-  background: blue;
-`;
-
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
     position: relative;
@@ -48,7 +44,7 @@ const UserDropDownContainer = styled(Menu)`
   }
 `;
 
-const BorderBottom = styled.hr`
+const Underline = styled.hr`
   width: 10rem;
   height: 0.1rem;
   color: #a3a3a3;
@@ -101,7 +97,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
               <Typography textAlign="center">{user?.username}</Typography>
             </Stack>
           </MenuItem>
-          <BorderBottom />
+          <Underline />
           <MenuItem onClick={closeUserMenu}>
             <Link to="/mypage">
               <Stack
