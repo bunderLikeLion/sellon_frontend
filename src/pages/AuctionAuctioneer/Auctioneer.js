@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import WrapContainer from 'layouts/WrapContainer';
 import ItemImageContainer from 'components/Auction/AuctionAuctioneer/ItemImageContainer';
 import ItemDetailContainer from 'components/Auction/AuctionAuctioneer/ItemDetailContainer';
-import BuyerSingleBox from 'components/Auction/AuctionAuctioneer/ByerSingleBox';
+import BuyerSingleBox from 'components/Auction/AuctionAuctioneer/BuyerSingleBox';
 import SelectMessageModal from 'components/Auction/AuctionAuctioneer/SelectMessageModal';
 import DiscardMessageModal from 'components/Auction/AuctionAuctioneer/DiscardMessageModal';
 import { FormControlLabel, Pagination, RadioGroup } from '@mui/material';
