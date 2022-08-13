@@ -3,7 +3,11 @@ import WrapContainer from 'layouts/WrapContainer';
 import ItemImageContainer from 'components/Auction/AuctionAuctioneer/ItemImageContainer';
 import ItemDetailContainer from 'components/Auction/AuctionAuctioneer/ItemDetailContainer';
 import BuyerSingleBox from 'components/Auction/AuctionAuctioneer/ByerSingleBox';
-import { Pagination } from '@mui/material';
+import SelectMessageModal from 'components/Auction/AuctionAuctioneer/SelectMessageModal';
+import DiscardMessageModal from 'components/Auction/AuctionAuctioneer/DiscardMessageModal';
+import { FormControlLabel, Pagination, RadioGroup } from '@mui/material';
+import { StyledRadio } from 'components/MyPage/AddItemModal';
+import { useState } from 'react';
 
 const Container = styled.div`
   height: 100%;
@@ -13,7 +17,7 @@ const Container = styled.div`
 const ItemContainer = styled.div`
   display: flex;
   justify-content: center;
-  height: 55%;
+  height: 56%;
   margin: 1rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
@@ -64,10 +68,23 @@ const SelectBtn = styled.button`
   background: ${(props) => props.theme.color_background__success};
 `;
 
+const DiscardBtn = styled.button`
+  float: right;
+  width: 7rem;
+  height: 2.5rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_background__warning};
+`;
+
 const BuyerList = styled.div`
   clear: both;
   height: 100%;
-  margin: 1rem;
+  margin: 1rem 0 1rem 1rem;
 `;
 
 const PaginationContainer = styled.div`
@@ -88,7 +105,20 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const MyRadioGroup = styled(RadioGroup)``;
+
+const BuyerContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 const Auctioneer = () => {
+  const [isSelectModalOpened, setIsSelectModalOpened] = useState(false);
+  const [isDiscardModalOpened, setIsDiscardModalOpened] = useState(false);
+  const SelecthandleModal = () => setIsSelectModalOpened(!isSelectModalOpened);
+  const DiscardhandleModal = () =>
+    setIsDiscardModalOpened(!isDiscardModalOpened);
+
   return (
     <WrapContainer>
       <Container>
@@ -102,11 +132,20 @@ const Auctioneer = () => {
             <SmallText>총 98명</SmallText>
           </TextContainer>
 
-          <SelectBtn>선택</SelectBtn>
+          <SelectBtn onClick={SelecthandleModal}>선택</SelectBtn>
+          <DiscardBtn onClick={DiscardhandleModal}>폐기</DiscardBtn>
           <BuyerList>
-            <BuyerSingleBox />
-            <BuyerSingleBox />
-            <BuyerSingleBox />
+            <MyRadioGroup name="buyer-radio-group">
+              <BuyerContainer>
+                <FormControlLabel value="id_1" control={<StyledRadio />} />
+                <BuyerSingleBox />
+              </BuyerContainer>
+
+              <BuyerContainer>
+                <FormControlLabel value="id_2" control={<StyledRadio />} />
+                <BuyerSingleBox />
+              </BuyerContainer>
+            </MyRadioGroup>
           </BuyerList>
           <PaginationContainer>
             <StyledPagination
@@ -118,6 +157,14 @@ const Auctioneer = () => {
             />
           </PaginationContainer>
         </BuyerListContainer>
+        <SelectMessageModal
+          handleModal={SelecthandleModal}
+          isModalOpened={isSelectModalOpened}
+        />
+        <DiscardMessageModal
+          handleModal={DiscardhandleModal}
+          isModalOpened={isDiscardModalOpened}
+        />
       </Container>
     </WrapContainer>
   );
