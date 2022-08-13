@@ -96,6 +96,9 @@ const ItemDescriptionContainer = styled.div`
   @media (min-height: 1000px) and (max-height: 1200px) {
     height: 50%;
   }
+  @media (min-height: 1200px) {
+    height: 55%;
+  }
   margin-top: 2rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
