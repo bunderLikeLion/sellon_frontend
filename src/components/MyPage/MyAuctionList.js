@@ -9,9 +9,9 @@ import { useMyProductsQuery } from 'queries/product';
 
 const StyledWrapContainer = styled.div`
   display: flex !important;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
   width: 100%;
   height: 100%;
 `;
@@ -40,8 +40,8 @@ const CardTop = styled.div`
 
 const CardProfile = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 2rem;
   height: 2rem;
   padding: 1.5rem;
@@ -52,8 +52,8 @@ const CardProfile = styled.div`
 const CardBottom = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 0 1rem 1rem 1rem;
 `;

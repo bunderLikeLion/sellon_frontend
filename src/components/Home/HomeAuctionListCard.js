@@ -33,8 +33,8 @@ const CardTop = styled.div`
 
 const CardTopImg = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 2rem;
   height: 2rem;
   padding: 1.5rem;
@@ -45,8 +45,8 @@ const CardTopImg = styled.div`
 const CardBottom = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 0 1rem 1rem 1rem;
 `;
