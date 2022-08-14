@@ -6,14 +6,16 @@ import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
 
-
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-content: center;
-  margin-top: 3rem;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem 2.5rem;
+  margin-top: 2rem;
 `;
 
 const ItemListContainer = styled.div`
@@ -39,7 +41,6 @@ const StyledPagination = styled(Pagination)`
     }
   }
 `;
-
 
 const InterestedAuctionList = () => {
   const {
@@ -96,7 +97,6 @@ const InterestedAuctionList = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-
     </ItemListContainer>
   );
 };

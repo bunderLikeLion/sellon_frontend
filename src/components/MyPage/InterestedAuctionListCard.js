@@ -6,33 +6,36 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ConditionalLink from '../ConditionalLink';
 import { FinishedCard } from '../Home/HomeAuctionListCard';
 
-const StyledWrapContainer = styled.div`
-  display: inline-flex !important;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-`;
-
 const CardContainer = styled(Card)`
   position: relative;
-  width: 30%;
-  margin-bottom: 4.5rem;
-  border-radius: 3rem !important;
+
+  max-width: calc((100% - 7.5rem) / 4);
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc((100% - 7.5rem) / 4);
+  border-radius: 1rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) =>
-    props.theme.color_border__topleft} !important;
-  :hover{
-    transition: 0.5s;
-    transform: translateY(-0.5rem);
-  };
 
-  :nth-child(2),
-  :nth-child(5) {
-    margin: 0 3rem 4.5rem 3rem;
+  border: 1.3px solid transparent;
+
+  :hover {
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
   }
+
+  @media screen and (max-width: 1300px) {
+    flex-basis: calc((100% - 5rem) / 3);
+    max-width: calc((100% - 5rem) / 3);
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 2.5rem) / 2);
+    max-width: calc((100% - 2.5rem) / 2);
+  }
+
+  @media screen and (max-width: 500px) {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -88,7 +91,15 @@ const EnterBox = styled(PersonCntBox)`
 
 const MyCardMedia = styled(CardMedia)`
   object-fit: cover;
-  height: 14rem;
+  height: 8rem;
+
+  @media screen and (max-width: 1300px) {
+    height: 10rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: 12rem;
+  }
 `;
 
 const MyCardHeader = styled.div`
@@ -112,33 +123,30 @@ const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
 const InterestedAuctionListCard = ({ isFinished, data }) => {
   console.log(isFinished, 'issssss');
   return (
-    <StyledWrapContainer>
-      {/*Card_01*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <ConditionalLink to={`/auction/${data.id}`} condition={!isFinished}>
-          <StyledCancelOutlinedIcon />
-          <MyCardMedia
-            component="img"
-            height="150"
-            image={data?.product?.thumbnail?.file}
-          />
-          <CardTop>
-            <CardProfile />
-            <MyCardHeader>{data?.title}</MyCardHeader>
-          </CardTop>
-          <CardBottom style={{ width: '100%' }}>
-            <PersonCntBox>
-              <PersonIcon />
-              {data?.product_groups_count}명
-            </PersonCntBox>
-            <EnterBox>D-7</EnterBox>
-          </CardBottom>
-        </ConditionalLink>
-        <FinishedCard isFinished={isFinished}>
-          <p>종료된 경매입니다.</p>
-        </FinishedCard>
-      </CardContainer>
-    </StyledWrapContainer>
+    <CardContainer>
+      <ConditionalLink to={`/auction/${data.id}`} condition={!isFinished}>
+        <StyledCancelOutlinedIcon />
+        <MyCardMedia
+          component="img"
+          height="150"
+          image={data?.product?.thumbnail?.file}
+        />
+        <CardTop>
+          <CardProfile />
+          <MyCardHeader>{data?.title}</MyCardHeader>
+        </CardTop>
+        <CardBottom style={{ width: '100%' }}>
+          <PersonCntBox>
+            <PersonIcon />
+            {data?.product_groups_count}명
+          </PersonCntBox>
+          <EnterBox>D-7</EnterBox>
+        </CardBottom>
+      </ConditionalLink>
+      <FinishedCard isFinished={isFinished}>
+        <p>종료된 경매입니다.</p>
+      </FinishedCard>
+    </CardContainer>
   );
 };
 

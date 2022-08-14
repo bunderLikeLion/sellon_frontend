@@ -19,7 +19,7 @@ const StyledWrapContainer = styled.div`
 
 const CardContainer = styled(Card)`
   position: relative;
-  border-radius: 3rem !important;
+  border-radius: 1rem !important;
   max-width: calc((100% - 7.5rem) / 4);
   flex-grow: 1;
   flex-shrink: 1;
@@ -33,13 +33,13 @@ const CardContainer = styled(Card)`
   }
 
   @media screen and (max-width: 1300px) {
-    flex-basis: calc((100% - 7.5rem) / 3);
+    flex-basis: calc((100% - 5rem) / 3);
     max-width: calc((100% - 5rem) / 3);
   }
 
   @media screen and (max-width: 1000px) {
-    flex-basis: calc((100% - 7.5rem) / 2);
-    max-width: calc((100% - 5rem) / 2);
+    flex-basis: calc((100% - 2.5rem) / 2);
+    max-width: calc((100% - 2.5rem) / 2);
   }
   @media screen and (max-width: 500px) {
     flex-basis: 100%;
@@ -101,8 +101,12 @@ const MyCardMedia = styled(CardMedia)`
   object-fit: cover;
   height: 8rem;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 1300px) {
     height: 10rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: 12rem;
   }
 `;
 

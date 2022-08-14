@@ -40,7 +40,7 @@ const BestAuctionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 2rem auto;
+  margin: 2rem auto 5rem auto;
 `;
 
 const BestAuctionTitle = styled.div`
@@ -126,7 +126,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -170,9 +170,12 @@ const MostPopular = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
+  flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 0.5rem;
+  width: 100%;
+  height: 100%;
+  gap: 2rem 2.5rem;
 `;
 
 const SelectBox = styled(Select)`
@@ -206,7 +209,6 @@ const StyledPagination = styled(Pagination)`
     }
   }
 `;
-
 
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
@@ -329,14 +331,14 @@ const Auction = () => {
               })}
             </>
           )}
-        {/*Pagination*/}
-        <PaginationContainer>
-          <StyledPagination
-            count={myProductsData?.total_pages}
-            page={pageNum}
-            onChange={handleChange}
-          />
-        </PaginationContainer>
+          {/*Pagination*/}
+          <PaginationContainer>
+            <StyledPagination
+              count={myProductsData?.total_pages}
+              page={pageNum}
+              onChange={handleChange}
+            />
+          </PaginationContainer>
         </Container>
       </Form>
       <FilterModal

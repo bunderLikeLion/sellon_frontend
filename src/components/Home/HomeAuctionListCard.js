@@ -10,19 +10,41 @@ import { userAtom } from '../../states';
 
 const Container = styled.div`
   position: relative;
-  margin: 2% 1.5%;
-  width: 30%;
+  max-width: calc((100% - 7.5rem) / 4);
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc((100% - 7.5rem) / 4);
+  height: 100%;
+  z-index: 1;
+  margin-top: 2rem;
+  border-radius: 1rem !important;
+
+  background: ${(props) => props.theme.color_background__primary} !important;
+
+  border: 1.3px solid transparent; //투명 border 미리 만들어둠.
+
+  :hover {
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
+  }
+
+  @media screen and (max-width: 1300px) {
+    flex-basis: calc((100% - 5rem) / 3);
+    max-width: calc((100% - 5rem) / 3);
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 2.5rem) / 2);
+    max-width: calc((100% - 2.5rem) / 2);
+  }
+  @media screen and (max-width: 500px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 `;
 
 const CardContainer = styled(Card)`
-  border-radius: 3rem !important;
+  background: transparent !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
-  background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
-  :hover {
-    transition: 0.5s;
-    transform: translateY(-0.5rem);
-  }
 `;
 
 const CardTop = styled.div`
@@ -77,22 +99,31 @@ const EnterBox = styled(PersonCntBox)`
 `;
 
 const MyCardMedia = styled(CardMedia)`
-  height: 14rem;
   object-fit: cover;
+  height: 8rem !important;
+  border-radius: 1rem 1rem 0 0 !important;
+
+  @media screen and (max-width: 1300px) {
+    height: 10rem !important;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: 12rem !important;
+  }
 `;
 
 const MyCardHeader = styled.div`
   width: 100%;
   height: 100%;
+  padding: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis !important;
-  padding: 0.5rem;
   font-size: 1.4rem;
 `;
 
 export const FinishedCard = styled(FinishedOverlay)`
-  border-radius: 3rem !important;
+  border-radius: 1rem !important;
   box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
 `;
 
