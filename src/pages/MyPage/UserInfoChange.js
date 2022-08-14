@@ -7,6 +7,7 @@ import registerValidation from 'validations/registerValidation';
 import { useSignInMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
+import InfoChangeBox from 'components/MyPage/InfoChangeBox';
 
 const Container = styled.div`
   display: flex;
@@ -99,10 +100,8 @@ const Img = styled.img`
   height: 100%;
 `;
 
-
 const UserInfoChange = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
 
   useEffect(() => {
@@ -119,42 +118,28 @@ const UserInfoChange = () => {
   const submit = async (inputData) => {
     signInMutate(inputData);
   };
-    return(
-        <Container>
+  return (
+    <Container>
       <Card>
         <Form onSubmit={handleSubmit(submit)}>
           <GuideContainer>
             <Guide>회원정보 수정</Guide>
           </GuideContainer>
 
-          <InputContainer>
-            <Input type="text" value="닉네임 수정" {...register('username')} />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
+          <InfoChangeBox />
+
+          <InfoChangeBox />
+
+          <InfoChangeBox />
 
           <InputContainer>
             <Input type="text" value="닉네임 수정" {...register('username')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
-          
-
           <InputContainer>
-            <Input
-              type="password"
-              value="1234"
-              {...register('password1')}
-            />
+            <Input type="password" value="1234" {...register('password1')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
-
-          <InputContainer>
-            <Input
-              type="password"
-              value="1234"
-              {...register('password2')}
-            />
-            <ErrorMsg>{errors.password?.message}</ErrorMsg>
           </InputContainer>
 
           <InputContainer>
@@ -162,10 +147,10 @@ const UserInfoChange = () => {
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
-          <InputContainer>
+          {/* <InputContainer>
             <Input type="text" value="홈그라운드 수정" />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
+          </InputContainer> */}
 
           <ButtonContainer>
             <Button disabled={isSubmitting}>
@@ -176,10 +161,10 @@ const UserInfoChange = () => {
 
           {errors.apiError && <div>{errors.apiError?.message}</div>}
         </Form>
-        <Img src={SignPic} />
+        {/* <Img src={SignPic} /> */}
       </Card>
     </Container>
-    )
+  );
 };
 
 export default UserInfoChange;
