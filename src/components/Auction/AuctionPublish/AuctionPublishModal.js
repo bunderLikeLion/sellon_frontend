@@ -76,16 +76,23 @@ const AuctionPublishModal = (props) => {
           <ValidationCancelButton onClick={props.handleModal} />
           <InventoryContainer>
             {isSuccess &&
-              myProducts.results.map((singleItem) => {
-                return (
-                  <InventoryItem
-                    key={singleItem.id}
-                    singleItem={singleItem}
-                    setSelectedItem={props.setSelectedItem}
-                    handleModal={props.handleModal}
-                  />
-                );
-              })}
+              myProducts.results
+                .filter(
+                  (singleItem) =>
+                    singleItem.status !== 'dealing' ||
+                    singleItem.status !== 'dealed'
+                )
+                .map((singleItem) => {
+                  return (
+                    <InventoryItem
+                      key={singleItem.id}
+                      singleItem={singleItem}
+                      setSelectedItem={props.setSelectedItem}
+                      handleModal={props.handleModal}
+                      status={singleItem.status == 'in_auction' ? true : false}
+                    />
+                  );
+                })}
           </InventoryContainer>
         </ContentContainer>
       </ModalContainer>
