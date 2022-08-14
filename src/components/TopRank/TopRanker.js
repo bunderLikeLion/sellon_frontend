@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
 import { useMostProductGroupDealingQuery } from 'queries/statistics';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const Container = styled.div`
   display: flex;
@@ -111,6 +112,22 @@ const MonthlyChampionDealCount = styled.p`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 168,
+    cursor: 'pointer',
+    color: '#DFDCEF',
+    backgroundColor: '#4E4166',
+  },
+});
+
+const HoverMsg = `
+hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
+`;
+
+
 const TopRanker = () => {
   const {
     data: MostProductGroupDealingData,
@@ -136,7 +153,9 @@ const TopRanker = () => {
                 </TopDealCount>
               </TopDealerUserContainer>
             )}
-            <QuestionIcon />
+            <StyledTooltip title={HoverMsg} arrow>
+              <QuestionIcon />
+            </StyledTooltip>
           </TopDealerInfo>
         </TopDealer>
       )}
@@ -150,7 +169,9 @@ const TopRanker = () => {
               총 (int)명 경매 참여
             </MonthlyChampionDealCount>
           </MonthlyUserContainer>
-          <QuestionIcon />
+          <StyledTooltip title={HoverMsg} arrow>
+            <QuestionIcon />
+          </StyledTooltip>
         </MonthlyChampionInfo>
       </MonthlyChampion>
     </Container>
