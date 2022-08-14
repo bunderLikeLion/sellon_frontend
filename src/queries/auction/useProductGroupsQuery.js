@@ -4,10 +4,16 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 import queryKeys from 'utils/queryKeys';
 
-const useProductGroupsQuery = (relatedAuctionId) => {
+const useProductGroupsQuery = (relatedAuctionId, pageNum, perPage) => {
   return useQuery(
-    [queryKeys.productGroups(relatedAuctionId)],
-    () => auctionRelatedAPI.getProductGroups(relatedAuctionId),
+    [queryKeys.productGroups(relatedAuctionId), pageNum],
+    () =>
+      auctionRelatedAPI.getProductGroups(
+        relatedAuctionId,
+        null,
+        pageNum,
+        perPage
+      ),
     {
       onError: (res) => {
         toast.dismiss();

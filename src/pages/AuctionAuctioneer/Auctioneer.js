@@ -123,6 +123,7 @@ const Auctioneer = () => {
   const user = useRecoilValue(userAtom);
   const { id: auctionId, product: productId } = useParams();
 
+  const [pageNum, setPageNum] = useState(1);
   const [selectedGroupId, handleSelectedGroupId] = useInput(null);
   const [isSelectModalOpened, setIsSelectModalOpened] = useState(false);
   const [isDiscardModalOpened, setIsDiscardModalOpened] = useState(false);
@@ -136,7 +137,7 @@ const Auctioneer = () => {
   const { data: singleAuctionData } = useSingleAuctionQuery(auctionId);
 
   const { data: productGroups, isSuccess: productGroupsFetched } =
-    useProductGroupsQuery(auctionId);
+    useProductGroupsQuery(auctionId, pageNum, 3);
 
   const selectedProductGroupControlProps = (item) => ({
     checked: selectedGroupId === item,
@@ -145,6 +146,10 @@ const Auctioneer = () => {
     name: 'color-radio-button-demo',
     inputProps: { 'aria-label': item },
   });
+
+  const handlePageChange = (event, value) => {
+    setPageNum(value);
+  };
 
   useEffect(() => {
     if (singleAuctionData?.owner?.id !== user?.pk) navigate('/auction');
@@ -190,11 +195,9 @@ const Auctioneer = () => {
             </BuyerList>
             <PaginationContainer>
               <StyledPagination
-                // count={myProductsData?.total_pages}
-                // page={pageNum}
-                // onChange={handleChange}
-                count="1"
-                page="1"
+                count={productGroups?.total_pages}
+                page={pageNum}
+                onChange={handlePageChange}
               />
             </PaginationContainer>
           </BuyerListContainer>
@@ -202,6 +205,7 @@ const Auctioneer = () => {
         <SelectMessageModal
           handleModal={SelecthandleModal}
           isModalOpened={isSelectModalOpened}
+          selectedGroupId={selectedGroupId}
         />
         <DiscardMessageModal
           handleModal={DiscardhandleModal}
