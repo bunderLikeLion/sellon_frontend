@@ -20,6 +20,7 @@ const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
 const NewAuction = lazy(() => import('pages/NewAuction/NewAuction'));
 const TopRank = lazy(() => import('pages/TopRank/TopRank'));
+const PlayGround = lazy(() => import('pages/PlayGround/PlayGround'));
 
 const EntireContainer = styled.div`
   width: 100%;
@@ -53,6 +54,7 @@ const App = () => {
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
                 <Route path="/auction/newauction" element={<NewAuction />} />
                 <Route path="/mypage/infochange" element={<UserInfoChange />} />
+                <Route path="/playground" element={<PlayGround />} />
               </Routes>
             </Suspense>
           </EntireContainer>
