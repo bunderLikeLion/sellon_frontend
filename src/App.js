@@ -44,11 +44,14 @@ const App = () => {
                 <Route path="/mypage" element={<MyPage />} />
                 <Route path="/auction" element={<Auction />} />
                 <Route path="/auction/:id" element={<AuctionDetail />} />
-                <Route path="/auctioneer" element={<Auctioneer />} />
+                <Route
+                  path="/auctioneer/:id/:product"
+                  element={<Auctioneer />}
+                />
                 <Route path="/toprank" element={<TopRank />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
-                <Route path="/auction/newauction" element={<NewAuction />} />
+                {/*<Route path="/auction/newauction" element={<NewAuction />} />*/}
                 <Route path="/mypage/infochange" element={<UserInfoChange />} />
               </Routes>
             </Suspense>

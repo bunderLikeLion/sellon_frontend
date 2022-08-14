@@ -41,13 +41,15 @@ const ItemExtraImageContainer = styled.div`
   clear: both;
 `;
 
-const ItemImageContainer = () => {
+const ItemImageContainer = ({ thumbnail, images }) => {
   return (
     <Container>
-      <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+      <ItemImage imgUrl={thumbnail} />
       <ItemExtraImageContainer>
-        <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-        <ItemExtraImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+        {images &&
+          images.map((singleImg) => {
+            return <ItemExtraImage imgUrl={singleImg?.file} />;
+          })}
       </ItemExtraImageContainer>
     </Container>
   );

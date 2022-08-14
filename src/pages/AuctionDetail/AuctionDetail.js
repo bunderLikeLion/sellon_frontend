@@ -34,6 +34,7 @@ const TopContainer = styled.div`
 
 const AuctionDetail = () => {
   const { id: auctionId } = useParams();
+
   const [isInventoryOpened, setIsInventoryOpened] = useState(false);
   const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
 

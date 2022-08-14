@@ -4,13 +4,13 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
-import { queryClient } from 'index';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   useDeleteAuctionItemMutation,
   useMyProductGroupQuery,
 } from 'queries/auction';
 import CardMedia from '@mui/material/CardMedia';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   position: absolute;
@@ -78,25 +78,14 @@ const DeleteIcon = styled(HighlightOffIcon)`
 
 const MySuggested = (props) => {
   const [page, setPage] = useState(1);
-  const [productGroupExists, setProductGroupExists] = useState(false);
+  const { id: relatedAuctionId } = useParams();
   const { pk: userId } = useRecoilValue(userAtom);
-  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
 
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
     useMyProductGroupQuery(relatedAuctionId, userId, page, 4);
 
   const { mutate: deleteAuctionItem } =
     useDeleteAuctionItemMutation(relatedAuctionId);
-
-  useEffect(() => {
-    if (myProductGroup.results.length) {
-      setProductGroupExists(true);
-      console.log('exists');
-    } else {
-      setProductGroupExists(false);
-      console.log('not exists');
-    }
-  }, [myProductGroup]);
 
   return (
     <Container>

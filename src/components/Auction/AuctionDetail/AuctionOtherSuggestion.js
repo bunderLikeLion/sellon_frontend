@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useProductGroupsQuery } from 'queries/auction';
-import { queryClient } from 'index';
 import CardMedia from '@mui/material/CardMedia';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import AuctionDetailModal from './AuctionDetailModal';
+import { useParams } from 'react-router-dom';
 
 const OtherSuggestionContainer = styled.div`
   display: flex;
@@ -40,7 +40,6 @@ const OtherSuggestion = styled.div`
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
-
 const ProfileContainer = styled.div`
   position: relative;
   width: 15%;
@@ -72,7 +71,7 @@ const ItemImg = styled(CardMedia)`
 `;
 
 const AuctionOtherSuggestion = (props) => {
-  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+  const { id: relatedAuctionId } = useParams();
   const { pk: userId } = useRecoilValue(userAtom);
   const { data: productGroups, isSuccess: productGroupsFetched } =
     useProductGroupsQuery(relatedAuctionId);

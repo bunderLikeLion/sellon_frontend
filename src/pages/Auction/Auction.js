@@ -50,7 +50,7 @@ const BestAuctionTitle = styled.div`
 
 const AuctionContainer = styled.div`
   width: 100%;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 2rem;
   border-radius: 2rem;
   background: gray;
@@ -66,7 +66,7 @@ const SubNav2 = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 1rem;
+  margin: 1rem 0;
 `;
 
 const SubNav2_left = styled.div`
@@ -109,14 +109,15 @@ const DealComplete = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const FameShortcut = styled.button`
+const FameShortcut = styled(Link)`
   display: flex;
   align-items: flex-end;
   float: right;
-  width: 13rem;
+  width: 12rem;
   height: 3rem;
   margin: 0;
   border: none;
+  cursor: pointer;
   color: ${(props) => props.theme.color_font__primary};
   background: transparent;
   :hover {
@@ -144,6 +145,7 @@ const SubNav3 = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const SubNav3_left = styled.div`
@@ -176,6 +178,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: left;
   flex-wrap: wrap;
+  margin-left: 0.5rem;
 `;
 
 const SelectBox = styled(Select)`
@@ -248,8 +251,8 @@ const Auction = () => {
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
             거래가 성사되었습니다!
           </DealComplete>
-          <FameShortcut>
-            <Link to={'/toprank'}>명예의 전당 바로가기 →</Link>
+          <FameShortcut to={'/toprank'}>
+            명예의 전당 바로가기 →
           </FameShortcut>
         </SubNav>
 
@@ -307,7 +310,6 @@ const Auction = () => {
           {auctionListFetched && (
             <>
               {auctionList?.results.map((singleAuction) => {
-                console.log(singleAuction, 'single');
                 if (isAuctionFinishedHandler(singleAuction?.end_at)) {
                   // 끝난 경매
                   return (

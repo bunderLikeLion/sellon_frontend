@@ -7,6 +7,7 @@ import { useMyProductsQuery } from 'queries/product';
 import CardMedia from '@mui/material/CardMedia';
 import { queryClient } from 'index';
 import InventoryCard from './InventoryCard';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -122,12 +123,12 @@ const AllInButton = styled.button`
 `;
 
 const MySuggesting = () => {
+  const { id: relatedAuctionId } = useParams();
+
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [inventoryPageNum, setInventoryPageNum] = useState(1);
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
-
-  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
 
   const { data: myProductsData, isSuccess: myProductFetched } =
     useMyProductsQuery(inventoryPageNum, 4);

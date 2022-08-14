@@ -8,6 +8,20 @@ const dealingsRelatedAPI = {
       .get('dealings/today_completed_count/')
       .then((res) => res.data);
   },
+
+  postDealing: (payload) => {
+    return client.post('dealings/', payload).then((res) => res.data);
+  },
+
+  getDealings: () => {
+    return client
+      .get('dealings/', {
+        params: {
+          per_page: 30,
+        },
+      })
+      .then((res) => res.data);
+  },
 };
 
 export default dealingsRelatedAPI;

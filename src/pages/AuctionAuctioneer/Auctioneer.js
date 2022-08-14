@@ -7,7 +7,13 @@ import SelectMessageModal from 'components/Auction/AuctionAuctioneer/SelectMessa
 import DiscardMessageModal from 'components/Auction/AuctionAuctioneer/DiscardMessageModal';
 import { FormControlLabel, Pagination, RadioGroup } from '@mui/material';
 import { StyledRadio } from 'components/MyPage/AddItemModal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import useSingleProductQuery from 'queries/product/useSingleProductQuery';
+import { useProductGroupsQuery, useSingleAuctionQuery } from 'queries/auction';
+import useInput from 'hooks/useInput';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const Container = styled.div`
   height: 100%;
@@ -113,53 +119,93 @@ const BuyerContainer = styled.div`
 `;
 
 const Auctioneer = () => {
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
+  const { id: auctionId, product: productId } = useParams();
+
+  const [pageNum, setPageNum] = useState(1);
+  const [selectedGroupId, handleSelectedGroupId] = useInput(null);
   const [isSelectModalOpened, setIsSelectModalOpened] = useState(false);
   const [isDiscardModalOpened, setIsDiscardModalOpened] = useState(false);
   const SelecthandleModal = () => setIsSelectModalOpened(!isSelectModalOpened);
   const DiscardhandleModal = () =>
     setIsDiscardModalOpened(!isDiscardModalOpened);
 
+  const { data: singleItemData, isSuccess: singleItemDataFetched } =
+    useSingleProductQuery(productId);
+
+  const { data: singleAuctionData } = useSingleAuctionQuery(auctionId);
+
+  const { data: productGroups, isSuccess: productGroupsFetched } =
+    useProductGroupsQuery(auctionId, pageNum, 3);
+
+  const selectedProductGroupControlProps = (item) => ({
+    checked: selectedGroupId === item,
+    onChange: handleSelectedGroupId,
+    value: item,
+    name: 'color-radio-button-demo',
+    inputProps: { 'aria-label': item },
+  });
+
+  const handlePageChange = (event, value) => {
+    setPageNum(value);
+  };
+
+  useEffect(() => {
+    if (singleAuctionData?.owner?.id !== user?.pk) navigate('/auction');
+  }, [user, singleAuctionData]);
+
   return (
     <WrapContainer>
       <Container>
-        <ItemContainer>
-          <ItemImageContainer />
-          <ItemDetailContainer />
-        </ItemContainer>
-        <BuyerListContainer>
-          <TextContainer>
-            <BigText>참여자</BigText>
-            <SmallText>총 98명</SmallText>
-          </TextContainer>
-
-          <SelectBtn onClick={SelecthandleModal}>선택</SelectBtn>
-          <DiscardBtn onClick={DiscardhandleModal}>폐기</DiscardBtn>
-          <BuyerList>
-            <MyRadioGroup name="buyer-radio-group">
-              <BuyerContainer>
-                <FormControlLabel value="id_1" control={<StyledRadio />} />
-                <BuyerSingleBox />
-              </BuyerContainer>
-
-              <BuyerContainer>
-                <FormControlLabel value="id_2" control={<StyledRadio />} />
-                <BuyerSingleBox />
-              </BuyerContainer>
-            </MyRadioGroup>
-          </BuyerList>
-          <PaginationContainer>
-            <StyledPagination
-              // count={myProductsData?.total_pages}
-              // page={pageNum}
-              // onChange={handleChange}
-              count="1"
-              page="1"
+        {singleItemDataFetched && (
+          <ItemContainer>
+            <ItemImageContainer
+              thumbnail={singleItemData?.thumbnail?.file}
+              images={singleItemData?.images}
             />
-          </PaginationContainer>
-        </BuyerListContainer>
+            <ItemDetailContainer singleItemData={singleItemData} />
+          </ItemContainer>
+        )}
+        {productGroupsFetched && (
+          <BuyerListContainer>
+            <TextContainer>
+              <BigText>참여자</BigText>
+              <SmallText>총 {productGroups?.total_count}명</SmallText>
+            </TextContainer>
+
+            <SelectBtn onClick={SelecthandleModal}>선택</SelectBtn>
+            <DiscardBtn onClick={DiscardhandleModal}>폐기</DiscardBtn>
+            <BuyerList>
+              <MyRadioGroup name="buyer-radio-group">
+                {productGroups?.results.map((singleGroup) => {
+                  return (
+                    <BuyerContainer>
+                      <FormControlLabel
+                        control={<StyledRadio />}
+                        {...selectedProductGroupControlProps(
+                          `${singleGroup?.id}`
+                        )}
+                      />
+                      <BuyerSingleBox singleGroup={singleGroup} />
+                    </BuyerContainer>
+                  );
+                })}
+              </MyRadioGroup>
+            </BuyerList>
+            <PaginationContainer>
+              <StyledPagination
+                count={productGroups?.total_pages}
+                page={pageNum}
+                onChange={handlePageChange}
+              />
+            </PaginationContainer>
+          </BuyerListContainer>
+        )}
         <SelectMessageModal
           handleModal={SelecthandleModal}
           isModalOpened={isSelectModalOpened}
+          selectedGroupId={selectedGroupId}
         />
         <DiscardMessageModal
           handleModal={DiscardhandleModal}

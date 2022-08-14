@@ -4,6 +4,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
+import CardMedia from '@mui/material/CardMedia';
+import AuctionDetailModal from '../AuctionDetail/AuctionDetailModal';
 
 const AccordionContainer = styled.div`
   clear: both;
@@ -35,7 +37,7 @@ const BuyerImageContainer = styled.div`
   margin: 0 auto;
 `;
 
-const BuyerImage = styled.div`
+const BuyerImage = styled(CardMedia)`
   width: 3rem;
   height: 3rem;
   margin: 0 auto;
@@ -43,7 +45,6 @@ const BuyerImage = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(https://s3.orbi.kr/data/file/united2/8d45fd407a3344b9b7457538ec64e0f8.jpg);
 `;
 
 const DivisionLine = styled.div`
@@ -76,8 +77,19 @@ const EmptyBox = styled.div`
   width: 1.9rem;
 `;
 
-const BuyerSingleBox = () => {
+const BuyerSingleBox = ({ singleGroup }) => {
   const [expanded, setExpanded] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [singleProduct, setSingleProduct] = useState(null);
+
+  const clickImgFunc = (singleProductData) => {
+    setSingleProduct(singleProductData);
+    handleModal();
+  };
+
+  const handleModal = () => {
+    setIsModalOpened(!isModalOpened);
+  };
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -95,32 +107,52 @@ const BuyerSingleBox = () => {
           id="panel1bh-header"
         >
           <BuyerImageContainer>
-            <BuyerImage />
+            <BuyerImage
+              image={
+                'https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580'
+              }
+            />
             <DivisionLine />
           </BuyerImageContainer>
 
           <ItemListContainer>
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
+            {singleGroup &&
+              singleGroup?.products.map((singleProduct, idx) => {
+                if (idx < 5)
+                  return (
+                    <ItemImage
+                      key={singleProduct?.id}
+                      onClick={() => clickImgFunc(singleProduct)}
+                      imgUrl={singleProduct?.thumbnail?.file}
+                    />
+                  );
+              })}
           </ItemListContainer>
         </StyledAccordionSummary>
-        <StyledAccordionDetails>
-          <BuyerImageContainer></BuyerImageContainer>
+        {singleGroup && singleGroup?.products.length > 5 && (
+          <StyledAccordionDetails>
+            <ItemListContainer>
+              {singleGroup?.products.map((singleProduct, idx) => {
+                if (idx > 4)
+                  return (
+                    <ItemImage
+                      key={singleProduct?.id}
+                      onClick={() => clickImgFunc(singleProduct)}
+                      imgUrl={singleProduct?.thumbnail?.file}
+                    />
+                  );
+              })}
+            </ItemListContainer>
 
-          <ItemListContainer>
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-            <ItemImage imgUrl="https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580" />
-          </ItemListContainer>
-
-          <EmptyBox />
-        </StyledAccordionDetails>
+            <EmptyBox />
+          </StyledAccordionDetails>
+        )}
       </StyledAccordion>
+      <AuctionDetailModal
+        handleModal={handleModal}
+        isModalOpened={isModalOpened}
+        smallImgRelatedItemId={singleProduct}
+      />
     </AccordionContainer>
   );
 };

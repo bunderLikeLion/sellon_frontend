@@ -60,7 +60,7 @@ const ChatBoxButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
-const ChatLists = (props) => {
+const ChatLists = ({ singleDeal }) => {
   const [isButtonOpened, setIsButtonOpened] = useState(false);
   const handleButton = () => setIsButtonOpened(!isButtonOpened);
 
@@ -69,17 +69,17 @@ const ChatLists = (props) => {
 
   const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
   const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
-
+  // singleDeal?.product_group?.user?.id
   return (
     <ChatMessageListContainer>
       <UserProfileImg />
       <ChatMessageText>
-        <UserNickname>상대 닉네임</UserNickname>
+        <UserNickname>{singleDeal?.product_group?.user?.username}</UserNickname>
         <ChatTimeContainer>
-          <ChatTime>2022.08.06</ChatTime>
+          <ChatTime>시간</ChatTime>
         </ChatTimeContainer>
         <ChatButtonContainer>
-          <ChatBoxButton onClick={handleDetailModal}>상세보기</ChatBoxButton>
+          <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
           <UserInfoDetailModal
             handleModal={handleDetailModal}
             isModalOpened={isDetailModalOpened}

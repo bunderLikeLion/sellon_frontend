@@ -44,10 +44,10 @@ const SubPic = styled(CardMedia)`
 `;
 
 const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
-  const { thumbnail, images } = singleItemData;
-  const { id: itemId } = useParams();
+  const { thumbnail, images, id } = singleItemData;
+  // const { id: itemId } = useParams();
   const { data: singleItem, isSuccess: singleItemFetched } =
-    useSingleProductQuery(itemId);
+    useSingleProductQuery(id);
 
   return (
     <>
