@@ -60,36 +60,30 @@ const ChatBoxButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
-const ChatLists = ({ singleDeal }) => {
-  const [isButtonOpened, setIsButtonOpened] = useState(false);
-  const handleButton = () => setIsButtonOpened(!isButtonOpened);
-
-  const [isModalOpened, setIsModalOpened] = useState(false);
-  const handleModal = () => setIsModalOpened(!isModalOpened);
-
+const ChatLists = ({ singleDeal, handleEvaluationModal, selectedDeal }) => {
   const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
   const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
-  // singleDeal?.product_group?.user?.id
+  console.log(singleDeal, selectedDeal, 'asdasdasas');
   return (
-    <ChatMessageListContainer>
+    <ChatMessageListContainer onClick={() => console.log(123)}>
       <UserProfileImg />
       <ChatMessageText>
         <UserNickname>{singleDeal?.product_group?.user?.username}</UserNickname>
         <ChatTimeContainer>
           <ChatTime>시간</ChatTime>
         </ChatTimeContainer>
-        <ChatButtonContainer>
-          <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
-          <UserInfoDetailModal
-            handleModal={handleDetailModal}
-            isModalOpened={isDetailModalOpened}
-          />
-          <ChatBoxButton onClick={handleModal}>거래종료</ChatBoxButton>
-          <UserEvaluationModal
-            handleModal={handleModal}
-            isModalOpened={isModalOpened}
-          />
-        </ChatButtonContainer>
+        {singleDeal === selectedDeal && (
+          <ChatButtonContainer>
+            <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
+            <UserInfoDetailModal
+              handleModal={handleDetailModal}
+              isModalOpened={isDetailModalOpened}
+            />
+            <ChatBoxButton onClick={handleEvaluationModal}>
+              거래종료
+            </ChatBoxButton>
+          </ChatButtonContainer>
+        )}
       </ChatMessageText>
     </ChatMessageListContainer>
   );
