@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
+import AuctionDetailModal from '../AuctionDetail/AuctionDetailModal';
 
 const AccordionContainer = styled.div`
   clear: both;
@@ -78,6 +79,17 @@ const EmptyBox = styled.div`
 
 const BuyerSingleBox = ({ singleGroup }) => {
   const [expanded, setExpanded] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [singleProduct, setSingleProduct] = useState(null);
+
+  const clickImgFunc = (singleProductData) => {
+    setSingleProduct(singleProductData);
+    handleModal();
+  };
+
+  const handleModal = () => {
+    setIsModalOpened(!isModalOpened);
+  };
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -107,7 +119,13 @@ const BuyerSingleBox = ({ singleGroup }) => {
             {singleGroup &&
               singleGroup?.products.map((singleProduct, idx) => {
                 if (idx < 5)
-                  return <ItemImage imgUrl={singleProduct?.thumbnail?.file} />;
+                  return (
+                    <ItemImage
+                      key={singleProduct?.id}
+                      onClick={() => clickImgFunc(singleProduct)}
+                      imgUrl={singleProduct?.thumbnail?.file}
+                    />
+                  );
               })}
           </ItemListContainer>
         </StyledAccordionSummary>
@@ -116,7 +134,13 @@ const BuyerSingleBox = ({ singleGroup }) => {
             <ItemListContainer>
               {singleGroup?.products.map((singleProduct, idx) => {
                 if (idx > 4)
-                  return <ItemImage imgUrl={singleProduct?.thumbnail?.file} />;
+                  return (
+                    <ItemImage
+                      key={singleProduct?.id}
+                      onClick={() => clickImgFunc(singleProduct)}
+                      imgUrl={singleProduct?.thumbnail?.file}
+                    />
+                  );
               })}
             </ItemListContainer>
 
@@ -124,6 +148,11 @@ const BuyerSingleBox = ({ singleGroup }) => {
           </StyledAccordionDetails>
         )}
       </StyledAccordion>
+      <AuctionDetailModal
+        handleModal={handleModal}
+        isModalOpened={isModalOpened}
+        smallImgRelatedItemId={singleProduct}
+      />
     </AccordionContainer>
   );
 };
