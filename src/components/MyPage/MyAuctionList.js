@@ -14,31 +14,32 @@ const StyledWrapContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  gap: 2rem 3rem;
+  gap: 2rem 2.5rem;
 `;
 
 const CardContainer = styled(Card)`
   position: relative;
   border-radius: 3rem !important;
-  max-width: calc((100% - 9rem) / 4);
+  max-width: calc((100% - 7.5rem) / 4);
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: calc((100% - 9rem) / 4);
+  flex-basis: calc((100% - 7.5rem) / 4);
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
+  border: 1.3px solid transparent;
+
   :hover {
-    transition: 0.5s;
-    transform: translateY(-0.5rem);
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
   }
 
   @media screen and (max-width: 1300px) {
-    flex-basis: calc((100% - 9rem) / 3);
-    max-width: calc((100% - 6rem) / 3);
+    flex-basis: calc((100% - 7.5rem) / 3);
+    max-width: calc((100% - 5rem) / 3);
   }
 
   @media screen and (max-width: 1000px) {
-    flex-basis: calc((100% - 9rem) / 2);
-    max-width: calc((100% - 3rem) / 2);
+    flex-basis: calc((100% - 7.5rem) / 2);
+    max-width: calc((100% - 5rem) / 2);
   }
   @media screen and (max-width: 500px) {
     flex-basis: 100%;
