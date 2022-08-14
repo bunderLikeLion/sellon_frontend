@@ -5,6 +5,7 @@ const MaxContainer = styled(Container)`
   max-width: 1060px !important;
   min-height: 92vh;
   height: 100% !important;
+  padding-top: 0 !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_background__default} !important;
 `;

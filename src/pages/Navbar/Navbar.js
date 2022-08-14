@@ -54,7 +54,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <Navbar position="static" sx={{ height: '8vh', justifyContent: 'center' }}>
+    <Navbar position="static" sx={{ height: '4rem', justifyContent: 'center' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

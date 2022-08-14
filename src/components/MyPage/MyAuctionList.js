@@ -7,34 +7,42 @@ import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
 
-
 const StyledWrapContainer = styled.div`
-  display: inline-flex !important;
+  display: flex !important;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
   height: 100%;
+  gap: 2rem 3rem;
 `;
 
 const CardContainer = styled(Card)`
   position: relative;
-  width: 30%;
-  margin-bottom: 4.5rem;
   border-radius: 3rem !important;
+  max-width: calc((100% - 9rem) / 4);
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc((100% - 9rem) / 4);
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) =>
-    props.theme.color_border__topleft} !important;
-  :hover{
+  :hover {
     transition: 0.5s;
     transform: translateY(-0.5rem);
-  };
-
-  :nth-child(2),
-  :nth-child(5) {
-    margin: 0 3rem 4.5rem 3rem;
   }
+
+  @media screen and (max-width: 1300px) {
+    flex-basis: calc((100% - 9rem) / 3);
+    max-width: calc((100% - 6rem) / 3);
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 9rem) / 2);
+    max-width: calc((100% - 3rem) / 2);
+  }
+  @media screen and (max-width: 500px) {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 `;
 
@@ -42,14 +50,14 @@ const CardTop = styled.div`
   width: 100%;
   display: flex;
   justify-content: start;
-  padding: 1rem 1rem 1rem 1.5rem;
+  padding: 0.8rem 1rem 0.2rem 1rem;
   align-items: center;
 `;
 
 const CardProfile = styled.div`
-  width: 2rem;
-  height: 2rem;
-  padding: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 1rem;
   border-radius: 50%;
   background: #c9c9c9;
   display: flex;
@@ -75,13 +83,13 @@ const PersonCntBox = styled.span`
   height: 2.4rem;
   background: transparent;
   border-radius: 4rem;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__number} !important;
 `;
 
 const EnterBox = styled(PersonCntBox)`
-  width: 7rem;
+  width: fit-content;
+  padding: 0.5rem 1.3rem;
   text-align: center;
   border: none;
   color: ${(props) => props.theme.color_font__secondary} !important;
@@ -90,7 +98,11 @@ const EnterBox = styled(PersonCntBox)`
 
 const MyCardMedia = styled(CardMedia)`
   object-fit: cover;
-  height: 14rem;
+  height: 8rem;
+
+  @media screen and (max-width: 500px) {
+    height: 10rem;
+  }
 `;
 
 const MyCardHeader = styled.div`
@@ -99,18 +111,9 @@ const MyCardHeader = styled.div`
   overflow: hidden;
   text-overflow: ellipsis !important;
   white-space: nowrap;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 0.5rem;
 `;
-
-const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
-  position: absolute !important;
-  right: 1rem;
-  margin-top: 0.5rem !important;
-  border-radius: 50rem !important;
-  font-size: 2rem !important;
-`;
-
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -130,7 +133,6 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
-
 export const FinishedOverlay = styled(Card)`
   display: ${(props) => (props.isFinished ? 'flex' : 'none')};
   position: absolute;
@@ -143,7 +145,6 @@ export const FinishedOverlay = styled(Card)`
   font-size: 2rem;
   background-color: rgba(57, 57, 65, 0.83) !important;
 `;
-
 
 const InterestedAuctionListCard = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -158,8 +159,7 @@ const InterestedAuctionListCard = () => {
   return (
     <StyledWrapContainer>
       {/*Card_01*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -178,8 +178,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_02*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -198,8 +197,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_03*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -218,8 +216,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_04*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -238,8 +235,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_05*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -258,8 +254,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_06*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"

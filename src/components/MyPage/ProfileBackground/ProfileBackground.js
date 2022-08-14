@@ -35,9 +35,9 @@ const ProfileBackground = () => {
       <WithDrawlBtn onClick={() => withDrawlMutate()} variant="contained">
         회원탈퇴
       </WithDrawlBtn>
-      <Link to="/mypage/infochange">
+      {/* <Link to="/mypage/infochange">
         <EditBtn variant="contained">회원정보 수정</EditBtn>
-      </Link>
+      </Link> */}
     </Container>
   );
 };
