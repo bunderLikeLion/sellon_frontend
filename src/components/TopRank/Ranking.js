@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const Container = styled.div`
   width: 100%;
@@ -68,12 +69,28 @@ const RankerDealCount = styled.div`
   margin: 0.7rem;
 `;
 
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 165,
+    color: '#171626',
+  },
+});
+
+const HoverMsg = `
+hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
+`;
+
+
 const Ranking = () => {
   return (
     <Container>
       <TopContainer>
         <RankingTitle>실시간 거래 랭킹</RankingTitle>
-        <QuestionIcon />
+        <StyledTooltip title={HoverMsg} arrow>
+          <QuestionIcon />
+        </StyledTooltip>
       </TopContainer>
       <BottomContainer>
         <RankerContainer>
