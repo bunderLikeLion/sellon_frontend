@@ -54,10 +54,11 @@ const InventoryItem = ({
   handleModal,
   status,
 }) => {
-  console.log(status);
   const selectFromInventoryFunc = () => {
-    setSelectedItem(singleItem);
-    handleModal();
+    if (!status) {
+      setSelectedItem(singleItem);
+      handleModal();
+    }
   };
 
   return (
