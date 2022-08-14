@@ -3,6 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import StarIcon from '@mui/icons-material/Star';
 import { useState } from 'react';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Card from '@mui/material/Card';
@@ -133,6 +134,7 @@ const RightContainer = styled.div`
 `;
 
 const RightSmallContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 7rem;
   margin-bottom: 1rem;
@@ -142,9 +144,76 @@ const RightSmallContainer = styled.div`
   background: ${(props) => props.theme.color_background__primary};
 `;
 
+const RankInfo = styled.h1`
+  display: flex;
+  justify-content: center;
+  padding-right: 5%;
+  font-size: 2.5rem;
+  font-weight: 600;
+`;
+
+const MyScopeInfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  padding-right: 5%;
+`;
+
+const MyScopeInfo = styled(StarIcon)`
+  & .MuiSvgIcon-root {
+    width: 2rem;
+    height: 2rem;
+  }
+`;
+
+const DealCountInfoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  padding-right: 5%;
+`;
+
+const DealCountInfo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0%;
+  padding-right: 5%;
+  font-size: 1rem;
+`;
+
+const DealCount = styled.p`
+  padding: 0 0.5rem 0 1rem;
+  font-size: 2rem;
+`;
+
 //우측 명예의 전당 실적
 const RightSmallContainer2 = styled(RightSmallContainer)`
   height: 11rem;
+`;
+
+const ToprankInfoContainer = styled.div`
+  width: 90%;
+  height: 30%;
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+  background: #342d56;
+`;
+
+const ToprankTitle = styled.p`
+  padding-top: 0.2rem;
+  font-size: 1.1rem;
+  color: #dfdcef;
+`;
+
+const ToprankDate = styled.p`
+  font-size: 0.9rem;
+  color: #817c97;
 `;
 
 const TransactionHistory = () => {
@@ -243,10 +312,36 @@ const TransactionHistory = () => {
       </AccordionContainer>
       {/*우측 contents*/}
       <RightContainer>
-        <RightSmallContainer>랭크</RightSmallContainer>
-        <RightSmallContainer>내 평점</RightSmallContainer>
-        <RightSmallContainer>거래 횟수</RightSmallContainer>
-        <RightSmallContainer2>명예의 전당 실적</RightSmallContainer2>
+        <RightSmallContainer>
+          랭크
+          <RankInfo>S</RankInfo>
+        </RightSmallContainer>
+        <RightSmallContainer>
+          내 평점
+          <MyScopeInfoContainer>
+            <MyScopeInfo fontSize='large'/>
+            <MyScopeInfo fontSize='large'/>
+          </MyScopeInfoContainer>
+        </RightSmallContainer>
+        <RightSmallContainer>
+          거래 횟수
+          <DealCountInfoContainer>
+            <DealCountInfo>
+              총<DealCount>50</DealCount>회
+            </DealCountInfo>
+          </DealCountInfoContainer>
+        </RightSmallContainer>
+        <RightSmallContainer2>
+          명예의 전당 실적
+          <ToprankInfoContainer>
+            <ToprankTitle>이번주의 챔피온</ToprankTitle>
+            <ToprankDate>2022.08.01</ToprankDate>
+          </ToprankInfoContainer>
+          <ToprankInfoContainer>
+            <ToprankTitle>이번주의 챔피온</ToprankTitle>
+            <ToprankDate>2022.08.01</ToprankDate>
+          </ToprankInfoContainer>
+        </RightSmallContainer2>
       </RightContainer>
     </StyledWrapContainer>
   );
