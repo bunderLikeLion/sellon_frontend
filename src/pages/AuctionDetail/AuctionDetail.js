@@ -47,7 +47,7 @@ const AuctionDetail = () => {
 
   useEffect(() => {
     if (singleAuctionData?.owner?.id === user?.pk)
-      navigate(`/auctioneer/${auctionId}`);
+      navigate(`/auctioneer/${auctionId}/${singleAuctionData?.product?.id}`);
   }, [user, singleAuctionData]);
 
   return (

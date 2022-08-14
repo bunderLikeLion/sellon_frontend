@@ -8,6 +8,8 @@ import DiscardMessageModal from 'components/Auction/AuctionAuctioneer/DiscardMes
 import { FormControlLabel, Pagination, RadioGroup } from '@mui/material';
 import { StyledRadio } from 'components/MyPage/AddItemModal';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import useSingleProductQuery from '../../queries/product/useSingleProductQuery';
 
 const Container = styled.div`
   height: 100%;
@@ -113,19 +115,29 @@ const BuyerContainer = styled.div`
 `;
 
 const Auctioneer = () => {
+  const { id: auctionId, product: productId } = useParams();
+
   const [isSelectModalOpened, setIsSelectModalOpened] = useState(false);
   const [isDiscardModalOpened, setIsDiscardModalOpened] = useState(false);
   const SelecthandleModal = () => setIsSelectModalOpened(!isSelectModalOpened);
   const DiscardhandleModal = () =>
     setIsDiscardModalOpened(!isDiscardModalOpened);
 
+  const { data: singleItemData, isSuccess: singleItemDataFetched } =
+    useSingleProductQuery(productId);
+
   return (
     <WrapContainer>
       <Container>
-        <ItemContainer>
-          <ItemImageContainer />
-          <ItemDetailContainer />
-        </ItemContainer>
+        {singleItemDataFetched && (
+          <ItemContainer>
+            <ItemImageContainer
+              thumbnail={singleItemData?.thumbnail?.file}
+              images={singleItemData?.images}
+            />
+            <ItemDetailContainer />
+          </ItemContainer>
+        )}
         <BuyerListContainer>
           <TextContainer>
             <BigText>참여자</BigText>
