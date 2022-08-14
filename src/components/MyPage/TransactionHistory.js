@@ -144,7 +144,7 @@ const RightSmallContainer = styled.div`
   background: ${(props) => props.theme.color_background__primary};
 `;
 
-const RankInfo = styled.h1`
+const RankInfo = styled.div`
   display: flex;
   justify-content: center;
   padding-right: 5%;
@@ -181,7 +181,6 @@ const DealCountInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 0%;
   padding-right: 5%;
   font-size: 1rem;
 `;
