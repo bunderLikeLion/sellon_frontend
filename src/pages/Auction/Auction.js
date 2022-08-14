@@ -15,6 +15,8 @@ import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
 import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 import CardMedia from '@mui/material/CardMedia';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
 
 const Form = styled.div`
   width: 100%;
@@ -194,6 +196,25 @@ const MenuItemBox = styled(MenuItem)`
   color: ${(props) => props.theme.color_font__primary} !important;
 `;
 
+//Pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.3rem;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
+`;
+
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
@@ -211,6 +232,15 @@ const Auction = () => {
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
+
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChange = (event, value) => {
+    setPageNum(value);
+  };
 
   return (
     <WrapContainer>
@@ -251,9 +281,7 @@ const Auction = () => {
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
             거래가 성사되었습니다!
           </DealComplete>
-          <FameShortcut to={'/toprank'}>
-            명예의 전당 바로가기 →
-          </FameShortcut>
+          <FameShortcut to={'/toprank'}>명예의 전당 바로가기 →</FameShortcut>
         </SubNav>
 
         <BestAuctionContainer>
@@ -285,7 +313,7 @@ const Auction = () => {
             </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small">정렬</InputLabelBox>
+            <InputLabelBox id="demo-select-small">최신순</InputLabelBox>
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
@@ -330,6 +358,14 @@ const Auction = () => {
               })}
             </>
           )}
+          {/*Pagination*/}
+          <PaginationContainer>
+            <StyledPagination
+              count={myProductsData?.total_pages}
+              page={pageNum}
+              onChange={handleChange}
+            />
+          </PaginationContainer>
         </Container>
       </Form>
       <FilterModal

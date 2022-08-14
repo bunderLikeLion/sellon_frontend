@@ -12,12 +12,33 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
   width: 100%;
   height: 100%;
+`;
+
+//Pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2%;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
 `;
 
 //Summary
@@ -76,8 +97,9 @@ const SummaryParticipantsTxt = styled.div`
 `;
 
 //Accordion
+//width: 65%;
 const AccordionContainer = styled.div`
-  width: 65%;
+  width: 39.3rem;
   margin-right: 10%;
   border-radius: 1rem;
 `;
@@ -195,7 +217,7 @@ const RightSmallContainer2 = styled(RightSmallContainer)`
   height: 11rem;
 `;
 
-const ToprankInfoContainer = styled.div`
+const TopRankInfoContainer = styled.div`
   width: 90%;
   height: 30%;
   margin: 0.5rem 0;
@@ -204,13 +226,13 @@ const ToprankInfoContainer = styled.div`
   background: #342d56;
 `;
 
-const ToprankTitle = styled.p`
+const TopRankTitle = styled.p`
   padding-top: 0.2rem;
   font-size: 1.1rem;
   color: #dfdcef;
 `;
 
-const ToprankDate = styled.p`
+const TopRankDate = styled.p`
   font-size: 0.9rem;
   color: #817c97;
 `;
@@ -220,6 +242,15 @@ const TransactionHistory = () => {
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChangePagination = (event, value) => {
+    setPageNum(value);
   };
 
   return (
@@ -308,6 +339,14 @@ const TransactionHistory = () => {
             </DetailsRightContainer>
           </StyledAccordionDetails>
         </StyledAccordion>
+        {/*Pagination*/}
+        <PaginationContainer>
+          <StyledPagination
+            count={myProductsData?.total_pages}
+            page={pageNum}
+            onChange={handleChangePagination}
+          />
+        </PaginationContainer>
       </AccordionContainer>
       {/*우측 contents*/}
       <RightContainer>
@@ -318,8 +357,8 @@ const TransactionHistory = () => {
         <RightSmallContainer>
           내 평점
           <MyScopeInfoContainer>
-            <MyScopeInfo fontSize='large'/>
-            <MyScopeInfo fontSize='large'/>
+            <MyScopeInfo fontSize="large" />
+            <MyScopeInfo fontSize="large" />
           </MyScopeInfoContainer>
         </RightSmallContainer>
         <RightSmallContainer>
@@ -332,14 +371,14 @@ const TransactionHistory = () => {
         </RightSmallContainer>
         <RightSmallContainer2>
           명예의 전당 실적
-          <ToprankInfoContainer>
-            <ToprankTitle>이번주의 챔피온</ToprankTitle>
-            <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoContainer>
-          <ToprankInfoContainer>
-            <ToprankTitle>이번주의 챔피온</ToprankTitle>
-            <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoContainer>
+          <TopRankInfoContainer>
+            <TopRankTitle>이번주의 챔피온</TopRankTitle>
+            <TopRankDate>2022.08.01</TopRankDate>
+          </TopRankInfoContainer>
+          <TopRankInfoContainer>
+            <TopRankTitle>이번주의 챔피온</TopRankTitle>
+            <TopRankDate>2022.08.01</TopRankDate>
+          </TopRankInfoContainer>
         </RightSmallContainer2>
       </RightContainer>
     </StyledWrapContainer>
