@@ -9,7 +9,8 @@ import { FormControlLabel, Pagination, RadioGroup } from '@mui/material';
 import { StyledRadio } from 'components/MyPage/AddItemModal';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useSingleProductQuery from '../../queries/product/useSingleProductQuery';
+import useSingleProductQuery from 'queries/product/useSingleProductQuery';
+import { useSingleAuctionQuery } from 'queries/auction';
 
 const Container = styled.div`
   height: 100%;
@@ -126,6 +127,9 @@ const Auctioneer = () => {
   const { data: singleItemData, isSuccess: singleItemDataFetched } =
     useSingleProductQuery(productId);
 
+  const { data: singleAuctionData, isSuccess: singleAuctionDataFetched } =
+    useSingleAuctionQuery(auctionId);
+
   return (
     <WrapContainer>
       <Container>
@@ -135,7 +139,7 @@ const Auctioneer = () => {
               thumbnail={singleItemData?.thumbnail?.file}
               images={singleItemData?.images}
             />
-            <ItemDetailContainer />
+            <ItemDetailContainer singleItemData={singleItemData} />
           </ItemContainer>
         )}
         <BuyerListContainer>
