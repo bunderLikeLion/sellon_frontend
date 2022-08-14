@@ -64,7 +64,7 @@ const InterestedUser = styled.div`
 const SubNav2 = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
   margin: 1rem 0;
 `;
@@ -176,8 +176,9 @@ const MostPopular = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: left;
   flex-wrap: wrap;
+  margin-left: 0.5rem;
 `;
 
 const SelectBox = styled(Select)`
