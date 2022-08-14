@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
-import MailIcon from '@mui/icons-material/Mail';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import Avatar from '@mui/material/Avatar';
@@ -35,7 +34,7 @@ const UserDropDownContainer = styled(Menu)`
     border-left: 0.7rem solid transparent;
   }
   & .MuiPaper-root {
-    height: 14.2rem;
+    height: 11.9rem;
     padding-top: 1rem;
     border-radius: 0.5rem;
     background: transparent;
@@ -105,19 +104,6 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
             >
               <PersonIcon />
               <Typography textAlign="center">마이페이지</Typography>
-            </Stack>
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={closeUserMenu}>
-          <Link to="/chat">
-            <Stack
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              spacing={1}
-            >
-              <MailIcon />
-              <Typography textAlign="center">진행중인 거래</Typography>
             </Stack>
           </Link>
         </MenuItem>
