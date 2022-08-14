@@ -5,6 +5,8 @@ import PersonIcon from '@mui/icons-material/Person';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import ConditionalLink from 'components/ConditionalLink';
 import { FinishedOverlay } from 'styles/StyledComponetStyles';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../../states';
 
 const Container = styled.div`
   position: relative;
@@ -95,10 +97,16 @@ const FinishedCard = styled(FinishedOverlay)`
 `;
 
 const HomeAuctionListCard = ({ isFinished, auctionData }) => {
+  const user = useRecoilValue(userAtom);
+
   return (
     <Container>
       <ConditionalLink
-        to={`/auction/${auctionData.id}`}
+        to={
+          auctionData?.owner?.id === user?.pk
+            ? `/auctioneer/${auctionData.id}/${auctionData?.product?.id}`
+            : `/auction/${auctionData?.id}`
+        }
         condition={!isFinished}
       >
         <CardContainer sx={{ maxWidth: '100%' }}>

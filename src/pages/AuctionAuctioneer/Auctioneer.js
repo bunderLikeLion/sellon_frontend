@@ -7,11 +7,13 @@ import SelectMessageModal from 'components/Auction/AuctionAuctioneer/SelectMessa
 import DiscardMessageModal from 'components/Auction/AuctionAuctioneer/DiscardMessageModal';
 import { FormControlLabel, Pagination, RadioGroup } from '@mui/material';
 import { StyledRadio } from 'components/MyPage/AddItemModal';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import useSingleProductQuery from 'queries/product/useSingleProductQuery';
 import { useProductGroupsQuery, useSingleAuctionQuery } from 'queries/auction';
 import useInput from 'hooks/useInput';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const Container = styled.div`
   height: 100%;
@@ -117,6 +119,8 @@ const BuyerContainer = styled.div`
 `;
 
 const Auctioneer = () => {
+  const navigate = useNavigate();
+  const user = useRecoilValue(userAtom);
   const { id: auctionId, product: productId } = useParams();
 
   const [selectedGroupId, handleSelectedGroupId] = useInput(null);
@@ -129,8 +133,7 @@ const Auctioneer = () => {
   const { data: singleItemData, isSuccess: singleItemDataFetched } =
     useSingleProductQuery(productId);
 
-  /*  const { data: singleAuctionData, isSuccess: singleAuctionDataFetched } =
-    useSingleAuctionQuery(auctionId);*/
+  const { data: singleAuctionData } = useSingleAuctionQuery(auctionId);
 
   const { data: productGroups, isSuccess: productGroupsFetched } =
     useProductGroupsQuery(auctionId);
@@ -142,6 +145,10 @@ const Auctioneer = () => {
     name: 'color-radio-button-demo',
     inputProps: { 'aria-label': item },
   });
+
+  useEffect(() => {
+    if (singleAuctionData?.owner?.id !== user?.pk) navigate('/auction');
+  }, [user, singleAuctionData]);
 
   return (
     <WrapContainer>

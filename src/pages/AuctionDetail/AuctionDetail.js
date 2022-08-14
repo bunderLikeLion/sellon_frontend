@@ -2,12 +2,10 @@ import styled from 'styled-components';
 import AuctionItem from 'components/Auction/AuctionDetail/AuctionItem';
 import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOtherSuggestion';
 import AuctionMySuggestion from 'components/Auction/AuctionDetail/AuctionMySuggestion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import WrapContainer from 'layouts/WrapContainer';
 import { useSingleAuctionQuery } from 'queries/auction';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -36,19 +34,12 @@ const TopContainer = styled.div`
 
 const AuctionDetail = () => {
   const { id: auctionId } = useParams();
-  const user = useRecoilValue(userAtom);
-  const navigate = useNavigate();
 
   const [isInventoryOpened, setIsInventoryOpened] = useState(false);
   const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
 
   const { data: singleAuctionData, isSuccess: singleAuctionDataFetched } =
     useSingleAuctionQuery(auctionId);
-
-  useEffect(() => {
-    if (singleAuctionData?.owner?.id === user?.pk)
-      navigate(`/auctioneer/${auctionId}/${singleAuctionData?.product?.id}`);
-  }, [user, singleAuctionData]);
 
   return (
     <WrapContainer>
