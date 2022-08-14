@@ -12,12 +12,34 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
+
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
   width: 100%;
   height: 100%;
+`;
+
+//Pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2%;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
 `;
 
 //Summary
@@ -76,8 +98,9 @@ const SummaryParticipantsTxt = styled.div`
 `;
 
 //Accordion
+//width: 65%;
 const AccordionContainer = styled.div`
-  width: 65%;
+  width: 39.3rem;
   margin-right: 10%;
   border-radius: 1rem;
 `;
@@ -222,6 +245,15 @@ const TransactionHistory = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChangePagination = (event, value) => {
+    setPageNum(value);
+  };
+
   return (
     <StyledWrapContainer>
       <AccordionContainer>
@@ -308,6 +340,14 @@ const TransactionHistory = () => {
             </DetailsRightContainer>
           </StyledAccordionDetails>
         </StyledAccordion>
+        {/*Pagination*/}
+        <PaginationContainer>
+          <StyledPagination
+            count={myProductsData?.total_pages}
+            page={pageNum}
+            onChange={handleChangePagination}
+          />
+        </PaginationContainer>
       </AccordionContainer>
       {/*우측 contents*/}
       <RightContainer>
