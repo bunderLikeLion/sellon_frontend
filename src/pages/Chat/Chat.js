@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ChatLists from 'components/MyPage/Chat/ChatLists';
 import InputMessage from 'components/MyPage/Chat/InputMessage';
 import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
+import { Tooltip } from '@mui/material';
 
 const AlignContainer = styled.div`
   display: flex;
@@ -62,6 +63,10 @@ const ChatContentContainer = styled.div`
   overflow-y: scroll;
 `;
 
+const ChatBubble = styled.div`
+	
+`;
+
 const ChatBox = styled.div`
   padding: 0.5rem;
   line-height: 1.5rem;
@@ -79,54 +84,37 @@ const Chat = () => {
   return (
     <WrapContainer>
       <AlignContainer>
-      <ChatForm>
-        <Chat_Left>
-          <MessageTitle>진행중인 거래</MessageTitle>
-          <ChatContainer>
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
-            <ChatLists />
-          </ChatContainer>
-        </Chat_Left>
-        <Chat_Right>
-          <OnChatContainer>
-            <OnChatUserProfile />
-          </OnChatContainer>
-          <ChatContentContainer>
-            <ChatBox>
-              상대방:
-              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-            </ChatBox>
-            <ChatBox>나: 네~</ChatBox>
-            <ChatBox>
-              상대방:
-              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-            </ChatBox>
-            <ChatBox>나: 네~</ChatBox>
-            <ChatBox>
-              상대방:
-              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-            </ChatBox>
-            <ChatBox>나: 네~</ChatBox>
-            <ChatBox>
-              상대방:
-              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-            </ChatBox>
-            <ChatBox>나: 네~</ChatBox>
-            <ChatBox>
-              상대방:
-              거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-            </ChatBox>
-            <ChatBox>나: 네~</ChatBox>
-          </ChatContentContainer>
-          <OnChatContainerBottom>
-            <InputMessage />
-          </OnChatContainerBottom>
-        </Chat_Right>
-      </ChatForm>
+        <ChatForm>
+          <Chat_Left>
+            <MessageTitle>진행중인 거래</MessageTitle>
+            <ChatContainer>
+              <ChatLists />
+              <ChatLists />
+              <ChatLists />
+              <ChatLists />
+              <ChatLists />
+              <ChatLists />
+            </ChatContainer>
+          </Chat_Left>
+          <Chat_Right>
+            <OnChatContainer>
+              <OnChatUserProfile />
+            </OnChatContainer>
+            <ChatContentContainer>
+              <ChatBubble>
+                trtr
+              </ChatBubble>
+              <ChatBox>
+                상대방:
+                거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+              </ChatBox>
+              <ChatBox>나: 네~</ChatBox>
+            </ChatContentContainer>
+            <OnChatContainerBottom>
+              <InputMessage />
+            </OnChatContainerBottom>
+          </Chat_Right>
+        </ChatForm>
       </AlignContainer>
     </WrapContainer>
   );
