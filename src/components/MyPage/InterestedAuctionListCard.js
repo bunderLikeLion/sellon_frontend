@@ -3,6 +3,8 @@ import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import ConditionalLink from '../ConditionalLink';
+import { FinishedCard } from '../Home/HomeAuctionListCard';
 
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
@@ -107,132 +109,34 @@ const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
   font-size: 2rem !important;
 `;
 
-export const FinishedOverlay = styled(Card)`
-  background-color: rgba(57, 57, 65, 0.83) !important;
-`;
-
-const InterestedAuctionListCard = () => {
+const InterestedAuctionListCard = ({ isFinished, data }) => {
+  console.log(isFinished, 'issssss');
   return (
     <StyledWrapContainer>
       {/*Card_01*/}
       <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_02*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://hhsmedia.com/wp-content/uploads/2018/10/candies-e1541131061529-900x600.jpg"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_03*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_04*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_05*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://hhsmedia.com/wp-content/uploads/2018/10/candies-e1541131061529-900x600.jpg"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_06*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
+        <ConditionalLink to={`/auction/${data.id}`} condition={!isFinished}>
+          <StyledCancelOutlinedIcon />
+          <MyCardMedia
+            component="img"
+            height="150"
+            image={data?.product?.thumbnail?.file}
+          />
+          <CardTop>
+            <CardProfile />
+            <MyCardHeader>{data?.title}</MyCardHeader>
+          </CardTop>
+          <CardBottom style={{ width: '100%' }}>
+            <PersonCntBox>
+              <PersonIcon />
+              {data?.product_groups_count}명
+            </PersonCntBox>
+            <EnterBox>D-7</EnterBox>
+          </CardBottom>
+        </ConditionalLink>
+        <FinishedCard isFinished={isFinished}>
+          <p>종료된 경매입니다.</p>
+        </FinishedCard>
       </CardContainer>
     </StyledWrapContainer>
   );
