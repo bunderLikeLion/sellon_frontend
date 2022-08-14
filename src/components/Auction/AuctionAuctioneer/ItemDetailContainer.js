@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { queryClient } from 'index';
+import timeLimitHandler from 'utils/timeLimitHandler';
+import dealingTypeHandler from 'utils/dealingTypeHandler';
 
 const Container = styled.div`
   display: flex;
@@ -63,32 +66,41 @@ const AuctionDetailContainers = styled.div`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({ singleItemData }) => {
+  const auctionData = queryClient.getQueryData(['auctionInfo']);
+
   return (
     <Container>
-      <AuctionDetailContainers>
-        <DetailSubHeader>경매 제목</DetailSubHeader>
-        <AuctionDetail>나이키 신발 사세요!</AuctionDetail>
-      </AuctionDetailContainers>
+      {singleItemData && (
+        <>
+          <AuctionDetailContainers>
+            <DetailSubHeader>경매 제목</DetailSubHeader>
+            <AuctionDetail>{singleItemData?.name}</AuctionDetail>
+          </AuctionDetailContainers>
 
-      <TextareaContainer>
-        <AuctionInfoContainer>
-          <DetailSubHeader>경매 내용</DetailSubHeader>
-          <AuctionDetailInfo>
-            이 신발은 제가 직접 영국에서 공수해온 것으로 매우 훌륭한 천으로
-            제작되었습니다.
-          </AuctionDetailInfo>
-        </AuctionInfoContainer>
-      </TextareaContainer>
+          <TextareaContainer>
+            <AuctionInfoContainer>
+              <DetailSubHeader>경매 내용</DetailSubHeader>
+              <AuctionDetailInfo>
+                {singleItemData?.description}
+              </AuctionDetailInfo>
+            </AuctionInfoContainer>
+          </TextareaContainer>
 
-      <AuctionDetailContainers>
-        <DetailSubHeader>경매 기간</DetailSubHeader>
-        <AuctionDetail>일주일</AuctionDetail>
-      </AuctionDetailContainers>
-      <AuctionDetailContainers>
-        <DetailSubHeader>거래 방법</DetailSubHeader>
-        <AuctionDetail>택배</AuctionDetail>
-      </AuctionDetailContainers>
+          <AuctionDetailContainers>
+            <DetailSubHeader>종료 시점</DetailSubHeader>
+            <AuctionDetail>
+              {timeLimitHandler(auctionData?.end_at)}
+            </AuctionDetail>
+          </AuctionDetailContainers>
+          <AuctionDetailContainers>
+            <DetailSubHeader>거래 방법</DetailSubHeader>
+            <AuctionDetail>
+              {dealingTypeHandler(auctionData?.dealing_type)}
+            </AuctionDetail>
+          </AuctionDetailContainers>
+        </>
+      )}
     </Container>
   );
 };
