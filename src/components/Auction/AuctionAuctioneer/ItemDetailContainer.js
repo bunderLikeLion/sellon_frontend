@@ -27,10 +27,6 @@ const AuctionInfoContainer = styled.div`
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
   color: ${(props) => props.theme.color_font__secondary};
-
-  .toastui-editor-contents p {
-    color: ${(props) => props.theme.color_white};
-  }
 `;
 
 const AuctionDetailInfo = styled.div`
