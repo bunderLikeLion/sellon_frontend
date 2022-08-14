@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import useAllInAuctionItemMutation from '../../../queries/auction/useAllInAuctionItemMutation';
+import { useParams } from 'react-router-dom';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -52,6 +54,14 @@ const ValidationCancelButton = styled.button`
 `;
 
 const ValidationModal = ({ handleModal, isModalOpened }) => {
+  const { id: auctionRelatedId } = useParams();
+  const { mutate: allInFunc } = useAllInAuctionItemMutation(auctionRelatedId);
+
+  const clickAllInBtnFunc = () => {
+    allInFunc();
+    handleModal();
+  };
+
   return (
     <Modal
       open={isModalOpened}
@@ -61,7 +71,9 @@ const ValidationModal = ({ handleModal, isModalOpened }) => {
     >
       <ModalContainer>
         <Text>정말 올인하시겠습니까?</Text>
-        <ValidationButton>올인</ValidationButton>
+        <ValidationButton onClick={() => clickAllInBtnFunc()}>
+          올인
+        </ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>

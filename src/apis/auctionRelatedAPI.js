@@ -80,7 +80,7 @@ const auctionRelatedAPI = {
   },
 
   postAllIn: (auctionId) => {
-    return client.get(`auctions/${auctionId}/all_in/`).then((res) => res.data);
+    return client.post(`auctions/${auctionId}/all_in/`).then((res) => res.data);
   },
 };
 

@@ -9,7 +9,7 @@ const useAllInAuctionItemMutation = (auctionId) => {
   return useMutation(
     () => {
       toast.loading('아이템 올인 시도 중입니다....');
-      return auctionRelatedAPI.postInventoryItem(auctionId);
+      return auctionRelatedAPI.postAllIn(auctionId);
     },
     {
       onSuccess: () => {
