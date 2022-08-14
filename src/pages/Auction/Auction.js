@@ -62,23 +62,12 @@ const InterestedUser = styled.div`
 `;
 
 const SubNav2 = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin: 1rem 0;
-`;
-
-const SubNav2_left = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const HomeGroundTitle = styled.div`
-  margin-right: 1rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const AuctionPublishLink = styled(Link)`
@@ -87,9 +76,11 @@ const AuctionPublishLink = styled(Link)`
 `;
 
 const SubmitAuctionButton = styled.button`
+  position: absolute;
   width: 10rem;
   height: 2rem;
   margin: 0.3rem;
+  right: 0;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -216,31 +207,6 @@ const Auction = () => {
     <WrapContainer>
       <Form>
         <SubNav2>
-          <SubNav2_left>
-            <HomeGroundTitle>홈그라운드 거래</HomeGroundTitle>
-            <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
-              <InputLabelBox id="demo-select-small">
-                홈그라운드 설정
-              </InputLabelBox>
-              <SelectBox
-                labelId="demo-select-small"
-                id="demo-select-small"
-                value=""
-                label="Age"
-                border="none"
-                MenuProps={{
-                  sx: {
-                    '& .MuiMenu-list': {
-                      backgroundColor: '#3A335C',
-                    },
-                  },
-                }}
-              >
-                <MenuItemBox value={10}>기본모드</MenuItemBox>
-                <MenuItemBox value={20}>여행모드</MenuItemBox>
-              </SelectBox>
-            </FormControl>
-          </SubNav2_left>
           <AuctionPublishLink to={'/auction/newauction'}>
             <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
           </AuctionPublishLink>
@@ -251,9 +217,7 @@ const Auction = () => {
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
             거래가 성사되었습니다!
           </DealComplete>
-          <FameShortcut to={'/toprank'}>
-            명예의 전당 바로가기 →
-          </FameShortcut>
+          <FameShortcut to={'/toprank'}>명예의 전당 바로가기 →</FameShortcut>
         </SubNav>
 
         <BestAuctionContainer>

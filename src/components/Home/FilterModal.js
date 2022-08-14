@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { Radio, TextField } from '@mui/material';
@@ -19,16 +20,16 @@ const ModalContainer = styled(Box)`
   padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
-  background: ${(props) => props.theme.color_background__default};
   color: ${(props) => props.theme.color_white};
+  background: ${(props) => props.theme.color_background__default};
 `;
 
 const CloseBtn = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;
-  color: ${(props) => props.theme.color_font__number};
   cursor: pointer;
+  color: ${(props) => props.theme.color_font__number};
 `;
 
 const GuideContainer = styled.div`
@@ -42,7 +43,7 @@ const SearchContainer = styled.div`
 
 const StyledLabel = styled.p`
   width: 8rem;
-  margin: 1rem 0;
+  margin: 1rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -56,60 +57,47 @@ const StyledTextField = styled(TextField)`
   }
   & label.Mui-focused {
     border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover} 1;
+    background: ${(props) => props.theme.color_background__primary};
   }
   & .MuiInput-underline:after {
     border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover} 1;
+    background: ${(props) => props.theme.color_background__primary};
   }
   & .MuiOutlinedInput-root {
     color: ${(props) => props.theme.color_white} !important;
     & fieldset {
       border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
+      border-radius: 10px;
+      background: ${(props) => props.theme.color_background__primary};
     }
     &:hover fieldset {
       border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
+      background: ${(props) => props.theme.color_background__primary};
     }
     &.Mui-focused fieldset {
       border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
+      background: ${(props) => props.theme.color_background__primary};
     }
   }
   width: 25rem;
 `;
 
-const LocationRadioBox = styled.div`
-  display: flex;
-  align-items: center;
-  width: 25rem;
-  height: 5rem;
-  min-height: 3rem;
-  padding: 1rem;
-  margin-top: 2rem;
-  border-radius: 0.3rem;
-  border: 2px solid transparent;
-  border-image: ${(props) => props.theme.color_border__hover} 1;
-  background: ${(props) => props.theme.color_background__default};
-`;
-
 const CategoryRadioBox = styled.div`
   width: 40rem;
-  height: 17rem;
-  min-height: 3rem;
-  padding: 1rem;
+  height: 22rem;
+  min-height: 2rem;
+  padding: 0.1rem;
   margin-top: 2rem;
-  background: ${(props) => props.theme.color_background__default};
-  border-radius: 0.3rem;
-  border: 2px solid transparent;
-  border-image: ${(props) => props.theme.color_border__hover} 1;
+  border-radius: 10px;
+  border: 0.1px solid transparent;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const CategoryContentBox = styled.div`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  padding: 0 0.4rem;
 `;
 
 const SingleRadio = styled.span`
@@ -129,22 +117,18 @@ const StyledRadio = styled(Radio)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StatusRadio = styled(SingleRadio)`
-  width: 40%;
-  margin-top: 0.2rem;
-`;
-
 const ApplyButton = styled(Button)`
   position: absolute !important;
-  bottom: 4%;
+  bottom: 7%;
   right: 4%;
   width: 7rem;
   height: 2.5rem;
   margin-top: 1.5rem !important;
   border: none !important;
+  border-radius: 10px;
   font-size: 1.2rem !important;
-  background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_white} !important;
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
 const FilterModal = (props) => {
@@ -213,22 +197,10 @@ const FilterModal = (props) => {
             value={filterKeyword}
             onChange={handleFilterKeyword}
             placeholder="상품명"
-          />
+          >
+            <SearchIcon/>
+          </StyledTextField>
         </SearchContainer>
-
-        <LocationRadioBox>
-          <StyledLabel>경매 지역</StyledLabel>
-          <CategoryContentBox>
-            <StatusRadio>
-              <StyledRadio {...areRestrictionControlProps('0')} />
-              <RadioLabel>전국구</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
-              <StyledRadio {...areRestrictionControlProps('1')} />
-              <RadioLabel>홈그라운드</RadioLabel>
-            </StatusRadio>
-          </CategoryContentBox>
-        </LocationRadioBox>
 
         <CategoryRadioBox>
           <StyledLabel>상품 카테고리</StyledLabel>
