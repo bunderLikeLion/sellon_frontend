@@ -85,24 +85,57 @@ const CategoryBox = styled.div`
 
 const StyledModal = styled(Box)`
   position: absolute;
-  top: 50%;
-  left: 50%;
   width: 50%;
   height: 30%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   border: 2px solid #000;
   border-radius: 20px;
-  background: ${(props) => props.theme.color_border__topleft};
   color: ${(props) => props.theme.color_white};
+  background: ${(props) => props.theme.color_border__topleft};
 `;
 
-const StyledModalContent = styled.div`
-  position: relative;
+const Text = styled.h1`
+  position: absolute;
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
-  height: 100%;
+  height: auto;
+  bottom: 40%;
+  margin: 2rem 0;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: ${(props) => props.theme.color_font__primary};
+`;
+
+const DeleteButton = styled.button`
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  left: 32%;
+  bottom: 20%;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_background__warning};
+`;
+
+const DeleteCancelButton = styled.button`
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  right: 32%;
+  bottom: 20%;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_font__disabled};
 `;
 
 const ItemListCard = ({ productData }) => {
@@ -149,13 +182,13 @@ const ItemListCard = ({ productData }) => {
         aria-describedby="modal-modal-description"
       >
         <StyledModal>
-          <StyledModalContent>
-            <div>
-              <p>정말 '{productData.name}'을 삭제하시겠습니까?</p>
-              <button onClick={deleteHandler}>네</button>
-              <button onClick={handleClose}>아니요</button>
-            </div>
-          </StyledModalContent>
+          <div>
+            <Text>정말 '{productData.name}'을 삭제하시겠습니까?</Text>
+            <DeleteButton onClick={deleteHandler}>네</DeleteButton>
+            <DeleteCancelButton onClick={handleClose}>
+              아니요
+            </DeleteCancelButton>
+          </div>
         </StyledModal>
       </Modal>
     </Container>
