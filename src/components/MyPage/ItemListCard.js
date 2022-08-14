@@ -16,27 +16,11 @@ const Container = styled.div`
   height: 100%;
   margin: 3rem 0 4.5rem 0;
   z-index: 1;
+  border-radius: 20px !important;
+  border: 1.3px solid transparent;
 
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid ${(props) => props.theme.color_border__topleft};
-    border-radius: 20px !important;
-  }
-
-  &:hover:before {
-    position: absolute;
-    top: -2.5%;
-    left: -2.5%;
-    width: 103%;
-    height: 103%;
-    z-index: -1;
-    border-radius: 20px;
-    background: ${(props) => props.theme.color_border__hover};
+  :hover {
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
   }
   :nth-child(2),
   :nth-child(5) {

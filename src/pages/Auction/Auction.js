@@ -65,7 +65,7 @@ const InterestedUser = styled.div`
 
 const SubNav2 = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   width: 100%;
   margin: 1rem 0;
@@ -74,34 +74,27 @@ const SubNav2 = styled.div`
 const SubNav2_left = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 6rem;
 `;
 
 const HomeGroundTitle = styled.div`
-  margin-right: 1rem;
+  margin-bottom: 0.5rem;
   font-weight: bold;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const AuctionPublishLink = styled(Link)`
-  width: 10.5rem;
-  height: 2rem;
+  width: fit-content;
 `;
 
 const SubmitAuctionButton = styled.button`
-  width: 10rem;
-  height: 2rem;
-  margin: 0.3rem;
+  padding: 0.5rem 0.8rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 1.1rem;
   font-size: 1rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
-  :hover {
-    transition: 0.5s;
-    transform: translateY(-0.2rem);
-    border: 1px solid ${(props) => props.theme.color_border__bottomright} !important;
-  }
 `;
 
 const DealComplete = styled.div`
@@ -113,19 +106,18 @@ const DealComplete = styled.div`
 
 const FameShortcut = styled(Link)`
   display: flex;
-  align-items: flex-end;
-  float: right;
+  align-items: center;
   width: 12rem;
   height: 3rem;
   margin: 0;
   border: none;
   cursor: pointer;
+  font-size: 0.9rem;
   color: ${(props) => props.theme.color_font__primary};
   background: transparent;
   :hover {
-    color: #e273ab;
-    transition: 0.5s;
-    transform: translateX(1rem);
+    font-weight: 800;
+    transistion: 0.3s;
   }
 `;
 
@@ -247,29 +239,7 @@ const Auction = () => {
       <Form>
         <SubNav2>
           <SubNav2_left>
-            <HomeGroundTitle>홈그라운드 거래</HomeGroundTitle>
-            <FormControl sx={{ m: 1, minWidth: 200 }} size="small">
-              <InputLabelBox id="demo-select-small">
-                홈그라운드 설정
-              </InputLabelBox>
-              <SelectBox
-                labelId="demo-select-small"
-                id="demo-select-small"
-                value=""
-                label="Age"
-                border="none"
-                MenuProps={{
-                  sx: {
-                    '& .MuiMenu-list': {
-                      backgroundColor: '#3A335C',
-                    },
-                  },
-                }}
-              >
-                <MenuItemBox value={10}>기본모드</MenuItemBox>
-                <MenuItemBox value={20}>여행모드</MenuItemBox>
-              </SelectBox>
-            </FormControl>
+            <HomeGroundTitle>홈그라운드 경매</HomeGroundTitle>
           </SubNav2_left>
           <AuctionPublishLink to={'/auction/newauction'}>
             <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
@@ -279,7 +249,7 @@ const Auction = () => {
         <SubNav>
           <DealComplete>
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
-            거래가 성사되었습니다!
+            경매가 성사되었습니다!
           </DealComplete>
           <FameShortcut to={'/toprank'}>명예의 전당 바로가기 →</FameShortcut>
         </SubNav>

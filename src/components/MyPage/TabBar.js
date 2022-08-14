@@ -19,7 +19,6 @@ const StyledBox = styled(Box)`
 `;
 
 const StyledTabList = styled(Tab)`
-  width: 10vw !important;
   max-width: 500px !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
 `;
@@ -32,7 +31,7 @@ const TabBar = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', mt: '3rem', typography: 'body1' }}>
+    <Box sx={{ width: '100%', mt: '5rem', typography: 'body1' }}>
       <TabContext value={value}>
         <StyledBox sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
