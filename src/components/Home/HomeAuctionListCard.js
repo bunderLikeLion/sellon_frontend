@@ -91,7 +91,7 @@ const MyCardHeader = styled.div`
   font-size: 1.4rem;
 `;
 
-const FinishedCard = styled(FinishedOverlay)`
+export const FinishedCard = styled(FinishedOverlay)`
   border-radius: 3rem !important;
   box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
 `;

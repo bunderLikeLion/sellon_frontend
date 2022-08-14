@@ -10,6 +10,7 @@ import InterestedAuctionList from './InterestedAuctionList';
 import TransactionHistory from './TransactionHistory';
 import NoTransactionHistory from './NoTransactionHistory';
 import MyAuctionList from './MyAuctionList'; //개인페이지-히스토리 없는 경우
+import Chat from 'pages/Chat/Chat';
 
 const StyledBox = styled(Box)`
   .MuiTabs-indicator {
@@ -39,6 +40,7 @@ const TabBar = () => {
             <StyledTabList label="인벤토리" value="2" />
             <StyledTabList label="관심거래" value="3" />
             <StyledTabList label="내가 올린 경매" value="4" />
+            <StyledTabList label="진행중인 거래" value="5" />
           </TabList>
         </StyledBox>
         <TabPanel value="1">
@@ -53,6 +55,9 @@ const TabBar = () => {
         </TabPanel>
         <TabPanel value="4">
           <MyAuctionList />
+        </TabPanel>
+        <TabPanel value="5">
+          <Chat />
         </TabPanel>
       </TabContext>
     </Box>
