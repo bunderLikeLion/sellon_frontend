@@ -224,11 +224,11 @@ const Auction = () => {
                 id="demo-select-small"
                 value=""
                 label="Age"
-                border= 'none'
+                border="none"
                 MenuProps={{
                   sx: {
                     '& .MuiMenu-list': {
-                      backgroundColor: '#3A335C'
+                      backgroundColor: '#3A335C',
                     },
                   },
                 }}
@@ -291,7 +291,7 @@ const Auction = () => {
               MenuProps={{
                 sx: {
                   '& .MuiMenu-list': {
-                    backgroundColor: '#3A335C'
+                    backgroundColor: '#3A335C',
                   },
                 },
               }}
@@ -307,7 +307,6 @@ const Auction = () => {
           {auctionListFetched && (
             <>
               {auctionList?.results.map((singleAuction) => {
-                console.log(singleAuction, 'single');
                 if (isAuctionFinishedHandler(singleAuction?.end_at)) {
                   // 끝난 경매
                   return (
