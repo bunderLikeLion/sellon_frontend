@@ -15,7 +15,6 @@ import Typography from '@mui/material/Typography';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
 
-
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
@@ -218,7 +217,7 @@ const RightSmallContainer2 = styled(RightSmallContainer)`
   height: 11rem;
 `;
 
-const ToprankInfoContainer = styled.div`
+const TopRankInfoContainer = styled.div`
   width: 90%;
   height: 30%;
   margin: 0.5rem 0;
@@ -227,13 +226,13 @@ const ToprankInfoContainer = styled.div`
   background: #342d56;
 `;
 
-const ToprankTitle = styled.p`
+const TopRankTitle = styled.p`
   padding-top: 0.2rem;
   font-size: 1.1rem;
   color: #dfdcef;
 `;
 
-const ToprankDate = styled.p`
+const TopRankDate = styled.p`
   font-size: 0.9rem;
   color: #817c97;
 `;
@@ -358,8 +357,8 @@ const TransactionHistory = () => {
         <RightSmallContainer>
           내 평점
           <MyScopeInfoContainer>
-            <MyScopeInfo fontSize='large'/>
-            <MyScopeInfo fontSize='large'/>
+            <MyScopeInfo fontSize="large" />
+            <MyScopeInfo fontSize="large" />
           </MyScopeInfoContainer>
         </RightSmallContainer>
         <RightSmallContainer>
@@ -372,14 +371,14 @@ const TransactionHistory = () => {
         </RightSmallContainer>
         <RightSmallContainer2>
           명예의 전당 실적
-          <ToprankInfoContainer>
-            <ToprankTitle>이번주의 챔피온</ToprankTitle>
-            <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoContainer>
-          <ToprankInfoContainer>
-            <ToprankTitle>이번주의 챔피온</ToprankTitle>
-            <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoContainer>
+          <TopRankInfoContainer>
+            <TopRankTitle>이번주의 챔피온</TopRankTitle>
+            <TopRankDate>2022.08.01</TopRankDate>
+          </TopRankInfoContainer>
+          <TopRankInfoContainer>
+            <TopRankTitle>이번주의 챔피온</TopRankTitle>
+            <TopRankDate>2022.08.01</TopRankDate>
+          </TopRankInfoContainer>
         </RightSmallContainer2>
       </RightContainer>
     </StyledWrapContainer>

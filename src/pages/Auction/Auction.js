@@ -215,7 +215,6 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
-
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
@@ -282,9 +281,7 @@ const Auction = () => {
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
             거래가 성사되었습니다!
           </DealComplete>
-          <FameShortcut to={'/toprank'}>
-            명예의 전당 바로가기 →
-          </FameShortcut>
+          <FameShortcut to={'/toprank'}>명예의 전당 바로가기 →</FameShortcut>
         </SubNav>
 
         <BestAuctionContainer>
@@ -316,7 +313,7 @@ const Auction = () => {
             </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small">정렬</InputLabelBox>
+            <InputLabelBox id="demo-select-small">최신순</InputLabelBox>
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
@@ -361,14 +358,14 @@ const Auction = () => {
               })}
             </>
           )}
-        {/*Pagination*/}
-        <PaginationContainer>
-          <StyledPagination
-            count={myProductsData?.total_pages}
-            page={pageNum}
-            onChange={handleChange}
-          />
-        </PaginationContainer>
+          {/*Pagination*/}
+          <PaginationContainer>
+            <StyledPagination
+              count={myProductsData?.total_pages}
+              page={pageNum}
+              onChange={handleChange}
+            />
+          </PaginationContainer>
         </Container>
       </Form>
       <FilterModal
