@@ -9,9 +9,9 @@ import { useMyProductsQuery } from 'queries/product';
 
 const StyledWrapContainer = styled.div`
   display: flex !important;
+  justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
   width: 100%;
   height: 100%;
   gap: 2rem 3rem;
@@ -47,44 +47,44 @@ const CardContainer = styled(Card)`
 `;
 
 const CardTop = styled.div`
-  width: 100%;
   display: flex;
   justify-content: start;
   padding: 0.8rem 1rem 0.2rem 1rem;
   align-items: center;
+  width: 100%;
 `;
 
 const CardProfile = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background: #c9c9c9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const CardBottom = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 0 1rem 1rem 1rem;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 const PersonCntBox = styled.span`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 0.3rem;
   width: 5rem;
   height: 2.4rem;
-  background: transparent;
+  margin: 0.3rem;
   border-radius: 4rem;
   font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__number} !important;
+  background: transparent;
 `;
 
 const EnterBox = styled(PersonCntBox)`
@@ -108,6 +108,7 @@ const MyCardMedia = styled(CardMedia)`
 const MyCardHeader = styled.div`
   width: 100%;
   height: 100%;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis !important;
   white-space: nowrap;
@@ -134,14 +135,14 @@ const StyledPagination = styled(Pagination)`
 `;
 
 export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
   position: absolute;
-  left: 0;
-  top: 0;
+  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   font-size: 2rem;
   background-color: rgba(57, 57, 65, 0.83) !important;
 `;
@@ -253,26 +254,6 @@ const InterestedAuctionListCard = () => {
           <EnterBox>D-7</EnterBox>
         </CardBottom>
       </CardContainer>
-      {/*Card_06*/}
-      <CardContainer>
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination

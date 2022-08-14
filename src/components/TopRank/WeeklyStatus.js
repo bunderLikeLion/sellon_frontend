@@ -3,6 +3,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 
 const Container = styled.div`
@@ -127,13 +128,30 @@ const UserRank = styled.div`
   background: ${(props) => props.theme.color_background__success};
 `;
 
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 168,
+    cursor: 'pointer',
+    color: '#DFDCEF',
+    backgroundColor: '#4E4166',
+  },
+});
+
+const HoverMsg = `
+hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
+`;
+
 
 const WeeklyStatus = () => {
   return (
     <Container>
       <WeeklyStatusContainer>
         <WeeklyStatusTitle>이번 주의 신분상승</WeeklyStatusTitle>
-        <QuestionIcon />
+        <StyledTooltip title={HoverMsg} arrow>
+          <QuestionIcon />
+        </StyledTooltip>
       </WeeklyStatusContainer>
       <WeeklyStatusBottomContainer>
         <PaginationContainer>

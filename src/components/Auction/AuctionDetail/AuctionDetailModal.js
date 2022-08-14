@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import useSingleProductQuery from 'queries/product/useSingleProductQuery';
 import { queryClient } from 'index';
 import { CloseBtn } from 'components/MyPage/AddItemModal';
+import { useSingleAuctionQuery } from '../../../queries/auction';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -55,13 +56,12 @@ const AuctionDetailModal = ({
   isTriggeredFromBigImg,
   smallImgRelatedItemId,
 }) => {
-  const { product: relatedProductObj } = queryClient.getQueryData([
-    'auctionInfo',
-  ]);
+  const { id } = useParams();
+  const { data } = useSingleAuctionQuery(id);
 
   const { data: singleItemData, isSuccess: singleItemDataFetched } =
     useSingleProductQuery(
-      isTriggeredFromBigImg ? relatedProductObj?.id : smallImgRelatedItemId?.id
+      isTriggeredFromBigImg ? data?.product?.id : smallImgRelatedItemId?.id
     );
 
   return (
@@ -81,9 +81,6 @@ const AuctionDetailModal = ({
                 isTriggeredFromModal={true}
               />
             )}
-            {/*{singleItemDataFetched && (*/}
-            {/*  <UserInformation singleItemData={singleItemData} />*/}
-            {/*)}*/}
           </UserUploadContainer>
           <ItemDetailContainer>
             {singleItemDataFetched && (

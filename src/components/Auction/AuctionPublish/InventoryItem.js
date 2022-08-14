@@ -2,9 +2,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import CardHeader from '@mui/material/CardHeader';
+import { EnabledOverlay } from '../../../styles/StyledComponetStyles';
 
 const Container = styled(Card)`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -42,10 +44,21 @@ const CardTop = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const InventoryItem = ({ singleItem, setSelectedItem, handleModal }) => {
+const UnableCard = styled(EnabledOverlay)`
+  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
+`;
+
+const InventoryItem = ({
+  singleItem,
+  setSelectedItem,
+  handleModal,
+  status,
+}) => {
   const selectFromInventoryFunc = () => {
-    setSelectedItem(singleItem);
-    handleModal();
+    if (!status) {
+      setSelectedItem(singleItem);
+      handleModal();
+    }
   };
 
   return (
@@ -57,6 +70,11 @@ const InventoryItem = ({ singleItem, setSelectedItem, handleModal }) => {
         <CardTop>
           <CardHeader title={singleItem?.name} />
         </CardTop>
+        {status && (
+          <UnableCard>
+            <p>이미 올라간 물품입니다.</p>
+          </UnableCard>
+        )}
       </ItemContentContainer>
     </Container>
   );

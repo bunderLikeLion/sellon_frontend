@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import { useParams } from 'react-router-dom';
+import useAllInAuctionItemMutation from '../../../queries/auction/useAllInAuctionItemMutation';
+import useDeleteAuctionMutation from '../../../queries/auction/useDeleteAuctionMutation';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -52,6 +55,15 @@ const ValidationCancelButton = styled.button`
 `;
 
 const DiscardMessageModal = ({ handleModal, isModalOpened }) => {
+  const { id: auctionRelatedId } = useParams();
+  const { mutate: deleteAuctionFunc } =
+    useDeleteAuctionMutation(auctionRelatedId);
+
+  const clickDiscardBtnFunc = () => {
+    deleteAuctionFunc();
+    handleModal();
+  };
+
   return (
     <Modal
       open={isModalOpened}
@@ -61,7 +73,9 @@ const DiscardMessageModal = ({ handleModal, isModalOpened }) => {
     >
       <ModalContainer>
         <Text>정말 폐기하시겠습니까?</Text>
-        <ValidationButton>폐기</ValidationButton>
+        <ValidationButton onClick={() => clickDiscardBtnFunc()}>
+          폐기
+        </ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>

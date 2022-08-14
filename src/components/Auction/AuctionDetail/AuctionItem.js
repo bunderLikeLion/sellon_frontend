@@ -2,7 +2,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
-import { queryClient } from 'index';
 import {
   useDeleteInterestedAuctionMutation,
   useCreateInterestedAuctionMutation,
@@ -10,6 +9,7 @@ import {
 import timeLimitHandler from 'utils/timeLimitHandler';
 import { useState } from 'react';
 import AuctionDetailModal from './AuctionDetailModal';
+import { useParams } from 'react-router-dom';
 
 const Container = styled(Card)`
   display: flex;
@@ -118,7 +118,7 @@ const ItemDescription = styled.p`
 const AuctionItem = (props) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
+  const { id: relatedAuctionId } = useParams();
 
   const { mutate: createInterestedAuction } =
     useCreateInterestedAuctionMutation();

@@ -78,6 +78,14 @@ const auctionRelatedAPI = {
   getPopularAuctions: () => {
     return client.get('auctions/popular/').then((res) => res.data);
   },
+
+  postAllIn: (auctionId) => {
+    return client.post(`auctions/${auctionId}/all_in/`).then((res) => res.data);
+  },
+
+  deleteAuction: (auctionId) => {
+    return client.delete(`auctions/${auctionId}/`).then((res) => res.data);
+  },
 };
 
 export default auctionRelatedAPI;

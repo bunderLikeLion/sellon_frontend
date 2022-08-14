@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import { useParams } from 'react-router-dom';
+import { useCreateDealingMutation } from 'queries/dealing';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -51,7 +53,14 @@ const ValidationCancelButton = styled.button`
   background: ${(props) => props.theme.color_font__disabled};
 `;
 
-const SelectMessageModal = ({ handleModal, isModalOpened }) => {
+const SelectMessageModal = ({
+  handleModal,
+  isModalOpened,
+  selectedGroupId,
+}) => {
+  const { id: auctionRelatedId } = useParams();
+  const { mutate: createDealing } = useCreateDealingMutation();
+
   return (
     <Modal
       open={isModalOpened}
@@ -61,7 +70,16 @@ const SelectMessageModal = ({ handleModal, isModalOpened }) => {
     >
       <ModalContainer>
         <Text>정말 선택하시겠습니까?</Text>
-        <ValidationButton>선택</ValidationButton>
+        <ValidationButton
+          onClick={() => {
+            createDealing({
+              auction_id: auctionRelatedId,
+              product_group_id: selectedGroupId,
+            });
+          }}
+        >
+          선택
+        </ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>

@@ -51,7 +51,7 @@ const App = () => {
                 <Route path="/toprank" element={<TopRank />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
-                <Route path="/auction/newauction" element={<NewAuction />} />
+                {/*<Route path="/auction/newauction" element={<NewAuction />} />*/}
                 <Route path="/mypage/infochange" element={<UserInfoChange />} />
               </Routes>
             </Suspense>
