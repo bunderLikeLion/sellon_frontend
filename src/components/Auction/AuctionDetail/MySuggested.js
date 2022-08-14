@@ -78,7 +78,6 @@ const DeleteIcon = styled(HighlightOffIcon)`
 
 const MySuggested = (props) => {
   const [page, setPage] = useState(1);
-  const [productGroupExists, setProductGroupExists] = useState(false);
   const { pk: userId } = useRecoilValue(userAtom);
   const { id: relatedAuctionId } = queryClient.getQueryData(['auctionInfo']);
 
@@ -87,16 +86,6 @@ const MySuggested = (props) => {
 
   const { mutate: deleteAuctionItem } =
     useDeleteAuctionItemMutation(relatedAuctionId);
-
-  useEffect(() => {
-    if (myProductGroup.results.length) {
-      setProductGroupExists(true);
-      console.log('exists');
-    } else {
-      setProductGroupExists(false);
-      console.log('not exists');
-    }
-  }, [myProductGroup]);
 
   return (
     <Container>
