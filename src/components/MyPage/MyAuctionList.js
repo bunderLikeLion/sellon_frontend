@@ -35,7 +35,6 @@ const CardContainer = styled(Card)`
   :nth-child(5) {
     margin: 0 3rem 4.5rem 3rem;
   }
-  }
 `;
 
 const CardTop = styled.div`

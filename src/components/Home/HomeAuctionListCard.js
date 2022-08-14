@@ -22,7 +22,6 @@ const CardContainer = styled(Card)`
     transition: 0.5s;
     transform: translateY(-0.5rem);
   };
-  }
 `;
 
 const CardTop = styled.div`
