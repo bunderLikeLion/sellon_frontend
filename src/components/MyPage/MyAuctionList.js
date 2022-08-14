@@ -14,37 +14,54 @@ const StyledWrapContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
+  gap: 2rem 2.5rem;
 `;
 
 const CardContainer = styled(Card)`
   position: relative;
-  width: 30%;
-  margin: 1rem;
   border-radius: 3rem !important;
+  max-width: calc((100% - 7.5rem) / 4);
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc((100% - 7.5rem) / 4);
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
-  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_border__topleft} !important;
+  border: 1.3px solid transparent;
+
   :hover {
-    transition: 0.5s;
-    transform: translateY(-0.5rem);
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
+  }
+
+  @media screen and (max-width: 1300px) {
+    flex-basis: calc((100% - 7.5rem) / 3);
+    max-width: calc((100% - 5rem) / 3);
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 7.5rem) / 2);
+    max-width: calc((100% - 5rem) / 2);
+  }
+  @media screen and (max-width: 500px) {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 `;
 
 const CardTop = styled.div`
   display: flex;
   justify-content: start;
+  padding: 0.8rem 1rem 0.2rem 1rem;
   align-items: center;
   width: 100%;
-  padding: 1rem 1rem 1rem 1.5rem;
 `;
 
 const CardProfile = styled.div`
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
-  padding: 1.5rem;
   border-radius: 50%;
   background: #c9c9c9;
 `;
@@ -66,14 +83,14 @@ const PersonCntBox = styled.span`
   height: 2.4rem;
   margin: 0.3rem;
   border-radius: 4rem;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__number} !important;
   background: transparent;
 `;
 
 const EnterBox = styled(PersonCntBox)`
-  width: 7rem;
+  width: fit-content;
+  padding: 0.5rem 1.3rem;
   text-align: center;
   border: none;
   color: ${(props) => props.theme.color_font__secondary} !important;
@@ -81,8 +98,12 @@ const EnterBox = styled(PersonCntBox)`
 `;
 
 const MyCardMedia = styled(CardMedia)`
-  height: 14rem;
   object-fit: cover;
+  height: 8rem;
+
+  @media screen and (max-width: 500px) {
+    height: 10rem;
+  }
 `;
 
 const MyCardHeader = styled.div`
@@ -91,16 +112,9 @@ const MyCardHeader = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis !important;
+  white-space: nowrap;
+  font-size: 1.2rem;
   padding: 0.5rem;
-  font-size: 1.4rem;
-`;
-
-const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
-  position: absolute !important;
-  right: 1rem;
-  margin-top: 0.5rem !important;
-  border-radius: 50rem !important;
-  font-size: 2rem !important;
 `;
 
 const PaginationContainer = styled.div`
@@ -147,8 +161,7 @@ const InterestedAuctionListCard = () => {
   return (
     <StyledWrapContainer>
       {/*Card_01*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -167,8 +180,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_02*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -187,8 +199,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_03*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -207,8 +218,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_04*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"
@@ -227,8 +237,7 @@ const InterestedAuctionListCard = () => {
         </CardBottom>
       </CardContainer>
       {/*Card_05*/}
-      <CardContainer sx={{ maxWidth: '100%' }}>
-        <StyledCancelOutlinedIcon />
+      <CardContainer>
         <MyCardMedia
           component="img"
           height="150"

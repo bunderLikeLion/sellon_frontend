@@ -44,8 +44,8 @@ const StyledPagination = styled(Pagination)`
 
 //Summary
 const SummaryImg = styled(CardMedia)`
-  height: 7rem;
-  width: 20% !important;
+  height: 5rem !important;
+  width: 5rem !important;
   margin-right: 3rem;
   border-radius: 10%;
 `;
@@ -67,7 +67,7 @@ const SummaryContents = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 75%;
+  width: 100%;
 `;
 
 const SummaryTitle = styled.h1`
@@ -77,14 +77,13 @@ const SummaryTitle = styled.h1`
 `;
 
 const SummaryUploadDate = styled.div`
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   color: ${(props) => props.theme.color_font__tertiary} !important;
 `;
 
 const SummaryParticipantsWrapper = styled.div`
   display: inline-flex;
-  justify-content: flex-end;
-  padding-right: 2rem;
+  justify-content: space-between;
 `;
 
 const SummaryParticipantIcon = styled(PersonOutlineOutlinedIcon)`
@@ -98,47 +97,73 @@ const SummaryParticipantsTxt = styled.div`
 `;
 
 //Accordion
-//width: 65%;
-const AccordionContainer = styled.div`
-  width: 39.3rem;
+const StyledAccordionContainer = styled.div`
+  width: 65%;
   margin-right: 10%;
   border-radius: 1rem;
 `;
 
 const StyledAccordion = styled(Accordion)`
-  margin-bottom: 3%;
-  border-radius: 1rem !important;
+  border-radius: 0.5rem !important;
   background: ${(props) => props.theme.color_background__primary} !important;
+`;
+
+const StyledAccordionSummary = styled(AccordionSummary)`
+  & .MuiAccordionSummary-content {
+    padding: 0 1.5rem;
+  }
+`;
+
+const StyledExpandMoreIcon = styled(ExpandMoreIcon)`
+  fill: ${(props) => props.theme.color_white} !important;
+`;
+
+const SummaryParticipantcontainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const StyledAccordionDetails = styled(AccordionDetails)`
   display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
+  padding: 0.5rem 2rem 1.5rem 2.3rem !important;
 `;
 
 const DetailsLeftContainer = styled.div`
   width: 45%;
 `;
 
+const StyledCardContent = styled(CardContent)`
+  & .MuiCardContent-root {
+    color: red;
+  }
+`;
+
 const StyledCard = styled(Card)`
   overflow: hidden;
+  border-radius: 0.7rem !important;
   background: ${(props) => props.theme.color_background__third} !important;
 `;
 
 const StyledTypography = styled(Typography)`
   color: ${(props) => props.theme.color_font__secondary} !important;
+  margin-bottom: 0 !important;
 `;
 
 const StyledCardActions = styled(CardActions)`
   justify-content: flex-end;
+  padding: 0.5rem 1rem 1rem 1.5rem !important;
 `;
 
 const StyledCardButton = styled(Button)`
-  border-radius: 12% !important;
+  width: 6rem;
+  border-radius: 1rem !important;
+  border: none !important;
+  background: ${(props) => props.theme.color_button__ok} !important;
   overflow: hidden !important;
   font-weight: bold !important;
-  color: black !important;
-  background: #d9d9d9 !important;
 `;
 
 const DetailsRightContainer = styled(DetailsLeftContainer)`
@@ -148,7 +173,6 @@ const DetailsRightContainer = styled(DetailsLeftContainer)`
   align-content: flex-start;
   flex-wrap: wrap;
   width: 41%;
-  margin-left: 10%;
 `;
 
 //전체화면 우측 영역
@@ -161,18 +185,18 @@ const RightSmallContainer = styled.div`
   width: 100%;
   height: 7rem;
   margin-bottom: 1rem;
-  padding-top: 5%;
-  padding-left: 5%;
-  border-radius: 1rem;
+  padding: 8%;
+  border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const RankInfo = styled.div`
   display: flex;
   justify-content: center;
-  padding-right: 5%;
+  align-items: center;
   font-size: 2.5rem;
   font-weight: 600;
+  height: 2.5rem;
 `;
 
 const MyScopeInfoContainer = styled.div`
@@ -181,7 +205,6 @@ const MyScopeInfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 50%;
-  padding-right: 5%;
 `;
 
 const MyScopeInfo = styled(StarIcon)`
@@ -197,14 +220,12 @@ const DealCountInfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 70%;
-  padding-right: 5%;
 `;
 
 const DealCountInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 5%;
   font-size: 1rem;
 `;
 
@@ -213,28 +234,26 @@ const DealCount = styled.p`
   font-size: 2rem;
 `;
 
-//우측 명예의 전당 실적
-const RightSmallContainer2 = styled(RightSmallContainer)`
-  height: 11rem;
+const ToprankInfoContainer = styled(RightSmallContainer)`
+  height: fit-content;
 `;
 
-const ToprankInfoContainer = styled.div`
-  width: 90%;
-  height: 30%;
+const ToprankInfoItem = styled.div`
+  width: 100%;
   margin: 0.5rem 0;
-  padding-left: 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 0.5rem;
   background: #342d56;
 `;
 
 const ToprankTitle = styled.p`
   padding-top: 0.2rem;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   color: #dfdcef;
 `;
 
 const ToprankDate = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #817c97;
 `;
 
@@ -256,14 +275,14 @@ const TransactionHistory = () => {
 
   return (
     <StyledWrapContainer>
-      <AccordionContainer>
+      <StyledAccordionContainer>
         {/*Accordion*/}
         <StyledAccordion
           expanded={expanded === 'panel1'}
           onChange={handleChange('panel1')}
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+          <StyledAccordionSummary
+            expandIcon={<StyledExpandMoreIcon />}
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
@@ -273,13 +292,16 @@ const TransactionHistory = () => {
             />
             <SummaryContents>
               <SummaryTitle>제가 정말 아끼는 녀석...</SummaryTitle>
-              <SummaryUploadDate>2022.08.05</SummaryUploadDate>
+
               <SummaryParticipantsWrapper>
-                <SummaryParticipantIcon color="secondary" />
-                <SummaryParticipantsTxt>38명</SummaryParticipantsTxt>
+                <SummaryUploadDate>2022.08.05</SummaryUploadDate>
+                <SummaryParticipantcontainer>
+                  <SummaryParticipantIcon color="secondary" />
+                  <SummaryParticipantsTxt>38명</SummaryParticipantsTxt>
+                </SummaryParticipantcontainer>
               </SummaryParticipantsWrapper>
             </SummaryContents>
-          </AccordionSummary>
+          </StyledAccordionSummary>
           {/*AccordionDetails*/}
           <StyledAccordionDetails>
             <DetailsLeftContainer>
@@ -288,11 +310,11 @@ const TransactionHistory = () => {
                   component="img"
                   image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
                 />
-                <CardContent>
+                <StyledCardContent>
                   <StyledTypography gutterBottom variant="h5" component="div">
                     나이키 조던
                   </StyledTypography>
-                </CardContent>
+                </StyledCardContent>
                 <StyledCardActions>
                   <StyledCardButton variant="contained" size="small">
                     상세보기
@@ -348,7 +370,7 @@ const TransactionHistory = () => {
             onChange={handleChangePagination}
           />
         </PaginationContainer>
-      </AccordionContainer>
+      </StyledAccordionContainer>
       {/*우측 contents*/}
       <RightContainer>
         <RightSmallContainer>
@@ -358,8 +380,8 @@ const TransactionHistory = () => {
         <RightSmallContainer>
           내 평점
           <MyScopeInfoContainer>
-            <MyScopeInfo fontSize='large'/>
-            <MyScopeInfo fontSize='large'/>
+            <MyScopeInfo fontSize="large" />
+            <MyScopeInfo fontSize="large" />
           </MyScopeInfoContainer>
         </RightSmallContainer>
         <RightSmallContainer>
@@ -370,17 +392,17 @@ const TransactionHistory = () => {
             </DealCountInfo>
           </DealCountInfoContainer>
         </RightSmallContainer>
-        <RightSmallContainer2>
+        <ToprankInfoContainer>
           명예의 전당 실적
-          <ToprankInfoContainer>
+          <ToprankInfoItem>
             <ToprankTitle>이번주의 챔피온</ToprankTitle>
             <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoContainer>
-          <ToprankInfoContainer>
+          </ToprankInfoItem>
+          <ToprankInfoItem>
             <ToprankTitle>이번주의 챔피온</ToprankTitle>
             <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoContainer>
-        </RightSmallContainer2>
+          </ToprankInfoItem>
+        </ToprankInfoContainer>
       </RightContainer>
     </StyledWrapContainer>
   );

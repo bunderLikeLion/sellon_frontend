@@ -22,7 +22,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  margin-top: 1rem;
+  margin-top: 5rem;
 `;
 
 const NavContainer = styled.div`
