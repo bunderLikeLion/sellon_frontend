@@ -160,63 +160,56 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-const UserEvaluationModal = ({ handleModal, isModalOpened }) => {
+const UserEvaluationModal = ({
+  handleEvaluationModal,
+  isEvaluationModalOpened,
+  selectedDeal,
+}) => {
   const [value, setValue] = useState(2);
   return (
-    <Modal
-      open={isModalOpened}
-      onClose={handleModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      
-        <ModalContainer>
-          <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
-          <EvaluateContainer>
-            <EvaluateTopContainer>
-              <MyItemImg />
-              <div>
-                <ItemTitle>
-                  커피 온도를 그대로 담을 수 있는 하얀색 컵 입양하세요.
-                </ItemTitle>
-                <ItemUploadDate>2022.08.07</ItemUploadDate>
-              </div>
-            </EvaluateTopContainer>
-            <EvaluateBottomContainer>
-              <UserEvaluate>허유라님과의 거래를 평가하기.</UserEvaluate>
-              <StarRatingContainer>
-                <StarRating
-                  component="fieldset"
-                  mb={0}
-                  borderColor="transparent"
-                >
-                  <Typography component="legend"></Typography>
-                  <StyledRating
-                    name="simple-controlled"
-                    size="large"
-                    precision={1}
-                    value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                  />
-                </StarRating>
-              </StarRatingContainer>
-            </EvaluateBottomContainer>
-          </EvaluateContainer>
-          <DealSummarize>이번 거래, 요약하기</DealSummarize>
-          <DealSummarizeContainer>
-            <MyItemImgSummarize />
-            <ArrowIcon />
-            <OpponentItemImg />
-            <OpponentItemImg />
-            <OpponentItemImg />
-            <OpponentItemImg />
-            <ExtraIcon />
-          </DealSummarizeContainer>
-          <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
-        </ModalContainer>
-     
+    <Modal open={isEvaluationModalOpened} onClose={handleEvaluationModal}>
+      <ModalContainer>
+        <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
+        <EvaluateContainer>
+          <EvaluateTopContainer>
+            <MyItemImg />
+            <div>
+              <ItemTitle>
+                커피 온도를 그대로 담을 수 있는 하얀색 컵 입양하세요.
+              </ItemTitle>
+              <ItemUploadDate>2022.08.07</ItemUploadDate>
+            </div>
+          </EvaluateTopContainer>
+          <EvaluateBottomContainer>
+            <UserEvaluate>허유라님과의 거래를 평가하기.</UserEvaluate>
+            <StarRatingContainer>
+              <StarRating component="fieldset" mb={0} borderColor="transparent">
+                <StyledRating
+                  name="simple-controlled"
+                  size="large"
+                  precision={1}
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
+              </StarRating>
+            </StarRatingContainer>
+          </EvaluateBottomContainer>
+        </EvaluateContainer>
+        <DealSummarize>이번 거래, 요약하기</DealSummarize>
+        <DealSummarizeContainer>
+          <MyItemImgSummarize />
+          <ArrowIcon />
+          <OpponentItemImg />
+          <OpponentItemImg />
+          <OpponentItemImg />
+          <OpponentItemImg />
+          <ExtraIcon />
+        </DealSummarizeContainer>
+        <button onClick={handleEvaluationModal}>취소</button>
+        <ConfirmButton onClick={handleEvaluationModal}>거래 종료</ConfirmButton>
+      </ModalContainer>
     </Modal>
   );
 };

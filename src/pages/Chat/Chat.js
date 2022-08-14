@@ -4,6 +4,8 @@ import ChatLists from 'components/MyPage/Chat/ChatLists';
 import InputMessage from 'components/MyPage/Chat/InputMessage';
 import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
 import { useDealingsQuery } from 'queries/dealing';
+import { useEffect, useState } from 'react';
+import UserEvaluationModal from '../../components/MyPage/Chat/UserEvaluationModal';
 
 const AlignContainer = styled.div`
   display: flex;
@@ -99,6 +101,16 @@ const OnChatContainerBottom = styled.div`
 
 const Chat = () => {
   const { data: dealings, isSuccess: dealingsFetched } = useDealingsQuery();
+  const [selectedDeal, setSelectedDeal] = useState(null);
+  const [isEvaluationModalOpened, SetIsEvaluationModalOpened] = useState(false);
+
+  const handleEvaluationModal = () =>
+    SetIsEvaluationModalOpened(!isEvaluationModalOpened);
+
+  useEffect(() => {
+    console.log(selectedDeal);
+  }, [selectedDeal]);
+
   return (
     <WrapContainer>
       <AlignContainer>
@@ -108,7 +120,15 @@ const Chat = () => {
               <MessageTitle>진행중인 거래</MessageTitle>
               <ChatContainer>
                 {dealings?.results.map((singleDeal) => {
-                  return <ChatLists singleDeal={singleDeal} />;
+                  return (
+                    <ChatLists
+                      singleDeal={singleDeal}
+                      selectedDeal={selectedDeal}
+                      handleEvaluationModal={handleEvaluationModal}
+                      // onClick={() => setSelectedDeal(singleDeal)}
+                      onClick={() => console.log(123)}
+                    />
+                  );
                 })}
               </ChatContainer>
             </Chat_Left>
@@ -131,6 +151,11 @@ const Chat = () => {
           </ChatForm>
         )}
       </AlignContainer>
+      <UserEvaluationModal
+        handleEvaluationModal={handleEvaluationModal}
+        isEvaluationModalOpened={isEvaluationModalOpened}
+        selectedDeal={selectedDeal}
+      />
     </WrapContainer>
   );
 };

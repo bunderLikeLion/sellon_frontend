@@ -15,6 +15,8 @@ import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
 import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 import CardMedia from '@mui/material/CardMedia';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
 
 const Form = styled.div`
   width: 100%;
@@ -186,6 +188,26 @@ const MenuItemBox = styled(MenuItem)`
   color: ${(props) => props.theme.color_font__primary} !important;
 `;
 
+//Pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.3rem;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
+`;
+
+
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
@@ -203,6 +225,15 @@ const Auction = () => {
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
+
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChange = (event, value) => {
+    setPageNum(value);
+  };
 
   return (
     <WrapContainer>
@@ -298,6 +329,14 @@ const Auction = () => {
               })}
             </>
           )}
+        {/*Pagination*/}
+        <PaginationContainer>
+          <StyledPagination
+            count={myProductsData?.total_pages}
+            page={pageNum}
+            onChange={handleChange}
+          />
+        </PaginationContainer>
         </Container>
       </Form>
       <FilterModal
