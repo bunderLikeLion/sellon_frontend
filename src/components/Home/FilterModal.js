@@ -15,7 +15,7 @@ const ModalContainer = styled(Box)`
   top: 50%;
   left: 50%;
   width: 50rem;
-  height: 40rem;
+  height: 42rem;
   padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
@@ -48,6 +48,12 @@ const StyledLabel = styled.p`
 `;
 
 const StyledTextField = styled(TextField)`
+  //자동완성 글씨, 배경 자동 변경 방지 설정
+  input:-webkit-autofill {
+    -webkit-text-fill-color: ${(props) =>
+      props.theme.color_font__secondary} !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
   & label.Mui-focused {
     border: 2px solid transparent;
     border-image: ${(props) => props.theme.color_border__hover} 1;
@@ -76,6 +82,7 @@ const StyledTextField = styled(TextField)`
 
 const LocationRadioBox = styled.div`
   display: flex;
+  align-items: center;
   width: 25rem;
   height: 5rem;
   min-height: 3rem;
@@ -129,8 +136,15 @@ const StatusRadio = styled(SingleRadio)`
 
 const ApplyButton = styled(Button)`
   position: absolute !important;
-  bottom: 2%;
-  right: 2%;
+  bottom: 4%;
+  right: 4%;
+  width: 7rem;
+  height: 2.5rem;
+  margin-top: 1.5rem !important;
+  border: none !important;
+  font-size: 1.2rem !important;
+  background: ${(props) => props.theme.color_background__success};
+  color: ${(props) => props.theme.color_white} !important;
 `;
 
 const FilterModal = (props) => {
@@ -189,7 +203,7 @@ const FilterModal = (props) => {
         <CloseBtn onClick={closeModalFunc} />
         <GuideContainer>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            아이템 추가
+            필터 및 검색
           </Typography>
         </GuideContainer>
         <SearchContainer>

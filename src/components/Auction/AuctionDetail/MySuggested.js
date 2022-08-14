@@ -85,7 +85,8 @@ const MySuggested = (props) => {
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
     useMyProductGroupQuery(relatedAuctionId, userId, page, 4);
 
-  const { mutate: deleteAuctionItem } = useDeleteAuctionItemMutation(userId);
+  const { mutate: deleteAuctionItem } =
+    useDeleteAuctionItemMutation(relatedAuctionId);
 
   useEffect(() => {
     if (myProductGroup.results.length) {

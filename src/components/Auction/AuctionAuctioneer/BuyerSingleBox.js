@@ -7,11 +7,11 @@ import { useState } from 'react';
 
 const AccordionContainer = styled.div`
   clear: both;
-  margin-bottom: 1rem;
+  width: 100%;
+  margin: 1rem;
 `;
 
 const StyledAccordion = styled(Accordion)`
-  margin-bottom: 3%;
   border-radius: 1rem !important;
   background: ${(props) => props.theme.color_background__secondary} !important;
 `;

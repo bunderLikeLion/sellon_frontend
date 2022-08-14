@@ -51,7 +51,7 @@ const ValidationCancelButton = styled.button`
   background: ${(props) => props.theme.color_font__disabled};
 `;
 
-const ValidationModal = ({ handleModal, isModalOpened }) => {
+const DiscardMessageModal = ({ handleModal, isModalOpened }) => {
   return (
     <Modal
       open={isModalOpened}
@@ -60,8 +60,8 @@ const ValidationModal = ({ handleModal, isModalOpened }) => {
       aria-describedby="modal-modal-description"
     >
       <ModalContainer>
-        <Text>정말 올인하시겠습니까?</Text>
-        <ValidationButton>올인</ValidationButton>
+        <Text>정말 폐기하시겠습니까?</Text>
+        <ValidationButton>폐기</ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>
@@ -70,4 +70,4 @@ const ValidationModal = ({ handleModal, isModalOpened }) => {
   );
 };
 
-export default ValidationModal;
+export default DiscardMessageModal;

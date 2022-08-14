@@ -3,6 +3,10 @@ import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { Pagination } from '@mui/material';
+import { useState } from 'react';
+import { useMyProductsQuery } from 'queries/product';
+
 
 const StyledWrapContainer = styled.div`
   display: inline-flex !important;
@@ -107,11 +111,50 @@ const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
   font-size: 2rem !important;
 `;
 
+
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2%;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
+`;
+
+
 export const FinishedOverlay = styled(Card)`
+  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
+  position: absolute;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
   background-color: rgba(57, 57, 65, 0.83) !important;
 `;
 
+
 const InterestedAuctionListCard = () => {
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChange = (event, value) => {
+    setPageNum(value);
+  };
+
   return (
     <StyledWrapContainer>
       {/*Card_01*/}
@@ -234,6 +277,15 @@ const InterestedAuctionListCard = () => {
           <EnterBox>D-7</EnterBox>
         </CardBottom>
       </CardContainer>
+
+      {/*Pagination*/}
+      <PaginationContainer>
+        <StyledPagination
+          count={myProductsData?.total_pages}
+          page={pageNum}
+          onChange={handleChange}
+        />
+      </PaginationContainer>
     </StyledWrapContainer>
   );
 };

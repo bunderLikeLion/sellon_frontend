@@ -18,7 +18,6 @@ const Auctioneer = lazy(() => import('pages/AuctionAuctioneer/Auctioneer'));
 const MyPage = lazy(() => import('pages/MyPage/MyPage'));
 const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
-const AuctionFinished = lazy(() => import('pages/Auction/AuctionFinished'));
 const NewAuction = lazy(() => import('pages/NewAuction/NewAuction'));
 const TopRank = lazy(() => import('pages/TopRank/TopRank'));
 
@@ -49,7 +48,6 @@ const App = () => {
                 <Route path="/toprank" element={<TopRank />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/itemdetail/:id" element={<ItemDetail />} />
-                <Route path="/auctionfinished" element={<AuctionFinished />} />
                 <Route path="/auction/newauction" element={<NewAuction />} />
                 <Route path="/mypage/infochange" element={<UserInfoChange />} />
               </Routes>

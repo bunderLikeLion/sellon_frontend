@@ -8,7 +8,8 @@ import { useState } from 'react';
 import { ItemList } from './index';
 import InterestedAuctionList from './InterestedAuctionList';
 import TransactionHistory from './TransactionHistory';
-import NoTransactionHistory from './NoTransactionHistory'; //개인페이지-히스토리 없는 경우
+import NoTransactionHistory from './NoTransactionHistory';
+import MyAuctionList from './MyAuctionList'; //개인페이지-히스토리 없는 경우
 
 const StyledBox = styled(Box)`
   .MuiTabs-indicator {
@@ -37,6 +38,7 @@ const TabBar = () => {
             <StyledTabList label="히스토리" value="1" />
             <StyledTabList label="인벤토리" value="2" />
             <StyledTabList label="관심거래" value="3" />
+            <StyledTabList label="내가 올린 경매" value="4" />
           </TabList>
         </StyledBox>
         <TabPanel value="1">
@@ -48,6 +50,9 @@ const TabBar = () => {
         </TabPanel>
         <TabPanel value="3">
           <InterestedAuctionList />
+        </TabPanel>
+        <TabPanel value="4">
+          <MyAuctionList />
         </TabPanel>
       </TabContext>
     </Box>

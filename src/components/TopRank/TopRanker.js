@@ -8,7 +8,6 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   width: 90%;
-  height: 50%;
 `;
 
 const TopDealer = styled.div`
