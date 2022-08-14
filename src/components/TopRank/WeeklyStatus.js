@@ -64,7 +64,7 @@ const WeeklyStatusUserContainer = styled.div`
 const UserContainer = styled.div`
   display: block;
   align-item: center;
-  width: 12rem;
+  min-width: 10rem;
   height: 8rem;
   margin: 0.5rem;
   padding: 0.5rem;
