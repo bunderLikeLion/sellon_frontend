@@ -64,7 +64,24 @@ const ChatContentContainer = styled.div`
 `;
 
 const ChatBubble = styled.div`
-	
+	position: relative;
+	background: #d6718f;
+	border-radius: .4em;
+
+:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 1.781em solid transparent;
+	border-right-color: #d6718f;
+	border-left: 0;
+	border-top: 0;
+	margin-top: -0.891em;
+	margin-left: -1.781em;
+}
 `;
 
 const ChatBox = styled.div`
