@@ -100,7 +100,7 @@ const ParticipantLabel = styled.span`
 
 const PeriodLabel = styled.span`
   width: fit-content;
-  padding: 0.1rem 0.8rem;
+  padding: 0.25rem 0.8rem;
   text-align: center;
   border-radius: 4rem;
   border: none;
