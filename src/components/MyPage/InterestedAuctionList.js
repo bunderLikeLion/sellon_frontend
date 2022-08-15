@@ -56,29 +56,14 @@ const InterestedAuctionList = () => {
         <>
           <p>총 {interestedAuctionLists?.total_count}개</p>
           <FlexContainer>
-            {interestedAuctionLists?.results.map((singleInterestedAuction) => {
-              if (
-                isAuctionFinishedHandler(
-                  singleInterestedAuction?.auction?.end_at
-                )
-              ) {
-                // 끝난 경매
-                return (
-                  <InterestedAuctionListCard
-                    data={singleInterestedAuction.auction}
-                    isFinished={true}
-                  />
-                );
-              } else {
-                // 진행중인 경매
-                return (
-                  <InterestedAuctionListCard
-                    data={singleInterestedAuction.auction}
-                    isFinished={false}
-                  />
-                );
-              }
-            })}
+            {
+              interestedAuctionLists?.results.map((singleInterestedAuction) => (
+                <InterestedAuctionListCard
+                  data={singleInterestedAuction.auction}
+                  isFinished={isAuctionFinishedHandler(singleInterestedAuction?.auction?.end_at)}
+                />
+              )
+            )}
           </FlexContainer>
         </>
       )}
