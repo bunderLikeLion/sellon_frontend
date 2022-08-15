@@ -5,16 +5,9 @@ import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
+import AuctionListContainer from 'components/Shared/AuctionListContainer';
 
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 2rem 2rem;
+const FlexContainer = styled(AuctionListContainer)`
   margin-top: 2rem;
 `;
 

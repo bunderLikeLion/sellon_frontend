@@ -1,21 +1,11 @@
-import Card from '@mui/material/Card';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
+import AuctionListContainer from 'components/Shared/AuctionListContainer';
 import AuctionListItem from 'components/Shared/AuctionListItem';
 import { userAtom } from '../../states';
-
-const StyledWrapContainer = styled.div`
-  display: flex !important;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-  gap: 2rem 2rem;
-`;
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -52,7 +42,7 @@ const InterestedAuctionListCard = () => {
 
   return (
 
-    <StyledWrapContainer>
+    <AuctionListContainer>
       {/*Card_01*/}
       {/*
         TODO: 카드 상단 이미지가 너무 높이가 낮다. 늘리여야한다.
@@ -87,7 +77,7 @@ const InterestedAuctionListCard = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-    </StyledWrapContainer>
+    </AuctionListContainer>
   );
 };
 
