@@ -24,7 +24,6 @@ const dealingsRelatedAPI = {
   },
 
   postDealingRating: (payload) => {
-    console.log(payload, 'p[pppppp');
     return client.post('dealings/evaluation/', payload).then((res) => res.data);
   },
 
