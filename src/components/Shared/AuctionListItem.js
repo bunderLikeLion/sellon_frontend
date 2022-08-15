@@ -6,6 +6,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ConditionalLink from 'components/ConditionalLink';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import {
+  useCreateInterestedAuctionMutation,
+  useDeleteInterestedAuctionMutation,
+} from 'queries/auction';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -173,6 +177,7 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   linkCondition: 링크 조건
 */
 const AuctionListItem = ({
+  id,
   title,
   thumbnailUrl,
   participantCount,
@@ -189,12 +194,26 @@ const AuctionListItem = ({
     이때, 반응형 수치도 고려 헤야 함.
   */
 
+  const { mutate: createInterestedAuction } =
+    useCreateInterestedAuctionMutation();
+  // auctionId
+
+  const { mutate: deleteInterestedAuction } =
+    useDeleteInterestedAuctionMutation();
+
+  const pressHeartIconFunc = (isInterested) => {
+    isInterested ? deleteInterestedAuction(id) : createInterestedAuction(id);
+  };
+
   return (
     <CardContainer>
       {/* TODO: 관심 경매 API 연결하기 */}
       {displayInterestedBtn && (
         <InterestedButton>
-          <StyledFavoriteBorderIcon isInterested={isInterested} />
+          <StyledFavoriteBorderIcon
+            isInterested={isInterested}
+            onClick={() => pressHeartIconFunc(isInterested)}
+          />
         </InterestedButton>
       )}
 
