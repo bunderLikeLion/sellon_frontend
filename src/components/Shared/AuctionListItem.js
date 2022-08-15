@@ -165,6 +165,12 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   }
 `;
 
+const OverLayIconBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
 /*
   title: 경매 제목
   thumbnail_url: 이미지 url
@@ -208,7 +214,7 @@ const AuctionListItem = ({
   return (
     <CardContainer>
       {/* TODO: 관심 경매 API 연결하기 */}
-      {displayInterestedBtn && (
+      {displayInterestedBtn && !isFinished && (
         <InterestedButton>
           <StyledFavoriteBorderIcon
             isInterested={isInterested}
@@ -234,6 +240,16 @@ const AuctionListItem = ({
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
         <p>종료된 경매입니다.</p>
+        {displayInterestedBtn && (
+          <OverLayIconBox>
+            <InterestedButton>
+              <StyledFavoriteBorderIcon
+                isInterested={isInterested}
+                onClick={() => pressHeartIconFunc(isInterested)}
+              />
+            </InterestedButton>
+          </OverLayIconBox>
+        )}
       </FinishedCard>
     </CardContainer>
   );
