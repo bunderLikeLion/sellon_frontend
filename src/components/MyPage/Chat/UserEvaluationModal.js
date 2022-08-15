@@ -209,7 +209,7 @@ const UserEvaluationModal = ({
           <MyItemImgSummarize
             image={selectedDeal?.auction?.product?.thumbnail?.file}
           />
-          <ArrowIcon />
+          <ArrowIcon/>
           {selectedDeal?.product_group?.products.map((singleItem, idx) => {
             if (idx < 5)
               return (

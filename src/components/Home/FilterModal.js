@@ -196,6 +196,38 @@ const FilterModal = (props) => {
                   </SingleRadio>
                 );
               })}
+              <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio  />
+                    <RadioLabel>fdfd</RadioLabel>
+                  </SingleRadio>
           </CategoryContentBox>
         </CategoryRadioBox>
 

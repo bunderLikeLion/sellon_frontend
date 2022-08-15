@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
-import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
@@ -64,10 +63,9 @@ const InterestedUser = styled.div`
 `;
 
 const SubNav2 = styled.div`
-  position: relative;
   display: flex;
+  justify-content: flex-end;
   align-items: flex-end;
-  justify-content: space-between;
   width: 100%;
   margin: 1rem 0;
 `;
@@ -77,22 +75,7 @@ const AuctionPublishLink = styled(Link)`
   height: 2rem;
 `;
 
-const SubNav2_left = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 6rem;
-`;
-
-const HomeGroundTitle = styled.div`
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__primary};
-`;
-
 const SubmitAuctionButton = styled.button`
-  position: absolute;
-  right: 0;
   width: 10rem;
   height: 2rem;
   margin: 0.3rem;
@@ -132,7 +115,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin-bottom: 5rem;
+  margin: 3rem 0 5rem 0;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -185,6 +168,7 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
+  color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
 
@@ -289,7 +273,7 @@ const Auction = () => {
             </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small">최신순</InputLabelBox>
+            <InputLabelBox id="demo-select-small"></InputLabelBox>
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
@@ -357,4 +341,5 @@ const Auction = () => {
     </WrapContainer>
   );
 };
+
 export default Auction;
