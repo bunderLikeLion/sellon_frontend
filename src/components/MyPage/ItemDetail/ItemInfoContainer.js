@@ -86,19 +86,8 @@ const ItemQuantity = styled.p`
 `;
 
 const ItemDescriptionContainer = styled.div`
-  width: 90%;
-  @media (min-height: 300px) and (max-height: 800px) {
-    height: 40%;
-  }
-  @media (min-height: 800px) and (max-height: 1000px) {
-    height: 45%;
-  }
-  @media (min-height: 1000px) and (max-height: 1200px) {
-    height: 50%;
-  }
-  @media (min-height: 1200px) {
-    height: 55%;
-  }
+  width: 77%;
+  height: 14.8rem;
   margin-top: 2rem;
   padding: 1rem 2rem;
   border-radius: 1rem;
@@ -108,6 +97,8 @@ const ItemDescriptionContainer = styled.div`
     color: ${(props) => props.theme.color_white};
   }
 `;
+
+
 
 const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
   const { name, quality, quantity, description, product_category } =

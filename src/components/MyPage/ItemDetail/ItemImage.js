@@ -19,13 +19,13 @@ const ArrowIcon = styled(ArrowBackIosNewIcon)`
 
 const MainPicContainer = styled.div`
   width: 100%;
-  height: 35vh;
+  height: 17rem;
   margin-bottom: 2rem;
 `;
 
 const MainPic = styled(CardMedia)`
   width: 100%;
-  height: 100%;
+  height: 17rem;
   border-radius: 1rem;
 `;
 
@@ -33,15 +33,24 @@ const SubPicContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 25%;
+  height: 9rem;
 `;
 
 const SubPic = styled(CardMedia)`
-  width: 40%;
-  height: 100%;
+  width: 9rem;
+  height: 9rem;
   margin-right: 1rem;
   border-radius: 1rem;
 `;
+
+const ItemPicWrapper = styled.div`
+  display: flex;
+  align-items: felx-start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 28.3rem;
+`;
+
 
 const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
   const { thumbnail, images, id } = singleItemData;
@@ -59,16 +68,20 @@ const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
         </ArrowIconContainer>
       )}
       {singleItemFetched && <UserInformation singleItemData={singleItem} />}
-      <MainPicContainer>
-        {thumbnail && <MainPic image={thumbnail?.file} />}
-      </MainPicContainer>
-      <SubPicContainer>
-        {images &&
-          images.map((singleImg) => {
-            if (!singleImg) return null;
-            return <SubPic key={singleImg?.id} image={singleImg?.file} />;
-          })}
-      </SubPicContainer>
+      <ItemPicWrapper>
+        <MainPicContainer>
+          {/*모달에서 가장 큰 상품 이미지*/}
+          {thumbnail && <MainPic image={thumbnail?.file} />}
+        </MainPicContainer>
+        <SubPicContainer>
+          {/*상품 이미지 큰 거 아래 작은 sub 상품 이미지*/}
+          {images &&
+            images.map((singleImg) => {
+              if (!singleImg) return null;
+              return <SubPic key={singleImg?.id} image={singleImg?.file} />;
+            })}
+        </SubPicContainer>
+      </ItemPicWrapper>
     </>
   );
 };
