@@ -64,9 +64,9 @@ const ItemDurationContainer = styled.div`
 `;
 
 const ItemDuration = styled.h1`
-  height: 50%;
   font-size: 1rem;
   font-weight: 400;
+  line-height: 1.2;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -84,9 +84,9 @@ const ExchangeWayContainer = styled.div`
 `;
 
 const ExchangeWay = styled.h1`
-  height: 40%;
   font-size: 1rem;
   font-weight: 400;
+  line-height: 1.2;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -154,13 +154,13 @@ const AuctionItem = (props) => {
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
         {props?.singleAuctionData?.is_interested ? (
-          <Button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
-            관심거래 삭제
-          </Button>
+            <Button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
+              관심경매 삭제
+            </Button>
         ) : (
-          <Button onClick={() => createInterestedAuction(relatedAuctionId)}>
-            관심거래 등록
-          </Button>
+            <Button onClick={() => createInterestedAuction(relatedAuctionId)}>
+              관심경매 등록
+            </Button>
         )}
         <AuctionDetailModal
           handleModal={handleModal}

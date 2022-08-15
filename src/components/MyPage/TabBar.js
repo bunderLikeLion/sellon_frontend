@@ -37,7 +37,7 @@ const TabBar = () => {
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <StyledTabList label="히스토리" value="1" />
             <StyledTabList label="인벤토리" value="2" />
-            <StyledTabList label="관심거래" value="3" />
+            <StyledTabList label="관심경매" value="3" />
             <StyledTabList label="내가 올린 경매" value="4" />
             <StyledTabList label="진행중인 거래" value="5" />
           </TabList>
