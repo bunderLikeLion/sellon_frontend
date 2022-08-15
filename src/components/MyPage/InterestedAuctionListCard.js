@@ -12,6 +12,7 @@ const InterestedAuctionListCard = ({ isFinished, data }) => {
       linkTo={`/auction/${data.id}`}
       linkCondition={!isFinished}
       displayInterestedBtn={true}
+      isInterested={data?.is_interested || false}
     />
   );
 };

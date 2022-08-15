@@ -2,6 +2,8 @@ import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import CardMedia from '@mui/material/CardMedia';
 import PersonIcon from '@mui/icons-material/Person';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ConditionalLink from 'components/ConditionalLink';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
@@ -109,13 +111,16 @@ const PeriodLabel = styled.span`
   background: ${(props) => props.theme.color_background__success} !important;
 `;
 
-const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
+const InterestedButton = styled.button`
   position: absolute !important;
   right: 1rem;
   margin-top: 0.5rem !important;
   border-radius: 50rem !important;
   font-size: 2rem !important;
-`;
+  background: none;
+  border: none;
+  color: ${(props) => props.theme.color_white};
+`
 
 export const FinishedOverlay = styled(Card)`
   display: ${(props) => (props.isFinished ? 'flex' : 'none')};
@@ -143,7 +148,7 @@ export const FinishedCard = styled(FinishedOverlay)`
   participantCount: 경매 참여자 수
   period: 남은 기간
   isFinished: 종료된 경매 여부
-  isInterestedList: 관심 경매에서 사용되는지 여부
+  isInterested: 관심 경매 여부
   displayInterestedBtn: 관심 경매 등록 버튼 노출 여부
   linkTo: 연결 링크
   linkCondition: 링크 조건
@@ -154,6 +159,7 @@ const AuctionListItem = ({
   participantCount,
   period,
   isFinished,
+  isInterested,
   displayInterestedBtn,
   linkTo,
   linkCondition,
@@ -170,9 +176,11 @@ const AuctionListItem = ({
   */
   return (
     <CardContainer>
-      {/* TODO: 관심 경매 하트 아이콘으로 교체 및 관심 경매 API 연결하기 */}
+      {/* TODO: 관심 경매 API 연결하기 */}
       {displayInterestedBtn && (
-        <StyledCancelOutlinedIcon />
+        <InterestedButton>
+          {isInterested ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </InterestedButton>
       )}
       <ConditionalLink
         to={linkTo}
