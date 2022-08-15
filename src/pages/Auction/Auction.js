@@ -319,25 +319,12 @@ const Auction = () => {
         <Container>
           {auctionListFetched && (
             <>
-              {auctionList?.results.map((singleAuction) => {
-                if (isAuctionFinishedHandler(singleAuction?.end_at)) {
-                  // 끝난 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={true}
-                    />
-                  );
-                } else {
-                  // 진행중인 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={false}
-                    />
-                  );
-                }
-              })}
+              {auctionList?.results.map((singleAuction) => (
+                <HomeAuctionListCard
+                  auctionData={singleAuction}
+                  isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
+                />
+              ))}
             </>
           )}
           {/*Pagination*/}
