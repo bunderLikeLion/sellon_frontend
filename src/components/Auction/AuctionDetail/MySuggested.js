@@ -25,6 +25,7 @@ const Container = styled.div`
   background: ${(props) => props.theme.color_background__primary};
 `;
 
+/*
 const ButtonContainer = styled.button`
   position: absolute;
   top: 5%;
@@ -32,17 +33,38 @@ const ButtonContainer = styled.button`
   border-radius: 0.8rem;
   background: ${(props) => props.theme.color_button__ok};
 `;
+*/
 
+const ButtonContainer = styled.button`
+  position: absolute;
+  width: 5.8rem;
+  height: 1.7rem;
+  top: 5%;
+  right: 3%;
+  border: 0.1px transparent;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_button__ok};
+`;
+
+/*
 const ElevateButton = styled.h1`
   font-size: 1rem;
   font-weight: 600;
+`;
+*/
+
+const ElevateButton = styled.h1`
+  color: ${(props) => props.theme.color_white};
+  font-size: 1rem;
+  font-weight: 600;
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
 const Comment = styled.h1`
   margin-top: 3%;
   margin-left: 9%;
-  font-size: 0.9rem;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 const MyItemContainer = styled.div`
@@ -96,7 +118,7 @@ const MySuggested = (props) => {
   return (
     <Container>
       <ButtonContainer onClick={props.handleInventory}>
-        <ElevateButton>올리기</ElevateButton>
+        <ElevateButton>인벤토리</ElevateButton>
       </ButtonContainer>
       <Comment>내가 제시한 물건</Comment>
       <MyItemContainer>
