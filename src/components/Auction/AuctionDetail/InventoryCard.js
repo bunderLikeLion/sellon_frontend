@@ -12,7 +12,6 @@ const InventoryItemWrapper = styled.div`
   width: 13.2rem;
   height: 6.5rem;
 `;
-//background: skyblue;
 
 const InventoryItemContainer = styled.div`
   position: relative;
@@ -49,14 +48,13 @@ const SuggestionButton = styled.button`
   border-radius: 0.7rem;
   background: ${(props) => props.theme.color_button__ok};
 `;
-
 const ConfirmButtonContainer = styled.div`
   position: relative;
-  top: 97%;
+  top: 104%;
   display: ${(props) => (props.isButtonOpened ? 'flex' : 'none')};
   justify-content: space-around;
   align-items: center;
-  height: 30%;
+  height: 1.3rem;
   width: 100%;
 `;
 

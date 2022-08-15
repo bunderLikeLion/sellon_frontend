@@ -6,6 +6,9 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import AuctionDetailModal from './AuctionDetailModal';
 import { useParams } from 'react-router-dom';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
+
 
 const OtherSuggestionContainer = styled.div`
   display: flex;
@@ -34,16 +37,29 @@ const OtherSuggestion = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 28rem;
+  height: auto;
+  overflow: hidden;
   margin: 0.3rem 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
+  border: 1.3px solid transparent;
+  :hover {
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
+  }
   background: ${(props) => props.theme.color_background__secondary};
+`;
+const InnerWrapper = styled.div`
+  display: inline-flex;
+  width: 26.6rem;
+  height: auto;
+  overflow: hidden;
 `;
 const ProfileContainer = styled.div`
   position: relative;
-  width: 15%;
-  height: 15%;
+  top: 0;
+  width: 4rem;
+  height: 4rem;
 `;
 
 const Profile = styled(CardMedia)`
@@ -58,17 +74,39 @@ const AuctionOtherSuggestionItemContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   width: 85%;
+  height: 100%;
+  margin-left: 2rem;
 `;
 
 const ItemImg = styled(CardMedia)`
-  width: 16%;
+  width: 3.8rem;
   height: 3.8rem;
-  margin: 0 0 0.5rem 2rem;
+  margin: 0.1rem 0.3rem 0.5rem 0.3rem;
   border-radius: 0.5rem;
-  background: #000;
   color: #fff;
   cursor: pointer;
+  background: #000;
 `;
+
+//Pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2%;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
+`;
+
 
 const AuctionOtherSuggestion = (props) => {
   const { id: relatedAuctionId } = useParams();
@@ -85,6 +123,16 @@ const AuctionOtherSuggestion = (props) => {
     handleModal();
   };
 
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChangePagination = (event, value) => {
+    setPageNum(value);
+  };
+
+
   return (
     <OtherSuggestionContainer isInventoryOpened={props.isInventoryOpened}>
       <GuideContainer>
@@ -98,30 +146,43 @@ const AuctionOtherSuggestion = (props) => {
           ) {
             return (
               <OtherSuggestion key={singleProductGroup?.id}>
-                <ProfileContainer>
-                  <Profile image={singleProductGroup?.user?.avatar?.file} />
-                  {/*{singleProductGroup?.user?.username}*/}
-                </ProfileContainer>
-                <AuctionOtherSuggestionItemContainer>
-                  {singleProductGroup?.products.map((singleProduct) => {
-                    return (
-                      <ItemImg
-                        onClick={() => clickImgFunc(singleProduct)}
-                        key={singleProduct.id}
-                        image={singleProduct?.thumbnail?.file}
-                      />
-                    );
-                  })}
-                  <AuctionDetailModal
-                    handleModal={handleModal}
-                    isModalOpened={isModalOpened}
-                    smallImgRelatedItemId={singleProduct}
-                  />
-                </AuctionOtherSuggestionItemContainer>
+                <InnerWrapper>
+                  <ProfileContainer>
+                    <Profile image={singleProductGroup?.user?.avatar?.file} />
+                    {/*{singleProductGroup?.user?.username}*/}
+                  </ProfileContainer>
+                  <AuctionOtherSuggestionItemContainer>
+                    {singleProductGroup?.products.map((singleProduct) => {
+                      return (
+                        <ItemImg
+                          onClick={() => clickImgFunc(singleProduct)}
+                          key={singleProduct.id}
+                          image={singleProduct?.thumbnail?.file}
+                        />
+                      );
+                    })}
+                    <ItemImg />
+                    <ItemImg />
+                    <ItemImg />
+                    <AuctionDetailModal
+                      handleModal={handleModal}
+                      isModalOpened={isModalOpened}
+                      smallImgRelatedItemId={singleProduct}
+                    />
+                  </AuctionOtherSuggestionItemContainer>
+                </InnerWrapper>
               </OtherSuggestion>
             );
           }
         })}
+      {/*Pagination*/}
+      <PaginationContainer>
+      <StyledPagination
+        count={myProductsData?.total_pages}
+        page={pageNum}
+        onChange={handleChangePagination}
+      />
+      </PaginationContainer>
     </OtherSuggestionContainer>
   );
 };

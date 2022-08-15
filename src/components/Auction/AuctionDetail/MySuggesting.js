@@ -31,7 +31,6 @@ const BottomWrapper = styled.div`
   width: 65rem;
   height: 8rem;
 `;
-//background: yellowgreen;
 
 const GuideContainer = styled.div`
   display: flex;
@@ -148,7 +147,6 @@ const PaginationBeforeIconContainer = styled.div`
   height: 8rem;
   margin-right: 2rem;
 `;
-//
 
 const PaginationAfterIconContainer = styled.div`
   display: flex;
