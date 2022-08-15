@@ -115,9 +115,12 @@ const Chat = () => {
               <OnChatContainer>
                 <OnChatUserProfile opponent={opponent} />
               </OnChatContainer>
-              <ChatMsgContainer opponent={opponent} />
+              <ChatMsgContainer
+                opponent={opponent}
+                selectedDeal={selectedDeal}
+              />
               <OnChatContainerBottom>
-                <InputMessage />
+                <InputMessage selectedDeal={selectedDeal} />
               </OnChatContainerBottom>
             </Chat_Right>
           </ChatForm>

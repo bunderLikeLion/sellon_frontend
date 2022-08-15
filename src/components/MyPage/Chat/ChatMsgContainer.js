@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useMessagesQuery } from 'queries/messages';
 
 const ChatContentContainer = styled.div`
   height: 100%;
@@ -33,7 +34,8 @@ const ChatBox = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const ChatMsgContainer = ({ opponent }) => {
+const ChatMsgContainer = ({ opponent, selectedDeal }) => {
+  const { data } = useMessagesQuery(selectedDeal?.id);
   return (
     <ChatContentContainer>
       <ChatBubble>trtr</ChatBubble>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import SendIcon from '@mui/icons-material/Send';
 import MyProfile from 'components/MyPage/Chat/MyProfile';
 import useInput from 'hooks/useInput';
+import { useCreateMessageMutation } from 'queries/messages';
 
 const ChatInputContainer = styled.div`
   display: flex;
@@ -30,13 +31,31 @@ const SendMessageIcon = styled(SendIcon)`
   color: #fff;
 `;
 
-const InputMessage = () => {
+const InputMessage = ({ selectedDeal }) => {
   const [msgText, handleMsgText, resetMsgText] = useInput();
+
+  const { mutate: createFunc } = useCreateMessageMutation();
+
+  const submit = () => {
+    createFunc({
+      dealing_id: selectedDeal?.id,
+      content: msgText,
+    });
+    resetMsgText();
+  };
+
+  const onKeyPressFunc = (e) => {
+    if (e.key === 'Enter') submit();
+  };
 
   return (
     <ChatInputContainer>
       <MyProfile />
-      <ChatInput value={msgText} onChange={handleMsgText} />
+      <ChatInput
+        value={msgText}
+        onChange={handleMsgText}
+        onKeyPress={onKeyPressFunc}
+      />
       <SendMessageIcon />
     </ChatInputContainer>
   );
