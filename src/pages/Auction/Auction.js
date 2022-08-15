@@ -68,12 +68,24 @@ const SubNav2 = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
   width: 100%;
-  margin: 1rem 0;
+  margin: 2rem 0;
 `;
 
 const AuctionPublishLink = styled(Link)`
   width: fit-content;
 `;
+// const SubNav2_left = styled.div`
+//   display: flex;
+//   align-items: center;
+//   margin-top: 6rem;
+// `;
+
+// const HomeGroundTitle = styled.div`
+//   margin-bottom: 0.5rem;
+//   font-weight: bold;
+//   font-size: 1.2rem;
+//   color: ${(props) => props.theme.color_font__primary};
+// `;
 
 const SubmitAuctionButton = styled.button`
   position: relative;
@@ -116,7 +128,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin-bottom: 5rem;
+  margin: 3.5rem 0 5rem 0;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -147,12 +159,11 @@ const HomeGroundAuction = styled.div`
 const FilterButton = styled.button`
   width: 7rem;
   height: 1.7rem;
-  border: none;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.color_font__primary};
   background: transparent;
   border: 1px solid ${(props) => props.theme.color_border__hover__light};
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 
   :hover {
     background: ${(props) => props.theme.color_background__success};
