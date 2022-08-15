@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CardMedia from '@mui/material/CardMedia';
 import PersonIcon from '@mui/icons-material/Person';
 import ConditionalLink from 'components/ConditionalLink';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -108,6 +109,14 @@ const PeriodLabel = styled.span`
   background: ${(props) => props.theme.color_background__success} !important;
 `;
 
+const StyledCancelOutlinedIcon = styled(CancelOutlinedIcon)`
+  position: absolute !important;
+  right: 1rem;
+  margin-top: 0.5rem !important;
+  border-radius: 50rem !important;
+  font-size: 2rem !important;
+`;
+
 export const FinishedOverlay = styled(Card)`
   display: ${(props) => (props.isFinished ? 'flex' : 'none')};
   position: absolute;
@@ -133,17 +142,27 @@ export const FinishedCard = styled(FinishedOverlay)`
   thumbnail_url: 이미지 url
   participantCount: 경매 참여자 수
   period: 남은 기간
+  isInterestedList: 관심 경매에서 사용되는지 여부
 */
-const AuctionListItem = ({ id, user, title, thumbnailUrl, participantCount, period, isFinished, productId, ownerId }) => {
+const AuctionListItem = ({
+  title,
+  thumbnailUrl,
+  participantCount,
+  period,
+  isFinished,
+  displayInterestedBtn,
+  linkTo,
+  linkCondition,
+}) => {
   return (
     <CardContainer>
+      {/* TODO: 관심 경매 하트 아이콘으로 교체 및 관심 경매 API 연결하기 */}
+      {displayInterestedBtn && (
+        <StyledCancelOutlinedIcon />
+      )}
       <ConditionalLink
-        to={
-         ownerId === user?.pk
-            ? `/auctioneer/${id}/${productId}`
-            : `/auction/${id}`
-        }
-        condition={!isFinished}
+        to={linkTo}
+        condition={linkCondition}
       >
         <StyledCardMedia
           component="img"

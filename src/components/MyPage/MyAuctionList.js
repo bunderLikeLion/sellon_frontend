@@ -46,6 +46,8 @@ const InterestedAuctionListCard = () => {
     setPageNum(value);
   };
 
+  // TODO: isFinished props
+  const isFinished = false
   const dummyImageUrl = "https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200";
 
   return (
@@ -80,14 +82,12 @@ const InterestedAuctionListCard = () => {
 
       {/* TODO: 아이템 추가 모달 디자인 - 인풋을 통일하기 */}
       <AuctionListItem
-        id={1}
-        ownerId={2}
-        productId={1}
         title={'test'}
-        user={user}
         thumbnailUrl={dummyImageUrl}
         participantCount={20}
         period={'D-7'}
+        linkTo={'/auctions/1'}
+        linkCondition={!isFinished}
       />
       {/*Pagination*/}
       <PaginationContainer>

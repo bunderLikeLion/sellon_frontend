@@ -8,15 +8,17 @@ const HomeAuctionListCard = ({ isFinished, auctionData }) => {
 
   return (
     <AuctionListItem
-      id={auctionData?.id}
-      user={user}
-      ownerId={auctionData?.owner?.id}
-      productId={auctionData?.product?.id}
       title={auctionData?.title}
       thumbnailUrl={auctionData?.product?.thumbnail?.file}
       participantCount={auctionData?.product_groups_count}
       period={timeLimitHandler(auctionData?.end_at)}
       isFinished={isFinished}
+      linkTo={
+        auctionData?.owner?.id === user?.pk
+          ? `/auctioneer/${auctionData?.id}/${auctionData?.product?.id}`
+          : `/auction/${auctionData?.id}`
+      }
+      linkCondition={!isFinished}
     />
   );
 };
