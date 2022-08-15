@@ -154,6 +154,16 @@ const AuctionListItem = ({
   linkTo,
   linkCondition,
 }) => {
+
+  /*
+    TODO: 카드 상단 이미지가 너무 높이가 하단 컨텐츠에 비해 낮다. 늘려야한다.
+    이때, 반응형 수치도 고려 헤야 함.
+  */
+
+  /*
+    TODO: 당일 종료, D-1 등의 라벨을 좌측 상단으로 이동
+    경매 시작일자 및 사람수가 아래에 노출되게 하기
+  */
   return (
     <CardContainer>
       {/* TODO: 관심 경매 하트 아이콘으로 교체 및 관심 경매 API 연결하기 */}

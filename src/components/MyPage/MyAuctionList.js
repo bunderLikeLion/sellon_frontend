@@ -43,24 +43,7 @@ const InterestedAuctionListCard = () => {
   return (
 
     <AuctionListContainer>
-      {/*Card_01*/}
-      {/*
-        TODO: 카드 상단 이미지가 너무 높이가 낮다. 늘리여야한다.
-        이때, 반응형 수치도 고려 헤야 함.
-      */}
-
-      {/*
-        TODO: 당일 종료, D-1 등의 라벨을 좌측 상단으로 이동
-        경매 시작일자 및 사람수가 아래에 노출되게 하기
-
-        요건 모든 경매 카드에 대해서 행해져야 함.
-      */}
-
-      {/*
-        TODO: 관심경매의 X를 하트 아이콘으로 바꾸기
-      */}
-
-      {/* TODO: 아이템 추가 모달 디자인 - 인풋을 통일하기 */}
+      {/* TODO: 하기 컴포넌트에 API 연결하기 */}
       <AuctionListItem
         title={'test'}
         thumbnailUrl={dummyImageUrl}
