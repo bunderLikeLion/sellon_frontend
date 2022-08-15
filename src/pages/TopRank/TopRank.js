@@ -1,15 +1,24 @@
-import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 import { useTodayCompletedQuery } from 'queries/dealing';
+
+const AllContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 1360px !important;
+  min-height: 91vh;
+  height: 100% !important;
+  color: ${(props) => props.theme.color_white} !important;
+  background: ${(props) => props.theme.color_background__default} !important;
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 75%;
   height: 100%;
-  margin-top: 5rem;
+  margin-top: 2rem;
 `;
 
 const NavContainer = styled.div`
@@ -55,7 +64,7 @@ const TopRank = () => {
     useTodayCompletedQuery();
 
   return (
-    <WrapContainer>
+    <AllContainer>
       <Container>
         <NavContainer>
           <NavTitle>
@@ -74,7 +83,7 @@ const TopRank = () => {
           </RightContainer>
         </RankContainer>
       </Container>
-    </WrapContainer>
+    </AllContainer>
   );
 };
 
