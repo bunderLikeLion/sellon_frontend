@@ -72,6 +72,11 @@ const SubNav2 = styled.div`
   margin: 1rem 0;
 `;
 
+const AuctionPublishLink = styled(Link)`
+  width: 10.5rem;
+  height: 2rem;
+`;
+
 const SubNav2_left = styled.div`
   display: flex;
   align-items: center;
