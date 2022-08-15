@@ -144,7 +144,7 @@ const UserInfoDetailModal = ({ handleModal, isModalOpened }) => {
             </OpponentItemImgContainer>
           </SummarizeBottomContainer>
         </SummarizeContainer>
-        <ConfirmButton>확인</ConfirmButton>
+        <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
       </ModalContainer>
     </Modal>
   );
