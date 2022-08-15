@@ -142,7 +142,9 @@ const ResponsiveAppBar = () => {
           </Box>
           {user && (
             <>
+              {/*
               <NotificationsIcon sx={{ mr: '2rem' }} />
+              */}
               <UserRelatedDropDown
                 openUserMenu={handleOpenUserMenu}
                 closeUserMenu={handleCloseUserMenu}
