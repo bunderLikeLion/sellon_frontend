@@ -8,6 +8,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@material-ui/core/Box';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import useEndDealingMutation from '../../../queries/dealing/useEndDealingMutation';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -116,7 +117,6 @@ const MyItemImgSummarize = styled(CardMedia)`
   width: 4rem;
   height: 4rem;
   border-radius: 0.5rem;
-  background: red;
 `;
 
 const ArrowIcon = styled(SyncAltIcon)`
@@ -165,32 +165,39 @@ const UserEvaluationModal = ({
   isEvaluationModalOpened,
   selectedDeal,
 }) => {
-  const [value, setValue] = useState(2);
+  const [rateValue, setRateValue] = useState(3);
+
+  const { mutate: endFunc } = useEndDealingMutation();
+
+  const endBtnClickFunc = async () => {
+    await endFunc({ dealing_id: selectedDeal?.id, rate: rateValue });
+    handleEvaluationModal();
+  };
   return (
     <Modal open={isEvaluationModalOpened} onClose={handleEvaluationModal}>
       <ModalContainer>
         <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
         <EvaluateContainer>
           <EvaluateTopContainer>
-            <MyItemImg />
+            <MyItemImg image={selectedDeal?.product?.thumbnail?.file} />
             <div>
-              <ItemTitle>
-                커피 온도를 그대로 담을 수 있는 하얀색 컵 입양하세요.
-              </ItemTitle>
-              <ItemUploadDate>2022.08.07</ItemUploadDate>
+              <ItemTitle>{selectedDeal?.auction?.title}</ItemTitle>
+              <ItemUploadDate>이거 끝난 날짜임?</ItemUploadDate>
             </div>
           </EvaluateTopContainer>
           <EvaluateBottomContainer>
-            <UserEvaluate>허유라님과의 거래를 평가하기.</UserEvaluate>
+            <UserEvaluate>
+              {selectedDeal?.auction?.owner?.username}님과의 거래를 평가하기.
+            </UserEvaluate>
             <StarRatingContainer>
               <StarRating component="fieldset" mb={0} borderColor="transparent">
                 <StyledRating
                   name="simple-controlled"
                   size="large"
                   precision={1}
-                  value={value}
+                  value={rateValue}
                   onChange={(event, newValue) => {
-                    setValue(newValue);
+                    setRateValue(newValue);
                   }}
                 />
               </StarRating>
@@ -199,16 +206,23 @@ const UserEvaluationModal = ({
         </EvaluateContainer>
         <DealSummarize>이번 거래, 요약하기</DealSummarize>
         <DealSummarizeContainer>
-          <MyItemImgSummarize />
+          <MyItemImgSummarize
+            image={selectedDeal?.auction?.product?.thumbnail?.file}
+          />
           <ArrowIcon />
-          <OpponentItemImg />
-          <OpponentItemImg />
-          <OpponentItemImg />
-          <OpponentItemImg />
-          <ExtraIcon />
+          {selectedDeal?.product_group?.products.map((singleItem, idx) => {
+            if (idx < 5)
+              return (
+                <OpponentItemImg
+                  key={singleItem?.id}
+                  image={singleItem?.thumbnail?.file}
+                />
+              );
+          })}
+          {selectedDeal?.product_group?.products.length > 5 && <ExtraIcon />}
         </DealSummarizeContainer>
         <button onClick={handleEvaluationModal}>취소</button>
-        <ConfirmButton onClick={handleEvaluationModal}>거래 종료</ConfirmButton>
+        <ConfirmButton onClick={endBtnClickFunc}>거래 종료</ConfirmButton>
       </ModalContainer>
     </Modal>
   );

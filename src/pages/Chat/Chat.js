@@ -107,10 +107,6 @@ const Chat = () => {
   const handleEvaluationModal = () =>
     SetIsEvaluationModalOpened(!isEvaluationModalOpened);
 
-  useEffect(() => {
-    console.log(selectedDeal);
-  }, [selectedDeal]);
-
   return (
     <WrapContainer>
       <AlignContainer>
@@ -125,8 +121,7 @@ const Chat = () => {
                       singleDeal={singleDeal}
                       selectedDeal={selectedDeal}
                       handleEvaluationModal={handleEvaluationModal}
-                      // onClick={() => setSelectedDeal(singleDeal)}
-                      onClick={() => console.log(123)}
+                      setSelectedDeal={setSelectedDeal}
                     />
                   );
                 })}
