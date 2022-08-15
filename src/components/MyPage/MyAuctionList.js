@@ -196,8 +196,6 @@ const InterestedAuctionListCard = () => {
 
       {/* TODO: 관심경매 카드 글씨 크기 조절 */}
 
-      {/* TODO: navbar 알림 아이콘 삭제*/}
-
       {/* TODO: 아이템 추가 모달 디자인 - 인풋을 통일하기 */}
 
       <CardContainer>
