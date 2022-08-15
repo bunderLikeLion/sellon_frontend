@@ -68,7 +68,7 @@ const SubNav2 = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
   width: 100%;
-  margin: 2rem 0;
+  margin: 2rem 0px 1rem 0px;
 `;
 
 const AuctionPublishLink = styled(Link)`
@@ -92,7 +92,7 @@ const SubmitAuctionButton = styled.button`
   right: 0;
   width: 8rem;
   height: 2rem;
-  margin: 0.3rem;
+  margin: 1.5rem 0px 0px 0px !important;
   border: none;
   border-radius: 1.1rem;
   font-size: 1rem;
@@ -128,7 +128,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin: 3.5rem 0 5rem 0;
+  margin: 0.5rem 0 5rem 0;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
