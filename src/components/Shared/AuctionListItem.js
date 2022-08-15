@@ -142,7 +142,11 @@ export const FinishedCard = styled(FinishedOverlay)`
   thumbnail_url: 이미지 url
   participantCount: 경매 참여자 수
   period: 남은 기간
+  isFinished: 종료된 경매 여부
   isInterestedList: 관심 경매에서 사용되는지 여부
+  displayInterestedBtn: 관심 경매 등록 버튼 노출 여부
+  linkTo: 연결 링크
+  linkCondition: 링크 조건
 */
 const AuctionListItem = ({
   title,
