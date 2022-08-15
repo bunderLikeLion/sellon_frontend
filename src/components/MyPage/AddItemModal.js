@@ -55,7 +55,6 @@ const AddBtn = styled(Button)`
 `;
 
 export const StyledLabel = styled.p`
-  margin: 1.5rem 0 0.5rem 0.5rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
@@ -76,19 +75,19 @@ const StyledTextField = styled(TextField)`
   }
 
   & .MuiOutlinedInput-root {
-    width: 100%;
+    width: 15rem;
     height: 2.5rem;
     padding: 0;
     font-size: 1rem;
-    border: 3px solid transparent;
-    border-radius: 1rem;
-    background-origin: border-box !important;
-    background-clip: content-box, border-box !important;
-    background-image: linear-gradient(
-        ${(props) => props.theme.color_background__default},
-        ${(props) => props.theme.color_background__default}
-      ),
-      ${(props) => props.theme.color_border__hover} !important;
+    // border: 3px solid transparent;
+    // border-radius: 1rem;
+    // background-origin: border-box !important;
+    // background-clip: content-box, border-box !important;
+    // background-image: linear-gradient(
+    //     ${(props) => props.theme.color_background__default},
+    //     ${(props) => props.theme.color_background__default}
+    //   ),
+    //   ${(props) => props.theme.color_border__hover} !important;
     color: #ffffff !important;
     & fieldset {
       border: 2px solid transparent;
@@ -111,13 +110,14 @@ export const StatusRadioBox = styled.div`
   border: 3px solid transparent;
   border-radius: 1rem;
   color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  background-image: linear-gradient(
-      ${(props) => props.theme.color_background__default},
-      ${(props) => props.theme.color_background__default}
-    ),
-    ${(props) => props.theme.color_border__hover} !important;
+  background: ${(props) => props.theme.color_background__primary};
+  // background-origin: border-box !important;
+  // background-clip: content-box, border-box !important;
+  // background-image: linear-gradient(
+  //     ${(props) => props.theme.color_background__default},
+  //     ${(props) => props.theme.color_background__default}
+  //   ),
+  //   ${(props) => props.theme.color_border__hover} !important;
 `;
 
 const CategoryRadioBox = styled.div`
@@ -129,16 +129,61 @@ const CategoryRadioBox = styled.div`
   border: 3px solid transparent;
   border-radius: 1rem;
   color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  background-image: linear-gradient(
-      ${(props) => props.theme.color_background__default},
-      ${(props) => props.theme.color_background__default}
-    ),
-    ${(props) => props.theme.color_border__hover} !important;
+  background: ${(props) => props.theme.color_background__primary};
+  // background-origin: border-box !important;
+  // background-clip: content-box, border-box !important;
+  // background-image: linear-gradient(
+  //     ${(props) => props.theme.color_background__default},
+  //     ${(props) => props.theme.color_background__default}
+  //   ),
+  //   ${(props) => props.theme.color_border__hover} !important;
+`;
+
+const ContainerBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  min-height: 3rem;
+  margin: 2rem 0;
+  padding: 0;
+  font-size: 1rem;
+  border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background: ${(props) => props.theme.color_background__primary};
+  // background-origin: border-box !important;
+  // background-clip: content-box, border-box !important;
+  // background-image: linear-gradient(
+  //     ${(props) => props.theme.color_background__default},
+  //     ${(props) => props.theme.color_background__default}
+  //   ),
+  //   ${(props) => props.theme.color_border__hover} !important;
+`;
+
+const ImageContainerBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  min-height: 3rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 3px solid transparent;
+  border-radius: 1rem;
+  color: #ffffff !important;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 export const InsideRadioBox = styled.div`
+  padding: 1rem;
+`;
+
+export const InsideBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: fit-content;
   padding: 0 1rem;
 `;
 
@@ -169,26 +214,26 @@ export const StatusRadio = styled(SingleRadio)`
 `;
 
 const InputQuantityBox = styled.div`
-  width: 30%;
+  width: 7rem;
   height: 2.5rem;
   font-size: 1rem;
   border: 3px solid transparent;
   border-radius: 1rem;
   color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  background-image: linear-gradient(
-      ${(props) => props.theme.color_background__default},
-      ${(props) => props.theme.color_background__default}
-    ),
-    ${(props) => props.theme.color_border__hover} !important;
+  // background-origin: border-box !important;
+  // background-clip: content-box, border-box !important;
+  // background-image: linear-gradient(
+  //     ${(props) => props.theme.color_background__default},
+  //     ${(props) => props.theme.color_background__default}
+  //   ),
+  //   ${(props) => props.theme.color_border__hover} !important;
 `;
 
 const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
   & {
     width: 100%;
     height: 100%;
-    padding: 0 1rem;
+    padding-left: 1rem;
     font-size: 1rem;
     border: none;
     background: transparent;
@@ -268,21 +313,33 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     >
       <ModalContainer>
         <CloseBtn onClick={handleModal} />
+
         <StyledTypography id="modal-modal-title" variant="h5" component="h2">
           아이템 추가
         </StyledTypography>
 
-        <StyledLabel>상품명</StyledLabel>
-        <StyledTextField id="outlined-name" onChange={handleItemName} />
+        <ContainerBox>
+          <InsideBox>
+            <StyledLabel>상품명</StyledLabel>
+            <StyledTextField id="outlined-name" onChange={handleItemName} />
+          </InsideBox>
+        </ContainerBox>
 
-        <StyledLabel>대표사진 등록</StyledLabel>
-        <ThumbnailImageDragDrop
-          thumbnailPic={thumbnailPic}
-          setThumbNailPic={setThumbNailPic}
-        />
+        <ImageContainerBox>
+          <StyledLabel>대표사진 등록</StyledLabel>
+          <ThumbnailImageDragDrop
+            thumbnailPic={thumbnailPic}
+            setThumbNailPic={setThumbNailPic}
+          />
+        </ImageContainerBox>
 
-        <StyledLabel>추가사진 등록</StyledLabel>
-        <ExtraImageDragDrop extraPics={extraPics} setExtraPics={setExtraPics} />
+        <ImageContainerBox>
+          <StyledLabel>추가사진 등록</StyledLabel>
+          <ExtraImageDragDrop
+            extraPics={extraPics}
+            setExtraPics={setExtraPics}
+          />
+        </ImageContainerBox>
 
         <StatusRadioBox>
           <InsideRadioBox>
@@ -329,10 +386,14 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           </InsideRadioBox>
         </CategoryRadioBox>
 
-        <StyledLabel>개수</StyledLabel>
-        <InputQuantityBox>
-          <InputQuantity value={quantity} onChange={handleQuantity} />
-        </InputQuantityBox>
+        <ContainerBox>
+          <InsideBox>
+            <StyledLabel>개수</StyledLabel>
+            <InputQuantityBox>
+              <InputQuantity value={quantity} onChange={handleQuantity} />
+            </InputQuantityBox>
+          </InsideBox>
+        </ContainerBox>
 
         <StyledLabel>아이템 설명 </StyledLabel>
         <Editor

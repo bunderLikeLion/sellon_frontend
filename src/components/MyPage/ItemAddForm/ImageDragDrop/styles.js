@@ -11,13 +11,13 @@ export const MultiThumbContainer = styled.aside`
   border: 3px solid transparent;
   border-radius: 1rem;
   color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  background-image: linear-gradient(
-      ${(props) => props.theme.color_background__default},
-      ${(props) => props.theme.color_background__default}
-    ),
-    ${(props) => props.theme.color_border__hover} !important;
+  // background-origin: border-box !important;
+  // background-clip: content-box, border-box !important;
+  // background-image: linear-gradient(
+  //     ${(props) => props.theme.color_background__default},
+  //     ${(props) => props.theme.color_background__default}
+  //   ),
+  //   ${(props) => props.theme.color_border__hover} !important;
 `;
 
 export const Thumb = styled.div`
@@ -49,13 +49,13 @@ export const Container = styled.section`
   border: 3px solid transparent;
   border-radius: 1rem;
   color: #ffffff !important;
-  background-origin: border-box !important;
-  background-clip: content-box, border-box !important;
-  background-image: linear-gradient(
-      ${(props) => props.theme.color_background__default},
-      ${(props) => props.theme.color_background__default}
-    ),
-    ${(props) => props.theme.color_border__hover} !important;
+  // background-origin: border-box !important;
+  // background-clip: content-box, border-box !important;
+  // background-image: linear-gradient(
+  //     ${(props) => props.theme.color_background__default},
+  //     ${(props) => props.theme.color_background__default}
+  //   ),
+  //   ${(props) => props.theme.color_border__hover} !important;
 
   .dropzone {
     display: flex;
@@ -67,14 +67,15 @@ export const Container = styled.section`
     border: 3px solid transparent;
     border-radius: 1rem;
     cursor: pointer;
-    background-origin: border-box !important;
-    background-clip: content-box, border-box !important;
-    background-image: linear-gradient(
-        ${(props) => props.theme.color_background__default},
-        ${(props) => props.theme.color_background__default}
-      ),
-      ${(props) => props.theme.color_border__hover} !important;
-  }
+    background: ${(props) => props.theme.color_background__secondary};
+  //   background-origin: border-box !important;
+  //   background-clip: content-box, border-box !important;
+  //   background-image: linear-gradient(
+  //       ${(props) => props.theme.color_background__default},
+  //       ${(props) => props.theme.color_background__default}
+  //     ),
+  //     ${(props) => props.theme.color_border__hover} !important;
+  // }
 `;
 
 export const MultipleContainer = styled.section`
@@ -92,13 +93,14 @@ export const MultipleContainer = styled.section`
     border: 3px solid transparent;
     border-radius: 1rem;
     cursor: pointer;
-    background-origin: border-box !important;
-    background-clip: content-box, border-box !important;
-    background-image: linear-gradient(
-        ${(props) => props.theme.color_background__default},
-        ${(props) => props.theme.color_background__default}
-      ),
-      ${(props) => props.theme.color_border__hover} !important;
+    background: ${(props) => props.theme.color_background__secondary};
+    // background-origin: border-box !important;
+    // background-clip: content-box, border-box !important;
+    // background-image: linear-gradient(
+    //     ${(props) => props.theme.color_background__default},
+    //     ${(props) => props.theme.color_background__default}
+    //   ),
+    //   ${(props) => props.theme.color_border__hover} !important;
   }
 `;
 
