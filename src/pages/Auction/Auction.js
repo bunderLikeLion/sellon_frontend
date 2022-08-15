@@ -286,7 +286,7 @@ const Auction = () => {
             </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small">정렬</InputLabelBox>
+            <InputLabelBox id="demo-select-small">최신순</InputLabelBox>
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"

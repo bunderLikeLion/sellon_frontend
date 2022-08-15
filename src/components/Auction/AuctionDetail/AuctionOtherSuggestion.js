@@ -100,20 +100,16 @@ const AuctionOtherSuggestion = (props) => {
               <OtherSuggestion key={singleProductGroup?.id}>
                 <ProfileContainer>
                   <Profile image={singleProductGroup?.user?.avatar?.file} />
-                  {singleProductGroup?.user?.username}
+                  {/*{singleProductGroup?.user?.username}*/}
                 </ProfileContainer>
                 <AuctionOtherSuggestionItemContainer>
                   {singleProductGroup?.products.map((singleProduct) => {
                     return (
-                      <>
-                        <ItemImg
-                          onClick={() => clickImgFunc(singleProduct)}
-                          key={singleProduct.id}
-                          image={singleProduct?.thumbnail?.file}
-                        >
-                          아이템이미지
-                        </ItemImg>
-                      </>
+                      <ItemImg
+                        onClick={() => clickImgFunc(singleProduct)}
+                        key={singleProduct.id}
+                        image={singleProduct?.thumbnail?.file}
+                      />
                     );
                   })}
                   <AuctionDetailModal
