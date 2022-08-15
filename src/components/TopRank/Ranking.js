@@ -6,17 +6,17 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 1rem;
 `;
 
-const TopContainer = styled.div`
+const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 10%;
-  margin-bottom: 0.5rem;
+  height: 3rem;
+  padding-bottom: 1rem;
 `;
 
 const RankingTitle = styled.div`
@@ -28,21 +28,27 @@ const QuestionIcon = styled(HelpIcon)`
   cursor: pointer;
 `;
 
-const BottomContainer = styled.div`
+const CardContent = styled.div`
   overflow-y: scroll;
   width: 100%;
   height: 85%;
   border-radius: 0.5rem;
 `;
 
-const RankerContainer = styled.div`
+const RankerList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+`
+
+const RankerItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 3rem;
-  margin-bottom: 0.5rem;
   border-radius: 0.5rem;
+  padding: 0.4rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
@@ -53,7 +59,7 @@ const RankerContainerLeft = styled.div`
 `;
 
 const RankerNumber = styled.p`
-  margin: 0.7rem;
+  margin: auto 1rem auto 0.8rem;
 `;
 
 const RankerImg = styled(CardMedia)`
@@ -88,34 +94,36 @@ hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
 const Ranking = () => {
   return (
     <Container>
-      <TopContainer>
+      <CardHeader>
         <RankingTitle>실시간 거래 랭킹</RankingTitle>
         <StyledTooltip title={HoverMsg} arrow>
           <QuestionIcon />
         </StyledTooltip>
-      </TopContainer>
-      <BottomContainer>
-        <RankerContainer>
-          <RankerContainerLeft>
-            <RankerNumber>1</RankerNumber>
-            <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
-            <RankerNickname>허유라</RankerNickname>
-          </RankerContainerLeft>
-          <div>
-            <RankerDealCount>총 50 회</RankerDealCount>
-          </div>
-        </RankerContainer>
-        <RankerContainer>
-          <RankerContainerLeft>
-            <RankerNumber>1</RankerNumber>
-            <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
-            <RankerNickname>허유라</RankerNickname>
-          </RankerContainerLeft>
-          <div>
-            <RankerDealCount>총 50 회</RankerDealCount>
-          </div>
-        </RankerContainer>
-      </BottomContainer>
+      </CardHeader>
+      <CardContent>
+        <RankerList>
+          <RankerItem>
+            <RankerContainerLeft>
+              <RankerNumber>1</RankerNumber>
+              <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
+              <RankerNickname>허유라</RankerNickname>
+            </RankerContainerLeft>
+            <div>
+              <RankerDealCount>총 50 회</RankerDealCount>
+            </div>
+          </RankerItem>
+          <RankerItem>
+            <RankerContainerLeft>
+              <RankerNumber>1</RankerNumber>
+              <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
+              <RankerNickname>허유라</RankerNickname>
+            </RankerContainerLeft>
+            <div>
+              <RankerDealCount>총 50 회</RankerDealCount>
+            </div>
+          </RankerItem>
+        </RankerList>
+      </CardContent>
     </Container>
   );
 };

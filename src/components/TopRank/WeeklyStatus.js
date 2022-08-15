@@ -5,30 +5,30 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
+
 const Container = styled.div`
-  width: 90%;
+  flex: 1;
   height: 50%;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
+  padding: 1rem;
 `;
 
 const WeeklyStatusContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 20%;
-  padding: 0.7rem;
-  margin-bottom: 1.8rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 `;
 
 const WeeklyStatusTitle = styled.p`
-  margin: 1rem 0 0 1rem;
-  font-size: 1.2rem;
+  padding: 1rem;
+  font-size: 1.4rem;
 `;
 
 const QuestionIcon = styled(HelpIcon)`
-  margin: 1rem 1rem 0 0;
+  margin: 0;
   font-size: 0.5rem;
   cursor: pointer;
 `;
@@ -36,7 +36,7 @@ const QuestionIcon = styled(HelpIcon)`
 const WeeklyStatusBottomContainer = styled.div`
   display: inline-flex;
   justify-content: center;
-  width: 100%;
+  margin-left: 1rem;
 `;
 
 const PaginationContainer = styled.div`
@@ -63,6 +63,7 @@ const WeeklyStatusUserContainer = styled.div`
 
 const UserContainer = styled.div`
   display: block;
+  align-items: center;
   min-width: 10rem;
   height: 8rem;
   margin: 0.5rem;
@@ -95,10 +96,13 @@ const UserBottomContainer = styled.div`
 `;
 
 const UserRecentWrapper = styled.div`
+  display: absolute;
   margin-left: 1.5rem;
 `;
 
-const UserRankWrapper = styled.div``;
+const UserRankWrapper = styled.div`
+  display: absolute;
+`;
 
 const RecentRank = styled.div`
   display: flex;
@@ -138,6 +142,7 @@ const HoverMsg = `
 hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
 `;
 
+
 const WeeklyStatus = () => {
   return (
     <Container>
@@ -152,55 +157,55 @@ const WeeklyStatus = () => {
           <PaginationLeftIcon />
         </PaginationContainer>
         <WeeklyStatusUserContainer>
-          {/*UserContainer_01*/}
-          <UserContainer>
-            <UserTopContainer>
-              <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-              <UserNickname>양유진</UserNickname>
-            </UserTopContainer>
-            <UserBottomContainer>
-              <UserRecentWrapper>
-                <RecentRank>
-                  <p>A</p>
-                </RecentRank>
-              </UserRecentWrapper>
-              <UserRankWrapper>
-                <UserRank>
-                  <p>S</p>
-                </UserRank>
-              </UserRankWrapper>
-            </UserBottomContainer>
-          </UserContainer>
-          {/*UserContainer_02*/}
-          <UserContainer>
-            <UserTopContainer>
-              <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-              <UserNickname>양유진</UserNickname>
-            </UserTopContainer>
-            <UserBottomContainer>
-              <UserRecentWrapper>
-                <RecentRank>
-                  <p>A</p>
-                </RecentRank>
-              </UserRecentWrapper>
-              <UserRankWrapper>
-                <UserRank>
-                  <p>S</p>
-                </UserRank>
-              </UserRankWrapper>
-            </UserBottomContainer>
-          </UserContainer>
-          {/*UserContainer_03*/}
-          <UserContainer>
-            <UserTopContainer>
-              <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-              <UserNickname>양유진</UserNickname>
-            </UserTopContainer>
-          </UserContainer>
-        </WeeklyStatusUserContainer>
-        <PaginationContainer>
-          <PaginationRightIcon />
-        </PaginationContainer>
+        {/*UserContainer_01*/}
+        <UserContainer>
+          <UserTopContainer>
+            <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
+            <UserNickname>양유진</UserNickname>
+          </UserTopContainer>
+          <UserBottomContainer>
+            <UserRecentWrapper>
+              <RecentRank>
+                <p>A</p>
+              </RecentRank>
+            </UserRecentWrapper>
+            <UserRankWrapper>
+              <UserRank>
+                <p>S</p>
+              </UserRank>
+            </UserRankWrapper>
+          </UserBottomContainer>
+        </UserContainer>
+        {/*UserContainer_02*/}
+        <UserContainer>
+          <UserTopContainer>
+            <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
+            <UserNickname>양유진</UserNickname>
+          </UserTopContainer>
+          <UserBottomContainer>
+            <UserRecentWrapper>
+              <RecentRank>
+                <p>A</p>
+              </RecentRank>
+            </UserRecentWrapper>
+            <UserRankWrapper>
+              <UserRank>
+                <p>S</p>
+              </UserRank>
+            </UserRankWrapper>
+          </UserBottomContainer>
+        </UserContainer>
+        {/*UserContainer_03*/}
+        <UserContainer>
+          <UserTopContainer>
+            <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
+            <UserNickname>양유진</UserNickname>
+          </UserTopContainer>
+        </UserContainer>
+      </WeeklyStatusUserContainer>
+      <PaginationContainer>
+        <PaginationRightIcon />
+      </PaginationContainer>
       </WeeklyStatusBottomContainer>
     </Container>
   );

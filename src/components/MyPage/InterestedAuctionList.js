@@ -35,6 +35,8 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
+
 const InterestedAuctionList = () => {
   const {
     data: interestedAuctionLists,

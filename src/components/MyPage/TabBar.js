@@ -18,7 +18,7 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const StyledTabList = styled(Tab)`
+const StyledTab = styled(Tab)`
   max-width: 500px !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
 `;
@@ -34,12 +34,12 @@ const TabBar = () => {
     <Box sx={{ width: '100%', mt: '5rem', typography: 'body1' }}>
       <TabContext value={value}>
         <StyledBox sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <StyledTabList label="히스토리" value="1" />
-            <StyledTabList label="인벤토리" value="2" />
-            <StyledTabList label="관심경매" value="3" />
-            <StyledTabList label="내가 올린 경매" value="4" />
-            <StyledTabList label="진행중인 거래" value="5" />
+          <TabList onChange={handleChange} variant="scrollable" scrollButtons allowScrollButtonsMobile>
+            <StyledTab label="히스토리" value="1" />
+            <StyledTab label="인벤토리" value="2" />
+            <StyledTab label="관심경매" value="3" />
+            <StyledTab label="내가 올린 경매" value="4" />
+            <StyledTab label="진행중인 거래" value="5" />
           </TabList>
         </StyledBox>
         <TabPanel value="1">

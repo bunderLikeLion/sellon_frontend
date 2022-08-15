@@ -150,7 +150,14 @@ const FilterButton = styled.button`
   border: none;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.color_font__primary};
-  background: ${(props) => props.theme.color_button__ok};
+  background: transparent;
+  border: 1px solid ${(props) => props.theme.color_border__hover__light};
+  transition: all .5s ease;
+
+  :hover {
+    background: ${(props) => props.theme.color_background__success};
+    border: none;
+  }
 `;
 
 const MostPopular = styled.div`
@@ -298,25 +305,12 @@ const Auction = () => {
         <Container>
           {auctionListFetched && (
             <>
-              {auctionList?.results.map((singleAuction) => {
-                if (isAuctionFinishedHandler(singleAuction?.end_at)) {
-                  // 끝난 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={true}
-                    />
-                  );
-                } else {
-                  // 진행중인 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={false}
-                    />
-                  );
-                }
-              })}
+              {auctionList?.results.map((singleAuction) => (
+                <HomeAuctionListCard
+                  auctionData={singleAuction}
+                  isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
+                />
+              ))}
             </>
           )}
           {/*Pagination*/}

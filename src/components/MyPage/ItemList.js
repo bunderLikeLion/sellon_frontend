@@ -4,7 +4,7 @@ import ItemListCard from './ItemListCard';
 import styled from 'styled-components';
 import { useMyProductsQuery } from 'queries/product';
 import { Pagination } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -24,11 +24,27 @@ const ItemListContainer = styled.div`
   min-height: 80vh;
 `;
 
-const PlusBtn = styled(AddCircleIcon)`
+const AddProductItemButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 0;
-  cursor: pointer;
-  font-size: 2.5rem !important;
+  font-size: 1rem !important;
+  width: fit-content;
+  height: 2rem;
+  margin: 0.3rem;
+  padding: 0.2rem 1.1rem;
+  border: none;
+  border-radius: 1.1rem;
+  line-height: 2rem;
+  background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const PlusBtn = styled(AddBoxIcon)`
+  font-size: 1.3rem !important;
+  margin-right: 0.3rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -50,6 +66,8 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
+
 const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [pageNum, setPageNum] = useState(1);
@@ -65,7 +83,10 @@ const ItemList = () => {
 
   return (
     <ItemListContainer>
-      <PlusBtn onClick={handleModal} />
+      <AddProductItemButton onClick={handleModal}>
+        <PlusBtn />
+        아이템 추가
+      </AddProductItemButton>
       <p>총 {myProductsData?.total_count}개</p>
       <FlexContainer>
         {myProductFetched &&
