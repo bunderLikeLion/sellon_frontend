@@ -108,7 +108,7 @@ const AuctionPublishModal = (props) => {
                       singleItem={singleItem}
                       setSelectedItem={props.setSelectedItem}
                       handleModal={props.handleModal}
-                      status={singleItem.status == 'in_auction' ? true : false}
+                      status={singleItem.status === 'in_auction'}
                     />
                   );
                 })}
