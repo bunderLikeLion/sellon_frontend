@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PersonIcon from '@mui/icons-material/Person';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import ConditionalLink from '../ConditionalLink';
-import { FinishedCard } from '../Home/HomeAuctionListCard';
+import { FinishedOverlay, FinishedCard } from 'components/Shared/AuctionListItem';
 
 const CardContainer = styled(Card)`
   position: relative;

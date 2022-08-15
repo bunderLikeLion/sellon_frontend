@@ -2,6 +2,7 @@ import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import CardMedia from '@mui/material/CardMedia';
 import PersonIcon from '@mui/icons-material/Person';
+import ConditionalLink from 'components/ConditionalLink';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -107,35 +108,67 @@ const PeriodLabel = styled.span`
   background: ${(props) => props.theme.color_background__success} !important;
 `;
 
+export const FinishedOverlay = styled(Card)`
+  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
+  position: absolute;
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  background: rgba(30, 30, 30, 0.8) !important;
+  color: ${(props) => props.theme.color_font__secondary} !important;
+  font-size: 1.5rem;
+`;
+
+export const FinishedCard = styled(FinishedOverlay)`
+  border-radius: 1rem !important;
+  box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
+`;
+
 /*
   title: 경매 제목
   thumbnail_url: 이미지 url
   participantCount: 경매 참여자 수
   period: 남은 기간
 */
-const AuctionListItem = ({ title, thumbnailUrl, participantCount, period }) => {
+const AuctionListItem = ({ id, user, title, thumbnailUrl, participantCount, period, isFinished, product_id, owner_id }) => {
   return (
     <CardContainer>
-      <StyledCardMedia
-        component="img"
-        height="150"
-        image={thumbnailUrl}
-      />
-      <CardHeader>
-        <UserAvatar />
-        <CardHeaderTitle>
-          {title}
-        </CardHeaderTitle>
-      </CardHeader>
-      <CardFooter>
-        <ParticipantLabel>
-          <PersonIcon />
-          {participantCount}명
-        </ParticipantLabel>
-        <PeriodLabel>
-          {period}
-        </PeriodLabel>
-      </CardFooter>
+      <ConditionalLink
+        to={
+         owner_id === user?.pk
+            ? `/auctioneer/${id}/${product_id}`
+            : `/auction/${id}`
+        }
+        condition={!isFinished}
+      >
+        <StyledCardMedia
+          component="img"
+          height="150"
+          image={thumbnailUrl}
+        />
+        <CardHeader>
+          <UserAvatar />
+          <CardHeaderTitle>
+            {title}
+          </CardHeaderTitle>
+        </CardHeader>
+        <CardFooter>
+          <ParticipantLabel>
+            <PersonIcon />
+            {participantCount}명
+          </ParticipantLabel>
+          <PeriodLabel>
+            {period}
+          </PeriodLabel>
+        </CardFooter>
+      </ConditionalLink>
+      <FinishedCard isFinished={isFinished}>
+        <p>종료된 경매입니다.</p>
+      </FinishedCard>
     </CardContainer>
   )
 };
