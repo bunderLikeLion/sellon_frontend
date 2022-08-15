@@ -165,7 +165,7 @@ const InterestedAuctionListCard = () => {
   return (
     <StyledWrapContainer>
       {/*Card_01*/}
-      {/* 
+      {/*
         TODO: 카드 상단 이미지가 너무 높이가 낮다. 늘리여야한다.
         이때, 반응형 수치도 고려 헤야 함.
       */}
@@ -179,10 +179,6 @@ const InterestedAuctionListCard = () => {
 
       {/*
         TODO: 카드의 폭이 늘면 좋겠다. 모든 반응형 목록에 대해서
-      */}
-
-      {/*
-      TODO: 회원 탈퇴 주석 처리
       */}
 
       {/*
