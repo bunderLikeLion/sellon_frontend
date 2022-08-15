@@ -70,18 +70,16 @@ const SelectMessageModal = ({
     >
       <ModalContainer>
         <Text>정말 선택하시겠습니까?</Text>
-        <Link to="/mypage">
-          <ValidationButton
-            onClick={() => {
-              createDealing({
-                auction_id: auctionRelatedId,
-                product_group_id: selectedGroupId,
-              });
-            }}
-          >
-            선택
-          </ValidationButton>
-        </Link>
+        <ValidationButton
+          onClick={() => {
+            createDealing({
+              auction_id: auctionRelatedId,
+              product_group_id: selectedGroupId,
+            });
+          }}
+        >
+          선택
+        </ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>
