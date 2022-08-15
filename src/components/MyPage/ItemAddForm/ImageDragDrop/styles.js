@@ -7,24 +7,16 @@ export const MultiThumbContainer = styled.aside`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   width: 13rem;
-  border: 3px solid transparent;
-  border-radius: 1rem;
-  color: #ffffff !important;
-  // background-origin: border-box !important;
-  // background-clip: content-box, border-box !important;
-  // background-image: linear-gradient(
-  //     ${(props) => props.theme.color_background__default},
-  //     ${(props) => props.theme.color_background__default}
-  //   ),
-  //   ${(props) => props.theme.color_border__hover} !important;
+  padding: 1rem 0.8rem 0;
 `;
 
 export const Thumb = styled.div`
   display: inline-flex;
   box-sizing: border-box;
   height: 5rem;
-  margin: 10px;
   border-radius: 2px;
 `;
 
@@ -45,37 +37,20 @@ export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
-  border: 3px solid transparent;
+  width: 100%;
+  padding-top: 1rem;
   border-radius: 1rem;
-  color: #ffffff !important;
-  // background-origin: border-box !important;
-  // background-clip: content-box, border-box !important;
-  // background-image: linear-gradient(
-  //     ${(props) => props.theme.color_background__default},
-  //     ${(props) => props.theme.color_background__default}
-  //   ),
-  //   ${(props) => props.theme.color_border__hover} !important;
 
   .dropzone {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 4rem;
-    margin: 10px;
-    border: 3px solid transparent;
+    width: 5rem;
+    height: 5rem;
     border-radius: 1rem;
     cursor: pointer;
     background: ${(props) => props.theme.color_background__secondary};
-  //   background-origin: border-box !important;
-  //   background-clip: content-box, border-box !important;
-  //   background-image: linear-gradient(
-  //       ${(props) => props.theme.color_background__default},
-  //       ${(props) => props.theme.color_background__default}
-  //     ),
-  //     ${(props) => props.theme.color_border__hover} !important;
-  // }
+  }
 `;
 
 export const MultipleContainer = styled.section`
@@ -89,18 +64,9 @@ export const MultipleContainer = styled.section`
     align-items: center;
     width: 5rem;
     height: 5rem;
-    margin: 10px;
-    border: 3px solid transparent;
     border-radius: 1rem;
     cursor: pointer;
     background: ${(props) => props.theme.color_background__secondary};
-    // background-origin: border-box !important;
-    // background-clip: content-box, border-box !important;
-    // background-image: linear-gradient(
-    //     ${(props) => props.theme.color_background__default},
-    //     ${(props) => props.theme.color_background__default}
-    //   ),
-    //   ${(props) => props.theme.color_border__hover} !important;
   }
 `;
 

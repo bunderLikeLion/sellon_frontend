@@ -3,8 +3,12 @@ import { axiosInstance } from './config';
 const client = axiosInstance;
 
 const messagesRelatedAPI = {
-  getMessages: () => {
-    return client.get('messages/').then((res) => res.data);
+  getMessages: (dealingId) => {
+    return client
+      .get('messages/', {
+        params: { ordering: 'created_at', dealing_id: dealingId },
+      })
+      .then((res) => res.data);
   },
 
   postMessage: (payload) => {

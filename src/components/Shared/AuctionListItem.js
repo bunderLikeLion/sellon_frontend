@@ -6,6 +6,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ConditionalLink from 'components/ConditionalLink';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import {
+  useCreateInterestedAuctionMutation,
+  useDeleteInterestedAuctionMutation,
+} from 'queries/auction';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -53,7 +57,7 @@ const StyledCardMedia = styled(CardMedia)`
 const CardHeader = styled.div`
   display: flex;
   justify-content: start;
-  padding: 0.8rem 1rem 0.2rem 1rem;
+  padding: 0.8rem 1.2rem 0.2rem 1.2rem;
   align-items: center;
   width: 100%;
 `;
@@ -77,7 +81,7 @@ const CardHeaderTitle = styled.div`
   text-overflow: ellipsis !important;
   white-space: nowrap;
   font-size: 1.2rem;
-  padding: 0.5rem 0 0.5rem 0.7rem;
+  padding: 0.5rem 0.7rem;
 `;
 
 const CardFooter = styled.div`
@@ -86,7 +90,7 @@ const CardFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 1.2rem;
 `;
 
 const ParticipantLabel = styled.span`
@@ -108,7 +112,7 @@ const StartDateLabel = styled.div`
 const PeriodLabel = styled.span`
   position: absolute;
   left: 1rem;
-  top: 0.5rem;
+  top: 1rem;
   width: fit-content;
   padding: 0.3rem 0.8rem;
   text-align: center;
@@ -128,7 +132,7 @@ const InterestedButton = styled.button`
   background: none;
   border: none;
   color: ${(props) => props.theme.color_white};
-`
+`;
 
 export const FinishedOverlay = styled(Card)`
   display: ${(props) => (props.isFinished ? 'flex' : 'none')};
@@ -150,6 +154,23 @@ export const FinishedCard = styled(FinishedOverlay)`
   box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
 `;
 
+const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
+  color: ${(props) =>
+    props.isInterested
+      ? props.theme.color_font__number
+      : props.theme.color_font__disabled};
+
+  & :hover {
+    transform: scale(1.2);
+  }
+`;
+
+const OverLayIconBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
 /*
   title: 경매 제목
   thumbnail_url: 이미지 url
@@ -162,6 +183,7 @@ export const FinishedCard = styled(FinishedOverlay)`
   linkCondition: 링크 조건
 */
 const AuctionListItem = ({
+  id,
   title,
   thumbnailUrl,
   participantCount,
@@ -173,43 +195,43 @@ const AuctionListItem = ({
   linkTo,
   linkCondition,
 }) => {
-
   /*
     TODO: 카드 상단 이미지가 너무 높이가 하단 컨텐츠에 비해 낮다. 늘려야한다.
     이때, 반응형 수치도 고려 헤야 함.
   */
 
+  const { mutate: createInterestedAuction } =
+    useCreateInterestedAuctionMutation();
+  // auctionId
+
+  const { mutate: deleteInterestedAuction } =
+    useDeleteInterestedAuctionMutation();
+
+  const pressHeartIconFunc = (isInterested) => {
+    isInterested ? deleteInterestedAuction(id) : createInterestedAuction(id);
+  };
+
   return (
     <CardContainer>
       {/* TODO: 관심 경매 API 연결하기 */}
-      {displayInterestedBtn && (
+      {displayInterestedBtn && !isFinished && (
         <InterestedButton>
-          {isInterested ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          <StyledFavoriteBorderIcon
+            isInterested={isInterested}
+            onClick={() => pressHeartIconFunc(isInterested)}
+          />
         </InterestedButton>
       )}
 
-      <PeriodLabel>
-        {period}
-      </PeriodLabel>
-      <ConditionalLink
-        to={linkTo}
-        condition={linkCondition}
-      >
-        <StyledCardMedia
-          component="img"
-          height="150"
-          image={thumbnailUrl}
-        />
+      <PeriodLabel>{period}</PeriodLabel>
+      <ConditionalLink to={linkTo} condition={linkCondition}>
+        <StyledCardMedia component="img" height="150" image={thumbnailUrl} />
         <CardHeader>
           <UserAvatar />
-          <CardHeaderTitle>
-            {title}
-          </CardHeaderTitle>
+          <CardHeaderTitle>{title}</CardHeaderTitle>
         </CardHeader>
         <CardFooter>
-          <StartDateLabel>
-            {startAt}
-          </StartDateLabel>
+          <StartDateLabel>{startAt}</StartDateLabel>
           <ParticipantLabel>
             <PersonIcon />
             {participantCount}명
@@ -218,9 +240,19 @@ const AuctionListItem = ({
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
         <p>종료된 경매입니다.</p>
+        {displayInterestedBtn && (
+          <OverLayIconBox>
+            <InterestedButton>
+              <StyledFavoriteBorderIcon
+                isInterested={isInterested}
+                onClick={() => pressHeartIconFunc(isInterested)}
+              />
+            </InterestedButton>
+          </OverLayIconBox>
+        )}
       </FinishedCard>
     </CardContainer>
-  )
+  );
 };
 
 export default AuctionListItem;
