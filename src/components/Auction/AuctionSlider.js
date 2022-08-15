@@ -1,0 +1,173 @@
+import React, { useCallback, useRef } from 'react';
+import Slick from 'react-slick';
+import styled, { css } from 'styled-components';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import 'css/slick.css';
+import 'css/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
+const Wrap = styled.div`
+  position: relative;
+  padding-bottom: 70px;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 5%;
+`;
+
+const SlickItems = styled.div`
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.26%;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const defaultButtonStyle = css`
+  position: absolute;
+  top: calc(50% - 50px);
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  line-height: 1;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  outline: none;
+  cursor: pointer;
+`;
+
+const PrevButton = styled.button`
+  ${defaultButtonStyle};
+  left: 0;
+`;
+
+const NextButton = styled.button`
+  ${defaultButtonStyle};
+  right: 0;
+`;
+
+const defaultIconStyle = css`
+  font-size: 22px;
+  color: #dedede;
+
+  &:focus,
+  &:hover {
+    color: #666;
+  }
+`;
+
+const PrevIcon = styled(LeftOutlined)`
+  ${defaultIconStyle}
+`;
+
+const NextIcon = styled(RightOutlined)`
+  ${defaultIconStyle}
+`;
+
+const AuctionItemContainer = styled.div`
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+const AuctionTitle = styled.span`
+  display: block;
+  color: ${(props) => props.theme.color_white};
+  position: absolute;
+  top: 25rem;
+  left: 10%;
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+const ProductThumbnail = styled.img`
+  width: 50% !important;
+  position: absolute !important;
+  left: 43% !important;
+  top: 3rem !important;
+  border-radius: 6%;
+  box-shadow: 0px 0px 6px ${(props) => props.theme.color_white};
+  height: auto;
+  overflow: visible !important;
+`;
+
+//TODO: 유저 프로필 들어가 있는 상태에서 테스트 해봐야함
+const UserAvatar = styled.img`
+  width: 200px !important;
+  position: absolute !important;
+  left: 20% !important;
+  top: 3rem !important;
+  border-radius: 50%;
+`;
+
+const images = [
+  {
+    src: '/popular/background_1.jpg',
+    title: '1',
+  },
+  {
+    src: '/popular/background_2.jpg',
+    title: '2',
+  },
+  {
+    src: '/popular/background_3.jpg',
+    title: '3',
+  },
+];
+
+const AuctionSlider = ({ items }) => {
+  const slickRef = useRef(null);
+
+  const settings = {
+    centerMode: true,
+    centerPadding: '0px',
+    speed: 500,
+    dots: true,
+    arrows: false,
+    infinite: true,
+    autoplaySpeed: 3000,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const previous = useCallback(() => slickRef.current.slickPrev(), []);
+  const next = useCallback(() => slickRef.current.slickNext(), []);
+
+  return (
+    <Wrap>
+      <Slick ref={slickRef} {...settings}>
+        {images.map((v, i) => {
+          return (
+            <SlickItems key={`${v.title}_${i}`}>
+              <img src={v.src} />
+              <AuctionItemContainer>
+                <UserAvatar src={items[i]?.owner?.avatar} />
+                <AuctionTitle>{items[i]?.title}</AuctionTitle>
+                <ProductThumbnail src={items[i]?.product?.thumbnail?.file} />
+              </AuctionItemContainer>
+            </SlickItems>
+          );
+        })}
+      </Slick>
+      <>
+        <PrevButton onClick={previous}>
+          <PrevIcon />
+        </PrevButton>
+
+        <NextButton onClick={next}>
+          <NextIcon />
+        </NextButton>
+      </>
+    </Wrap>
+  );
+};
+export default AuctionSlider;

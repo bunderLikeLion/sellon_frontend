@@ -13,10 +13,12 @@ import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
-import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
+// import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
+import Slider from 'react-slick';
+import AuctionSlider from '../../components/Auction/AuctionSlider';
 
 const Form = styled.div`
   width: 100%;
@@ -215,7 +217,6 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
-
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
@@ -282,30 +283,14 @@ const Auction = () => {
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
             거래가 성사되었습니다!
           </DealComplete>
-          <FameShortcut to={'/toprank'}>
-            명예의 전당 바로가기 →
-          </FameShortcut>
+          <FameShortcut to={'/toprank'}>명예의 전당 바로가기 →</FameShortcut>
         </SubNav>
 
         <BestAuctionContainer>
           <BestAuctionTitle>실시간 인기 경매</BestAuctionTitle>
-          {popularAuctionListFetched &&
-            popularAuctionList.map((singlePopularAuctionItem) => {
-              return (
-                <StyledLink to={`/auction/${singlePopularAuctionItem?.id}`}>
-                  <AuctionContainer key={singlePopularAuctionItem?.id}>
-                    <MostPopular>{singlePopularAuctionItem?.title}</MostPopular>
-                    <UserPic />
-                    <ProductPic
-                      image={singlePopularAuctionItem?.product?.thumbnail?.file}
-                    />
-                    <InterestedUser>
-                      참여자수: {singlePopularAuctionItem?.product_groups_count}
-                    </InterestedUser>
-                  </AuctionContainer>
-                </StyledLink>
-              );
-            })}
+          {popularAuctionListFetched && (
+            <AuctionSlider items={popularAuctionList} />
+          )}
         </BestAuctionContainer>
 
         <SubNav3>
@@ -361,14 +346,14 @@ const Auction = () => {
               })}
             </>
           )}
-        {/*Pagination*/}
-        <PaginationContainer>
-          <StyledPagination
-            count={myProductsData?.total_pages}
-            page={pageNum}
-            onChange={handleChange}
-          />
-        </PaginationContainer>
+          {/*Pagination*/}
+          <PaginationContainer>
+            <StyledPagination
+              count={myProductsData?.total_pages}
+              page={pageNum}
+              onChange={handleChange}
+            />
+          </PaginationContainer>
         </Container>
       </Form>
       <FilterModal
