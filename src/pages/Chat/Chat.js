@@ -5,7 +5,10 @@ import InputMessage from 'components/MyPage/Chat/InputMessage';
 import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
 import { useDealingsQuery } from 'queries/dealing';
 import { useEffect, useState } from 'react';
-import UserEvaluationModal from '../../components/MyPage/Chat/UserEvaluationModal';
+import UserEvaluationModal from 'components/MyPage/Chat/UserEvaluationModal';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
+import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
 
 const AlignContainer = styled.div`
   display: flex;
@@ -59,39 +62,6 @@ const ChatContainer = styled.div`
   overflow-y: scroll;
 `;
 
-const ChatContentContainer = styled.div`
-  height: 100%;
-  padding: 1rem;
-  overflow-y: scroll;
-`;
-
-const ChatBubble = styled.div`
-  position: relative;
-  background: #d6718f;
-  border-radius: 0.4em;
-
-  :after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 0;
-    height: 0;
-    border: 1.781em solid transparent;
-    border-right-color: #d6718f;
-    border-left: 0;
-    border-top: 0;
-    margin-top: -0.891em;
-    margin-left: -1.781em;
-  }
-`;
-
-const ChatBox = styled.div`
-  padding: 0.5rem;
-  line-height: 1.5rem;
-  color: ${(props) => props.theme.color_font__secondary};
-`;
-
 const OnChatContainerBottom = styled.div`
   height: 6rem;
   padding: 1rem;
@@ -100,12 +70,26 @@ const OnChatContainerBottom = styled.div`
 `;
 
 const Chat = () => {
+  const { pk: userId } = useRecoilValue(userAtom);
   const { data: dealings, isSuccess: dealingsFetched } = useDealingsQuery();
-  const [selectedDeal, setSelectedDeal] = useState(null);
+  const [selectedDeal, setSelectedDeal] = useState({});
   const [isEvaluationModalOpened, SetIsEvaluationModalOpened] = useState(false);
-
+  const [opponent, setOpponent] = useState(null);
   const handleEvaluationModal = () =>
     SetIsEvaluationModalOpened(!isEvaluationModalOpened);
+
+  useEffect(() => {
+    // 누를때 상대 정하기
+    if (selectedDeal?.product_group?.user?.id === userId) {
+      setOpponent(selectedDeal?.auction?.owner);
+    } else {
+      setOpponent(selectedDeal?.product_group?.user);
+    }
+  }, [selectedDeal]);
+
+  useEffect(() => {
+    console.log(opponent, 'opp');
+  }, [opponent]);
 
   return (
     <WrapContainer>
@@ -129,16 +113,9 @@ const Chat = () => {
             </Chat_Left>
             <Chat_Right>
               <OnChatContainer>
-                <OnChatUserProfile />
+                <OnChatUserProfile opponent={opponent} />
               </OnChatContainer>
-              <ChatContentContainer>
-                <ChatBubble>trtr</ChatBubble>
-                <ChatBox>
-                  상대방:
-                  거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-                </ChatBox>
-                <ChatBox>나: 네~</ChatBox>
-              </ChatContentContainer>
+              <ChatMsgContainer opponent={opponent} />
               <OnChatContainerBottom>
                 <InputMessage />
               </OnChatContainerBottom>
