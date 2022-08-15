@@ -10,16 +10,10 @@ const AlignContainer = styled.div`
   height: 83vh;
 `;
 
-const StyledContainer = styled.div`
-  display: flex !important;
-  align-items: center !important;
-  height: 88vh;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   margin-top: 5rem;
@@ -30,13 +24,14 @@ const NavContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 6rem;
+  height: fit-content;
+  padding: 1.2rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const NavTitle = styled.p`
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   background-image: ${(props) => props.theme.color_background__success};
   -webkit-background-clip: text;
@@ -45,18 +40,29 @@ const NavTitle = styled.p`
 
 const RankContainer = styled.div`
   display: flex;
-  padding-top: 1.2rem;
+  padding-top: 1.7rem;
+  gap: 1rem 3rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    gap: 1rem 4rem;
+  }
 `;
 
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
+  flex: 2;
+  gap: 1rem;
+
+  @media screen and (max-width: 1000px) {
+    justify-content: space-around;
+  }
 `;
 
 const RightContainer = styled.div`
-  width: 30%;
+  flex: 1;
   height: 32rem;
   margin-top: 1rem;
   border-radius: 1rem;
