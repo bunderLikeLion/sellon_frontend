@@ -15,6 +15,8 @@ import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
 import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 import CardMedia from '@mui/material/CardMedia';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
 
 const Form = styled.div`
   width: 100%;
@@ -38,7 +40,7 @@ const BestAuctionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 2rem auto;
+  margin: 2rem auto 5rem auto;
 `;
 
 const BestAuctionTitle = styled.div`
@@ -64,15 +66,23 @@ const InterestedUser = styled.div`
 const SubNav2 = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   width: 100%;
   margin: 1rem 0;
 `;
 
-const AuctionPublishLink = styled(Link)`
-  width: 10.5rem;
-  height: 2rem;
+const SubNav2_left = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 6rem;
+`;
+
+const HomeGroundTitle = styled.div`
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const SubmitAuctionButton = styled.button`
@@ -82,15 +92,10 @@ const SubmitAuctionButton = styled.button`
   height: 2rem;
   margin: 0.3rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 1.1rem;
   font-size: 1rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
-  :hover {
-    transition: 0.5s;
-    transform: translateY(-0.2rem);
-    border: 1px solid ${(props) => props.theme.color_border__bottomright} !important;
-  }
 `;
 
 const DealComplete = styled.div`
@@ -102,19 +107,18 @@ const DealComplete = styled.div`
 
 const FameShortcut = styled(Link)`
   display: flex;
-  align-items: flex-end;
-  float: right;
+  align-items: center;
   width: 12rem;
   height: 3rem;
   margin: 0;
   border: none;
   cursor: pointer;
+  font-size: 0.9rem;
   color: ${(props) => props.theme.color_font__primary};
   background: transparent;
   :hover {
-    color: #e273ab;
-    transition: 0.5s;
-    transform: translateX(1rem);
+    font-weight: 800;
+    transistion: 0.3s;
   }
 `;
 
@@ -123,7 +127,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -167,9 +171,12 @@ const MostPopular = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: flex-start;
+  flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 0.5rem;
+  width: 100%;
+  height: 100%;
+  gap: 2rem 2rem;
 `;
 
 const SelectBox = styled(Select)`
@@ -183,6 +190,25 @@ const InputLabelBox = styled(InputLabel)`
 
 const MenuItemBox = styled(MenuItem)`
   color: ${(props) => props.theme.color_font__primary} !important;
+`;
+
+//Pagination
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0.3rem;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
 `;
 
 const Auction = () => {
@@ -203,6 +229,15 @@ const Auction = () => {
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
 
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChange = (event, value) => {
+    setPageNum(value);
+  };
+
   return (
     <WrapContainer>
       <Form>
@@ -215,7 +250,7 @@ const Auction = () => {
         <SubNav>
           <DealComplete>
             오늘 총 {todayCompletedCntFetched && todayCompletedCnt?.count}건의
-            거래가 성사되었습니다!
+            경매가 성사되었습니다!
           </DealComplete>
           <FameShortcut to={'/toprank'}>명예의 전당 바로가기 →</FameShortcut>
         </SubNav>
@@ -294,6 +329,14 @@ const Auction = () => {
               })}
             </>
           )}
+          {/*Pagination*/}
+          <PaginationContainer>
+            <StyledPagination
+              count={myProductsData?.total_pages}
+              page={pageNum}
+              onChange={handleChange}
+            />
+          </PaginationContainer>
         </Container>
       </Form>
       <FilterModal

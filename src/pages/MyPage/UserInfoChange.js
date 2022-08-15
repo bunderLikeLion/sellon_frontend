@@ -5,8 +5,12 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import registerValidation from 'validations/registerValidation';
 import { useSignInMutation } from 'queries/auth';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
+import ChangeIdBox from 'components/MyPage/ChangeIdBox';
+import ChangeEmailBox from 'components/MyPage/ChangeEmailBox';
+import ChangePasswordBox from 'components/MyPage/ChangePasswordBox';
 
 const Container = styled.div`
   display: flex;
@@ -18,24 +22,28 @@ const Container = styled.div`
 
 const Card = styled.div`
   display: flex;
+  justify-content: center;
   width: 60rem;
-  height: 34rem;
+  height: 100%;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 `;
 
 const Form = styled.form`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  width: 50%;
-  height: 80%;
-  margin-top: 7%;
+  justify-content: flex-start;
+  width: 65%;
+  padding: 1rem;
 `;
 
 const GuideContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
   width: 65%;
-  margin-bottom: 2.5rem;
+  height: 4rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Guide = styled.h1`
@@ -80,11 +88,13 @@ const ErrorMsg = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  width: 65%;
+  display: flex;
+  justify-content: flex-end;
+  width: 95%;
   margin-top: 1rem;
 `;
 
-const Button = styled.button`
+const ModifyButton = styled.button`
   width: 8.4rem;
   height: 2.6rem;
   border-radius: 0.5rem;
@@ -94,15 +104,24 @@ const Button = styled.button`
   background: ${(props) => props.theme.color_background__success};
 `;
 
+const CancelButton = styled.button`
+  width: 8.4rem;
+  height: 2.6rem;
+  margin-left: 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.3rem;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_button__delete};
+`;
+
 const Img = styled.img`
   width: 50%;
   height: 100%;
 `;
 
-
 const UserInfoChange = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
 
   useEffect(() => {
@@ -119,59 +138,48 @@ const UserInfoChange = () => {
   const submit = async (inputData) => {
     signInMutate(inputData);
   };
-    return(
-        <Container>
+  return (
+    <Container>
       <Card>
         <Form onSubmit={handleSubmit(submit)}>
           <GuideContainer>
             <Guide>회원정보 수정</Guide>
           </GuideContainer>
 
-          <InputContainer>
+          <ChangeIdBox />
+
+          <ChangePasswordBox />
+
+          <ChangeEmailBox />
+
+          {/* <InputContainer>
             <Input type="text" value="닉네임 수정" {...register('username')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
           <InputContainer>
-            <Input type="text" value="닉네임 수정" {...register('username')} />
+            <Input type="password" value="1234" {...register('password1')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
-
-          
-
-          <InputContainer>
-            <Input
-              type="password"
-              value="1234"
-              {...register('password1')}
-            />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
-
-          <InputContainer>
-            <Input
-              type="password"
-              value="1234"
-              {...register('password2')}
-            />
-            <ErrorMsg>{errors.password?.message}</ErrorMsg>
           </InputContainer>
 
           <InputContainer>
             <Input placeholder="이메일" type="text" {...register('email')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
+          </InputContainer> */}
 
-          <InputContainer>
+          {/* <InputContainer>
             <Input type="text" value="홈그라운드 수정" />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
+          </InputContainer> */}
 
           <ButtonContainer>
-            <Button disabled={isSubmitting}>
+            <ModifyButton disabled={isSubmitting}>
               {isSubmitting && 'Submitting...'}
-              가입
-            </Button>
+              수정
+            </ModifyButton>
+            <Link to="/mypage">
+              <CancelButton>취소</CancelButton>
+            </Link>
           </ButtonContainer>
 
           {errors.apiError && <div>{errors.apiError?.message}</div>}
@@ -179,7 +187,7 @@ const UserInfoChange = () => {
         <Img src={SignPic} />
       </Card>
     </Container>
-    )
+  );
 };
 
 export default UserInfoChange;

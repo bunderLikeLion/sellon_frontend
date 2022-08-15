@@ -11,7 +11,11 @@ const FlexContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: left;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem 2rem;
+  margin-top: 2rem;
 `;
 
 const ItemListContainer = styled.div`

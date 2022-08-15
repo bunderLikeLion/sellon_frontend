@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import ChatLists from 'components/MyPage/Chat/ChatLists';
 import InputMessage from 'components/MyPage/Chat/InputMessage';
 import OnChatUserProfile from 'components/MyPage/Chat/OnChatUserProfile';
-import { Tooltip } from '@mui/material';
+import { useDealingsQuery } from 'queries/dealing';
+import { useEffect, useState } from 'react';
+import UserEvaluationModal from '../../components/MyPage/Chat/UserEvaluationModal';
 
 const AlignContainer = styled.div`
   display: flex;
@@ -64,24 +66,24 @@ const ChatContentContainer = styled.div`
 `;
 
 const ChatBubble = styled.div`
-	position: relative;
-	background: #d6718f;
-	border-radius: .4em;
+  position: relative;
+  background: #d6718f;
+  border-radius: 0.4em;
 
-:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 50%;
-	width: 0;
-	height: 0;
-	border: 1.781em solid transparent;
-	border-right-color: #d6718f;
-	border-left: 0;
-	border-top: 0;
-	margin-top: -0.891em;
-	margin-left: -1.781em;
-}
+  :after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 1.781em solid transparent;
+    border-right-color: #d6718f;
+    border-left: 0;
+    border-top: 0;
+    margin-top: -0.891em;
+    margin-left: -1.781em;
+  }
 `;
 
 const ChatBox = styled.div`
@@ -98,41 +100,57 @@ const OnChatContainerBottom = styled.div`
 `;
 
 const Chat = () => {
+  const { data: dealings, isSuccess: dealingsFetched } = useDealingsQuery();
+  const [selectedDeal, setSelectedDeal] = useState(null);
+  const [isEvaluationModalOpened, SetIsEvaluationModalOpened] = useState(false);
+
+  const handleEvaluationModal = () =>
+    SetIsEvaluationModalOpened(!isEvaluationModalOpened);
+
   return (
     <WrapContainer>
       <AlignContainer>
-        <ChatForm>
-          <Chat_Left>
-            <MessageTitle>진행중인 거래</MessageTitle>
-            <ChatContainer>
-              <ChatLists />
-              <ChatLists />
-              <ChatLists />
-              <ChatLists />
-              <ChatLists />
-              <ChatLists />
-            </ChatContainer>
-          </Chat_Left>
-          <Chat_Right>
-            <OnChatContainer>
-              <OnChatUserProfile />
-            </OnChatContainer>
-            <ChatContentContainer>
-              <ChatBubble>
-                trtr
-              </ChatBubble>
-              <ChatBox>
-                상대방:
-                거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-              </ChatBox>
-              <ChatBox>나: 네~</ChatBox>
-            </ChatContentContainer>
-            <OnChatContainerBottom>
-              <InputMessage />
-            </OnChatContainerBottom>
-          </Chat_Right>
-        </ChatForm>
+        {dealingsFetched && (
+          <ChatForm>
+            <Chat_Left>
+              <MessageTitle>진행중인 거래</MessageTitle>
+              <ChatContainer>
+                {dealings?.results.map((singleDeal) => {
+                  return (
+                    <ChatLists
+                      singleDeal={singleDeal}
+                      selectedDeal={selectedDeal}
+                      handleEvaluationModal={handleEvaluationModal}
+                      setSelectedDeal={setSelectedDeal}
+                    />
+                  );
+                })}
+              </ChatContainer>
+            </Chat_Left>
+            <Chat_Right>
+              <OnChatContainer>
+                <OnChatUserProfile />
+              </OnChatContainer>
+              <ChatContentContainer>
+                <ChatBubble>trtr</ChatBubble>
+                <ChatBox>
+                  상대방:
+                  거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
+                </ChatBox>
+                <ChatBox>나: 네~</ChatBox>
+              </ChatContentContainer>
+              <OnChatContainerBottom>
+                <InputMessage />
+              </OnChatContainerBottom>
+            </Chat_Right>
+          </ChatForm>
+        )}
       </AlignContainer>
+      <UserEvaluationModal
+        handleEvaluationModal={handleEvaluationModal}
+        isEvaluationModalOpened={isEvaluationModalOpened}
+        selectedDeal={selectedDeal}
+      />
     </WrapContainer>
   );
 };

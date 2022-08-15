@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import GlobalStyles from 'styles/globalStyles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AxiosInterceptor } from './apis/config';

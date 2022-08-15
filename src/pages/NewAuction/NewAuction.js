@@ -26,7 +26,7 @@ const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 86vh;
+  height: 100%;
 `;
 
 const InstructContainer = styled.div`
@@ -98,6 +98,14 @@ const StyledButton = styled.button`
   font-weight: 700;
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
+`;
+
+const OuterContainer = styled(Container)`
+  max-width: 1060px !important;
+  min-height: 92vh;
+  height: 100% !important;
+  color: ${(props) => props.theme.color_white} !important;
+  background: ${(props) => props.theme.color_background__default} !important;
 `;
 
 const NewAuction = () => {

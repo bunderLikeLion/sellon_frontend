@@ -135,11 +135,11 @@ const AuctionItem = (props) => {
     >
       {props?.singleAuctionData?.is_interested ? (
         <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
-          관심거래 삭제
+          관심경매 삭제
         </button>
       ) : (
         <button onClick={() => createInterestedAuction(relatedAuctionId)}>
-          관심거래 등록
+          관심경매 등록
         </button>
       )}
       <ItemImgContainer>
