@@ -30,6 +30,7 @@ const WeeklyStatusTitle = styled.p`
 const QuestionIcon = styled(HelpIcon)`
   margin: 0;
   font-size: 0.5rem;
+  cursor: pointer;
 `;
 
 const WeeklyStatusBottomContainer = styled.div`

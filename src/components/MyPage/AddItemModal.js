@@ -161,6 +161,7 @@ export const InsideBox = styled.div`
 export const CategoryContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   width: 100%;
 `;
 
