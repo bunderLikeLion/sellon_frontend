@@ -4,21 +4,19 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import SearchIcon from '@mui/icons-material/Search';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-import { Radio, TextField, InputAdornment } from '@mui/material';
+import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
 import { FormatAlignCenterSharp } from '@mui/icons-material';
-import { color } from '@mui/system';
 
 const ModalContainer = styled(Box)`
   position: relative;
-  top: 50%;
-  left: 50%;
   width: 50rem;
   height: 42rem;
+  top: 50%;
+  left: 50%;
   padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
@@ -36,11 +34,7 @@ const CloseBtn = styled(CloseIcon)`
 
 const GuideContainer = styled.div`
   width: 100%;
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  margin-top: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const StyledLabel = styled.p`
@@ -50,29 +44,42 @@ const StyledLabel = styled.p`
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const StyledTextField = styled(TextField)`
+const SearchLabelContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 25rem;
-  height: 4rem;
-  min-height: 2rem;
-  background: red;
-  border: 0.1px solid transparent;
+  height: 3.5rem;
+  border: none;
   border-radius: 10px;
-  color: ${(props) => props.theme.color_white} !important;
-  -webkit-text-fill-color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
-const SearchButton = styled(SearchIcon)`
-  color: ${(props) => props.theme.color_white};
+const TextContainer = styled.p`
+  position: absolute;
+  left: 3%;
+  font-size: 1rem;
+  color: ${(props) => props.theme.color_font__tertiary};
+`;
+
+const InputArea = styled.input`
+  position: absolute;
+  width: 20rem;
+  height: 2rem;
+  right: 5%;
+  border: none;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const CategoryRadioBox = styled.div`
   width: 40rem;
   height: 22rem;
   min-height: 2rem;
-  padding: 0.1rem;
   margin-top: 2rem;
-  border-radius: 10px;
+  padding: 0.1rem;
   border: 0.1px solid transparent;
+  border-radius: 10px;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
@@ -102,10 +109,10 @@ const StyledRadio = styled(Radio)`
 
 const ApplyButton = styled(Button)`
   position: absolute !important;
-  bottom: 7%;
-  right: 4%;
   width: 7rem;
   height: 2.5rem;
+  right: 4%;
+  bottom: 7%;
   margin-top: 1.5rem !important;
   border: none !important;
   font-size: 1.2rem !important;
@@ -172,30 +179,10 @@ const FilterModal = (props) => {
             필터 및 검색
           </Typography>
         </GuideContainer>
-        <SearchContainer>
-          {/*<StyledLabel>상품명</StyledLabel>*/}
-          <StyledTextField
-            id="outlined-name"
-            value={filterKeyword}
-            onChange={handleFilterKeyword}
-            placeholder="상품명"
-            sx={[
-              { bgcolor: '#252040' },
-              {
-                '& .MuiButton-root': {
-                  backgroundColor: 'red',
-                },
-              },
-            ]}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <SearchButton />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </SearchContainer>
+        <SearchLabelContainer>
+          <TextContainer>상품명</TextContainer>
+          <InputArea></InputArea>
+        </SearchLabelContainer>
 
         <CategoryRadioBox>
           <StyledLabel>상품 카테고리</StyledLabel>
