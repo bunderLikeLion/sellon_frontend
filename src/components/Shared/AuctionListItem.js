@@ -101,8 +101,11 @@ const ParticipantLabel = styled.span`
 `;
 
 const PeriodLabel = styled.span`
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
   width: fit-content;
-  padding: 0.25rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   text-align: center;
   border-radius: 4rem;
   border: none;
@@ -182,6 +185,10 @@ const AuctionListItem = ({
           {isInterested ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </InterestedButton>
       )}
+
+      <PeriodLabel>
+        {period}
+      </PeriodLabel>
       <ConditionalLink
         to={linkTo}
         condition={linkCondition}
@@ -202,9 +209,6 @@ const AuctionListItem = ({
             <PersonIcon />
             {participantCount}명
           </ParticipantLabel>
-          <PeriodLabel>
-            {period}
-          </PeriodLabel>
         </CardFooter>
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
