@@ -6,6 +6,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
+import AuctionListItem from 'components/Shared/AuctionListItem';
 
 const StyledWrapContainer = styled.div`
   display: flex !important;
@@ -15,110 +16,6 @@ const StyledWrapContainer = styled.div`
   width: 100%;
   height: 100%;
   gap: 2rem 2rem;
-`;
-
-const CardContainer = styled(Card)`
-  position: relative;
-  border-radius: 1rem !important;
-  max-width: calc((100% - 6rem) / 4);
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: calc((100% - 6rem) / 4);
-  color: ${(props) => props.theme.color_font__secondary} !important;
-  background: ${(props) => props.theme.color_background__primary} !important;
-  border: 1.3px solid transparent;
-
-  :hover {
-    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
-  }
-
-  @media screen and (max-width: 1300px) {
-    flex-basis: calc((100% - 4rem) / 3);
-    max-width: calc((100% - 4rem) / 3);
-  }
-
-  @media screen and (max-width: 1000px) {
-    flex-basis: calc((100% - 2rem) / 2);
-    max-width: calc((100% - 2rem) / 2);
-  }
-  @media screen and (max-width: 500px) {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
-`;
-
-const CardTop = styled.div`
-  display: flex;
-  justify-content: start;
-  padding: 0.8rem 1rem 0.2rem 1rem;
-  align-items: center;
-  width: 100%;
-`;
-
-const CardProfile = styled.div`
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background: #c9c9c9;
-`;
-
-const CardBottom = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0.3rem 1rem;
-`;
-
-const PersonCntBox = styled.span`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 5rem;
-  height: 2.4rem;
-  font-size: 0.8rem;
-  color: ${(props) => props.theme.color_font__number} !important;
-  background: transparent;
-`;
-
-const EnterBox = styled.span`
-  width: fit-content;
-  padding: 0.1rem 0.8rem;
-  text-align: center;
-  border-radius: 4rem;
-  border: none;
-  font-size: 0.8rem;
-  color: ${(props) => props.theme.color_font__secondary} !important;
-  background: ${(props) => props.theme.color_background__success} !important;
-`;
-
-const MyCardMedia = styled(CardMedia)`
-  object-fit: cover;
-  height: 8rem;
-
-  @media screen and (max-width: 1300px) {
-    height: 10rem;
-  }
-
-  @media screen and (max-width: 1000px) {
-    height: 12rem;
-  }
-`;
-
-const MyCardHeader = styled.div`
-  width: 100%;
-  height: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis !important;
-  white-space: nowrap;
-  font-size: 1.2rem;
-  padding: 0.5rem 0 0.5rem 0.7rem;
 `;
 
 const PaginationContainer = styled.div`
@@ -162,6 +59,8 @@ const InterestedAuctionListCard = () => {
     setPageNum(value);
   };
 
+  const dummyImageUrl = "https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200";
+
   return (
     <StyledWrapContainer>
       {/*Card_01*/}
@@ -192,101 +91,13 @@ const InterestedAuctionListCard = () => {
       {/* TODO: 관심경매 카드 글씨 크기 조절 */}
 
       {/* TODO: 아이템 추가 모달 디자인 - 인풋을 통일하기 */}
+      <AuctionListItem title={'test'} thumbnailUrl={dummyImageUrl} participantCount={20} period={'D-7'}/>
+      <AuctionListItem title={'사탕 살래'} thumbnailUrl={dummyImageUrl} participantCount={10} period={'D-7'}/>
+      <AuctionListItem title={'test22'} thumbnailUrl={dummyImageUrl} participantCount={11} period={'D-7'}/>
+      <AuctionListItem title={'test1231'} thumbnailUrl={dummyImageUrl} participantCount={12} period={'D-7'}/>
+      <AuctionListItem title={'abcd'} thumbnailUrl={dummyImageUrl} participantCount={13} period={'D-7'}/>
+      <AuctionListItem title={'abcde'} thumbnailUrl={dummyImageUrl} participantCount={14} period={'D-7'}/>
 
-      <CardContainer>
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_02*/}
-      <CardContainer>
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://hhsmedia.com/wp-content/uploads/2018/10/candies-e1541131061529-900x600.jpg"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_03*/}
-      <CardContainer>
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_04*/}
-      <CardContainer>
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
-      {/*Card_05*/}
-      <CardContainer>
-        <MyCardMedia
-          component="img"
-          height="150"
-          image="https://hhsmedia.com/wp-content/uploads/2018/10/candies-e1541131061529-900x600.jpg"
-        />
-        <CardTop>
-          <CardProfile />
-          <MyCardHeader>사탕 살래?</MyCardHeader>
-        </CardTop>
-        <CardBottom style={{ width: '100%' }}>
-          <PersonCntBox>
-            <PersonIcon />
-            30명
-          </PersonCntBox>
-          <EnterBox>D-7</EnterBox>
-        </CardBottom>
-      </CardContainer>
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination
