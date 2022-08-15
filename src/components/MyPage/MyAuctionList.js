@@ -72,27 +72,27 @@ const CardBottom = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0.3rem 1rem;
 `;
 
 const PersonCntBox = styled.span`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   width: 5rem;
   height: 2.4rem;
-  margin: 0.3rem;
-  border-radius: 4rem;
   font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__number} !important;
   background: transparent;
 `;
 
-const EnterBox = styled(PersonCntBox)`
+const EnterBox = styled.span`
   width: fit-content;
-  padding: 0.5rem 1.3rem;
+  padding: 0.1rem 0.8rem;
   text-align: center;
+  border-radius: 4rem;
   border: none;
+  font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__success} !important;
 `;
@@ -118,7 +118,7 @@ const MyCardHeader = styled.div`
   text-overflow: ellipsis !important;
   white-space: nowrap;
   font-size: 1.2rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.7rem;
 `;
 
 const PaginationContainer = styled.div`
@@ -178,11 +178,6 @@ const InterestedAuctionListCard = () => {
       */}
 
       {/*
-        TODO: 내가 올린 경매 페이지 및 기타 카드 등에서 프로필 이미지와 아래 컨텐츠의 시작점을 같게 하기
-      */}
-
-      {/*
-        TODO: 카드에서 프로필 사진이랑 제목 사이의 간격 늘리기
         TODO: 카드 제목 세로 정렬 가운데
        */}
 
