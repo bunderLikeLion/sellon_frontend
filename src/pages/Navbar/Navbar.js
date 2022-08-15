@@ -19,12 +19,14 @@ const Navbar = styled(AppBar)`
 
 const LinkText = styled(Link)`
   transition: 0.2s;
+  background-color: transparent !important;;
   :hover {
     color: ${(props) => props.theme.color_border__hover__light} !important;
   }
 `;
 
 const LinkButton = styled(Button)`
+  background-color: transparent !important;;
   transition: 0.2s !important;
   :hover {
     color: ${(props) => props.theme.color_border__hover__light} !important;
