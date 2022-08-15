@@ -23,11 +23,11 @@ const OnChatProfileNickname = styled.div`
   font-weight: bold;
 `;
 
-const OnChatUserProfile = () => {
+const OnChatUserProfile = ({ opponent }) => {
   return (
     <OnChatProfileContainer>
       <OnChatProfileImg>UserImg</OnChatProfileImg>
-      <OnChatProfileNickname>상대 닉네임</OnChatProfileNickname>
+      <OnChatProfileNickname>{opponent?.username}</OnChatProfileNickname>
     </OnChatProfileContainer>
   );
 };

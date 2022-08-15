@@ -5,15 +5,10 @@ import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
+import AuctionListContainer from 'components/Shared/AuctionListContainer';
 
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: center;
-  margin-top: 3rem;
+const FlexContainer = styled(AuctionListContainer)`
+  margin-top: 2rem;
 `;
 
 const ItemListContainer = styled.div`
@@ -40,6 +35,7 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
 
 const InterestedAuctionList = () => {
   const {
@@ -62,29 +58,14 @@ const InterestedAuctionList = () => {
         <>
           <p>총 {interestedAuctionLists?.total_count}개</p>
           <FlexContainer>
-            {interestedAuctionLists?.results.map((singleInterestedAuction) => {
-              if (
-                isAuctionFinishedHandler(
-                  singleInterestedAuction?.auction?.end_at
-                )
-              ) {
-                // 끝난 경매
-                return (
-                  <InterestedAuctionListCard
-                    data={singleInterestedAuction.auction}
-                    isFinished={true}
-                  />
-                );
-              } else {
-                // 진행중인 경매
-                return (
-                  <InterestedAuctionListCard
-                    data={singleInterestedAuction.auction}
-                    isFinished={false}
-                  />
-                );
-              }
-            })}
+            {
+              interestedAuctionLists?.results.map((singleInterestedAuction) => (
+                <InterestedAuctionListCard
+                  data={singleInterestedAuction.auction}
+                  isFinished={isAuctionFinishedHandler(singleInterestedAuction?.auction?.end_at)}
+                />
+              )
+            )}
           </FlexContainer>
         </>
       )}
@@ -96,7 +77,6 @@ const InterestedAuctionList = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-
     </ItemListContainer>
   );
 };

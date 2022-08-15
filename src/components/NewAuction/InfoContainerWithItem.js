@@ -10,7 +10,7 @@ const Container = styled.div`
 const ItemImageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 23rem;
+  height: 20rem;
   padding: 1rem 1rem 0 1rem;
   clear: both;
 `;

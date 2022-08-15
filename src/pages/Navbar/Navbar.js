@@ -18,18 +18,18 @@ const Navbar = styled(AppBar)`
 `;
 
 const LinkText = styled(Link)`
-  transition: 0.5s;
+  transition: 0.2s;
+  background-color: transparent !important;;
   :hover {
-    color: ${(props) => props.theme.color_font__tertiary} !important;
-    transform: translateY(-0.2rem);
+    color: ${(props) => props.theme.color_border__hover__light} !important;
   }
 `;
 
 const LinkButton = styled(Button)`
-  transition: 0.5s !important;
+  background-color: transparent !important;;
+  transition: 0.2s !important;
   :hover {
-    color: ${(props) => props.theme.color_font__tertiary} !important;
-    transform: translateY(-0.2rem);
+    color: ${(props) => props.theme.color_border__hover__light} !important;
   }
 `;
 
@@ -54,26 +54,29 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <Navbar position="static" sx={{ height: '8vh', justifyContent: 'center' }}>
+    <Navbar position="static" sx={{ height: '4rem', justifyContent: 'center' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            SELLON
-          </Typography>
+          <Link to="/">
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          </Link>
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              SELLON
+            </Typography>
+          </Link>
           <AnchorNav
             anchorElNav={anchorElNav}
             openNavMenu={handleOpenNavMenu}
@@ -82,7 +85,6 @@ const ResponsiveAppBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -140,7 +142,9 @@ const ResponsiveAppBar = () => {
           </Box>
           {user && (
             <>
+              {/*
               <NotificationsIcon sx={{ mr: '2rem' }} />
+              */}
               <UserRelatedDropDown
                 openUserMenu={handleOpenUserMenu}
                 closeUserMenu={handleCloseUserMenu}

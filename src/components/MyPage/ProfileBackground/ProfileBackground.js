@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { Button } from '@mui/material';
 import { useWithdrawlMutation } from 'queries/auth';
+import { Link } from 'react-router-dom';
 
 const WithDrawlBtn = styled(Button)`
   && {
@@ -31,10 +32,14 @@ const ProfileBackground = () => {
       <img src={backgroundPic} alt="" />
       <UsernameText>{user?.username}</UsernameText>
       <CircleProfileImgContainer />
+      {/*
       <WithDrawlBtn onClick={() => withDrawlMutate()} variant="contained">
         회원탈퇴
       </WithDrawlBtn>
-      <EditBtn variant="contained">회원정보 수정</EditBtn>
+      */}
+      {/* <Link to="/mypage/infochange">
+        <EditBtn variant="contained">회원정보 수정</EditBtn>
+      </Link> */}
     </Container>
   );
 };

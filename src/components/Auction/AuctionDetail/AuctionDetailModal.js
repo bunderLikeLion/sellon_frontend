@@ -11,10 +11,11 @@ import { queryClient } from 'index';
 import { CloseBtn } from 'components/MyPage/AddItemModal';
 import { useSingleAuctionQuery } from '../../../queries/auction';
 
+
 const ModalContainer = styled(Box)`
   position: relative;
-  width: 80%;
-  height: 90%;
+  width: 62rem;
+  height: 39.4rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -27,7 +28,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 34rem;
   margin: 2rem;
   padding-top: 0.5rem;
   color: ${(props) => props.theme.color_white};
@@ -40,15 +41,16 @@ const UserUploadContainer = styled.div`
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 40%;
-  height: 70%;
-`;
+  width: 24.8rem;
+  height: 33.3rem;
+`;  
 
 const StyledCloseBtn = styled(CloseBtn)`
   top: 1rem;
   right: 1rem;
   color: ${(props) => props.theme.color_button__delete};
 `;
+
 
 const AuctionDetailModal = ({
   handleModal,
@@ -74,6 +76,7 @@ const AuctionDetailModal = ({
       <ModalContainer>
         <StyledCloseBtn onClick={handleModal} />
         <Container>
+          {/*좌측 영역 */}
           <UserUploadContainer>
             {singleItemDataFetched && (
               <ItemImage
@@ -82,6 +85,7 @@ const AuctionDetailModal = ({
               />
             )}
           </UserUploadContainer>
+          {/*우측 아이템 상태-카테고리-개수-메모 영역*/}
           <ItemDetailContainer>
             {singleItemDataFetched && (
               <ItemInfoContainer

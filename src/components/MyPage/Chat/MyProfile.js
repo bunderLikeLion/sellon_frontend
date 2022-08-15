@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
+import CardMedia from '@mui/material/CardMedia';
 
-const MyProfileImg = styled.div`
+const MyProfileImg = styled(CardMedia)`
   width: 4rem;
   height: 4rem;
   margin: 1rem;
@@ -9,6 +12,9 @@ const MyProfileImg = styled.div`
 `;
 
 const MyProfile = () => {
+  const user = useRecoilValue(userAtom);
+
+  // return <MyProfileImg image={user?.avatar}>Myprofile</MyProfileImg>;
   return <MyProfileImg>Myprofile</MyProfileImg>;
 };
 

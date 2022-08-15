@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import UserEvaluationModal from './UserEvaluationModal';
 import { useState } from 'react';
 import UserInfoDetailModal from './UserInfoDetailModal';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const ChatMessageListContainer = styled.div`
   display: flex;
@@ -60,18 +62,29 @@ const ChatBoxButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
-const ChatLists = ({ singleDeal, handleEvaluationModal, selectedDeal }) => {
+const ChatLists = ({
+  singleDeal,
+  handleEvaluationModal,
+  selectedDeal,
+  setSelectedDeal,
+}) => {
   const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
   const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
-  console.log(singleDeal, selectedDeal, 'asdasdasas');
+  const { pk: userId } = useRecoilValue(userAtom);
+
   return (
-    <ChatMessageListContainer onClick={() => console.log(123)}>
+    <ChatMessageListContainer onClick={() => setSelectedDeal(singleDeal)}>
       <UserProfileImg />
       <ChatMessageText>
-        <UserNickname>{singleDeal?.product_group?.user?.username}</UserNickname>
+        <UserNickname>
+          {singleDeal?.product_group?.user?.id === userId
+            ? singleDeal?.auction?.owner?.username
+            : singleDeal?.product_group?.user?.username}
+        </UserNickname>
         <ChatTimeContainer>
           <ChatTime>시간</ChatTime>
         </ChatTimeContainer>
+        {singleDeal?.completed_at && <p>종료된 거래</p>}
         {singleDeal === selectedDeal && (
           <ChatButtonContainer>
             <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
@@ -79,9 +92,11 @@ const ChatLists = ({ singleDeal, handleEvaluationModal, selectedDeal }) => {
               handleModal={handleDetailModal}
               isModalOpened={isDetailModalOpened}
             />
-            <ChatBoxButton onClick={handleEvaluationModal}>
-              거래종료
-            </ChatBoxButton>
+            {!singleDeal?.completed_at && (
+              <ChatBoxButton onClick={handleEvaluationModal}>
+                거래종료
+              </ChatBoxButton>
+            )}
           </ChatButtonContainer>
         )}
       </ChatMessageText>
