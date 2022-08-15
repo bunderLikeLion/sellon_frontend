@@ -26,7 +26,7 @@ const Button = styled.button`
   position: absolute;
   bottom: -1.5rem;
   right: 1.5rem;
-  width: 6rem;
+  width: 7rem;
   height: 1.5rem;
   border: 0;
   border-radius: 0.5rem;
@@ -128,6 +128,7 @@ const ItemDescription = styled.p`
   line-height: 1.6rem;
   color: #fff;
 `;
+
 
 const AuctionItem = (props) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
