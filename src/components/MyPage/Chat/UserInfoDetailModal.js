@@ -31,7 +31,7 @@ const SummarizeContainer = styled.div`
   margin-bottom: 2rem;
   border-radius: 10px;
   overflow: hidden;
-  border: 0.2rem solid #A269B7;
+  border: 0.2rem solid #a269b7;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
@@ -40,7 +40,7 @@ const SummarizeTopContainer = styled.div`
   align-items: center;
   height: 25%;
   padding: 1rem;
-  border-bottom: 0.2rem solid #A269B7;
+  border-bottom: 0.2rem solid #a269b7;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
@@ -68,13 +68,13 @@ const OpponentItemImg = styled(CardMedia)`
 `;
 
 const ItemTitle = styled.p`
-font-size: 1.4rem;
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemUploadDate = styled.p`
-font-size: 1.1rem;
+  font-size: 1.1rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
@@ -88,7 +88,7 @@ const SummarizeBottomContainer = styled.div`
 `;
 
 const ArrowIcon = styled(SyncAltIcon)`
-margin: 0 2rem;
+  margin: 0 2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -134,14 +134,13 @@ const UserInfoDetailModal = ({ handleModal, isModalOpened }) => {
           </SummarizeTopContainer>
           <SummarizeBottomContainer>
             <DealedMyItemImg />
-            <ArrowIcon fontSize="large"/>
+            <ArrowIcon fontSize="large" />
             <OpponentItemImgContainer>
               <OpponentItemImg />
               <OpponentItemImg />
               <OpponentItemImg />
               <OpponentItemImg />
               <OpponentItemImg />
-             
             </OpponentItemImgContainer>
           </SummarizeBottomContainer>
         </SummarizeContainer>
