@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
-import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
@@ -221,8 +220,7 @@ const Auction = () => {
   const [areaRestriction, setAreaRestriction] = useState(1);
   const [cat, setCat] = useState('');
   const [sort, handleSort] = useInput('recent');
-
-  const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
+  const [pageNum, setPageNum] = useState(1);
 
   const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
     useTodayCompletedQuery();
@@ -233,14 +231,13 @@ const Auction = () => {
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
 
-  const [pageNum, setPageNum] = useState(1);
-
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
+  const { data: myProductsData } = useMyProductsQuery(pageNum, 6);
 
   const handleChange = (event, value) => {
     setPageNum(value);
   };
+
+  const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
 
   return (
     <WrapContainer>
@@ -314,23 +311,13 @@ const Auction = () => {
           {auctionListFetched && (
             <>
               {auctionList?.results.map((singleAuction) => {
-                if (isAuctionFinishedHandler(singleAuction?.end_at)) {
-                  // 끝난 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={true}
-                    />
-                  );
-                } else {
-                  // 진행중인 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={false}
-                    />
-                  );
-                }
+                return (
+                  <HomeAuctionListCard
+                    auctionData={singleAuction}
+                    isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
+                    isInterested={singleAuction?.is_interested}
+                  />
+                );
               })}
             </>
           )}

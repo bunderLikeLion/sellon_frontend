@@ -24,7 +24,7 @@ const StyledTabList = styled(Tab)`
 `;
 
 const TabBar = () => {
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState('2');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -34,7 +34,11 @@ const TabBar = () => {
     <Box sx={{ width: '100%', mt: '5rem', typography: 'body1' }}>
       <TabContext value={value}>
         <StyledBox sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList
+            value={value}
+            onChange={handleChange}
+            aria-label="lab API tabs example"
+          >
             <StyledTabList label="히스토리" value="1" />
             <StyledTabList label="인벤토리" value="2" />
             <StyledTabList label="관심경매" value="3" />

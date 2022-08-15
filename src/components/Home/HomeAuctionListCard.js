@@ -1,10 +1,10 @@
 import timeLimitHandler from 'utils/timeLimitHandler';
 import { useRecoilValue } from 'recoil';
-import { userAtom } from '../../states';
+import { userAtom } from 'states';
 import AuctionListItem from 'components/Shared/AuctionListItem';
 import dateFormatter from 'utils/dateFormatter';
 
-const HomeAuctionListCard = ({ isFinished, auctionData }) => {
+const HomeAuctionListCard = ({ isFinished, auctionData, isInterested }) => {
   const user = useRecoilValue(userAtom);
 
   return (
@@ -21,6 +21,8 @@ const HomeAuctionListCard = ({ isFinished, auctionData }) => {
           : `/auction/${auctionData?.id}`
       }
       linkCondition={!isFinished}
+      isInterested={isInterested}
+      displayInterestedBtn={true}
     />
   );
 };
