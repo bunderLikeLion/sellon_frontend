@@ -12,8 +12,7 @@ import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
-import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
-import InterestedAuctionListCard from '../../components/MyPage/InterestedAuctionListCard';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
@@ -67,26 +66,17 @@ const SubNav2 = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
   margin: 1rem 0;
 `;
 
-const SubNav2_left = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 6rem;
-`;
-
-const HomeGroundTitle = styled.div`
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__primary};
+const AuctionPublishLink = styled(Link)`
+  width: fit-content;
 `;
 
 const SubmitAuctionButton = styled.button`
-  position: absolute;
+  position: relative;
   right: 0;
   width: 10rem;
   height: 2rem;
@@ -118,7 +108,6 @@ const FameShortcut = styled(Link)`
   background: transparent;
   :hover {
     font-weight: 800;
-    transistion: 0.3s;
   }
 `;
 

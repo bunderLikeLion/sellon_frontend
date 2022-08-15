@@ -65,12 +65,21 @@ const AuctionText = styled.textarea`
   background: #d9d9d9;
 `;
 
-const StatusRadioContainer = styled(StatusRadio)`
+const PeriodRadioContainer = styled(StatusRadio)`
   width: 8rem;
   margin: 0 0 0 2rem;
 `;
 
+const StatusRadioContainer = styled(StatusRadio)`
+  width: 5.5rem;
+  margin: 0 0 0 1rem;
+`;
+
 const RadioLabel = styled.label`
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const RadioStatusLabel = styled.label`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -113,14 +122,14 @@ const NewAuctionInput = (props) => {
         <InsideRadioBoxContainer>
           <StyledLabelText>경매 기간</StyledLabelText>
           <CategoryContentBox>
-            <StatusRadioContainer>
+            <PeriodRadioContainer>
               <StyledRadio {...timeControlProps('1')} />
               <RadioLabel>하루</RadioLabel>
-            </StatusRadioContainer>
-            <StatusRadioContainer>
+            </PeriodRadioContainer>
+            <PeriodRadioContainer>
               <StyledRadio {...timeControlProps('7')} />
               <RadioLabel>일주일</RadioLabel>
-            </StatusRadioContainer>
+            </PeriodRadioContainer>
           </CategoryContentBox>
         </InsideRadioBoxContainer>
       </RadioContainer>
@@ -130,12 +139,16 @@ const NewAuctionInput = (props) => {
           <StyledLabelText>거래 방법</StyledLabelText>
           <CategoryContentBox>
             <StatusRadioContainer>
+              <StyledRadio {...methodControlProps('all')} />
+              <RadioStatusLabel>전체</RadioStatusLabel>
+            </StatusRadioContainer>
+            <StatusRadioContainer>
               <StyledRadio {...methodControlProps('direct')} />
-              <RadioLabel>직거래</RadioLabel>
+              <RadioStatusLabel>직거래</RadioStatusLabel>
             </StatusRadioContainer>
             <StatusRadioContainer>
               <StyledRadio {...methodControlProps('delivery')} />
-              <RadioLabel>택배</RadioLabel>
+              <RadioStatusLabel>택배</RadioStatusLabel>
             </StatusRadioContainer>
           </CategoryContentBox>
         </InsideRadioBoxContainer>

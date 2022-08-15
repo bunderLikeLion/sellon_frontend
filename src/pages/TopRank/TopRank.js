@@ -3,19 +3,6 @@ import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 import { useTodayCompletedQuery } from 'queries/dealing';
 
-const AlignContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 83vh;
-`;
-
-const StyledContainer = styled.div`
-  display: flex !important;
-  align-items: center !important;
-  height: 88vh;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -69,26 +56,24 @@ const TopRank = () => {
 
   return (
     <WrapContainer>
-      <AlignContainer>
-        <Container>
-          <NavContainer>
-            <NavTitle>
-              오늘의 거래는 총{' '}
-              {todayCompletedCntFetched && todayCompletedCnt.count}
-              건입니다!
-            </NavTitle>
-          </NavContainer>
-          <RankContainer>
-            <LeftContainer>
-              <TopRanker />
-              <WeeklyStatus />
-            </LeftContainer>
-            <RightContainer>
-              <Ranking />
-            </RightContainer>
-          </RankContainer>
-        </Container>
-      </AlignContainer>
+      <Container>
+        <NavContainer>
+          <NavTitle>
+            오늘의 거래는 총{' '}
+            {todayCompletedCntFetched && todayCompletedCnt.count}
+            건입니다!
+          </NavTitle>
+        </NavContainer>
+        <RankContainer>
+          <LeftContainer>
+            <TopRanker />
+            <WeeklyStatus />
+          </LeftContainer>
+          <RightContainer>
+            <Ranking />
+          </RightContainer>
+        </RankContainer>
+      </Container>
     </WrapContainer>
   );
 };
