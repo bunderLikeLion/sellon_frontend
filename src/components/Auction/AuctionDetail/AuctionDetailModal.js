@@ -13,7 +13,7 @@ import { useSingleAuctionQuery } from '../../../queries/auction';
 
 
 const ModalContainer = styled(Box)`
-  position: fixed;
+  position: relative;
   width: 62rem;
   height: 39.4rem;
   top: 50%;
