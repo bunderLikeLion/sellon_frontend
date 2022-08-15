@@ -29,6 +29,7 @@ const SendMessageIcon = styled(SendIcon)`
   height: 2rem;
   margin: 0.5rem;
   color: #fff;
+  cursor: pointer;
 `;
 
 const InputMessage = ({ selectedDeal }) => {
@@ -56,7 +57,7 @@ const InputMessage = ({ selectedDeal }) => {
         onChange={handleMsgText}
         onKeyPress={onKeyPressFunc}
       />
-      <SendMessageIcon />
+      <SendMessageIcon onClick={submit} />
     </ChatInputContainer>
   );
 };

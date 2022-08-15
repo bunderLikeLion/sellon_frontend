@@ -5,7 +5,9 @@ const client = axiosInstance;
 const messagesRelatedAPI = {
   getMessages: (dealingId) => {
     return client
-      .get('messages/', { params: { dealing_id: dealingId } })
+      .get('messages/', {
+        params: { ordering: 'created_at', dealing_id: dealingId },
+      })
       .then((res) => res.data);
   },
 

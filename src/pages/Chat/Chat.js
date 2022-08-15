@@ -87,10 +87,6 @@ const Chat = () => {
     }
   }, [selectedDeal]);
 
-  useEffect(() => {
-    console.log(opponent, 'opp');
-  }, [opponent]);
-
   return (
     <WrapContainer>
       <AlignContainer>
