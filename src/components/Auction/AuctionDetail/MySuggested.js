@@ -51,13 +51,18 @@ const MyItemContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 80%;
+  margin-left: 1rem;
 `;
 
 const BeforeIcon = styled(NavigateBeforeIcon)`
+  position: absolute;
+  left: 0;
   font-size: 2rem !important;
   color: #d9d9d9;
 `;
 const AfterIcon = styled(NavigateNextIcon)`
+  position: absolute;
+  right: 0;
   font-size: 2rem !important;
   color: #d9d9d9;
 `;
@@ -65,6 +70,7 @@ const AfterIcon = styled(NavigateNextIcon)`
 const MyItem = styled(CardMedia)`
   width: 5.5rem;
   height: 5.5rem;
+  margin-left: 1.5rem;
   border-radius: 1rem;
   background: #f00;
 `;
@@ -99,7 +105,6 @@ const MySuggested = (props) => {
           myProductGroup?.results[0]?.products.map((singleItem) => {
             return (
               <MyItem key={singleItem?.id} image={singleItem?.thumbnail?.file}>
-                내아이템
                 <DeleteIcon
                   onClick={() => {
                     deleteAuctionItem({

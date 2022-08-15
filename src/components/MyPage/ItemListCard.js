@@ -61,6 +61,7 @@ const ProductCard = styled(Card)`
 `;
 
 const StyledCardHeader = styled(CardHeader)`
+  height: 7vh;
   padding: 1rem !important;
 `;
 

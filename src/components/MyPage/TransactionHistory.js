@@ -164,6 +164,8 @@ const StyledCardButton = styled(Button)`
   background: ${(props) => props.theme.color_button__ok} !important;
   overflow: hidden !important;
   font-weight: bold !important;
+  color: black !important;
+  background: #d9d9d9 !important;
 `;
 
 const DetailsRightContainer = styled(DetailsLeftContainer)`
@@ -173,6 +175,7 @@ const DetailsRightContainer = styled(DetailsLeftContainer)`
   align-content: flex-start;
   flex-wrap: wrap;
   width: 41%;
+  margin-left: 10%;
 `;
 
 //전체화면 우측 영역
@@ -205,6 +208,7 @@ const MyScopeInfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 50%;
+  padding-right: 5%;
 `;
 
 const MyScopeInfo = styled(StarIcon)`
@@ -220,12 +224,14 @@ const DealCountInfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 70%;
+  padding-right: 5%;
 `;
 
 const DealCountInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-right: 5%;
   font-size: 1rem;
 `;
 

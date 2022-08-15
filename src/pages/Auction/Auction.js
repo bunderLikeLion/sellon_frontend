@@ -64,6 +64,7 @@ const InterestedUser = styled.div`
 `;
 
 const SubNav2 = styled.div`
+  position: relative;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -84,12 +85,12 @@ const HomeGroundTitle = styled.div`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
-const AuctionPublishLink = styled(Link)`
-  width: fit-content;
-`;
-
 const SubmitAuctionButton = styled.button`
-  padding: 0.5rem 0.8rem;
+  position: absolute;
+  right: 0;
+  width: 10rem;
+  height: 2rem;
+  margin: 0.3rem;
   border: none;
   border-radius: 1.1rem;
   font-size: 1rem;
@@ -210,6 +211,10 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const AuctionPublishLink = styled(Link)`
+  width: fit-content;
+`;
+
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
@@ -241,9 +246,6 @@ const Auction = () => {
     <WrapContainer>
       <Form>
         <SubNav2>
-          <SubNav2_left>
-            <HomeGroundTitle>홈그라운드 경매</HomeGroundTitle>
-          </SubNav2_left>
           <AuctionPublishLink to={'/auction/newauction'}>
             <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
           </AuctionPublishLink>
@@ -286,7 +288,7 @@ const Auction = () => {
             </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small">정렬</InputLabelBox>
+            <InputLabelBox id="demo-select-small">최신순</InputLabelBox>
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"

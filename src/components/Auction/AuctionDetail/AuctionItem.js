@@ -12,6 +12,7 @@ import AuctionDetailModal from './AuctionDetailModal';
 import { useParams } from 'react-router-dom';
 
 const Container = styled(Card)`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -19,6 +20,19 @@ const Container = styled(Card)`
   width: 50%;
   height: ${(props) => (props.isInventoryOpened ? '92vh' : '63.5vh')};
   background: transparent !important;
+`;
+
+const Button = styled.button`
+  position: absolute;
+  bottom: -1.5rem;
+  right: 1.5rem;
+  width: 6rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemImgContainer = styled.div`
@@ -133,21 +147,21 @@ const AuctionItem = (props) => {
       sx={{ maxWidth: '100%' }}
       isInventoryOpened={props.isInventoryOpened}
     >
-      {props?.singleAuctionData?.is_interested ? (
-        <button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
-          관심경매 삭제
-        </button>
-      ) : (
-        <button onClick={() => createInterestedAuction(relatedAuctionId)}>
-          관심경매 등록
-        </button>
-      )}
       <ItemImgContainer>
         <ItemImg
           onClick={handleModal}
           component="img"
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
+        {props?.singleAuctionData?.is_interested ? (
+            <Button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
+              관심경매 삭제
+            </Button>
+        ) : (
+            <Button onClick={() => createInterestedAuction(relatedAuctionId)}>
+              관심경매 등록
+            </Button>
+        )}
         <AuctionDetailModal
           handleModal={handleModal}
           isModalOpened={isModalOpened}

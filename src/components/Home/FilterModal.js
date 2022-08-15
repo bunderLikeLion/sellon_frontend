@@ -6,110 +6,88 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-import { Radio, TextField } from '@mui/material';
+import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
+import { FormatAlignCenterSharp } from '@mui/icons-material';
 
 const ModalContainer = styled(Box)`
   position: relative;
-  top: 50%;
-  left: 50%;
   width: 50rem;
   height: 42rem;
+  top: 50%;
+  left: 50%;
   padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
-  background: ${(props) => props.theme.color_background__default};
   color: ${(props) => props.theme.color_white};
+  background: ${(props) => props.theme.color_background__default};
 `;
 
 const CloseBtn = styled(CloseIcon)`
   position: absolute;
   top: 10px;
   right: 10px;
-  color: ${(props) => props.theme.color_font__number};
   cursor: pointer;
+  color: ${(props) => props.theme.color_font__number};
 `;
 
 const GuideContainer = styled.div`
   width: 100%;
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  margin-top: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const StyledLabel = styled.p`
   width: 8rem;
-  margin: 1rem 0;
+  margin: 1rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const StyledTextField = styled(TextField)`
-  //자동완성 글씨, 배경 자동 변경 방지 설정
-  input:-webkit-autofill {
-    -webkit-text-fill-color: ${(props) =>
-      props.theme.color_font__secondary} !important;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-  & label.Mui-focused {
-    border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover} 1;
-  }
-  & .MuiInput-underline:after {
-    border: 2px solid transparent;
-    border-image: ${(props) => props.theme.color_border__hover} 1;
-  }
-  & .MuiOutlinedInput-root {
-    color: ${(props) => props.theme.color_white} !important;
-    & fieldset {
-      border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
-    }
-    &:hover fieldset {
-      border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
-    }
-    &.Mui-focused fieldset {
-      border: 2px solid transparent;
-      border-image: ${(props) => props.theme.color_border__hover} 1;
-    }
-  }
-  width: 25rem;
-`;
-
-const LocationRadioBox = styled.div`
+const SearchLabelContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   width: 25rem;
-  height: 5rem;
-  min-height: 3rem;
-  padding: 1rem;
-  margin-top: 2rem;
-  border-radius: 0.3rem;
-  border: 2px solid transparent;
-  border-image: ${(props) => props.theme.color_border__hover} 1;
-  background: ${(props) => props.theme.color_background__default};
+  height: 3.5rem;
+  border: none;
+  border-radius: 10px;
+  background: ${(props) => props.theme.color_background__primary};
+`;
+
+const TextContainer = styled.p`
+  position: absolute;
+  left: 3%;
+  font-size: 1rem;
+  color: ${(props) => props.theme.color_font__tertiary};
+`;
+
+const InputArea = styled.input`
+  position: absolute;
+  right: 5%;
+  width: 20rem;
+  height: 2rem;
+  border: none;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const CategoryRadioBox = styled.div`
   width: 40rem;
-  height: 17rem;
-  min-height: 3rem;
-  padding: 1rem;
+  height: 22rem;
+  min-height: 2rem;
   margin-top: 2rem;
-  background: ${(props) => props.theme.color_background__default};
-  border-radius: 0.3rem;
-  border: 2px solid transparent;
-  border-image: ${(props) => props.theme.color_border__hover} 1;
+  padding: 0.1rem;
+  border: 0.1px solid transparent;
+  border-radius: 10px;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const CategoryContentBox = styled.div`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  padding: 0 0.4rem;
 `;
 
 const SingleRadio = styled.span`
@@ -129,22 +107,17 @@ const StyledRadio = styled(Radio)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
-const StatusRadio = styled(SingleRadio)`
-  width: 40%;
-  margin-top: 0.2rem;
-`;
-
 const ApplyButton = styled(Button)`
   position: absolute !important;
-  bottom: 4%;
-  right: 4%;
   width: 7rem;
   height: 2.5rem;
+  right: 4%;
+  bottom: 7%;
   margin-top: 1.5rem !important;
   border: none !important;
   font-size: 1.2rem !important;
-  background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_white} !important;
+  background: ${(props) => props.theme.color_button__ok};
 `;
 
 const FilterModal = (props) => {
@@ -206,29 +179,10 @@ const FilterModal = (props) => {
             필터 및 검색
           </Typography>
         </GuideContainer>
-        <SearchContainer>
-          {/*<StyledLabel>상품명</StyledLabel>*/}
-          <StyledTextField
-            id="outlined-name"
-            value={filterKeyword}
-            onChange={handleFilterKeyword}
-            placeholder="상품명"
-          />
-        </SearchContainer>
-
-        <LocationRadioBox>
-          <StyledLabel>경매 지역</StyledLabel>
-          <CategoryContentBox>
-            <StatusRadio>
-              <StyledRadio {...areRestrictionControlProps('0')} />
-              <RadioLabel>전국구</RadioLabel>
-            </StatusRadio>
-            <StatusRadio>
-              <StyledRadio {...areRestrictionControlProps('1')} />
-              <RadioLabel>홈그라운드</RadioLabel>
-            </StatusRadio>
-          </CategoryContentBox>
-        </LocationRadioBox>
+        <SearchLabelContainer>
+          <TextContainer>상품명</TextContainer>
+          <InputArea></InputArea>
+        </SearchLabelContainer>
 
         <CategoryRadioBox>
           <StyledLabel>상품 카테고리</StyledLabel>
@@ -245,7 +199,11 @@ const FilterModal = (props) => {
           </CategoryContentBox>
         </CategoryRadioBox>
 
-        <ApplyButton variant="outlined" onClick={submitFilter}>
+        <ApplyButton
+          variant="outlined"
+          onClick={submitFilter}
+          sx={{ borderRadius: 2.4 }}
+        >
           적용
         </ApplyButton>
       </ModalContainer>
