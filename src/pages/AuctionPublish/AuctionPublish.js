@@ -25,7 +25,7 @@ const BigText = styled.div`
   font-weight: 700;
 `;
 
-const NewAuction1 = () => {
+const AuctionPublish = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
@@ -44,4 +44,4 @@ const NewAuction1 = () => {
   );
 };
 
-export default NewAuction1;
+export default AuctionPublish;
