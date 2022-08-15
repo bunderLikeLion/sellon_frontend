@@ -178,6 +178,10 @@ const InterestedAuctionListCard = () => {
       */}
 
       {/*
+        관심 경매 카드 디자인 이상함. 글씨 크기가 너무 크다.
+       */}
+
+      {/*
         TODO: 카드 제목 세로 정렬 가운데
        */}
 
