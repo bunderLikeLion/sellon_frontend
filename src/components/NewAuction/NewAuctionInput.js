@@ -74,11 +74,6 @@ const RadioLabel = styled.label`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const RadioStatusLabel = styled.label`
-  width: 4rem;
-  color: ${(props) => props.theme.color_font__secondary};
-`;
-
 const NewAuctionInput = (props) => {
   const timeControlProps = (item) => ({
     checked: props.auctionTime === item,
