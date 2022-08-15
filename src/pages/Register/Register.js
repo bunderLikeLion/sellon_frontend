@@ -154,11 +154,6 @@ const Register = () => {
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
-          <InputContainer>
-            <Input placeholder="홈그라운드" type="text" />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
-          </InputContainer>
-
           <ButtonContainer>
             <Button disabled={isSubmitting}>
               {isSubmitting && 'Submitting...'}
