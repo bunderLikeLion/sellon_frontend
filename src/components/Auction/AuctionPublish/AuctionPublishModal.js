@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import ClearIcon from '@mui/icons-material/Clear';
 import InventoryItem from './InventoryItem';
 import useMyProductsQuery from 'queries/product/useMyProductsQuery';
+import { Pagination } from '@mui/material';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -58,6 +59,24 @@ const InventoryContainer = styled.div`
   overflow-y: scroll;
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2%;
+`;
+
+const StyledPagination = styled(Pagination)`
+  .MuiPagination-ul {
+    button {
+      color: ${(props) => props.theme.color_font__secondary} !important;
+    }
+    .Mui-selected {
+      color: ${(props) => props.theme.color_font__number} !important;
+    }
+  }
+`;
+
 const AuctionPublishModal = (props) => {
   const { data: myProducts, isSuccess } = useMyProductsQuery(1, 30);
 
@@ -93,6 +112,9 @@ const AuctionPublishModal = (props) => {
                     />
                   );
                 })}
+            <PaginationContainer>
+              <StyledPagination />
+            </PaginationContainer>
           </InventoryContainer>
         </ContentContainer>
       </ModalContainer>
