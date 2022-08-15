@@ -205,7 +205,7 @@ const Auction = () => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
   const [cat, setCat] = useState('');
-  const [sort, handleSort] = useInput('');
+  const [sort, handleSort] = useInput('recent');
 
   const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
 
@@ -273,7 +273,7 @@ const Auction = () => {
             </FilterButton>
           </SubNav3_left>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small">최신순</InputLabelBox>
+            {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
@@ -287,6 +287,7 @@ const Auction = () => {
                 },
               }}
             >
+              <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
               <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
               <MenuItemBox value={'interest'}>관심순</MenuItemBox>

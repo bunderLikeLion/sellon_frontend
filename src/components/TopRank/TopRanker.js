@@ -62,6 +62,7 @@ const TopDealCount = styled.p`
 const QuestionIcon = styled(HelpIcon)`
   float: right;
   margin: 0 2rem 1rem 0;
+  cursor: pointer;
 `;
 
 const MonthlyChampionImg = styled(CardMedia)`
@@ -126,7 +127,6 @@ const StyledTooltip = styled(({ className, ...props }) => (
 const HoverMsg = `
 hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
 `;
-
 
 const TopRanker = () => {
   const {

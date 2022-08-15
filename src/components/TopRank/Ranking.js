@@ -25,6 +25,7 @@ const RankingTitle = styled.div`
 
 const QuestionIcon = styled(HelpIcon)`
   font-size: 1.4rem;
+  cursor: pointer;
 `;
 
 const BottomContainer = styled.div`
@@ -83,7 +84,6 @@ const StyledTooltip = styled(({ className, ...props }) => (
 const HoverMsg = `
 hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
 `;
-
 
 const Ranking = () => {
   return (

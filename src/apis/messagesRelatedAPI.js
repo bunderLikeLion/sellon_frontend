@@ -12,7 +12,6 @@ const messagesRelatedAPI = {
   },
 
   postMessage: (payload) => {
-    console.log(payload, 'ppppppppppppppppppppp');
     return client.post('messages/', payload).then((res) => res.data);
   },
 };

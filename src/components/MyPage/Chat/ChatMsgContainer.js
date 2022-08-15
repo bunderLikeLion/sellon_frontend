@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useMessagesQuery } from 'queries/messages';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import { useEffect, useRef } from 'react';
 
 const ChatContentContainer = styled.div`
   height: 100%;
@@ -37,13 +38,24 @@ const ChatBox = styled.div`
 `;
 
 const ChatMsgContainer = ({ opponent, selectedDeal }) => {
+  const scrollRef = useRef();
   const user = useRecoilValue(userAtom);
   const { data: msgData, isSuccess: msgDataFetched } = useMessagesQuery(
     selectedDeal?.id
   );
 
+  const scrollToBottom = () => {
+    const scroll =
+      scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+    scrollRef.current.scrollTo(0, scroll);
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [msgData]);
+
   return (
-    <ChatContentContainer>
+    <ChatContentContainer ref={scrollRef}>
       {msgDataFetched &&
         msgData.map((singleMsg) => {
           if (singleMsg?.sender?.id === user?.pk) {
