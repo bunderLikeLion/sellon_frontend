@@ -7,9 +7,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-import { Radio, TextField } from '@mui/material';
+import { Radio, TextField, InputAdornment } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
+import { FormatAlignCenterSharp } from '@mui/icons-material';
+import { color } from '@mui/system';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -49,37 +51,18 @@ const StyledLabel = styled.p`
 `;
 
 const StyledTextField = styled(TextField)`
-  //자동완성 글씨, 배경 자동 변경 방지 설정
-  input:-webkit-autofill {
-    -webkit-text-fill-color: ${(props) =>
-      props.theme.color_font__secondary} !important;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-  & label.Mui-focused {
-    border: 2px solid transparent;
-    background: ${(props) => props.theme.color_background__primary};
-  }
-  & .MuiInput-underline:after {
-    border: 2px solid transparent;
-    background: ${(props) => props.theme.color_background__primary};
-  }
-  & .MuiOutlinedInput-root {
-    color: ${(props) => props.theme.color_white} !important;
-    & fieldset {
-      border: 2px solid transparent;
-      border-radius: 10px;
-      background: ${(props) => props.theme.color_background__primary};
-    }
-    &:hover fieldset {
-      border: 2px solid transparent;
-      background: ${(props) => props.theme.color_background__primary};
-    }
-    &.Mui-focused fieldset {
-      border: 2px solid transparent;
-      background: ${(props) => props.theme.color_background__primary};
-    }
-  }
   width: 25rem;
+  height: 4rem;
+  min-height: 2rem;
+  background: red;
+  border: 0.1px solid transparent;
+  border-radius: 10px;
+  color: ${(props) => props.theme.color_white} !important;
+  -webkit-text-fill-color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const SearchButton = styled(SearchIcon)`
+  color: ${(props) => props.theme.color_white};
 `;
 
 const CategoryRadioBox = styled.div`
@@ -125,7 +108,6 @@ const ApplyButton = styled(Button)`
   height: 2.5rem;
   margin-top: 1.5rem !important;
   border: none !important;
-  border-radius: 10px;
   font-size: 1.2rem !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_button__ok};
@@ -197,9 +179,22 @@ const FilterModal = (props) => {
             value={filterKeyword}
             onChange={handleFilterKeyword}
             placeholder="상품명"
-          >
-            <SearchIcon/>
-          </StyledTextField>
+            sx={[
+              { bgcolor: '#252040' },
+              {
+                '& .MuiButton-root': {
+                  backgroundColor: 'red',
+                },
+              },
+            ]}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <SearchButton />
+                </InputAdornment>
+              ),
+            }}
+          />
         </SearchContainer>
 
         <CategoryRadioBox>
@@ -217,7 +212,11 @@ const FilterModal = (props) => {
           </CategoryContentBox>
         </CategoryRadioBox>
 
-        <ApplyButton variant="outlined" onClick={submitFilter}>
+        <ApplyButton
+          variant="outlined"
+          onClick={submitFilter}
+          sx={{ borderRadius: 2.4 }}
+        >
           적용
         </ApplyButton>
       </ModalContainer>
