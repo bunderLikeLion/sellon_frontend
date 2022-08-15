@@ -14,6 +14,7 @@ import { useProductGroupsQuery, useSingleAuctionQuery } from 'queries/auction';
 import useInput from 'hooks/useInput';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 const Container = styled.div`
   height: 100%;
@@ -177,21 +178,25 @@ const Auctioneer = () => {
             <SelectBtn onClick={SelecthandleModal}>선택</SelectBtn>
             <DiscardBtn onClick={DiscardhandleModal}>폐기</DiscardBtn>
             <BuyerList>
-              <MyRadioGroup name="buyer-radio-group">
-                {productGroups?.results.map((singleGroup) => {
-                  return (
-                    <BuyerContainer>
-                      <FormControlLabel
-                        control={<StyledRadio />}
-                        {...selectedProductGroupControlProps(
-                          `${singleGroup?.id}`
-                        )}
-                      />
-                      <BuyerSingleBox singleGroup={singleGroup} />
-                    </BuyerContainer>
-                  );
-                })}
-              </MyRadioGroup>
+              {
+                productGroups?.total_count > 0 ? (
+                  <MyRadioGroup name="buyer-radio-group">
+                    {productGroups?.results.map((singleGroup) => {
+                      return (
+                        <BuyerContainer>
+                          <FormControlLabel
+                            control={<StyledRadio />}
+                            {...selectedProductGroupControlProps(
+                              `${singleGroup?.id}`
+                            )}
+                          />
+                          <BuyerSingleBox singleGroup={singleGroup} />
+                        </BuyerContainer>
+                      );
+                    })}
+                  </MyRadioGroup>
+                ) : <EmptyListPlaceHolder message="아직 경매 참여자가 없습니다 🥺" />
+              }
             </BuyerList>
             <PaginationContainer>
               <StyledPagination

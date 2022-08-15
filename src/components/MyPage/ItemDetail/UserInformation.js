@@ -4,14 +4,18 @@ import { Avatar } from '@mui/material';
 
 const UserInfo = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
-  height: 15%;
+  height: auto;
+  margin-bottom: 3rem;
+  position: relative;
 `;
 
 const ProfileImg = styled(Avatar)`
-  height: 4rem !important;
-  width: 4rem !important;
+  height: 3rem !important;
+  width: 3rem !important;
+  position: absolute;
+  top: 0.7rem;
 `;
 
 const UserName = styled.div`

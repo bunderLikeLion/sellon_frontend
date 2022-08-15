@@ -25,6 +25,9 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
+
+
 const InterestedAuctionListCard = () => {
   const [pageNum, setPageNum] = useState(1);
   const user = useRecoilValue(userAtom);

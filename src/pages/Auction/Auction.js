@@ -5,14 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import WrapContainer from 'layouts/WrapContainer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
-import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
@@ -67,18 +67,31 @@ const AuctionUploadContainer = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
-  margin: 1rem 0;
+  margin: 2rem 0px 1rem 0px;
 `;
 
 const AuctionPublishLink = styled(Link)`
-  width: 10.5rem;
-  height: 2rem;
+  width: fit-content;
 `;
+// const SubNav2_left = styled.div`
+//   display: flex;
+//   align-items: center;
+//   margin-top: 6rem;
+// `;
+
+// const HomeGroundTitle = styled.div`
+//   margin-bottom: 0.5rem;
+//   font-weight: bold;
+//   font-size: 1.2rem;
+//   color: ${(props) => props.theme.color_font__primary};
+// `;
 
 const SubmitAuctionButton = styled.button`
-  width: 10rem;
+  position: relative;
+  right: 0;
+  width: 8rem;
   height: 2rem;
-  margin: 0.3rem;
+  margin: 1.5rem 0px 0px 0px !important;
   border: none;
   border-radius: 1.1rem;
   font-size: 1rem;
@@ -106,7 +119,6 @@ const FameShortcut = styled(Link)`
   background: transparent;
   :hover {
     font-weight: 800;
-    transistion: 0.3s;
   }
 `;
 
@@ -115,7 +127,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin: 3rem 0 5rem 0;
+  margin: 0.5rem 0 5rem 0;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -146,10 +158,16 @@ const HomeGroundAuction = styled.div`
 const FilterButton = styled.button`
   width: 7rem;
   height: 1.7rem;
-  border: none;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.color_font__primary};
-  background: ${(props) => props.theme.color_button__ok};
+  background: transparent;
+  border: 1px solid ${(props) => props.theme.color_border__hover__light};
+  transition: all 0.5s ease;
+
+  :hover {
+    background: ${(props) => props.theme.color_background__success};
+    border: none;
+  }
 `;
 
 const MostPopular = styled.div`
@@ -205,9 +223,8 @@ const Auction = () => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
   const [cat, setCat] = useState('');
-  const [sort, handleSort] = useInput('');
-
-  const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
+  const [sort, handleSort] = useInput('recent');
+  const [pageNum, setPageNum] = useState(1);
 
   const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
     useTodayCompletedQuery();
@@ -218,14 +235,13 @@ const Auction = () => {
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
 
-  const [pageNum, setPageNum] = useState(1);
-
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
+  const { data: myProductsData } = useMyProductsQuery(pageNum, 6);
 
   const handleChange = (event, value) => {
     setPageNum(value);
   };
+
+  const handleFilterModal = () => setIsFilterModalOpened(!isFilterModalOpened);
 
   return (
     <WrapContainer>
@@ -273,7 +289,7 @@ const Auction = () => {
             </FilterButton>
           </AuctionFilterContainer>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-            <InputLabelBox id="demo-select-small"></InputLabelBox>
+            {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
             <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
@@ -287,6 +303,7 @@ const Auction = () => {
                 },
               }}
             >
+              <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
               <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
               <MenuItemBox value={'interest'}>관심순</MenuItemBox>
@@ -298,23 +315,13 @@ const Auction = () => {
           {auctionListFetched && (
             <>
               {auctionList?.results.map((singleAuction) => {
-                if (isAuctionFinishedHandler(singleAuction?.end_at)) {
-                  // 끝난 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={true}
-                    />
-                  );
-                } else {
-                  // 진행중인 경매
-                  return (
-                    <HomeAuctionListCard
-                      auctionData={singleAuction}
-                      isFinished={false}
-                    />
-                  );
-                }
+                return (
+                  <HomeAuctionListCard
+                    auctionData={singleAuction}
+                    isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
+                    isInterested={singleAuction?.is_interested}
+                  />
+                );
               })}
             </>
           )}

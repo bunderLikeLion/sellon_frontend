@@ -129,6 +129,10 @@ const NewAuctionInput = (props) => {
         <InsideRadioBoxContainer>
           <StyledLabelText>거래 방법</StyledLabelText>
           <CategoryContentBox>
+            {/*<StatusRadioContainer>*/}
+            {/*  <StyledRadio {...methodControlProps('all')} />*/}
+            {/*  <RadioLabel>전체</RadioLabel>*/}
+            {/*</StatusRadioContainer>*/}
             <StatusRadioContainer>
               <StyledRadio {...methodControlProps('direct')} />
               <RadioLabel>직거래</RadioLabel>
