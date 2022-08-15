@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import productRelatedAPI from 'apis/productsRelatredAPI';
 import errorMsgHandler from 'utils/errorMsgHandler';
+import messagesRelatedAPI from 'apis/messagesRelatedAPI';
 
 const useMessagesQuery = (dealingId) => {
   return useQuery(
     ['messages', dealingId],
-    productRelatedAPI.getProductCategoryLists,
+    () => messagesRelatedAPI.getMessages(dealingId),
     {
-      refetchInterval: 1000 * 5,
+      refetchInterval: 1000 * 3,
+      enabled: !!dealingId,
       onError: (res) => {
         toast.dismiss();
         toast.error(errorMsgHandler(res));
