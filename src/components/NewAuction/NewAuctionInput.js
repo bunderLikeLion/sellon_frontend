@@ -65,14 +65,9 @@ const AuctionText = styled.textarea`
   background: #d9d9d9;
 `;
 
-const PeriodRadioContainer = styled(StatusRadio)`
+const StatusRadioContainer = styled(StatusRadio)`
   width: 8rem;
   margin: 0 0 0 2rem;
-`;
-
-const StatusRadioContainer = styled(StatusRadio)`
-  width: 5.5rem;
-  margin: 0 0 0 1rem;
 `;
 
 const RadioLabel = styled.label`
@@ -80,6 +75,7 @@ const RadioLabel = styled.label`
 `;
 
 const RadioStatusLabel = styled.label`
+  width: 4rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -122,14 +118,14 @@ const NewAuctionInput = (props) => {
         <InsideRadioBoxContainer>
           <StyledLabelText>경매 기간</StyledLabelText>
           <CategoryContentBox>
-            <PeriodRadioContainer>
+            <StatusRadioContainer>
               <StyledRadio {...timeControlProps('1')} />
               <RadioLabel>하루</RadioLabel>
-            </PeriodRadioContainer>
-            <PeriodRadioContainer>
+            </StatusRadioContainer>
+            <StatusRadioContainer>
               <StyledRadio {...timeControlProps('7')} />
               <RadioLabel>일주일</RadioLabel>
-            </PeriodRadioContainer>
+            </StatusRadioContainer>
           </CategoryContentBox>
         </InsideRadioBoxContainer>
       </RadioContainer>
@@ -138,17 +134,17 @@ const NewAuctionInput = (props) => {
         <InsideRadioBoxContainer>
           <StyledLabelText>거래 방법</StyledLabelText>
           <CategoryContentBox>
-            <StatusRadioContainer>
-              <StyledRadio {...methodControlProps('all')} />
-              <RadioStatusLabel>전체</RadioStatusLabel>
-            </StatusRadioContainer>
+            {/*<StatusRadioContainer>*/}
+            {/*  <StyledRadio {...methodControlProps('all')} />*/}
+            {/*  <RadioLabel>전체</RadioLabel>*/}
+            {/*</StatusRadioContainer>*/}
             <StatusRadioContainer>
               <StyledRadio {...methodControlProps('direct')} />
-              <RadioStatusLabel>직거래</RadioStatusLabel>
+              <RadioLabel>직거래</RadioLabel>
             </StatusRadioContainer>
             <StatusRadioContainer>
               <StyledRadio {...methodControlProps('delivery')} />
-              <RadioStatusLabel>택배</RadioStatusLabel>
+              <RadioLabel>택배</RadioLabel>
             </StatusRadioContainer>
           </CategoryContentBox>
         </InsideRadioBoxContainer>
