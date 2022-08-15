@@ -48,6 +48,7 @@ const InterestedAuctionListCard = () => {
         title={'test'}
         thumbnailUrl={dummyImageUrl}
         participantCount={20}
+        startAt={'2022.08.05'}
         period={'D-7'}
         linkTo={'/auctions/1'}
         linkCondition={!isFinished}

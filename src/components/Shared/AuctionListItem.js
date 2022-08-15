@@ -91,13 +91,18 @@ const CardFooter = styled.div`
 
 const ParticipantLabel = styled.span`
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   width: 5rem;
   height: 2.4rem;
   font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__number} !important;
   background: transparent;
+`;
+
+const StartDateLabel = styled.div`
+  font-size: 0.8rem;
+  color: ${(props) => props.theme.color_font__tertiary} !important;
 `;
 
 const PeriodLabel = styled.span`
@@ -161,6 +166,7 @@ const AuctionListItem = ({
   thumbnailUrl,
   participantCount,
   period,
+  startAt,
   isFinished,
   isInterested,
   displayInterestedBtn,
@@ -173,10 +179,6 @@ const AuctionListItem = ({
     이때, 반응형 수치도 고려 헤야 함.
   */
 
-  /*
-    TODO: 당일 종료, D-1 등의 라벨을 좌측 상단으로 이동
-    경매 시작일자 및 사람수가 아래에 노출되게 하기
-  */
   return (
     <CardContainer>
       {/* TODO: 관심 경매 API 연결하기 */}
@@ -205,6 +207,9 @@ const AuctionListItem = ({
           </CardHeaderTitle>
         </CardHeader>
         <CardFooter>
+          <StartDateLabel>
+            {startAt}
+          </StartDateLabel>
           <ParticipantLabel>
             <PersonIcon />
             {participantCount}명

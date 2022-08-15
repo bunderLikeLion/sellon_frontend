@@ -1,5 +1,6 @@
 import AuctionListItem from 'components/Shared/AuctionListItem';
 import timeLimitHandler from 'utils/timeLimitHandler';
+import dateFormatter from 'utils/dateFormatter';
 
 const InterestedAuctionListCard = ({ isFinished, data }) => {
   return (
@@ -8,6 +9,7 @@ const InterestedAuctionListCard = ({ isFinished, data }) => {
       thumbnailUrl={data?.product?.thumbnail?.file}
       participantCount={data?.product_groups_count}
       period={timeLimitHandler(data?.end_at)}
+      startAt={dateFormatter(data?.created_at)}
       isFinished={isFinished}
       linkTo={`/auction/${data.id}`}
       linkCondition={!isFinished}
