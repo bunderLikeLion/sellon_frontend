@@ -385,6 +385,7 @@ const TransactionHistory = () => {
         </RightSmallContainer>
         <RightSmallContainer>
           내 평점
+          {/* TODO: border만 있는 별을 기본적으로 5개 띄우고 점수에따라 차있는 별 아이콘을 쓰기 */}
           <MyScopeInfoContainer>
             <MyScopeInfo fontSize="large" />
             <MyScopeInfo fontSize="large" />
