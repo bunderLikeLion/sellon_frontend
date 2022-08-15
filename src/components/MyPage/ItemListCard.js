@@ -12,22 +12,46 @@ import { useDeleteProductMutation } from 'queries/product';
 
 const Container = styled.div`
   position: relative;
-  width: 30%;
+  max-width: calc((100% - 6rem) / 4);
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: calc((100% - 6rem) / 4);
   height: 100%;
-  margin: 3rem 0 0 1rem;
   z-index: 1;
-  border-radius: 20px !important;
+  border-radius: 1rem !important;
   border: 1.3px solid transparent;
 
   :hover {
     border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
   }
+
+  @media screen and (max-width: 1300px) {
+    flex-basis: calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
+  }
+  @media screen and (max-width: 500px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 `;
 
 const ImageContainer = styled(CardMedia)`
   width: 3rem;
-  height: 13rem;
+  height: 8rem;
   background-size: cover;
+
+  @media screen and (max-width: 1300px) {
+    height: 10rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: 12rem;
+  }
 `;
 
 const ProductCard = styled(Card)`
@@ -37,7 +61,6 @@ const ProductCard = styled(Card)`
 `;
 
 const StyledCardHeader = styled(CardHeader)`
-  height: 7vh;
   padding: 1rem !important;
 `;
 
@@ -59,8 +82,10 @@ const CategoryBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5rem;
-  height: 2rem;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.3rem 1rem;
+  font-size: 0.8rem;
   margin-bottom: 1rem;
   border-radius: 20px;
   color: ${(props) => props.theme.color_buttontext__ok};
