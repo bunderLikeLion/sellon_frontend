@@ -211,6 +211,10 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const AuctionPublishLink = styled(Link)`
+  width: fit-content;
+`;
+
 const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
