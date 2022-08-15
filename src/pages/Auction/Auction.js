@@ -62,11 +62,10 @@ const InterestedUser = styled.div`
   font-size: 0.8rem;
 `;
 
-const SubNav2 = styled.div`
-  position: relative;
+const AuctionUploadContainer = styled.div`
   display: flex;
-  align-items: flex-end;
   justify-content: flex-end;
+  align-items: flex-end;
   width: 100%;
   margin: 2rem 0px 1rem 0px;
 `;
@@ -135,7 +134,7 @@ const SubNav = styled.div`
   background: ${(props) => props.theme.color_background__success};
 `;
 
-const SubNav3 = styled.div`
+const AuctionListContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -144,7 +143,7 @@ const SubNav3 = styled.div`
   margin-bottom: 1rem;
 `;
 
-const SubNav3_left = styled.div`
+const AuctionFilterContainer = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -187,6 +186,7 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
+  color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
 
@@ -246,11 +246,11 @@ const Auction = () => {
   return (
     <WrapContainer>
       <Form>
-        <SubNav2>
+        <AuctionUploadContainer>
           <AuctionPublishLink to={'/auction/newauction'}>
             <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
           </AuctionPublishLink>
-        </SubNav2>
+        </AuctionUploadContainer>
 
         <SubNav>
           <DealComplete>
@@ -281,13 +281,13 @@ const Auction = () => {
             })}
         </BestAuctionContainer>
 
-        <SubNav3>
-          <SubNav3_left>
+        <AuctionListContainer>
+          <AuctionFilterContainer>
             <HomeGroundAuction>홈그라운드의 모든 거래</HomeGroundAuction>
             <FilterButton onClick={handleFilterModal}>
               필터 및 검색
             </FilterButton>
-          </SubNav3_left>
+          </AuctionFilterContainer>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
             {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
             <SelectBox
@@ -309,7 +309,7 @@ const Auction = () => {
               <MenuItemBox value={'interest'}>관심순</MenuItemBox>
             </SelectBox>
           </FormControl>
-        </SubNav3>
+        </AuctionListContainer>
 
         <Container>
           {auctionListFetched && (
@@ -348,4 +348,5 @@ const Auction = () => {
     </WrapContainer>
   );
 };
+
 export default Auction;
