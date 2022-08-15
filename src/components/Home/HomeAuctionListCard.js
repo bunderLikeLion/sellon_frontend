@@ -10,8 +10,8 @@ const HomeAuctionListCard = ({ isFinished, auctionData }) => {
     <AuctionListItem
       id={auctionData?.id}
       user={user}
-      owner_id={auctionData?.owner?.id}
-      product_id={auctionData?.product?.id}
+      ownerId={auctionData?.owner?.id}
+      productId={auctionData?.product?.id}
       title={auctionData?.title}
       thumbnailUrl={auctionData?.product?.thumbnail?.file}
       participantCount={auctionData?.product_groups_count}

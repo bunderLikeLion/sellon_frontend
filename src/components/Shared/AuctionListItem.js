@@ -134,13 +134,13 @@ export const FinishedCard = styled(FinishedOverlay)`
   participantCount: 경매 참여자 수
   period: 남은 기간
 */
-const AuctionListItem = ({ id, user, title, thumbnailUrl, participantCount, period, isFinished, product_id, owner_id }) => {
+const AuctionListItem = ({ id, user, title, thumbnailUrl, participantCount, period, isFinished, productId, ownerId }) => {
   return (
     <CardContainer>
       <ConditionalLink
         to={
-         owner_id === user?.pk
-            ? `/auctioneer/${id}/${product_id}`
+         ownerId === user?.pk
+            ? `/auctioneer/${id}/${productId}`
             : `/auction/${id}`
         }
         condition={!isFinished}
