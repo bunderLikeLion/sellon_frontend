@@ -64,9 +64,9 @@ const TextContainer = styled.p`
 
 const InputArea = styled.input`
   position: absolute;
+  right: 5%;
   width: 20rem;
   height: 2rem;
-  right: 5%;
   border: none;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_background__primary};
