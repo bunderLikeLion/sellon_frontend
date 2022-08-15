@@ -66,6 +66,8 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
+
 const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [pageNum, setPageNum] = useState(1);

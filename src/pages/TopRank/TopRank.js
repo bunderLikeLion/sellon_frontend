@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 import { useTodayCompletedQuery } from 'queries/dealing';
 
+// TODO: tooltip에 삼각형 색깔 다름.
+
 const AlignContainer = styled.div`
   display: flex;
   align-items: center;
