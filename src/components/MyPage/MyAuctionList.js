@@ -1,21 +1,11 @@
-import Card from '@mui/material/Card';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
+import AuctionListContainer from 'components/Shared/AuctionListContainer';
 import AuctionListItem from 'components/Shared/AuctionListItem';
 import { userAtom } from '../../states';
-
-const StyledWrapContainer = styled.div`
-  display: flex !important;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-  gap: 2rem 2rem;
-`;
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -46,48 +36,21 @@ const InterestedAuctionListCard = () => {
     setPageNum(value);
   };
 
+  // TODO: isFinished props
+  const isFinished = false
   const dummyImageUrl = "https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200";
 
   return (
 
-    <StyledWrapContainer>
-      {/*Card_01*/}
-      {/*
-        TODO: 카드 상단 이미지가 너무 높이가 낮다. 늘리여야한다.
-        이때, 반응형 수치도 고려 헤야 함.
-      */}
-
-      {/*
-        TODO: 당일 종료, D-1 등의 라벨을 좌측 상단으로 이동
-        경매 시작일자 및 사람수가 아래에 노출되게 하기
-
-        요건 모든 경매 카드에 대해서 행해져야 함.
-      */}
-
-      {/*
-        관심 경매 카드 디자인 이상함. 글씨 크기가 너무 크다.
-       */}
-
-      {/*
-        TODO: 카드 제목 세로 정렬 가운데
-       */}
-
-      {/*
-        TODO: 관심경매의 X를 하트 아이콘으로 바꾸기
-      */}
-
-      {/* TODO: 관심경매 카드 글씨 크기 조절 */}
-
-      {/* TODO: 아이템 추가 모달 디자인 - 인풋을 통일하기 */}
+    <AuctionListContainer>
+      {/* TODO: 하기 컴포넌트에 API 연결하기 */}
       <AuctionListItem
-        id={1}
-        ownerId={2}
-        productId={1}
         title={'test'}
-        user={user}
         thumbnailUrl={dummyImageUrl}
         participantCount={20}
         period={'D-7'}
+        linkTo={'/auctions/1'}
+        linkCondition={!isFinished}
       />
       {/*Pagination*/}
       <PaginationContainer>
@@ -97,7 +60,7 @@ const InterestedAuctionListCard = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-    </StyledWrapContainer>
+    </AuctionListContainer>
   );
 };
 

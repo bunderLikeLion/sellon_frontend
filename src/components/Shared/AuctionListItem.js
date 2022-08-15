@@ -2,7 +2,10 @@ import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import CardMedia from '@mui/material/CardMedia';
 import PersonIcon from '@mui/icons-material/Person';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ConditionalLink from 'components/ConditionalLink';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -98,8 +101,11 @@ const ParticipantLabel = styled.span`
 `;
 
 const PeriodLabel = styled.span`
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
   width: fit-content;
-  padding: 0.1rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   text-align: center;
   border-radius: 4rem;
   border: none;
@@ -107,6 +113,17 @@ const PeriodLabel = styled.span`
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__success} !important;
 `;
+
+const InterestedButton = styled.button`
+  position: absolute !important;
+  right: 1rem;
+  margin-top: 0.5rem !important;
+  border-radius: 50rem !important;
+  font-size: 2rem !important;
+  background: none;
+  border: none;
+  color: ${(props) => props.theme.color_white};
+`
 
 export const FinishedOverlay = styled(Card)`
   display: ${(props) => (props.isFinished ? 'flex' : 'none')};
@@ -133,17 +150,48 @@ export const FinishedCard = styled(FinishedOverlay)`
   thumbnail_url: 이미지 url
   participantCount: 경매 참여자 수
   period: 남은 기간
+  isFinished: 종료된 경매 여부
+  isInterested: 관심 경매 여부
+  displayInterestedBtn: 관심 경매 등록 버튼 노출 여부
+  linkTo: 연결 링크
+  linkCondition: 링크 조건
 */
-const AuctionListItem = ({ id, user, title, thumbnailUrl, participantCount, period, isFinished, productId, ownerId }) => {
+const AuctionListItem = ({
+  title,
+  thumbnailUrl,
+  participantCount,
+  period,
+  isFinished,
+  isInterested,
+  displayInterestedBtn,
+  linkTo,
+  linkCondition,
+}) => {
+
+  /*
+    TODO: 카드 상단 이미지가 너무 높이가 하단 컨텐츠에 비해 낮다. 늘려야한다.
+    이때, 반응형 수치도 고려 헤야 함.
+  */
+
+  /*
+    TODO: 당일 종료, D-1 등의 라벨을 좌측 상단으로 이동
+    경매 시작일자 및 사람수가 아래에 노출되게 하기
+  */
   return (
     <CardContainer>
+      {/* TODO: 관심 경매 API 연결하기 */}
+      {displayInterestedBtn && (
+        <InterestedButton>
+          {isInterested ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </InterestedButton>
+      )}
+
+      <PeriodLabel>
+        {period}
+      </PeriodLabel>
       <ConditionalLink
-        to={
-         ownerId === user?.pk
-            ? `/auctioneer/${id}/${productId}`
-            : `/auction/${id}`
-        }
-        condition={!isFinished}
+        to={linkTo}
+        condition={linkCondition}
       >
         <StyledCardMedia
           component="img"
@@ -161,9 +209,6 @@ const AuctionListItem = ({ id, user, title, thumbnailUrl, participantCount, peri
             <PersonIcon />
             {participantCount}명
           </ParticipantLabel>
-          <PeriodLabel>
-            {period}
-          </PeriodLabel>
         </CardFooter>
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
