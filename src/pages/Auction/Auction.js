@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import WrapContainer from 'layouts/WrapContainer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import { StyledLink } from 'styles/StyledComponetStyles';

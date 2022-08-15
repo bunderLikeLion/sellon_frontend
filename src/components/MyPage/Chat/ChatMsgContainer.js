@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { useMessagesQuery } from 'queries/messages';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const ChatContentContainer = styled.div`
   height: 100%;
@@ -33,15 +36,26 @@ const ChatBox = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-const ChatMsgContainer = ({ opponent }) => {
+const ChatMsgContainer = ({ opponent, selectedDeal }) => {
+  const user = useRecoilValue(userAtom);
+  const { data: msgData, isSuccess: msgDataFetched } = useMessagesQuery(
+    selectedDeal?.id
+  );
+
   return (
     <ChatContentContainer>
-      <ChatBubble>trtr</ChatBubble>
-      <ChatBox>
-        상대방:
-        거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다거래합시다
-      </ChatBox>
-      <ChatBox>나: 네~</ChatBox>
+      {msgDataFetched &&
+        msgData.map((singleMsg) => {
+          if (singleMsg?.sender?.id === user?.pk) {
+            return <ChatBox>{singleMsg?.content}</ChatBox>;
+          } else {
+            return (
+              <ChatBox>
+                {opponent?.username}: {singleMsg?.content}
+              </ChatBox>
+            );
+          }
+        })}
     </ChatContentContainer>
   );
 };
