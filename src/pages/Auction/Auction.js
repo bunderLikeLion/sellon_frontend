@@ -78,7 +78,7 @@ const AuctionPublishLink = styled(Link)`
 const SubmitAuctionButton = styled.button`
   position: relative;
   right: 0;
-  width: 10rem;
+  width: 8rem;
   height: 2rem;
   margin: 0.3rem;
   border: none;
