@@ -45,12 +45,11 @@ const SubPic = styled(CardMedia)`
 
 const ItemPicWrapper = styled.div`
   display: flex;
-  align-items: felx-start;
+  align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
   height: 28.3rem;
 `;
-
 
 const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
   const { thumbnail, images, id } = singleItemData;

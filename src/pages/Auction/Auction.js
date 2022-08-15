@@ -5,14 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import WrapContainer from 'layouts/WrapContainer';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
-import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
@@ -66,30 +66,33 @@ const SubNav2 = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
-  margin: 1rem 0;
+  margin: 2rem 0px 1rem 0px;
 `;
 
-const SubNav2_left = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 6rem;
+const AuctionPublishLink = styled(Link)`
+  width: fit-content;
 `;
+// const SubNav2_left = styled.div`
+//   display: flex;
+//   align-items: center;
+//   margin-top: 6rem;
+// `;
 
-const HomeGroundTitle = styled.div`
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__primary};
-`;
+// const HomeGroundTitle = styled.div`
+//   margin-bottom: 0.5rem;
+//   font-weight: bold;
+//   font-size: 1.2rem;
+//   color: ${(props) => props.theme.color_font__primary};
+// `;
 
 const SubmitAuctionButton = styled.button`
-  position: absolute;
+  position: relative;
   right: 0;
-  width: 10rem;
+  width: 8rem;
   height: 2rem;
-  margin: 0.3rem;
+  margin: 1.5rem 0px 0px 0px !important;
   border: none;
   border-radius: 1.1rem;
   font-size: 1rem;
@@ -117,7 +120,6 @@ const FameShortcut = styled(Link)`
   background: transparent;
   :hover {
     font-weight: 800;
-    transistion: 0.3s;
   }
 `;
 
@@ -126,7 +128,7 @@ const SubNav = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  margin-bottom: 5rem;
+  margin: 0.5rem 0 5rem 0;
   border-radius: 1rem;
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -157,10 +159,16 @@ const HomeGroundAuction = styled.div`
 const FilterButton = styled.button`
   width: 7rem;
   height: 1.7rem;
-  border: none;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.color_font__primary};
-  background: ${(props) => props.theme.color_button__ok};
+  background: transparent;
+  border: 1px solid ${(props) => props.theme.color_border__hover__light};
+  transition: all 0.5s ease;
+
+  :hover {
+    background: ${(props) => props.theme.color_background__success};
+    border: none;
+  }
 `;
 
 const MostPopular = styled.div`
@@ -208,10 +216,6 @@ const StyledPagination = styled(Pagination)`
       color: ${(props) => props.theme.color_font__number} !important;
     }
   }
-`;
-
-const AuctionPublishLink = styled(Link)`
-  width: fit-content;
 `;
 
 const Auction = () => {

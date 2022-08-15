@@ -53,7 +53,7 @@ const StyledCardMedia = styled(CardMedia)`
 const CardHeader = styled.div`
   display: flex;
   justify-content: start;
-  padding: 0.8rem 1rem 0.2rem 1rem;
+  padding: 0.8rem 1.2rem 0.2rem 1.2rem;
   align-items: center;
   width: 100%;
 `;
@@ -77,7 +77,7 @@ const CardHeaderTitle = styled.div`
   text-overflow: ellipsis !important;
   white-space: nowrap;
   font-size: 1.2rem;
-  padding: 0.5rem 0 0.5rem 0.7rem;
+  padding: 0.5rem 0.7rem;
 `;
 
 const CardFooter = styled.div`
@@ -86,7 +86,7 @@ const CardFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 1.2rem;
 `;
 
 const ParticipantLabel = styled.span`
@@ -108,7 +108,7 @@ const StartDateLabel = styled.div`
 const PeriodLabel = styled.span`
   position: absolute;
   left: 1rem;
-  top: 0.5rem;
+  top: 1rem;
   width: fit-content;
   padding: 0.3rem 0.8rem;
   text-align: center;

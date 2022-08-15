@@ -6,14 +6,14 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 90%;
+  justify-content: space-around;
+  width: 100%;
+  gap: 2rem;
 `;
 
 const TopDealer = styled.div`
   position: relative;
-  width: 18.5rem;
+  flex: 1;
   height: 13rem;
   margin: 1rem 0;
   padding: 1rem;
@@ -25,10 +25,15 @@ const TopDealerImg = styled(CardMedia)`
   position: absolute;
   right: 5%;
   top: -10%;
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   border-radius: 50%;
   box-shadow: 0.2rem 0.2rem 0.6rem 0 #d3d3d3;
+
+  @media screen and (max-width: 1000px) {
+    width: 10rem;
+    height: 10rem;
+  }
 `;
 
 const TopDealerInfo = styled.div`
@@ -39,7 +44,7 @@ const TopDealerInfo = styled.div`
 
 const TopDealerTitle = styled.p`
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -51,32 +56,40 @@ const TopDealerUserContainer = styled.div`
 const TopDealerUser = styled.p`
   margin-right: 0.5rem;
   font-size: 1.2rem;
+  line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const TopDealCount = styled.p`
   font-size: 0.8rem;
+  line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const QuestionIcon = styled(HelpIcon)`
   float: right;
   margin: 0 2rem 1rem 0;
+  cursor: pointer;
 `;
 
 const MonthlyChampionImg = styled(CardMedia)`
   position: absolute;
   right: 5%;
   top: -10%;
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   border-radius: 50%;
   box-shadow: 0.2rem 0.2rem 0.6rem 0 #d3d3d3;
+
+  @media screen and (max-width: 1000px) {
+    width: 10rem;
+    height: 10rem;
+  }
 `;
 
 const MonthlyChampion = styled.div`
   position: relative;
-  width: 18.5rem;
+  flex: 1;
   height: 13rem;
   margin: 1rem 0;
   padding: 1rem;
@@ -92,7 +105,7 @@ const MonthlyChampionInfo = styled.div`
 
 const MonthlyTitle = styled.p`
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -104,11 +117,13 @@ const MonthlyUserContainer = styled.div`
 const MonthlyChampionUser = styled.p`
   margin-right: 0.5rem;
   font-size: 1.2rem;
+  line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const MonthlyChampionDealCount = styled.p`
   font-size: 0.8rem;
+  line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -126,7 +141,6 @@ const StyledTooltip = styled(({ className, ...props }) => (
 const HoverMsg = `
 hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
 `;
-
 
 const TopRanker = () => {
   const {

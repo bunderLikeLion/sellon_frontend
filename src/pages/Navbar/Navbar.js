@@ -19,12 +19,14 @@ const Navbar = styled(AppBar)`
 
 const LinkText = styled(Link)`
   transition: 0.2s;
+  background-color: transparent !important;;
   :hover {
     color: ${(props) => props.theme.color_border__hover__light} !important;
   }
 `;
 
 const LinkButton = styled(Button)`
+  background-color: transparent !important;;
   transition: 0.2s !important;
   :hover {
     color: ${(props) => props.theme.color_border__hover__light} !important;
@@ -62,7 +64,6 @@ const ResponsiveAppBar = () => {
             <Typography
               variant="h6"
               noWrap
-              component="a"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -84,7 +85,6 @@ const ResponsiveAppBar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },

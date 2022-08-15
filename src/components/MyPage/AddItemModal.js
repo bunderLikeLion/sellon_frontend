@@ -20,7 +20,7 @@ const ModalContainer = styled(Box)`
   top: 50%;
   left: 50%;
   width: 50rem;
-  height: 70%;
+  height: 80%;
   padding: 3rem;
   overflow-y: scroll;
   border-radius: 1rem;
@@ -31,6 +31,7 @@ const ModalContainer = styled(Box)`
 
 const StyledTypography = styled(Typography)`
   color: ${(props) => props.theme.color_font__primary};
+  font-size: 1.2rem !important;
 `;
 
 export const CloseBtn = styled(CloseIcon)`
@@ -50,13 +51,13 @@ const AddBtn = styled(Button)`
   margin-top: 1.5rem !important;
   border: none !important;
   font-size: 1.2rem !important;
-  background: ${(props) => props.theme.color_background__success};
+  background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_white} !important;
 `;
 
 export const StyledLabel = styled.p`
   font-size: 1rem;
-  color: ${(props) => props.theme.color_font__secondary};
+  color: ${(props) => props.theme.color_font__tertiary};
 `;
 
 const StyledTextField = styled(TextField)`
@@ -77,17 +78,8 @@ const StyledTextField = styled(TextField)`
   & .MuiOutlinedInput-root {
     width: 15rem;
     height: 2.5rem;
-    padding: 0;
+    padding-left: 1rem;
     font-size: 1rem;
-    // border: 3px solid transparent;
-    // border-radius: 1rem;
-    // background-origin: border-box !important;
-    // background-clip: content-box, border-box !important;
-    // background-image: linear-gradient(
-    //     ${(props) => props.theme.color_background__default},
-    //     ${(props) => props.theme.color_background__default}
-    //   ),
-    //   ${(props) => props.theme.color_border__hover} !important;
     color: #ffffff !important;
     & fieldset {
       border: 2px solid transparent;
@@ -111,13 +103,6 @@ export const StatusRadioBox = styled.div`
   border-radius: 1rem;
   color: #ffffff !important;
   background: ${(props) => props.theme.color_background__primary};
-  // background-origin: border-box !important;
-  // background-clip: content-box, border-box !important;
-  // background-image: linear-gradient(
-  //     ${(props) => props.theme.color_background__default},
-  //     ${(props) => props.theme.color_background__default}
-  //   ),
-  //   ${(props) => props.theme.color_border__hover} !important;
 `;
 
 const CategoryRadioBox = styled.div`
@@ -130,13 +115,6 @@ const CategoryRadioBox = styled.div`
   border-radius: 1rem;
   color: #ffffff !important;
   background: ${(props) => props.theme.color_background__primary};
-  // background-origin: border-box !important;
-  // background-clip: content-box, border-box !important;
-  // background-image: linear-gradient(
-  //     ${(props) => props.theme.color_background__default},
-  //     ${(props) => props.theme.color_background__default}
-  //   ),
-  //   ${(props) => props.theme.color_border__hover} !important;
 `;
 
 const ContainerBox = styled.div`
@@ -150,21 +128,14 @@ const ContainerBox = styled.div`
   font-size: 1rem;
   border: 3px solid transparent;
   border-radius: 1rem;
-  color: #ffffff !important;
+  color: ${(props) => props.theme.color_font__white} !important;
   background: ${(props) => props.theme.color_background__primary};
-  // background-origin: border-box !important;
-  // background-clip: content-box, border-box !important;
-  // background-image: linear-gradient(
-  //     ${(props) => props.theme.color_background__default},
-  //     ${(props) => props.theme.color_background__default}
-  //   ),
-  //   ${(props) => props.theme.color_border__hover} !important;
 `;
 
 const ImageContainerBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: fit-content;
   min-height: 3rem;
   margin: 2rem 0;
@@ -172,7 +143,7 @@ const ImageContainerBox = styled.div`
   font-size: 1rem;
   border: 3px solid transparent;
   border-radius: 1rem;
-  color: #ffffff !important;
+  color: ${(props) => props.theme.color_font__white} !important;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
@@ -182,7 +153,7 @@ export const InsideRadioBox = styled.div`
 
 export const InsideBox = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   width: fit-content;
   padding: 0 1rem;
 `;
@@ -190,6 +161,7 @@ export const InsideBox = styled.div`
 export const CategoryContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   width: 100%;
 `;
 
@@ -198,14 +170,16 @@ const SingleRadio = styled.span`
   justify-content: flex-start;
   align-items: center;
   width: 25%;
-  margin-bottom: 0.3rem;
+  margin-top: 1rem;
 `;
 
 const RadioLabel = styled.label`
+  font-size: 0.9rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 export const StyledRadio = styled(Radio)`
+  padding-left: 0 !important;
   color: ${(props) => props.theme.color_white} !important;
 `;
 
@@ -219,14 +193,7 @@ const InputQuantityBox = styled.div`
   font-size: 1rem;
   border: 3px solid transparent;
   border-radius: 1rem;
-  color: #ffffff !important;
-  // background-origin: border-box !important;
-  // background-clip: content-box, border-box !important;
-  // background-image: linear-gradient(
-  //     ${(props) => props.theme.color_background__default},
-  //     ${(props) => props.theme.color_background__default}
-  //   ),
-  //   ${(props) => props.theme.color_border__hover} !important;
+  color: ${(props) => props.theme.color_white} !important;
 `;
 
 const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
@@ -237,11 +204,23 @@ const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
     font-size: 1rem;
     border: none;
     background: transparent;
-    color: #fff;
+    color: ${(props) => props.theme.color_font__secondary};
   }
   &:focus-visible {
     outline: none;
   }
+`;
+
+const ItemTextarea = styled.textarea`
+  width: 100%;
+  height: 12rem;
+  padding: 1rem;
+  margin-top: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const AddItemModal = ({ handleModal, isModalOpened }) => {
@@ -252,6 +231,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
   const [status, handleStatus, statusReset] = useInput('');
   const [category, handleCategory, categoryReset] = useInput('');
   const [quantity, handleQuantity, quantityReset] = useInput('1');
+  const [itemDesc, handleItemDesc] = useInput('');
 
   const closeModal = () => {
     itemNameReset();
@@ -296,7 +276,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     frm.append('name', itemName);
     frm.append('quality', +status);
     frm.append('quantity', quantity);
-    frm.append('description', editorRef.current?.getInstance().getHTML());
+    frm.append('description', itemDesc);
     postSubmit(frm);
   };
 
@@ -396,23 +376,12 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         </ContainerBox>
 
         <StyledLabel>아이템 설명 </StyledLabel>
-        <Editor
-          ref={editorRef} // DOM 선택용 useRef
+        <ItemTextarea
+          ref={editorRef}
+          onChange={handleItemDesc}
           placeholder="내용을 입력해주세요."
-          previewStyle="vertical" // 미리보기 스타일 지정
-          height="300px" // 에디터 창 높이
-          initialEditType="wysiwyg" //
-          toolbarItems={[
-            // 툴바 옵션 설정
-            ['heading', 'bold', 'italic', 'strike'],
-            ['hr', 'quote'],
-            ['ul', 'ol', 'task', 'indent', 'outdent'],
-            ['table', 'image', 'link'],
-            ['code', 'codeblock'],
-          ]}
-          useCommandShortcut={false} // 키보드 입력 컨트롤 방지
-          theme="dark"
-        />
+        ></ItemTextarea>
+
         <AddBtn variant="outlined" onClick={submit}>
           추가
         </AddBtn>
