@@ -9,10 +9,10 @@ import { FinishedCard } from '../Home/HomeAuctionListCard';
 const CardContainer = styled(Card)`
   position: relative;
 
-  max-width: calc((100% - 7.5rem) / 4);
+  max-width: calc((100% - 6rem) / 4);
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: calc((100% - 7.5rem) / 4);
+  flex-basis: calc((100% - 6rem) / 4);
   border-radius: 1rem !important;
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
@@ -24,13 +24,13 @@ const CardContainer = styled(Card)`
   }
 
   @media screen and (max-width: 1300px) {
-    flex-basis: calc((100% - 5rem) / 3);
-    max-width: calc((100% - 5rem) / 3);
+    flex-basis: calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
   }
 
   @media screen and (max-width: 1000px) {
-    flex-basis: calc((100% - 2.5rem) / 2);
-    max-width: calc((100% - 2.5rem) / 2);
+    flex-basis: calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
   }
 
   @media screen and (max-width: 500px) {

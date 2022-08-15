@@ -14,16 +14,16 @@ const StyledWrapContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  gap: 2rem 2.5rem;
+  gap: 2rem 2rem;
 `;
 
 const CardContainer = styled(Card)`
   position: relative;
   border-radius: 1rem !important;
-  max-width: calc((100% - 7.5rem) / 4);
+  max-width: calc((100% - 6rem) / 4);
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: calc((100% - 7.5rem) / 4);
+  flex-basis: calc((100% - 6rem) / 4);
   color: ${(props) => props.theme.color_font__secondary} !important;
   background: ${(props) => props.theme.color_background__primary} !important;
   border: 1.3px solid transparent;
@@ -33,13 +33,13 @@ const CardContainer = styled(Card)`
   }
 
   @media screen and (max-width: 1300px) {
-    flex-basis: calc((100% - 5rem) / 3);
-    max-width: calc((100% - 5rem) / 3);
+    flex-basis: calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
   }
 
   @media screen and (max-width: 1000px) {
-    flex-basis: calc((100% - 2.5rem) / 2);
-    max-width: calc((100% - 2.5rem) / 2);
+    flex-basis: calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
   }
   @media screen and (max-width: 500px) {
     flex-basis: 100%;
@@ -175,10 +175,6 @@ const InterestedAuctionListCard = () => {
         경매 시작일자 및 사람수가 아래에 노출되게 하기
 
         요건 모든 경매 카드에 대해서 행해져야 함.
-      */}
-
-      {/*
-        TODO: 카드의 폭이 늘면 좋겠다. 모든 반응형 목록에 대해서
       */}
 
       {/*

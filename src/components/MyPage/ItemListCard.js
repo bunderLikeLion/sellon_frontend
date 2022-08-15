@@ -12,10 +12,10 @@ import { useDeleteProductMutation } from 'queries/product';
 
 const Container = styled.div`
   position: relative;
-  max-width: calc((100% - 7.5rem) / 4);
+  max-width: calc((100% - 6rem) / 4);
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: calc((100% - 7.5rem) / 4);
+  flex-basis: calc((100% - 6rem) / 4);
   height: 100%;
   z-index: 1;
   border-radius: 1rem !important;
@@ -26,13 +26,13 @@ const Container = styled.div`
   }
 
   @media screen and (max-width: 1300px) {
-    flex-basis: calc((100% - 5rem) / 3);
-    max-width: calc((100% - 5rem) / 3);
+    flex-basis: calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
   }
 
   @media screen and (max-width: 1000px) {
-    flex-basis: calc((100% - 2.5rem) / 2);
-    max-width: calc((100% - 2.5rem) / 2);
+    flex-basis: calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
   }
   @media screen and (max-width: 500px) {
     flex-basis: 100%;

@@ -175,7 +175,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  gap: 2rem 2.5rem;
+  gap: 2rem 2rem;
 `;
 
 const SelectBox = styled(Select)`

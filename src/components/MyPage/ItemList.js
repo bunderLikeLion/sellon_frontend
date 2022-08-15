@@ -14,7 +14,7 @@ const FlexContainer = styled.div`
   justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2rem 2.5rem;
+  gap: 2rem 2rem;
   margin-top: 2rem;
 `;
 
