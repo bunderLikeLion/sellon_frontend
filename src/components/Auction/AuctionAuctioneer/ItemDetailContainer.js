@@ -64,7 +64,6 @@ const AuctionDetailContainers = styled.div`
 
 const ItemDetailContainer = ({ singleAuctionData }) => {
   // const auctionData = queryClient.getQueryData(['auctionInfo']);
-  console.log(singleAuctionData, 'Oahjsdbajksd');
 
   return (
     <Container>
