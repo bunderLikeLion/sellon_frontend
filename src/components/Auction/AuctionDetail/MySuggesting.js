@@ -9,12 +9,27 @@ import { queryClient } from 'index';
 import InventoryCard from './InventoryCard';
 import { useParams } from 'react-router-dom';
 
+
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+`;
+
+const TopWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: flex-start;
+  width: 100%;
+  height: 2.7rem;
+`;
+
+const BottomWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: flex-start;
+  width: 65rem;
+  height: 8rem;
 `;
 
 const GuideContainer = styled.div`
@@ -25,7 +40,7 @@ const GuideContainer = styled.div`
 `;
 
 const GuideComment = styled.h1`
-  margin-left: 13%;
+  margin-left: 5rem;
   font-size: 1.2rem;
   font-weight: 400;
 `;
@@ -111,16 +126,44 @@ const DeleteButton = styled.button`
 `;
 
 const AllInButton = styled.button`
-  position: absolute;
-  top: 5%;
-  right: 1%;
-  width: 6%;
-  height: 13%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.8rem;
+  height: 1.7rem;
+  margin-right: 1rem;
+  color: ${(props) => props.theme.color_font__primary}; 
   font-size: 1rem;
   font-weight: 500;
-  border-radius: 0.8rem;
-  background: ${(props) => props.theme.color_button__ok};
+  border: 0.1px transparent;
+  border-radius: 0.5rem;
+  background: ${(props) => props.theme.color_background__warning};
 `;
+
+const PaginationBeforeIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 8rem;
+  margin-right: 2rem;
+`;
+
+const PaginationAfterIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 8rem;
+  margin-left: 1.2rem;
+`;
+
+const InventoryListContainer = styled.div`
+  width: 53rem;
+`;
+//background: lightgray;
+
+
+
+
 
 const MySuggesting = () => {
   const { id: relatedAuctionId } = useParams();
@@ -135,46 +178,53 @@ const MySuggesting = () => {
 
   return (
     <Container>
-      <GuideContainer>
-        <GuideComment>인벤토리</GuideComment>
-      </GuideContainer>
+      <TopWrapper>
+        <GuideContainer>
+          <GuideComment>인벤토리</GuideComment>
+        </GuideContainer>
+        <AllInButton onClick={handleModal}>올인</AllInButton>
+      </TopWrapper>
+      <BottomWrapper>
+        <PaginationBeforeIconContainer>
+          {inventoryPageNum !== 1 ? (
+            <BeforeIcon onClick={() => setInventoryPageNum(inventoryPageNum - 1)} />
+          ) : (
+            <DisabledBeforeIcon />
+          )}
+        </PaginationBeforeIconContainer>
+        <InventoryListContainer>
+          {myProductFetched &&
+            myProductsData.results.map((singleProduct) => {
+              if (singleProduct?.status === 'hidden') {
+                return (
+                  <InventoryCard
+                    key={singleProduct.id}
+                    singleProduct={singleProduct}
+                    relatedAuctionId={relatedAuctionId}
+                    isUsable={true}
+                  />
+                );
+              } else {
+                return (
+                  <InventoryCard
+                    key={singleProduct.id}
+                    singleProduct={singleProduct}
+                    relatedAuctionId={relatedAuctionId}
+                    isUsable={false}
+                  />
+                );
+              }
+            })}
+        </InventoryListContainer>
+        <PaginationAfterIconContainer>
+          {inventoryPageNum !== myProductsData?.total_pages ? (
+            <AfterIcon onClick={() => setInventoryPageNum(inventoryPageNum + 1)} />
+          ) : (
+            <DisabledAfterIcon />
+          )}
+        </PaginationAfterIconContainer>
+      </BottomWrapper>
 
-      {inventoryPageNum !== 1 ? (
-        <BeforeIcon onClick={() => setInventoryPageNum(inventoryPageNum - 1)} />
-      ) : (
-        <DisabledBeforeIcon />
-      )}
-
-      {myProductFetched &&
-        myProductsData.results.map((singleProduct) => {
-          if (singleProduct?.status === 'hidden') {
-            return (
-              <InventoryCard
-                key={singleProduct.id}
-                singleProduct={singleProduct}
-                relatedAuctionId={relatedAuctionId}
-                isUsable={true}
-              />
-            );
-          } else {
-            return (
-              <InventoryCard
-                key={singleProduct.id}
-                singleProduct={singleProduct}
-                relatedAuctionId={relatedAuctionId}
-                isUsable={false}
-              />
-            );
-          }
-        })}
-
-      {inventoryPageNum !== myProductsData?.total_pages ? (
-        <AfterIcon onClick={() => setInventoryPageNum(inventoryPageNum + 1)} />
-      ) : (
-        <DisabledAfterIcon />
-      )}
-
-      <AllInButton onClick={handleModal}>올인</AllInButton>
       <ValidationModal
         handleModal={handleModal}
         isModalOpened={isModalOpened}
