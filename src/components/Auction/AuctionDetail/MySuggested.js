@@ -82,11 +82,22 @@ const BeforeIcon = styled(NavigateBeforeIcon)`
   font-size: 2rem !important;
   color: #d9d9d9;
 `;
+
+const DisabledBeforeIcon = styled(BeforeIcon)`
+  cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
+`;
+
 const AfterIcon = styled(NavigateNextIcon)`
   position: absolute;
   right: 0;
   font-size: 2rem !important;
   color: #d9d9d9;
+`;
+
+const DisabledAfterIcon = styled(AfterIcon)`
+  cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
 `;
 
 const MyItem = styled(CardMedia)`
@@ -105,12 +116,13 @@ const DeleteIcon = styled(HighlightOffIcon)`
 `;
 
 const MySuggested = (props) => {
-  const [page, setPage] = useState(1);
   const { id: relatedAuctionId } = useParams();
-  const { pk: userId } = useRecoilValue(userAtom);
+  const { id: userId } = useRecoilValue(userAtom);
+  const [productGroupPage, setProductGroupPage] = useState(1);
+  const [pageLength, setPageLength] = useState(1);
 
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
-    useMyProductGroupQuery(relatedAuctionId, userId, page, 4);
+    useMyProductGroupQuery(relatedAuctionId, userId, productGroupPage, 4);
 
   const { mutate: deleteAuctionItem } =
     useDeleteAuctionItemMutation(relatedAuctionId);
@@ -122,7 +134,13 @@ const MySuggested = (props) => {
       </ButtonContainer>
       <Comment>내가 제시한 물건</Comment>
       <MyItemContainer>
-        <BeforeIcon />
+        {productGroupPage !== 1 ? (
+          <BeforeIcon
+            onClick={() => setProductGroupPage(productGroupPage - 1)}
+          />
+        ) : (
+          <DisabledBeforeIcon />
+        )}
         {myProductGroupFetched &&
           myProductGroup?.results[0]?.products.map((singleItem) => {
             return (
@@ -137,7 +155,13 @@ const MySuggested = (props) => {
               </MyItem>
             );
           })}
-        <AfterIcon />
+        {productGroupPage !== myProductGroup?.total_pages ? (
+          <AfterIcon
+            onClick={() => setProductGroupPage(productGroupPage + 1)}
+          />
+        ) : (
+          <DisabledAfterIcon />
+        )}
       </MyItemContainer>
     </Container>
   );
