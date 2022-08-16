@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const SectionContainer = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 6rem 2rem;
-`
+`;
 
 const MainIntroduceContainer = styled(SectionContainer)`
   margin-top: 2rem;
@@ -33,7 +34,7 @@ const MainIntroduceContainer = styled(SectionContainer)`
 
 const ServiceIntroduceContainer = styled(SectionContainer)`
   background: ${(props) => props.theme.color_background__primary};
-`
+`;
 
 const BestDealingContainer = styled(SectionContainer)``;
 
@@ -58,7 +59,7 @@ const MainTitle = styled.h1`
     font-size: 1.8rem;
     line-height: 2rem;
   }
-`
+`;
 
 const MainIntroduceButtonContainer = styled.div`
   display: flex;
@@ -80,12 +81,12 @@ const AuctionButton = styled.button`
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
   border: none;
-  padding: .7rem .8rem;
+  padding: 0.7rem 0.8rem;
   font-size: 1.1rem;
   width: fit-content;
   height: fit-content;
   border-radius: 10px;
-`
+`;
 
 const TopRankButton = styled.button`
   background: none;
@@ -93,13 +94,11 @@ const TopRankButton = styled.button`
   border: none;
   padding: 1rem;
   font-size: 1.1rem;
-`
+`;
 
-const MainImageContainer = styled.div`
-`
+const MainImageContainer = styled.div``;
 
-const MainImage = styled.img`
-`
+const MainImage = styled.img``;
 
 const ServiceList = styled.div`
   display: flex;
@@ -108,7 +107,7 @@ const ServiceList = styled.div`
   max-width: 1060px !important;
   width: 100%;
   gap: 4rem;
-`
+`;
 
 const ServiceItem = styled.div`
   display: flex;
@@ -121,10 +120,10 @@ const ServiceItem = styled.div`
     flex-direction: column;
 
     &:nth-child(2) {
-    flex-direction: column-reverse;
+      flex-direction: column-reverse;
     }
   }
-`
+`;
 
 const ServiceTextContainer = styled.div`
   display: flex;
@@ -140,7 +139,7 @@ const ServiceTextContainer = styled.div`
     flex-shrink: 1;
     flex-basis: auto;
   }
-`
+`;
 
 const ServiceMediaContainer = styled.div`
   background-color: aliceblue;
@@ -154,7 +153,7 @@ const ServiceMediaContainer = styled.div`
     flex-shrink: 1;
     flex-basis: auto;
   }
-`
+`;
 
 const SubLabel = styled.span`
   background: ${(props) => props.theme.color_background__success};
@@ -163,14 +162,14 @@ const SubLabel = styled.span`
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.2rem;
-`
+`;
 
 const ItemTitle = styled.h2`
   font-size: 2rem;
   line-height: 2rem;
   font-weight: 800;
   color: ${(props) => props.theme.color_font__primary};
-`
+`;
 
 const ServiceDescription = styled.p`
   margin-top: 1rem;
@@ -179,7 +178,7 @@ const ServiceDescription = styled.p`
   line-height: 1.4rem;
 
   color: ${(props) => props.theme.color_font__tertiary};
-`
+`;
 
 const TitleContainer = styled.div`
   display: flex;
@@ -196,7 +195,7 @@ const TitleContainer = styled.div`
     flex-shrink: 1;
     flex-basis: auto;
   }
-`
+`;
 
 const BestDealingList = styled.div`
   padding: 2rem;
@@ -226,27 +225,27 @@ const BestDealingItem = styled.div`
     flex-basis: auto;
     width: 100%;
   }
-`
+`;
 
 const BestDealingItemHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1.2rem;
-`
+`;
 
 const UserName = styled.div`
   font-size: 1.4rem;
   color: ${(props) => props.theme.color_font__primary};
   font-weight: 600;
-`
+`;
 
 const UserComment = styled.p`
   padding: 0.5rem 0;
   font-size: 1rem;
   line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
-`
+`;
 
 const UserAvatarContainer = styled.div`
   width: 4rem;
@@ -268,15 +267,15 @@ const StyledAccordion = styled(Accordion)`
   svg {
     fill: ${(props) => props.theme.color_white} !important;
   }
-`
+`;
 
 const StyledAccordionSummary = styled(AccordionSummary)`
   background: ${(props) => props.theme.color_background__primary} !important;
-`
+`;
 
 const AccordionTitle = styled(Typography)`
   font-size: 1.2rem !important;
-`
+`;
 
 const ParticipantBanner = styled.div`
   padding: 2rem 5rem;
@@ -293,7 +292,7 @@ const ParticipantBanner = styled.div`
     flex-direction: column;
     gap: 0.5rem;
   }
-`
+`;
 
 const BannerText = styled.h2`
   text-align: left;
@@ -306,7 +305,7 @@ const BannerText = styled.h2`
     font-size: 1.1rem;
     width: 100%;
   }
-`
+`;
 
 const ParticipantButton = styled(AuctionButton)`
   background: ${(props) => props.theme.color_button__ok};
@@ -320,7 +319,7 @@ const ParticipantButtonContainer = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
   }
-`
+`;
 
 const About = () => {
   return (
@@ -333,12 +332,12 @@ const About = () => {
         </MainTitle>
 
         <MainIntroduceButtonContainer>
-          <AuctionButton>
-            경매장으로 가기
-          </AuctionButton>
-          <TopRankButton>
-            지금까지의 거래 구경하러 가기
-          </TopRankButton>
+          <Link to="/auction">
+            <AuctionButton>경매장으로 가기</AuctionButton>
+          </Link>
+          <Link to="/toprank">
+            <TopRankButton>지금까지의 거래 구경하러 가기</TopRankButton>
+          </Link>
         </MainIntroduceButtonContainer>
 
         <MainImageContainer>
@@ -351,35 +350,28 @@ const About = () => {
         <ServiceList>
           <ServiceItem>
             <ServiceTextContainer>
-              <SubLabel>
-                물물 경매
-              </SubLabel>
-              <ItemTitle>
-                경매 , 이젠 물건으로
-              </ItemTitle>
+              <SubLabel>물물 경매</SubLabel>
+              <ItemTitle>경매 , 이젠 물건으로</ItemTitle>
               <ServiceDescription>
-                sellon에서 돈이 아닌 물건으로<br />
-                경매를 열어보세요.<br />
+                sellon에서 돈이 아닌 물건으로
+                <br />
+                경매를 열어보세요.
+                <br />
                 <br />
                 뜻밖의 기회에 원해왔던 물건을 찾을 수 있습니다.
               </ServiceDescription>
             </ServiceTextContainer>
-            <ServiceMediaContainer>
-            </ServiceMediaContainer>
+            <ServiceMediaContainer></ServiceMediaContainer>
           </ServiceItem>
 
           <ServiceItem>
-            <ServiceMediaContainer>
-            </ServiceMediaContainer>
+            <ServiceMediaContainer></ServiceMediaContainer>
             <ServiceTextContainer>
-              <SubLabel>
-                개성 넘치는 경매
-              </SubLabel>
-              <ItemTitle>
-                경매, 일상 속의 물건으로
-              </ItemTitle>
+              <SubLabel>개성 넘치는 경매</SubLabel>
+              <ItemTitle>경매, 일상 속의 물건으로</ItemTitle>
               <ServiceDescription>
-                sellon은 무거운 분위기의 경매장이 아닙니다.<br />
+                sellon은 무거운 분위기의 경매장이 아닙니다.
+                <br />
                 언제든지 개성 넘치는 물건들을 거래할 수 있습니다.
               </ServiceDescription>
             </ServiceTextContainer>
@@ -390,23 +382,17 @@ const About = () => {
       {/* 특이한 거래 영역 */}
       <BestDealingContainer>
         <TitleContainer>
-          <SubLabel>
-            엄청난 거래도 해낼 수 있는 경매
-          </SubLabel>
-          <ItemTitle>
-            세상에, 나 어쩌면 릭 아저씨보다 더 대단할지도.
-          </ItemTitle>
+          <SubLabel>엄청난 거래도 해낼 수 있는 경매</SubLabel>
+          <ItemTitle>세상에, 나 어쩌면 릭 아저씨보다 더 대단할지도.</ItemTitle>
         </TitleContainer>
 
         <BestDealingList>
           <BestDealingItem>
             <BestDealingItemHeader>
               <UserAvatarContainer>
-                <UserAvatar src="https://api.sellon.link/static/avatars/1.jpg"/>
+                <UserAvatar src="https://api.sellon.link/static/avatars/1.jpg" />
               </UserAvatarContainer>
-              <UserName>
-                김유민
-              </UserName>
+              <UserName>김유민</UserName>
             </BestDealingItemHeader>
             <UserComment>
               한정판 굿즈를 저에게 필요없던 물건들과 바꾸어 얻게 돼서 기뻐요!
@@ -416,11 +402,9 @@ const About = () => {
           <BestDealingItem>
             <BestDealingItemHeader>
               <UserAvatarContainer>
-                <UserAvatar src="https://api.sellon.link/static/avatars/4.jpg"/>
+                <UserAvatar src="https://api.sellon.link/static/avatars/4.jpg" />
               </UserAvatarContainer>
-              <UserName>
-                이승환
-              </UserName>
+              <UserName>이승환</UserName>
             </BestDealingItemHeader>
             <UserComment>
               이번 거래로 원하던 만년필을 얻게 되었어요!
@@ -431,12 +415,8 @@ const About = () => {
 
       <FAQContainer>
         <TitleContainer>
-          <SubLabel>
-            FAQ
-          </SubLabel>
-          <ItemTitle>
-            자주 묻는 질문
-          </ItemTitle>
+          <SubLabel>FAQ</SubLabel>
+          <ItemTitle>자주 묻는 질문</ItemTitle>
         </TitleContainer>
 
         <AccordionContainer>
@@ -446,14 +426,13 @@ const About = () => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <AccordionTitle>
-                Q. 물건은 어떻게 등록하나요?
-              </AccordionTitle>
+              <AccordionTitle>Q. 물건은 어떻게 등록하나요?</AccordionTitle>
             </StyledAccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </Typography>
             </AccordionDetails>
           </StyledAccordion>
@@ -463,14 +442,13 @@ const About = () => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <AccordionTitle>
-                Q. 질문 질문
-              </AccordionTitle>
+              <AccordionTitle>Q. 질문 질문</AccordionTitle>
             </StyledAccordionSummary>
             <AccordionDetails>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </Typography>
             </AccordionDetails>
           </StyledAccordion>
@@ -482,9 +460,9 @@ const About = () => {
             개성넘치는 경매장, Sellon. 지금 바로 참여해보세요.
           </BannerText>
           <ParticipantButtonContainer>
-            <ParticipantButton>
-              참여하기
-            </ParticipantButton>
+            <Link to="/auction">
+              <ParticipantButton>참여하기</ParticipantButton>
+            </Link>
           </ParticipantButtonContainer>
         </ParticipantBanner>
       </ParticipantBannerContainer>
