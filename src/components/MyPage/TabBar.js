@@ -23,8 +23,8 @@ const StyledTab = styled(Tab)`
   color: ${(props) => props.theme.color_font__secondary} !important;
 `;
 
-const TabBar = () => {
-  const [value, setValue] = useState('1');
+const TabBar = ({ location }) => {
+  const [value, setValue] = useState(location ? location : '1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -34,7 +34,12 @@ const TabBar = () => {
     <Box sx={{ width: '100%', mt: '5rem', typography: 'body1' }}>
       <TabContext value={value}>
         <StyledBox sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} variant="scrollable" scrollButtons allowScrollButtonsMobile>
+          <TabList
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons
+            allowScrollButtonsMobile
+          >
             <StyledTab label="히스토리" value="1" />
             <StyledTab label="인벤토리" value="2" />
             <StyledTab label="관심경매" value="3" />

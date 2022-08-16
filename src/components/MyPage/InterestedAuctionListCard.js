@@ -5,6 +5,7 @@ import dateFormatter from 'utils/dateFormatter';
 const InterestedAuctionListCard = ({ isFinished, data }) => {
   return (
     <AuctionListItem
+      id={data?.id}
       title={data?.title}
       thumbnailUrl={data?.product?.thumbnail?.file}
       participantCount={data?.product_groups_count}
