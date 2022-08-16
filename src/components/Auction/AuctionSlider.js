@@ -4,8 +4,6 @@ import styled, { css } from 'styled-components';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'css/slick.css';
 import 'css/slick-theme.css';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 const Wrap = styled.div`
   position: relative;
   padding-bottom: 70px;
@@ -82,7 +80,7 @@ const AuctionTitle = styled.span`
   display: block;
   color: ${(props) => props.theme.color_white};
   position: absolute;
-  top: 25rem;
+  top: 24rem;
   left: 10%;
   font-size: 2rem;
   font-weight: bold;
@@ -101,11 +99,36 @@ const ProductThumbnail = styled.img`
 
 //TODO: 유저 프로필 들어가 있는 상태에서 테스트 해봐야함
 const UserAvatar = styled.img`
-  width: 200px !important;
+  width: 9% !important;
+  aspect-ratio: 1 / 1;
   position: absolute !important;
-  left: 20% !important;
-  top: 3rem !important;
+  left: 10% !important;
+  top: 17rem !important;
   border-radius: 50%;
+`;
+
+const ParticipantUserAvatar = styled.img`
+  width: 12% !important;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  position: relative !important;
+  margin-right: 0.5rem;
+`;
+
+const ParticipatedUserContainer = styled.div`
+  display: flex;
+  position: absolute;
+  top: 28rem;
+  left: 10%;
+  height: fit-content;
+  width: 55%;
+`;
+
+const OverSpan = styled.span`
+  position: absolute;
+  z-index: 2;
+  left: 24.7rem;
+  top: 1.5rem;
 `;
 
 const images = [
@@ -125,7 +148,7 @@ const images = [
 
 const AuctionSlider = ({ items }) => {
   const slickRef = useRef(null);
-
+  console.log(items[0].participants[0].avatar);
   const settings = {
     centerMode: true,
     centerPadding: '0px',
@@ -141,6 +164,7 @@ const AuctionSlider = ({ items }) => {
 
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
+  const USER_MAX_COUNT = 6;
 
   return (
     <Wrap>
@@ -153,6 +177,32 @@ const AuctionSlider = ({ items }) => {
                 <UserAvatar src={items[i]?.owner?.avatar} />
                 <AuctionTitle>{items[i]?.title}</AuctionTitle>
                 <ProductThumbnail src={items[i]?.product?.thumbnail?.file} />
+                {items[i]?.participants.length > 0 && (
+                  <ParticipatedUserContainer>
+                    {items[i].participants
+                      .slice(0, USER_MAX_COUNT)
+                      .map((el, index) => {
+                        if (index == USER_MAX_COUNT - 1) {
+                          return (
+                            <>
+                              <ParticipantUserAvatar
+                                style={{ opacity: '0.7' }}
+                                src={el.avatar}
+                              />
+                              <OverSpan>
+                                +{items[i].participants.length - USER_MAX_COUNT}
+                              </OverSpan>
+                            </>
+                          );
+                        }
+                        return (
+                          <>
+                            <ParticipantUserAvatar src={el.avatar} />
+                          </>
+                        );
+                      })}
+                  </ParticipatedUserContainer>
+                )}
               </AuctionItemContainer>
             </SlickItems>
           );
