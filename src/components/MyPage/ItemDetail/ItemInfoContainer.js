@@ -134,7 +134,7 @@ const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
         <ItemDetail>{quantity}</ItemDetail>
       </ItemCategoryContainer>
       <ItemDescriptionContainer>
-        <textarea value={description} />
+        <p>{description}</p>
       </ItemDescriptionContainer>
     </Container>
   );
