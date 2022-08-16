@@ -4,7 +4,7 @@ import { Avatar } from '@mui/material';
 
 const UserInfo = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
   height: auto;
   margin-bottom: 3rem;
@@ -12,19 +12,23 @@ const UserInfo = styled.div`
 `;
 
 const ProfileImg = styled(Avatar)`
-  height: 3rem !important;
-  width: 3rem !important;
-  position: absolute;
-  top: 0.7rem;
+  height: 2rem !important;
+  width: 2rem !important;
 `;
 
 const UserName = styled.div`
-  margin: 0 1rem 0 1rem;
-  font-size: 1.8rem;
+  margin: 0 1rem;
+  font-size: 1.2rem;
 `;
 
 const UploadDate = styled.p`
+  font-size: 0.9rem;
   color: ${(props) => props.theme.color_font__tertiary};
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const UserInformation = ({ singleItemData }) => {
@@ -36,8 +40,10 @@ const UserInformation = ({ singleItemData }) => {
           alt="Remy Sharp"
           src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg"
         />
-        <UserName>{user?.username}</UserName>
-        <UploadDate>{dateFormatter(created_at)}</UploadDate>
+        <TextContainer>
+          <UserName>{user?.username}</UserName>
+          <UploadDate>{dateFormatter(created_at)}</UploadDate>
+        </TextContainer>
       </UserInfo>
     </>
   );

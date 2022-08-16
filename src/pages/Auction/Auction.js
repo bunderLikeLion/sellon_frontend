@@ -180,7 +180,7 @@ const SelectBox = styled(Select)`
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    height: 0.9rem;
+    height: 0.8rem;
   }
 `;
 

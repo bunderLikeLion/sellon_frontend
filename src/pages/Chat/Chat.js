@@ -95,7 +95,7 @@ const Chat = () => {
             <Chat_Left>
               <MessageTitle>진행중인 거래</MessageTitle>
               <ChatContainer>
-                {dealings?.results.map((singleDeal) => {
+                {dealings?.map((singleDeal) => {
                   return (
                     <ChatLists
                       singleDeal={singleDeal}

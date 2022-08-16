@@ -48,6 +48,7 @@ const InsideRadioBoxContainer = styled(InsideRadioBox)`
   display: flex;
   align-items: center;
   height: 100%;
+  padding: .7rem !important;
 `;
 
 const StyledLabelText = styled(StyledLabel)`
@@ -133,6 +134,10 @@ const NewAuctionInput = (props) => {
             {/*  <StyledRadio {...methodControlProps('all')} />*/}
             {/*  <RadioLabel>전체</RadioLabel>*/}
             {/*</StatusRadioContainer>*/}
+            <StatusRadioContainer>
+              <StyledRadio {...methodControlProps('direct')} />
+              <RadioLabel>전체</RadioLabel>
+            </StatusRadioContainer>
             <StatusRadioContainer>
               <StyledRadio {...methodControlProps('direct')} />
               <RadioLabel>직거래</RadioLabel>

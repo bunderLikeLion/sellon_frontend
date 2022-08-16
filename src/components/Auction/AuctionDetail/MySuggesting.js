@@ -19,14 +19,12 @@ const Container = styled.div`
 
 const TopWrapper = styled.div`
   display: inline-flex;
-  flex-direction: flex-start;
   width: 100%;
   height: 2.7rem;
 `;
 
 const BottomWrapper = styled.div`
   display: inline-flex;
-  flex-direction: flex-start;
   width: 65rem;
   height: 8rem;
 `;
@@ -158,7 +156,6 @@ const PaginationAfterIconContainer = styled.div`
 const InventoryListContainer = styled.div`
   width: 53rem;
 `;
-//background: lightgray;
 
 const MySuggesting = () => {
   const { id: relatedAuctionId } = useParams();

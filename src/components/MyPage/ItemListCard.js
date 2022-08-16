@@ -95,25 +95,26 @@ const CategoryBox = styled.div`
 
 const StyledModal = styled(Box)`
   position: absolute;
-  width: 50%;
-  height: 30%;
   top: 50%;
   left: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+  height: 13rem;
+  border-radius: 1rem;
   transform: translate(-50%, -50%);
-  border: 2px solid #000;
-  border-radius: 20px;
+  background: ${(props) => props.theme.color_background__primary};
   color: ${(props) => props.theme.color_white};
-  background: ${(props) => props.theme.color_border__topleft};
 `;
 
 const Text = styled.h1`
-  position: absolute;
   display: flex;
   justify-content: center;
   width: 100%;
   height: auto;
   bottom: 40%;
-  margin: 2rem 0;
+  margin-top: 17%;
   font-weight: 600;
   font-size: 1.8rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -124,7 +125,7 @@ const DeleteButton = styled.button`
   width: 15%;
   height: 15%;
   left: 32%;
-  bottom: 20%;
+  bottom: 10%;
   margin-top: 2rem;
   border: none;
   border-radius: 0.5rem;
@@ -139,7 +140,7 @@ const DeleteCancelButton = styled.button`
   width: 15%;
   height: 15%;
   right: 32%;
-  bottom: 20%;
+  bottom: 10%;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;

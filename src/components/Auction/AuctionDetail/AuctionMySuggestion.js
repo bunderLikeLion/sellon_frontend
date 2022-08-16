@@ -4,9 +4,9 @@ import MySuggesting from './MySuggesting';
 
 const InventoryContainer = styled.div`
   position: relative;
-  transition: 2s;
+  transition: 1s;
   transform: ${(props) =>
-    props.isInventoryOpened ? 'translateY(105%)' : 'translateY(0rem)'};
+    props.isInventoryOpened ? 'translateY(101%)' : 'translateY(0rem)'};
 `;
 
 const Inventory = styled.div`

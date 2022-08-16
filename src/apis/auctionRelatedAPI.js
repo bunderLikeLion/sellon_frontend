@@ -27,9 +27,9 @@ const auctionRelatedAPI = {
     return client.post('auctions/', payload).then((res) => res.data);
   },
 
-  getInterestedAuctionLists: () => {
+  getInterestedAuctionLists: (pageNum) => {
     return client
-      .get('auctions/interested/', { params: { page: 1, per_page: 30 } })
+      .get('auctions/interested/', { params: { page: pageNum, per_page: 12 } })
       .then((res) => res.data);
   },
 

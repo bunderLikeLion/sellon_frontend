@@ -14,13 +14,7 @@ const dealingsRelatedAPI = {
   },
 
   getDealings: () => {
-    return client
-      .get('dealings/', {
-        params: {
-          per_page: 30,
-        },
-      })
-      .then((res) => res.data);
+    return client.get('dealings/').then((res) => res.data);
   },
 
   postDealingRating: (payload) => {
