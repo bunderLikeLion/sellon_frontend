@@ -229,6 +229,7 @@ const MySuggesting = () => {
         isModalOpened={isModalOpened}
         mainText="정말 올인하시겠습니까?"
         btnText="올인"
+        relatedId={relatedAuctionId}
         type="allIn"
       />
     </Container>

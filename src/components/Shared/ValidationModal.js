@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import useAllInAuctionItemMutation from '../../queries/auction/useAllInAuctionItemMutation';
-import { useParams } from 'react-router-dom';
+import { useAllInAuctionItemMutation } from 'queries/auction';
+import { useEndDealingMutation } from 'queries/dealing';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -58,6 +58,7 @@ const ValidationModal = ({
   isModalOpened,
   mainText,
   btnText,
+  relatedId,
   type,
 }) => {
   /*
@@ -65,17 +66,20 @@ const ValidationModal = ({
   isModalOpened: 모달 open/close state(상태)
   mainText: 메인 글
   btnText: 기능을 수행할 버튼의 이름
+  relatedId: 기능에 필요한 id
   type: 어떤 버튼인지
         - allIn: 올인
         - endDealing: 경매 종료
   */
 
-  const { id: auctionRelatedId } = useParams();
-  const { mutate: allInFunc } = useAllInAuctionItemMutation(auctionRelatedId);
+  const { mutate: allInFunc } = useAllInAuctionItemMutation(relatedId);
+  const { mutate: endDealingFuc } = useEndDealingMutation(relatedId);
 
   const clickBtnFunc = () => {
     if (type === 'allIn') {
       allInFunc();
+    } else if (type === 'endDealing') {
+      endDealingFuc();
     }
     handleModal();
   };

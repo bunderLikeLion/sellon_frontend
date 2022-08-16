@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import UserEvaluationModal from './UserEvaluationModal';
 import { useState } from 'react';
 import UserInfoDetailModal from './UserInfoDetailModal';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import ValidationModal from 'components/Shared/ValidationModal';
 
 const ChatMessageListContainer = styled.div`
   display: flex;
@@ -68,9 +68,14 @@ const ChatLists = ({
   selectedDeal,
   setSelectedDeal,
 }) => {
-  const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
-  const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
   const { pk: userId } = useRecoilValue(userAtom);
+  const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
+  const [isValidationModalOpened, setIsValidationModalOpened] = useState(false);
+
+  const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
+
+  const handleValidationModal = () =>
+    setIsValidationModalOpened(!isValidationModalOpened);
 
   return (
     <ChatMessageListContainer onClick={() => setSelectedDeal(singleDeal)}>
@@ -93,20 +98,29 @@ const ChatLists = ({
                 평가하기
               </ChatBoxButton>
             )}
-            {/*거래 요약 묘달 (거래 보기)*/}
-            <UserInfoDetailModal
-              handleModal={handleDetailModal}
-              isModalOpened={isDetailModalOpened}
-              singleDeal={singleDeal}
-            />
             {!singleDeal?.completed_at && (
-              <ChatBoxButton onClick={handleEvaluationModal}>
-                거래종료
+              <ChatBoxButton onClick={handleValidationModal}>
+                거래 종료
               </ChatBoxButton>
             )}
           </ChatButtonContainer>
         )}
       </ChatMessageText>
+      {/*거래 요약 묘달 (거래 보기)*/}
+      <UserInfoDetailModal
+        handleModal={handleDetailModal}
+        isModalOpened={isDetailModalOpened}
+        singleDeal={singleDeal}
+      />
+      {/*거래 종료 묘달 (거래 종료)*/}
+      <ValidationModal
+        handleModal={handleValidationModal}
+        isModalOpened={isValidationModalOpened}
+        mainText="정말 거래를 종료하시겠습니까?"
+        btnText="거래 종료"
+        relatedId={selectedDeal?.id}
+        type="endDealing"
+      />
     </ChatMessageListContainer>
   );
 };

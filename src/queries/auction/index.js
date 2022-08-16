@@ -10,3 +10,4 @@ export { default as useSingleAuctionQuery } from './useSingleAuctionQuery';
 export { default as useCreateAuctionItemMutation } from './useCreateAuctionItemMutation';
 export { default as useDeleteAuctionItemMutation } from './useDeleteAuctionItemMutation';
 export { default as usePopularAuctionsQuery } from './usePopularAuctionsQuery';
+export { default as useAllInAuctionItemMutation } from './useAllInAuctionItemMutation';
