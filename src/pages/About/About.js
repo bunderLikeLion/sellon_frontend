@@ -287,19 +287,40 @@ const ParticipantBanner = styled.div`
   justify-content: space-between;
   max-width: 1000px;
   width: 100%;
+
+  @media screen and (max-width: 700px) {
+    padding: 1.5rem 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 `
 
 const BannerText = styled.h2`
+  text-align: left;
   font-size: 1.4rem;
   line-height: 1.5rem;
   font-weight: 600;
   color: ${(props) => props.theme.color_font__primary};
+
+  @media screen and (max-width: 700px) {
+    font-size: 1.1rem;
+    width: 100%;
+  }
 `
 
 const ParticipantButton = styled(AuctionButton)`
   background: ${(props) => props.theme.color_button__ok};
   padding: 0.6rem 1.4rem;
 `;
+
+const ParticipantButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+`
 
 const About = () => {
   return (
@@ -460,9 +481,11 @@ const About = () => {
           <BannerText>
             개성넘치는 경매장, Sellon. 지금 바로 참여해보세요.
           </BannerText>
-          <ParticipantButton>
-            참여하기
-          </ParticipantButton>
+          <ParticipantButtonContainer>
+            <ParticipantButton>
+              참여하기
+            </ParticipantButton>
+          </ParticipantButtonContainer>
         </ParticipantBanner>
       </ParticipantBannerContainer>
     </Container>
