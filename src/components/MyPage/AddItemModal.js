@@ -379,7 +379,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           <InsideBox>
             <StyledLabel>개수</StyledLabel>
             <InputQuantityBox>
-              <InputQuantity value={quantity} onChange={handleQuantity} />
+              <InputQuantity value={quantity} onChange={handleQuantity} min="1" max="100"/>
             </InputQuantityBox>
           </InsideBox>
         </ContainerBox>
