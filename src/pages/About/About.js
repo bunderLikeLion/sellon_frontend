@@ -81,7 +81,7 @@ const AuctionButton = styled.button`
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
   border: none;
-  padding: 0.7rem 0.8rem;
+  padding: .7rem .8rem;
   font-size: 1.1rem;
   width: fit-content;
   height: fit-content;
@@ -275,6 +275,11 @@ const StyledAccordionSummary = styled(AccordionSummary)`
 
 const AccordionTitle = styled(Typography)`
   font-size: 1.2rem !important;
+  padding-left: 1rem;
+`;
+
+const AccordionContent = styled(Typography)`
+  padding: 2rem;
 `;
 
 const ParticipantBanner = styled.div`
@@ -350,28 +355,35 @@ const About = () => {
         <ServiceList>
           <ServiceItem>
             <ServiceTextContainer>
-              <SubLabel>물물 경매</SubLabel>
-              <ItemTitle>경매 , 이젠 물건으로</ItemTitle>
+              <SubLabel>
+                물물 경매
+              </SubLabel>
+              <ItemTitle>
+                경매 , 이젠 물건으로
+              </ItemTitle>
               <ServiceDescription>
-                sellon에서 돈이 아닌 물건으로
-                <br />
-                경매를 열어보세요.
-                <br />
+                sellon에서 돈이 아닌 물건으로<br />
+                경매를 열어보세요.<br />
                 <br />
                 뜻밖의 기회에 원해왔던 물건을 찾을 수 있습니다.
               </ServiceDescription>
             </ServiceTextContainer>
-            <ServiceMediaContainer></ServiceMediaContainer>
+            <ServiceMediaContainer>
+            </ServiceMediaContainer>
           </ServiceItem>
 
           <ServiceItem>
-            <ServiceMediaContainer></ServiceMediaContainer>
+            <ServiceMediaContainer>
+            </ServiceMediaContainer>
             <ServiceTextContainer>
-              <SubLabel>개성 넘치는 경매</SubLabel>
-              <ItemTitle>경매, 일상 속의 물건으로</ItemTitle>
+              <SubLabel>
+                개성 넘치는 경매
+              </SubLabel>
+              <ItemTitle>
+                경매, 일상 속의 물건으로
+              </ItemTitle>
               <ServiceDescription>
-                sellon은 무거운 분위기의 경매장이 아닙니다.
-                <br />
+                sellon은 무거운 분위기의 경매장이 아닙니다.<br />
                 언제든지 개성 넘치는 물건들을 거래할 수 있습니다.
               </ServiceDescription>
             </ServiceTextContainer>
@@ -382,17 +394,23 @@ const About = () => {
       {/* 특이한 거래 영역 */}
       <BestDealingContainer>
         <TitleContainer>
-          <SubLabel>엄청난 거래도 해낼 수 있는 경매</SubLabel>
-          <ItemTitle>세상에, 나 어쩌면 릭 아저씨보다 더 대단할지도.</ItemTitle>
+          <SubLabel>
+            엄청난 거래도 해낼 수 있는 경매
+          </SubLabel>
+          <ItemTitle>
+            세상에, 나 어쩌면 릭 아저씨보다 더 대단할지도.
+          </ItemTitle>
         </TitleContainer>
 
         <BestDealingList>
           <BestDealingItem>
             <BestDealingItemHeader>
               <UserAvatarContainer>
-                <UserAvatar src="https://api.sellon.link/static/avatars/1.jpg" />
+                <UserAvatar src="https://api.sellon.link/static/avatars/1.jpg"/>
               </UserAvatarContainer>
-              <UserName>김유민</UserName>
+              <UserName>
+                김유민
+              </UserName>
             </BestDealingItemHeader>
             <UserComment>
               한정판 굿즈를 저에게 필요없던 물건들과 바꾸어 얻게 돼서 기뻐요!
@@ -402,9 +420,11 @@ const About = () => {
           <BestDealingItem>
             <BestDealingItemHeader>
               <UserAvatarContainer>
-                <UserAvatar src="https://api.sellon.link/static/avatars/4.jpg" />
+                <UserAvatar src="https://api.sellon.link/static/avatars/4.jpg"/>
               </UserAvatarContainer>
-              <UserName>이승환</UserName>
+              <UserName>
+                이승환
+              </UserName>
             </BestDealingItemHeader>
             <UserComment>
               이번 거래로 원하던 만년필을 얻게 되었어요!
@@ -415,8 +435,12 @@ const About = () => {
 
       <FAQContainer>
         <TitleContainer>
-          <SubLabel>FAQ</SubLabel>
-          <ItemTitle>자주 묻는 질문</ItemTitle>
+          <SubLabel>
+            FAQ
+          </SubLabel>
+          <ItemTitle>
+            자주 묻는 질문
+          </ItemTitle>
         </TitleContainer>
 
         <AccordionContainer>
@@ -426,32 +450,86 @@ const About = () => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <AccordionTitle>Q. 물건은 어떻게 등록하나요?</AccordionTitle>
+              <AccordionTitle>
+                Q. 물건은 어떻게 등록하나요?
+              </AccordionTitle>
             </StyledAccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
+              <AccordionContent>
+                1. 경매장 페이지 우상단의 경매 올리기로 경매 작성 페이지로 가주세요.<br></br>
+                2. 경매 열기 페이지의 양식을 작성한 후 경매를 발행해주세요. 😎
+              </AccordionContent>
             </AccordionDetails>
           </StyledAccordion>
+
           <StyledAccordion>
             <StyledAccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <AccordionTitle>Q. 질문 질문</AccordionTitle>
+              <AccordionTitle>
+                Q. 경매를 낙찰한 이후, 어떻게 낙찰자와 연락하나요?
+              </AccordionTitle>
             </StyledAccordionSummary>
-            <AccordionDetails>
+            <AccordionContent>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
+                개인페이지 &gt; 진행중인 거래 탭에 참여자와 연락할 수 있는 채팅 기능이 마련되어져 있어요. 채팅으로 참여자와 편하게 연락하세요!😉
               </Typography>
-            </AccordionDetails>
+            </AccordionContent>
           </StyledAccordion>
+
+          <StyledAccordion>
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3a-content"
+              id="panel3a-header"
+            >
+              <AccordionTitle>
+                Q. 경매를 올렸는데 마음에 드는 참여자가 없습니다. 이럴때는 어떡하죠?
+              </AccordionTitle>
+            </StyledAccordionSummary>
+            <AccordionContent>
+              <Typography>
+                안타깝지만 내가 올린 경매의 상세 페이지에서 ‘폐기’ 버튼을 눌러서, 물건을 고르지 않고 경매를 바로 종료할 수 있습니다.
+              </Typography>
+            </AccordionContent>
+          </StyledAccordion>
+
+          <StyledAccordion>
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4a-content"
+              id="panel4a-header"
+            >
+              <AccordionTitle>
+                Q. sellon의 경매에서는 돈을 사용해 경매에 참여할 순 없나요?
+              </AccordionTitle>
+            </StyledAccordionSummary>
+            <AccordionContent>
+              <Typography>
+                네, 없습니다! sellon은 ‘물물’경매를 위한 사이트로 돈과 관련된 기능은 없습니다.☺️
+              </Typography>
+            </AccordionContent>
+          </StyledAccordion>
+
+          <StyledAccordion>
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5a-content"
+              id="panel5a-header"
+            >
+              <AccordionTitle>
+                Q. 경매를 만들 때 여러 물건을 한번에 올릴 수 없나요?
+              </AccordionTitle>
+            </StyledAccordionSummary>
+            <AccordionContent>
+              <Typography>
+                경매를 열 때는 한번에 물건 한 개만 등록해주세요.
+              </Typography>
+            </AccordionContent>
+          </StyledAccordion>
+
         </AccordionContainer>
       </FAQContainer>
       <ParticipantBannerContainer>
