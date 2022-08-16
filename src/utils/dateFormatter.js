@@ -1,10 +1,12 @@
+const padZero =(value) => value.toString().length < 2 ? '0' + value : value;
+
 const dateFormatter = (givenDate) => {
   const date = new Date(givenDate);
-  const yrs = date.getFullYear();
-  const months = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
-  const days = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+  const year = date.getFullYear();
+  const month = padZero(date.getMonth() + 1, 2);
+  const day = padZero(date.getDate(), 2);
 
-  return yrs + '.' + months + '.' + days;
+  return `${year}.${month}.${day}`;
 };
 
 export default dateFormatter;
