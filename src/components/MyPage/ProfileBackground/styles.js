@@ -22,4 +22,5 @@ export const CircleProfileImgContainer = styled.div`
   height: 7rem;
   border-radius: 50%;
   background: #a427fa;
+  overflow: hidden;
 `;

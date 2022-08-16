@@ -70,7 +70,7 @@ const OnChatContainerBottom = styled.div`
 `;
 
 const Chat = () => {
-  const { pk: userId } = useRecoilValue(userAtom);
+  const { id: userId } = useRecoilValue(userAtom);
   const { data: dealings, isSuccess: dealingsFetched } = useDealingsQuery();
   const [selectedDeal, setSelectedDeal] = useState({});
   const [isEvaluationModalOpened, SetIsEvaluationModalOpened] = useState(false);
@@ -95,7 +95,7 @@ const Chat = () => {
             <Chat_Left>
               <MessageTitle>진행중인 거래</MessageTitle>
               <ChatContainer>
-                {dealings?.results.map((singleDeal) => {
+                {dealings?.map((singleDeal) => {
                   return (
                     <ChatLists
                       singleDeal={singleDeal}

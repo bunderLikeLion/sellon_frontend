@@ -17,7 +17,7 @@ const HomeAuctionListCard = ({ isFinished, auctionData, isInterested }) => {
       startAt={dateFormatter(auctionData?.created_at)}
       isFinished={isFinished}
       linkTo={
-        auctionData?.owner?.id === user?.pk
+        auctionData?.owner?.id === user?.id
           ? `/auctioneer/${auctionData?.id}/${auctionData?.product?.id}`
           : `/auction/${auctionData?.id}`
       }

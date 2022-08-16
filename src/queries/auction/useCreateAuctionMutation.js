@@ -3,19 +3,19 @@ import toast from 'react-hot-toast';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 import { useNavigate } from 'react-router-dom';
+import messages from 'constants/messages';
 
 const useCreateAuctionMutation = () => {
   const navigate = useNavigate();
 
   return useMutation(
     (payload) => {
-      toast.loading('경매 생성 시도 중입니다....');
       return auctionRelatedAPI.postAuction(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('경매 생성 성공했습니다 👍');
+        toast.success(messages.auction.create.success);
         navigate('/auction');
       },
       onError: (res) => {

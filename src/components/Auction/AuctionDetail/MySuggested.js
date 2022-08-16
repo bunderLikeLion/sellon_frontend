@@ -4,7 +4,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useDeleteAuctionItemMutation,
   useMyProductGroupQuery,
@@ -82,11 +82,22 @@ const BeforeIcon = styled(NavigateBeforeIcon)`
   font-size: 2rem !important;
   color: #d9d9d9;
 `;
+
+const DisabledBeforeIcon = styled(BeforeIcon)`
+  cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
+`;
+
 const AfterIcon = styled(NavigateNextIcon)`
   position: absolute;
   right: 0;
   font-size: 2rem !important;
   color: #d9d9d9;
+`;
+
+const DisabledAfterIcon = styled(AfterIcon)`
+  cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
 `;
 
 const MyItem = styled(CardMedia)`
@@ -105,15 +116,43 @@ const DeleteIcon = styled(HighlightOffIcon)`
 `;
 
 const MySuggested = (props) => {
-  const [page, setPage] = useState(1);
   const { id: relatedAuctionId } = useParams();
-  const { pk: userId } = useRecoilValue(userAtom);
+  const { id: userId } = useRecoilValue(userAtom);
+  const [productGroupPage, setProductGroupPage] = useState(0);
+  const [pageLength, setPageLength] = useState(null);
+  const [paginatedData, setPaginatedData] = useState(null);
 
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
-    useMyProductGroupQuery(relatedAuctionId, userId, page, 4);
+    useMyProductGroupQuery(relatedAuctionId, userId, 1, 4);
 
   const { mutate: deleteAuctionItem } =
     useDeleteAuctionItemMutation(relatedAuctionId);
+
+  useEffect(() => {
+    const splitedData = [];
+    const tmpArr = [];
+    for (let i = 0; i < myProductGroup?.results[0]?.products.length; i++) {
+      if (tmpArr.length < 4) {
+        tmpArr.push(myProductGroup?.results[0]?.products[i]);
+      } else {
+        splitedData.push([...tmpArr]);
+        tmpArr.splice(0, tmpArr.length);
+        tmpArr.push(myProductGroup?.results[0]?.products[i]);
+      }
+    }
+    if (tmpArr.length) {
+      splitedData.push([...tmpArr]);
+    }
+    setPaginatedData(splitedData);
+    setPageLength(splitedData.length);
+  }, [myProductGroup]);
+
+  useEffect(() => {
+    if (paginatedData > 0 && !paginatedData[productGroupPage]) {
+      console.log('worked');
+      setProductGroupPage(0);
+    }
+  }, [paginatedData, productGroupPage]);
 
   return (
     <Container>
@@ -122,9 +161,18 @@ const MySuggested = (props) => {
       </ButtonContainer>
       <Comment>내가 제시한 물건</Comment>
       <MyItemContainer>
-        <BeforeIcon />
+        {productGroupPage !== 0 ? (
+          <BeforeIcon
+            onClick={() => setProductGroupPage(productGroupPage - 1)}
+          />
+        ) : (
+          <DisabledBeforeIcon />
+        )}
         {myProductGroupFetched &&
-          myProductGroup?.results[0]?.products.map((singleItem) => {
+          paginatedData &&
+          pageLength &&
+          paginatedData[productGroupPage].map((singleItem) => {
+            if (!paginatedData[productGroupPage]) setProductGroupPage(0);
             return (
               <MyItem key={singleItem?.id} image={singleItem?.thumbnail?.file}>
                 <DeleteIcon
@@ -137,7 +185,13 @@ const MySuggested = (props) => {
               </MyItem>
             );
           })}
-        <AfterIcon />
+        {productGroupPage !== pageLength - 1 ? (
+          <AfterIcon
+            onClick={() => setProductGroupPage(productGroupPage + 1)}
+          />
+        ) : (
+          <DisabledAfterIcon />
+        )}
       </MyItemContainer>
     </Container>
   );

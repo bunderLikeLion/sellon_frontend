@@ -48,8 +48,7 @@ const MyItemImg = styled(CardMedia)`
   width: 3.75rem;
   height: 3.75rem;
   margin: 0 1.5rem;
-  border-radius: 10px;
-  background: red;
+  border-radius: 50%;
 `;
 
 const DealedMyItemImg = styled(CardMedia)`
@@ -124,7 +123,7 @@ const UserInfoDetailModal = ({ handleModal, isModalOpened, singleDeal }) => {
         <DealSummarize>이번 경매, 요약하기</DealSummarize>
         <SummarizeContainer>
           <SummarizeTopContainer>
-            <MyItemImg image={singleDeal?.owner?.avatar} />
+            <MyItemImg image={singleDeal?.auction?.owner?.avatar} />
             <div>
               <ItemTitle>{singleDeal?.auction?.title}</ItemTitle>
               <ItemUploadDate>

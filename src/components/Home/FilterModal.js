@@ -4,12 +4,9 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
-import { FormatAlignCenterSharp } from '@mui/icons-material';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -196,38 +193,38 @@ const FilterModal = (props) => {
                   </SingleRadio>
                 );
               })}
-              <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
-                  <SingleRadio>
-                    <StyledRadio  />
-                    <RadioLabel>fdfd</RadioLabel>
-                  </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
+            <SingleRadio>
+              <StyledRadio />
+              <RadioLabel>fdfd</RadioLabel>
+            </SingleRadio>
           </CategoryContentBox>
         </CategoryRadioBox>
 

@@ -5,7 +5,7 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 
 const useMyProductsQuery = (pageNum, perPage) => {
   return useQuery(
-    ['myProductsData', pageNum],
+    ['myProductsData', pageNum, perPage],
     () => productRelatedAPI.getMyProducts(pageNum, perPage),
     {
       onError: (res) => {

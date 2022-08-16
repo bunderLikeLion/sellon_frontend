@@ -4,9 +4,6 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import { Editor } from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useEffect, useRef, useState } from 'react';
 import { Radio, TextField } from '@mui/material';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
@@ -382,7 +379,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           <InsideBox>
             <StyledLabel>개수</StyledLabel>
             <InputQuantityBox>
-              <InputQuantity value={quantity} onChange={handleQuantity} />
+              <InputQuantity value={quantity} onChange={handleQuantity} min="1" max="100"/>
             </InputQuantityBox>
           </InsideBox>
         </ContainerBox>

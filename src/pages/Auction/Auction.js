@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import WrapContainer from 'layouts/WrapContainer';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import { StyledLink } from 'styles/StyledComponetStyles';
@@ -15,7 +15,8 @@ import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
-import { useMyProductsQuery } from 'queries/product';
+import Slider from 'react-slick';
+import AuctionSlider from '../../components/Auction/AuctionSlider';
 
 const Form = styled.div`
   width: 100%;
@@ -73,18 +74,6 @@ const AuctionUploadContainer = styled.div`
 const AuctionPublishLink = styled(Link)`
   width: fit-content;
 `;
-// const SubNav2_left = styled.div`
-//   display: flex;
-//   align-items: center;
-//   margin-top: 6rem;
-// `;
-
-// const HomeGroundTitle = styled.div`
-//   margin-bottom: 0.5rem;
-//   font-weight: bold;
-//   font-size: 1.2rem;
-//   color: ${(props) => props.theme.color_font__primary};
-// `;
 
 const SubmitAuctionButton = styled.button`
   position: relative;
@@ -229,13 +218,13 @@ const Auction = () => {
   const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
     useTodayCompletedQuery();
 
-  const { data: auctionList, isSuccess: auctionListFetched } =
-    useAuctionsQuery(sort);
+  const { data: auctionList, isSuccess: auctionListFetched } = useAuctionsQuery(
+    sort,
+    pageNum
+  );
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
-
-  const { data: myProductsData } = useMyProductsQuery(pageNum, 6);
 
   const handleChange = (event, value) => {
     setPageNum(value);
@@ -262,23 +251,9 @@ const Auction = () => {
 
         <BestAuctionContainer>
           <BestAuctionTitle>실시간 인기 경매</BestAuctionTitle>
-          {popularAuctionListFetched &&
-            popularAuctionList.map((singlePopularAuctionItem) => {
-              return (
-                <StyledLink to={`/auction/${singlePopularAuctionItem?.id}`}>
-                  <AuctionContainer key={singlePopularAuctionItem?.id}>
-                    <MostPopular>{singlePopularAuctionItem?.title}</MostPopular>
-                    <UserPic />
-                    <ProductPic
-                      image={singlePopularAuctionItem?.product?.thumbnail?.file}
-                    />
-                    <InterestedUser>
-                      참여자수: {singlePopularAuctionItem?.product_groups_count}
-                    </InterestedUser>
-                  </AuctionContainer>
-                </StyledLink>
-              );
-            })}
+          {popularAuctionListFetched && (
+            <AuctionSlider items={popularAuctionList} />
+          )}
         </BestAuctionContainer>
 
         <AuctionListContainer>
@@ -328,7 +303,7 @@ const Auction = () => {
           {/*Pagination*/}
           <PaginationContainer>
             <StyledPagination
-              count={myProductsData?.total_pages}
+              count={auctionList?.total_pages}
               page={pageNum}
               onChange={handleChange}
             />

@@ -13,6 +13,7 @@ import { useRecoilState } from 'recoil';
 import { userAtom } from 'states';
 import { Stack } from '@mui/material';
 import styled from 'styled-components';
+import messages from 'constants/messages';
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
@@ -34,7 +35,7 @@ const UserDropDownContainer = styled(Menu)`
     border-left: 0.7rem solid transparent;
   }
   & .MuiPaper-root {
-    height: 11.9rem;
+    height: fit-content;
     padding-top: 1rem;
     border-radius: 0.5rem;
     background: transparent;
@@ -53,7 +54,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
   const [user, setUser] = useRecoilState(userAtom);
 
   const logout = () => {
-    toast.success('로그아웃 성공 👍');
+    toast.success(messages.user.signout.success);
     setUser(() => null);
     localStorage.clear();
     navigate('/');
@@ -63,10 +64,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={openUserMenu} sx={{ p: 0 }}>
-          <Avatar
-            alt="Remy Sharp"
-            src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg"
-          />
+          <Avatar alt="user_avatar" src={user.avatar} />
         </IconButton>
       </Tooltip>
       <UserDropDownContainer
@@ -88,7 +86,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         <MenuItem onClick={closeUserMenu}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton>
-              <Avatar src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg" />
+              <Avatar alt="user_avatar" src={user.avatar} />
             </IconButton>
             <Typography textAlign="center">{user?.username}</Typography>
           </Stack>
