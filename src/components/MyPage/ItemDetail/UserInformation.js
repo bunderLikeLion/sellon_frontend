@@ -7,7 +7,7 @@ const UserInfo = styled.div`
   align-items: center;
   width: 100%;
   height: auto;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   position: relative;
 `;
 

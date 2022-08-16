@@ -10,8 +10,9 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 85vh;
+  height: 80vh;
   margin: 2rem;
+  padding-top: 1rem;
   color: ${(props) => props.theme.color_white};
 `;
 
@@ -24,7 +25,7 @@ const UserUploadContainer = styled.div`
 const ItemDetailContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 1rem;
+  padding-left: 1rem;
 `;
 
 const ArrowIconContainer = styled.div`

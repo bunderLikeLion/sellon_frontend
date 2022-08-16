@@ -42,13 +42,12 @@ const ItemDetailContainer = styled.div`
   width: 100%;
   height: 3.5rem;
   margin-top: 1rem;
-  padding-right: 2rem;
   border-radius: 0.6rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCondition = styled.p`
-  margin: 0 3rem 0 2rem;
+  margin-left: 2rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
@@ -78,26 +77,25 @@ const ItemCategoryContainer = styled.div`
   width: 85%;
   height: 3.5rem;
   margin-top: 1rem;
-  padding-right: 2rem;
   border-radius: 0.6rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const ItemCategory = styled.p`
-  margin: 0 4.3rem 0 2rem;
+  margin-left: 2rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemQuantity = styled.p`
-  margin: 0 6.4rem 0 2rem;
+  margin-left: 2rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemDescriptionContainer = styled.div`
   width: 100%;
-  height: 50%;
+  height: 18rem;
   margin-top: 1rem;
   padding: 1rem 2rem;
   border-radius: 0.6rem;
@@ -121,12 +119,6 @@ const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
     singleItemData;
   return (
     <Container>
-      {/* {!isTriggeredFromModal && (
-        <EditButtonContainer>
-          <EditButton>수정하기</EditButton>
-        </EditButtonContainer>
-      )} */}
-      {/* <ItemTitle>{name}</ItemTitle> */}
       <ItemDetailContainer>
         <ItemCondition>아이템 상태</ItemCondition>
         <ItemDetail>{statusHandler(quality)}</ItemDetail>
