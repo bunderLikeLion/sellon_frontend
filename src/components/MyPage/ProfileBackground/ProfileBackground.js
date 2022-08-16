@@ -31,7 +31,9 @@ const ProfileBackground = () => {
     <Container>
       <img src={backgroundPic} alt="" />
       <UsernameText>{user?.username}</UsernameText>
-      <CircleProfileImgContainer />
+      <CircleProfileImgContainer>
+        <img src={user?.avatar} alt="프로필 이미지"/>
+      </CircleProfileImgContainer>
       {/*
       <WithDrawlBtn onClick={() => withDrawlMutate()} variant="contained">
         회원탈퇴
