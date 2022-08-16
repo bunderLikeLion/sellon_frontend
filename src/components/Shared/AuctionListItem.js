@@ -132,6 +132,9 @@ const InterestedButton = styled.button`
   background: none;
   border: none;
   color: ${(props) => props.theme.color_white};
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
 export const FinishedOverlay = styled(Card)`
@@ -159,10 +162,6 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
     props.isInterested
       ? props.theme.color_font__number
       : props.theme.color_font__disabled};
-
-  & :hover {
-    transform: scale(1.2);
-  }
 `;
 
 const OverLayIconBox = styled.div`
