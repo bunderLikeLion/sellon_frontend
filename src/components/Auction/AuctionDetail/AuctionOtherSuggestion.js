@@ -23,7 +23,7 @@ const GuideContainer = styled.div`
   display: flex;
   align-items: end;
   width: 93%;
-  height: 10%;
+  height: 2rem;
   margin: 0 auto 0.7rem auto;
 `;
 
@@ -48,7 +48,6 @@ const InnerWrapper = styled.div`
   display: inline-flex;
   width: 26.6rem;
   height: auto;
-  overflow: hidden;
 `;
 const ProfileContainer = styled.div`
   position: relative;
