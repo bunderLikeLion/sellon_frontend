@@ -107,6 +107,19 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
             </Stack>
           </Link>
         </MenuItem>
+        <MenuItem onClick={closeUserMenu}>
+          <Link to="/mypage/chat" state={{ tabNum: '5' }}>
+            <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              spacing={1}
+            >
+              <PersonIcon />
+              <Typography textAlign="center">진행중인 거래</Typography>
+            </Stack>
+          </Link>
+        </MenuItem>
         <MenuItem
           onClick={() => {
             closeUserMenu();
@@ -130,4 +143,3 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
 };
 
 export default UserRelatedDropDown;
-

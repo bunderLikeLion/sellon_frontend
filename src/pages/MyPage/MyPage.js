@@ -1,13 +1,14 @@
-import { ItemListCard, TabBar } from 'components/MyPage';
+import { TabBar } from 'components/MyPage';
 import WrapContainer from 'layouts/WrapContainer';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProfileBackground from 'components/MyPage/ProfileBackground/ProfileBackground';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 
 const MyPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const user = useRecoilValue(userAtom);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const MyPage = () => {
   return (
     <WrapContainer>
       <ProfileBackground />
-      <TabBar />
+      <TabBar location={location?.state?.tabNum} />
     </WrapContainer>
   );
 };
