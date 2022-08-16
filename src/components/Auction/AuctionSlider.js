@@ -184,7 +184,7 @@ const AuctionSlider = ({ items }) => {
                 <AuctionTitle>{items[i]?.title}</AuctionTitle>
                 <Link
                   to={
-                    items[i]?.owner?.id === user?.pk
+                    items[i]?.owner?.id === user?.id
                       ? `/auctioneer/${items[i]?.id}/${items[i]?.product?.id}`
                       : `/auction/${items[i]?.id}`
                   }

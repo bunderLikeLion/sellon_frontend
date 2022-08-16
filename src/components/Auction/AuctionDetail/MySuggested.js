@@ -147,6 +147,13 @@ const MySuggested = (props) => {
     setPageLength(splitedData.length);
   }, [myProductGroup]);
 
+  useEffect(() => {
+    if (paginatedData > 0 && !paginatedData[productGroupPage]) {
+      console.log('worked');
+      setProductGroupPage(0);
+    }
+  }, [paginatedData, productGroupPage]);
+
   return (
     <Container>
       <ButtonContainer onClick={props.handleInventory}>
@@ -165,6 +172,7 @@ const MySuggested = (props) => {
           paginatedData &&
           pageLength &&
           paginatedData[productGroupPage].map((singleItem) => {
+            if (!paginatedData[productGroupPage]) setProductGroupPage(0);
             return (
               <MyItem key={singleItem?.id} image={singleItem?.thumbnail?.file}>
                 <DeleteIcon
@@ -177,7 +185,7 @@ const MySuggested = (props) => {
               </MyItem>
             );
           })}
-        {productGroupPage !== myProductGroup?.total_pages ? (
+        {productGroupPage !== pageLength - 1 ? (
           <AfterIcon
             onClick={() => setProductGroupPage(productGroupPage + 1)}
           />
