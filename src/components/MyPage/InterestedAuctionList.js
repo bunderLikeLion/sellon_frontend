@@ -38,15 +38,12 @@ const StyledPagination = styled(Pagination)`
 // TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
 
 const InterestedAuctionList = () => {
+  const [pageNum, setPageNum] = useState(1);
+
   const {
     data: interestedAuctionLists,
     isSuccess: interestedAuctionListsFetched,
-  } = useInterestedAuctionsQuery();
-
-  const [pageNum, setPageNum] = useState(1);
-
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
+  } = useInterestedAuctionsQuery(pageNum);
 
   const handleChange = (event, value) => {
     setPageNum(value);
@@ -58,21 +55,21 @@ const InterestedAuctionList = () => {
         <>
           <p>총 {interestedAuctionLists?.total_count}개</p>
           <FlexContainer>
-            {
-              interestedAuctionLists?.results.map((singleInterestedAuction) => (
-                <InterestedAuctionListCard
-                  data={singleInterestedAuction.auction}
-                  isFinished={isAuctionFinishedHandler(singleInterestedAuction?.auction?.end_at)}
-                />
-              )
-            )}
+            {interestedAuctionLists?.results.map((singleInterestedAuction) => (
+              <InterestedAuctionListCard
+                data={singleInterestedAuction.auction}
+                isFinished={isAuctionFinishedHandler(
+                  singleInterestedAuction?.auction?.end_at
+                )}
+              />
+            ))}
           </FlexContainer>
         </>
       )}
 
       <PaginationContainer>
         <StyledPagination
-          count={myProductsData?.total_pages}
+          count={interestedAuctionLists?.total_pages}
           page={pageNum}
           onChange={handleChange}
         />
