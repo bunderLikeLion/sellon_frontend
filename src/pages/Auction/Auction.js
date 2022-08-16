@@ -146,7 +146,7 @@ const HomeGroundAuction = styled.div`
 
 const FilterButton = styled.button`
   width: 7rem;
-  height: 1.7rem;
+  height: 2rem;
   border-radius: 0.5rem;
   color: ${(props) => props.theme.color_font__primary};
   background: transparent;
@@ -177,6 +177,11 @@ const Container = styled.div`
 const SelectBox = styled(Select)`
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
+  & .MuiSelect-select {
+    display: flex;
+    align-items: center;
+    height: 0.9rem;
+  }
 `;
 
 const InputLabelBox = styled(InputLabel)`
