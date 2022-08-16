@@ -102,6 +102,7 @@ const Chat = () => {
                       selectedDeal={selectedDeal}
                       handleEvaluationModal={handleEvaluationModal}
                       setSelectedDeal={setSelectedDeal}
+                      opponent={opponent}
                     />
                   );
                 })}

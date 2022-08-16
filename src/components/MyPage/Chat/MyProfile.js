@@ -14,8 +14,7 @@ const MyProfileImg = styled(CardMedia)`
 const MyProfile = () => {
   const user = useRecoilValue(userAtom);
 
-  // return <MyProfileImg image={user?.avatar}>Myprofile</MyProfileImg>;
-  return <MyProfileImg>Myprofile</MyProfileImg>;
+  return <MyProfileImg image={user?.avatar} />;
 };
 
 export default MyProfile;

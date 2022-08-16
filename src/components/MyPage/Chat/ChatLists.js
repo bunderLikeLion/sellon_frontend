@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import ValidationModal from 'components/Shared/ValidationModal';
 import detailDateFormatter from 'utils/detailDateFormatter';
+import CardMedia from '@mui/material/CardMedia';
 
 const ChatMessageListContainer = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const ChatMessageListContainer = styled.div`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const UserProfileImg = styled.div`
+const UserProfileImg = styled(CardMedia)`
   width: 4rem;
   height: 4rem;
   margin: auto;
@@ -68,6 +69,7 @@ const ChatLists = ({
   handleEvaluationModal,
   selectedDeal,
   setSelectedDeal,
+  opponent,
 }) => {
   const { pk: userId } = useRecoilValue(userAtom);
   const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
@@ -80,7 +82,13 @@ const ChatLists = ({
 
   return (
     <ChatMessageListContainer onClick={() => setSelectedDeal(singleDeal)}>
-      <UserProfileImg />
+      <UserProfileImg
+        image={
+          singleDeal?.product_group?.user?.id === userId
+            ? singleDeal?.auction?.owner?.avatar
+            : singleDeal?.product_group?.user?.avatar
+        }
+      />
       <ChatMessageText>
         <UserNickname>
           {singleDeal?.product_group?.user?.id === userId
