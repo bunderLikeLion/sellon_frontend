@@ -3,19 +3,19 @@ import toast from 'react-hot-toast';
 import userRelatedAPI from 'apis/userRelatedAPI';
 import { useNavigate } from 'react-router-dom';
 import errorMsgHandler from 'utils/errorMsgHandler';
+import messages from 'constants/messages';
 
 const useSignInMutation = () => {
   const navigate = useNavigate();
 
   return useMutation(
     (payload) => {
-      toast.loading('회원가입 처리중...');
       return userRelatedAPI.postSignup(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('회원가입 성공 👍');
+        toast.success(messages.user.signup.success);
         navigate('/login');
       },
       onError: (res) => {

@@ -13,6 +13,7 @@ import { useRecoilState } from 'recoil';
 import { userAtom } from 'states';
 import { Stack } from '@mui/material';
 import styled from 'styled-components';
+import messages from 'constants/messages';
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
@@ -53,7 +54,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
   const [user, setUser] = useRecoilState(userAtom);
 
   const logout = () => {
-    toast.success('로그아웃 성공 👍');
+    toast.success(messages.user.signout.success);
     setUser(() => null);
     localStorage.clear();
     navigate('/');

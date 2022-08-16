@@ -4,17 +4,17 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 import queryKeys from 'utils/queryKeys';
+import messages from 'constants/messages';
 
 const useDeleteAuctionItemMutation = (auctionId) => {
   return useMutation(
     (itemIdObj) => {
-      toast.loading('아이템 제시 철회 시도 중입니다....');
       return auctionRelatedAPI.deleteInventoryItem(auctionId, itemIdObj);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('아이템 제시 철회 성공했습니다 👍');
+        toast.success(messages.auction.removeItem.success);
         queryClient.invalidateQueries(['myProductsData']).then(() => {
           queryClient
             .invalidateQueries([queryKeys.myProductGroup(auctionId)])
