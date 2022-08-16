@@ -4,11 +4,11 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import dealingsRelatedAPI from 'apis/dealingsRelatedAPI';
 
-const useEndDealingMutation = () => {
+const useEndDealingMutation = (dealingId) => {
   return useMutation(
-    async (payload) => {
+    async () => {
       toast.loading('거래 종료 시도 중입니다....');
-      return dealingsRelatedAPI.postCompleteDealing(payload?.dealing_id);
+      return dealingsRelatedAPI.postCompleteDealing(dealingId);
     },
     {
       onSuccess: () => {

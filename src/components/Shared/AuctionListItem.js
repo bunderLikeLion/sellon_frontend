@@ -135,7 +135,7 @@ const InterestedButton = styled.button`
 `;
 
 export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
+  display: ${(props) => (props.isFinished ? 'block' : 'none')};
   position: absolute;
   left: 0;
   top: 0;
@@ -167,9 +167,12 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
 
 const OverLayIconBox = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
+  height: 50%;
 `;
+
+const FinishedMessage = styled.p`
+  text-align: center;
+`
 
 /*
   title: 경매 제목
@@ -239,7 +242,6 @@ const AuctionListItem = ({
         </CardFooter>
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
-        <p>종료된 경매입니다.</p>
         {displayInterestedBtn && (
           <OverLayIconBox>
             <InterestedButton>
@@ -250,6 +252,7 @@ const AuctionListItem = ({
             </InterestedButton>
           </OverLayIconBox>
         )}
+        <FinishedMessage>종료된 경매입니다.</FinishedMessage>
       </FinishedCard>
     </CardContainer>
   );

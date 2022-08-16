@@ -34,7 +34,7 @@ const UserDropDownContainer = styled(Menu)`
     border-left: 0.7rem solid transparent;
   }
   & .MuiPaper-root {
-    height: 11.9rem;
+    height: fit-content;
     padding-top: 1rem;
     border-radius: 0.5rem;
     background: transparent;

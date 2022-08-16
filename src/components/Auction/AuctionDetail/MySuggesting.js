@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { useState } from 'react';
-import ValidationModal from './ValidationModal';
+import ValidationModal from '../../Shared/ValidationModal';
 import { useMyProductsQuery } from 'queries/product';
 import CardMedia from '@mui/material/CardMedia';
 import { queryClient } from 'index';
 import InventoryCard from './InventoryCard';
 import { useParams } from 'react-router-dom';
-
 
 const Container = styled.div`
   display: flex;
@@ -132,7 +131,7 @@ const AllInButton = styled.button`
   width: 5.8rem;
   height: 1.7rem;
   margin-right: 1rem;
-  color: ${(props) => props.theme.color_font__primary}; 
+  color: ${(props) => props.theme.color_font__primary};
   font-size: 1rem;
   font-weight: 500;
   border: 0.1px transparent;
@@ -161,10 +160,6 @@ const InventoryListContainer = styled.div`
 `;
 //background: lightgray;
 
-
-
-
-
 const MySuggesting = () => {
   const { id: relatedAuctionId } = useParams();
 
@@ -187,7 +182,9 @@ const MySuggesting = () => {
       <BottomWrapper>
         <PaginationBeforeIconContainer>
           {inventoryPageNum !== 1 ? (
-            <BeforeIcon onClick={() => setInventoryPageNum(inventoryPageNum - 1)} />
+            <BeforeIcon
+              onClick={() => setInventoryPageNum(inventoryPageNum - 1)}
+            />
           ) : (
             <DisabledBeforeIcon />
           )}
@@ -218,7 +215,9 @@ const MySuggesting = () => {
         </InventoryListContainer>
         <PaginationAfterIconContainer>
           {inventoryPageNum !== myProductsData?.total_pages ? (
-            <AfterIcon onClick={() => setInventoryPageNum(inventoryPageNum + 1)} />
+            <AfterIcon
+              onClick={() => setInventoryPageNum(inventoryPageNum + 1)}
+            />
           ) : (
             <DisabledAfterIcon />
           )}
@@ -228,6 +227,10 @@ const MySuggesting = () => {
       <ValidationModal
         handleModal={handleModal}
         isModalOpened={isModalOpened}
+        mainText="정말 올인하시겠습니까?"
+        btnText="올인"
+        relatedId={relatedAuctionId}
+        type="allIn"
       />
     </Container>
   );
