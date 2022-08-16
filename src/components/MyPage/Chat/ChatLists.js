@@ -93,9 +93,11 @@ const ChatLists = ({
                 평가하기
               </ChatBoxButton>
             )}
+            {/*거래 요약 묘달 (거래 보기)*/}
             <UserInfoDetailModal
               handleModal={handleDetailModal}
               isModalOpened={isDetailModalOpened}
+              singleDeal={singleDeal}
             />
             {!singleDeal?.completed_at && (
               <ChatBoxButton onClick={handleEvaluationModal}>
