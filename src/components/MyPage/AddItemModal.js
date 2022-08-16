@@ -36,8 +36,8 @@ const StyledTypography = styled(Typography)`
 
 export const CloseBtn = styled(CloseIcon)`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 1.2rem;
+  right: 1.5rem;
   cursor: pointer;
   color: ${(props) => props.theme.color_font__number};
 `;
@@ -148,20 +148,27 @@ const ImageContainerBox = styled.div`
 `;
 
 export const InsideRadioBox = styled.div`
-  padding: 1rem;
+  padding: 1.5rem;
 `;
 
 export const InsideBox = styled.div`
   display: flex;
   align-items: baseline;
   width: fit-content;
-  padding: 0 1rem;
+  padding: 0.2rem 1.5rem;
+`;
+
+export const StatusContentBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const CategoryContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
 `;
 
@@ -181,10 +188,14 @@ const RadioLabel = styled.label`
 export const StyledRadio = styled(Radio)`
   padding-left: 0 !important;
   color: ${(props) => props.theme.color_white} !important;
+
+  &:hover {
+    background: transparent !important;
+  }
 `;
 
 export const StatusRadio = styled(SingleRadio)`
-  width: 20%;
+  width: 5rem;
 `;
 
 const InputQuantityBox = styled.div`
@@ -212,8 +223,9 @@ const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
 `;
 
 const ItemTextarea = styled.textarea`
-  width: 100%;
+  width: 40rem;
   height: 12rem;
+  resize: none;
   padding: 1rem;
   margin-top: 0.8rem;
   border: none;
@@ -324,7 +336,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         <StatusRadioBox>
           <InsideRadioBox>
             <StyledLabel>상태</StyledLabel>
-            <CategoryContentBox>
+            <StatusContentBox>
               <StatusRadio>
                 <StyledRadio {...statusControlProps('1')} />
                 <RadioLabel>최상</RadioLabel>
@@ -345,7 +357,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
                 <StyledRadio {...statusControlProps('5')} />
                 <RadioLabel>최하</RadioLabel>
               </StatusRadio>
-            </CategoryContentBox>
+            </StatusContentBox>
           </InsideRadioBox>
         </StatusRadioBox>
 
