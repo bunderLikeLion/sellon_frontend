@@ -9,6 +9,7 @@ const Wrap = styled.div`
   padding-bottom: 70px;
   overflow: hidden;
   width: 100%;
+  height: 30rem !important;
   margin-top: 5%;
 `;
 
@@ -29,7 +30,7 @@ const SlickItems = styled.div`
 
 const defaultButtonStyle = css`
   position: absolute;
-  top: calc(50% - 50px);
+  top: calc(50% - 1rem);
   padding: 0;
   width: 30px;
   height: 30px;
@@ -80,7 +81,7 @@ const AuctionTitle = styled.span`
   display: block;
   color: ${(props) => props.theme.color_white};
   position: absolute;
-  top: 24rem;
+  top: 20.5rem;
   left: 10%;
   font-size: 2rem;
   font-weight: bold;
@@ -90,7 +91,7 @@ const ProductThumbnail = styled.img`
   width: 50% !important;
   position: absolute !important;
   left: 43% !important;
-  top: 3rem !important;
+  top: 1.6rem !important;
   border-radius: 6%;
   box-shadow: 0px 0px 6px ${(props) => props.theme.color_white};
   height: auto;
@@ -103,7 +104,7 @@ const UserAvatar = styled.img`
   aspect-ratio: 1 / 1;
   position: absolute !important;
   left: 10% !important;
-  top: 17rem !important;
+  top: 14rem !important;
   border-radius: 50%;
 `;
 
@@ -118,7 +119,7 @@ const ParticipantUserAvatar = styled.img`
 const ParticipatedUserContainer = styled.div`
   display: flex;
   position: absolute;
-  top: 28rem;
+  top: 23.5rem;
   left: 10%;
   height: fit-content;
   width: 55%;
