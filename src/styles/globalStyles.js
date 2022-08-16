@@ -33,6 +33,22 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+  *>::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+  }
+
+  *>::-webkit-scrollbar-thumb {
+    height: 15%; /* 스크롤바의 길이 */
+    background: ${(props) =>
+      props.theme.color_font__tertiary}; /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+  }
+
+  *>::-webkit-scrollbar-track {
+    background:  ${(props) =>
+      props.theme.color_background__primary};  /*스크롤바 뒷 배경 색상*/
+  }
 `;
 
 export default GlobalStyles;
