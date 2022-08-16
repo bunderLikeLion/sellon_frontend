@@ -6,6 +6,7 @@ import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { useMyProductsQuery } from 'queries/product';
 import AuctionListContainer from 'components/Shared/AuctionListContainer';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 const FlexContainer = styled(AuctionListContainer)`
   margin-top: 2rem;
@@ -35,8 +36,6 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
-// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
-
 const InterestedAuctionList = () => {
   const [pageNum, setPageNum] = useState(1);
 
@@ -54,16 +53,20 @@ const InterestedAuctionList = () => {
       {interestedAuctionListsFetched && (
         <>
           <p>총 {interestedAuctionLists?.total_count}개</p>
-          <FlexContainer>
-            {interestedAuctionLists?.results.map((singleInterestedAuction) => (
-              <InterestedAuctionListCard
-                data={singleInterestedAuction.auction}
-                isFinished={isAuctionFinishedHandler(
-                  singleInterestedAuction?.auction?.end_at
-                )}
-              />
-            ))}
-          </FlexContainer>
+          {
+            interestedAuctionLists?.total_count > 0 ? (
+              <FlexContainer>
+                {interestedAuctionLists?.results.map((singleInterestedAuction) => (
+                  <InterestedAuctionListCard
+                    data={singleInterestedAuction.auction}
+                    isFinished={isAuctionFinishedHandler(
+                      singleInterestedAuction?.auction?.end_at
+                    )}
+                  />
+                ))}
+              </FlexContainer>
+            ) : <EmptyListPlaceHolder message="아직 관심 경매로 등록한 경매가 없습니다. 😅" />
+          }
         </>
       )}
 
