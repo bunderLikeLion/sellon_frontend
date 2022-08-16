@@ -10,22 +10,27 @@ import CardMedia from '@mui/material/CardMedia';
 const ChatMessageListContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 21rem;
+  height: 10rem;
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  border: 1.3px solid transparent;
+  :hover {
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
+  }
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const UserProfileImg = styled(CardMedia)`
-  width: 4rem;
-  height: 4rem;
-  margin: auto;
-  border-radius: 50%;
+  width: 3.3rem;
+  height: 3.3rem;
+  margin: 0.37rem 0 0 0.4rem;
+  border-radius: 0.7rem;
   background: #f00;
 `;
-
+//margin: auto;
 const ChatMessageText = styled.div`
   width: 75%;
   margin: 0.5rem;
@@ -64,6 +69,10 @@ const ChatBoxButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
+const ChatFinishButton = styled(ChatBoxButton)`
+  background: ${(props) => props.theme.color_background__success};
+`;
+
 const ChatLists = ({
   singleDeal,
   handleEvaluationModal,
@@ -90,12 +99,14 @@ const ChatLists = ({
       />
       <ChatMessageText>
         <UserNickname>
+          닉네임
           {singleDeal?.product_group?.user?.id === userId
             ? singleDeal?.auction?.owner?.username
             : singleDeal?.product_group?.user?.username}
         </UserNickname>
         <ChatTimeContainer>
           <ChatTime>
+            시간
             {singleDeal?.last_message_sent_at &&
               detailDateFormatter(singleDeal?.last_message_sent_at)}
           </ChatTime>
