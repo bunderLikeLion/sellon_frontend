@@ -62,41 +62,41 @@ const AuctionDetailContainers = styled.div`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const ItemDetailContainer = ({ singleItemData }) => {
-  const auctionData = queryClient.getQueryData(['auctionInfo']);
+const ItemDetailContainer = ({ singleAuctionData }) => {
+  // const auctionData = queryClient.getQueryData(['auctionInfo']);
+  console.log(singleAuctionData, 'Oahjsdbajksd');
 
   return (
     <Container>
-      {singleItemData && (
-        <>
-          <AuctionDetailContainers>
-            <DetailSubHeader>경매 제목</DetailSubHeader>
-            <AuctionDetail>{singleItemData?.name}</AuctionDetail>
-          </AuctionDetailContainers>
+      <>
+        <AuctionDetailContainers>
+          <DetailSubHeader>경매 제목</DetailSubHeader>
+          <AuctionDetail>{singleAuctionData?.title}</AuctionDetail>
+        </AuctionDetailContainers>
 
-          <TextareaContainer>
-            <AuctionInfoContainer>
-              <DetailSubHeader>경매 내용</DetailSubHeader>
-              <AuctionDetailInfo>
-                {singleItemData?.description}
-              </AuctionDetailInfo>
-            </AuctionInfoContainer>
-          </TextareaContainer>
+        <TextareaContainer>
+          <AuctionInfoContainer>
+            <DetailSubHeader>경매 내용</DetailSubHeader>
+            <AuctionDetailInfo>
+              {singleAuctionData?.description}
+            </AuctionDetailInfo>
+          </AuctionInfoContainer>
+        </TextareaContainer>
 
-          <AuctionDetailContainers>
-            <DetailSubHeader>종료 시점</DetailSubHeader>
-            <AuctionDetail>
-              {timeLimitHandler(auctionData?.end_at)}
-            </AuctionDetail>
-          </AuctionDetailContainers>
-          <AuctionDetailContainers>
-            <DetailSubHeader>거래 방법</DetailSubHeader>
-            <AuctionDetail>
-              {dealingTypeHandler(auctionData?.dealing_type)}
-            </AuctionDetail>
-          </AuctionDetailContainers>
-        </>
-      )}
+        <AuctionDetailContainers>
+          <DetailSubHeader>종료 시점</DetailSubHeader>
+          <AuctionDetail>
+            {timeLimitHandler(singleAuctionData?.end_at)}
+            {/*{timeLimitHandler(auctionData?.end_at)}*/}
+          </AuctionDetail>
+        </AuctionDetailContainers>
+        <AuctionDetailContainers>
+          <DetailSubHeader>거래 방법</DetailSubHeader>
+          <AuctionDetail>
+            {dealingTypeHandler(singleAuctionData?.dealing_type)}
+          </AuctionDetail>
+        </AuctionDetailContainers>
+      </>
     </Container>
   );
 };
