@@ -38,7 +38,7 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-top: 1rem;
+  padding: 1rem 0.8rem 0;
   border-radius: 1rem;
 
   .dropzone {

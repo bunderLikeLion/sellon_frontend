@@ -37,7 +37,7 @@ const ItemDetailContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 85%;
+  width: 100%;
   height: 3.5rem;
   margin-top: 1rem;
   padding-right: 2rem;
@@ -52,15 +52,18 @@ const ItemCondition = styled.p`
 `;
 
 const ItemDetail = styled.div`
-  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
   height: 2rem;
-  padding-top: 0.5rem;
   font-size: 1rem;
-  text-align: left;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const ItemConditionDetail = styled(ItemDetail)`
+  width: fit-content;
+  padding: 0 1.5rem;
   border-radius: 0.8rem;
   text-align: center;
   background: ${(props) => props.theme.color_background__success};
@@ -92,8 +95,8 @@ const ItemQuantity = styled.p`
 
 const ItemDescriptionContainer = styled.div`
   width: 100%;
-  height: 14.8rem;
-  margin-top: 2rem;
+  height: 50%;
+  margin-top: 1rem;
   padding: 1rem 2rem;
   border-radius: 0.6rem;
   overflow-y: scroll;
@@ -108,6 +111,7 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
@@ -115,24 +119,26 @@ const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
     singleItemData;
   return (
     <Container>
-      {!isTriggeredFromModal && (
+      {/* {!isTriggeredFromModal && (
         <EditButtonContainer>
           <EditButton>수정하기</EditButton>
         </EditButtonContainer>
-      )}
-      <ItemTitle>{name}</ItemTitle>
+      )} */}
+      {/* <ItemTitle>{name}</ItemTitle> */}
       <ItemDetailContainer>
         <ItemCondition>아이템 상태</ItemCondition>
         <ItemDetail>{statusHandler(quality)}</ItemDetail>
       </ItemDetailContainer>
-      <ItemCategoryContainer>
+      <ItemDetailContainer>
         <ItemCategory>카테고리</ItemCategory>
-        <ItemConditionDetail>{product_category.name}</ItemConditionDetail>
-      </ItemCategoryContainer>
-      <ItemCategoryContainer>
+        <ItemDetail>
+          <ItemConditionDetail>{product_category.name}</ItemConditionDetail>
+        </ItemDetail>
+      </ItemDetailContainer>
+      <ItemDetailContainer>
         <ItemQuantity>개수</ItemQuantity>
         <ItemDetail>{quantity}</ItemDetail>
-      </ItemCategoryContainer>
+      </ItemDetailContainer>
       <ItemDescriptionContainer>
         <p>{description}</p>
       </ItemDescriptionContainer>
