@@ -3,11 +3,8 @@ import { axiosInstance } from './config';
 const client = axiosInstance;
 
 const auctionRelatedAPI = {
-  postAuction: (payload) => {
-    return client.post('auctions/', payload).then((res) => res.data);
-  },
-
-  getAuctionLists: (sort) => {
+  // 옥션 리스트
+  getAuctionLists: (sort, pageNum) => {
     return client
       .get('auctions/?ordering=-product_groups_count/', {
         params: {
@@ -19,9 +16,15 @@ const auctionRelatedAPI = {
               : sort === 'interest'
               ? '-interested_auctions_count'
               : '-created_at',
+          per_page: 12,
+          page: pageNum,
         },
       })
       .then((res) => res.data);
+  },
+
+  postAuction: (payload) => {
+    return client.post('auctions/', payload).then((res) => res.data);
   },
 
   getInterestedAuctionLists: () => {
@@ -33,6 +36,12 @@ const auctionRelatedAPI = {
   postInterestedAuction: (auctionId) => {
     return client
       .post('auctions/interested/', { auction_id: auctionId })
+      .then((res) => res.data);
+  },
+
+  getMyAuctionLists: (page) => {
+    return client
+      .get('auctions/my/', { params: { page: page, per_page: 30 } })
       .then((res) => res.data);
   },
 

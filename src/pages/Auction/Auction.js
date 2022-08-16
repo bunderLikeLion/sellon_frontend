@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeAuctionListCard from 'components/Home/HomeAuctionListCard';
 import WrapContainer from 'layouts/WrapContainer';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
 import { StyledLink } from 'styles/StyledComponetStyles';
@@ -15,7 +15,6 @@ import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
-import { useMyProductsQuery } from 'queries/product';
 
 const Form = styled.div`
   width: 100%;
@@ -229,13 +228,13 @@ const Auction = () => {
   const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
     useTodayCompletedQuery();
 
-  const { data: auctionList, isSuccess: auctionListFetched } =
-    useAuctionsQuery(sort);
+  const { data: auctionList, isSuccess: auctionListFetched } = useAuctionsQuery(
+    sort,
+    pageNum
+  );
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
     usePopularAuctionsQuery();
-
-  const { data: myProductsData } = useMyProductsQuery(pageNum, 6);
 
   const handleChange = (event, value) => {
     setPageNum(value);
@@ -328,7 +327,7 @@ const Auction = () => {
           {/*Pagination*/}
           <PaginationContainer>
             <StyledPagination
-              count={myProductsData?.total_pages}
+              count={auctionList?.total_pages}
               page={pageNum}
               onChange={handleChange}
             />
