@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
 
-
 const OtherSuggestionContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -24,7 +23,7 @@ const GuideContainer = styled.div`
   display: flex;
   align-items: end;
   width: 93%;
-  height: 10%;
+  height: 2rem;
   margin: 0 auto 0.7rem auto;
 `;
 
@@ -43,17 +42,12 @@ const OtherSuggestion = styled.div`
   margin: 0.3rem 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  border: 1.3px solid transparent;
-  :hover {
-    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
-  }
   background: ${(props) => props.theme.color_background__secondary};
 `;
 const InnerWrapper = styled.div`
   display: inline-flex;
   width: 26.6rem;
   height: auto;
-  overflow: hidden;
 `;
 const ProfileContainer = styled.div`
   position: relative;
@@ -83,17 +77,19 @@ const ItemImg = styled(CardMedia)`
   height: 3.8rem;
   margin: 0.1rem 0.3rem 0.5rem 0.3rem;
   border-radius: 0.5rem;
-  color: #fff;
   cursor: pointer;
-  background: #000;
+  border: 1.3px solid transparent;
+  :hover {
+    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
+  }
 `;
 
 //Pagination
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   width: 100%;
-  margin-top: 2%;
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -106,7 +102,6 @@ const StyledPagination = styled(Pagination)`
     }
   }
 `;
-
 
 const AuctionOtherSuggestion = (props) => {
   const { id: relatedAuctionId } = useParams();
@@ -131,7 +126,6 @@ const AuctionOtherSuggestion = (props) => {
   const handleChangePagination = (event, value) => {
     setPageNum(value);
   };
-
 
   return (
     <OtherSuggestionContainer isInventoryOpened={props.isInventoryOpened}>
@@ -161,9 +155,6 @@ const AuctionOtherSuggestion = (props) => {
                         />
                       );
                     })}
-                    <ItemImg />
-                    <ItemImg />
-                    <ItemImg />
                     <AuctionDetailModal
                       handleModal={handleModal}
                       isModalOpened={isModalOpened}
@@ -177,11 +168,11 @@ const AuctionOtherSuggestion = (props) => {
         })}
       {/*Pagination*/}
       <PaginationContainer>
-      <StyledPagination
-        count={myProductsData?.total_pages}
-        page={pageNum}
-        onChange={handleChangePagination}
-      />
+        <StyledPagination
+          count={myProductsData?.total_pages}
+          page={pageNum}
+          onChange={handleChangePagination}
+        />
       </PaginationContainer>
     </OtherSuggestionContainer>
   );
