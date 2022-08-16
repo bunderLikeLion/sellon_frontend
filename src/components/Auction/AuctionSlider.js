@@ -5,6 +5,8 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'css/slick.css';
 import 'css/slick-theme.css';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../../states';
 
 const Wrap = styled.div`
   position: relative;
@@ -90,9 +92,9 @@ const AuctionTitle = styled.span`
 `;
 
 const ProductThumbnail = styled.img`
-  width: 50% !important;
+  width: 25rem !important;
   position: absolute !important;
-  left: 43% !important;
+  left: 50% !important;
   top: 1.6rem !important;
   border-radius: 6%;
   box-shadow: 0 0 6px ${(props) => props.theme.color_white};
@@ -167,6 +169,7 @@ const AuctionSlider = ({ items }) => {
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
   const USER_MAX_COUNT = 6;
+  const user = useRecoilValue(userAtom);
 
   return (
     <Wrap>
@@ -181,7 +184,7 @@ const AuctionSlider = ({ items }) => {
                 <AuctionTitle>{items[i]?.title}</AuctionTitle>
                 <Link
                   to={
-                    items[i]?.owner?.id === items[i]?.pk
+                    items[i]?.owner?.id === user?.pk
                       ? `/auctioneer/${items[i]?.id}/${items[i]?.product?.id}`
                       : `/auction/${items[i]?.id}`
                   }

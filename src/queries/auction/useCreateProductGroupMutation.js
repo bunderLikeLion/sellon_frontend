@@ -5,6 +5,7 @@ import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 import { useDeleteProductMutation } from 'queries/product';
 import queryKeys from 'utils/queryKeys';
+import messages from 'constants/messages';
 
 const useCreateProductGroupMutation = (relatedAuctionId) => {
   let itemId = 0;
@@ -13,13 +14,12 @@ const useCreateProductGroupMutation = (relatedAuctionId) => {
   return useMutation(
     (payload) => {
       itemId = payload.product_ids;
-      toast.loading('아이템 등록 시도 중입니다....');
       return auctionRelatedAPI.postProductGroups(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('아이템 생성 성공했습니다 👍');
+        toast.success(messages.productGroup.create.succes);
         for (let singleId of itemId) {
           deleteProductFromInventory(singleId);
         }

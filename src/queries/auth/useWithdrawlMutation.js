@@ -11,7 +11,6 @@ const useWithdrawlMutation = () => {
 
   return useMutation(
     () => {
-      toast.loading('회원탈퇴 처리중...');
       return userRelatedAPI.deleteWithdrawl();
     },
     {

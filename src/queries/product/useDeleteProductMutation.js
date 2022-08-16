@@ -3,17 +3,17 @@ import toast from 'react-hot-toast';
 import productsRelatedAPI from 'apis/productsRelatredAPI';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
+import messages from 'constants/messages';
 
 const useDeleteProductMutation = () => {
   return useMutation(
     (payload) => {
-      toast.loading('아이템 삭제 시도 중입니다....');
       return productsRelatedAPI.deleteProduct(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('아이템 삭제 성공했습니다 👍');
+        toast.success(messages.product.destroy.success);
         return queryClient.invalidateQueries(['myProductsData']);
       },
       onError: (res) => {

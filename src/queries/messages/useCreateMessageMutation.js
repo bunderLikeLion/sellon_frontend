@@ -3,17 +3,17 @@ import toast from 'react-hot-toast';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import messagesRelatedAPI from 'apis/messagesRelatedAPI';
+import messages from 'constants/messages';
 
 const useCreateMessageMutation = () => {
   return useMutation(
     (payload) => {
-      toast.loading('메세지 전송 시도 중입니다....');
       return messagesRelatedAPI.postMessage(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('메세지 전송 성공했습니다 👍');
+        toast.success(messages.message.create.success);
         return queryClient.invalidateQueries(['messages']);
       },
       onError: (res) => {
