@@ -4,7 +4,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useDeleteAuctionItemMutation,
   useMyProductGroupQuery,
@@ -118,14 +118,34 @@ const DeleteIcon = styled(HighlightOffIcon)`
 const MySuggested = (props) => {
   const { id: relatedAuctionId } = useParams();
   const { id: userId } = useRecoilValue(userAtom);
-  const [productGroupPage, setProductGroupPage] = useState(1);
-  const [pageLength, setPageLength] = useState(1);
+  const [productGroupPage, setProductGroupPage] = useState(0);
+  const [pageLength, setPageLength] = useState(null);
+  const [paginatedData, setPaginatedData] = useState(null);
 
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
-    useMyProductGroupQuery(relatedAuctionId, userId, productGroupPage, 4);
+    useMyProductGroupQuery(relatedAuctionId, userId, 1, 4);
 
   const { mutate: deleteAuctionItem } =
     useDeleteAuctionItemMutation(relatedAuctionId);
+
+  useEffect(() => {
+    const splitedData = [];
+    const tmpArr = [];
+    for (let i = 0; i < myProductGroup?.results[0]?.products.length; i++) {
+      if (tmpArr.length < 4) {
+        tmpArr.push(myProductGroup?.results[0]?.products[i]);
+      } else {
+        splitedData.push([...tmpArr]);
+        tmpArr.splice(0, tmpArr.length);
+        tmpArr.push(myProductGroup?.results[0]?.products[i]);
+      }
+    }
+    if (tmpArr.length) {
+      splitedData.push([...tmpArr]);
+    }
+    setPaginatedData(splitedData);
+    setPageLength(splitedData.length);
+  }, [myProductGroup]);
 
   return (
     <Container>
@@ -134,7 +154,7 @@ const MySuggested = (props) => {
       </ButtonContainer>
       <Comment>내가 제시한 물건</Comment>
       <MyItemContainer>
-        {productGroupPage !== 1 ? (
+        {productGroupPage !== 0 ? (
           <BeforeIcon
             onClick={() => setProductGroupPage(productGroupPage - 1)}
           />
@@ -142,7 +162,9 @@ const MySuggested = (props) => {
           <DisabledBeforeIcon />
         )}
         {myProductGroupFetched &&
-          myProductGroup?.results[0]?.products.map((singleItem) => {
+          paginatedData &&
+          pageLength &&
+          paginatedData[productGroupPage].map((singleItem) => {
             return (
               <MyItem key={singleItem?.id} image={singleItem?.thumbnail?.file}>
                 <DeleteIcon
