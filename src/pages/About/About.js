@@ -276,7 +276,12 @@ const StyledAccordionSummary = styled(AccordionSummary)`
 
 const AccordionTitle = styled(Typography)`
   font-size: 1.2rem !important;
+  padding-left: 1rem;
 `
+
+const AccordionContent = styled(Typography)`
+  padding: 2rem;
+`;
 
 const ParticipantBanner = styled.div`
   padding: 2rem 5rem;
@@ -451,12 +456,13 @@ const About = () => {
               </AccordionTitle>
             </StyledAccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
-              </Typography>
+              <AccordionContent>
+                1. 경매장 페이지 우상단의 경매 올리기로 경매 작성 페이지로 가주세요.<br></br>
+                2. 경매 열기 페이지의 양식을 작성한 후 경매를 발행해주세요. 😎
+              </AccordionContent>
             </AccordionDetails>
           </StyledAccordion>
+
           <StyledAccordion>
             <StyledAccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -464,16 +470,67 @@ const About = () => {
               id="panel2a-header"
             >
               <AccordionTitle>
-                Q. 질문 질문
+                Q. 경매를 낙찰한 이후, 어떻게 낙찰자와 연락하나요?
               </AccordionTitle>
             </StyledAccordionSummary>
-            <AccordionDetails>
+            <AccordionContent>
               <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                malesuada lacus ex, sit amet blandit leo lobortis eget.
+                개인페이지 &gt; 진행중인 거래 탭에 참여자와 연락할 수 있는 채팅 기능이 마련되어져 있어요. 채팅으로 참여자와 편하게 연락하세요!😉
               </Typography>
-            </AccordionDetails>
+            </AccordionContent>
           </StyledAccordion>
+
+          <StyledAccordion>
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3a-content"
+              id="panel3a-header"
+            >
+              <AccordionTitle>
+                Q. 경매를 올렸는데 마음에 드는 참여자가 없습니다. 이럴때는 어떡하죠?
+              </AccordionTitle>
+            </StyledAccordionSummary>
+            <AccordionContent>
+              <Typography>
+                안타깝지만 내가 올린 경매의 상세 페이지에서 ‘폐기’ 버튼을 눌러서, 물건을 고르지 않고 경매를 바로 종료할 수 있습니다.
+              </Typography>
+            </AccordionContent>
+          </StyledAccordion>
+
+          <StyledAccordion>
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4a-content"
+              id="panel4a-header"
+            >
+              <AccordionTitle>
+                Q. sellon의 경매에서는 돈을 사용해 경매에 참여할 순 없나요?
+              </AccordionTitle>
+            </StyledAccordionSummary>
+            <AccordionContent>
+              <Typography>
+                네, 없습니다! sellon은 ‘물물’경매를 위한 사이트로 돈과 관련된 기능은 없습니다.☺️
+              </Typography>
+            </AccordionContent>
+          </StyledAccordion>
+
+          <StyledAccordion>
+            <StyledAccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5a-content"
+              id="panel5a-header"
+            >
+              <AccordionTitle>
+                Q. 경매를 만들 때 여러 물건을 한번에 올릴 수 없나요?
+              </AccordionTitle>
+            </StyledAccordionSummary>
+            <AccordionContent>
+              <Typography>
+                경매를 열 때는 한번에 물건 한 개만 등록해주세요.
+              </Typography>
+            </AccordionContent>
+          </StyledAccordion>
+
         </AccordionContainer>
       </FAQContainer>
       <ParticipantBannerContainer>
