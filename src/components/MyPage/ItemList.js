@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useMyProductsQuery } from 'queries/product';
 import { Pagination } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -66,8 +67,6 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
-// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
-
 const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [pageNum, setPageNum] = useState(1);
@@ -87,15 +86,25 @@ const ItemList = () => {
         <PlusBtn />
         아이템 추가
       </AddProductItemButton>
-      <p>총 {myProductsData?.total_count}개</p>
-      <FlexContainer>
-        {myProductFetched &&
-          myProductsData.results.map((productData) => {
-            return (
-              <ItemListCard key={productData.id} productData={productData} />
-            );
-          })}
-      </FlexContainer>
+        {myProductFetched && (
+          <>
+            <p>총 {myProductsData?.total_count}개</p>
+            {
+              myProductsData?.total_count > 0 ? (
+                <FlexContainer>
+                  {
+                    myProductsData.results.map((productData) => {
+                      return (
+                        <ItemListCard key={productData.id} productData={productData} />
+                      );
+                    })
+                  }
+                </FlexContainer>
+              ) : <EmptyListPlaceHolder message="아직 등록한 아이템이 없습니다. 🥲" margin="2rem 0 0 0 "/>
+            }
+          </>
+        )
+      }
       <PaginationContainer>
         <StyledPagination
           count={myProductsData?.total_pages}
