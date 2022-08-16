@@ -5,6 +5,8 @@ const timeLimitHandler = (time) => {
   const todayDate = moment();
   const res = eventDate.diff(todayDate, 'days');
 
+  if (res <= 0) return '종료';
+
   switch (res) {
     case 0:
       return '당일 종료';
