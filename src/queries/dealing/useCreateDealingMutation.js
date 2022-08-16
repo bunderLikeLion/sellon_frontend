@@ -4,18 +4,18 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import { useNavigate } from 'react-router-dom';
 import dealingsRelatedAPI from '../../apis/dealingsRelatedAPI';
+import messages from 'constants/messages';
 
 const useCreateDealingMutation = () => {
   const navigate = useNavigate();
   return useMutation(
     (payload) => {
-      toast.loading('경매 체결 시도 중입니다....');
       return dealingsRelatedAPI.postDealing(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('경매 체결 처리 성공했습니다 👍');
+        toast.success(messages.dealing.create.success);
         queryClient.invalidateQueries(['auctionList']).then(() => {
           navigate('/auction');
         });

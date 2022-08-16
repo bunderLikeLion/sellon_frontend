@@ -4,17 +4,17 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 import queryKeys from 'utils/queryKeys';
+import messages from 'constants/messages';
 
 const useAllInAuctionItemMutation = (auctionId) => {
   return useMutation(
     () => {
-      toast.loading('아이템 올인 시도 중입니다....');
       return auctionRelatedAPI.postAllIn(auctionId);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('아이템 올인 성공했습니다 👍');
+        toast.success(messages.auction.allIn.success);
         queryClient.invalidateQueries(['myProductsData']).then(() => {
           queryClient
             .invalidateQueries([queryKeys.myProductGroup(auctionId)])

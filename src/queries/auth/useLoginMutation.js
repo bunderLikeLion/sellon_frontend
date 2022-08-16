@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import { useSetRecoilState } from 'recoil';
 import { userAtom } from 'states';
+import messages from 'constants/messages';
 
 const useLoginMutation = () => {
   const navigate = useNavigate();
@@ -12,13 +13,12 @@ const useLoginMutation = () => {
 
   return useMutation(
     (payload) => {
-      toast.loading('로그인 시도중...');
       return userRelatedAPI.postLogin(payload);
     },
     {
       onSuccess: (res) => {
         toast.dismiss();
-        toast.success('로그인 성공 👍');
+        toast.success(messages.user.signin.success);
         localStorage.setItem('user_info', JSON.stringify(res?.user));
         setUserInfo(JSON.parse(localStorage.getItem('user_info')));
         localStorage.setItem('access_token', res?.access_token);
