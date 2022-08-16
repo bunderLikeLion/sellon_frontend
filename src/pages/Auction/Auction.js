@@ -16,7 +16,7 @@ import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import Slider from 'react-slick';
-import AuctionSlider from '../../components/Auction/AuctionSlider';
+import AuctionSlider from 'components/Auction/AuctionSlider';
 
 const Form = styled.div`
   width: 100%;
