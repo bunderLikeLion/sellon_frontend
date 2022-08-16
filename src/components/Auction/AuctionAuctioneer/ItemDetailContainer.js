@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { queryClient } from 'index';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -62,37 +63,33 @@ const AuctionDetailContainers = styled.div`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const ItemDetailContainer = ({ singleAuctionData }) => {
-  // const auctionData = queryClient.getQueryData(['auctionInfo']);
+const ItemDetailContainer = () => {
+  const { id } = useParams();
+  const auctionData = queryClient.getQueryData([`auctionInfo${id}`]);
 
   return (
     <Container>
       <>
         <AuctionDetailContainers>
           <DetailSubHeader>경매 제목</DetailSubHeader>
-          <AuctionDetail>{singleAuctionData?.title}</AuctionDetail>
+          <AuctionDetail>{auctionData?.title}</AuctionDetail>
         </AuctionDetailContainers>
 
         <TextareaContainer>
           <AuctionInfoContainer>
             <DetailSubHeader>경매 내용</DetailSubHeader>
-            <AuctionDetailInfo>
-              {singleAuctionData?.description}
-            </AuctionDetailInfo>
+            <AuctionDetailInfo>{auctionData?.description}</AuctionDetailInfo>
           </AuctionInfoContainer>
         </TextareaContainer>
 
         <AuctionDetailContainers>
           <DetailSubHeader>종료 시점</DetailSubHeader>
-          <AuctionDetail>
-            {timeLimitHandler(singleAuctionData?.end_at)}
-            {/*{timeLimitHandler(auctionData?.end_at)}*/}
-          </AuctionDetail>
+          <AuctionDetail>{timeLimitHandler(auctionData?.end_at)}</AuctionDetail>
         </AuctionDetailContainers>
         <AuctionDetailContainers>
           <DetailSubHeader>거래 방법</DetailSubHeader>
           <AuctionDetail>
-            {dealingTypeHandler(singleAuctionData?.dealing_type)}
+            {dealingTypeHandler(auctionData?.dealing_type)}
           </AuctionDetail>
         </AuctionDetailContainers>
       </>

@@ -165,7 +165,7 @@ const Auctioneer = () => {
               thumbnail={singleItemData?.thumbnail?.file}
               images={singleItemData?.images}
             />
-            <ItemDetailContainer singleAuctionData={singleAuctionData} />
+            <ItemDetailContainer />
           </ItemContainer>
         )}
         {productGroupsFetched && (
