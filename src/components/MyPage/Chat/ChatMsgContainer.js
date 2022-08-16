@@ -58,7 +58,7 @@ const ChatMsgContainer = ({ opponent, selectedDeal }) => {
     <ChatContentContainer ref={scrollRef}>
       {msgDataFetched &&
         msgData.map((singleMsg) => {
-          if (singleMsg?.sender?.id === user?.pk) {
+          if (singleMsg?.sender?.id === user?.id) {
             return <ChatBox>{singleMsg?.content}</ChatBox>;
           } else {
             return (

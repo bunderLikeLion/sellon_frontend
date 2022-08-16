@@ -153,7 +153,7 @@ const Auctioneer = () => {
   };
 
   useEffect(() => {
-    if (singleAuctionData?.owner?.id !== user?.pk) navigate('/auction');
+    if (singleAuctionData?.owner?.id !== user?.id) navigate('/auction');
   }, [user, singleAuctionData]);
 
   return (
@@ -178,25 +178,25 @@ const Auctioneer = () => {
             <SelectBtn onClick={SelecthandleModal}>선택</SelectBtn>
             <DiscardBtn onClick={DiscardhandleModal}>폐기</DiscardBtn>
             <BuyerList>
-              {
-                productGroups?.total_count > 0 ? (
-                  <MyRadioGroup name="buyer-radio-group">
-                    {productGroups?.results.map((singleGroup) => {
-                      return (
-                        <BuyerContainer>
-                          <FormControlLabel
-                            control={<StyledRadio />}
-                            {...selectedProductGroupControlProps(
-                              `${singleGroup?.id}`
-                            )}
-                          />
-                          <BuyerSingleBox singleGroup={singleGroup} />
-                        </BuyerContainer>
-                      );
-                    })}
-                  </MyRadioGroup>
-                ) : <EmptyListPlaceHolder message="아직 경매 참여자가 없습니다 🥺" />
-              }
+              {productGroups?.total_count > 0 ? (
+                <MyRadioGroup name="buyer-radio-group">
+                  {productGroups?.results.map((singleGroup) => {
+                    return (
+                      <BuyerContainer>
+                        <FormControlLabel
+                          control={<StyledRadio />}
+                          {...selectedProductGroupControlProps(
+                            `${singleGroup?.id}`
+                          )}
+                        />
+                        <BuyerSingleBox singleGroup={singleGroup} />
+                      </BuyerContainer>
+                    );
+                  })}
+                </MyRadioGroup>
+              ) : (
+                <EmptyListPlaceHolder message="아직 경매 참여자가 없습니다 🥺" />
+              )}
             </BuyerList>
             <PaginationContainer>
               <StyledPagination
