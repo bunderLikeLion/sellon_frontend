@@ -7957,16 +7957,16 @@
     "prosemirror-transform" "^1.0.0"
 
 "prosemirror-transform@^1.0.0", "prosemirror-transform@^1.1.0":
-  "integrity" "sha512-MAp7AjsjEGEqQY0sSMufNIUuEyB1ZR9Fqlm8dTwwWwpEJRv/plsKjWXBbx52q3Ml8MtaMcd7ic14zAHVB3WaMw=="
-  "resolved" "https://registry.npmjs.org/prosemirror-transform/-/prosemirror-transform-1.6.0.tgz"
-  "version" "1.6.0"
+  "integrity" "sha512-O4T697Cqilw06Zvc3Wm+e237R6eZtJL/xGMliCi+Uo8VL6qHk6afz1qq0zNjT3eZMuYwnP8ZS0+YxX/tfcE9TQ=="
+  "resolved" "https://registry.npmjs.org/prosemirror-transform/-/prosemirror-transform-1.7.0.tgz"
+  "version" "1.7.0"
   dependencies:
     "prosemirror-model" "^1.0.0"
 
 "prosemirror-view@^1.18.7":
-  "integrity" "sha512-yNCQW5eiPkrMgjOT5Xa/ItIvcM7JBG7ikZKaHo26hdBW5OLNnIWGZ0BV6/OiBk742teLybLVNPCpYUcW405Ckg=="
-  "resolved" "https://registry.npmjs.org/prosemirror-view/-/prosemirror-view-1.27.0.tgz"
-  "version" "1.27.0"
+  "integrity" "sha512-aUb5W6o3BdPQhbOKOvyPJZckVDfbEoCTN5Z24CYdYkoUIT2QAWHwlfTpMCBn4hkaHiTI6trbdFDQhAwaKjYSiw=="
+  "resolved" "https://registry.npmjs.org/prosemirror-view/-/prosemirror-view-1.27.1.tgz"
+  "version" "1.27.1"
   dependencies:
     "prosemirror-model" "^1.16.0"
     "prosemirror-state" "^1.0.0"

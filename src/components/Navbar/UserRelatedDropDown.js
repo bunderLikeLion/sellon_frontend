@@ -63,10 +63,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={openUserMenu} sx={{ p: 0 }}>
-          <Avatar
-            alt="Remy Sharp"
-            src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg"
-          />
+          <Avatar alt="user_avatar" src={user.avatar} />
         </IconButton>
       </Tooltip>
       <UserDropDownContainer
@@ -88,7 +85,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         <MenuItem onClick={closeUserMenu}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <IconButton>
-              <Avatar src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg" />
+              <Avatar alt="user_avatar" src={user.avatar} />
             </IconButton>
             <Typography textAlign="center">{user?.username}</Typography>
           </Stack>
