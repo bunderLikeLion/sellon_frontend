@@ -4,16 +4,16 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import dealingsRelatedAPI from 'apis/dealingsRelatedAPI';
 
-const useEndDealingMutation = () => {
+const useEvaluateDealingMutation = () => {
   return useMutation(
     async (payload) => {
-      toast.loading('거래 종료 시도 중입니다....');
-      return dealingsRelatedAPI.postCompleteDealing(payload?.dealing_id);
+      toast.loading('평가 등록 시도 중입니다....');
+      return dealingsRelatedAPI.postDealingRating(payload);
     },
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success('거래 종료 처리 성공했습니다 👍');
+        toast.success('평가 등록 처리 성공했습니다 👍');
         return queryClient.invalidateQueries(['dealings']);
       },
       onError: (res) => {
@@ -24,4 +24,4 @@ const useEndDealingMutation = () => {
   );
 };
 
-export default useEndDealingMutation;
+export default useEvaluateDealingMutation;
