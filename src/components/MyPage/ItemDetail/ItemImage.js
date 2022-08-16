@@ -59,13 +59,13 @@ const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
 
   return (
     <>
-      {!isTriggeredFromModal && (
+      {/* {!isTriggeredFromModal && (
         <ArrowIconContainer>
           <Link to={'/mypage/'}>
             <ArrowIcon />
           </Link>
         </ArrowIconContainer>
-      )}
+      )} */}
       {singleItemFetched && <UserInformation singleItemData={singleItem} />}
       <ItemPicWrapper>
         <MainPicContainer>
