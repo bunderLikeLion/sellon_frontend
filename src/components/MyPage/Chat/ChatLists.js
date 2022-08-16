@@ -69,7 +69,6 @@ const ChatLists = ({
   handleEvaluationModal,
   selectedDeal,
   setSelectedDeal,
-  opponent,
 }) => {
   const { pk: userId } = useRecoilValue(userAtom);
   const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
