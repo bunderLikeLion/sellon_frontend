@@ -15,7 +15,9 @@ const useCreateInterestedAuctionMutation = () => {
         toast.dismiss();
         toast.success('관심 경매 등록 성공했습니다 👍');
         queryClient.invalidateQueries(['auctionInfo']).then(() => {
-          return queryClient.invalidateQueries(['interestedAuctionList']);
+          queryClient.invalidateQueries(['interestedAuctionList']).then(() => {
+            return queryClient.invalidateQueries(['auctionList']);
+          });
         });
       },
       onError: (res) => {

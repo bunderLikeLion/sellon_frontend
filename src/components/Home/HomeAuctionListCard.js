@@ -9,6 +9,7 @@ const HomeAuctionListCard = ({ isFinished, auctionData, isInterested }) => {
 
   return (
     <AuctionListItem
+      id={auctionData?.id}
       title={auctionData?.title}
       thumbnailUrl={auctionData?.product?.thumbnail?.file}
       participantCount={auctionData?.product_groups_count}

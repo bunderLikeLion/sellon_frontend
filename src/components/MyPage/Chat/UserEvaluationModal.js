@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@material-ui/core/Box';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import useEndDealingMutation from '../../../queries/dealing/useEndDealingMutation';
+import { useEvaluateDealingMutation } from 'queries/dealing';
+import dateFormatter from 'utils/dateFormatter';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -167,10 +167,10 @@ const UserEvaluationModal = ({
 }) => {
   const [rateValue, setRateValue] = useState(3);
 
-  const { mutate: endFunc } = useEndDealingMutation();
+  const { mutate: evaluateFunc } = useEvaluateDealingMutation();
 
   const endBtnClickFunc = async () => {
-    await endFunc({ dealing_id: selectedDeal?.id, rate: rateValue });
+    await evaluateFunc({ dealing_id: selectedDeal?.id, rate: rateValue });
     handleEvaluationModal();
   };
   return (
@@ -182,7 +182,9 @@ const UserEvaluationModal = ({
             <MyItemImg image={selectedDeal?.product?.thumbnail?.file} />
             <div>
               <ItemTitle>{selectedDeal?.auction?.title}</ItemTitle>
-              <ItemUploadDate>이거 끝난 날짜임?</ItemUploadDate>
+              <ItemUploadDate>
+                {dateFormatter(selectedDeal?.created_at)}
+              </ItemUploadDate>
             </div>
           </EvaluateTopContainer>
           <EvaluateBottomContainer>
@@ -204,7 +206,7 @@ const UserEvaluationModal = ({
             </StarRatingContainer>
           </EvaluateBottomContainer>
         </EvaluateContainer>
-        <DealSummarize>이번 거래, 요약하기</DealSummarize>
+        {/*        <DealSummarize>이번 거래, 요약하기</DealSummarize>
         <DealSummarizeContainer>
           <MyItemImgSummarize
             image={selectedDeal?.auction?.product?.thumbnail?.file}
@@ -220,9 +222,9 @@ const UserEvaluationModal = ({
               );
           })}
           {selectedDeal?.product_group?.products.length > 5 && <ExtraIcon />}
-        </DealSummarizeContainer>
+        </DealSummarizeContainer>*/}
         <button onClick={handleEvaluationModal}>취소</button>
-        <ConfirmButton onClick={endBtnClickFunc}>거래 종료</ConfirmButton>
+        <ConfirmButton onClick={endBtnClickFunc}>평가 등록</ConfirmButton>
       </ModalContainer>
     </Modal>
   );

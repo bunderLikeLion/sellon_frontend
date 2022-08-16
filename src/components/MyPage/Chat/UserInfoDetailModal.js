@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@mui/material/CardMedia';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
+import dateFormatter from 'utils/dateFormatter';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -31,7 +32,6 @@ const SummarizeContainer = styled.div`
   margin-bottom: 2rem;
   border-radius: 10px;
   overflow: hidden;
-  border: 0.2rem solid #a269b7;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
@@ -40,7 +40,7 @@ const SummarizeTopContainer = styled.div`
   align-items: center;
   height: 25%;
   padding: 1rem;
-  border-bottom: 0.2rem solid #a269b7;
+  border-bottom: 0.2rem solid #674a72;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
@@ -48,22 +48,19 @@ const MyItemImg = styled(CardMedia)`
   width: 3.75rem;
   height: 3.75rem;
   margin: 0 1.5rem;
-  border-radius: 10px;
-  background: red;
+  border-radius: 50%;
 `;
 
 const DealedMyItemImg = styled(CardMedia)`
   width: 4.8rem;
   height: 4.8rem;
   border-radius: 10px;
-  background: green;
 `;
 
 const OpponentItemImg = styled(CardMedia)`
   width: 4.8rem;
   height: 4.8rem;
   border-radius: 10px;
-  background: pink;
   margin: 0 1rem 0.1rem 1rem;
 `;
 
@@ -114,7 +111,7 @@ const ConfirmButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
-const UserInfoDetailModal = ({ handleModal, isModalOpened }) => {
+const UserInfoDetailModal = ({ handleModal, isModalOpened, singleDeal }) => {
   return (
     <Modal
       open={isModalOpened}
@@ -126,25 +123,27 @@ const UserInfoDetailModal = ({ handleModal, isModalOpened }) => {
         <DealSummarize>이번 경매, 요약하기</DealSummarize>
         <SummarizeContainer>
           <SummarizeTopContainer>
-            <MyItemImg />
+            <MyItemImg image={singleDeal?.auction?.owner?.avatar} />
             <div>
-              <ItemTitle>이 물품 팝니다요.</ItemTitle>
-              <ItemUploadDate>22.04.21</ItemUploadDate>
+              <ItemTitle>{singleDeal?.auction?.title}</ItemTitle>
+              <ItemUploadDate>
+                {dateFormatter(singleDeal?.auction?.created_at)}
+              </ItemUploadDate>
             </div>
           </SummarizeTopContainer>
           <SummarizeBottomContainer>
-            <DealedMyItemImg />
+            <DealedMyItemImg image={singleDeal?.product?.thumbnail?.file} />
             <ArrowIcon fontSize="large" />
             <OpponentItemImgContainer>
-              <OpponentItemImg />
-              <OpponentItemImg />
-              <OpponentItemImg />
-              <OpponentItemImg />
-              <OpponentItemImg />
+              {singleDeal?.product_group?.products.map((singleProduct) => {
+                return (
+                  <OpponentItemImg image={singleProduct?.thumbnail?.file} />
+                );
+              })}
             </OpponentItemImgContainer>
           </SummarizeBottomContainer>
         </SummarizeContainer>
-        <ConfirmButton>확인</ConfirmButton>
+        <ConfirmButton onClick={handleModal}>확인</ConfirmButton>
       </ModalContainer>
     </Modal>
   );

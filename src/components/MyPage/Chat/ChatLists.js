@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import UserEvaluationModal from './UserEvaluationModal';
 import { useState } from 'react';
 import UserInfoDetailModal from './UserInfoDetailModal';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import ValidationModal from 'components/Shared/ValidationModal';
+import detailDateFormatter from 'utils/detailDateFormatter';
+import CardMedia from '@mui/material/CardMedia';
 
 const ChatMessageListContainer = styled.div`
   display: flex;
@@ -16,7 +18,7 @@ const ChatMessageListContainer = styled.div`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const UserProfileImg = styled.div`
+const UserProfileImg = styled(CardMedia)`
   width: 4rem;
   height: 4rem;
   margin: auto;
@@ -67,14 +69,26 @@ const ChatLists = ({
   handleEvaluationModal,
   selectedDeal,
   setSelectedDeal,
+  opponent,
 }) => {
-  const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
-  const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
   const { pk: userId } = useRecoilValue(userAtom);
+  const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
+  const [isValidationModalOpened, setIsValidationModalOpened] = useState(false);
+
+  const handleDetailModal = () => setIsDetailModalOpened(!isDetailModalOpened);
+
+  const handleValidationModal = () =>
+    setIsValidationModalOpened(!isValidationModalOpened);
 
   return (
     <ChatMessageListContainer onClick={() => setSelectedDeal(singleDeal)}>
-      <UserProfileImg />
+      <UserProfileImg
+        image={
+          singleDeal?.product_group?.user?.id === userId
+            ? singleDeal?.auction?.owner?.avatar
+            : singleDeal?.product_group?.user?.avatar
+        }
+      />
       <ChatMessageText>
         <UserNickname>
           {singleDeal?.product_group?.user?.id === userId
@@ -82,24 +96,43 @@ const ChatLists = ({
             : singleDeal?.product_group?.user?.username}
         </UserNickname>
         <ChatTimeContainer>
-          <ChatTime>시간</ChatTime>
+          <ChatTime>
+            {singleDeal?.last_message_sent_at &&
+              detailDateFormatter(singleDeal?.last_message_sent_at)}
+          </ChatTime>
         </ChatTimeContainer>
         {singleDeal?.completed_at && <p>종료된 거래</p>}
         {singleDeal === selectedDeal && (
           <ChatButtonContainer>
             <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
-            <UserInfoDetailModal
-              handleModal={handleDetailModal}
-              isModalOpened={isDetailModalOpened}
-            />
-            {!singleDeal?.completed_at && (
+            {!singleDeal?.is_evaluated && (
               <ChatBoxButton onClick={handleEvaluationModal}>
-                거래종료
+                평가하기
+              </ChatBoxButton>
+            )}
+            {!singleDeal?.completed_at && (
+              <ChatBoxButton onClick={handleValidationModal}>
+                거래 종료
               </ChatBoxButton>
             )}
           </ChatButtonContainer>
         )}
       </ChatMessageText>
+      {/*거래 요약 묘달 (거래 보기)*/}
+      <UserInfoDetailModal
+        handleModal={handleDetailModal}
+        isModalOpened={isDetailModalOpened}
+        singleDeal={singleDeal}
+      />
+      {/*거래 종료 묘달 (거래 종료)*/}
+      <ValidationModal
+        handleModal={handleValidationModal}
+        isModalOpened={isValidationModalOpened}
+        mainText="정말 거래를 종료하시겠습니까?"
+        btnText="거래 종료"
+        relatedId={selectedDeal?.id}
+        type="endDealing"
+      />
     </ChatMessageListContainer>
   );
 };

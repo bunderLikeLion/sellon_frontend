@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import useAllInAuctionItemMutation from '../../../queries/auction/useAllInAuctionItemMutation';
-import { useParams } from 'react-router-dom';
+import { useAllInAuctionItemMutation } from 'queries/auction';
+import { useEndDealingMutation } from 'queries/dealing';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -53,12 +53,34 @@ const ValidationCancelButton = styled.button`
   background: ${(props) => props.theme.color_font__disabled};
 `;
 
-const ValidationModal = ({ handleModal, isModalOpened }) => {
-  const { id: auctionRelatedId } = useParams();
-  const { mutate: allInFunc } = useAllInAuctionItemMutation(auctionRelatedId);
+const ValidationModal = ({
+  handleModal,
+  isModalOpened,
+  mainText,
+  btnText,
+  relatedId,
+  type,
+}) => {
+  /*
+  handleModal: 모달 open/close handler
+  isModalOpened: 모달 open/close state(상태)
+  mainText: 메인 글
+  btnText: 기능을 수행할 버튼의 이름
+  relatedId: 기능에 필요한 id
+  type: 어떤 버튼인지
+        - allIn: 올인
+        - endDealing: 경매 종료
+  */
 
-  const clickAllInBtnFunc = () => {
-    allInFunc();
+  const { mutate: allInFunc } = useAllInAuctionItemMutation(relatedId);
+  const { mutate: endDealingFuc } = useEndDealingMutation(relatedId);
+
+  const clickBtnFunc = () => {
+    if (type === 'allIn') {
+      allInFunc();
+    } else if (type === 'endDealing') {
+      endDealingFuc();
+    }
     handleModal();
   };
 
@@ -70,10 +92,8 @@ const ValidationModal = ({ handleModal, isModalOpened }) => {
       aria-describedby="modal-modal-description"
     >
       <ModalContainer>
-        <Text>정말 올인하시겠습니까?</Text>
-        <ValidationButton onClick={() => clickAllInBtnFunc()}>
-          올인
-        </ValidationButton>
+        <Text>{mainText}</Text>
+        <ValidationButton onClick={clickBtnFunc}>{btnText}</ValidationButton>
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>

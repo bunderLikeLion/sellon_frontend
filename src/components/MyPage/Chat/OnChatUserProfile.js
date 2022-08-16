@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CardMedia from '@mui/material/CardMedia';
 
 const OnChatProfileContainer = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ const OnChatProfileContainer = styled.div`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const OnChatProfileImg = styled.div`
+const OnChatProfileImg = styled(CardMedia)`
   width: 4rem;
   height: 4rem;
   margin: 1rem;
@@ -26,7 +27,7 @@ const OnChatProfileNickname = styled.div`
 const OnChatUserProfile = ({ opponent }) => {
   return (
     <OnChatProfileContainer>
-      <OnChatProfileImg>UserImg</OnChatProfileImg>
+      <OnChatProfileImg image={opponent?.avatar} />
       <OnChatProfileNickname>{opponent?.username}</OnChatProfileNickname>
     </OnChatProfileContainer>
   );

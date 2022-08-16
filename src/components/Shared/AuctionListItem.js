@@ -6,6 +6,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ConditionalLink from 'components/ConditionalLink';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import {
+  useCreateInterestedAuctionMutation,
+  useDeleteInterestedAuctionMutation,
+} from 'queries/auction';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -131,7 +135,7 @@ const InterestedButton = styled.button`
 `;
 
 export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
+  display: ${(props) => (props.isFinished ? 'block' : 'none')};
   position: absolute;
   left: 0;
   top: 0;
@@ -161,6 +165,15 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   }
 `;
 
+const OverLayIconBox = styled.div`
+  position: relative;
+  height: 50%;
+`;
+
+const FinishedMessage = styled.p`
+  text-align: center;
+`
+
 /*
   title: 경매 제목
   thumbnail_url: 이미지 url
@@ -173,6 +186,7 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   linkCondition: 링크 조건
 */
 const AuctionListItem = ({
+  id,
   title,
   thumbnailUrl,
   participantCount,
@@ -189,12 +203,26 @@ const AuctionListItem = ({
     이때, 반응형 수치도 고려 헤야 함.
   */
 
+  const { mutate: createInterestedAuction } =
+    useCreateInterestedAuctionMutation();
+  // auctionId
+
+  const { mutate: deleteInterestedAuction } =
+    useDeleteInterestedAuctionMutation();
+
+  const pressHeartIconFunc = (isInterested) => {
+    isInterested ? deleteInterestedAuction(id) : createInterestedAuction(id);
+  };
+
   return (
     <CardContainer>
       {/* TODO: 관심 경매 API 연결하기 */}
-      {displayInterestedBtn && (
+      {displayInterestedBtn && !isFinished && (
         <InterestedButton>
-          <StyledFavoriteBorderIcon isInterested={isInterested} />
+          <StyledFavoriteBorderIcon
+            isInterested={isInterested}
+            onClick={() => pressHeartIconFunc(isInterested)}
+          />
         </InterestedButton>
       )}
 
@@ -214,7 +242,17 @@ const AuctionListItem = ({
         </CardFooter>
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
-        <p>종료된 경매입니다.</p>
+        {displayInterestedBtn && (
+          <OverLayIconBox>
+            <InterestedButton>
+              <StyledFavoriteBorderIcon
+                isInterested={isInterested}
+                onClick={() => pressHeartIconFunc(isInterested)}
+              />
+            </InterestedButton>
+          </OverLayIconBox>
+        )}
+        <FinishedMessage>종료된 경매입니다.</FinishedMessage>
       </FinishedCard>
     </CardContainer>
   );
