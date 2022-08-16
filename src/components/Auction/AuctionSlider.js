@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'css/slick.css';
 import 'css/slick-theme.css';
+import { Link } from 'react-router-dom';
+
 const Wrap = styled.div`
   position: relative;
   padding-bottom: 70px;
@@ -93,7 +95,7 @@ const ProductThumbnail = styled.img`
   left: 43% !important;
   top: 1.6rem !important;
   border-radius: 6%;
-  box-shadow: 0px 0px 6px ${(props) => props.theme.color_white};
+  box-shadow: 0 0 6px ${(props) => props.theme.color_white};
   height: auto;
   overflow: visible !important;
 `;
@@ -162,7 +164,6 @@ const AuctionSlider = ({ items }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
   const previous = useCallback(() => slickRef.current.slickPrev(), []);
   const next = useCallback(() => slickRef.current.slickNext(), []);
   const USER_MAX_COUNT = 6;
@@ -174,10 +175,19 @@ const AuctionSlider = ({ items }) => {
           return (
             <SlickItems key={`${v.title}_${i}`}>
               <img src={v.src} />
+
               <AuctionItemContainer>
                 <UserAvatar src={items[i]?.owner?.avatar} />
                 <AuctionTitle>{items[i]?.title}</AuctionTitle>
-                <ProductThumbnail src={items[i]?.product?.thumbnail?.file} />
+                <Link
+                  to={
+                    items[i]?.owner?.id === items[i]?.pk
+                      ? `/auctioneer/${items[i]?.id}/${items[i]?.product?.id}`
+                      : `/auction/${items[i]?.id}`
+                  }
+                >
+                  <ProductThumbnail src={items[i]?.product?.thumbnail?.file} />
+                </Link>
                 {items[i]?.participants.length > 0 && (
                   <ParticipatedUserContainer>
                     {items[i].participants
