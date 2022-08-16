@@ -88,9 +88,9 @@ const AuctionTitle = styled.span`
 `;
 
 const ProductThumbnail = styled.img`
-  width: 50% !important;
+  width: 25rem !important;
   position: absolute !important;
-  left: 43% !important;
+  left: 50% !important;
   top: 1.6rem !important;
   border-radius: 6%;
   box-shadow: 0px 0px 6px ${(props) => props.theme.color_white};
