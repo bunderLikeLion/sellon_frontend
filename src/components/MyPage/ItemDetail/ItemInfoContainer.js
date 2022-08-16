@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import statusHandler from 'utils/statusHandler';
-import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-import { Viewer } from '@toast-ui/react-editor';
 
 const EditButtonContainer = styled.div`
   position: relative;
@@ -136,7 +134,7 @@ const ItemInfoContainer = ({ singleItemData, isTriggeredFromModal }) => {
         <ItemDetail>{quantity}</ItemDetail>
       </ItemCategoryContainer>
       <ItemDescriptionContainer>
-        <Viewer initialValue={description} />
+        <p>{description}</p>
       </ItemDescriptionContainer>
     </Container>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useCreateDealingMutation } from 'queries/dealing';
 
 const ModalContainer = styled(Box)`
