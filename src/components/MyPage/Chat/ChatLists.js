@@ -4,6 +4,7 @@ import UserInfoDetailModal from './UserInfoDetailModal';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import ValidationModal from 'components/Shared/ValidationModal';
+import detailDateFormatter from 'utils/detailDateFormatter';
 
 const ChatMessageListContainer = styled.div`
   display: flex;
@@ -87,7 +88,10 @@ const ChatLists = ({
             : singleDeal?.product_group?.user?.username}
         </UserNickname>
         <ChatTimeContainer>
-          <ChatTime>시간</ChatTime>
+          <ChatTime>
+            {singleDeal?.last_message_sent_at &&
+              detailDateFormatter(singleDeal?.last_message_sent_at)}
+          </ChatTime>
         </ChatTimeContainer>
         {singleDeal?.completed_at && <p>종료된 거래</p>}
         {singleDeal === selectedDeal && (
