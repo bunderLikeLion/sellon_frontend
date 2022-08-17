@@ -8,6 +8,7 @@ const ChatContentContainer = styled.div`
   height: 100%;
   padding: 1rem;
   overflow-y: scroll;
+  min-height: 15rem;
 `;
 
 const ChatBubble = styled.div`
@@ -37,6 +38,10 @@ const ChatBox = styled.div`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
+const EmptyChatPlaceHolder = styled.div`
+  text-align: center;
+`
+
 const ChatMsgContainer = ({ opponent, selectedDeal }) => {
   const scrollRef = useRef();
   const user = useRecoilValue(userAtom);
@@ -56,18 +61,30 @@ const ChatMsgContainer = ({ opponent, selectedDeal }) => {
 
   return (
     <ChatContentContainer ref={scrollRef}>
-      {msgDataFetched &&
-        msgData.map((singleMsg) => {
-          if (singleMsg?.sender?.id === user?.id) {
-            return <ChatBox>{singleMsg?.content}</ChatBox>;
-          } else {
-            return (
-              <ChatBox>
-                {opponent?.username}: {singleMsg?.content}
-              </ChatBox>
-            );
-          }
-        })}
+      {msgDataFetched ? (
+        msgData.length > 0 ? (
+          msgData.map((singleMsg) => {
+            if (singleMsg?.sender?.id === user?.id) {
+              return <ChatBox>{singleMsg?.content}</ChatBox>;
+            } else {
+              return (
+                <ChatBox>
+                  {opponent?.username}: {singleMsg?.content}
+                </ChatBox>
+              );
+            }
+          })
+        ) : (
+          <EmptyChatPlaceHolder>
+            <p>아직 나눈 대화가 없습니다.</p>
+          </EmptyChatPlaceHolder>
+          )
+        ): (
+          <EmptyChatPlaceHolder>
+            <p>진행중인 거래 목록에서 거래를 선택하여<br/> 메세지를 보낼 수 있습니다.</p>
+          </EmptyChatPlaceHolder>
+          )
+      }
     </ChatContentContainer>
   );
 };

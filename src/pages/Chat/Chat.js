@@ -12,39 +12,55 @@ import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
 
 const AlignContainer = styled.div`
   display: flex;
-  align-items: center;
-  width: 100%;
-  height: 85vh;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const ChatForm = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 38rem;
+  width: 100%;
+  min-height: 38rem;
   overflow: hidden;
+  gap: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 const Chat_Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 48%;
+  flex: 1;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
+  max-height: 30rem;
+
+  @media screen and (max-width: 1000px) {
+    max-height: 20rem;
+  }
 `;
 
 const Chat_Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 48%;
+  flex: 1;
   border-radius: 0.5rem;
+  max-height: 30rem;
+
   background: ${(props) => props.theme.color_background__primary};
+
+  @media screen and (max-width: 1000px) {
+    max-height: 30rem;
+  }
 `;
 
 const OnChatContainer = styled.div`
-  height: 15%;
 `;
 
 const MessageTitle = styled.div`
