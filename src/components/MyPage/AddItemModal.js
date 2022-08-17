@@ -116,7 +116,7 @@ export const StatusRadioBox = styled.div`
   padding: 0;
   font-size: 1rem;
   border: 3px solid transparent;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: #ffffff !important;
   background: ${(props) => props.theme.color_background__primary};
 `;
@@ -129,7 +129,7 @@ const CategoryRadioBox = styled.div`
   padding: 0;
   font-size: 1rem;
   border: 3px solid transparent;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: #ffffff !important;
   background: ${(props) => props.theme.color_background__primary};
 `;

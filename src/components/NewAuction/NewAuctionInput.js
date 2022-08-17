@@ -44,7 +44,7 @@ const TextareaContainer = styled.div`
 `;
 
 const RadioContainer = styled(StatusRadioBox)`
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 1rem 1.2rem 1rem;
   max-width: 28rem;
   width: auto;
   height: 4rem;
@@ -60,6 +60,7 @@ const InsideRadioBoxContainer = styled(InsideRadioBox)`
 const StyledLabelText = styled(StyledLabel)`
   width: 10rem;
   margin: 0;
+  font-size: 1.1rem;
 `;
 
 const AuctionText = styled.textarea`
@@ -76,6 +77,10 @@ const AuctionText = styled.textarea`
 
   :focus-visible {
     outline: none;
+  }
+
+  ::placeholder {
+    color: ${(props) => props.theme.color_font__tertiary};
   }
 `;
 
