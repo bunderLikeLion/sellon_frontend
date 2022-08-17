@@ -171,6 +171,7 @@ const OverLayIconBox = styled.div`
 `;
 
 const FinishedMessage = styled.p`
+  font-size: 1.3rem;
   text-align: center;
 `;
 
