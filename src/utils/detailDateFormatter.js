@@ -16,7 +16,7 @@ const detailDateFormatter = (givenDate) => {
   )
     return hrs + ':' + mins + ' ' + ampm;
 
-  return months + '.' + days + ' ' + hrs + ':' + mins + ' ' + ampm;
+  return months + '/' + days;
 };
 
 export default detailDateFormatter;
