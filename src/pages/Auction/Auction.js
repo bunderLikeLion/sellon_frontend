@@ -129,7 +129,7 @@ const AuctionListContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 `;
 
 const AuctionFilterContainer = styled.div`
@@ -138,7 +138,7 @@ const AuctionFilterContainer = styled.div`
 `;
 
 const HomeGroundAuction = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   margin-right: 1rem;
   color: ${(props) => props.theme.color_font__primary};
