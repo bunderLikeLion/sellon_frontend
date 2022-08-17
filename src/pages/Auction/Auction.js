@@ -17,6 +17,8 @@ import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
 import Slider from 'react-slick';
 import AuctionSlider from 'components/Auction/AuctionSlider';
+import {useRecoilValue} from "recoil";
+import {userAtom} from "states";
 
 const Form = styled.div`
   width: 100%;
@@ -176,7 +178,9 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
-  height: 2.3rem;
+height: 2.3rem;
+display: flex;
+align-items: center;
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
@@ -210,6 +214,7 @@ const StyledPagination = styled(Pagination)`
 `;
 
 const Auction = () => {
+  const user = useRecoilValue(userAtom);
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
@@ -238,9 +243,11 @@ const Auction = () => {
     <WrapContainer>
       <Form>
         <AuctionUploadContainer>
-          <AuctionPublishLink to={'/auction/newauction'}>
-            <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
-          </AuctionPublishLink>
+          {user && (
+            <AuctionPublishLink to={'/auction/newauction'}>
+              <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
+            </AuctionPublishLink>
+          )}
         </AuctionUploadContainer>
 
         <SubNav>
@@ -265,7 +272,7 @@ const Auction = () => {
               필터 및 검색
             </FilterButton>
           </AuctionFilterContainer>
-          <FormControl sx={{ m: 1, minWidth: 120,}} size="small">
+          <FormControl sx={{ m: 1, minWidth: 120, maxHeight: 30}} size="small">
             {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
             <SelectBox
               labelId="demo-select-small"
@@ -277,12 +284,9 @@ const Auction = () => {
                   '& .MuiMenu-list': {
                     backgroundColor: '#3A335C',
                   },
-                  '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#fff',
-                    border: '1px solid red'
-                  },
                 },
               }}
+
             >
               <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>

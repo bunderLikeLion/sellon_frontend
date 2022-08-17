@@ -89,8 +89,6 @@ const AuctionDetailModal = ({
       isTriggeredFromBigImg ? data?.product?.id : smallImgRelatedItemId?.id
     );
 
-  console.log(isTriggeredFromBigImg, data?.product?.id, 'asdasdsasdadasdsada');
-
   return (
     <Modal
       open={isModalOpened}

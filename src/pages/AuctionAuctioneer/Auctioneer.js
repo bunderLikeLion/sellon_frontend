@@ -119,6 +119,14 @@ const BuyerContainer = styled.div`
   width: 100%;
 `;
 
+const AuctioneerContainer = styled.div`
+  padding: 1rem;
+`;
+
+const AuctioneerItem = styled.div`
+  width: 50%;
+`;
+
 const Auctioneer = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
@@ -161,10 +169,15 @@ const Auctioneer = () => {
       <Container>
         {singleItemDataFetched && (
           <ItemContainer>
-            <ItemImageContainer
-              thumbnail={singleItemData?.thumbnail?.file}
-              images={singleItemData?.images}
-            />
+            <AuctioneerItem>
+              <AuctioneerContainer>
+                <p>Auctioneer</p>
+              </AuctioneerContainer>
+              <ItemImageContainer
+                thumbnail={singleItemData?.thumbnail?.file}
+                images={singleItemData?.images}
+              />
+            </AuctioneerItem>
             <ItemDetailContainer />
           </ItemContainer>
         )}

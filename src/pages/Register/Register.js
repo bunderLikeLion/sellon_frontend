@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
-import registerValidation from 'validations/registerValidation';
 import { useSignInMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
+import toast from 'react-hot-toast';
+import useInput from 'hooks/useInput';
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const Card = styled.div`
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -102,66 +102,84 @@ const Img = styled.img`
 const Register = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
+  const [username, handleUsername] = useInput('');
+  const [email, handleEmail] = useInput('');
+  const [password1, handlePassword1] = useInput('');
+  const [password2, handlePassword2] = useInput('');
 
   useEffect(() => {
-    // redirect to home if already logged in
-    if (user) navigate('/');
+    if (user) {
+      toast.success('이미 로그인한 상태입니다. 👍');
+      navigate('/');
+    }
   }, []);
-
-  const { register, handleSubmit, formState } = useForm(registerValidation);
-
-  const { errors, isSubmitting } = formState;
 
   const { mutate: signInMutate } = useSignInMutation();
 
-  const submit = async (inputData) => {
-    signInMutate(inputData);
+  const onKeyPressFunc = (e) => {
+    if (e.key === 'Enter') submit();
+  };
+
+  const submit = () => {
+    signInMutate({
+      username: username,
+      email: email,
+      password1: password1,
+      password2: password2,
+    });
   };
 
   return (
     <Container>
       <Card>
-        <Form onSubmit={handleSubmit(submit)}>
+        <Form>
           <GuideContainer>
             <Guide>회원가입</Guide>
           </GuideContainer>
 
           <InputContainer>
-            <Input placeholder="아이디" type="text" {...register('username')} />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
+            <Input
+              placeholder="아이디"
+              type="text"
+              value={username}
+              onChange={handleUsername}
+              onKeyPress={onKeyPressFunc}
+            />
           </InputContainer>
 
           <InputContainer>
-            <Input placeholder="이메일" type="text" {...register('email')} />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
+            <Input
+              placeholder="이메일"
+              type="email"
+              value={email}
+              onChange={handleEmail}
+              onKeyPress={onKeyPressFunc}
+            />
           </InputContainer>
 
           <InputContainer>
             <Input
               placeholder="비밀번호"
               type="password"
-              {...register('password1')}
+              value={password1}
+              onChange={handlePassword1}
+              onKeyPress={onKeyPressFunc}
             />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
           <InputContainer>
             <Input
               placeholder="비밀번호 확인"
               type="password"
-              {...register('password2')}
+              value={password2}
+              onChange={handlePassword2}
+              onKeyPress={onKeyPressFunc}
             />
-            <ErrorMsg>{errors.password?.message}</ErrorMsg>
           </InputContainer>
 
           <ButtonContainer>
-            <Button disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
-              가입
-            </Button>
+            <Button onClick={submit}>가입</Button>
           </ButtonContainer>
-
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
         </Form>
         <Img src={SignPic} />
       </Card>
