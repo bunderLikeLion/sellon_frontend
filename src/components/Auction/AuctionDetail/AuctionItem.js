@@ -129,7 +129,6 @@ const ItemDescription = styled.p`
   color: #fff;
 `;
 
-
 const AuctionItem = (props) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
@@ -155,19 +154,19 @@ const AuctionItem = (props) => {
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
         {props?.singleAuctionData?.is_interested ? (
-            <Button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
-              관심경매 삭제
-            </Button>
+          <Button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
+            관심경매 삭제
+          </Button>
         ) : (
-            <Button onClick={() => createInterestedAuction(relatedAuctionId)}>
-              관심경매 등록
-            </Button>
+          <Button onClick={() => createInterestedAuction(relatedAuctionId)}>
+            관심경매 등록
+          </Button>
         )}
-        <AuctionDetailModal
+        {/*        <AuctionDetailModal
           handleModal={handleModal}
           isModalOpened={isModalOpened}
           isTriggeredFromBigImg={true}
-        />
+        />*/}
         <ItemDurationContainer>
           <ItemDuration>
             {timeLimitHandler(props?.singleAuctionData?.end_at)}

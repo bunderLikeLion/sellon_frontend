@@ -1,6 +1,3 @@
-import { useForm } from 'react-hook-form';
-import registerValidation from 'validations/registerValidation';
-import { useSignInMutation } from 'queries/auth';
 import styled from 'styled-components';
 import ChangeItemId from 'components/MyPage/ItemInfoChange/ChangeItemId';
 import ChangeItemImage from 'components/MyPage/ItemInfoChange/ChangeItemImage';
@@ -8,6 +5,9 @@ import ChangeItemExtraImage from 'components/MyPage/ItemInfoChange/ChangeItemExt
 import ChangeItemStatus from 'components/MyPage/ItemInfoChange/ChangeItemStatus';
 import ChangeItemCategory from 'components/MyPage/ItemInfoChange/ChangeItemCategory';
 import ChangeItemTextarea from 'components/MyPage/ItemInfoChange/ChangeItemTextarea';
+import { queryClient } from 'index';
+import { useParams } from 'react-router-dom';
+import { useEditProductMutation, useSingleProductQuery } from 'queries/product';
 
 const Container = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const Card = styled.div`
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 `;
 
-const Form = styled.form`
+const EntireContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -50,31 +50,48 @@ const Guide = styled.h1`
   color: ${(props) => props.theme.color_font__primary};
 `;
 
-const UserInfoChange = () => {
-  const { handleSubmit } = useForm(registerValidation);
+const ItemInfoChange = () => {
+  const { id } = useParams();
+  const { data: itemData } = useSingleProductQuery(id);
+  const { mutate: editSingleField } = useEditProductMutation(id);
 
-  const { mutate: signInMutate } = useSignInMutation();
-
-  const submit = async (inputData) => {
-    signInMutate(inputData);
-  };
   return (
     <Container>
-      <Card>
-        <Form onSubmit={handleSubmit(submit)}>
-          <GuideContainer>
-            <Guide>아이템 정보 수정</Guide>
-          </GuideContainer>
-          <ChangeItemId />
-          <ChangeItemImage />
-          <ChangeItemExtraImage />
-          <ChangeItemStatus />
-          <ChangeItemCategory />
-          <ChangeItemTextarea />
-        </Form>
-      </Card>
+      {itemData && (
+        <Card>
+          <EntireContainer>
+            <GuideContainer>
+              <Guide>아이템 정보 수정</Guide>
+            </GuideContainer>
+            <ChangeItemId
+              givenName={itemData?.name}
+              editSingleField={editSingleField}
+            />
+            <ChangeItemImage
+              givenThumbnail={itemData?.thumbnail}
+              editSingleField={editSingleField}
+            />
+            <ChangeItemExtraImage
+              givenExtraImages={itemData?.images}
+              editSingleField={editSingleField}
+            />
+            <ChangeItemStatus
+              givenQuality={itemData?.quality}
+              editSingleField={editSingleField}
+            />
+            <ChangeItemCategory
+              givenCategory={itemData?.product_category}
+              editSingleField={editSingleField}
+            />
+            <ChangeItemTextarea
+              givenDesc={itemData?.description}
+              editSingleField={editSingleField}
+            />
+          </EntireContainer>
+        </Card>
+      )}
     </Container>
   );
 };
 
-export default UserInfoChange;
+export default ItemInfoChange;
