@@ -109,40 +109,33 @@ const ItemTextarea = styled.textarea`
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
-const ChangeItemTextarea = () => {
-  const { register, handleSubmit, formState } = useForm(registerValidation);
-
-  const { errors, isSubmitting } = formState;
+const ChangeItemTextarea = ({ givenDesc, editSingleField, imgToLeft }) => {
   const editorRef = useRef();
-  const user = useRecoilValue(userAtom);
-  const [expanded, setExpanded] = useState(false);
-  const [isShown, setIsShown] = useState(true);
-  const [itemDesc, handleItemDesc] = useInput('');
+  const [isShown, setIsShown] = useState(false);
+  const [itemDesc, handleItemDesc, resetHandleItemDesc] = useInput(givenDesc);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleClick = () => {
     setIsShown(!isShown);
   };
 
-  const handleClick = () => {
-    handleChange();
+  const handleSubmit = async () => {
+    const frm = new FormData();
+    frm.append('description', itemDesc);
+    for (let singleImgId of imgToLeft) {
+      frm.append('image_ids', singleImgId);
+    }
+    await editSingleField(frm);
+    await resetHandleItemDesc();
+    handleClick();
   };
 
   return (
     <AccordionContainer>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
+      <StyledAccordion expanded={isShown} onChange={handleClick}>
         {/* 아코디언 닫혔을 때 */}
-        <StyledAccordionSummary
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+        <StyledAccordionSummary>
           <SubHeader>상세정보</SubHeader>
-          <OriginalInfo>
-            어쩌구저쩌구 엄청 길어요 우하하하하하하하ㅏ하하하하ㅏ하ㅏ
-          </OriginalInfo>
+          <OriginalInfo>{givenDesc}</OriginalInfo>
           {isShown && (
             <ModifyBtn onClick={handleClick}>상세정보 변경</ModifyBtn>
           )}
@@ -154,21 +147,17 @@ const ChangeItemTextarea = () => {
             <SubHeader>새 상세정보</SubHeader>
             <ItemTextarea
               ref={editorRef}
+              value={itemDesc}
               onChange={handleItemDesc}
               placeholder="내용을 입력해주세요."
-            ></ItemTextarea>
+            />
           </InsideContainer>
           <ButtonContainer>
-            <ModifyButton disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
+            <ModifyButton disabled={!itemDesc} onClick={handleSubmit}>
               수정
             </ModifyButton>
-            <Link to="/mypage">
-              <CancelButton>취소</CancelButton>
-            </Link>
+            <CancelButton onClick={handleClick}>취소</CancelButton>
           </ButtonContainer>
-
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
         </StyledAccordionDetails>
       </StyledAccordion>
     </AccordionContainer>
