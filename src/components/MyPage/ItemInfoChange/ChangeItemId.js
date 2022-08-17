@@ -128,10 +128,7 @@ const ChangeItemId = ({ givenName, editSingleField }) => {
     <AccordionContainer>
       <StyledAccordion expanded={isShown} onChange={handleClick}>
         {/* 아코디언 닫혔을 때 */}
-        <StyledAccordionSummary
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+        <StyledAccordionSummary>
           <SubHeader>아이템명</SubHeader>
           <OriginalInfo>{givenName}</OriginalInfo>
           {!isShown && (
