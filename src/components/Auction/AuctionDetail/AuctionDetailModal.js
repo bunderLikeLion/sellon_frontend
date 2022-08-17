@@ -13,37 +13,52 @@ import { useSingleAuctionQuery } from '../../../queries/auction';
 
 const ModalContainer = styled(Box)`
   position: relative;
-  width: 62rem;
+  width: 60%;
+  max-width: 1400px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
+  overflow-y: scroll;
 
   &:focus-visible {
     outline: none;
+  }
+
+  @media screen and (max-width: 1300px) {
+    width: 70%;
+    padding: 2rem 2rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 90%;
+    max-height: 60%;
+    padding: 1rem 1rem;
   }
 `;
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   position: relative;
-  height: 34rem;
   margin: 2rem;
   color: ${(props) => props.theme.color_white};
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 const UserUploadContainer = styled.div`
-  width: 60%;
-  height: 100%;
+  flex: 1;
   padding: 0 1rem;
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 50%;
-  height: 100%;
+  flex: 1;
   padding: 0 1rem;
 `;
 

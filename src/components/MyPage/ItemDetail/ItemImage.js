@@ -15,6 +15,14 @@ const MainPic = styled(CardMedia)`
   width: 100%;
   height: 15rem;
   border-radius: 1rem;
+
+  @media screen and (max-width: 1300px) {
+    height: 23rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: 20rem;
+  }
 `;
 
 const SubPicContainer = styled.div`

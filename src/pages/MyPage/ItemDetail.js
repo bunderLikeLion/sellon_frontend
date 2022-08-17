@@ -17,14 +17,12 @@ const Container = styled.div`
 `;
 
 const UserUploadContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  flex: 1;
   padding: 0 1rem;
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  flex: 1;
   padding-left: 1rem;
 `;
 
@@ -75,6 +73,12 @@ const ItemTitle = styled.p`
 
 const ContentContainer = styled.div`
   display: flex;
+  align-items: flex-start;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const ItemDetail = () => {
