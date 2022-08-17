@@ -32,7 +32,7 @@ const AuctionInfoContainer = styled.div`
 
 const AuctionDetailInfo = styled.div`
   margin: 1.2rem;
-  line-height: 1.2rem;
+  line-height: 1.5rem;
 `;
 
 const DetailSubHeader = styled.p`
@@ -41,6 +41,18 @@ const DetailSubHeader = styled.p`
   font-weight: 700;
   font-size: 1.1rem;
   color: ${(props) => props.theme.color_font__primary};
+`;
+
+const AuctionDetailTitle = styled.div`
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  height: 2.5rem;
+  padding-top: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
 
 const AuctionDetail = styled.div`
@@ -72,7 +84,7 @@ const ItemDetailContainer = () => {
       <>
         <AuctionDetailContainers>
           <DetailSubHeader>경매 제목</DetailSubHeader>
-          <AuctionDetail>{auctionData?.title}</AuctionDetail>
+          <AuctionDetailTitle>{auctionData?.title}</AuctionDetailTitle>
         </AuctionDetailContainers>
 
         <TextareaContainer>

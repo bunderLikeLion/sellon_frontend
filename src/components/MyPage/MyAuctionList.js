@@ -6,6 +6,10 @@ import { useMyProductsQuery } from 'queries/product';
 import AuctionListContainer from 'components/Shared/AuctionListContainer';
 import AuctionListItem from 'components/Shared/AuctionListItem';
 import { userAtom } from '../../states';
+import WrapContainer from '../../layouts/WrapContainer';
+import { useMyAuctionQuery } from 'queries/auction';
+import timeLimitHandler from '../../utils/timeLimitHandler';
+import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -25,10 +29,14 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 // TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
 
-
-const InterestedAuctionListCard = () => {
+const MyAuctionList = () => {
   const [pageNum, setPageNum] = useState(1);
   const user = useRecoilValue(userAtom);
 
@@ -39,23 +47,32 @@ const InterestedAuctionListCard = () => {
     setPageNum(value);
   };
 
+  const { data: myAuctionData, isSuccess: myAuctionFetched } =
+    useMyAuctionQuery(pageNum);
+
   // TODO: isFinished props
-  const isFinished = false
-  const dummyImageUrl = "https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200";
+  const dummyImageUrl =
+    'https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200';
 
   return (
-
-    <AuctionListContainer>
-      {/* TODO: 하기 컴포넌트에 API 연결하기 */}
-      <AuctionListItem
-        title={'test'}
-        thumbnailUrl={dummyImageUrl}
-        participantCount={20}
-        startAt={'2022.08.05'}
-        period={'D-7'}
-        linkTo={'/auctions/1'}
-        linkCondition={!isFinished}
-      />
+    <Container>
+      <AuctionListContainer>
+        {/* TODO: 하기 컴포넌트에 API 연결하기 */}
+        {myAuctionFetched &&
+          myAuctionData?.results.map((auction) => {
+            return (
+              <AuctionListItem
+                title={auction.title}
+                thumbnailUrl={auction.product?.thumbnail?.file}
+                participantCount={auction.product_groups_count}
+                startAt={auction.created_at.split('T')[0].replaceAll('-', '.')}
+                period={timeLimitHandler(auction.end_at)}
+                linkTo={`/auctions/${auction.id}`}
+                linkCondition={isAuctionFinishedHandler(auction.end_at)}
+              />
+            );
+          })}
+      </AuctionListContainer>
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination
@@ -64,8 +81,8 @@ const InterestedAuctionListCard = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-    </AuctionListContainer>
+    </Container>
   );
 };
 
-export default InterestedAuctionListCard;
+export default MyAuctionList;

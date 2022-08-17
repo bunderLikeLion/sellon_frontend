@@ -4,9 +4,8 @@ import { userAtom } from 'states';
 import CardMedia from '@mui/material/CardMedia';
 
 const MyProfileImg = styled(CardMedia)`
-  width: 4rem;
-  height: 4rem;
-  margin: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   background: #f00;
 `;

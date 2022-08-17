@@ -29,7 +29,12 @@ const AuctionTitle = styled.input.attrs((props) => ({
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
-  background: #d9d9d9;
+  color: ${(props) => props.theme.color_font__secondary};
+  background-color: ${(props) => props.theme.color_background__primary};
+
+  :focus-visible {
+    outline: none;
+  }
 `;
 
 const TextareaContainer = styled.div`
@@ -47,27 +52,39 @@ const RadioContainer = styled(StatusRadioBox)`
 const InsideRadioBoxContainer = styled(InsideRadioBox)`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   height: 100%;
 `;
 
 const StyledLabelText = styled(StyledLabel)`
-  width: 7rem;
+  width: 10rem;
   margin: 0;
 `;
 
 const AuctionText = styled.textarea`
   width: 100%;
   height: 12rem;
+  resize: none;
   padding: 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
-  background: #d9d9d9;
+  line-height: 1.5rem;
+  color: ${(props) => props.theme.color_font__secondary};
+  background-color: ${(props) => props.theme.color_background__primary};
+
+  :focus-visible {
+    outline: none;
+  }
 `;
 
 const StatusRadioContainer = styled(StatusRadio)`
-  width: 8rem;
-  margin: 0 0 0 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 8.5rem !important;
+  margin-top: 0 !important;
+  flex: 1;
 `;
 
 const RadioLabel = styled.label`
@@ -104,6 +121,7 @@ const NewAuctionInput = (props) => {
       <TextareaContainer>
         <SubHeader>글 작성</SubHeader>
         <AuctionText
+          placeholder="어떤 경매장인지 200자 내로 적어주세요"
           value={props.auctionDesc}
           onChange={props.auctionDescHandler}
         />

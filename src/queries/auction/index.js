@@ -11,3 +11,4 @@ export { default as useCreateAuctionItemMutation } from './useCreateAuctionItemM
 export { default as useDeleteAuctionItemMutation } from './useDeleteAuctionItemMutation';
 export { default as usePopularAuctionsQuery } from './usePopularAuctionsQuery';
 export { default as useAllInAuctionItemMutation } from './useAllInAuctionItemMutation';
+export { default as useMyAuctionQuery } from './useMyAuctionQuery';

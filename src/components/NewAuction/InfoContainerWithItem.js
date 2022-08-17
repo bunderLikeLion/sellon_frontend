@@ -48,7 +48,6 @@ const ItemDetailInformationContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 1rem;
-  height: 100%;
 `;
 
 const ItemTitle = styled.p`
