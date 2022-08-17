@@ -4,31 +4,37 @@ import CardMedia from '@mui/material/CardMedia';
 const OnChatProfileContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 6rem;
+  height: 5.5rem;
   padding: 1rem;
   border-radius: 0.5rem 0.5rem 0 0;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const OnChatProfileImg = styled(CardMedia)`
-  width: 4rem;
-  height: 4rem;
+  width: 3.3rem;
+  height: 3.3rem;
   margin: 1rem;
-  border-radius: 50%;
+  border-radius: 0.7rem;
   background: #0f0;
 `;
 
 const OnChatProfileNickname = styled.div`
+  width: 80%;
   color: ${(props) => props.theme.color_font__secondary};
   font-size: 1.2rem;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+  white-space: nowrap;
 `;
 
 const OnChatUserProfile = ({ opponent }) => {
   return (
     <OnChatProfileContainer>
       <OnChatProfileImg image={opponent?.avatar} />
-      <OnChatProfileNickname>{opponent?.username}</OnChatProfileNickname>
+      <OnChatProfileNickname>
+        경매제목엄청엄청길어요우하하하하하하하{opponent?.username}
+      </OnChatProfileNickname>
     </OnChatProfileContainer>
   );
 };

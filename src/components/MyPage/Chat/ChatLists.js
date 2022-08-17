@@ -10,23 +10,18 @@ import CardMedia from '@mui/material/CardMedia';
 const ChatMessageListContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 21rem;
-  height: 10rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  width: 100%;
+  height: fit-content;
   border-radius: 0.5rem;
   cursor: pointer;
   border: 1.3px solid transparent;
-  :hover {
-    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
-  }
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const UserProfileImg = styled(CardMedia)`
   width: 3.3rem;
   height: 3.3rem;
-  margin: 0.37rem 0 0 0.4rem;
+  margin: 0.5rem 0 0 0.5rem;
   border-radius: 0.7rem;
   background: #f00;
 `;
@@ -37,7 +32,6 @@ const ChatMessageText = styled.div`
 `;
 
 const UserNickname = styled.div`
-  margin-bottom: 0.5rem;
   font-weight: 700;
   color: ${(props) => props.theme.color_font__secondary};
 `;
@@ -49,6 +43,7 @@ const ChatTimeContainer = styled.div`
 `;
 
 const ChatTime = styled.div`
+  font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
@@ -106,7 +101,7 @@ const ChatLists = ({
         </UserNickname>
         <ChatTimeContainer>
           <ChatTime>
-            시간
+            2022.08.27
             {singleDeal?.last_message_sent_at &&
               detailDateFormatter(singleDeal?.last_message_sent_at)}
           </ChatTime>

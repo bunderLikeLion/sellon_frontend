@@ -9,13 +9,14 @@ const ChatInputContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 6rem;
-  padding: 0 0 2rem 0;
 `;
 
 const ChatInput = styled.textarea`
   display: flex;
-  width: 80%;
-  height: 4rem;
+  width: 70%;
+  height: 2.5rem;
+  resize: none;
+  margin: 1rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 1rem;
@@ -27,7 +28,6 @@ const ChatInput = styled.textarea`
 const SendMessageIcon = styled(SendIcon)`
   width: 2rem;
   height: 2rem;
-  margin: 0.5rem;
   color: #fff;
   cursor: pointer;
 `;

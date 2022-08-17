@@ -12,7 +12,6 @@ import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
 import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
 
-
 const AlignContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -24,7 +23,7 @@ const AlignContainer = styled.div`
 const ChatForm = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 51rem;
+  width: 100%;
   height: 38rem;
   margin-top: 2rem;
   overflow: hidden;
@@ -33,8 +32,7 @@ const Chat_Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 24rem;
-  margin-right: 3rem;
+  width: 48%;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
@@ -44,7 +42,7 @@ const Chat_Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 24rem;
+  width: 48%;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
@@ -62,16 +60,16 @@ const MessageTitle = styled.div`
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   height: 29.3rem;
   margin: 1rem 0;
-  background: palegreen;
 `;
 //height: 85%;
 
 const OnChatContainerBottom = styled.div`
   height: 6rem;
-  padding: 1rem;
+  padding: 0 1rem;
   border-radius: 0 0 0.5rem 0.5rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
@@ -81,7 +79,6 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 2%;
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -94,7 +91,6 @@ const StyledPagination = styled(Pagination)`
     }
   }
 `;
-
 
 const Chat = () => {
   const { id: userId } = useRecoilValue(userAtom);
@@ -148,11 +144,11 @@ const Chat = () => {
               </ChatContainer>
               {/*Pagination*/}
               <PaginationContainer>
-              <StyledPagination
-                count={myProductsData?.total_pages}
-                page={pageNum}
-                onChange={handleChangePagination}
-              />
+                <StyledPagination
+                  count={myProductsData?.total_pages}
+                  page={pageNum}
+                  onChange={handleChangePagination}
+                />
               </PaginationContainer>
             </Chat_Left>
             <Chat_Right>
