@@ -16,6 +16,7 @@ import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useMyProductsQuery } from 'queries/product';
 import { useDealingHistoryQuery } from 'queries/dealing';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 import { useRatingQuery, useDealingCountQuery } from 'queries/user';
 
 //최상위 컨테이너
@@ -407,7 +408,7 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              <></>
+              <EmptyListPlaceHolder message="아직 경매장에서 거래한 물건이 없습니다. 한번 경매장에 참여해볼까요?" margin="0" backgroundColor="#252040" />
             )}
           </>
         )}
