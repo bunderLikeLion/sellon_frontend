@@ -6,7 +6,7 @@ import queryKeys from 'utils/queryKeys';
 
 const useProductGroupsQuery = (relatedAuctionId, pageNum, perPage) => {
   return useQuery(
-    [queryKeys.productGroups(relatedAuctionId), pageNum],
+    [queryKeys.productGroups(relatedAuctionId), pageNum, perPage],
     () =>
       auctionRelatedAPI.getProductGroups(
         relatedAuctionId,

@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { useProductGroupsQuery } from 'queries/auction';
 import CardMedia from '@mui/material/CardMedia';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
 import AuctionDetailModal from './AuctionDetailModal';
 import { useParams } from 'react-router-dom';
 import { Pagination } from '@mui/material';
@@ -60,7 +58,6 @@ const Profile = styled(CardMedia)`
   width: 100%;
   height: 4rem;
   border-radius: 50%;
-  background: #f00;
 `;
 
 const AuctionOtherSuggestionItemContainer = styled.div`
@@ -105,9 +102,9 @@ const StyledPagination = styled(Pagination)`
 
 const AuctionOtherSuggestion = (props) => {
   const { id: relatedAuctionId } = useParams();
-  const { pk: userId } = useRecoilValue(userAtom);
+  const [productGroupsPage, setProductGroupsPage] = useState(1);
   const { data: productGroups, isSuccess: productGroupsFetched } =
-    useProductGroupsQuery(relatedAuctionId);
+    useProductGroupsQuery(relatedAuctionId, productGroupsPage, 3);
 
   const [singleProduct, setSingleProduct] = useState(null);
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -118,13 +115,8 @@ const AuctionOtherSuggestion = (props) => {
     handleModal();
   };
 
-  const [pageNum, setPageNum] = useState(1);
-
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
-
   const handleChangePagination = (event, value) => {
-    setPageNum(value);
+    setProductGroupsPage(value);
   };
 
   return (
@@ -134,43 +126,38 @@ const AuctionOtherSuggestion = (props) => {
       </GuideContainer>
       {productGroupsFetched &&
         productGroups.results.map((singleProductGroup) => {
-          if (
-            singleProductGroup.user.id !== userId &&
-            singleProductGroup?.products?.length
-          ) {
-            return (
-              <OtherSuggestion key={singleProductGroup?.id}>
-                <InnerWrapper>
-                  <ProfileContainer>
-                    <Profile image={singleProductGroup?.user?.avatar?.file} />
-                    {/*{singleProductGroup?.user?.username}*/}
-                  </ProfileContainer>
-                  <AuctionOtherSuggestionItemContainer>
-                    {singleProductGroup?.products.map((singleProduct) => {
-                      return (
-                        <ItemImg
-                          onClick={() => clickImgFunc(singleProduct)}
-                          key={singleProduct.id}
-                          image={singleProduct?.thumbnail?.file}
-                        />
-                      );
-                    })}
-                    <AuctionDetailModal
-                      handleModal={handleModal}
-                      isModalOpened={isModalOpened}
-                      smallImgRelatedItemId={singleProduct}
-                    />
-                  </AuctionOtherSuggestionItemContainer>
-                </InnerWrapper>
-              </OtherSuggestion>
-            );
-          }
+          return (
+            <OtherSuggestion key={singleProductGroup?.id}>
+              <InnerWrapper>
+                <ProfileContainer>
+                  <Profile image={singleProductGroup?.user?.avatar} />
+                  {/*{singleProductGroup?.user?.username}*/}
+                </ProfileContainer>
+                <AuctionOtherSuggestionItemContainer>
+                  {singleProductGroup?.products.map((singleProduct) => {
+                    return (
+                      <ItemImg
+                        onClick={() => clickImgFunc(singleProduct)}
+                        key={singleProduct.id}
+                        image={singleProduct?.thumbnail?.file}
+                      />
+                    );
+                  })}
+                  <AuctionDetailModal
+                    handleModal={handleModal}
+                    isModalOpened={isModalOpened}
+                    smallImgRelatedItemId={singleProduct}
+                  />
+                </AuctionOtherSuggestionItemContainer>
+              </InnerWrapper>
+            </OtherSuggestion>
+          );
         })}
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination
-          count={myProductsData?.total_pages}
-          page={pageNum}
+          count={productGroups?.total_pages}
+          page={productGroupsPage}
           onChange={handleChangePagination}
         />
       </PaginationContainer>
