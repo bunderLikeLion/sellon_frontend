@@ -13,8 +13,6 @@ const FlexContainer = styled.div`
   flex-wrap: wrap;
   align-content: center;
   justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
   gap: 2rem 2rem;
   margin-top: 2rem;
 `;
@@ -86,25 +84,28 @@ const ItemList = () => {
         <PlusBtn />
         아이템 추가
       </AddProductItemButton>
-        {myProductFetched && (
-          <>
-            <p>총 {myProductsData?.total_count}개</p>
-            {
-              myProductsData?.total_count > 0 ? (
-                <FlexContainer>
-                  {
-                    myProductsData.results.map((productData) => {
-                      return (
-                        <ItemListCard key={productData.id} productData={productData} />
-                      );
-                    })
-                  }
-                </FlexContainer>
-              ) : <EmptyListPlaceHolder message="아직 등록한 아이템이 없습니다. 🥲" margin="2rem 0 0 0 "/>
-            }
-          </>
-        )
-      }
+      {myProductFetched && (
+        <>
+          <p>총 {myProductsData?.total_count}개</p>
+          {myProductsData?.total_count > 0 ? (
+            <FlexContainer>
+              {myProductsData.results.map((productData) => {
+                return (
+                  <ItemListCard
+                    key={productData.id}
+                    productData={productData}
+                  />
+                );
+              })}
+            </FlexContainer>
+          ) : (
+            <EmptyListPlaceHolder
+              message="아직 등록한 아이템이 없습니다. 🥲"
+              margin="2rem 0 0 0 "
+            />
+          )}
+        </>
+      )}
       <PaginationContainer>
         <StyledPagination
           count={myProductsData?.total_pages}
