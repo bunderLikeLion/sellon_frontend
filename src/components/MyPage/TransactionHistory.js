@@ -282,9 +282,9 @@ const TransactionHistory = () => {
   };
 
   const [pageNum, setPageNum] = useState(1);
-
-  const { data: dealingHistory, isSuccess: dealingHistoryFetched } =
-    useDealingHistoryQuery(pageNum);
+  // TODO: 배포 됐을 떄 주석 해제 해야 함
+  // const { data: dealingHistory, isSuccess: dealingHistoryFetched } =
+  //   useDealingHistoryQuery(pageNum);
 
   const handleChangePagination = (event, value) => {
     setPageNum(value);
@@ -294,104 +294,104 @@ const TransactionHistory = () => {
     <StyledWrapContainer>
       <StyledAccordionContainer>
         {/*Accordion*/}
-        {dealingHistoryFetched && (
-          <>
-            {dealingHistory?.total_count > 0 ? (
-              <HistoryContainer>
-                {dealingHistory.results.map((historyData, index) => {
-                  return (
-                    <StyledAccordion
-                      expanded={expanded === `panel${index}`}
-                      onChange={handleChange(`panel${index}`)}
-                    >
-                      <StyledAccordionSummary
-                        expandIcon={<StyledExpandMoreIcon />}
-                        aria-controls={`panel${index}bh-content`}
-                        id={`panel${index}bh-header`}
-                      >
-                        <SummaryImg
-                          component="img"
-                          image={historyData.auction.product.thumbnail?.file}
-                        />
-                        <SummaryContents>
-                          <SummaryTitle>
-                            {historyData.auction?.title}
-                          </SummaryTitle>
+        {/*{dealingHistoryFetched && (*/}
+        {/*  <>*/}
+        {/*    {dealingHistory?.total_count > 0 ? (*/}
+        {/*      <HistoryContainer>*/}
+        {/*        {dealingHistory.results.map((historyData, index) => {*/}
+        {/*          return (*/}
+        {/*            <StyledAccordion*/}
+        {/*              expanded={expanded === `panel${index}`}*/}
+        {/*              onChange={handleChange(`panel${index}`)}*/}
+        {/*            >*/}
+        {/*              <StyledAccordionSummary*/}
+        {/*                expandIcon={<StyledExpandMoreIcon />}*/}
+        {/*                aria-controls={`panel${index}bh-content`}*/}
+        {/*                id={`panel${index}bh-header`}*/}
+        {/*              >*/}
+        {/*                <SummaryImg*/}
+        {/*                  component="img"*/}
+        {/*                  image={historyData.auction.product.thumbnail?.file}*/}
+        {/*                />*/}
+        {/*                <SummaryContents>*/}
+        {/*                  <SummaryTitle>*/}
+        {/*                    {historyData.auction?.title}*/}
+        {/*                  </SummaryTitle>*/}
 
-                          <SummaryParticipantsWrapper>
-                            <SummaryUploadDate>
-                              {historyData.created_at
-                                .split('T')[0]
-                                .replaceAll('-', '.')}
-                            </SummaryUploadDate>
-                            <SummaryParticipantcontainer>
-                              <SummaryParticipantIcon color="secondary" />
-                              <SummaryParticipantsTxt>
-                                {historyData.auction.product_groups_count}명
-                              </SummaryParticipantsTxt>
-                            </SummaryParticipantcontainer>
-                          </SummaryParticipantsWrapper>
-                        </SummaryContents>
-                      </StyledAccordionSummary>
-                      {/*AccordionDetails*/}
-                      <StyledAccordionDetails>
-                        <DetailsLeftContainer>
-                          <StyledCard sx={{ maxWidth: 280 }}>
-                            <StyledCardMediaImg
-                              component="img"
-                              image={
-                                historyData.auction.product.thumbnail?.file
-                              }
-                            />
-                            <StyledCardContent>
-                              <StyledTypography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                              >
-                                {historyData.auction.product.name}
-                              </StyledTypography>
-                            </StyledCardContent>
-                            <StyledCardActions>
-                              <Link
-                                to={`/itemdetail/${historyData.auction.product.id}`}
-                              >
-                                <StyledCardButton
-                                  variant="contained"
-                                  size="small"
-                                >
-                                  상세보기
-                                </StyledCardButton>
-                              </Link>
-                            </StyledCardActions>
-                          </StyledCard>
-                        </DetailsLeftContainer>
-                        <DetailsRightContainer>
-                          {historyData.auction.product.images.length > 0 &&
-                            historyData.auction.product.images.map((img) => {
-                              return (
-                                <StyledDetailItemImg
-                                  component="img"
-                                  image={img.file}
-                                />
-                              );
-                            })}
-                        </DetailsRightContainer>
-                      </StyledAccordionDetails>
-                    </StyledAccordion>
-                  );
-                })}
-              </HistoryContainer>
-            ) : (
-              <></>
-            )}
-          </>
-        )}
+        {/*                  <SummaryParticipantsWrapper>*/}
+        {/*                    <SummaryUploadDate>*/}
+        {/*                      {historyData.created_at*/}
+        {/*                        .split('T')[0]*/}
+        {/*                        .replaceAll('-', '.')}*/}
+        {/*                    </SummaryUploadDate>*/}
+        {/*                    <SummaryParticipantcontainer>*/}
+        {/*                      <SummaryParticipantIcon color="secondary" />*/}
+        {/*                      <SummaryParticipantsTxt>*/}
+        {/*                        {historyData.auction.product_groups_count}명*/}
+        {/*                      </SummaryParticipantsTxt>*/}
+        {/*                    </SummaryParticipantcontainer>*/}
+        {/*                  </SummaryParticipantsWrapper>*/}
+        {/*                </SummaryContents>*/}
+        {/*              </StyledAccordionSummary>*/}
+        {/*              /!*AccordionDetails*!/*/}
+        {/*              <StyledAccordionDetails>*/}
+        {/*                <DetailsLeftContainer>*/}
+        {/*                  <StyledCard sx={{ maxWidth: 280 }}>*/}
+        {/*                    <StyledCardMediaImg*/}
+        {/*                      component="img"*/}
+        {/*                      image={*/}
+        {/*                        historyData.auction.product.thumbnail?.file*/}
+        {/*                      }*/}
+        {/*                    />*/}
+        {/*                    <StyledCardContent>*/}
+        {/*                      <StyledTypography*/}
+        {/*                        gutterBottom*/}
+        {/*                        variant="h5"*/}
+        {/*                        component="div"*/}
+        {/*                      >*/}
+        {/*                        {historyData.auction.product.name}*/}
+        {/*                      </StyledTypography>*/}
+        {/*                    </StyledCardContent>*/}
+        {/*                    <StyledCardActions>*/}
+        {/*                      <Link*/}
+        {/*                        to={`/itemdetail/${historyData.auction.product.id}`}*/}
+        {/*                      >*/}
+        {/*                        <StyledCardButton*/}
+        {/*                          variant="contained"*/}
+        {/*                          size="small"*/}
+        {/*                        >*/}
+        {/*                          상세보기*/}
+        {/*                        </StyledCardButton>*/}
+        {/*                      </Link>*/}
+        {/*                    </StyledCardActions>*/}
+        {/*                  </StyledCard>*/}
+        {/*                </DetailsLeftContainer>*/}
+        {/*                <DetailsRightContainer>*/}
+        {/*                  {historyData.auction.product.images.length > 0 &&*/}
+        {/*                    historyData.auction.product.images.map((img) => {*/}
+        {/*                      return (*/}
+        {/*                        <StyledDetailItemImg*/}
+        {/*                          component="img"*/}
+        {/*                          image={img.file}*/}
+        {/*                        />*/}
+        {/*                      );*/}
+        {/*                    })}*/}
+        {/*                </DetailsRightContainer>*/}
+        {/*              </StyledAccordionDetails>*/}
+        {/*            </StyledAccordion>*/}
+        {/*          );*/}
+        {/*        })}*/}
+        {/*      </HistoryContainer>*/}
+        {/*    ) : (*/}
+        {/*      <></>*/}
+        {/*    )}*/}
+        {/*  </>*/}
+        {/*)}*/}
 
         {/*Pagination*/}
         <PaginationContainer>
           <StyledPagination
-            count={dealingHistory?.total_pages}
+            // count={dealingHistory?.total_pages}
             page={pageNum}
             onChange={handleChangePagination}
           />
