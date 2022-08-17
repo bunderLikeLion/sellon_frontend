@@ -16,7 +16,7 @@ import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useMyProductsQuery } from 'queries/product';
 import { useDealingHistoryQuery } from 'queries/dealing';
-import useRatingQuery from 'queries/auth/useRatingQuery';
+import { useRatingQuery, useDealingCountQuery } from 'queries/user';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
@@ -222,7 +222,6 @@ const MyScopeInfo = styled(StarIcon)`
     width: 2rem;
     height: 2rem;
   }
-  // color: ${(props) => props.theme.color_fill_start} !important;
   color: ${(props) =>
     props.fill ? props.theme.color_fill_start : ''} !important;
 `;
@@ -242,6 +241,10 @@ const DealCountInfo = styled.div`
   align-items: center;
   padding-right: 5%;
   font-size: 1rem;
+  font-weight: bold;
+  span {
+    padding-top: 0.5rem;
+  }
 `;
 
 const DealCount = styled.p`
@@ -286,11 +289,15 @@ const TransactionHistory = () => {
   };
 
   const [pageNum, setPageNum] = useState(1);
-  // TODO: 배포 됐을 떄 주석 해제 해야 함
+
   const { data: dealingHistory, isSuccess: dealingHistoryFetched } =
     useDealingHistoryQuery(pageNum);
 
+  const { data: dealingCountData, isSuccess: dealingCountDataFetched } =
+    useDealingCountQuery();
+
   const { data: userRating, isSuccess: userRatingFetched } = useRatingQuery();
+
   const MAX_RATING = 5;
   const rating = () => {
     const result = [];
@@ -431,7 +438,9 @@ const TransactionHistory = () => {
           거래 횟수
           <DealCountInfoContainer>
             <DealCountInfo>
-              총<DealCount>50</DealCount>회
+              <span>총</span>
+              <DealCount>{dealingCountData.count}</DealCount>
+              <span>회</span>
             </DealCountInfo>
           </DealCountInfoContainer>
         </RightSmallContainer>

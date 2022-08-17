@@ -18,6 +18,11 @@ const userRelatedAPI = {
   getUserRating: (userId) => {
     return client.get(`users/user/${userId}/rating/`).then((res) => res.data);
   },
+  getUserDealingCount: (userId) => {
+    return client
+      .get(`users/user/${userId}/dealings_count/`)
+      .then((res) => res.data);
+  },
 };
 
 export default userRelatedAPI;
