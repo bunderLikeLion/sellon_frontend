@@ -136,7 +136,7 @@ const Login = () => {
       <Card>
         <Form onSubmit={handleSubmit(submit)}>
           <GuideContainer>
-            <Guide>Log-In</Guide>
+            <Guide>로그인</Guide>
           </GuideContainer>
           <InputContainer>
             <Input placeholder="ID" type="text" {...register('username')} />
@@ -149,7 +149,7 @@ const Login = () => {
           <ButtonContainer>
             <Button disabled={isSubmitting}>
               {isSubmitting && 'Submitting...'}
-              Sign In
+              로그인
             </Button>
             {errors.apiError && <div>{errors.apiError?.message}</div>}
             <Link to="/register">
