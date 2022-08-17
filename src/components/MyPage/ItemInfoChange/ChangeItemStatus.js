@@ -189,11 +189,11 @@ const ChangeItemStatus = ({ givenQuality, editSingleField }) => {
             <SubHeader />
             <StatusContentBox>
               <StatusRadio>
-                <StyledRadio {...statusControlProps('1')} />
+                <StyledRadio {...statusControlProps('5')} />
                 <RadioLabel>최상</RadioLabel>
               </StatusRadio>
               <StatusRadio>
-                <StyledRadio {...statusControlProps('2')} />
+                <StyledRadio {...statusControlProps('4')} />
                 <RadioLabel>중상</RadioLabel>
               </StatusRadio>
               <StatusRadio>
@@ -201,11 +201,11 @@ const ChangeItemStatus = ({ givenQuality, editSingleField }) => {
                 <RadioLabel>중</RadioLabel>
               </StatusRadio>
               <StatusRadio>
-                <StyledRadio {...statusControlProps('4')} />
+                <StyledRadio {...statusControlProps('2')} />
                 <RadioLabel>중하</RadioLabel>
               </StatusRadio>
               <StatusRadio>
-                <StyledRadio {...statusControlProps('5')} />
+                <StyledRadio {...statusControlProps('1')} />
                 <RadioLabel>최하</RadioLabel>
               </StatusRadio>
             </StatusContentBox>
