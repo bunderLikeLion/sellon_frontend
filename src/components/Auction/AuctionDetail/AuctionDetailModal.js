@@ -11,46 +11,54 @@ import { queryClient } from 'index';
 import { CloseBtn } from 'components/MyPage/AddItemModal';
 import { useSingleAuctionQuery } from '../../../queries/auction';
 
-
 const ModalContainer = styled(Box)`
   position: relative;
   width: 62rem;
-  height: 39.4rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
+
+  &:focus-visible {
+    outline: none;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
+  justify-content: space-between;
   position: relative;
-  width: 100%;
   height: 34rem;
   margin: 2rem;
-  padding-top: 0.5rem;
   color: ${(props) => props.theme.color_white};
 `;
 
 const UserUploadContainer = styled.div`
   width: 60%;
   height: 100%;
-  padding: 0 5rem 0 5rem;
+  padding: 0 1rem;
 `;
 
 const ItemDetailContainer = styled.div`
-  width: 24.8rem;
-  height: 33.3rem;
-`;  
+  width: 50%;
+  height: 100%;
+  padding: 0 1rem;
+`;
+
+const ItemTitle = styled.p`
+  margin-bottom: 1rem;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.color_font__primary};
+`;
 
 const StyledCloseBtn = styled(CloseBtn)`
   top: 1rem;
   right: 1rem;
   color: ${(props) => props.theme.color_button__delete};
 `;
-
 
 const AuctionDetailModal = ({
   handleModal,
@@ -60,6 +68,7 @@ const AuctionDetailModal = ({
 }) => {
   const { id } = useParams();
   const { data } = useSingleAuctionQuery(id);
+  const { name } = data;
 
   const { data: singleItemData, isSuccess: singleItemDataFetched } =
     useSingleProductQuery(
@@ -78,6 +87,7 @@ const AuctionDetailModal = ({
         <Container>
           {/*좌측 영역 */}
           <UserUploadContainer>
+            <ItemTitle>test{name}</ItemTitle>
             {singleItemDataFetched && (
               <ItemImage
                 singleItemData={singleItemData}
