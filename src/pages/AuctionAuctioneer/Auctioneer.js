@@ -120,10 +120,10 @@ const BuyerContainer = styled.div`
 `;
 
 const AuctioneerContainer = styled.div`
-padding:1rem;`;
+  padding: 1rem;
+`;
 
 const AuctioneerItem = styled.div`
-  
   width: 50%;
 `;
 
