@@ -175,6 +175,9 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
+height: 1.7rem;
+display: flex;
+align-items: center;
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
@@ -263,9 +266,9 @@ const Auction = () => {
               필터 및 검색
             </FilterButton>
           </AuctionFilterContainer>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ m: 1, minWidth: 120, maxHeight: 30}} size="small">
             {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
-            <SelectBox
+            <SelectBox 
               labelId="demo-select-small"
               id="demo-select-small"
               value={sort}
@@ -277,6 +280,7 @@ const Auction = () => {
                   },
                 },
               }}
+              
             >
               <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
