@@ -67,6 +67,8 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
+
 const ItemList = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [pageNum, setPageNum] = useState(1);
@@ -86,25 +88,22 @@ const ItemList = () => {
         <PlusBtn />
         아이템 추가
       </AddProductItemButton>
-        {myProductFetched && (
-          <>
-            <p>총 {myProductsData?.total_count}개</p>
-            {
-              myProductsData?.total_count > 0 ? (
-                <FlexContainer>
-                  {
-                    myProductsData.results.map((productData) => {
-                      return (
-                        <ItemListCard key={productData.id} productData={productData} />
-                      );
-                    })
-                  }
-                </FlexContainer>
-              ) : <EmptyListPlaceHolder message="아직 등록한 아이템이 없습니다. 🥲" margin="2rem 0 0 0 "/>
-            }
-          </>
-        )
-      }
+      <p>총 {myProductsData?.total_count}개</p>
+      {myProductFetched &&
+        (myProductsData?.total_count > 0 ? (
+          <FlexContainer>
+            {myProductsData.results.map((productData) => {
+              return (
+                <ItemListCard key={productData.id} productData={productData} />
+              );
+            })}
+          </FlexContainer>
+        ) : (
+          <EmptyListPlaceHolder
+            message="아직 아이템이 없습니다 🥺"
+            margin="3rem 0"
+          />
+        ))}
       <PaginationContainer>
         <StyledPagination
           count={myProductsData?.total_pages}

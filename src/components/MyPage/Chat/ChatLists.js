@@ -79,7 +79,7 @@ const ChatLists = ({
   selectedDeal,
   setSelectedDeal,
 }) => {
-  const { pk: userId } = useRecoilValue(userAtom);
+  const { id: userId } = useRecoilValue(userAtom);
   const [isDetailModalOpened, setIsDetailModalOpened] = useState(false);
   const [isValidationModalOpened, setIsValidationModalOpened] = useState(false);
 

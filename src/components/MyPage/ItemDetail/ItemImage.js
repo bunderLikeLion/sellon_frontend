@@ -5,27 +5,15 @@ import { Link, useParams } from 'react-router-dom';
 import UserInformation from './UserInformation';
 import { useSingleProductQuery } from 'queries/product';
 
-const ArrowIconContainer = styled.div`
-  width: 100%;
-  height: 0.2rem;
-  margin-bottom: 2rem;
-`;
-
-const ArrowIcon = styled(ArrowBackIosNewIcon)`
-  width: 0.8rem;
-  height: 0.8rem;
-  cursor: pointer;
-`;
-
 const MainPicContainer = styled.div`
   width: 100%;
-  height: 17rem;
-  margin-bottom: 2rem;
+  height: 100%;
+  margin-bottom: 1rem;
 `;
 
 const MainPic = styled(CardMedia)`
   width: 100%;
-  height: 17rem;
+  height: 15rem;
   border-radius: 1rem;
 `;
 
@@ -48,24 +36,15 @@ const ItemPicWrapper = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  height: 28.3rem;
 `;
 
 const ItemImage = ({ singleItemData, isTriggeredFromModal }) => {
   const { thumbnail, images, id } = singleItemData;
-  // const { id: itemId } = useParams();
   const { data: singleItem, isSuccess: singleItemFetched } =
     useSingleProductQuery(id);
 
   return (
     <>
-      {/* {!isTriggeredFromModal && (
-        <ArrowIconContainer>
-          <Link to={'/mypage/'}>
-            <ArrowIcon />
-          </Link>
-        </ArrowIconContainer>
-      )} */}
       {singleItemFetched && <UserInformation singleItemData={singleItem} />}
       <ItemPicWrapper>
         <MainPicContainer>
