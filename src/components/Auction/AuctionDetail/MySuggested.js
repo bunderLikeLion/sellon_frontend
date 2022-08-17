@@ -121,6 +121,7 @@ const MySuggested = (props) => {
   const [productGroupPage, setProductGroupPage] = useState(0);
   const [pageLength, setPageLength] = useState(null);
   const [paginatedData, setPaginatedData] = useState(null);
+  const [isReadyToRender, setIsReadyToRender] = useState(false);
 
   const { data: myProductGroup, isSuccess: myProductGroupFetched } =
     useMyProductGroupQuery(relatedAuctionId, userId, 1, 4);
@@ -153,6 +154,14 @@ const MySuggested = (props) => {
     }
   }, [paginatedData, productGroupPage]);
 
+  useEffect(() => {
+    if (myProductGroupFetched && paginatedData && pageLength) {
+      setIsReadyToRender(true);
+    } else {
+      setIsReadyToRender(false);
+    }
+  }, [myProductGroupFetched, paginatedData, pageLength]);
+
   return (
     <Container>
       <ButtonContainer onClick={props.handleInventory}>
@@ -167,9 +176,7 @@ const MySuggested = (props) => {
         ) : (
           <DisabledBeforeIcon />
         )}
-        {myProductGroupFetched &&
-          paginatedData &&
-          pageLength &&
+        {isReadyToRender &&
           paginatedData[productGroupPage].map((singleItem) => {
             if (!paginatedData[productGroupPage]) setProductGroupPage(0);
             return (
