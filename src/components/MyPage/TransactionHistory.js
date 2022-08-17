@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { useMyProductsQuery } from 'queries/product';
 import { useDealingHistoryQuery } from 'queries/dealing';
 import useRatingQuery from 'queries/auth/useRatingQuery';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
@@ -286,7 +287,6 @@ const TransactionHistory = () => {
   };
 
   const [pageNum, setPageNum] = useState(1);
-  // TODO: 배포 됐을 떄 주석 해제 해야 함
   const { data: dealingHistory, isSuccess: dealingHistoryFetched } =
     useDealingHistoryQuery(pageNum);
 
@@ -400,7 +400,7 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              <></>
+              <EmptyListPlaceHolder message="아직 경매장에서 거래한 물건이 없습니다. 한번 경매장에 참여해볼까요?" margin="0" backgroundColor="#252040" />
             )}
           </>
         )}
