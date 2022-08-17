@@ -39,9 +39,9 @@ const auctionRelatedAPI = {
       .then((res) => res.data);
   },
 
-  getMyAuctionLists: (page) => {
+  getMyAuctionList: (page) => {
     return client
-      .get('auctions/my/', { params: { page: page, per_page: 30 } })
+      .get('auctions/my/', { params: { page: page, per_page: 6 } })
       .then((res) => res.data);
   },
 
