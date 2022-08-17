@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const SectionContainer = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 6rem 2rem;
-`
+`;
 
 const MainIntroduceContainer = styled(SectionContainer)`
   margin-top: 2rem;
@@ -33,7 +34,7 @@ const MainIntroduceContainer = styled(SectionContainer)`
 
 const ServiceIntroduceContainer = styled(SectionContainer)`
   background: ${(props) => props.theme.color_background__primary};
-`
+`;
 
 const BestDealingContainer = styled(SectionContainer)``;
 
@@ -58,7 +59,7 @@ const MainTitle = styled.h1`
     font-size: 1.8rem;
     line-height: 2rem;
   }
-`
+`;
 
 const MainIntroduceButtonContainer = styled.div`
   display: flex;
@@ -85,7 +86,7 @@ const AuctionButton = styled.button`
   width: fit-content;
   height: fit-content;
   border-radius: 10px;
-`
+`;
 
 const TopRankButton = styled.button`
   background: none;
@@ -93,13 +94,11 @@ const TopRankButton = styled.button`
   border: none;
   padding: 1rem;
   font-size: 1.1rem;
-`
+`;
 
-const MainImageContainer = styled.div`
-`
+const MainImageContainer = styled.div``;
 
-const MainImage = styled.img`
-`
+const MainImage = styled.img``;
 
 const ServiceList = styled.div`
   display: flex;
@@ -108,7 +107,7 @@ const ServiceList = styled.div`
   max-width: 1060px !important;
   width: 100%;
   gap: 4rem;
-`
+`;
 
 const ServiceItem = styled.div`
   display: flex;
@@ -121,10 +120,10 @@ const ServiceItem = styled.div`
     flex-direction: column;
 
     &:nth-child(2) {
-    flex-direction: column-reverse;
+      flex-direction: column-reverse;
     }
   }
-`
+`;
 
 const ServiceTextContainer = styled.div`
   display: flex;
@@ -140,7 +139,7 @@ const ServiceTextContainer = styled.div`
     flex-shrink: 1;
     flex-basis: auto;
   }
-`
+`;
 
 const ServiceMediaContainer = styled.div`
   background-color: aliceblue;
@@ -154,7 +153,7 @@ const ServiceMediaContainer = styled.div`
     flex-shrink: 1;
     flex-basis: auto;
   }
-`
+`;
 
 const SubLabel = styled.span`
   background: ${(props) => props.theme.color_background__success};
@@ -163,14 +162,14 @@ const SubLabel = styled.span`
   font-weight: 700;
   font-size: 1rem;
   line-height: 1.2rem;
-`
+`;
 
 const ItemTitle = styled.h2`
   font-size: 2rem;
   line-height: 2rem;
   font-weight: 800;
   color: ${(props) => props.theme.color_font__primary};
-`
+`;
 
 const ServiceDescription = styled.p`
   margin-top: 1rem;
@@ -179,7 +178,7 @@ const ServiceDescription = styled.p`
   line-height: 1.4rem;
 
   color: ${(props) => props.theme.color_font__tertiary};
-`
+`;
 
 const TitleContainer = styled.div`
   display: flex;
@@ -196,7 +195,7 @@ const TitleContainer = styled.div`
     flex-shrink: 1;
     flex-basis: auto;
   }
-`
+`;
 
 const BestDealingList = styled.div`
   padding: 2rem;
@@ -226,27 +225,27 @@ const BestDealingItem = styled.div`
     flex-basis: auto;
     width: 100%;
   }
-`
+`;
 
 const BestDealingItemHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1.2rem;
-`
+`;
 
 const UserName = styled.div`
   font-size: 1.4rem;
   color: ${(props) => props.theme.color_font__primary};
   font-weight: 600;
-`
+`;
 
 const UserComment = styled.p`
   padding: 0.5rem 0;
   font-size: 1rem;
   line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
-`
+`;
 
 const UserAvatarContainer = styled.div`
   width: 4rem;
@@ -268,16 +267,16 @@ const StyledAccordion = styled(Accordion)`
   svg {
     fill: ${(props) => props.theme.color_white} !important;
   }
-`
+`;
 
 const StyledAccordionSummary = styled(AccordionSummary)`
   background: ${(props) => props.theme.color_background__primary} !important;
-`
+`;
 
 const AccordionTitle = styled(Typography)`
   font-size: 1.2rem !important;
   padding-left: 1rem;
-`
+`;
 
 const AccordionContent = styled(Typography)`
   padding: 2rem;
@@ -298,7 +297,7 @@ const ParticipantBanner = styled.div`
     flex-direction: column;
     gap: 0.5rem;
   }
-`
+`;
 
 const BannerText = styled.h2`
   text-align: left;
@@ -311,7 +310,7 @@ const BannerText = styled.h2`
     font-size: 1.1rem;
     width: 100%;
   }
-`
+`;
 
 const ParticipantButton = styled(AuctionButton)`
   background: ${(props) => props.theme.color_button__ok};
@@ -325,7 +324,7 @@ const ParticipantButtonContainer = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
   }
-`
+`;
 
 const About = () => {
   return (
@@ -338,12 +337,12 @@ const About = () => {
         </MainTitle>
 
         <MainIntroduceButtonContainer>
-          <AuctionButton>
-            경매장으로 가기
-          </AuctionButton>
-          <TopRankButton>
-            지금까지의 거래 구경하러 가기
-          </TopRankButton>
+          <Link to="/auction">
+            <AuctionButton>경매장으로 가기</AuctionButton>
+          </Link>
+          <Link to="/toprank">
+            <TopRankButton>지금까지의 거래 구경하러 가기</TopRankButton>
+          </Link>
         </MainIntroduceButtonContainer>
 
         <MainImageContainer>
@@ -539,9 +538,9 @@ const About = () => {
             개성넘치는 경매장, Sellon. 지금 바로 참여해보세요.
           </BannerText>
           <ParticipantButtonContainer>
-            <ParticipantButton>
-              참여하기
-            </ParticipantButton>
+            <Link to="/auction">
+              <ParticipantButton>참여하기</ParticipantButton>
+            </Link>
           </ParticipantButtonContainer>
         </ParticipantBanner>
       </ParticipantBannerContainer>
