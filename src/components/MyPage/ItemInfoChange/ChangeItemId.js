@@ -110,7 +110,7 @@ const InsideContainer = styled.div`
   width: 100%;
 `;
 
-const ChangeItemId = ({ givenName, editSingleField }) => {
+const ChangeItemId = ({ givenName, editSingleField, imgToLeft }) => {
   const [isShown, setIsShown] = useState(false);
   const [editedName, handleEditedName, resetEditedName] = useInput(null);
 
@@ -119,7 +119,12 @@ const ChangeItemId = ({ givenName, editSingleField }) => {
   };
 
   const handleSubmit = async () => {
-    await editSingleField({ name: editedName });
+    const frm = new FormData();
+    frm.append('name', editedName);
+    for (let singleImgId of imgToLeft) {
+      frm.append('image_ids', singleImgId);
+    }
+    await editSingleField(frm);
     await resetEditedName();
     handleClick();
   };

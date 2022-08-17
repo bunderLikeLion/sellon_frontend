@@ -105,7 +105,7 @@ const ChangeItemExtraImage = ({ givenExtraImages, editSingleField }) => {
         frm.append(`images[${idx}]file`, single);
       }
     });
-    await editSingleField(frm);
+    await editSingleField(frm, true);
     await setExtraPics([]);
     handleClick();
   };

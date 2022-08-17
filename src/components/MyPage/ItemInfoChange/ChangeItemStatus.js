@@ -150,7 +150,7 @@ export const StatusRadio = styled(SingleRadio)`
   width: 5rem;
 `;
 
-const ChangeItemStatus = ({ givenQuality, editSingleField }) => {
+const ChangeItemStatus = ({ givenQuality, editSingleField, imgToLeft }) => {
   const [status, handleStatus, statusReset] = useInput(givenQuality.toString());
 
   const [isShown, setIsShown] = useState(false);
@@ -168,8 +168,12 @@ const ChangeItemStatus = ({ givenQuality, editSingleField }) => {
   });
 
   const handleSubmit = async () => {
-    await editSingleField({ quality: +status });
-    await statusReset();
+    const frm = new FormData();
+    frm.append('quality', +status);
+    for (let singleImgId of imgToLeft) {
+      frm.append('image_ids', singleImgId);
+    }
+    await editSingleField(frm);
     handleClick();
   };
 

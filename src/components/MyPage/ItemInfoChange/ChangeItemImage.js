@@ -100,7 +100,7 @@ const ChangeItemImage = ({ givenThumbnail, editSingleField }) => {
   const handleSubmit = async () => {
     const frm = new FormData();
     await frm.append('thumbnail.file', thumbnailPic[0]);
-    await editSingleField(frm);
+    await editSingleField(frm, true);
     await setThumbNailPic([]);
     handleClick();
   };

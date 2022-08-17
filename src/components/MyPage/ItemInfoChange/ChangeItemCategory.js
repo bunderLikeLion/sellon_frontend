@@ -145,14 +145,18 @@ export const StatusRadio = styled(SingleRadio)`
   width: 5rem;
 `;
 
-const ChangeItemCategory = ({ givenCategory, editSingleField }) => {
-  const [category, handleCategory, categoryReset] = useInput(givenCategory);
+const ChangeItemCategory = ({ givenCategory, editSingleField, imgToLeft }) => {
+  const [category, handleCategory, categoryReset] = useInput(
+    givenCategory?.id.toString()
+  );
 
   const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
     setIsShown(!isShown);
   };
+
+  console.log(givenCategory, 'catttt');
 
   const catControlProps = (item) => ({
     checked: category === item,
@@ -167,12 +171,15 @@ const ChangeItemCategory = ({ givenCategory, editSingleField }) => {
   ]);
 
   const handleSubmit = async () => {
-    await editSingleField({ product_category_id: +category });
+    const frm = new FormData();
+    frm.append('product_category_id', +category);
+    for (let singleImgId of imgToLeft) {
+      frm.append('image_ids', singleImgId);
+    }
+    await editSingleField(frm);
     await categoryReset();
     handleClick();
   };
-
-  console.log(givenCategory.name, 'asdasd');
 
   return (
     <AccordionContainer>
