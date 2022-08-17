@@ -134,7 +134,9 @@ const StyledTooltip = styled(({ className, ...props }) => (
     maxWidth: 168,
     cursor: 'pointer',
     color: '#DFDCEF',
-    backgroundColor: '#4E4166',
+    backgroundColor: '#000000',
+    fontSize: '0.7rem',
+    lineHeight: '1rem',
   },
 });
 

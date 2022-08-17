@@ -87,18 +87,16 @@ const StyledTooltip = styled(({ className, ...props }) => (
   },
 });
 
-const HoverMsg = `
-hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
-`;
-
 const Ranking = () => {
   return (
     <Container>
       <CardHeader>
         <RankingTitle>실시간 거래 랭킹</RankingTitle>
-        <StyledTooltip title={HoverMsg} arrow>
-          <QuestionIcon />
-        </StyledTooltip>
+        {/*
+          <StyledTooltip title={""} arrow>
+            <QuestionIcon />
+          </StyledTooltip>
+        */}
       </CardHeader>
       <CardContent>
         <RankerList>
