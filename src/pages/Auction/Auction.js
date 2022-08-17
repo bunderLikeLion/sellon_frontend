@@ -8,15 +8,15 @@ import WrapContainer from 'layouts/WrapContainer';
 import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
-import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
-import Slider from 'react-slick';
 import AuctionSlider from 'components/Auction/AuctionSlider';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const Form = styled.div`
   width: 100%;
@@ -208,6 +208,7 @@ const StyledPagination = styled(Pagination)`
 `;
 
 const Auction = () => {
+  const user = useRecoilValue(userAtom);
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
@@ -236,9 +237,11 @@ const Auction = () => {
     <WrapContainer>
       <Form>
         <AuctionUploadContainer>
-          <AuctionPublishLink to={'/auction/newauction'}>
-            <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
-          </AuctionPublishLink>
+          {user && (
+            <AuctionPublishLink to={'/auction/newauction'}>
+              <SubmitAuctionButton>경매 올리기</SubmitAuctionButton>
+            </AuctionPublishLink>
+          )}
         </AuctionUploadContainer>
 
         <SubNav>
