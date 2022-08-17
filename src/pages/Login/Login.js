@@ -1,13 +1,12 @@
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
-import loginValidation from 'validations/loginValidation';
 import { useLoginMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
 import toast from 'react-hot-toast';
+import useInput from 'hooks/useInput';
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +25,7 @@ const Card = styled.div`
 `;
 
 //전체 컨테이너
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,6 +116,8 @@ const Img = styled.img`
 const Login = () => {
   const navigate = useNavigate();
   const user = useRecoilValue(userAtom);
+  const [username, handleUsername] = useInput('');
+  const [password, handlePassword] = useInput('');
 
   useEffect(() => {
     if (user) {
@@ -128,37 +129,43 @@ const Login = () => {
     }
   }, []);
 
-  const { register, handleSubmit, formState } = useForm(loginValidation);
-
-  const { errors, isSubmitting } = formState;
-
   const { mutate: loginMutate } = useLoginMutation();
 
-  const submit = (inputData) => {
-    loginMutate(inputData);
+  const onKeyPressFunc = (e) => {
+    if (e.key === 'Enter') submit();
+  };
+
+  const submit = () => {
+    loginMutate({ username: username, password: password });
   };
 
   return (
     <Container>
       <Card>
-        <Form onSubmit={handleSubmit(submit)}>
+        <Form>
           <GuideContainer>
             <Guide>로그인</Guide>
           </GuideContainer>
           <InputContainer>
-            <Input placeholder="ID" type="text" {...register('username')} />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
+            <Input
+              placeholder="ID"
+              type="text"
+              value={username}
+              onChange={handleUsername}
+              onKeyPress={onKeyPressFunc}
+            />
           </InputContainer>
           <InputContainer>
-            <Input placeholder="PW" type="password" {...register('password')} />
-            <ErrorMsg>{errors.password?.message}</ErrorMsg>
+            <Input
+              placeholder="PW"
+              type="password"
+              value={password}
+              onChange={handlePassword}
+              onKeyPress={onKeyPressFunc}
+            />
           </InputContainer>
           <ButtonContainer>
-            <Button disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
-              로그인
-            </Button>
-            {errors.apiError && <div>{errors.apiError?.message}</div>}
+            <Button onClick={submit}>로그인</Button>
             <Link to="/register">
               <Button>회원가입</Button>
             </Link>
