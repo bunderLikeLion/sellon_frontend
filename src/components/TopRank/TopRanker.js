@@ -140,7 +140,6 @@ const StyledTooltip = styled(({ className, ...props }) => (
   },
 });
 
-
 const TopRanker = () => {
   const {
     data: MostProductGroupDealingData,
