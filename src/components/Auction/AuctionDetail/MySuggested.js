@@ -117,7 +117,7 @@ const DeleteIcon = styled(HighlightOffIcon)`
 
 const MySuggested = (props) => {
   const { id: relatedAuctionId } = useParams();
-  const { id: userId } = useRecoilValue(userAtom);
+  const { id: userId } = useRecoilValue(userAtom) || {};
   const [productGroupPage, setProductGroupPage] = useState(0);
   const [pageLength, setPageLength] = useState(null);
   const [paginatedData, setPaginatedData] = useState(null);
@@ -149,7 +149,6 @@ const MySuggested = (props) => {
 
   useEffect(() => {
     if (paginatedData > 0 && !paginatedData[productGroupPage]) {
-      console.log('worked');
       setProductGroupPage(0);
     }
   }, [paginatedData, productGroupPage]);

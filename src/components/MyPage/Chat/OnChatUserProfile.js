@@ -15,7 +15,7 @@ const OnChatProfileImg = styled(CardMedia)`
   height: 3.3rem;
   margin: 1rem;
   border-radius: 0.7rem;
-  background: #0f0;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const OnChatProfileNickname = styled.div`
@@ -33,7 +33,7 @@ const OnChatUserProfile = ({ opponent }) => {
     <OnChatProfileContainer>
       <OnChatProfileImg image={opponent?.avatar} />
       <OnChatProfileNickname>
-        경매제목엄청엄청길어요우하하하하하하하{opponent?.username}
+        {opponent?.username}
       </OnChatProfileNickname>
     </OnChatProfileContainer>
   );

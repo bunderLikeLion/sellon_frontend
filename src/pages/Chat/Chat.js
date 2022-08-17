@@ -14,9 +14,9 @@ import { useMyProductsQuery } from 'queries/product';
 
 const AlignContainer = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  width: 100%;
-  height: 85vh;
+  align-items: flex-start;
 `;
 //align-items: center;
 
@@ -24,31 +24,45 @@ const ChatForm = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 38rem;
-  margin-top: 2rem;
+  min-height: 38rem;
   overflow: hidden;
+  gap: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 const Chat_Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 48%;
+  flex: 1;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
+  max-height: 30rem;
+
+  @media screen and (max-width: 1000px) {
+    max-height: 20rem;
+  }
 `;
 
 const Chat_Right = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 48%;
+  flex: 1;
   border-radius: 0.5rem;
+  max-height: 30rem;
+
   background: ${(props) => props.theme.color_background__primary};
+
+  @media screen and (max-width: 1000px) {
+    max-height: 30rem;
+  }
 `;
 
 const OnChatContainer = styled.div`
-  height: 15%;
 `;
 
 const MessageTitle = styled.div`
@@ -60,10 +74,11 @@ const MessageTitle = styled.div`
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   height: 29.3rem;
   margin: 1rem 0;
+  overflow-y: scroll;
+  gap: 1rem;
 `;
 //height: 85%;
 
@@ -72,24 +87,6 @@ const OnChatContainerBottom = styled.div`
   padding: 0 1rem;
   border-radius: 0 0 0.5rem 0.5rem;
   background: ${(props) => props.theme.color_background__secondary};
-`;
-
-//Pagination
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const StyledPagination = styled(Pagination)`
-  .MuiPagination-ul {
-    button {
-      color: ${(props) => props.theme.color_font__secondary} !important;
-    }
-    .Mui-selected {
-      color: ${(props) => props.theme.color_font__number} !important;
-    }
-  }
 `;
 
 const Chat = () => {
@@ -137,19 +134,7 @@ const Chat = () => {
                     />
                   );
                 })}
-                <ChatLists />
-                <ChatLists />
-                <ChatLists />
-                <ChatLists />
               </ChatContainer>
-              {/*Pagination*/}
-              <PaginationContainer>
-                <StyledPagination
-                  count={myProductsData?.total_pages}
-                  page={pageNum}
-                  onChange={handleChangePagination}
-                />
-              </PaginationContainer>
             </Chat_Left>
             <Chat_Right>
               <OnChatContainer>

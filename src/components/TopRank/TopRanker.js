@@ -134,13 +134,12 @@ const StyledTooltip = styled(({ className, ...props }) => (
     maxWidth: 168,
     cursor: 'pointer',
     color: '#DFDCEF',
-    backgroundColor: '#4E4166',
+    backgroundColor: '#000000',
+    fontSize: '0.7rem',
+    lineHeight: '1rem',
   },
 });
 
-const HoverMsg = `
-hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
-`;
 
 const TopRanker = () => {
   const {
@@ -167,7 +166,7 @@ const TopRanker = () => {
                 </TopDealCount>
               </TopDealerUserContainer>
             )}
-            <StyledTooltip title={HoverMsg} arrow>
+            <StyledTooltip title="이 달의 거래왕은 경매에서 거래까지 가장 많이 성사시킨 사람이 가져가는 명예로운 자리입니다. 😎" arrow>
               <QuestionIcon />
             </StyledTooltip>
           </TopDealerInfo>
@@ -183,7 +182,7 @@ const TopRanker = () => {
               총 (int)명 경매 참여
             </MonthlyChampionDealCount>
           </MonthlyUserContainer>
-          <StyledTooltip title={HoverMsg} arrow>
+          <StyledTooltip title="이 달의 챔피언은 이번 달 가장 많은 참여자를 보유한 경매에서 낙찰된 사람이 가져가는 명예로운 자리입니다. 😆" arrow>
             <QuestionIcon />
           </StyledTooltip>
         </MonthlyChampionInfo>

@@ -94,14 +94,12 @@ const ChatLists = ({
       />
       <ChatMessageText>
         <UserNickname>
-          닉네임
           {singleDeal?.product_group?.user?.id === userId
             ? singleDeal?.auction?.owner?.username
             : singleDeal?.product_group?.user?.username}
         </UserNickname>
         <ChatTimeContainer>
           <ChatTime>
-            2022.08.27
             {singleDeal?.last_message_sent_at &&
               detailDateFormatter(singleDeal?.last_message_sent_at)}
           </ChatTime>

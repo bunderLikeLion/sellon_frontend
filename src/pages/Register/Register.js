@@ -123,17 +123,22 @@ const Register = () => {
       <Card>
         <Form onSubmit={handleSubmit(submit)}>
           <GuideContainer>
-            <Guide>Create New Account</Guide>
+            <Guide>회원가입</Guide>
           </GuideContainer>
 
           <InputContainer>
-            <Input placeholder="ID" type="text" {...register('username')} />
+            <Input placeholder="아이디" type="text" {...register('username')} />
+            <ErrorMsg>{errors.username?.message}</ErrorMsg>
+          </InputContainer>
+
+          <InputContainer>
+            <Input placeholder="이메일" type="text" {...register('email')} />
             <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
           <InputContainer>
             <Input
-              placeholder="PW"
+              placeholder="비밀번호"
               type="password"
               {...register('password1')}
             />
@@ -142,16 +147,11 @@ const Register = () => {
 
           <InputContainer>
             <Input
-              placeholder="PW 확인"
+              placeholder="비밀번호 확인"
               type="password"
               {...register('password2')}
             />
             <ErrorMsg>{errors.password?.message}</ErrorMsg>
-          </InputContainer>
-
-          <InputContainer>
-            <Input placeholder="이메일" type="text" {...register('email')} />
-            <ErrorMsg>{errors.username?.message}</ErrorMsg>
           </InputContainer>
 
           <ButtonContainer>

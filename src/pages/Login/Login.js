@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
@@ -7,6 +7,7 @@ import loginValidation from 'validations/loginValidation';
 import { useLoginMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
+import toast from 'react-hot-toast';
 
 const Container = styled.div`
   display: flex;
@@ -118,7 +119,13 @@ const Login = () => {
   const user = useRecoilValue(userAtom);
 
   useEffect(() => {
-    if (user) navigate('/');
+    if (user) {
+      toast.success('이미 로그인한 상태입니다. 👍');
+      navigate('/');
+    }
+    if (window.location.pathname.split('/').pop() === '1') {
+      toast.error('해당 기능을 사용하려면 로그인을 해주세요 😭');
+    }
   }, []);
 
   const { register, handleSubmit, formState } = useForm(loginValidation);
@@ -136,7 +143,7 @@ const Login = () => {
       <Card>
         <Form onSubmit={handleSubmit(submit)}>
           <GuideContainer>
-            <Guide>Log-In</Guide>
+            <Guide>로그인</Guide>
           </GuideContainer>
           <InputContainer>
             <Input placeholder="ID" type="text" {...register('username')} />
@@ -149,7 +156,7 @@ const Login = () => {
           <ButtonContainer>
             <Button disabled={isSubmitting}>
               {isSubmitting && 'Submitting...'}
-              Sign In
+              로그인
             </Button>
             {errors.apiError && <div>{errors.apiError?.message}</div>}
             <Link to="/register">

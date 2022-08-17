@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import CardMedia from '@mui/material/CardMedia';
 import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ConditionalLink from 'components/ConditionalLink';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import {
   useCreateInterestedAuctionMutation,
   useDeleteInterestedAuctionMutation,
 } from 'queries/auction';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const CardContainer = styled(Card)`
   position: relative;
@@ -205,6 +205,8 @@ const AuctionListItem = ({
     이때, 반응형 수치도 고려 헤야 함.
   */
 
+  const user = useRecoilValue(userAtom);
+
   const { mutate: createInterestedAuction } =
     useCreateInterestedAuctionMutation();
   // auctionId
@@ -219,7 +221,7 @@ const AuctionListItem = ({
   return (
     <CardContainer>
       {/* TODO: 관심 경매 API 연결하기 */}
-      {displayInterestedBtn && !isFinished && (
+      {user && displayInterestedBtn && !isFinished && (
         <InterestedButton>
           <StyledFavoriteBorderIcon
             isInterested={isInterested}
@@ -246,12 +248,14 @@ const AuctionListItem = ({
       <FinishedCard isFinished={isFinished}>
         {displayInterestedBtn && (
           <OverLayIconBox>
-            <InterestedButton>
-              <StyledFavoriteBorderIcon
-                isInterested={isInterested}
-                onClick={() => pressHeartIconFunc(isInterested)}
-              />
-            </InterestedButton>
+            {user && (
+              <InterestedButton>
+                <StyledFavoriteBorderIcon
+                  isInterested={isInterested}
+                  onClick={() => pressHeartIconFunc(isInterested)}
+                />
+              </InterestedButton>
+            )}
           </OverLayIconBox>
         )}
         <FinishedMessage>종료된 경매입니다.</FinishedMessage>
