@@ -12,15 +12,11 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export const Container = styled.div`
   position: relative;
-  width: 50%;
+  flex: 1;
   height: 100%;
 `;
 
-const ArrowBackIcon = styled(ArrowBackIosNewIcon)`
-  position: absolute;
-  top: 2rem;
-  left: -1.5rem;
-`;
+const ArrowBackIcon = styled(ArrowBackIosNewIcon)``;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -48,7 +44,19 @@ const BigContainer = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+
+  @media screen and (max-width: 1300px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
 `;
+
+const ItemInfoContainer = styled.div`
+  flex-direction: column;
+  flex: 1;
+`
 
 const BigText = styled.div`
   width: 9rem;
@@ -86,6 +94,12 @@ const ReselectBtn = styled.button`
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
 `;
+
+const ReSelectBtnContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem;
+`
 
 const StyledButton = styled.button`
   float: right;
@@ -125,16 +139,14 @@ const NewAuction = () => {
     <WrapContainer>
       <FlexContainer>
         <TopContainer>
-          <Link to={'/auction/'}>
-            <ArrowBackIcon />
-          </Link>
+
           <InstructContainer>
-            <BigText>경매 열기</BigText>
-            {selectedItem && (
-              <ReselectBtn onClick={() => setSelectedItem(null)}>
-                아이템 다시 선택
-              </ReselectBtn>
-            )}
+            <Link to={'/auction/'}>
+              <ArrowBackIcon />
+            </Link>
+            <BigText>
+              경매 열기
+            </BigText>
           </InstructContainer>
 
           <BigContainer>
@@ -145,7 +157,17 @@ const NewAuction = () => {
                 </BtnContainer>
               </Container>
             ) : (
-              <InfoContainerWithItem selectedItem={selectedItem} />
+              <ItemInfoContainer>
+                <InfoContainerWithItem selectedItem={selectedItem} />
+
+                {selectedItem && (
+                  <ReSelectBtnContainer>
+                    <ReselectBtn onClick={() => setSelectedItem(null)}>
+                      아이템 다시 선택
+                    </ReselectBtn>
+                  </ReSelectBtnContainer>
+                )}
+              </ItemInfoContainer>
             )}
 
             <Container>
