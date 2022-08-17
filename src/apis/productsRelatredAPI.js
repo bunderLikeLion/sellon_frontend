@@ -19,7 +19,11 @@ const productsRelatedAPI = {
 
   putProduct: (productId, payload) => {
     return client
-      .patch(`products/${productId}`, payload)
+      .patch(`products/${productId}/`, payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then((res) => res.data);
   },
 

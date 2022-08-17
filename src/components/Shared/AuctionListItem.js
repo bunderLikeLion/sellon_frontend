@@ -135,7 +135,7 @@ const InterestedButton = styled.button`
 `;
 
 export const FinishedOverlay = styled(Card)`
-  display: ${(props) => (props.isFinished ? 'block' : 'none')};
+  display: ${(props) => (props.isFinished ? 'flex' : 'none')};
   position: absolute;
   left: 0;
   top: 0;

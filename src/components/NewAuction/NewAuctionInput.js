@@ -121,7 +121,7 @@ const NewAuctionInput = (props) => {
       <TextareaContainer>
         <SubHeader>글 작성</SubHeader>
         <AuctionText
-          placeholder="어떤 경매장인지 200자 내로 적어주세요"
+          placeholder="경매장에 대한 설명을 적어주세요.&#10;예시 1) 전 굿즈 물건들과 거래하고 싶어요!&#10;예시 2) 재미있는 물건들을 이 책과 거래하고 싶어요!"
           value={props.auctionDesc}
           onChange={props.auctionDescHandler}
         />

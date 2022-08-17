@@ -10,6 +10,7 @@ import registerValidation from 'validations/registerValidation';
 import { Link } from 'react-router-dom';
 import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
+import statusHandler from '../../../utils/statusHandler';
 
 const AccordionContainer = styled.div`
   clear: both;
@@ -149,24 +150,13 @@ export const StatusRadio = styled(SingleRadio)`
   width: 5rem;
 `;
 
-const ChangeItemStatus = () => {
-  const { register, handleSubmit, formState } = useForm(registerValidation);
+const ChangeItemStatus = ({ givenQuality, editSingleField }) => {
+  const [status, handleStatus, statusReset] = useInput(givenQuality.toString());
 
-  const { errors, isSubmitting } = formState;
-
-  const user = useRecoilValue(userAtom);
-  const [status, handleStatus, statusReset] = useInput('');
-
-  const [expanded, setExpanded] = useState(false);
-  const [isShown, setIsShown] = useState(true);
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-    setIsShown(!isShown);
-  };
+  const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
-    handleChange();
+    setIsShown(!isShown);
   };
 
   const statusControlProps = (item) => ({
@@ -177,26 +167,26 @@ const ChangeItemStatus = () => {
     inputProps: { 'aria-label': item },
   });
 
+  const handleSubmit = async () => {
+    await editSingleField({ quality: +status });
+    await statusReset();
+    handleClick();
+  };
+
   return (
     <AccordionContainer>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
+      <StyledAccordion expanded={isShown} onChange={handleClick}>
         {/* 아코디언 닫혔을 때 */}
-        <StyledAccordionSummary
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+        <StyledAccordionSummary>
           <SubHeader>아이템 상태</SubHeader>
-          <OriginalInfo>최상</OriginalInfo>
-          {isShown && <ModifyBtn onClick={handleClick}>상태 변경</ModifyBtn>}
+          <OriginalInfo>{statusHandler(givenQuality)}</OriginalInfo>
+          {!isShown && <ModifyBtn onClick={handleClick}>상태 변경</ModifyBtn>}
         </StyledAccordionSummary>
 
         {/* 아코디언 열렸을 때 */}
         <StyledAccordionDetails>
           <InsideContainer>
-            <SubHeader></SubHeader>
+            <SubHeader />
             <StatusContentBox>
               <StatusRadio>
                 <StyledRadio {...statusControlProps('1')} />
@@ -221,16 +211,11 @@ const ChangeItemStatus = () => {
             </StatusContentBox>
           </InsideContainer>
           <ButtonContainer>
-            <ModifyButton disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
+            <ModifyButton disabled={!status} onClick={handleSubmit}>
               수정
             </ModifyButton>
-            <Link to="/mypage">
-              <CancelButton>취소</CancelButton>
-            </Link>
+            <CancelButton onClick={handleClick}>취소</CancelButton>
           </ButtonContainer>
-
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
         </StyledAccordionDetails>
       </StyledAccordion>
     </AccordionContainer>
