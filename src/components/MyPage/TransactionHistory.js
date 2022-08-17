@@ -13,8 +13,9 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Pagination } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { useMyProductsQuery } from 'queries/product';
-
+import { useDealingHistoryQuery } from 'queries/dealing';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
@@ -106,6 +107,10 @@ const StyledAccordionContainer = styled.div`
 const StyledAccordion = styled(Accordion)`
   border-radius: 0.5rem !important;
   background: ${(props) => props.theme.color_background__primary} !important;
+  margin-bottom: 1.5rem;
+  &.Mui-expanded {
+    margin: 0px 0px 1rem 0px !important;
+  }
 `;
 
 const StyledAccordionSummary = styled(AccordionSummary)`
@@ -171,7 +176,7 @@ const StyledCardButton = styled(Button)`
 const DetailsRightContainer = styled(DetailsLeftContainer)`
   display: inline-flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
   width: 41%;
@@ -263,6 +268,12 @@ const ToprankDate = styled.p`
   color: #817c97;
 `;
 
+const HistoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  //margin-bottom: 2rem;
+`;
+
 const TransactionHistory = () => {
   const [expanded, setExpanded] = useState(false);
 
@@ -272,8 +283,8 @@ const TransactionHistory = () => {
 
   const [pageNum, setPageNum] = useState(1);
 
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
+  const { data: dealingHistory, isSuccess: dealingHistoryFetched } =
+    useDealingHistoryQuery(pageNum);
 
   const handleChangePagination = (event, value) => {
     setPageNum(value);
@@ -283,95 +294,104 @@ const TransactionHistory = () => {
     <StyledWrapContainer>
       <StyledAccordionContainer>
         {/*Accordion*/}
-        <StyledAccordion
-          expanded={expanded === 'panel1'}
-          onChange={handleChange('panel1')}
-        >
-          <StyledAccordionSummary
-            expandIcon={<StyledExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-          >
-            <SummaryImg
-              component="img"
-              image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-            />
-            <SummaryContents>
-              <SummaryTitle>제가 정말 아끼는 녀석...</SummaryTitle>
+        {dealingHistoryFetched && (
+          <>
+            {dealingHistory?.total_count > 0 ? (
+              <HistoryContainer>
+                {dealingHistory.results.map((historyData, index) => {
+                  return (
+                    <StyledAccordion
+                      expanded={expanded === `panel${index}`}
+                      onChange={handleChange(`panel${index}`)}
+                    >
+                      <StyledAccordionSummary
+                        expandIcon={<StyledExpandMoreIcon />}
+                        aria-controls={`panel${index}bh-content`}
+                        id={`panel${index}bh-header`}
+                      >
+                        <SummaryImg
+                          component="img"
+                          image={historyData.auction.product.thumbnail?.file}
+                        />
+                        <SummaryContents>
+                          <SummaryTitle>
+                            {historyData.auction?.title}
+                          </SummaryTitle>
 
-              <SummaryParticipantsWrapper>
-                <SummaryUploadDate>2022.08.05</SummaryUploadDate>
-                <SummaryParticipantcontainer>
-                  <SummaryParticipantIcon color="secondary" />
-                  <SummaryParticipantsTxt>38명</SummaryParticipantsTxt>
-                </SummaryParticipantcontainer>
-              </SummaryParticipantsWrapper>
-            </SummaryContents>
-          </StyledAccordionSummary>
-          {/*AccordionDetails*/}
-          <StyledAccordionDetails>
-            <DetailsLeftContainer>
-              <StyledCard sx={{ maxWidth: 280 }}>
-                <StyledCardMediaImg
-                  component="img"
-                  image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-                />
-                <StyledCardContent>
-                  <StyledTypography gutterBottom variant="h5" component="div">
-                    나이키 조던
-                  </StyledTypography>
-                </StyledCardContent>
-                <StyledCardActions>
-                  <StyledCardButton variant="contained" size="small">
-                    상세보기
-                  </StyledCardButton>
-                </StyledCardActions>
-              </StyledCard>
-            </DetailsLeftContainer>
-            <DetailsRightContainer>
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-              <StyledDetailItemImg
-                component="img"
-                image="https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjdfMjIy/MDAxNTkzMjY3NTg0Njcy.NySvFjhnhYLM-lvl0_bJ5sQt7f6xEvY72s5G4gdr8E8g.HHhQCipGTqBHYbHxApL26gfK4JzxZhOymCbNz7FkHVAg.JPEG.yoonug10/Air-Jordan-1-Retro-High-OG-Defiant-SB-NYC-to-Paris-1-1024x730.jpg?type=w800"
-              />
-            </DetailsRightContainer>
-          </StyledAccordionDetails>
-        </StyledAccordion>
+                          <SummaryParticipantsWrapper>
+                            <SummaryUploadDate>
+                              {historyData.created_at
+                                .split('T')[0]
+                                .replaceAll('-', '.')}
+                            </SummaryUploadDate>
+                            <SummaryParticipantcontainer>
+                              <SummaryParticipantIcon color="secondary" />
+                              <SummaryParticipantsTxt>
+                                {historyData.auction.product_groups_count}명
+                              </SummaryParticipantsTxt>
+                            </SummaryParticipantcontainer>
+                          </SummaryParticipantsWrapper>
+                        </SummaryContents>
+                      </StyledAccordionSummary>
+                      {/*AccordionDetails*/}
+                      <StyledAccordionDetails>
+                        <DetailsLeftContainer>
+                          <StyledCard sx={{ maxWidth: 280 }}>
+                            <StyledCardMediaImg
+                              component="img"
+                              image={
+                                historyData.auction.product.thumbnail?.file
+                              }
+                            />
+                            <StyledCardContent>
+                              <StyledTypography
+                                gutterBottom
+                                variant="h5"
+                                component="div"
+                              >
+                                {historyData.auction.product.name}
+                              </StyledTypography>
+                            </StyledCardContent>
+                            <StyledCardActions>
+                              <Link
+                                to={`/itemdetail/${historyData.auction.product.id}`}
+                              >
+                                <StyledCardButton
+                                  variant="contained"
+                                  size="small"
+                                >
+                                  상세보기
+                                </StyledCardButton>
+                              </Link>
+                            </StyledCardActions>
+                          </StyledCard>
+                        </DetailsLeftContainer>
+                        <DetailsRightContainer>
+                          {historyData.auction.product.images.length > 0 &&
+                            historyData.auction.product.images.map((img) => {
+                              return (
+                                <StyledDetailItemImg
+                                  component="img"
+                                  image={img.file}
+                                />
+                              );
+                            })}
+                        </DetailsRightContainer>
+                      </StyledAccordionDetails>
+                    </StyledAccordion>
+                  );
+                })}
+              </HistoryContainer>
+            ) : (
+              <></>
+            )}
+          </>
+        )}
+
         {/*Pagination*/}
         <PaginationContainer>
           <StyledPagination
-            count={myProductsData?.total_pages}
+            count={dealingHistory?.total_pages}
             page={pageNum}
             onChange={handleChangePagination}
           />
