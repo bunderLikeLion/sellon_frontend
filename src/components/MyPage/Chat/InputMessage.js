@@ -38,6 +38,8 @@ const InputMessage = ({ selectedDeal }) => {
   const { mutate: createFunc } = useCreateMessageMutation();
 
   const submit = () => {
+    if(!selectedDeal?.id) return;
+
     createFunc({
       dealing_id: selectedDeal?.id,
       content: msgText,
@@ -56,6 +58,7 @@ const InputMessage = ({ selectedDeal }) => {
         value={msgText}
         onChange={handleMsgText}
         onKeyPress={onKeyPressFunc}
+        disabled={!selectedDeal?.id && 'disabled'}
       />
       <SendMessageIcon onClick={submit} />
     </ChatInputContainer>

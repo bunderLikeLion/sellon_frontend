@@ -439,7 +439,13 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              <EmptyListPlaceHolder message="아직 경매장에서 거래한 물건이 없습니다. 한번 경매장에 참여해볼까요?" margin="0" backgroundColor="#252040" />
+              <Link to="/auction">
+                <EmptyListPlaceHolder
+                  message="아직 경매장에서 거래한 물건이 없습니다. 한번 경매장에 참여해볼까요?"
+                  margin="0"
+                  backgroundColor="#252040"
+                />
+              </Link>
             )}
           </>
         )}
@@ -456,24 +462,18 @@ const TransactionHistory = () => {
       {/*우측 contents*/}
       <RightContainer>
         <RightSmallContainer>
-          <span>
-            랭크
-          </span>
+          <span>랭크</span>
           <RankInfo>S</RankInfo>
         </RightSmallContainer>
         <RightSmallContainer>
-          <span>
-            내 평점
-          </span>
+          <span>내 평점</span>
           {/* TODO: border만 있는 별을 기본적으로 5개 띄우고 점수에따라 차있는 별 아이콘을 쓰기 */}
           <MyScopeInfoContainer>
             {userRatingFetched && rating()}
           </MyScopeInfoContainer>
         </RightSmallContainer>
         <RightSmallContainer>
-          <span>
-            거래 횟수
-          </span>
+          <span>거래 횟수</span>
           <DealCountInfoContainer>
             <DealCountInfo>
               <span>총</span>
