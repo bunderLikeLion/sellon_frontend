@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { queryClient } from 'index';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -64,7 +65,8 @@ const AuctionDetailContainers = styled.div`
 
 const ItemDetailContainer = ({ singleItemData }) => {
   const auctionData = queryClient.getQueryData(['auctionInfo']);
-
+  const { id } = useParams();
+  console.log(id);
   return (
     <Container>
       {singleItemData && (
