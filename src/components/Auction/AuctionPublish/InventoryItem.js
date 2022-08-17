@@ -9,19 +9,32 @@ const Container = styled(Card)`
   position: relative;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  width: 28%;
+  flex-direction: column;
+  flex-shrink: 1;
+  flex-grow: 1;
+  flex-basis: calc((100% - 6rem) / 4);
+  max-width: calc((100% - 6rem) / 4);
+
   height: 55%;
-  margin: 2%;
   border-radius: 1rem !important;
   cursor: pointer;
   border: 0.1rem solid transparent;
-  // border: 3.5px solid ${(props) => props.theme.color_border__topleft};
-  // border-right: 3.5px solid ${(props) =>
-    props.theme.color_border__bottomright};
-  // border-bottom: 3.5px solid ${(props) =>
-    props.theme.color_border__bottomright};
   background: ${(props) => props.theme.color_background__primary} !important;
+
+  @media screen and (max-width: 1400px) {
+    flex-basis: calc((100% - 4rem) / 3);
+    max-width: calc((100% - 4rem) / 3);
+  }
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
+  }
+  @media screen and (max-width: 500px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
   :hover {
     border: 0.1rem solid ${(props) => props.theme.color_border__hover__light} !important;
   }
@@ -92,7 +105,7 @@ const InventoryItem = ({
   };
 
   return (
-    <Container onClick={selectFromInventoryFunc} sx={{ maxWidth: '100%' }}>
+    <Container onClick={selectFromInventoryFunc}>
       <ImgContainer>
         <CardMedia component="img" image={singleItem?.thumbnail?.file} />
       </ImgContainer>

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import CardMedia from '@mui/material/CardMedia';
 
+
 const AccordionContainer = styled.div`
   clear: both;
   width: 95%;
@@ -51,9 +52,15 @@ const OriginalInfo = styled(CardMedia)`
 
 const ModifyBtn = styled.button`
   width: 7rem;
+  height: 1.7rem;
   margin: 0 1rem 0 auto;
+  border-radius: 0.4rem;
+  border: none;
   font-weight: 700;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_button__delete};
 `;
+
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -63,22 +70,22 @@ const ButtonContainer = styled.div`
 `;
 
 const ModifyButton = styled.button`
-  width: 8.4rem;
-  height: 2.6rem;
+  width: 5.8rem;
+  height: 1.7rem;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_background__success};
 `;
 
 const CancelButton = styled.button`
-  width: 8.4rem;
-  height: 2.6rem;
+  width: 5.8rem;
+  height: 1.7rem;
   margin-left: 1.5rem;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__delete};
 `;
@@ -100,7 +107,7 @@ const ChangeItemImage = ({ givenThumbnail, editSingleField }) => {
   const handleSubmit = async () => {
     const frm = new FormData();
     await frm.append('thumbnail.file', thumbnailPic[0]);
-    await editSingleField(frm);
+    await editSingleField(frm, true);
     await setThumbNailPic([]);
     handleClick();
   };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { useDealingRankingQuery } from 'queries/statistics';
 
 const Container = styled.div`
   width: 100%;
@@ -39,7 +40,7 @@ const RankerList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-`
+`;
 
 const RankerItem = styled.div`
   display: flex;
@@ -88,6 +89,9 @@ const StyledTooltip = styled(({ className, ...props }) => (
 });
 
 const Ranking = () => {
+  const { data: RankingData, isSuccess: RankingDataFetched } =
+    useDealingRankingQuery();
+
   return (
     <Container>
       <CardHeader>
@@ -100,26 +104,23 @@ const Ranking = () => {
       </CardHeader>
       <CardContent>
         <RankerList>
-          <RankerItem>
-            <RankerContainerLeft>
-              <RankerNumber>1</RankerNumber>
-              <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
-              <RankerNickname>허유라</RankerNickname>
-            </RankerContainerLeft>
-            <div>
-              <RankerDealCount>총 50 회</RankerDealCount>
-            </div>
-          </RankerItem>
-          <RankerItem>
-            <RankerContainerLeft>
-              <RankerNumber>1</RankerNumber>
-              <RankerImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzItJxK6yd6pXAXm2U5oxQpTlWXdIX4ZI4jyl0mgRlyFp3UNW6RAzARQ0RrRuD0iykLEA&usqp=CAU" />
-              <RankerNickname>허유라</RankerNickname>
-            </RankerContainerLeft>
-            <div>
-              <RankerDealCount>총 50 회</RankerDealCount>
-            </div>
-          </RankerItem>
+          {RankingDataFetched &&
+            RankingData.map((item, index) => {
+              return (
+                <RankerItem>
+                  <RankerContainerLeft>
+                    <RankerNumber>{index + 1}</RankerNumber>
+                    <RankerImg image={item.avatar} />
+                    <RankerNickname>{item.username}</RankerNickname>
+                  </RankerContainerLeft>
+                  <div>
+                    <RankerDealCount>
+                      총 {item.completed_dealings_count} 회
+                    </RankerDealCount>
+                  </div>
+                </RankerItem>
+              );
+            })}
         </RankerList>
       </CardContent>
     </Container>

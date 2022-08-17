@@ -8,6 +8,7 @@ import ChangeItemTextarea from 'components/MyPage/ItemInfoChange/ChangeItemTexta
 import { queryClient } from 'index';
 import { useParams } from 'react-router-dom';
 import { useEditProductMutation, useSingleProductQuery } from 'queries/product';
+import { useEffect, useState } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -54,6 +55,16 @@ const ItemInfoChange = () => {
   const { id } = useParams();
   const { data: itemData } = useSingleProductQuery(id);
   const { mutate: editSingleField } = useEditProductMutation(id);
+  const [imgToLeft, setImgToLeft] = useState([]);
+
+  useEffect(() => {
+    const leftTmpArr = [];
+    for (let singleItem of itemData?.images) {
+      leftTmpArr.push(singleItem?.id);
+    }
+
+    setImgToLeft(leftTmpArr);
+  }, [itemData]);
 
   return (
     <Container>
@@ -66,6 +77,7 @@ const ItemInfoChange = () => {
             <ChangeItemId
               givenName={itemData?.name}
               editSingleField={editSingleField}
+              imgToLeft={imgToLeft}
             />
             <ChangeItemImage
               givenThumbnail={itemData?.thumbnail}
@@ -78,14 +90,17 @@ const ItemInfoChange = () => {
             <ChangeItemStatus
               givenQuality={itemData?.quality}
               editSingleField={editSingleField}
+              imgToLeft={imgToLeft}
             />
             <ChangeItemCategory
               givenCategory={itemData?.product_category}
               editSingleField={editSingleField}
+              imgToLeft={imgToLeft}
             />
             <ChangeItemTextarea
               givenDesc={itemData?.description}
               editSingleField={editSingleField}
+              imgToLeft={imgToLeft}
             />
           </EntireContainer>
         </Card>

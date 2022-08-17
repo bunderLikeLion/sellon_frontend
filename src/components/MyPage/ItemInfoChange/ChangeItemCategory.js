@@ -49,8 +49,13 @@ const OriginalInfo = styled.div`
 
 const ModifyBtn = styled.button`
   width: 7rem;
+  height: 1.7rem;
   margin: 0 1rem 0 auto;
+  border-radius: 0.4rem;
+  border: none;
   font-weight: 700;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_button__delete};
 `;
 
 const ChangedInfoInput = styled.input.attrs((props) => ({
@@ -86,22 +91,22 @@ const ButtonContainer = styled.div`
 `;
 
 const ModifyButton = styled.button`
-  width: 8.4rem;
-  height: 2.6rem;
+  width: 5.8rem;
+  height: 1.7rem;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_background__success};
 `;
 
 const CancelButton = styled.button`
-  width: 8.4rem;
-  height: 2.6rem;
+  width: 5.8rem;
+  height: 1.7rem;
   margin-left: 1.5rem;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__delete};
 `;
@@ -145,14 +150,18 @@ export const StatusRadio = styled(SingleRadio)`
   width: 5rem;
 `;
 
-const ChangeItemCategory = ({ givenCategory, editSingleField }) => {
-  const [category, handleCategory, categoryReset] = useInput(givenCategory);
+const ChangeItemCategory = ({ givenCategory, editSingleField, imgToLeft }) => {
+  const [category, handleCategory, categoryReset] = useInput(
+    givenCategory?.id.toString()
+  );
 
   const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
     setIsShown(!isShown);
   };
+
+  console.log(givenCategory, 'catttt');
 
   const catControlProps = (item) => ({
     checked: category === item,
@@ -167,12 +176,15 @@ const ChangeItemCategory = ({ givenCategory, editSingleField }) => {
   ]);
 
   const handleSubmit = async () => {
-    await editSingleField({ product_category_id: +category });
+    const frm = new FormData();
+    frm.append('product_category_id', +category);
+    for (let singleImgId of imgToLeft) {
+      frm.append('image_ids', singleImgId);
+    }
+    await editSingleField(frm);
     await categoryReset();
     handleClick();
   };
-
-  console.log(givenCategory.name, 'asdasd');
 
   return (
     <AccordionContainer>

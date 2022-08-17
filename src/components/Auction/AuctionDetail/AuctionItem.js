@@ -162,11 +162,11 @@ const AuctionItem = (props) => {
             관심경매 등록
           </Button>
         )}
-        {/*        <AuctionDetailModal
+        <AuctionDetailModal
           handleModal={handleModal}
           isModalOpened={isModalOpened}
           isTriggeredFromBigImg={true}
-        />*/}
+        />
         <ItemDurationContainer>
           <ItemDuration>
             {timeLimitHandler(props?.singleAuctionData?.end_at)}

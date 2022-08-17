@@ -62,7 +62,7 @@ const CardHeader = styled.div`
   width: 100%;
 `;
 
-const UserAvatar = styled.div`
+const UserAvatar = styled(CardMedia)`
   width: 1.5rem;
   height: 1.5rem;
   padding: 1rem;
@@ -70,7 +70,6 @@ const UserAvatar = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: #c9c9c9;
 `;
 
 const CardHeaderTitle = styled.div`
@@ -173,6 +172,7 @@ const OverLayIconBox = styled.div`
 `;
 
 const FinishedMessage = styled.p`
+  font-size: 1.3rem;
   text-align: center;
 `;
 
@@ -186,6 +186,7 @@ const FinishedMessage = styled.p`
   displayInterestedBtn: 관심 경매 등록 버튼 노출 여부
   linkTo: 연결 링크
   linkCondition: 링크 조건
+  relatedUser: 경매 연 유저
 */
 const AuctionListItem = ({
   id,
@@ -199,6 +200,7 @@ const AuctionListItem = ({
   displayInterestedBtn,
   linkTo,
   linkCondition,
+  relatedUser,
 }) => {
   /*
     TODO: 카드 상단 이미지가 너무 높이가 하단 컨텐츠에 비해 낮다. 늘려야한다.
@@ -234,7 +236,7 @@ const AuctionListItem = ({
       <ConditionalLink to={linkTo} condition={linkCondition}>
         <StyledCardMedia component="img" height="150" image={thumbnailUrl} />
         <CardHeader>
-          <UserAvatar />
+          <UserAvatar image={relatedUser?.avatar} />
           <CardHeaderTitle>{title}</CardHeaderTitle>
         </CardHeader>
         <CardFooter>
