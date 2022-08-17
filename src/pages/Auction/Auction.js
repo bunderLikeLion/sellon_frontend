@@ -129,7 +129,7 @@ const AuctionListContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 const AuctionFilterContainer = styled.div`
@@ -152,6 +152,7 @@ const FilterButton = styled.button`
   background: transparent;
   border: 1px solid ${(props) => props.theme.color_border__hover__light};
   transition: all 0.5s ease;
+  outline:none;
 
   :hover {
     background: ${(props) => props.theme.color_background__success};
@@ -175,6 +176,7 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
+  height: 2.3rem;
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
@@ -193,7 +195,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 0.3rem;
+  margin: 0.3rem 0 1rem 0;
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -263,7 +265,7 @@ const Auction = () => {
               필터 및 검색
             </FilterButton>
           </AuctionFilterContainer>
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          <FormControl sx={{ m: 1, minWidth: 120,}} size="small">
             {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
             <SelectBox
               labelId="demo-select-small"
@@ -275,13 +277,17 @@ const Auction = () => {
                   '& .MuiMenu-list': {
                     backgroundColor: '#3A335C',
                   },
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#fff',
+                    border: '1px solid red'
+                  },
                 },
               }}
             >
               <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
-              <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
               <MenuItemBox value={'interest'}>관심순</MenuItemBox>
+              <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
             </SelectBox>
           </FormControl>
         </AuctionListContainer>

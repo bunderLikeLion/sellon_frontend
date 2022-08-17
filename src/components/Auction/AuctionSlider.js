@@ -10,17 +10,15 @@ import { userAtom } from '../../states';
 
 const Wrap = styled.div`
   position: relative;
-  padding-bottom: 70px;
   overflow: hidden;
   width: 100%;
   height: 30rem !important;
-  margin-top: 5%;
+  margin-top: 1%;
 `;
 
 const SlickItems = styled.div`
   position: relative;
   width: 100%;
-  height: 0;
   padding-bottom: 56.26%;
 
   img {
@@ -84,7 +82,7 @@ const AuctionItemContainer = styled.div`
 const AuctionTitleContainer = styled.div`
   display: block;
   position: absolute;
-  top: 20.5rem;
+  top: 18.5rem;
   left: 10%;
   width: 37%;
   text-overflow: ellipsis;
@@ -105,7 +103,7 @@ const ProductThumbnail = styled.img`
   top: 1.6rem !important;
   border-radius: 6%;
   box-shadow: 0 0 6px ${(props) => props.theme.color_white};
-  height: auto;
+  height: 25rem !important;
   overflow: visible !important;
 `;
 
@@ -115,7 +113,7 @@ const UserAvatar = styled.img`
   aspect-ratio: 1 / 1;
   position: absolute !important;
   left: 10% !important;
-  top: 14rem !important;
+  top: 12rem !important;
   border-radius: 50%;
 `;
 
@@ -130,7 +128,7 @@ const ParticipantUserAvatar = styled.img`
 const ParticipatedUserContainer = styled.div`
   display: flex;
   position: absolute;
-  top: 23.5rem;
+  top: 21.5rem;
   left: 10%;
   height: fit-content;
   width: 55%;
