@@ -107,7 +107,7 @@ const App = () => {
                   }
                 />
                 <Route
-                  path="/itemdetail/iteminfochange"
+                  path="/editItem/:id"
                   element={
                     authChecker() ? (
                       <ItemInfoChange />

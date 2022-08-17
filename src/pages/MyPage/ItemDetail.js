@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import ItemImage from 'components/MyPage/ItemDetail/ItemImage';
 import ItemInfoContainer from 'components/MyPage/ItemDetail/ItemInfoContainer';
-import UserInformation from 'components/MyPage/ItemDetail/UserInformation';
 import { Link, useParams } from 'react-router-dom';
 import { useSingleProductQuery } from 'queries/product';
 import WrapContainer from 'layouts/WrapContainer';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
+import { StyledLink } from 'styles/StyledComponetStyles';
 
 const Container = styled.div`
   display: flex;
@@ -82,6 +84,7 @@ const ContentContainer = styled.div`
 `;
 
 const ItemDetail = () => {
+  const user = useRecoilValue(userAtom);
   const { id: itemId } = useParams();
   const { data: singleItem, isSuccess: singleItemFetched } =
     useSingleProductQuery(itemId);
@@ -94,7 +97,11 @@ const ItemDetail = () => {
             <Link to={'/mypage/'}>
               <ArrowIcon />
             </Link>
-            <EditButton>수정하기</EditButton>
+            {user?.id === singleItem?.user?.id && (
+              <StyledLink to={`/editItem/${singleItem?.id}`}>
+                <EditButton>수정하기</EditButton>
+              </StyledLink>
+            )}
           </UpperContainer>
 
           <ContentContainer>
