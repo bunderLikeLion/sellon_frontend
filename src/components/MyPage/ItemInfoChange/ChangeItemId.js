@@ -3,11 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
-import { useForm } from 'react-hook-form';
-import registerValidation from 'validations/registerValidation';
-import { Link } from 'react-router-dom';
+import useInput from 'hooks/useInput';
 
 const AccordionContainer = styled.div`
   clear: both;
@@ -114,38 +110,28 @@ const InsideContainer = styled.div`
   width: 100%;
 `;
 
-const ChangeItemId = () => {
-  const { register, handleSubmit, formState } = useForm(registerValidation);
+const ChangeItemId = ({ givenName, editSingleField }) => {
+  const [isShown, setIsShown] = useState(false);
+  const [editedName, handleEditedName, resetEditedName] = useInput(null);
 
-  const { errors, isSubmitting } = formState;
-
-  const user = useRecoilValue(userAtom);
-  const [expanded, setExpanded] = useState(false);
-  const [isShown, setIsShown] = useState(true);
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleClick = () => {
     setIsShown(!isShown);
   };
 
-  const handleClick = () => {
-    handleChange();
+  const handleSubmit = async () => {
+    await editSingleField({ name: editedName });
+    await resetEditedName();
+    handleClick();
   };
 
   return (
     <AccordionContainer>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
+      <StyledAccordion expanded={isShown} onChange={handleClick}>
         {/* 아코디언 닫혔을 때 */}
-        <StyledAccordionSummary
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
+        <StyledAccordionSummary>
           <SubHeader>아이템명</SubHeader>
-          <OriginalInfo>나이키신발</OriginalInfo>
-          {isShown && (
+          <OriginalInfo>{givenName}</OriginalInfo>
+          {!isShown && (
             <ModifyBtn onClick={handleClick}>아이템명 변경</ModifyBtn>
           )}
         </StyledAccordionSummary>
@@ -154,19 +140,12 @@ const ChangeItemId = () => {
         <StyledAccordionDetails>
           <InsideContainer>
             <SubHeader>새 아이템명</SubHeader>
-            <ChangedInfoInput />
+            <ChangedInfoInput value={editedName} onChange={handleEditedName} />
           </InsideContainer>
           <ButtonContainer>
-            <ModifyButton disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
-              수정
-            </ModifyButton>
-            <Link to="/mypage">
-              <CancelButton>취소</CancelButton>
-            </Link>
+            <ModifyButton onClick={handleSubmit}>수정</ModifyButton>
+            <CancelButton onClick={handleClick}>취소</CancelButton>
           </ButtonContainer>
-
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
         </StyledAccordionDetails>
       </StyledAccordion>
     </AccordionContainer>

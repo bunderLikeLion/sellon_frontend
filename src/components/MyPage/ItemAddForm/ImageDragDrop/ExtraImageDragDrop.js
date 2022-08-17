@@ -24,7 +24,6 @@ const ExtraImageDragDrop = ({ extraPics, setExtraPics }) => {
     } else {
       setExtraPics([
         extraPics[1],
-        // extraPics[2],
         acceptedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
@@ -35,7 +34,9 @@ const ExtraImageDragDrop = ({ extraPics, setExtraPics }) => {
   };
 
   const removePic = (name) => {
-    const newList = extraPics.filter((elem) => elem.name !== name);
+    const newList = Number.isInteger(name)
+      ? extraPics.filter((elem) => elem.id !== name)
+      : extraPics.filter((elem) => elem.name !== name);
     setExtraPics(newList);
   };
 
@@ -52,9 +53,9 @@ const ExtraImageDragDrop = ({ extraPics, setExtraPics }) => {
         {extraPics.map((file) => (
           <Thumb key={file.name}>
             <ThumbInner>
-              <RemoveBtn onClick={() => removePic(file.name)} />
+              <RemoveBtn onClick={() => removePic(file.name || file.id)} />
               <ThumbImg
-                src={file.preview}
+                src={file.preview || file.file}
                 onLoad={() => {
                   URL.revokeObjectURL(file.preview);
                 }}

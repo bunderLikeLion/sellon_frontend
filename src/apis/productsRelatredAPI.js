@@ -17,6 +17,16 @@ const productsRelatedAPI = {
       .then((res) => res.data);
   },
 
+  putProduct: (productId, payload) => {
+    return client
+      .patch(`products/${productId}/`, payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => res.data);
+  },
+
   getMyProducts: (pageNum, perPage) => {
     return client
       .get('products/', { params: { per_page: perPage, page: pageNum } })

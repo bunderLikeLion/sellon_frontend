@@ -48,23 +48,35 @@ const ItemDetailInformationContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 1rem;
-  height: 100%;
 `;
 
+const ItemHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: 100%;
+  }
+`
+
 const ItemTitle = styled.p`
+  flex: 3;
   margin-left: 0.5rem;
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 2rem;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 `;
 
 const ItemQuantityContainer = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
-  width: 19%;
   height: 2.5rem;
-  margin-left: 18.3rem;
-  padding: 0 1rem;
   border-radius: 1rem;
 `;
 
@@ -95,12 +107,17 @@ const ItemConditionDetail = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 7rem;
+  width: fit-content;
+  padding: 1rem 1.5rem;
   height: 2rem;
   border-radius: 0.8rem;
   font-size: 1rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
+
+  @media screen and (max-width: 1000px) {
+    padding: 1rem 1rem;
+  }
 `;
 
 const ItemCategory = styled.p`
@@ -147,10 +164,12 @@ const InfoContainerWithItem = ({ selectedItem }) => {
       </ItemImageContainer>
 
       <ItemDetailInformationContainer>
-        <ItemTitle>{selectedItem?.name}</ItemTitle>
-        <ItemQuantityContainer>
-          <ItemCategoryDetail>{selectedItem?.quantity}개</ItemCategoryDetail>
-        </ItemQuantityContainer>
+        <ItemHeader>
+          <ItemTitle>{selectedItem?.name}</ItemTitle>
+          <ItemQuantityContainer>
+            <ItemCategoryDetail>{selectedItem?.quantity}개</ItemCategoryDetail>
+          </ItemQuantityContainer>
+        </ItemHeader>
         <ItemConditionCategoryContainer>
           <ItemDetailContainer>
             <ItemCondition>상태</ItemCondition>

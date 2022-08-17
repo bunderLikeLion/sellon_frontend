@@ -94,6 +94,10 @@ const TopRankButton = styled.button`
   border: none;
   padding: 1rem;
   font-size: 1.1rem;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const MainImageContainer = styled.div``;

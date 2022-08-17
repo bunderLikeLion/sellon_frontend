@@ -5,7 +5,7 @@ import errorMsgHandler from 'utils/errorMsgHandler';
 
 const useSingleProductQuery = (itemId) => {
   return useQuery(
-    [`singleItem${itemId}`],
+    ['singleItem', itemId],
     () => productRelatedAPI.getSingleProduct(itemId),
     {
       enabled: !!itemId,

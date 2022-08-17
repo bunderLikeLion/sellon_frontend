@@ -3,11 +3,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
-import { useForm } from 'react-hook-form';
-import registerValidation from 'validations/registerValidation';
-import { Link } from 'react-router-dom';
 import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
@@ -150,24 +145,13 @@ export const StatusRadio = styled(SingleRadio)`
   width: 5rem;
 `;
 
-const ChangeItemCategory = () => {
-  const { register, handleSubmit, formState } = useForm(registerValidation);
+const ChangeItemCategory = ({ givenCategory, editSingleField }) => {
+  const [category, handleCategory, categoryReset] = useInput(givenCategory);
 
-  const { errors, isSubmitting } = formState;
-
-  const user = useRecoilValue(userAtom);
-  const [category, handleCategory, categoryReset] = useInput('');
-
-  const [expanded, setExpanded] = useState(false);
-  const [isShown, setIsShown] = useState(true);
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-    setIsShown(!isShown);
-  };
+  const [isShown, setIsShown] = useState(false);
 
   const handleClick = () => {
-    handleChange();
+    setIsShown(!isShown);
   };
 
   const catControlProps = (item) => ({
@@ -182,20 +166,25 @@ const ChangeItemCategory = () => {
     'formCategories',
   ]);
 
+  const handleSubmit = async () => {
+    await editSingleField({ product_category_id: +category });
+    await categoryReset();
+    handleClick();
+  };
+
+  console.log(givenCategory.name, 'asdasd');
+
   return (
     <AccordionContainer>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
+      <StyledAccordion expanded={isShown} onChange={handleClick}>
         {/* 아코디언 닫혔을 때 */}
         <StyledAccordionSummary
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <SubHeader>카테고리</SubHeader>
-          <OriginalInfo>음식</OriginalInfo>
-          {isShown && (
+          <OriginalInfo>{givenCategory?.name}</OriginalInfo>
+          {!isShown && (
             <ModifyBtn onClick={handleClick}>카테고리 변경</ModifyBtn>
           )}
         </StyledAccordionSummary>
@@ -217,16 +206,11 @@ const ChangeItemCategory = () => {
             </CategoryContentBox>
           </InsideContainer>
           <ButtonContainer>
-            <ModifyButton disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
+            <ModifyButton disabled={!category} onClick={handleSubmit}>
               수정
             </ModifyButton>
-            <Link to="/mypage">
-              <CancelButton>취소</CancelButton>
-            </Link>
+            <CancelButton onClick={handleClick}>취소</CancelButton>
           </ButtonContainer>
-
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
         </StyledAccordionDetails>
       </StyledAccordion>
     </AccordionContainer>

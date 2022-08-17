@@ -16,7 +16,9 @@ const ModalContainer = styled(Box)`
   position: relative;
   top: 50%;
   left: 50%;
-  width: 50rem;
+  width: fit-content;
+  min-width: 50rem;
+  max-width: 60%;
   height: 80%;
   padding: 3rem;
   overflow-y: scroll;
@@ -24,11 +26,28 @@ const ModalContainer = styled(Box)`
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__default};
   color: ${(props) => props.theme.color_white};
+
+  @media screen and (max-width: 1300px) {
+    min-width: 800px;
+    max-width: 70%;
+    padding: 2rem 2rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    min-width: 1px;
+    max-width: 90%;
+    max-height: 60%;
+    padding: 1rem 1rem;
+  }
 `;
 
 const StyledTypography = styled(Typography)`
   color: ${(props) => props.theme.color_font__primary};
   font-size: 1.2rem !important;
+
+  @media screen and (max-width: 1000px) {
+    padding: 0.5rem;
+  }
 `;
 
 export const CloseBtn = styled(CloseIcon)`
@@ -42,7 +61,6 @@ export const CloseBtn = styled(CloseIcon)`
 const AddBtn = styled(Button)`
   display: flex;
   align-items: stretch;
-  float: right;
   width: 7rem;
   height: 2.5rem;
   margin-top: 1.5rem !important;
@@ -91,7 +109,8 @@ const StyledTextField = styled(TextField)`
 `;
 
 export const StatusRadioBox = styled.div`
-  width: 40rem;
+  max-width: 40rem;
+  width: 100%;
   min-height: 2rem;
   margin-top: 2rem;
   padding: 0;
@@ -103,7 +122,8 @@ export const StatusRadioBox = styled.div`
 `;
 
 const CategoryRadioBox = styled.div`
-  width: 40rem;
+  max-width: 40rem;
+  width: 100%;
   min-height: 3rem;
   margin-top: 2rem;
   padding: 0;
@@ -167,6 +187,7 @@ export const CategoryContentBox = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
+  gap: 1rem;
 `;
 
 const SingleRadio = styled.span`
@@ -219,8 +240,16 @@ const InputQuantity = styled.input.attrs((props) => ({ type: 'number' }))`
   }
 `;
 
+const DescriptionInputContainer = styled.div``;
+
+const SubmitButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const ItemTextarea = styled.textarea`
-  width: 40rem;
+  max-width: 40rem;
+  width: 100%;
   height: 12rem;
   resize: none;
   padding: 1rem;
@@ -384,16 +413,20 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
           </InsideBox>
         </ContainerBox>
 
-        <StyledLabel>아이템 설명 </StyledLabel>
-        <ItemTextarea
-          ref={editorRef}
-          onChange={handleItemDesc}
-          placeholder="내용을 입력해주세요."
-        ></ItemTextarea>
+        <DescriptionInputContainer>
+          <StyledLabel>아이템 설명 </StyledLabel>
+          <ItemTextarea
+            ref={editorRef}
+            onChange={handleItemDesc}
+            placeholder="내용을 입력해주세요."
+          ></ItemTextarea>
+        </DescriptionInputContainer>
 
-        <AddBtn variant="outlined" onClick={submit}>
-          추가
-        </AddBtn>
+        <SubmitButtonContainer>
+          <AddBtn variant="outlined" onClick={submit}>
+            추가
+          </AddBtn>
+        </SubmitButtonContainer>
       </ModalContainer>
     </Modal>
   );

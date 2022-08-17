@@ -45,7 +45,8 @@ const TextareaContainer = styled.div`
 
 const RadioContainer = styled(StatusRadioBox)`
   margin: 0 1rem 1rem 1rem;
-  width: 28rem;
+  max-width: 28rem;
+  width: auto;
   height: 4rem;
 `;
 
@@ -84,6 +85,7 @@ const StatusRadioContainer = styled(StatusRadio)`
   align-items: center;
   width: 8.5rem !important;
   margin-top: 0 !important;
+  flex: 1;
 `;
 
 const RadioLabel = styled.label`
@@ -120,7 +122,7 @@ const NewAuctionInput = (props) => {
       <TextareaContainer>
         <SubHeader>글 작성</SubHeader>
         <AuctionText
-          placeholder="어떤 경매장인지 200자 내로 적어주세요"
+          placeholder="경매장에 대한 설명을 적어주세요.&#10;예시 1) 전 굿즈 물건들과 거래하고 싶어요!&#10;예시 2) 재미있는 물건들을 이 책과 거래하고 싶어요!"
           value={props.auctionDesc}
           onChange={props.auctionDescHandler}
         />
