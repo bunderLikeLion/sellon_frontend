@@ -26,6 +26,17 @@ const dealingsRelatedAPI = {
       .post(`dealings/${dealingId}/complete/`)
       .then((res) => res.data);
   },
+
+  getDealingHistory: (pageNum) => {
+    return client
+      .get('dealings/history/', {
+        params: {
+          per_page: 6,
+          page: pageNum,
+        },
+      })
+      .then((res) => res.data);
+  },
 };
 
 export default dealingsRelatedAPI;
