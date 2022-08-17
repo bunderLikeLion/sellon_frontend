@@ -2,13 +2,9 @@ import styled from 'styled-components';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
-import { useForm } from 'react-hook-form';
-import registerValidation from 'validations/registerValidation';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ExtraImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ExtraImageDragDrop';
+import CardMedia from '@mui/material/CardMedia';
 
 const AccordionContainer = styled.div`
   clear: both;
@@ -45,12 +41,11 @@ const SubHeader = styled.div`
   width: 9rem;
 `;
 
-const OriginalInfo = styled.div`
+const OriginalInfo = styled(CardMedia)`
   margin-left: 1rem;
   padding-left: 1rem;
   width: 4rem;
   height: 4rem;
-  background: red;
 `;
 
 const ModifyBtn = styled.button`
@@ -93,39 +88,47 @@ const InsideContainer = styled.div`
   width: 100%;
 `;
 
-const ChangeItemExtraImage = () => {
-  const { register, handleSubmit, formState } = useForm(registerValidation);
-
-  const { errors, isSubmitting } = formState;
-
-  const user = useRecoilValue(userAtom);
-  const [expanded, setExpanded] = useState(false);
-  const [isShown, setIsShown] = useState(true);
+const ChangeItemExtraImage = ({ givenExtraImages, editSingleField }) => {
+  const [isShown, setIsShown] = useState(false);
   const [extraPics, setExtraPics] = useState([]);
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleClick = () => {
     setIsShown(!isShown);
   };
 
-  const handleClick = () => {
-    handleChange();
+  const handleSubmit = async () => {
+    const frm = new FormData();
+    extraPics.forEach((single, idx) => {
+      if (single.id) {
+        frm.append('image_ids', single.id);
+      } else {
+        frm.append(`images[${idx}]file`, single);
+      }
+    });
+    await editSingleField(frm);
+    await setExtraPics([]);
+    handleClick();
   };
+
+  useEffect(() => {
+    setExtraPics(givenExtraImages);
+  }, [givenExtraImages]);
 
   return (
     <AccordionContainer>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
+      <StyledAccordion expanded={isShown} onChange={handleClick}>
         {/* 아코디언 닫혔을 때 */}
         <StyledAccordionSummary
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
           <SubHeader>추가사진</SubHeader>
-          <OriginalInfo>기존 추가사진</OriginalInfo>
-          {isShown && (
+          {!isShown &&
+            givenExtraImages.map((singleImg) => {
+              return <OriginalInfo image={singleImg?.file} />;
+            })}
+
+          {!isShown && (
             <ModifyBtn onClick={handleClick}>추가사진 변경</ModifyBtn>
           )}
         </StyledAccordionSummary>
@@ -140,16 +143,9 @@ const ChangeItemExtraImage = () => {
             />
           </InsideContainer>
           <ButtonContainer>
-            <ModifyButton disabled={isSubmitting}>
-              {isSubmitting && 'Submitting...'}
-              수정
-            </ModifyButton>
-            <Link to="/mypage">
-              <CancelButton>취소</CancelButton>
-            </Link>
+            <ModifyButton onClick={handleSubmit}>수정</ModifyButton>
+            <CancelButton onClick={handleClick}>취소</CancelButton>
           </ButtonContainer>
-
-          {errors.apiError && <div>{errors.apiError?.message}</div>}
         </StyledAccordionDetails>
       </StyledAccordion>
     </AccordionContainer>

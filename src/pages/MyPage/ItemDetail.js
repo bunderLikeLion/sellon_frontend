@@ -15,12 +15,15 @@ const Container = styled.div`
   height: 80vh;
   margin: 2rem;
   padding-top: 1rem;
+  overflow: hidden;
   color: ${(props) => props.theme.color_white};
 `;
 
 const UserUploadContainer = styled.div`
-  flex: 1;
+  min-width: 0;
+  flex-basis: 50%;
   padding: 0 1rem;
+  flex-wrap: wrap;
 `;
 
 const ItemDetailContainer = styled.div`
@@ -66,16 +69,20 @@ const EditButton = styled.button`
   }
 `;
 
-const ItemTitle = styled.p`
+const ItemTitle = styled.h3`
   margin: 1rem 0;
   font-size: 2.3rem;
   font-weight: bold;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ContentContainer = styled.div`
   display: flex;
   align-items: flex-start;
+  width: 100%;
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
