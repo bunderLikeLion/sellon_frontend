@@ -14,6 +14,13 @@ export const Container = styled.div`
   position: relative;
   flex: 1;
   height: 100%;
+  flex-basis: calc((100% - 2rem) / 2);
+  max-width: calc((100% - 2rem) / 2);
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 `;
 
 const ArrowBackIcon = styled(ArrowBackIosNewIcon)``;
@@ -46,16 +53,23 @@ const BigContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
+  gap: 2rem;
 
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
-    gap: 2rem;
   }
 `;
 
 const ItemInfoContainer = styled.div`
   flex-direction: column;
   flex: 1;
+  flex-basis: calc((100% - 2rem) / 2);
+  max-width: calc((100% - 2rem) / 2);
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 `
 
 const BigText = styled.div`
@@ -74,6 +88,10 @@ const BtnContainer = styled.div`
   border-radius: 1rem;
   cursor: pointer;
   background: ${(props) => props.theme.color_background__primary};
+
+  @media screen and (max-width: 1000px) {
+    height: 10rem;
+  }
 `;
 
 const InventoryBtn = styled.button`
