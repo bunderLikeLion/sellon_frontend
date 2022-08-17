@@ -28,7 +28,7 @@ const TopContainer = styled.div`
 `;
 
 const CountText = styled.div`
-  color: white;
+  color: ${(props) => props.theme.color_white};
 `;
 
 const ItemListContainer = styled.div`
