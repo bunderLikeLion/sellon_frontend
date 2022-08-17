@@ -21,9 +21,14 @@ import { useRatingQuery, useDealingCountQuery } from 'queries/user';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
-  display: inline-flex !important;
+  display: flex;
   width: 100%;
   height: 100%;
+  gap: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 //Pagination
@@ -101,8 +106,7 @@ const SummaryParticipantsTxt = styled.div`
 
 //Accordion
 const StyledAccordionContainer = styled.div`
-  width: 65%;
-  margin-right: 10%;
+  flex: 3;
   border-radius: 1rem;
 `;
 
@@ -187,15 +191,21 @@ const DetailsRightContainer = styled(DetailsLeftContainer)`
 
 //전체화면 우측 영역
 const RightContainer = styled.div`
-  width: 25%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: row;
+  }
 `;
 
 const RightSmallContainer = styled.div`
   position: relative;
-  width: 100%;
-  height: 7rem;
+  flex: 1;
   margin-bottom: 1rem;
-  padding: 8%;
+  padding: 1rem 1.5rem;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
@@ -207,6 +217,10 @@ const RankInfo = styled.div`
   font-size: 2.5rem;
   font-weight: 600;
   height: 2.5rem;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 2rem;
+  }
 `;
 
 const MyScopeInfoContainer = styled.div`
@@ -219,12 +233,29 @@ const MyScopeInfoContainer = styled.div`
 `;
 
 const MyScopeInfo = styled(StarIcon)`
-  & .MuiSvgIcon-root {
+  &.MuiSvgIcon-root {
     width: 2rem;
     height: 2rem;
   }
+
   color: ${(props) =>
     props.fill ? props.theme.color_fill_start : ''} !important;
+
+  @media screen and (max-width: 1000px) {
+    &.MuiSvgIcon-root {
+      font-size: 1.5rem !important;
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    &.MuiSvgIcon-root {
+      font-size: 1.2rem !important;
+      width: 1.2rem !important;
+      height: 1.2rem !important;
+    }
+  }
 `;
 
 const DealCountInfoContainer = styled.div`
@@ -425,18 +456,24 @@ const TransactionHistory = () => {
       {/*우측 contents*/}
       <RightContainer>
         <RightSmallContainer>
-          랭크
+          <span>
+            랭크
+          </span>
           <RankInfo>S</RankInfo>
         </RightSmallContainer>
         <RightSmallContainer>
-          내 평점
+          <span>
+            내 평점
+          </span>
           {/* TODO: border만 있는 별을 기본적으로 5개 띄우고 점수에따라 차있는 별 아이콘을 쓰기 */}
           <MyScopeInfoContainer>
             {userRatingFetched && rating()}
           </MyScopeInfoContainer>
         </RightSmallContainer>
         <RightSmallContainer>
-          거래 횟수
+          <span>
+            거래 횟수
+          </span>
           <DealCountInfoContainer>
             <DealCountInfo>
               <span>총</span>
@@ -445,17 +482,20 @@ const TransactionHistory = () => {
             </DealCountInfo>
           </DealCountInfoContainer>
         </RightSmallContainer>
-        <ToprankInfoContainer>
-          명예의 전당 실적
-          <ToprankInfoItem>
-            <ToprankTitle>이번주의 챔피온</ToprankTitle>
-            <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoItem>
-          <ToprankInfoItem>
-            <ToprankTitle>이번주의 챔피온</ToprankTitle>
-            <ToprankDate>2022.08.01</ToprankDate>
-          </ToprankInfoItem>
-        </ToprankInfoContainer>
+        {/*
+          <ToprankInfoContainer>
+            명예의 전당 실적
+            <ToprankInfoItem>
+              <ToprankTitle>이번주의 챔피온</ToprankTitle>
+              <ToprankDate>2022.08.01</ToprankDate>
+            </ToprankInfoItem>
+            <ToprankInfoItem>
+              <ToprankTitle>이번주의 챔피온</ToprankTitle>
+              <ToprankDate>2022.08.01</ToprankDate>
+            </ToprankInfoItem>
+          </ToprankInfoContainer>
+
+        */}
       </RightContainer>
     </StyledWrapContainer>
   );

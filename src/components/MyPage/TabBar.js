@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { ItemList } from './index';
 import InterestedAuctionList from './InterestedAuctionList';
 import TransactionHistory from './TransactionHistory';
-import NoTransactionHistory from './NoTransactionHistory';
 import MyAuctionList from './MyAuctionList'; //개인페이지-히스토리 없는 경우
 import Chat from 'pages/Chat/Chat';
 
@@ -49,7 +48,6 @@ const TabBar = ({ location }) => {
         </StyledBox>
         <TabPanel value="1">
           <TransactionHistory />
-          {/* <NoTransactionHistory /> */}
         </TabPanel>
         <TabPanel value="2">
           <ItemList />
