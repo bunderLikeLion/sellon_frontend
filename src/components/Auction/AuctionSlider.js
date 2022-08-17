@@ -169,7 +169,7 @@ const AuctionSlider = ({ items }) => {
     arrows: false,
     infinite: true,
     autoplaySpeed: 3000,
-    // autoplay: true,
+    autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
