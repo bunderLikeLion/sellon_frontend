@@ -7,6 +7,7 @@ import { Pagination } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
+
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -17,6 +18,17 @@ const FlexContainer = styled.div`
   flex-wrap: wrap;
   gap: 2rem 2rem;
   margin-top: 2rem;
+`;
+
+const TopContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  height: 2.6rem;
+`;
+
+const CountText = styled.div`
+  color: ${(props) => props.theme.color_white};
 `;
 
 const ItemListContainer = styled.div`
@@ -84,11 +96,15 @@ const ItemList = () => {
 
   return (
     <ItemListContainer>
-      <AddProductItemButton onClick={handleModal}>
-        <PlusBtn />
-        아이템 추가
-      </AddProductItemButton>
-      <p>총 {myProductsData?.total_count}개</p>
+      <TopContainer>
+        <CountText>
+          총 {myProductsData?.total_count}개
+        </CountText>
+        <AddProductItemButton onClick={handleModal}>
+          <PlusBtn />
+          아이템 추가
+        </AddProductItemButton>
+      </TopContainer>
       {myProductFetched &&
         (myProductsData?.total_count > 0 ? (
           <FlexContainer>

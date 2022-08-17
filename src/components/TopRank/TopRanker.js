@@ -141,6 +141,9 @@ const StyledTooltip = styled(({ className, ...props }) => (
     fontSize: '0.7rem',
     lineHeight: '1rem',
   },
+  [`& .${tooltipClasses.arrow}`]: {
+    color: '#000',
+  },
 });
 
 const TopRanker = () => {
