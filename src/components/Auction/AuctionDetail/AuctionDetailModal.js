@@ -87,7 +87,7 @@ const AuctionDetailModal = ({
         <Container>
           {/*좌측 영역 */}
           <UserUploadContainer>
-            <ItemTitle>test{name}</ItemTitle>
+            <ItemTitle>{singleItemData.name}</ItemTitle>
             {singleItemDataFetched && (
               <ItemImage
                 singleItemData={singleItemData}
