@@ -16,6 +16,7 @@ import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useMyProductsQuery } from 'queries/product';
 import { useDealingHistoryQuery } from 'queries/dealing';
+import useRatingQuery from 'queries/auth/useRatingQuery';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
@@ -221,6 +222,9 @@ const MyScopeInfo = styled(StarIcon)`
     width: 2rem;
     height: 2rem;
   }
+  // color: ${(props) => props.theme.color_fill_start} !important;
+  color: ${(props) =>
+    props.fill ? props.theme.color_fill_start : ''} !important;
 `;
 
 const DealCountInfoContainer = styled.div`
@@ -285,6 +289,19 @@ const TransactionHistory = () => {
   // TODO: 배포 됐을 떄 주석 해제 해야 함
   // const { data: dealingHistory, isSuccess: dealingHistoryFetched } =
   //   useDealingHistoryQuery(pageNum);
+
+  const { data: userRating, isSuccess: userRatingFetched } = useRatingQuery();
+  const MAX_RATING = 5;
+  const rating = () => {
+    const result = [];
+    const roundRating = Math.round(userRating.rating);
+    for (let i = 0; i < MAX_RATING; i++) {
+      i < roundRating
+        ? result.push(<MyScopeInfo fontSize="large" fill={true} />)
+        : result.push(<MyScopeInfo fontSize="large" />);
+    }
+    return result;
+  };
 
   const handleChangePagination = (event, value) => {
     setPageNum(value);
@@ -407,8 +424,7 @@ const TransactionHistory = () => {
           내 평점
           {/* TODO: border만 있는 별을 기본적으로 5개 띄우고 점수에따라 차있는 별 아이콘을 쓰기 */}
           <MyScopeInfoContainer>
-            <MyScopeInfo fontSize="large" />
-            <MyScopeInfo fontSize="large" />
+            {userRatingFetched && rating()}
           </MyScopeInfoContainer>
         </RightSmallContainer>
         <RightSmallContainer>

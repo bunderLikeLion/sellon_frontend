@@ -14,6 +14,10 @@ const userRelatedAPI = {
   deleteWithdrawl: () => {
     return client.delete('users/user/destroy/').then((res) => res.data);
   },
+
+  getUserRating: (userId) => {
+    return client.get(`users/user/${userId}/rating/`).then((res) => res.data);
+  },
 };
 
 export default userRelatedAPI;
