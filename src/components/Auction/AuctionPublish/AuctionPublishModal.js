@@ -13,12 +13,24 @@ const ModalContainer = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 60%;
+  max-width: 1400px;
   height: 35rem;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__default};
+
+  @media screen and (max-width: 1300px) {
+    width: 70%;
+    padding: 2rem 2rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 90%;
+    max-height: 60%;
+    padding: 1rem 1rem;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -31,6 +43,7 @@ const TextContainer = styled.div`
   align-items: center;
   height: 12%;
   margin-left: 1rem;
+  justify-content: space-between;
 `;
 
 const Text = styled.h1`
@@ -41,22 +54,27 @@ const Text = styled.h1`
 `;
 
 const ValidationCancelButton = styled(ClearIcon)`
-  position: absolute;
-  top: 2%;
-  right: 2%;
   cursor: pointer;
   font-size: 2.5rem !important;
   color: #fff;
+  margin-bottom: 0.5rem;
 `;
 
 const InventoryContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 90%;
+`;
+
+const ItemListContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  width: 100%;
-  height: 85%;
-  overflow-y: scroll;
+  gap: 2rem;
 `;
 
 const PaginationContainer = styled.div`
@@ -91,30 +109,32 @@ const AuctionPublishModal = (props) => {
         <ContentContainer>
           <TextContainer>
             <Text>인벤토리</Text>
+            <ValidationCancelButton onClick={props.handleModal} />
           </TextContainer>
-          <ValidationCancelButton onClick={props.handleModal} />
           <InventoryContainer>
-            {isSuccess &&
-              myProducts.results
-                .filter(
-                  (singleItem) =>
-                    singleItem.status !== 'dealing' ||
-                    singleItem.status !== 'dealed'
-                )
-                .map((singleItem) => {
-                  return (
-                    <InventoryItem
-                      key={singleItem.id}
-                      singleItem={singleItem}
-                      setSelectedItem={props.setSelectedItem}
-                      handleModal={props.handleModal}
-                      status={singleItem.status === 'in_auction'}
-                    />
-                  );
-                })}
-            <PaginationContainer>
-              <StyledPagination />
-            </PaginationContainer>
+            <ItemListContainer>
+              {isSuccess &&
+                myProducts.results
+                  .filter(
+                    (singleItem) =>
+                      singleItem.status !== 'dealing' ||
+                      singleItem.status !== 'dealed'
+                  )
+                  .map((singleItem) => {
+                    return (
+                      <InventoryItem
+                        key={singleItem.id}
+                        singleItem={singleItem}
+                        setSelectedItem={props.setSelectedItem}
+                        handleModal={props.handleModal}
+                        status={singleItem.status === 'in_auction'}
+                      />
+                    );
+                  })}
+            </ItemListContainer>
+          <PaginationContainer>
+            <StyledPagination />
+          </PaginationContainer>
           </InventoryContainer>
         </ContentContainer>
       </ModalContainer>
