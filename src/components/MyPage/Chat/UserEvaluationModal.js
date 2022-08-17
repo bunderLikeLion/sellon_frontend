@@ -146,6 +146,18 @@ const ConfirmButton = styled.button`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
+const CancelButton = styled.button`
+position: absolute;
+  width: 5rem;
+  height: 1.7rem;
+  right: 19%;
+  bottom: 3%;
+  border: none;
+  border-radius: 0.5rem;
+  color: ${(props) => props.theme.color_buttontext__ok};
+  background: ${(props) => props.theme.color_button__ok};
+`;
+
 const StyledRating = withStyles({
   iconEmpty: {
     fontSize: 40,
@@ -223,7 +235,7 @@ const UserEvaluationModal = ({
           })}
           {selectedDeal?.product_group?.products.length > 5 && <ExtraIcon />}
         </DealSummarizeContainer>*/}
-        <button onClick={handleEvaluationModal}>취소</button>
+        <CancelButton onClick={handleEvaluationModal}>취소</CancelButton>
         <ConfirmButton onClick={endBtnClickFunc}>평가 등록</ConfirmButton>
       </ModalContainer>
     </Modal>
