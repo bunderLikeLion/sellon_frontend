@@ -36,10 +36,7 @@ const UserInformation = ({ singleItemData }) => {
   return (
     <>
       <UserInfo>
-        <ProfileImg
-          alt="Remy Sharp"
-          src="https://media.bunjang.co.kr/product/146279259_1_1613376940_w%7Bres%7D.jpg"
-        />
+        <ProfileImg src={user?.avatar} />
         <TextContainer>
           <UserName>{user?.username}</UserName>
           <UploadDate>{dateFormatter(created_at)}</UploadDate>
