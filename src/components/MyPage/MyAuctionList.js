@@ -50,14 +50,9 @@ const MyAuctionList = () => {
   const { data: myAuctionData, isSuccess: myAuctionFetched } =
     useMyAuctionQuery(pageNum);
 
-  // TODO: isFinished props
-  const dummyImageUrl =
-    'https://post-phinf.pstatic.net/MjAxOTA2MjhfMTk3/MDAxNTYxNjg3MTY2OTQ2.OXRI7eorUbDI_4lIP1YlGHL_6ZMhh6Zgn4U7POAMCHMg.ygJy1cG5GZZxMvJ-0xqEKLdVEBZj13acwYC-Cri56BMg.JPEG/candyofthemonthclub.jpg?type=w1200';
-
   return (
     <Container>
       <AuctionListContainer>
-        {/* TODO: 하기 컴포넌트에 API 연결하기 */}
         {myAuctionFetched &&
           myAuctionData?.results.map((auction) => {
             return (
@@ -69,6 +64,7 @@ const MyAuctionList = () => {
                 period={timeLimitHandler(auction.end_at)}
                 linkTo={`/auctions/${auction.id}`}
                 linkCondition={isAuctionFinishedHandler(auction.end_at)}
+                isFinished={isAuctionFinishedHandler(auction.end_at)}
               />
             );
           })}
