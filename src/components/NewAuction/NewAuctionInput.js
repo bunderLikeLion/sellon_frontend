@@ -45,7 +45,8 @@ const TextareaContainer = styled.div`
 
 const RadioContainer = styled(StatusRadioBox)`
   margin: 0 1rem 1rem 1rem;
-  width: 28rem;
+  max-width: 28rem;
+  width: auto;
   height: 4rem;
 `;
 
