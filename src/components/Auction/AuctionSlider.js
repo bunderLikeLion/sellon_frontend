@@ -81,13 +81,20 @@ const AuctionItemContainer = styled.div`
   flex-direction: column;
 `;
 
-const AuctionTitle = styled.span`
+const AuctionTitleContainer = styled.div`
   display: block;
-  color: ${(props) => props.theme.color_white};
   position: absolute;
   top: 20.5rem;
   left: 10%;
-  font-size: 2rem;
+  width: 37%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const AuctionTitle = styled.span`
+  color: ${(props) => props.theme.color_white};
+  font-size: 1.9rem;
   font-weight: bold;
 `;
 
@@ -162,7 +169,7 @@ const AuctionSlider = ({ items }) => {
     arrows: false,
     infinite: true,
     autoplaySpeed: 3000,
-    autoplay: true,
+    // autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
@@ -181,7 +188,17 @@ const AuctionSlider = ({ items }) => {
 
               <AuctionItemContainer>
                 <UserAvatar src={items[i]?.owner?.avatar} />
-                <AuctionTitle>{items[i]?.title}</AuctionTitle>
+                <Link
+                  to={
+                    items[i]?.owner?.id === user?.id
+                      ? `/auctioneer/${items[i]?.id}/${items[i]?.product?.id}`
+                      : `/auction/${items[i]?.id}`
+                  }
+                >
+                  <AuctionTitleContainer>
+                    <AuctionTitle>{items[i]?.title}</AuctionTitle>
+                  </AuctionTitleContainer>
+                </Link>
                 <Link
                   to={
                     items[i]?.owner?.id === user?.id
