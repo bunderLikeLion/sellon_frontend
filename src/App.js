@@ -1,13 +1,19 @@
 import { lazy, Suspense } from 'react';
 import GlobalStyles from 'styles/globalStyles';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { WaveLoading } from 'react-loadingg';
 import styled from 'styled-components';
 import UserInfoChange from 'pages/MyPage/UserInfoChange';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from './states';
 
-const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
 const Register = lazy(() => import('pages/Register/Register'));
 const Navbar = lazy(() => import('pages/Navbar/Navbar'));
@@ -16,7 +22,6 @@ const Auction = lazy(() => import('pages/Auction/Auction'));
 const AuctionDetail = lazy(() => import('pages/AuctionDetail/AuctionDetail'));
 const Auctioneer = lazy(() => import('pages/AuctionAuctioneer/Auctioneer'));
 const MyPage = lazy(() => import('pages/MyPage/MyPage'));
-const Chat = lazy(() => import('pages/Chat/Chat'));
 const ItemDetail = lazy(() => import('pages/MyPage/ItemDetail'));
 const ItemInfoChange = lazy(() => import('pages/MyPage/ItemInfoChange'));
 const NewAuction = lazy(() => import('pages/NewAuction/NewAuction'));
@@ -29,6 +34,12 @@ const EntireContainer = styled.div`
 `;
 
 const App = () => {
+  const userData = useRecoilValue(userAtom);
+
+  const authChecker = () => {
+    return userData;
+  };
+
   return (
     <>
       <GlobalStyles />
@@ -42,22 +53,68 @@ const App = () => {
                 <Route path="/" element={<About />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/mypage" element={<MyPage />} />
-                <Route exact path="/mypage/chat" element={<MyPage />} />
+                <Route path="/login/1" element={<Login />} />
+                <Route
+                  path="/mypage"
+                  element={
+                    authChecker() ? <MyPage /> : <Navigate to="/login/1" />
+                  }
+                />
+                <Route
+                  path="/mypage/chat"
+                  element={
+                    authChecker() ? <MyPage /> : <Navigate to="/login/1" />
+                  }
+                />
                 <Route path="/auction" element={<Auction />} />
-                <Route path="/auction/:id" element={<AuctionDetail />} />
+                <Route
+                  path="/auction/:id"
+                  element={
+                    authChecker() ? (
+                      <AuctionDetail />
+                    ) : (
+                      <Navigate to="/login/1" />
+                    )
+                  }
+                />
                 <Route
                   path="/auctioneer/:id/:product"
-                  element={<Auctioneer />}
+                  element={
+                    authChecker() ? <Auctioneer /> : <Navigate to="/login/1" />
+                  }
                 />
                 <Route path="/toprank" element={<TopRank />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/itemdetail/:id" element={<ItemDetail />} />
-                <Route path="/auction/newauction" element={<NewAuction />} />
-                <Route path="/mypage/infochange" element={<UserInfoChange />} />
+                <Route
+                  path="/itemdetail/:id"
+                  element={
+                    authChecker() ? <ItemDetail /> : <Navigate to="/login/1" />
+                  }
+                />
+                <Route
+                  path="/auction/newauction"
+                  element={
+                    authChecker() ? <NewAuction /> : <Navigate to="/login/1" />
+                  }
+                />
+                <Route
+                  path="/mypage/infochange"
+                  element={
+                    authChecker() ? (
+                      <UserInfoChange />
+                    ) : (
+                      <Navigate to="/login/1" />
+                    )
+                  }
+                />
                 <Route
                   path="/itemdetail/iteminfochange"
-                  element={<ItemInfoChange />}
+                  element={
+                    authChecker() ? (
+                      <ItemInfoChange />
+                    ) : (
+                      <Navigate to="/login/1" />
+                    )
+                  }
                 />
               </Routes>
             </Suspense>
