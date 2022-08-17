@@ -9,6 +9,8 @@ import UserEvaluationModal from 'components/MyPage/Chat/UserEvaluationModal';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
+import { Pagination } from '@mui/material';
+import { useMyProductsQuery } from 'queries/product';
 
 const AlignContainer = styled.div`
   display: flex;
@@ -16,6 +18,7 @@ const AlignContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
+//align-items: center;
 
 const ChatForm = styled.div`
   display: flex;
@@ -29,7 +32,6 @@ const ChatForm = styled.div`
     flex-direction: column;
   }
 `;
-
 const Chat_Left = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,14 +75,16 @@ const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 85%;
+  height: 29.3rem;
   margin: 1rem 0;
   overflow-y: scroll;
+  gap: 1rem;
 `;
+//height: 85%;
 
 const OnChatContainerBottom = styled.div`
   height: 6rem;
-  padding: 1rem;
+  padding: 0 1rem;
   border-radius: 0 0 0.5rem 0.5rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
@@ -93,6 +97,15 @@ const Chat = () => {
   const [opponent, setOpponent] = useState(null);
   const handleEvaluationModal = () =>
     SetIsEvaluationModalOpened(!isEvaluationModalOpened);
+
+  const [pageNum, setPageNum] = useState(1);
+
+  const { data: myProductsData, isSuccess: myProductFetched } =
+    useMyProductsQuery(pageNum, 6);
+
+  const handleChangePagination = (event, value) => {
+    setPageNum(value);
+  };
 
   useEffect(() => {
     // 누를때 상대 정하기

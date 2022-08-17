@@ -11,28 +11,27 @@ const ChatMessageListContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  height: fit-content;
   border-radius: 0.5rem;
   cursor: pointer;
+  border: 1.3px solid transparent;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
 const UserProfileImg = styled(CardMedia)`
-  width: 4rem;
-  height: 4rem;
-  margin: auto;
-  border-radius: 50%;
+  width: 3.3rem;
+  height: 3.3rem;
+  margin: 0.5rem 0 0 0.5rem;
+  border-radius: 0.7rem;
   background: #f00;
 `;
-
+//margin: auto;
 const ChatMessageText = styled.div`
   width: 75%;
   margin: 0.5rem;
 `;
 
 const UserNickname = styled.div`
-  margin-bottom: 0.5rem;
   font-weight: 700;
   color: ${(props) => props.theme.color_font__secondary};
 `;
@@ -44,6 +43,7 @@ const ChatTimeContainer = styled.div`
 `;
 
 const ChatTime = styled.div`
+  font-size: 0.8rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
@@ -62,6 +62,10 @@ const ChatBoxButton = styled.button`
   border-radius: 0.7rem;
   font-weight: 700;
   background: ${(props) => props.theme.color_button__ok};
+`;
+
+const ChatFinishButton = styled(ChatBoxButton)`
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const ChatLists = ({

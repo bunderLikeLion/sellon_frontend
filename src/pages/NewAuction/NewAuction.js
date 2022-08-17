@@ -35,18 +35,19 @@ const InstructContainer = styled.div`
 `;
 
 const TopContainer = styled.div`
-  position: relative;
-  width: 100%;
-  padding: 2rem 1rem;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding: 2rem 1rem;
 `;
 
 const BigContainer = styled.div`
+  display: flex;
   width: 100%;
   height: 100%;
-  display: flex;
+  margin-top: 1rem;
 `;
 
 const BigText = styled.div`
@@ -61,20 +62,19 @@ const BtnContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 35rem;
-  margin-top: 1rem;
+  height: 36rem;
   border-radius: 1rem;
   cursor: pointer;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const InventoryBtn = styled.button`
+  width: 100%;
+  height: 95%;
   font-size: x-large;
   background: ${(props) => props.theme.color_background__primary};
   color: ${(props) => props.theme.color_font__tertiary};
   border: none;
-  height: 95%;
-  width: 100%;
 `;
 
 const ReselectBtn = styled.button`
@@ -98,14 +98,6 @@ const StyledButton = styled.button`
   font-weight: 700;
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
-`;
-
-const OuterContainer = styled(Container)`
-  max-width: 1060px !important;
-  min-height: 92vh;
-  height: 100% !important;
-  color: ${(props) => props.theme.color_white} !important;
-  background: ${(props) => props.theme.color_background__default} !important;
 `;
 
 const NewAuction = () => {

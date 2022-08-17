@@ -61,8 +61,28 @@ const ProductCard = styled(Card)`
 `;
 
 const StyledCardHeader = styled(CardHeader)`
-  height: 7vh;
+  width: 5rem;
+  height: 100%;
   padding: 1rem !important;
+
+  & .MuiCardHeader-content {
+    display: block !importnat;
+    width: 5rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: red;
+    font-size: 1.2rem;
+  }
+`;
+
+const StyledHeader = styled.div`
+  width: 100%;
+  padding: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1.5rem;
 `;
 
 const StyledCardContent = styled(CardContent)`
@@ -178,7 +198,8 @@ const ItemListCard = ({ productData }) => {
             height="150"
             image={productData.thumbnail.file}
           />
-          <StyledCardHeader title={productData.name} />
+          {/* <StyledCardHeader title={productData.name} /> */}
+          <StyledHeader>{productData.name}</StyledHeader>
           <StyledCardContent>
             <CategoryBox>{productData.product_category.name}</CategoryBox>
           </StyledCardContent>
