@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
-import { useMostProductGroupDealingQuery } from 'queries/statistics';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import {
+  useMostProductGroupDealingQuery,
+  useMonthlyChampionQuery,
+} from 'queries/statistics';
 
 const Container = styled.div`
   display: flex;
@@ -140,20 +143,20 @@ const StyledTooltip = styled(({ className, ...props }) => (
   },
 });
 
-
 const TopRanker = () => {
   const {
     data: MostProductGroupDealingData,
     isSuccess: MostProductGroupDealingDataFetched,
   } = useMostProductGroupDealingQuery();
 
+  const { data: ChampionData, isSuccess: ChampionDataFetched } =
+    useMonthlyChampionQuery();
+
   return (
     <Container>
       {MostProductGroupDealingDataFetched && (
         <TopDealer>
-          <TopDealerImg
-            image={MostProductGroupDealingData?.user?.avatar?.file}
-          />
+          <TopDealerImg image={MostProductGroupDealingData?.user?.avatar} />
           <TopDealerInfo>
             <TopDealerTitle>이달의 거래왕</TopDealerTitle>
             {MostProductGroupDealingData?.user && (
@@ -166,27 +169,37 @@ const TopRanker = () => {
                 </TopDealCount>
               </TopDealerUserContainer>
             )}
-            <StyledTooltip title="이 달의 거래왕은 경매에서 거래까지 가장 많이 성사시킨 사람이 가져가는 명예로운 자리입니다. 😎" arrow>
+            <StyledTooltip
+              title="이 달의 거래왕은 경매에서 거래까지 가장 많이 성사시킨 사람이 가져가는 명예로운 자리입니다. 😎"
+              arrow
+            >
               <QuestionIcon />
             </StyledTooltip>
           </TopDealerInfo>
         </TopDealer>
       )}
-      <MonthlyChampion>
-        <MonthlyChampionImg image="https://img.animalplanet.co.kr/news/2019/12/29/700/1z668em06l04f8kj0qqm.jpg" />
-        <MonthlyChampionInfo>
-          <MonthlyTitle>이달의 챔피언</MonthlyTitle>
-          <MonthlyUserContainer>
-            <MonthlyChampionUser>api X(str이름)</MonthlyChampionUser>
-            <MonthlyChampionDealCount>
-              총 (int)명 경매 참여
-            </MonthlyChampionDealCount>
-          </MonthlyUserContainer>
-          <StyledTooltip title="이 달의 챔피언은 이번 달 가장 많은 참여자를 보유한 경매에서 낙찰된 사람이 가져가는 명예로운 자리입니다. 😆" arrow>
-            <QuestionIcon />
-          </StyledTooltip>
-        </MonthlyChampionInfo>
-      </MonthlyChampion>
+      {ChampionDataFetched && (
+        <MonthlyChampion>
+          <MonthlyChampionImg image={ChampionData?.user?.avatar} />
+          <MonthlyChampionInfo>
+            <MonthlyTitle>이달의 챔피언</MonthlyTitle>
+            <MonthlyUserContainer>
+              <MonthlyChampionUser>
+                {ChampionData?.user?.username}
+              </MonthlyChampionUser>
+              <MonthlyChampionDealCount>
+                총 {ChampionData?.count}명 경매 참여
+              </MonthlyChampionDealCount>
+            </MonthlyUserContainer>
+            <StyledTooltip
+              title="이 달의 챔피언은 이번 달 가장 많은 참여자를 보유한 경매에서 낙찰된 사람이 가져가는 명예로운 자리입니다. 😆"
+              arrow
+            >
+              <QuestionIcon />
+            </StyledTooltip>
+          </MonthlyChampionInfo>
+        </MonthlyChampion>
+      )}
     </Container>
   );
 };

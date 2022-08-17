@@ -8,6 +8,10 @@ const statisticsRelatedAPI = {
       .get('statistics/most_product_group_dealing/')
       .then((res) => res.data);
   },
+
+  getMonthlyChampion: () => {
+    return client.get('statistics/monthly_champion/').then((res) => res.data);
+  },
 };
 
 export default statisticsRelatedAPI;
