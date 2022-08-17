@@ -84,6 +84,7 @@ const StatusRadioContainer = styled(StatusRadio)`
   align-items: center;
   width: 8.5rem !important;
   margin-top: 0 !important;
+  flex: 1;
 `;
 
 const RadioLabel = styled.label`
