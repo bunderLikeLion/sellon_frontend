@@ -204,6 +204,7 @@ const RightContainer = styled.div`
 const RightSmallContainer = styled.div`
   position: relative;
   flex: 1;
+  height: 6rem;
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
@@ -214,10 +215,10 @@ const RankInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 2.5rem;
+  padding-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 600;
-  height: 2.5rem;
-
   @media screen and (max-width: 1000px) {
     font-size: 2rem;
   }
@@ -225,11 +226,10 @@ const RankInfo = styled.div`
 
 const MyScopeInfoContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 50%;
-  padding-right: 5%;
 `;
 
 const MyScopeInfo = styled(StarIcon)`
@@ -260,18 +260,19 @@ const MyScopeInfo = styled(StarIcon)`
 
 const DealCountInfoContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 70%;
-  padding-right: 5%;
+  height: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const DealCountInfo = styled.div`
-  display: flex;
+  display: inline-flex;
+  flex-direction: flex-start;
   justify-content: center;
   align-items: center;
-  padding-right: 5%;
+  height: 2rem;
   font-size: 1rem;
   font-weight: bold;
   span {
