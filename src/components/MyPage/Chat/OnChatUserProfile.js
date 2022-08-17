@@ -15,7 +15,7 @@ const OnChatProfileImg = styled(CardMedia)`
   height: 4rem;
   margin: 1rem;
   border-radius: 50%;
-  background: #0f0;
+  background: ${(props) => props.theme.color_background__primary};
 `;
 
 const OnChatProfileNickname = styled.div`
