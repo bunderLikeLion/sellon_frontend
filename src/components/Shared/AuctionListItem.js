@@ -155,6 +155,7 @@ export const FinishedCard = styled(FinishedOverlay)`
 `;
 
 const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
+  overflow: visible;
   color: ${(props) =>
     props.isInterested
       ? props.theme.color_font__number
@@ -162,6 +163,7 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
 
   & :hover {
     transform: scale(1.2);
+    transform-origin: center;
   }
 `;
 
@@ -172,7 +174,7 @@ const OverLayIconBox = styled.div`
 
 const FinishedMessage = styled.p`
   text-align: center;
-`
+`;
 
 /*
   title: 경매 제목
