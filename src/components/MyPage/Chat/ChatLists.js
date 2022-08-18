@@ -23,7 +23,7 @@ const UserProfileImg = styled(CardMedia)`
   height: 3.3rem;
   margin: 0.5rem 0 0 0.5rem;
   border-radius: 0.7rem;
-  background: #f00;
+  background: #fff;
 `;
 //margin: auto;
 const ChatMessageText = styled.div`

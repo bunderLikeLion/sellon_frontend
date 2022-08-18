@@ -54,7 +54,6 @@ const BigContainer = styled.div`
   width: 100%;
   height: 100%;
   margin-top: 2rem;
-  display: flex;
   flex-direction: row;
   gap: 2.3rem;
 
@@ -68,6 +67,7 @@ const ItemInfoContainer = styled.div`
   flex: 1;
   flex-basis: calc((100% - 2rem) / 2);
   max-width: calc((100% - 2rem) / 2);
+  height: 100%;
 
   @media screen and (max-width: 1000px) {
     flex-basis: 100%;
@@ -130,7 +130,7 @@ const StyledButton = styled.button`
   float: right;
   height: 2.7rem;
   width: 9rem;
-  margin: 2rem 1rem;
+  margin: 2.8rem 1rem;
   border: none;
   border-radius: 2rem;
   font-size: 1rem;
