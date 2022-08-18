@@ -68,7 +68,7 @@ const InputArea = styled.input`
   right: 5%;
   width: 18rem;
   height: 2rem;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   font-size: 1rem;
   border: none;
   color: ${(props) => props.theme.color_font__secondary};
@@ -178,7 +178,13 @@ const FilterModal = (props) => {
       <ModalContainer>
         <CloseBtn onClick={closeModalFunc} />
         <GuideContainer>
-          <Typography id="modal-modal-title" variant="h4" component="h2" fontSize={30} fontWeight={600}>
+          <Typography
+            id="modal-modal-title"
+            variant="h4"
+            component="h2"
+            fontSize={30}
+            fontWeight={600}
+          >
             필터 및 검색
           </Typography>
         </GuideContainer>
@@ -199,38 +205,6 @@ const FilterModal = (props) => {
                   </SingleRadio>
                 );
               })}
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
-            <SingleRadio>
-              <StyledRadio />
-              <RadioLabel>fdfd</RadioLabel>
-            </SingleRadio>
           </CategoryContentBox>
         </CategoryRadioBox>
 

@@ -9,7 +9,6 @@ import UserEvaluationModal from 'components/MyPage/Chat/UserEvaluationModal';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
-import { Pagination } from '@mui/material';
 import { useMyProductsQuery } from 'queries/product';
 
 const AlignContainer = styled.div`
@@ -18,7 +17,6 @@ const AlignContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
-//align-items: center;
 
 const ChatForm = styled.div`
   display: flex;
@@ -62,8 +60,7 @@ const Chat_Right = styled.div`
   }
 `;
 
-const OnChatContainer = styled.div`
-`;
+const OnChatContainer = styled.div``;
 
 const MessageTitle = styled.div`
   margin: 1rem 0 0.5rem 0;

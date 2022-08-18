@@ -86,11 +86,12 @@ const ChatLists = ({
   return (
     <ChatMessageListContainer onClick={() => setSelectedDeal(singleDeal)}>
       <UserProfileImg
-        image={
+        /*        image={
           singleDeal?.product_group?.user?.id === userId
             ? singleDeal?.auction?.owner?.avatar
             : singleDeal?.product_group?.user?.avatar
-        }
+        }*/
+        image={singleDeal?.product?.thumbnail?.file}
       />
       <ChatMessageText>
         <UserNickname>
