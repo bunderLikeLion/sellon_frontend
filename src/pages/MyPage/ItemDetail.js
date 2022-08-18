@@ -8,6 +8,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { StyledLink } from 'styles/StyledComponetStyles';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const Container = styled.div`
   display: flex;
@@ -90,6 +91,24 @@ const ContentContainer = styled.div`
   }
 `;
 
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 168,
+    cursor: 'pointer',
+    color: '#DFDCEF',
+    backgroundColor: '#000000',
+    fontSize: '0.7rem',
+    lineHeight: '1rem',
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    color: '#000',
+  },
+});
+
+
+
 const ItemDetail = () => {
   const user = useRecoilValue(userAtom);
   const { id: itemId } = useParams();
@@ -113,7 +132,13 @@ const ItemDetail = () => {
 
           <ContentContainer>
             <UserUploadContainer>
-              <ItemTitle>{name}</ItemTitle>
+              {/*<ItemTitle>{name}</ItemTitle>*/}
+              <StyledTooltip
+                title={name}
+                arrow
+              >
+                <ItemTitle>{name}</ItemTitle>
+              </StyledTooltip>
               {singleItemFetched && <ItemImage singleItemData={singleItem} />}
             </UserUploadContainer>
             <ItemDetailContainer>
