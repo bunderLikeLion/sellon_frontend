@@ -4,7 +4,14 @@ const client = axiosInstance;
 
 const auctionRelatedAPI = {
   // 옥션 리스트
-  getAuctionLists: (sort, pageNum, cat, filterKeyword) => {
+  getAuctionLists: (
+    sort,
+    pageNum,
+    cat,
+    filterKeyword,
+    dealingType,
+    showAll
+  ) => {
     return client
       .get('auctions/?ordering=-product_groups_count/', {
         params: {
@@ -20,6 +27,8 @@ const auctionRelatedAPI = {
           page: pageNum,
           product__product_category_id: cat === '전체' ? null : cat,
           search: filterKeyword,
+          include_ended_auction: showAll === '1',
+          dealingType: +dealingType,
         },
       })
       .then((res) => res.data);
