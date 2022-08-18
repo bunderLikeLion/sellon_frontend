@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
+import toast from 'react-hot-toast';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -150,15 +151,19 @@ const ApplyButton = styled(Button)`
 `;
 
 const FilterModal = (props) => {
-  const [filterKeyword, handleFilterKeyword, resetHandleFilterKeyword] =
-    useInput(props.filterKeyword);
   const [
     areaRestriction,
     handleAreaRestriction,
     resetAreARestriction,
     setAreaRestriction,
   ] = useInput(props.areaRestriction);
-  const [cat, handleCat, resetCat] = useInput(props.cat);
+  const [
+    filterKeyword,
+    handleFilterKeyword,
+    resetHandleFilterKeyword,
+    setFilterKeyword,
+  ] = useInput(props.filterKeyword);
+  const [cat, handleCat, resetCat, setCat] = useInput(props.cat);
 
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
@@ -181,8 +186,6 @@ const FilterModal = (props) => {
   });
 
   const closeModalFunc = () => {
-    // resetCat();
-    resetHandleFilterKeyword();
     setAreaRestriction('1');
     props.handleFilterModal();
   };
@@ -191,7 +194,15 @@ const FilterModal = (props) => {
     props.setAreaRestriction(areaRestriction);
     props.setFilterKeyword(filterKeyword);
     props.setCat(cat);
-    // resetCat();
+    props.handleFilterModal();
+  };
+
+  const resetFieldFunc = () => {
+    toast.success('필터 초기화 완료.');
+    props.setFilterKeyword('');
+    setFilterKeyword('');
+    props.setCat('전체');
+    setCat('전체');
     props.handleFilterModal();
   };
 
@@ -215,10 +226,11 @@ const FilterModal = (props) => {
             >
               필터 및 검색
             </Typography>
+            <button onClick={resetFieldFunc}>필터 초기화</button>
           </GuideContainer>
           <SearchLabelContainer>
             <TextContainer>상품명</TextContainer>
-            <InputArea></InputArea>
+            <InputArea value={filterKeyword} onChange={handleFilterKeyword} />
           </SearchLabelContainer>
 
           <CategoryRadioBox>

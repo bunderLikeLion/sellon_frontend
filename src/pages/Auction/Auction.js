@@ -21,7 +21,6 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
-
 const Form = styled.div`
   width: 100%;
 `;
@@ -156,7 +155,7 @@ const FilterButton = styled.button`
   background: transparent;
   border: 1px solid ${(props) => props.theme.color_border__hover__light};
   transition: all 0.5s ease;
-  outline:none;
+  outline: none;
 
   :hover {
     background: ${(props) => props.theme.color_background__success};
@@ -180,9 +179,9 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
-height: 2.3rem;
-display: flex;
-align-items: center;
+  height: 2.3rem;
+  display: flex;
+  align-items: center;
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
@@ -230,7 +229,8 @@ const Auction = () => {
   const { data: auctionList, isSuccess: auctionListFetched } = useAuctionsQuery(
     sort,
     pageNum,
-    cat
+    cat,
+    filterKeyword
   );
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
@@ -301,17 +301,19 @@ const Auction = () => {
         {auctionListFetched &&
           (auctionList?.results?.length > 0 ? (
             <Container>
-                  <>
-                    {auctionList?.results.map((singleAuction) => {
-                      return (
-                        <HomeAuctionListCard
-                          auctionData={singleAuction}
-                          isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
-                          isInterested={singleAuction?.is_interested}
-                        />
-                      );
-                    })}
-                  </>
+              <>
+                {auctionList?.results.map((singleAuction) => {
+                  return (
+                    <HomeAuctionListCard
+                      auctionData={singleAuction}
+                      isFinished={isAuctionFinishedHandler(
+                        singleAuction?.end_at
+                      )}
+                      isInterested={singleAuction?.is_interested}
+                    />
+                  );
+                })}
+              </>
               {/*Pagination*/}
               <PaginationContainer>
                 <StyledPagination
@@ -321,8 +323,12 @@ const Auction = () => {
                 />
               </PaginationContainer>
             </Container>
-          ) : <EmptyListPlaceHolder message="해당 조건의 경매장이 열리지 않았습니다. 😅" padding="4rem 2rem" />
-        )}
+          ) : (
+            <EmptyListPlaceHolder
+              message="해당 조건의 경매장이 열리지 않았습니다. 😅"
+              padding="4rem 2rem"
+            />
+          ))}
       </Form>
       <FilterModal
         isFilterModalOpened={isFilterModalOpened}

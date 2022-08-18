@@ -3,10 +3,10 @@ import toast from 'react-hot-toast';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
 
-const useAuctionsQuery = (sort, pageNum, cat) => {
+const useAuctionsQuery = (sort, pageNum, cat, filterKeyword) => {
   return useQuery(
-    ['auctionList', sort, pageNum, cat],
-    () => auctionRelatedAPI.getAuctionLists(sort, pageNum, cat),
+    ['auctionList', sort, pageNum, cat, filterKeyword],
+    () => auctionRelatedAPI.getAuctionLists(sort, pageNum, cat, filterKeyword),
     {
       onError: (res) => {
         toast.dismiss();
