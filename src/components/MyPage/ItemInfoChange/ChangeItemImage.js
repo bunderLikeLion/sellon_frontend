@@ -6,7 +6,6 @@ import { useState } from 'react';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import CardMedia from '@mui/material/CardMedia';
 
-
 const AccordionContainer = styled.div`
   clear: both;
   width: 95%;
@@ -61,7 +60,6 @@ const ModifyBtn = styled.button`
   background: ${(props) => props.theme.color_button__delete};
 `;
 
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -92,8 +90,14 @@ const CancelButton = styled.button`
 
 const InsideContainer = styled.div`
   display: flex;
+  justify-content: flex-start !important;
   align-items: center;
   width: 100%;
+`;
+
+const NewMainImg = styled(ThumbnailImageDragDrop)`
+  display: flex;
+  justify-content: flex-start;
 `;
 
 const ChangeItemImage = ({ givenThumbnail, editSingleField }) => {
@@ -128,7 +132,7 @@ const ChangeItemImage = ({ givenThumbnail, editSingleField }) => {
         <StyledAccordionDetails>
           <InsideContainer>
             <SubHeader>새 대표사진</SubHeader>
-            <ThumbnailImageDragDrop
+            <NewMainImg
               thumbnailPic={thumbnailPic}
               setThumbNailPic={setThumbNailPic}
             />
