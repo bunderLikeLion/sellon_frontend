@@ -101,24 +101,23 @@ const SelectMessageModal = ({
     >
       <ModalContainer>
         <InsideBox>
-        <Text>정말 선택하시겠습니까?</Text>
-        <SmallText>선택한 참여자와 진행중인 거래 단계로 넘어갑니다.</SmallText>
+          <Text>정말 선택하시겠습니까?</Text>
+          <SmallText>선택한 참여자와 진행중인 거래 단계로 넘어갑니다.</SmallText>
           <ButtonContainer>
-          <ValidationButton
-          onClick={() => {
-            createDealing({
-              auction_id: auctionRelatedId,
-              product_group_id: selectedGroupId,
-            });
-          }}
-        >
-          선택
-        </ValidationButton>
-        <ValidationCancelButton onClick={handleModal}>
-          취소
-        </ValidationCancelButton>
-        </ButtonContainer>
-        
+            <ValidationButton
+                onClick={() => {
+                createDealing({
+                auction_id: auctionRelatedId,
+                product_group_id: selectedGroupId,
+                });
+              }}
+            >
+            선택
+            </ValidationButton>
+            <ValidationCancelButton onClick={handleModal}>
+              취소
+            </ValidationCancelButton>
+          </ButtonContainer>
         </InsideBox>
       
       </ModalContainer>

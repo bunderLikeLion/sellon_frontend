@@ -118,7 +118,7 @@ const ProductThumbnail = styled.img`
   width: 20rem !important;
   aspect-ratio: 1 / 1;
   position: absolute !important;
-  left: 50% !important;
+  left: 55% !important;
   top: 1.6rem !important;
   border-radius: 6%;
   box-shadow: 0 0 6px ${(props) => props.theme.color_white};
