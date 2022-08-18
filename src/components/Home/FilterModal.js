@@ -170,48 +170,52 @@ const ResetButton = styled(Button)`
 
 const FilterModal = (props) => {
   const [
-    areaRestriction,
-    handleAreaRestriction,
-    resetAreARestriction,
-    setAreaRestriction,
-  ] = useInput(props.areaRestriction);
-  const [
     filterKeyword,
     handleFilterKeyword,
     resetHandleFilterKeyword,
     setFilterKeyword,
   ] = useInput(props.filterKeyword);
+
   const [cat, handleCat, resetCat, setCat] = useInput(props.cat);
+
+  const [dealingType, handleDealingType, resetDealingType, setDealingType] =
+    useInput(props.dealingType);
+
+  const [showAll, handleShowAll, resetShowAll, setShowAll] = useInput(
+    props.showAll
+  );
 
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
   ]);
 
-  const areRestrictionControlProps = (item) => ({
-    checked: areaRestriction === item,
-    onChange: handleAreaRestriction,
-    value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
-
   const catControlProps = (item) => ({
     checked: cat === item,
     onChange: handleCat,
     value: item,
-    name: 'color-radio-button-demo',
-    inputProps: { 'aria-label': item },
+  });
+
+  const dealingTypeControlProps = (item) => ({
+    checked: dealingType === item,
+    onChange: handleDealingType,
+    value: item,
+  });
+
+  const showAllControlProps = (item) => ({
+    checked: showAll === item,
+    onChange: handleShowAll,
+    value: item,
   });
 
   const closeModalFunc = () => {
-    setAreaRestriction('1');
     props.handleFilterModal();
   };
 
   const submitFilter = () => {
-    props.setAreaRestriction(areaRestriction);
     props.setFilterKeyword(filterKeyword);
     props.setCat(cat);
+    props.setDealingType(dealingType);
+    props.setShowAll(showAll);
     props.handleFilterModal();
   };
 
@@ -221,6 +225,10 @@ const FilterModal = (props) => {
     setFilterKeyword('');
     props.setCat('전체');
     setCat('전체');
+    props.setDealingType('2');
+    setDealingType('2');
+    props.setShowAll('1');
+    setShowAll('1');
     props.handleFilterModal();
   };
 
@@ -266,6 +274,38 @@ const FilterModal = (props) => {
                     </SingleRadio>
                   );
                 })}
+            </CategoryContentBox>
+          </CategoryRadioBox>
+
+          <CategoryRadioBox>
+            <StyledLabel>거래 방식</StyledLabel>
+            <CategoryContentBox>
+              <SingleRadio>
+                <StyledRadio {...dealingTypeControlProps('2')} />
+                <RadioLabel>전체</RadioLabel>
+              </SingleRadio>
+              <SingleRadio>
+                <StyledRadio {...dealingTypeControlProps('0')} />
+                <RadioLabel>직거래</RadioLabel>
+              </SingleRadio>
+              <SingleRadio>
+                <StyledRadio {...dealingTypeControlProps('1')} />
+                <RadioLabel>배송 거래</RadioLabel>
+              </SingleRadio>
+            </CategoryContentBox>
+          </CategoryRadioBox>
+
+          <CategoryRadioBox>
+            <StyledLabel>거래 불가능한 경매 포함</StyledLabel>
+            <CategoryContentBox>
+              <SingleRadio>
+                <StyledRadio {...showAllControlProps('1')} />
+                <RadioLabel>포함</RadioLabel>
+              </SingleRadio>
+              <SingleRadio>
+                <StyledRadio {...showAllControlProps('2')} />
+                <RadioLabel>미포함</RadioLabel>
+              </SingleRadio>
             </CategoryContentBox>
           </CategoryRadioBox>
 

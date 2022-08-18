@@ -225,6 +225,8 @@ const Auction = () => {
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
   const [cat, setCat] = useState('전체');
+  const [dealingType, setDealingType] = useState('2');
+  const [showAll, setShowAll] = useState('1');
   const [sort, handleSort] = useInput('recent');
   const [pageNum, setPageNum] = useState(1);
 
@@ -235,7 +237,9 @@ const Auction = () => {
     sort,
     pageNum,
     cat,
-    filterKeyword
+    filterKeyword,
+    dealingType,
+    showAll
   );
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
@@ -344,6 +348,10 @@ const Auction = () => {
         setAreaRestriction={setAreaRestriction}
         cat={cat}
         setCat={setCat}
+        dealingType={dealingType}
+        setDealingType={setDealingType}
+        showAll={showAll}
+        setShowAll={setShowAll}
       />
     </WrapContainer>
   );
