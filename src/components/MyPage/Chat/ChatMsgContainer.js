@@ -36,7 +36,15 @@ const ChatBox = styled.div`
   padding: 0.5rem;
   line-height: 1.5rem;
   color: ${(props) => props.theme.color_font__secondary};
+  background-color: ${(props) => props.theme.color_background__secondary};
+  width: fit-content;
+  border-radius: 5px;
+  margin-bottom: 0.4rem;
 `;
+
+const SendByMeChatBox = styled(ChatBox)`
+  margin: auto 0 0.4rem auto;
+`
 
 const EmptyChatPlaceHolder = styled.div`
   text-align: center;
@@ -65,11 +73,11 @@ const ChatMsgContainer = ({ opponent, selectedDeal }) => {
         msgData.length > 0 ? (
           msgData.map((singleMsg) => {
             if (singleMsg?.sender?.id === user?.id) {
-              return <ChatBox>{singleMsg?.content}</ChatBox>;
+              return <SendByMeChatBox>{singleMsg?.content}</SendByMeChatBox>;
             } else {
               return (
                 <ChatBox>
-                  {opponent?.username}: {singleMsg?.content}
+                  {singleMsg?.content}
                 </ChatBox>
               );
             }

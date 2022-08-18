@@ -38,7 +38,20 @@ const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
         open={Boolean(anchorElNav)}
         onClose={closeNavMenu}
         sx={{
-          display: { xs: 'block', md: 'none' },
+          display: {
+            xs: 'block',
+            md: 'none',
+            '& .MuiMenu-list': {
+              backgroundColor: '#312f56',
+              borderRadius: '10%',
+            },
+            '& .MuiPaper-elevation': {
+              background: 'none',
+            },
+            '& .MuiTypography-root': {
+              color: 'white',
+            },
+          },
         }}
       >
         <MenuItem onClick={closeNavMenu}>

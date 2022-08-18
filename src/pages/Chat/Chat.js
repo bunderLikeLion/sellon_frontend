@@ -11,6 +11,10 @@ import { userAtom } from 'states';
 import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
 import { useMyProductsQuery } from 'queries/product';
 
+const StyledWrapContainer = styled.div`
+  height: fit-content;
+`
+
 const AlignContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -115,7 +119,7 @@ const Chat = () => {
   }, [selectedDeal]);
 
   return (
-    <WrapContainer>
+    <StyledWrapContainer>
       <AlignContainer>
         {dealingsFetched && (
           <ChatForm>
@@ -155,7 +159,7 @@ const Chat = () => {
         selectedDeal={selectedDeal}
         opponent={opponent}
       />
-    </WrapContainer>
+    </StyledWrapContainer>
   );
 };
 
