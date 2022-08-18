@@ -14,9 +14,12 @@ const ModalContainer = styled(Box)`
   width: fit-content;
   min-width: 50rem;
   max-width: 60%;
+  height: fit-content;
+  min-height: 42rem;
+  max-height: 55%;
   top: 50%;
   left: 50%;
-  padding: 3rem;
+  padding: 2rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   overflow-y: auto;
@@ -41,8 +44,9 @@ const ModalContainer = styled(Box)`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin: 2rem;
+  gap: 1.3rem;
+  max-height: 40%;
+  margin: 1rem 1rem 0.2rem 1rem;
 `;
 
 const CloseBtn = styled(CloseIcon)`
@@ -61,8 +65,8 @@ const GuideContainer = styled.div`
 `;
 
 const StyledLabel = styled.p`
-  width: 8rem;
-  margin: 1rem;
+  width: fit-content;
+  margin: 1rem 1rem 1rem 0.4rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -82,8 +86,7 @@ const SearchLabelContainer = styled.div`
 `;
 
 const TextContainer = styled.p`
-  flex-basis: content;
-  padding-left: 0.8rem;
+  padding-left: 0.4rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -94,17 +97,28 @@ const InputArea = styled.input`
   padding: 0 0.5rem;
   font-size: 1rem;
   border: none;
+  input:focus { outline: none !important; }
   color: ${(props) => props.theme.color_font__secondary};
-  background: ${(props) => props.theme.color_background__primary};
+  background: transparent; //window창 좁혔을 때 튀어나와서 투명처리
 `;
 
 const CategoryRadioBox = styled.div`
   width: 100%;
   min-height: 4rem;
-  padding: 0.7rem;
+  padding: 0.5rem;
   border: 0.1px solid transparent;
   border-radius: 10px;
   background: ${(props) => props.theme.color_background__primary};
+`;
+
+const SmallCategoryWrapper = styled.div`
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 4rem;
+`;
+const SmallCategoryRadioBox = styled(CategoryRadioBox)`
+  width: 49%;
 `;
 
 const CategoryContentBox = styled.div`
@@ -112,25 +126,28 @@ const CategoryContentBox = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
 `;
 
 const SingleRadio = styled.span`
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
   align-items: center;
-  flex-basis: calc((100% - 3rem) / 4);
+  min-width: 7rem;
+  flex-basis: calc((100% - 7rem) / 4); //flex-basis: calc((100% - 3rem) / 4);
 
   @media screen and (max-width: 1000px) {
     flex-basis: calc((100% - 2rem) / 3);
   }
 
   @media screen and (max-width: 700px) {
-    flex-basis: calc((100% - 1rem) / 2);
+    flex-basis: calc((100%) / 2); //flex-basis: calc((100% - 1rem) / 2);
   }
 `;
 
 const RadioLabel = styled.label`
+  min-width: 3rem;
+  max-width: 7rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -277,37 +294,39 @@ const FilterModal = (props) => {
             </CategoryContentBox>
           </CategoryRadioBox>
 
-          <CategoryRadioBox>
-            <StyledLabel>거래 방식</StyledLabel>
-            <CategoryContentBox>
-              <SingleRadio>
-                <StyledRadio {...dealingTypeControlProps('2')} />
-                <RadioLabel>전체</RadioLabel>
-              </SingleRadio>
-              <SingleRadio>
-                <StyledRadio {...dealingTypeControlProps('0')} />
-                <RadioLabel>직거래</RadioLabel>
-              </SingleRadio>
-              <SingleRadio>
-                <StyledRadio {...dealingTypeControlProps('1')} />
-                <RadioLabel>배송 거래</RadioLabel>
-              </SingleRadio>
-            </CategoryContentBox>
-          </CategoryRadioBox>
+          <SmallCategoryWrapper>
+            <SmallCategoryRadioBox>
+              <StyledLabel>거래 방식</StyledLabel>
+              <CategoryContentBox>
+                <SingleRadio>
+                  <StyledRadio {...dealingTypeControlProps('2')} />
+                  <RadioLabel>전체</RadioLabel>
+                </SingleRadio>
+                <SingleRadio>
+                  <StyledRadio {...dealingTypeControlProps('0')} />
+                  <RadioLabel>직거래</RadioLabel>
+                </SingleRadio>
+                <SingleRadio>
+                  <StyledRadio {...dealingTypeControlProps('1')} />
+                  <RadioLabel>배송 거래</RadioLabel>
+                </SingleRadio>
+              </CategoryContentBox>
+            </SmallCategoryRadioBox>
 
-          <CategoryRadioBox>
-            <StyledLabel>거래 불가능한 경매 포함</StyledLabel>
-            <CategoryContentBox>
-              <SingleRadio>
-                <StyledRadio {...showAllControlProps('1')} />
-                <RadioLabel>포함</RadioLabel>
-              </SingleRadio>
-              <SingleRadio>
-                <StyledRadio {...showAllControlProps('2')} />
-                <RadioLabel>미포함</RadioLabel>
-              </SingleRadio>
-            </CategoryContentBox>
-          </CategoryRadioBox>
+            <SmallCategoryRadioBox>
+              <StyledLabel>거래 불가능한 경매 포함</StyledLabel>
+              <CategoryContentBox>
+                <SingleRadio>
+                  <StyledRadio {...showAllControlProps('1')} />
+                  <RadioLabel>포함</RadioLabel>
+                </SingleRadio>
+                <SingleRadio>
+                  <StyledRadio {...showAllControlProps('2')} />
+                  <RadioLabel>미포함</RadioLabel>
+                </SingleRadio>
+              </CategoryContentBox>
+            </SmallCategoryRadioBox>
+          </SmallCategoryWrapper>
 
           <ButtonContainer>
             <ResetButton onClick={resetFieldFunc}>필터 초기화</ResetButton>
