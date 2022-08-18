@@ -9,8 +9,9 @@ const ModalContainer = styled(Box)`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: 55rem;
-  height: 45rem;
+  width: 60%;
+  min-width: 35rem;
+  height: 35rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -20,7 +21,6 @@ const ModalContainer = styled(Box)`
 `;
 
 const DealSummarize = styled.p`
-  padding-bottom: 2rem;
   font-size: 1.6rem;
   font-weight: 600;
   color: ${(props) => props.theme.color_white};
@@ -31,7 +31,7 @@ const SummarizeContainer = styled.div`
   height: 80%;
   margin-bottom: 2rem;
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: auto;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
@@ -101,14 +101,16 @@ const OpponentItemImgContainer = styled.div`
 
 const ConfirmButton = styled.button`
   position: absolute;
-  width: 5rem;
-  height: 1.7rem;
+  width: 8rem;
+  height: 2.2rem;
   right: 8%;
-  bottom: 3%;
+  bottom: 4%;
   border: none;
   border-radius: 0.5rem;
-  color: ${(props) => props.theme.color_buttontext__ok};
+  font-size: 1.3rem;
+  font-weight: 600;
   background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const UserInfoDetailModal = ({ handleModal, isModalOpened, singleDeal }) => {
