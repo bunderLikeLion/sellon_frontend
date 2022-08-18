@@ -14,8 +14,6 @@ const Container = styled(Card)`
   flex-grow: 1;
   flex-basis: calc((100% - 6rem) / 4);
   max-width: calc((100% - 6rem) / 4);
-
-  height: 55%;
   border-radius: 1rem !important;
   cursor: pointer;
   border: 0.1rem solid transparent;
@@ -61,7 +59,7 @@ const CardTop = styled.div`
 `;
 
 const UnableCard = styled(EnabledOverlay)`
-  padding: 1rem;
+  padding: 1.6rem;
   font-size: 1.3rem;
   line-height: 1.8rem;
   box-shadow: 0 0 4px 7px ${(props) => props.theme.color_background__default} !important;
@@ -117,7 +115,7 @@ const InventoryItem = ({
         </CardTop>
         {status && (
           <UnableCard>
-            <p>이미 올라간 물품입니다.</p>
+            <p>이미 사용한 아이템입니다.</p>
           </UnableCard>
         )}
       </ItemContentContainer>
