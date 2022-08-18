@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import { useCategoryQuery } from 'queries/product';
+import toast from 'react-hot-toast';
 
 const ModalContainer = styled(Box)`
   position: relative;
@@ -197,6 +198,7 @@ const FilterModal = (props) => {
   };
 
   const resetFieldFunc = () => {
+    toast.success('필터 초기화 완료.');
     props.setFilterKeyword('');
     setFilterKeyword('');
     props.setCat('전체');
