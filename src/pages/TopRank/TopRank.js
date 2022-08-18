@@ -2,6 +2,7 @@ import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 import { useTodayCompletedQuery } from 'queries/dealing';
+import { usePopularAuctionsQuery } from 'queries/auction';
 
 // TODO: tooltip에 삼각형 색깔 다름.
 
@@ -74,6 +75,9 @@ const RightContainer = styled.div`
 const TopRank = () => {
   const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
     useTodayCompletedQuery();
+
+  const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
+    usePopularAuctionsQuery();
 
   return (
     <WrapContainer>

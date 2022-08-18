@@ -13,6 +13,10 @@ const Container = styled.div`
   width: 50%;
   height: 100%;
   padding: 1rem;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const TextareaContainer = styled.div`

@@ -11,6 +11,10 @@ const AccordionContainer = styled.div`
   clear: both;
   width: 100%;
   margin: 1rem;
+
+  @media screen and (max-width: 700px) {
+    margin: 0.5rem;
+  }
 `;
 
 const StyledAccordion = styled(Accordion)`
@@ -21,11 +25,14 @@ const StyledAccordion = styled(Accordion)`
 const StyledAccordionDetails = styled(AccordionDetails)`
   display: inline-flex;
   width: 100%;
-  height: 6rem;
+  height: fit-content;
 `;
 
 const StyledAccordionSummary = styled(AccordionSummary)`
-  height: 6rem;
+  height: fit-content;
+  & .MuiAccordionSummary-content {
+    height: fit-content;
+  }
 `;
 
 const BuyerImageContainer = styled.div`
@@ -59,18 +66,26 @@ const ItemListContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+const ItemDetailListContainer = styled(ItemListContainer)`
+  height: fit-content;
 `;
 
 const ItemImage = styled.div`
-  width: 15%;
+  width: 4rem;
   height: 4rem;
-  margin: 0.5rem 1rem;
   border-radius: 1rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-image: ${(props) => `url(${props.imgUrl})`};
+  @media screen and (max-width: 700px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 const EmptyBox = styled.div`
@@ -127,7 +142,7 @@ const BuyerSingleBox = ({ singleGroup }) => {
         </StyledAccordionSummary>
         {singleGroup && singleGroup?.products.length > 5 && (
           <StyledAccordionDetails>
-            <ItemListContainer>
+            <ItemDetailListContainer>
               {singleGroup?.products.map((singleProduct, idx) => {
                 if (idx > 4)
                   return (
@@ -138,7 +153,7 @@ const BuyerSingleBox = ({ singleGroup }) => {
                     />
                   );
               })}
-            </ItemListContainer>
+            </ItemDetailListContainer>
 
             <EmptyBox />
           </StyledAccordionDetails>
