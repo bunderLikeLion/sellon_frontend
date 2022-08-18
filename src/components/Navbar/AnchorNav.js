@@ -42,7 +42,7 @@ const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
         }}
       >
         <MenuItem onClick={closeNavMenu}>
-          <Link to="/about">
+          <Link to="/">
             <Typography textAlign="center">소개페이지</Typography>
           </Link>
         </MenuItem>
