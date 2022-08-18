@@ -8,6 +8,7 @@ const usePopularAuctionsQuery = () => {
     ['PopularAuctionList'],
     () => auctionRelatedAPI.getPopularAuctions(),
     {
+      refetchInterval: 1000 * 8,
       onError: (res) => {
         toast.dismiss();
         toast.error(errorMsgHandler(res));
