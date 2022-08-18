@@ -57,7 +57,6 @@ const CloseBtn = styled(CloseIcon)`
 
 const GuideContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 100%;
 `;
 
@@ -84,7 +83,7 @@ const SearchLabelContainer = styled.div`
 
 const TextContainer = styled.p`
   flex-basis: content;
-  padding-left: .8rem;
+  padding-left: 0.8rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -141,22 +140,27 @@ const StyledRadio = styled(Radio)`
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: end;
+  gap: 0.7rem;
 `;
 
 const ApplyButton = styled(Button)`
-  width: 6rem;
+  width: fit-content;
   height: 2rem;
+  line-height: 1.2rem !important;
+  padding: 1.1rem !important;
   border: none !important;
   border-radius: 10px !important;
   font-size: 1.2rem !important;
   color: ${(props) => props.theme.color_white} !important;
-  background: ${(props) => props.theme.color_button__ok};
+  background: ${(props) => props.theme.color_button__delete};
 `;
 
 const ResetButton = styled(Button)`
-  width: 8rem;
+  width: fit-content;
   height: 2rem;
+  line-height: 1.2rem !important;
+  padding: 1.1rem !important;
   border: none !important;
   border-radius: 10px !important;
   font-size: 1.2rem !important;
@@ -240,7 +244,6 @@ const FilterModal = (props) => {
             >
               필터 및 검색
             </Typography>
-            <ResetButton onClick={resetFieldFunc}>필터 초기화</ResetButton>
           </GuideContainer>
           <SearchLabelContainer>
             <TextContainer>상품명</TextContainer>
@@ -267,6 +270,7 @@ const FilterModal = (props) => {
           </CategoryRadioBox>
 
           <ButtonContainer>
+            <ResetButton onClick={resetFieldFunc}>필터 초기화</ResetButton>
             <ApplyButton
               variant="outlined"
               onClick={submitFilter}

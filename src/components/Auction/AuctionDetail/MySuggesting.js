@@ -15,146 +15,104 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  padding: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    padding: 1rem;
+  }
 `;
 
 const TopWrapper = styled.div`
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 2.7rem;
+  padding-bottom: 1rem;;
+  padding: 0rem 5rem 1rem 5rem;
+
+  @media screen and (max-width: 1000px) {
+    padding: 0rem 1rem 1rem 1rem;
+  }
 `;
 
 const BottomWrapper = styled.div`
-  display: inline-flex;
-  width: 65rem;
-  height: 8rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
 `;
 
-const GuideContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
-`;
+const GuideContainer = styled.div``;
 
 const GuideComment = styled.h1`
-  margin-left: 5rem;
   font-size: 1.2rem;
   font-weight: 400;
 `;
 
-const InventoryItemContainer = styled.div`
-  width: 9rem;
-  height: 9rem;
-  border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__third};
-`;
-
-const InventoryItem = styled(CardMedia)`
-  display: flex;
-  justify-content: center;
-  width: 9rem;
-  height: 7rem;
-  border-radius: 1rem;
-  background: #f1f500;
-`;
-
-const BeforeIcon = styled(NavigateBeforeIcon)`
-  font-size: 5rem !important;
-  cursor: pointer;
-`;
-
-const DisabledBeforeIcon = styled(BeforeIcon)`
-  font-size: 5rem !important;
-  cursor: not-allowed;
-  color: ${(props) => props.theme.color_background__third};
-`;
-
-const AfterIcon = styled(NavigateNextIcon)`
-  font-size: 5rem !important;
-  cursor: pointer;
-`;
-
-const DisabledAfterIcon = styled(AfterIcon)`
-  font-size: 5rem !important;
-  cursor: not-allowed;
-  color: ${(props) => props.theme.color_background__third};
-`;
-
-const SuggestionButton = styled.button`
-  position: relative;
-  top: 104%;
-  display: ${(props) => (props.isButtonOpened ? 'none' : 'relative')};
-  width: 45%;
-  height: 22%;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.7rem;
-  background: ${(props) => props.theme.color_button__ok};
-`;
-
-const ConfirmButtonContainer = styled.div`
-  position: relative;
-  top: 97%;
-  display: ${(props) => (props.isButtonOpened ? 'flex' : 'none')};
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 30%;
-`;
-
-const ConfirmButton = styled.button`
-  width: 40%;
-  height: 70%;
-  margin-top: 4%;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.7rem;
-  background: ${(props) => props.theme.color_button__ok};
-`;
-
-const DeleteButton = styled.button`
-  width: 40%;
-  height: 70%;
-  margin-top: 4%;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.7rem;
-  background: ${(props) => props.theme.color_button__delete};
-`;
-
 const AllInButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 5.8rem;
-  height: 1.7rem;
-  margin-right: 1rem;
-  color: ${(props) => props.theme.color_font__primary};
+  width: fit-content;
   font-size: 1rem;
   font-weight: 500;
   border: 0.1px transparent;
   border-radius: 0.5rem;
+  padding: 0.4rem 1rem;
+  color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_background__warning};
 `;
 
+
+const BeforeIcon = styled(NavigateBeforeIcon)`
+  font-size: 4rem !important;
+  cursor: pointer;
+
+  @media screen and (max-width: 1000px) {
+    font-size: 3rem !important;
+  }
+`;
+
+const DisabledBeforeIcon = styled(BeforeIcon)`
+  font-size: 4rem !important;
+
+  cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
+  @media screen and (max-width: 1000px) {
+    font-size: 3rem !important;
+  }
+`;
+
+const AfterIcon = styled(NavigateNextIcon)`
+  font-size: 4rem !important;
+
+  cursor: pointer;
+  @media screen and (max-width: 1000px) {
+    font-size: 3rem !important;
+  }
+`;
+
+const DisabledAfterIcon = styled(AfterIcon)`
+  font-size: 4rem !important;
+
+  cursor: not-allowed;
+  color: ${(props) => props.theme.color_background__third};
+
+  @media screen and (max-width: 1000px) {
+    font-size: 3rem !important;
+  }
+`;
+
 const PaginationBeforeIconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 2rem;
-  height: 8rem;
-  margin-right: 2rem;
+  flex: 0;
 `;
 
 const PaginationAfterIconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 2rem;
-  height: 8rem;
-  margin-left: 1.2rem;
+  flex: 0;
 `;
 
 const InventoryListContainer = styled.div`
-  width: 53rem;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem;
 `;
 
 const MySuggesting = () => {
