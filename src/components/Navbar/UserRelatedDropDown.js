@@ -84,12 +84,14 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
         onClose={closeUserMenu}
       >
         <MenuItem onClick={closeUserMenu}>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <IconButton>
-              <Avatar alt="user_avatar" src={user.avatar} />
-            </IconButton>
-            <Typography textAlign="center">{user?.username}</Typography>
-          </Stack>
+          <Link to="/mypage">
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <IconButton>
+                <Avatar alt="user_avatar" src={user.avatar} />
+              </IconButton>
+              <Typography textAlign="center">{user?.username}</Typography>
+            </Stack>
+          </Link>
         </MenuItem>
         <Underline />
         <MenuItem onClick={closeUserMenu}>
