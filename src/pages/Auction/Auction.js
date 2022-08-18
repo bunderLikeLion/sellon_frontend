@@ -8,16 +8,19 @@ import WrapContainer from 'layouts/WrapContainer';
 import { useState } from 'react';
 import FilterModal from 'components/Home/FilterModal';
 import useInput from 'hooks/useInput';
+import { StyledLink } from 'styles/StyledComponetStyles';
 import { Link } from 'react-router-dom';
 import { useTodayCompletedQuery } from 'queries/dealing';
 import { useAuctionsQuery, usePopularAuctionsQuery } from 'queries/auction';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import CardMedia from '@mui/material/CardMedia';
 import { Pagination } from '@mui/material';
+import Slider from 'react-slick';
 import AuctionSlider from 'components/Auction/AuctionSlider';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
+
 
 const Form = styled.div`
   width: 100%;
@@ -130,7 +133,7 @@ const AuctionListContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const AuctionFilterContainer = styled.div`
@@ -139,7 +142,7 @@ const AuctionFilterContainer = styled.div`
 `;
 
 const HomeGroundAuction = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   margin-right: 1rem;
   color: ${(props) => props.theme.color_font__primary};
@@ -153,6 +156,7 @@ const FilterButton = styled.button`
   background: transparent;
   border: 1px solid ${(props) => props.theme.color_border__hover__light};
   transition: all 0.5s ease;
+  outline:none;
 
   :hover {
     background: ${(props) => props.theme.color_background__success};
@@ -176,9 +180,9 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
-  height: 1.7rem;
-  display: flex;
-  align-items: center;
+height: 2.3rem;
+display: flex;
+align-items: center;
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
@@ -197,7 +201,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 0.3rem;
+  margin: 0.3rem 0 1rem 0;
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -288,8 +292,8 @@ const Auction = () => {
             >
               <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
-              <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
               <MenuItemBox value={'interest'}>관심순</MenuItemBox>
+              <MenuItemBox value={'oldest'}>과거순</MenuItemBox>
             </SelectBox>
           </FormControl>
         </AuctionListContainer>
