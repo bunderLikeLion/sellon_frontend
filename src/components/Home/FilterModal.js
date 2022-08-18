@@ -56,6 +56,8 @@ const CloseBtn = styled(CloseIcon)`
 `;
 
 const GuideContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 `;
 
@@ -73,7 +75,7 @@ const SearchLabelContainer = styled.div`
   justify-content: flex-start;
   padding: 1rem;
   gap: 1rem;
-  width: 100%;
+  width: 50%;
   height: 3.5rem;
   border: none;
   border-radius: 10px;
@@ -82,6 +84,7 @@ const SearchLabelContainer = styled.div`
 
 const TextContainer = styled.p`
   flex-basis: content;
+  padding-left: .8rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -145,6 +148,17 @@ const ApplyButton = styled(Button)`
   width: 6rem;
   height: 2rem;
   border: none !important;
+  border-radius: 10px !important;
+  font-size: 1.2rem !important;
+  color: ${(props) => props.theme.color_white} !important;
+  background: ${(props) => props.theme.color_button__ok};
+`;
+
+const ResetButton = styled(Button)`
+  width: 8rem;
+  height: 2rem;
+  border: none !important;
+  border-radius: 10px !important;
   font-size: 1.2rem !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_button__ok};
@@ -226,7 +240,7 @@ const FilterModal = (props) => {
             >
               필터 및 검색
             </Typography>
-            <button onClick={resetFieldFunc}>필터 초기화</button>
+            <ResetButton onClick={resetFieldFunc}>필터 초기화</ResetButton>
           </GuideContainer>
           <SearchLabelContainer>
             <TextContainer>상품명</TextContainer>

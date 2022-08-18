@@ -33,7 +33,7 @@ const StyledAccordionDetails = styled(AccordionDetails)`
 `;
 
 const StyledAccordionSummary = styled(AccordionSummary)`
-  height: 3rem;
+  height: 6rem;
   min-height: 0 !important;
 
   & .MuiAccordionSummary-content {
