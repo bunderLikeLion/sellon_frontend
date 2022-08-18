@@ -132,7 +132,7 @@ const FilterModal = (props) => {
     resetAreARestriction,
     setAreaRestriction,
   ] = useInput(props.areaRestriction);
-  const [cat, handleCat, resetCat] = useInput(props.cat);
+  // const [cat, handleCat, resetCat] = useInput(props.cat);
 
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
@@ -147,15 +147,15 @@ const FilterModal = (props) => {
   });
 
   const catControlProps = (item) => ({
-    checked: cat === item,
-    onChange: handleCat,
+    checked: props.cat === item,
+    onChange: props.handleCat,
     value: item,
     name: 'color-radio-button-demo',
     inputProps: { 'aria-label': item },
   });
 
   const closeModalFunc = () => {
-    resetCat();
+    // resetCat();
     resetHandleFilterKeyword();
     setAreaRestriction('1');
     props.handleFilterModal();
@@ -164,7 +164,7 @@ const FilterModal = (props) => {
   const submitFilter = () => {
     props.setAreaRestriction(areaRestriction);
     props.setFilterKeyword(filterKeyword);
-    props.setCat(cat);
+    // props.resetCat();
     props.handleFilterModal();
   };
 
@@ -196,6 +196,10 @@ const FilterModal = (props) => {
         <CategoryRadioBox>
           <StyledLabel>상품 카테고리</StyledLabel>
           <CategoryContentBox>
+            <SingleRadio>
+              <StyledRadio {...catControlProps('전체')} />
+              <RadioLabel>전체</RadioLabel>
+            </SingleRadio>
             {catFetched &&
               catData.map((singleCat) => {
                 return (

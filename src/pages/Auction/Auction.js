@@ -175,9 +175,9 @@ const Container = styled.div`
 `;
 
 const SelectBox = styled(Select)`
-height: 1.7rem;
-display: flex;
-align-items: center;
+  height: 1.7rem;
+  display: flex;
+  align-items: center;
   color: ${(props) => props.theme.color_font__primary} !important;
   background: #3a335c !important;
 `;
@@ -215,7 +215,7 @@ const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
-  const [cat, setCat] = useState('');
+  const [cat, handleCat, resetCat] = useInput('전체');
   const [sort, handleSort] = useInput('recent');
   const [pageNum, setPageNum] = useState(1);
 
@@ -224,7 +224,8 @@ const Auction = () => {
 
   const { data: auctionList, isSuccess: auctionListFetched } = useAuctionsQuery(
     sort,
-    pageNum
+    pageNum,
+    cat
   );
 
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
@@ -269,9 +270,9 @@ const Auction = () => {
               필터 및 검색
             </FilterButton>
           </AuctionFilterContainer>
-          <FormControl sx={{ m: 1, minWidth: 120, maxHeight: 30}} size="small">
+          <FormControl sx={{ m: 1, minWidth: 120, maxHeight: 30 }} size="small">
             {/*<InputLabelBox id="demo-select-small">최신순</InputLabelBox>*/}
-            <SelectBox 
+            <SelectBox
               labelId="demo-select-small"
               id="demo-select-small"
               value={sort}
@@ -283,7 +284,6 @@ const Auction = () => {
                   },
                 },
               }}
-              
             >
               <MenuItemBox value={'recent'}>최신순</MenuItemBox>
               <MenuItemBox value={'popular'}>인기순</MenuItemBox>
@@ -325,7 +325,8 @@ const Auction = () => {
         areaRestriction={areaRestriction}
         setAreaRestriction={setAreaRestriction}
         cat={cat}
-        setCat={setCat}
+        handleCat={handleCat}
+        resetCat={resetCat}
       />
     </WrapContainer>
   );
