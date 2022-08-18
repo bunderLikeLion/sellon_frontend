@@ -23,6 +23,7 @@ import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 const Form = styled.div`
   width: 100%;
+  padding-bottom: 2rem;
 `;
 
 const UserPic = styled.div`
