@@ -150,15 +150,19 @@ const ApplyButton = styled(Button)`
 `;
 
 const FilterModal = (props) => {
-  const [filterKeyword, handleFilterKeyword, resetHandleFilterKeyword] =
-    useInput(props.filterKeyword);
   const [
     areaRestriction,
     handleAreaRestriction,
     resetAreARestriction,
     setAreaRestriction,
   ] = useInput(props.areaRestriction);
-  const [cat, handleCat, resetCat] = useInput(props.cat);
+  const [
+    filterKeyword,
+    handleFilterKeyword,
+    resetHandleFilterKeyword,
+    setFilterKeyword,
+  ] = useInput(props.filterKeyword);
+  const [cat, handleCat, resetCat, setCat] = useInput(props.cat);
 
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
@@ -182,7 +186,7 @@ const FilterModal = (props) => {
 
   const closeModalFunc = () => {
     // resetCat();
-    resetHandleFilterKeyword();
+    // resetHandleFilterKeyword();
     setAreaRestriction('1');
     props.handleFilterModal();
   };
@@ -192,6 +196,14 @@ const FilterModal = (props) => {
     props.setFilterKeyword(filterKeyword);
     props.setCat(cat);
     // resetCat();
+    props.handleFilterModal();
+  };
+
+  const resetFieldFunc = () => {
+    props.setFilterKeyword('');
+    setFilterKeyword('');
+    props.setCat('전체');
+    setCat('전체');
     props.handleFilterModal();
   };
 
@@ -215,10 +227,11 @@ const FilterModal = (props) => {
             >
               필터 및 검색
             </Typography>
+            <button onClick={resetFieldFunc}>필터 초기화</button>
           </GuideContainer>
           <SearchLabelContainer>
             <TextContainer>상품명</TextContainer>
-            <InputArea></InputArea>
+            <InputArea value={filterKeyword} onChange={handleFilterKeyword} />
           </SearchLabelContainer>
 
           <CategoryRadioBox>
