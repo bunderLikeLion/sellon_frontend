@@ -60,7 +60,7 @@ const RankerContainerLeft = styled.div`
 `;
 
 const RankerNumber = styled.p`
-  margin: auto 1rem auto 0.8rem;
+  margin: ${props => props.isLast ? 'auto 1rem auto 0.45rem' : 'auto 1rem auto 0.8rem'};
 `;
 
 const RankerImg = styled(CardMedia)`
@@ -109,7 +109,7 @@ const Ranking = () => {
               return (
                 <RankerItem>
                   <RankerContainerLeft>
-                    <RankerNumber>{index + 1}</RankerNumber>
+                    <RankerNumber isLast={index === RankingData.length - 1 && true} >{index + 1}</RankerNumber>
                     <RankerImg image={item.avatar} />
                     <RankerNickname>{item.username}</RankerNickname>
                   </RankerContainerLeft>

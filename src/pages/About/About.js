@@ -268,6 +268,7 @@ const StyledAccordion = styled(Accordion)`
   background: ${(props) => props.theme.color_background__primary} !important;
   color: ${(props) => props.theme.color_white} !important;
   padding: .5rem !important;
+  border: 1px solid ${(props) => props.theme.color_border__topleft};
   svg {
     fill: ${(props) => props.theme.color_white} !important;
   }
@@ -283,7 +284,11 @@ const AccordionTitle = styled(Typography)`
 `;
 
 const AccordionContent = styled(Typography)`
-  padding: 2rem;
+  padding: 1rem 1rem 1.5rem 2rem;
+`;
+
+const AccordionContentFirst = styled(Typography)`
+  padding: 1rem;
 `;
 
 const ParticipantBanner = styled.div`
@@ -459,10 +464,10 @@ const About = () => {
               </AccordionTitle>
             </StyledAccordionSummary>
             <AccordionDetails>
-              <AccordionContent>
+              <AccordionContentFirst>
                 1. 경매장 페이지 우상단의 경매 올리기로 경매 작성 페이지로 가주세요.<br></br>
                 2. 경매 열기 페이지의 양식을 작성한 후 경매를 발행해주세요. 😎
-              </AccordionContent>
+              </AccordionContentFirst>
             </AccordionDetails>
           </StyledAccordion>
 
@@ -478,7 +483,7 @@ const About = () => {
             </StyledAccordionSummary>
             <AccordionContent>
               <Typography>
-                개인페이지 &gt; 진행중인 거래 탭에 참여자와 연락할 수 있는 채팅 기능이 마련되어져 있어요. 채팅으로 참여자와 편하게 연락하세요!😉
+                개인페이지 &gt; 진행중인 거래 탭에 참여자와 연락할 수 있는 채팅 기능이 마련되어져 있어요. <br /> 채팅으로 참여자와 편하게 연락하세요!😉
               </Typography>
             </AccordionContent>
           </StyledAccordion>

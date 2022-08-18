@@ -15,6 +15,8 @@ import useInput from 'hooks/useInput';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
+import toast from 'react-hot-toast';
+import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
 
 const Container = styled.div`
   height: 100%;
@@ -144,7 +146,7 @@ const StyledFormControlLabel = styled(FormControlLabel)`
   @media screen and (max-width: 700px) {
     margin-right: 0;
   }
-`
+`;
 
 const Auctioneer = () => {
   const navigate = useNavigate();
@@ -179,6 +181,10 @@ const Auctioneer = () => {
     setPageNum(value);
   };
 
+  const submitOnFinishedAuctionFunc = () => {
+    toast.error('해당 경매는 이미 선택이 끝난 경매입니다.');
+  };
+
   useEffect(() => {
     if (singleAuctionData?.owner?.id !== user?.id) navigate('/auction');
   }, [user, singleAuctionData]);
@@ -205,7 +211,15 @@ const Auctioneer = () => {
               <SmallText>총 {productGroups?.total_count}명</SmallText>
             </TextContainer>
 
-            <SelectBtn onClick={SelecthandleModal}>선택</SelectBtn>
+            <SelectBtn
+              onClick={
+                isAuctionFinishedHandler(singleAuctionData?.end_at)
+                  ? submitOnFinishedAuctionFunc
+                  : SelecthandleModal
+              }
+            >
+              선택
+            </SelectBtn>
             <DiscardBtn onClick={DiscardhandleModal}>폐기</DiscardBtn>
             <BuyerList>
               {productGroups?.total_count > 0 ? (

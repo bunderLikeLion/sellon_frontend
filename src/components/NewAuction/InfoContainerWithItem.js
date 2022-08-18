@@ -84,7 +84,18 @@ const ItemDetailContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 48%;
+  width: 38%;
+  height: 3rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  background: ${(props) => props.theme.color_background__primary};
+`;
+
+const ItemCategoryContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 53%;
   height: 3rem;
   padding: 0 1rem;
   border-radius: 1rem;
@@ -178,12 +189,12 @@ const InfoContainerWithItem = ({ selectedItem }) => {
               {statusHandler(selectedItem?.quality)}
             </ItemConditionDetail>
           </ItemDetailContainer>
-          <ItemDetailContainer>
+          <ItemCategoryContainer>
             <ItemCategory>카테고리</ItemCategory>
             <ItemConditionDetail>
               {selectedItem?.product_category?.name}
             </ItemConditionDetail>
-          </ItemDetailContainer>
+          </ItemCategoryContainer>
         </ItemConditionCategoryContainer>
 
         <ItemInfoContainer>{selectedItem?.description}</ItemInfoContainer>

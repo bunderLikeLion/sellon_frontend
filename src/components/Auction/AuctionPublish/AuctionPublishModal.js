@@ -15,7 +15,7 @@ const ModalContainer = styled(Box)`
   align-items: center;
   width: 60%;
   max-width: 1400px;
-  height: fit-content;
+  height: 60%;
   padding: 2rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);

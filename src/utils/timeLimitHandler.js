@@ -7,21 +7,21 @@ const timeLimitHandler = (time, isEnded) => {
 
   if (res === 0) {
     return '종료';
-  } else if (0 < res <= 24) {
+  } else if (0 < res && res <= 24) {
     return '당일 종료';
-  } else if (24 < res <= 48) {
+  } else if (24 < res && res <= 48) {
     return 'D - 2';
-  } else if (48 < res <= 72) {
+  } else if (48 < res && res <= 72) {
     return 'D - 3';
-  } else if (72 < res <= 96) {
+  } else if (72 < res && res <= 96) {
     return 'D - 4';
-  } else if (96 < res <= 120) {
+  } else if (96 < res && res <= 120) {
     return 'D - 5';
-  } else if (120 < res <= 148) {
+  } else if (120 < res && res <= 148) {
     return 'D - 6';
-  } else if (148 < res <= 172) {
+  } else if (148 < res && res <= 172) {
     return 'D - 7';
-  } else if (172 < res <= 196) {
+  } else if (172 < res && res <= 196) {
     return 'D - 8';
   }
 };
