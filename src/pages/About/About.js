@@ -268,6 +268,7 @@ const StyledAccordion = styled(Accordion)`
   background: ${(props) => props.theme.color_background__primary} !important;
   color: ${(props) => props.theme.color_white} !important;
   padding: .5rem !important;
+  border: 1px solid ${(props) => props.theme.color_border__topleft};
   svg {
     fill: ${(props) => props.theme.color_white} !important;
   }
@@ -283,7 +284,7 @@ const AccordionTitle = styled(Typography)`
 `;
 
 const AccordionContent = styled(Typography)`
-  padding: 2rem;
+  padding: 0 1rem 1rem 2rem;
 `;
 
 const ParticipantBanner = styled.div`
