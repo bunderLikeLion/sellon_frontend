@@ -17,6 +17,7 @@ import { Pagination } from '@mui/material';
 import AuctionSlider from 'components/Auction/AuctionSlider';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 const Form = styled.div`
   width: 100%;
@@ -293,29 +294,31 @@ const Auction = () => {
           </FormControl>
         </AuctionListContainer>
 
-        <Container>
-          {auctionListFetched && (
-            <>
-              {auctionList?.results.map((singleAuction) => {
-                return (
-                  <HomeAuctionListCard
-                    auctionData={singleAuction}
-                    isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
-                    isInterested={singleAuction?.is_interested}
-                  />
-                );
-              })}
-            </>
-          )}
-          {/*Pagination*/}
-          <PaginationContainer>
-            <StyledPagination
-              count={auctionList?.total_pages}
-              page={pageNum}
-              onChange={handleChange}
-            />
-          </PaginationContainer>
-        </Container>
+        {auctionListFetched &&
+          (auctionList?.results?.length > 0 ? (
+            <Container>
+                  <>
+                    {auctionList?.results.map((singleAuction) => {
+                      return (
+                        <HomeAuctionListCard
+                          auctionData={singleAuction}
+                          isFinished={isAuctionFinishedHandler(singleAuction?.end_at)}
+                          isInterested={singleAuction?.is_interested}
+                        />
+                      );
+                    })}
+                  </>
+              {/*Pagination*/}
+              <PaginationContainer>
+                <StyledPagination
+                  count={auctionList?.total_pages}
+                  page={pageNum}
+                  onChange={handleChange}
+                />
+              </PaginationContainer>
+            </Container>
+          ) : <EmptyListPlaceHolder message="해당 조건의 경매장이 열리지 않았습니다. 😅" padding="4rem 2rem" />
+        )}
       </Form>
       <FilterModal
         isFilterModalOpened={isFilterModalOpened}
