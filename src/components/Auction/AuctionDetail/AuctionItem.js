@@ -11,6 +11,7 @@ import timeLimitHandler from 'utils/timeLimitHandler';
 import { useState } from 'react';
 import AuctionDetailModal from './AuctionDetailModal';
 import { useParams } from 'react-router-dom';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 
 const Container = styled.div`
   position: relative;
@@ -150,7 +151,9 @@ const AuctionItem = (props) => {
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
   const pressHeartIconFunc = (isInterested) => {
-    isInterested ? deleteInterestedAuction(relatedAuctionId) : createInterestedAuction(relatedAuctionId);
+    isInterested
+      ? deleteInterestedAuction(relatedAuctionId)
+      : createInterestedAuction(relatedAuctionId);
   };
 
   return (
@@ -165,7 +168,9 @@ const AuctionItem = (props) => {
         <InterestedButton>
           <StyledFavoriteBorderIcon
             isInterested={props?.singleAuctionData?.is_interested}
-            onClick={() => pressHeartIconFunc(props?.singleAuctionData?.is_interested)}
+            onClick={() =>
+              pressHeartIconFunc(props?.singleAuctionData?.is_interested)
+            }
           />
         </InterestedButton>
 
@@ -179,7 +184,9 @@ const AuctionItem = (props) => {
             {dealingTypeHandler(props?.singleAuctionData?.dealing_type)}
           </ExchangeWay>
           <ItemDuration>
-            {timeLimitHandler(props?.singleAuctionData?.end_at)}
+            {isAuctionFinishedHandler(props?.singleAuctionData?.end_at)
+              ? '종료'
+              : timeLimitHandler(props?.singleAuctionData?.end_at)}
           </ItemDuration>
         </AuctionSubDescriptionContainer>
       </ItemImgContainer>
