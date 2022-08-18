@@ -147,7 +147,7 @@ const ConfirmButton = styled.button`
 `;
 
 const CancelButton = styled.button`
-position: absolute;
+  position: absolute;
   width: 5rem;
   height: 1.7rem;
   right: 19%;
@@ -176,6 +176,7 @@ const UserEvaluationModal = ({
   handleEvaluationModal,
   isEvaluationModalOpened,
   selectedDeal,
+  opponent,
 }) => {
   const [rateValue, setRateValue] = useState(3);
 
@@ -201,7 +202,7 @@ const UserEvaluationModal = ({
           </EvaluateTopContainer>
           <EvaluateBottomContainer>
             <UserEvaluate>
-              {selectedDeal?.auction?.owner?.username}님과의 거래를 평가하기.
+              {opponent?.username}님과의 거래를 평가하기.
             </UserEvaluate>
             <StarRatingContainer>
               <StarRating component="fieldset" mb={0} borderColor="transparent">

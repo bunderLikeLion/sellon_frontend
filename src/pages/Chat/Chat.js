@@ -152,6 +152,7 @@ const Chat = () => {
         handleEvaluationModal={handleEvaluationModal}
         isEvaluationModalOpened={isEvaluationModalOpened}
         selectedDeal={selectedDeal}
+        opponent={opponent}
       />
     </WrapContainer>
   );
