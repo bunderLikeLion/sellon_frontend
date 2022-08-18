@@ -262,12 +262,17 @@ const ItemTextarea = styled.textarea`
 `;
 
 const AddItemModal = ({ handleModal, isModalOpened }) => {
+  const { data: catData, isSuccess: catFetched } = useCategoryQuery([
+    'formCategories',
+  ]);
   const editorRef = useRef();
   const [thumbnailPic, setThumbNailPic] = useState([]);
   const [extraPics, setExtraPics] = useState([]);
   const [itemName, handleItemName, itemNameReset] = useInput('');
-  const [status, handleStatus, statusReset] = useInput('');
-  const [category, handleCategory, categoryReset] = useInput('');
+  const [status, handleStatus, statusReset] = useInput('3');
+  const [category, handleCategory, categoryReset] = useInput(
+    `${catFetched && catData[0]?.id.toString()}`
+  );
   const [quantity, handleQuantity, quantityReset] = useInput('1');
   const [itemDesc, handleItemDesc] = useInput('');
 
@@ -280,10 +285,6 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
     setExtraPics([]);
     handleModal();
   };
-
-  const { data: catData, isSuccess: catFetched } = useCategoryQuery([
-    'formCategories',
-  ]);
 
   const { mutate: postSubmit, isSuccess: createdSuccessfully } =
     useCreateProductMutation();
