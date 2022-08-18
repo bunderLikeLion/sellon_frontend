@@ -36,6 +36,7 @@ const ModalContainer = styled(Box)`
 
 const ContentContainer = styled.div`
   width: 80%;
+  height: 100%;
 `;
 
 const TextContainer = styled.div`
@@ -66,7 +67,8 @@ const InventoryContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: 90%;
+  height: 100%;
+  overflow: auto;
 `;
 
 const ItemListContainer = styled.div`
@@ -82,7 +84,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 2%;
+  margin-top: 2rem;
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -95,6 +97,11 @@ const StyledPagination = styled(Pagination)`
     }
   }
 `;
+
+const OverFlowHiddenContainer = styled.div`
+  height: 80%;
+  overflow: hidden;
+`
 
 const AuctionPublishModal = (props) => {
   const { data: myProducts, isSuccess } = useMyProductsQuery(1, 30);
@@ -112,31 +119,33 @@ const AuctionPublishModal = (props) => {
             <Text>인벤토리</Text>
             <ValidationCancelButton onClick={props.handleModal} />
           </TextContainer>
-          <InventoryContainer>
-            <ItemListContainer>
-              {isSuccess &&
-                myProducts.results
-                  .filter(
-                    (singleItem) =>
-                      singleItem.status !== 'dealing' ||
-                      singleItem.status !== 'dealed'
-                  )
-                  .map((singleItem) => {
-                    return (
-                      <InventoryItem
-                        key={singleItem.id}
-                        singleItem={singleItem}
-                        setSelectedItem={props.setSelectedItem}
-                        handleModal={props.handleModal}
-                        status={singleItem.status === 'in_auction'}
-                      />
-                    );
-                  })}
-            </ItemListContainer>
-          <PaginationContainer>
-            <StyledPagination />
-          </PaginationContainer>
-          </InventoryContainer>
+          <OverFlowHiddenContainer>
+            <InventoryContainer>
+              <ItemListContainer>
+                {isSuccess &&
+                  myProducts.results
+                    .filter(
+                      (singleItem) =>
+                        singleItem.status !== 'dealing' ||
+                        singleItem.status !== 'dealed'
+                    )
+                    .map((singleItem) => {
+                      return (
+                        <InventoryItem
+                          key={singleItem.id}
+                          singleItem={singleItem}
+                          setSelectedItem={props.setSelectedItem}
+                          handleModal={props.handleModal}
+                          status={singleItem.status === 'in_auction'}
+                        />
+                      );
+                    })}
+              </ItemListContainer>
+              <PaginationContainer>
+                <StyledPagination />
+              </PaginationContainer>
+            </InventoryContainer>
+          </OverFlowHiddenContainer>
         </ContentContainer>
       </ModalContainer>
     </Modal>

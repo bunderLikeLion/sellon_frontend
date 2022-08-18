@@ -23,7 +23,7 @@ const CardContainer = styled(Card)`
   border: 1.3px solid transparent;
 
   :hover {
-    border: 1.3px solid ${(props) => props.theme.color_border__hover__light};
+    border: 1.3px solid ${(props) => props.ishovered ? props.theme.color_border__hover__light : 'transparent'} !important;
   }
 
   @media screen and (max-width: 1300px) {
@@ -124,10 +124,9 @@ const PeriodLabel = styled.span`
 
 const InterestedButton = styled.button`
   position: absolute !important;
+  top: 1rem;
   right: 1rem;
-  margin-top: 0.5rem !important;
   border-radius: 50rem !important;
-  font-size: 2rem !important;
   background: none;
   border: none;
   color: ${(props) => props.theme.color_white};
@@ -166,10 +165,7 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   }
 `;
 
-const OverLayIconBox = styled.div`
-  position: relative;
-  height: 50%;
-`;
+const OverLayIconBox = styled.div``;
 
 const FinishedMessage = styled.p`
   font-size: 1.3rem;
@@ -221,7 +217,7 @@ const AuctionListItem = ({
   };
 
   return (
-    <CardContainer>
+    <CardContainer ishovered={!isFinished}>
       {/* TODO: 관심 경매 API 연결하기 */}
       {user && displayInterestedBtn && !isFinished && (
         <InterestedButton>
