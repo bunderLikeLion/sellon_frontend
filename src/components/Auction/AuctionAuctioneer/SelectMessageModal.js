@@ -11,44 +11,75 @@ const ModalContainer = styled(Box)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50%;
+  width: 40rem;
   height: 13rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__primary};
+
+  @media screen and (max-width: 1300px) {
+    max-width: 40rem;
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    max-width: 30rem;
+    width: 70%;
+  }
+`;
+
+const InsideBox = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
 `;
 
 const Text = styled.h1`
-  margin-top: 10%;
+height: fit-content;
+margin: 1rem 0;
   font-weight: 600;
   font-size: 1.8rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
-const ValidationButton = styled.button`
-  position: absolute;
-  left: 32%;
-  bottom: 10%;
-  width: 15%;
-  height: 15%;
-  border: none;
-  border-radius: 0.5rem;
+const SmallText = styled.div`
+height: fit-content;
   font-size: 1rem;
-  font-weight: 600;
+  line-height: 1.4rem;
+  white-space: pre-wrap;
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const ButtonContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+`;
+
+const ValidationButton = styled.button`
+width: 25%;
+height: 2.3rem;
+margin: 1rem;
+border: none;
+border-radius: 0.5rem;
+font-size: 1rem;
+font-weight: 600;
   color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_background__success};
 `;
 
 const ValidationCancelButton = styled.button`
-  position: absolute;
-  right: 32%;
-  bottom: 10%;
-  width: 15%;
-  height: 15%;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+width: 25%;
+height: 2.3rem;
+margin: 1rem;
+border: none;
+border-radius: 0.5rem;
+font-size: 1rem;
+font-weight: 600;
   color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_font__disabled};
 `;
@@ -69,8 +100,11 @@ const SelectMessageModal = ({
       aria-describedby="modal-modal-description"
     >
       <ModalContainer>
+        <InsideBox>
         <Text>정말 선택하시겠습니까?</Text>
-        <ValidationButton
+        <SmallText>선택한 참여자와 진행중인 거래 단계로 넘어갑니다.</SmallText>
+          <ButtonContainer>
+          <ValidationButton
           onClick={() => {
             createDealing({
               auction_id: auctionRelatedId,
@@ -83,6 +117,10 @@ const SelectMessageModal = ({
         <ValidationCancelButton onClick={handleModal}>
           취소
         </ValidationCancelButton>
+        </ButtonContainer>
+        
+        </InsideBox>
+      
       </ModalContainer>
     </Modal>
   );
