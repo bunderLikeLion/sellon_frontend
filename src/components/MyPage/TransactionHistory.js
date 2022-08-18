@@ -18,6 +18,7 @@ import { useMyProductsQuery } from 'queries/product';
 import { useDealingHistoryQuery } from 'queries/dealing';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 import { useRatingQuery, useDealingCountQuery } from 'queries/user';
+import dateFormatter from '../../utils/dateFormatter';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
@@ -377,9 +378,7 @@ const TransactionHistory = () => {
 
                           <SummaryParticipantsWrapper>
                             <SummaryUploadDate>
-                              {historyData.created_at
-                                .split('T')[0]
-                                .replaceAll('-', '.')}
+                              {dateFormatter(historyData.created_at)}
                             </SummaryUploadDate>
                             <SummaryParticipantcontainer>
                               <SummaryParticipantIcon color="secondary" />

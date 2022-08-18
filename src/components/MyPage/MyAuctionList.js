@@ -6,6 +6,7 @@ import AuctionListItem from 'components/Shared/AuctionListItem';
 import { useMyAuctionQuery } from 'queries/auction';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
+import dateFormatter from '../../utils/dateFormatter';
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -53,7 +54,7 @@ const MyAuctionList = () => {
                 title={auction.title}
                 thumbnailUrl={auction.product?.thumbnail?.file}
                 participantCount={auction.product_groups_count}
-                startAt={auction.created_at.split('T')[0].replaceAll('-', '.')}
+                startAt={dateFormatter(auction.created_at)}
                 period={timeLimitHandler(auction.end_at)}
                 linkTo={`/auctioneer/${auction.id}/${auction.product.id}`}
                 linkCondition={!isAuctionFinishedHandler(auction.end_at)}
