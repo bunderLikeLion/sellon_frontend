@@ -91,6 +91,7 @@ const ItemContentContainer = styled.div`
 const ItemNameContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
 `;
 
 const ItemName = styled.h1`

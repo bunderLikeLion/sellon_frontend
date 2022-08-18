@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import MySuggested from 'components/Auction/AuctionDetail/MySuggested';
 
 const Container = styled.div`
-  margin-top: 1rem;
+  margin-top: 2rem;
   width: 100%;
   overflow-y: hidden;
   display: flex;
