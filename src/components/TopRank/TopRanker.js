@@ -59,13 +59,15 @@ const TopDealerUserContainer = styled.div`
 const TopDealerUser = styled.p`
   margin-right: 0.5rem;
   font-size: 1.2rem;
-  line-height: 1.2rem;
   color: ${(props) => props.theme.color_font__primary};
+  vertical-align: middle;
+  display: inline-block;
 `;
 
 const TopDealCount = styled.p`
   font-size: 0.8rem;
-  line-height: 1.2rem;
+  vertical-align: middle;
+  display: inline-block;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -120,13 +122,15 @@ const MonthlyUserContainer = styled.div`
 const MonthlyChampionUser = styled.p`
   margin-right: 0.5rem;
   font-size: 1.2rem;
-  line-height: 1.2rem;
+  vertical-align: middle;
+  display: inline-block;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const MonthlyChampionDealCount = styled.p`
   font-size: 0.8rem;
-  line-height: 1.2rem;
+  vertical-align: middle;
+  display: inline-block;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
