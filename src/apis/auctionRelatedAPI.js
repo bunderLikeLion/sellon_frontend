@@ -20,6 +20,7 @@ const auctionRelatedAPI = {
           page: pageNum,
           product__product_category_id: cat === '전체' ? null : cat,
           search: filterKeyword,
+          dealing_type: 'direct',
         },
       })
       .then((res) => res.data);

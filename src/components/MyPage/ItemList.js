@@ -7,7 +7,6 @@ import { Pagination } from '@mui/material';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
-
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -86,7 +85,7 @@ const ItemList = () => {
   const [pageNum, setPageNum] = useState(1);
 
   const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
+    useMyProductsQuery(pageNum, 12);
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
@@ -97,9 +96,7 @@ const ItemList = () => {
   return (
     <ItemListContainer>
       <TopContainer>
-        <CountText>
-          총 {myProductsData?.total_count}개
-        </CountText>
+        <CountText>총 {myProductsData?.total_count}개</CountText>
         <AddProductItemButton onClick={handleModal}>
           <PlusBtn />
           아이템 추가

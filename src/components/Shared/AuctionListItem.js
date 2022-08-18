@@ -249,6 +249,18 @@ const AuctionListItem = ({
         </CardFooter>
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
+        {displayInterestedBtn && (
+          <OverLayIconBox>
+            {user && (
+              <InterestedButton>
+                <StyledFavoriteBorderIcon
+                  isInterested={isInterested}
+                  onClick={() => pressHeartIconFunc(isInterested)}
+                />
+              </InterestedButton>
+            )}
+          </OverLayIconBox>
+        )}
         <FinishedMessage>종료된 경매입니다.</FinishedMessage>
       </FinishedCard>
     </CardContainer>

@@ -10,7 +10,6 @@ import { useForm } from 'react-hook-form';
 import registerValidation from 'validations/registerValidation';
 import { Link } from 'react-router-dom';
 
-
 const AccordionContainer = styled.div`
   clear: both;
   width: 95%;
@@ -142,7 +141,7 @@ const ChangeItemTextarea = ({ givenDesc, editSingleField, imgToLeft }) => {
         <StyledAccordionSummary>
           <SubHeader>상세정보</SubHeader>
           <OriginalInfo>{givenDesc}</OriginalInfo>
-          {isShown && (
+          {!isShown && (
             <ModifyBtn onClick={handleClick}>상세정보 변경</ModifyBtn>
           )}
         </StyledAccordionSummary>
