@@ -44,7 +44,11 @@ const BestAuctionContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: fit-content;
   margin: 2rem auto 5rem auto;
+  @media screen and (max-width: 700px) {
+    margin: 2rem auto 1rem auto;
+  }
 `;
 
 const BestAuctionTitle = styled.div`
