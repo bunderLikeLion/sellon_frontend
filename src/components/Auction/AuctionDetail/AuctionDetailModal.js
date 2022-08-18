@@ -21,7 +21,7 @@ const ModalContainer = styled(Box)`
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
-  overflow-y: scroll;
+  overflow-y: auto;
 
   &:focus-visible {
     outline: none;

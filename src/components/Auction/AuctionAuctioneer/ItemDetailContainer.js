@@ -20,7 +20,7 @@ const TextareaContainer = styled.div`
 `;
 
 const AuctionInfoContainer = styled.div`
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   height: 12rem;
   margin-top: 1rem;

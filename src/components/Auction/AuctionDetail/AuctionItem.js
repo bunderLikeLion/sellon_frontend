@@ -119,7 +119,7 @@ const ItemDescriptionContainer = styled.div`
   @media (min-height: 1000px) and (max-height: 1200px) {
     height: ${(props) => (props.isInventoryOpened ? '44vh' : '24vh')};
   }
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const ItemDescription = styled.p`

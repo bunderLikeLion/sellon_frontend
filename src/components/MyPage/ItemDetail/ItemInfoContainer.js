@@ -98,7 +98,7 @@ const ItemDescriptionContainer = styled.div`
   padding: 1rem 2rem;
   border-radius: 0.6rem;
   line-height: 1.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   background: ${(props) => props.theme.color_background__primary};
   .toastui-editor-contents p {
     color: ${(props) => props.theme.color_white};

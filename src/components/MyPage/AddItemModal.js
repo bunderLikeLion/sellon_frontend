@@ -21,7 +21,7 @@ const ModalContainer = styled(Box)`
   max-width: 60%;
   height: 80%;
   padding: 3rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__default};

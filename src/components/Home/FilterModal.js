@@ -18,7 +18,8 @@ const ModalContainer = styled(Box)`
   padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
-  overflow-y: scroll;
+  overflow-y: auto;
+
   color: ${(props) => props.theme.color_white};
   background: ${(props) => props.theme.color_background__default};
 

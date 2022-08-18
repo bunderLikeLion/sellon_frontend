@@ -140,7 +140,8 @@ const ItemInfoContainer = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+
   background: ${(props) => props.theme.color_background__primary};
   color: ${(props) => props.theme.color_font__secondary};
 
