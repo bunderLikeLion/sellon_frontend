@@ -37,16 +37,12 @@ const StyledAccordionSummary = styled(AccordionSummary)`
     align-items: center;
   }
 `;
-const SubHeader = styled.div`
-  width: 9rem;
-`;
 
 const OriginalInfo = styled(CardMedia)`
   margin-left: 1rem;
   padding-left: 1rem;
   width: 4rem;
   height: 4rem;
-  background: red;
 `;
 
 const ModifyBtn = styled.button`
@@ -88,16 +84,14 @@ const CancelButton = styled.button`
   background: ${(props) => props.theme.color_button__delete};
 `;
 
-const InsideContainer = styled.div`
-  display: flex;
-  justify-content: flex-start !important;
-  align-items: center;
-  width: 100%;
+const SubHeader = styled.div`
+  width: 9rem;
 `;
 
-const NewMainImg = styled(ThumbnailImageDragDrop)`
+const InsideContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 `;
 
 const ChangeItemImage = ({ givenThumbnail, editSingleField }) => {
@@ -132,7 +126,7 @@ const ChangeItemImage = ({ givenThumbnail, editSingleField }) => {
         <StyledAccordionDetails>
           <InsideContainer>
             <SubHeader>새 대표사진</SubHeader>
-            <NewMainImg
+            <ThumbnailImageDragDrop
               thumbnailPic={thumbnailPic}
               setThumbNailPic={setThumbNailPic}
             />
