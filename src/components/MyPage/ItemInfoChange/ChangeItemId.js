@@ -117,7 +117,7 @@ const InsideContainer = styled.div`
 
 const ChangeItemId = ({ givenName, editSingleField, imgToLeft }) => {
   const [isShown, setIsShown] = useState(false);
-  const [editedName, handleEditedName, resetEditedName] = useInput(null);
+  const [editedName, handleEditedName, resetEditedName] = useInput(givenName);
 
   const handleClick = () => {
     setIsShown(!isShown);

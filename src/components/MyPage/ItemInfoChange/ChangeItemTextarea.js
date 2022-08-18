@@ -9,6 +9,7 @@ import { userAtom } from 'states';
 import { useForm } from 'react-hook-form';
 import registerValidation from 'validations/registerValidation';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AccordionContainer = styled.div`
   clear: both;
@@ -124,6 +125,10 @@ const ChangeItemTextarea = ({ givenDesc, editSingleField, imgToLeft }) => {
   };
 
   const handleSubmit = async () => {
+    if (!itemDesc) {
+      toast.error('상세정보를 입력해주세요');
+      return;
+    }
     const frm = new FormData();
     frm.append('description', itemDesc);
     for (let singleImgId of imgToLeft) {
@@ -158,9 +163,7 @@ const ChangeItemTextarea = ({ givenDesc, editSingleField, imgToLeft }) => {
             />
           </InsideContainer>
           <ButtonContainer>
-            <ModifyButton disabled={!itemDesc} onClick={handleSubmit}>
-              수정
-            </ModifyButton>
+            <ModifyButton onClick={handleSubmit}>수정</ModifyButton>
             <CancelButton onClick={handleClick}>취소</CancelButton>
           </ButtonContainer>
         </StyledAccordionDetails>
