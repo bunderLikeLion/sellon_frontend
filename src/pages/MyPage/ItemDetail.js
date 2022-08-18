@@ -12,10 +12,9 @@ import { StyledLink } from 'styles/StyledComponetStyles';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 80vh;
-  margin: 2rem;
-  padding-top: 1rem;
-  overflow: hidden;
+  height: fit-content;
+  margin: 2rem 2rem 0 2rem;
+  padding: 1rem 0 2rem 0;
   color: ${(props) => props.theme.color_white};
 `;
 
