@@ -109,7 +109,7 @@ const ChatLists = ({
         {singleDeal === selectedDeal && (
           <ChatButtonContainer>
             <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
-            {!singleDeal?.is_evaluated && (
+            {!singleDeal?.is_evaluated && singleDeal?.completed_at && (
               <ChatBoxButton onClick={handleEvaluationModal}>
                 평가하기
               </ChatBoxButton>
