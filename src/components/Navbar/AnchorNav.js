@@ -5,8 +5,12 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'states';
 
 const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
+  const user = useRecoilValue(userAtom);
+
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
       <IconButton
@@ -47,6 +51,18 @@ const AnchorNav = ({ anchorElNav, closeNavMenu, openNavMenu }) => {
             <Typography textAlign="center">경매장</Typography>
           </Link>
         </MenuItem>
+        <MenuItem onClick={closeNavMenu}>
+          <Link to="/toprank">
+            <Typography textAlign="center">명예의 전당</Typography>
+          </Link>
+        </MenuItem>
+        {!user && (
+          <MenuItem onClick={closeNavMenu}>
+            <Link to="/login">
+              <Typography textAlign="center">로그인</Typography>
+            </Link>
+          </MenuItem>
+        )}
       </Menu>
     </Box>
   );
