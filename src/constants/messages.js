@@ -1,4 +1,3 @@
-
 const messages = {
   user: {
     signin: {
@@ -35,6 +34,9 @@ const messages = {
     destroy: {
       success: '아이템을 삭제했습니다.',
     },
+    edit: {
+      success: '아이템 정보를 수정했습니다.',
+    },
   },
   productGroup: {
     create: {
@@ -66,8 +68,7 @@ const messages = {
     create: {
       success: '메세지가 전송되었습니다.',
     },
-  }
-}
-
+  },
+};
 
 export default messages;

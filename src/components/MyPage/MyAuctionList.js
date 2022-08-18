@@ -41,14 +41,13 @@ const MyAuctionList = () => {
   };
 
   const { data: myAuctionData, isSuccess: myAuctionFetched } =
-    useMyAuctionQuery(pageNum);
+    useMyAuctionQuery(pageNum, 12);
 
   return (
     <Container>
       <AuctionListContainer>
         {myAuctionFetched &&
           myAuctionData?.results.map((auction) => {
-            console.log(auction, 'aaa');
             return (
               <AuctionListItem
                 title={auction.title}

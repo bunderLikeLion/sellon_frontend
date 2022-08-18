@@ -261,7 +261,7 @@ const UserAvatarContainer = styled.div`
 const UserAvatar = styled.img``;
 
 const AccordionContainer = styled.div`
-  padding: 2rem;
+  padding: 2rem 0rem;
 `;
 
 const StyledAccordion = styled(Accordion)`

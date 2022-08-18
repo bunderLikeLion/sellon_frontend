@@ -4,7 +4,7 @@ const client = axiosInstance;
 
 const auctionRelatedAPI = {
   // 옥션 리스트
-  getAuctionLists: (sort, pageNum) => {
+  getAuctionLists: (sort, pageNum, cat) => {
     return client
       .get('auctions/?ordering=-product_groups_count/', {
         params: {
@@ -18,6 +18,7 @@ const auctionRelatedAPI = {
               : '-created_at',
           per_page: 12,
           page: pageNum,
+          product__product_category_id: cat === '전체' ? null : cat,
         },
       })
       .then((res) => res.data);
@@ -39,9 +40,9 @@ const auctionRelatedAPI = {
       .then((res) => res.data);
   },
 
-  getMyAuctionList: (page) => {
+  getMyAuctionList: (page, perPage) => {
     return client
-      .get('auctions/my/', { params: { page: page, per_page: 6 } })
+      .get('auctions/my/', { params: { page: page, per_page: perPage } })
       .then((res) => res.data);
   },
 

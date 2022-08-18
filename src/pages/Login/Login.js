@@ -14,31 +14,52 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 90vh;
+
+  @media screen and (max-width: 1000px) {
+    height: 70vh;
+  }
 `;
 
 const Card = styled.div`
   display: flex;
+  max-width: 90%;
   width: 60rem;
   height: 34rem;
   border: ${(props) => props.theme.color_border__topleft};
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 //전체 컨테이너
 const Form = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 50%;
-  height: 80%;
-  margin-top: 7%;
+  padding: 2rem;
+  align-content: center;
+  gap: 4rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    width: 100%;
+    gap: 2rem;
+  }
 `;
 
 //상단 Log-In 글씨 컨테이너
 const GuideContainer = styled.div`
-  width: 70%;
-  margin-bottom: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
 `;
 
 const Guide = styled.h1`
@@ -88,8 +109,8 @@ const ErrorMsg = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 40%;
-  margin: 1rem 9rem 0 0;
+  gap: 1rem;
+  justify-content: center;
 `;
 
 //개별 버튼
@@ -109,9 +130,26 @@ const Button = styled.button`
 `;
 
 const Img = styled.img`
-  width: 50%;
+  flex: 1;
   height: 100%;
+  border-radius: 0 10px 10px 0;
+
+  @media screen and (max-width: 1000px) {
+    border-radius: 10px 10px 0 0;
+
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    width: auto;
+    max-height: 15rem;
+  }
 `;
+
+const InputsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
 
 const Login = () => {
   const navigate = useNavigate();
@@ -146,30 +184,32 @@ const Login = () => {
           <GuideContainer>
             <Guide>로그인</Guide>
           </GuideContainer>
-          <InputContainer>
-            <Input
-              placeholder="ID"
-              type="text"
-              value={username}
-              onChange={handleUsername}
-              onKeyPress={onKeyPressFunc}
-            />
-          </InputContainer>
-          <InputContainer>
-            <Input
-              placeholder="PW"
-              type="password"
-              value={password}
-              onChange={handlePassword}
-              onKeyPress={onKeyPressFunc}
-            />
-          </InputContainer>
-          <ButtonContainer>
-            <Button onClick={submit}>로그인</Button>
-            <Link to="/register">
-              <Button>회원가입</Button>
-            </Link>
-          </ButtonContainer>
+          <InputsContainer>
+            <InputContainer>
+              <Input
+                placeholder="ID"
+                type="text"
+                value={username}
+                onChange={handleUsername}
+                onKeyPress={onKeyPressFunc}
+              />
+            </InputContainer>
+            <InputContainer>
+              <Input
+                placeholder="PW"
+                type="password"
+                value={password}
+                onChange={handlePassword}
+                onKeyPress={onKeyPressFunc}
+              />
+            </InputContainer>
+            <ButtonContainer>
+              <Button onClick={submit}>로그인</Button>
+              <Link to="/register">
+                <Button>회원가입</Button>
+              </Link>
+            </ButtonContainer>
+          </InputsContainer>
         </Form>
         <Img src={SignPic} />
       </Card>

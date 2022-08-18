@@ -74,7 +74,8 @@ const ChatContainer = styled.div`
   align-items: center;
   height: 29.3rem;
   margin: 1rem 0;
-  overflow-y: scroll;
+  overflow-y: auto;
+
   gap: 1rem;
 `;
 //height: 85%;
