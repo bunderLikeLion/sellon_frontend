@@ -66,7 +66,7 @@ const StyledCardHeader = styled(CardHeader)`
   padding: 1rem !important;
 
   & .MuiCardHeader-content {
-    display: block !importnat;
+    display: block !important;
     width: 5rem !important;
     white-space: nowrap !important;
     overflow: hidden !important;
