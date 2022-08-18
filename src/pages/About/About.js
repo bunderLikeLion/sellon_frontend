@@ -267,7 +267,7 @@ const AccordionContainer = styled.div`
 const StyledAccordion = styled(Accordion)`
   background: ${(props) => props.theme.color_background__primary} !important;
   color: ${(props) => props.theme.color_white} !important;
-
+  padding: .5rem !important;
   svg {
     fill: ${(props) => props.theme.color_white} !important;
   }

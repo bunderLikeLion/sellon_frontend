@@ -132,7 +132,6 @@ const ChangeItemExtraImage = ({ givenExtraImages, editSingleField }) => {
             givenExtraImages.map((singleImg) => {
               return <OriginalInfo image={singleImg?.file} />;
             })}
-
           {!isShown && (
             <ModifyBtn onClick={handleClick}>추가사진 변경</ModifyBtn>
           )}
