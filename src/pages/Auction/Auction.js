@@ -215,7 +215,7 @@ const Auction = () => {
   const [isFilterModalOpened, setIsFilterModalOpened] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
   const [areaRestriction, setAreaRestriction] = useState(1);
-  const [cat, handleCat, resetCat] = useInput('전체');
+  const [cat, setCat] = useState('전체');
   const [sort, handleSort] = useInput('recent');
   const [pageNum, setPageNum] = useState(1);
 
@@ -325,8 +325,7 @@ const Auction = () => {
         areaRestriction={areaRestriction}
         setAreaRestriction={setAreaRestriction}
         cat={cat}
-        handleCat={handleCat}
-        resetCat={resetCat}
+        setCat={setCat}
       />
     </WrapContainer>
   );

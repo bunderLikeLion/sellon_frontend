@@ -10,15 +10,37 @@ import { useCategoryQuery } from 'queries/product';
 
 const ModalContainer = styled(Box)`
   position: relative;
-  width: 50rem;
-  height: 42rem;
+  width: fit-content;
+  min-width: 50rem;
+  max-width: 60%;
   top: 50%;
   left: 50%;
   padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
+  overflow-y: scroll;
   color: ${(props) => props.theme.color_white};
   background: ${(props) => props.theme.color_background__default};
+
+  @media screen and (max-width: 1300px) {
+    min-width: 800px;
+    max-width: 70%;
+    padding: 2rem 2rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    min-width: 1px;
+    max-width: 90%;
+    max-height: 60%;
+    padding: 1rem 1rem;
+  }
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem;
 `;
 
 const CloseBtn = styled(CloseIcon)`
@@ -33,7 +55,6 @@ const CloseBtn = styled(CloseIcon)`
 
 const GuideContainer = styled.div`
   width: 100%;
-  margin: 2rem;
 `;
 
 const StyledLabel = styled.p`
@@ -47,26 +68,24 @@ const SearchLabelContainer = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: 25rem;
+  justify-content: flex-start;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
   height: 3.5rem;
-  margin: 2rem;
   border: none;
   border-radius: 10px;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const TextContainer = styled.p`
-  position: absolute;
-  left: 7%;
-  bottom: 31%;
+  flex-basis: content;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
 const InputArea = styled.input`
-  position: absolute;
-  right: 5%;
-  width: 18rem;
+  flex: auto;
   height: 2rem;
   padding: 0 0.5rem;
   font-size: 1rem;
@@ -76,10 +95,8 @@ const InputArea = styled.input`
 `;
 
 const CategoryRadioBox = styled.div`
-  width: 40rem;
-  height: 22rem;
-  min-height: 2rem;
-  margin: 2rem;
+  width: 100%;
+  min-height: 4rem;
   padding: 0.7rem;
   border: 0.1px solid transparent;
   border-radius: 10px;
@@ -90,19 +107,26 @@ const CategoryContentBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  padding: 0 0.4rem;
+  gap: 1rem;
+  padding: 1rem;
 `;
 
 const SingleRadio = styled.span`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 25%;
-  margin-bottom: 0.3rem;
+  flex-basis: calc((100% - 3rem) / 4);
+
+  @media screen and (max-width: 1000px) {
+    flex-basis: calc((100% - 2rem) / 3);
+  }
+
+  @media screen and (max-width: 700px) {
+    flex-basis: calc((100% - 1rem) / 2);
+  }
 `;
 
 const RadioLabel = styled.label`
-  width: 10rem;
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
@@ -110,13 +134,14 @@ const StyledRadio = styled(Radio)`
   color: ${(props) => props.theme.color_white} !important;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 const ApplyButton = styled(Button)`
-  position: absolute !important;
   width: 6rem;
   height: 2rem;
-  right: 10%;
-  bottom: 5%;
-  margin-top: 1.5rem !important;
   border: none !important;
   font-size: 1.2rem !important;
   color: ${(props) => props.theme.color_white} !important;
@@ -132,7 +157,7 @@ const FilterModal = (props) => {
     resetAreARestriction,
     setAreaRestriction,
   ] = useInput(props.areaRestriction);
-  // const [cat, handleCat, resetCat] = useInput(props.cat);
+  const [cat, handleCat, resetCat] = useInput(props.cat);
 
   const { data: catData, isSuccess: catFetched } = useCategoryQuery([
     'formCategories',
@@ -147,8 +172,8 @@ const FilterModal = (props) => {
   });
 
   const catControlProps = (item) => ({
-    checked: props.cat === item,
-    onChange: props.handleCat,
+    checked: cat === item,
+    onChange: handleCat,
     value: item,
     name: 'color-radio-button-demo',
     inputProps: { 'aria-label': item },
@@ -164,7 +189,8 @@ const FilterModal = (props) => {
   const submitFilter = () => {
     props.setAreaRestriction(areaRestriction);
     props.setFilterKeyword(filterKeyword);
-    // props.resetCat();
+    props.setCat(cat);
+    // resetCat();
     props.handleFilterModal();
   };
 
@@ -177,48 +203,52 @@ const FilterModal = (props) => {
     >
       <ModalContainer>
         <CloseBtn onClick={closeModalFunc} />
-        <GuideContainer>
-          <Typography
-            id="modal-modal-title"
-            variant="h4"
-            component="h2"
-            fontSize={30}
-            fontWeight={600}
-          >
-            필터 및 검색
-          </Typography>
-        </GuideContainer>
-        <SearchLabelContainer>
-          <TextContainer>상품명</TextContainer>
-          <InputArea></InputArea>
-        </SearchLabelContainer>
+        <ContentContainer>
+          <GuideContainer>
+            <Typography
+              id="modal-modal-title"
+              variant="h4"
+              component="h2"
+              fontSize={30}
+              fontWeight={600}
+            >
+              필터 및 검색
+            </Typography>
+          </GuideContainer>
+          <SearchLabelContainer>
+            <TextContainer>상품명</TextContainer>
+            <InputArea></InputArea>
+          </SearchLabelContainer>
 
-        <CategoryRadioBox>
-          <StyledLabel>상품 카테고리</StyledLabel>
-          <CategoryContentBox>
-            <SingleRadio>
-              <StyledRadio {...catControlProps('전체')} />
-              <RadioLabel>전체</RadioLabel>
-            </SingleRadio>
-            {catFetched &&
-              catData.map((singleCat) => {
-                return (
-                  <SingleRadio>
-                    <StyledRadio {...catControlProps(`${singleCat.id}`)} />
-                    <RadioLabel>{singleCat.name}</RadioLabel>
-                  </SingleRadio>
-                );
-              })}
-          </CategoryContentBox>
-        </CategoryRadioBox>
+          <CategoryRadioBox>
+            <StyledLabel>상품 카테고리</StyledLabel>
+            <CategoryContentBox>
+              <SingleRadio>
+                <StyledRadio {...catControlProps('전체')} />
+                <RadioLabel>전체</RadioLabel>
+              </SingleRadio>
+              {catFetched &&
+                catData.map((singleCat) => {
+                  return (
+                    <SingleRadio>
+                      <StyledRadio {...catControlProps(`${singleCat.id}`)} />
+                      <RadioLabel>{singleCat.name}</RadioLabel>
+                    </SingleRadio>
+                  );
+                })}
+            </CategoryContentBox>
+          </CategoryRadioBox>
 
-        <ApplyButton
-          variant="outlined"
-          onClick={submitFilter}
-          sx={{ borderRadius: 2.4 }}
-        >
-          적용
-        </ApplyButton>
+          <ButtonContainer>
+            <ApplyButton
+              variant="outlined"
+              onClick={submitFilter}
+              sx={{ borderRadius: 2.4 }}
+            >
+              적용
+            </ApplyButton>
+          </ButtonContainer>
+        </ContentContainer>
       </ModalContainer>
     </Modal>
   );
