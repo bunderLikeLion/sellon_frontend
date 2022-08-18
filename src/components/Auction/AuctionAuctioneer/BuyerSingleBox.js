@@ -107,11 +107,7 @@ const BuyerSingleBox = ({ singleGroup }) => {
           id="panel1bh-header"
         >
           <BuyerImageContainer>
-            <BuyerImage
-              image={
-                'https://image.a-rt.com/art/product/2021/01/94546_1610421269452.jpg?shrink=580:580'
-              }
-            />
+            <BuyerImage image={singleGroup?.user?.avatar} />
             <DivisionLine />
           </BuyerImageContainer>
 
