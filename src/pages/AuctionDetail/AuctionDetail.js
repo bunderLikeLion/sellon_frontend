@@ -1,42 +1,51 @@
 import styled from 'styled-components';
 import AuctionItem from 'components/Auction/AuctionDetail/AuctionItem';
 import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOtherSuggestion';
-import AuctionMySuggestion from 'components/Auction/AuctionDetail/AuctionMySuggestion';
+import Inventory from 'components/Auction/AuctionDetail/Inventory';
 import { useState } from 'react';
 import WrapContainer from 'layouts/WrapContainer';
 import { useSingleAuctionQuery } from 'queries/auction';
 import { useParams } from 'react-router-dom';
+import MySuggested from 'components/Auction/AuctionDetail/MySuggested';
 
 const Container = styled.div`
+  margin-top: 1rem;
   width: 100%;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 
-const ItemContainer = styled.div`
+const AuctionInfoContainer = styled.div`
+  flex: 0;
   display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-`;
+  flex-direction: row;
+  gap: 1rem;
+`
+
+const InventoryContainer = styled.div`
+  flex: 0;
+`
+
+const AuctionItemContainer = styled.div`
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 1rem;
+`
 
 const SuggestionContainer = styled.div`
+  flex: 1 1 50%;
   display: flex;
-  flex-wrap: wrap;
-  width: 50%;
-  height: 100%;
-`;
-
-const TopContainer = styled.div`
-  display: flex;
-  height: 60vh;
-  width: 100%;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 1rem;
 `;
 
 const AuctionDetail = () => {
   const { id: auctionId } = useParams();
-
-  const [isInventoryOpened, setIsInventoryOpened] = useState(false);
-  const handleInventory = () => setIsInventoryOpened(!isInventoryOpened);
 
   const { data: singleAuctionData, isSuccess: singleAuctionDataFetched } =
     useSingleAuctionQuery(auctionId);
@@ -45,21 +54,21 @@ const AuctionDetail = () => {
     <WrapContainer>
       {singleAuctionDataFetched && (
         <Container>
-          <ItemContainer>
-            <TopContainer>
+          <AuctionInfoContainer>
+            <AuctionItemContainer>
               <AuctionItem
-                isInventoryOpened={isInventoryOpened}
                 singleAuctionData={singleAuctionData}
               />
-              <SuggestionContainer>
-                <AuctionOtherSuggestion isInventoryOpened={isInventoryOpened} />
-              </SuggestionContainer>
-            </TopContainer>
-          </ItemContainer>
-          <AuctionMySuggestion
-            isInventoryOpened={isInventoryOpened}
-            handleInventory={handleInventory}
-          />
+            </AuctionItemContainer>
+            <SuggestionContainer>
+              <AuctionOtherSuggestion />
+              <MySuggested />
+            </SuggestionContainer>
+
+          </AuctionInfoContainer>
+          <InventoryContainer>
+            <Inventory />
+          </InventoryContainer>
         </Container>
       )}
     </WrapContainer>
