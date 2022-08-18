@@ -29,6 +29,11 @@ const ItemContainer = styled.div`
   padding: 1rem 2rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
+
+  @media screen and (max-width: 700px) {
+    padding: 1rem;
+    flex-direction: column;
+  }
 `;
 
 const BuyerListContainer = styled.div`
@@ -37,6 +42,10 @@ const BuyerListContainer = styled.div`
   padding: 1rem 2rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
+
+  @media screen and (max-width: 700px) {
+    padding: 1rem;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -125,7 +134,17 @@ const AuctioneerContainer = styled.div`
 
 const AuctioneerItem = styled.div`
   width: 50%;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
+
+const StyledFormControlLabel = styled(FormControlLabel)`
+  @media screen and (max-width: 700px) {
+    margin-right: 0;
+  }
+`
 
 const Auctioneer = () => {
   const navigate = useNavigate();
@@ -194,7 +213,7 @@ const Auctioneer = () => {
                   {productGroups?.results.map((singleGroup) => {
                     return (
                       <BuyerContainer>
-                        <FormControlLabel
+                        <StyledFormControlLabel
                           control={<StyledRadio />}
                           {...selectedProductGroupControlProps(
                             `${singleGroup?.id}`
