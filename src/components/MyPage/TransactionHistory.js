@@ -314,6 +314,12 @@ const HistoryContainer = styled.div`
   //margin-bottom: 2rem;
 `;
 
+const StyledLink = styled(Link)`
+&:hover{
+  text-decoration: underline;
+}
+`;
+
 const TransactionHistory = () => {
   const [expanded, setExpanded] = useState(false);
 
@@ -440,13 +446,13 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              <Link to="/auction">
+              <StyledLink to="/auction">
                 <EmptyListPlaceHolder
                   message="아직 경매장에서 거래한 물건이 없습니다. 한번 경매장에 참여해볼까요?"
                   margin="0"
                   backgroundColor="#252040"
                 />
-              </Link>
+              </StyledLink>
             )}
           </>
         )}
