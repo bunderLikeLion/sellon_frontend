@@ -34,8 +34,14 @@ const InventoryItem = styled(CardMedia)`
   border-radius: 1rem;
 `;
 
+const InventoryItemImageContainer = styled.div`
+  height: 10rem;
+  width: 100%;
+`;
+
 const InventoryItemImage = styled.img`
   padding: 1rem;
+  width: 100%;
 `
 
 const ButtonWrapper = styled.div`
@@ -119,7 +125,9 @@ const InventoryCard = ({ singleProduct, relatedAuctionId, isUsable }) => {
     <InventoryItemWrapper>
       <InventoryItemContainer key={singleProduct?.id}>
         <InventoryItem>
-          <InventoryItemImage src={singleProduct?.thumbnail?.file} alt="" />
+          <InventoryItemImageContainer>
+            <InventoryItemImage src={singleProduct?.thumbnail?.file} alt="" />
+          </InventoryItemImageContainer>
           <ButtonWrapper>
             <SuggestionButton
               onClick={handleButton}

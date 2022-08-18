@@ -76,6 +76,7 @@ const AuctionOtherSuggestionItemContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   height: 100%;
+  margin-left: 1rem;
 
   @media screen and (max-width: 1000px) {
     margin-left: 0;
