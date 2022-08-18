@@ -16,6 +16,7 @@ const InterestedAuctionListCard = ({ isFinished, data }) => {
       linkCondition={!isFinished}
       displayInterestedBtn={true}
       isInterested={data?.is_interested || false}
+      relatedUser={data?.owner}
     />
   );
 };

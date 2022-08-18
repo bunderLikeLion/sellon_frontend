@@ -3,6 +3,7 @@ import { queryClient } from 'index';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
 import { useParams } from 'react-router-dom';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 
 const Container = styled.div`
   display: flex;
@@ -96,7 +97,11 @@ const ItemDetailContainer = () => {
 
         <AuctionDetailContainers>
           <DetailSubHeader>종료 시점</DetailSubHeader>
-          <AuctionDetail>{timeLimitHandler(auctionData?.end_at)}</AuctionDetail>
+          <AuctionDetail>
+            {isAuctionFinishedHandler(auctionData?.end_at)
+              ? '종료'
+              : timeLimitHandler(auctionData?.end_at)}
+          </AuctionDetail>
         </AuctionDetailContainers>
         <AuctionDetailContainers>
           <DetailSubHeader>거래 방법</DetailSubHeader>

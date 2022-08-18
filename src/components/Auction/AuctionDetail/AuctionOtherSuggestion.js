@@ -9,65 +9,78 @@ import { useMyProductsQuery } from 'queries/product';
 
 const OtherSuggestionContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
-  height: ${(props) => (props.isInventoryOpened ? '105%' : '64%')};
   border-radius: 0.5rem;
+  flex: 2.5;
   overflow-y: auto;
-
+  max-height: 30rem;
   background: ${(props) => props.theme.color_background__primary};
 `;
 
 const GuideContainer = styled.div`
   display: flex;
   align-items: end;
-  width: 93%;
-  height: 2rem;
-  margin: 0 auto 0.7rem auto;
+  padding: 1.2rem;
+  flex: 0;
 `;
 
 const GuideComment = styled.h1`
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: 700;
 `;
 
 const OtherSuggestion = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: 28rem;
   height: auto;
-  overflow: hidden;
+
   margin: 0.3rem 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
+
 const InnerWrapper = styled.div`
-  display: inline-flex;
-  width: 26.6rem;
+  display: flex;
   height: auto;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
+
 const ProfileContainer = styled.div`
   position: relative;
-  top: 0;
-  width: 4rem;
-  height: 4rem;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
 `;
 
 const Profile = styled(CardMedia)`
-  width: 100%;
+  width: 4rem;
   height: 4rem;
   border-radius: 50%;
+
+  @media screen and (max-width: 1000px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 const AuctionOtherSuggestionItemContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: 85%;
   height: 100%;
-  margin-left: 2rem;
+  margin-left: 1rem;
+
+  @media screen and (max-width: 1000px) {
+    margin-left: 0;
+  }
 `;
 
 const ItemImg = styled(CardMedia)`
@@ -82,12 +95,23 @@ const ItemImg = styled(CardMedia)`
   }
 `;
 
+const ProductGroupListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  // TODO: 수치 조절
+  height: 30rem;
+`
+
 //Pagination
 const PaginationContainer = styled.div`
+  flex: 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   width: 100%;
+  padding: 0.5rem;
 `;
 
 const StyledPagination = styled(Pagination)`
@@ -121,39 +145,41 @@ const AuctionOtherSuggestion = (props) => {
   };
 
   return (
-    <OtherSuggestionContainer isInventoryOpened={props.isInventoryOpened}>
+    <OtherSuggestionContainer>
       <GuideContainer>
         <GuideComment>다른 참가자가 제시한 물건</GuideComment>
       </GuideContainer>
-      {productGroupsFetched &&
-        productGroups.results.map((singleProductGroup) => {
-          return (
-            <OtherSuggestion key={singleProductGroup?.id}>
-              <InnerWrapper>
-                <ProfileContainer>
-                  <Profile image={singleProductGroup?.user?.avatar} />
-                  {/*{singleProductGroup?.user?.username}*/}
-                </ProfileContainer>
-                <AuctionOtherSuggestionItemContainer>
-                  {singleProductGroup?.products.map((singleProduct) => {
-                    return (
-                      <ItemImg
-                        onClick={() => clickImgFunc(singleProduct)}
-                        key={singleProduct.id}
-                        image={singleProduct?.thumbnail?.file}
-                      />
-                    );
-                  })}
-                  <AuctionDetailModal
-                    handleModal={handleModal}
-                    isModalOpened={isModalOpened}
-                    smallImgRelatedItemId={singleProduct}
-                  />
-                </AuctionOtherSuggestionItemContainer>
-              </InnerWrapper>
-            </OtherSuggestion>
-          );
-        })}
+      <ProductGroupListContainer>
+        {productGroupsFetched &&
+          productGroups.results.map((singleProductGroup) => {
+            return (
+              <OtherSuggestion key={singleProductGroup?.id}>
+                <InnerWrapper>
+                  <ProfileContainer>
+                    <Profile image={singleProductGroup?.user?.avatar} />
+                    {/*{singleProductGroup?.user?.username}*/}
+                  </ProfileContainer>
+                  <AuctionOtherSuggestionItemContainer>
+                    {singleProductGroup?.products.map((singleProduct) => {
+                      return (
+                        <ItemImg
+                          onClick={() => clickImgFunc(singleProduct)}
+                          key={singleProduct.id}
+                          image={singleProduct?.thumbnail?.file}
+                        />
+                      );
+                    })}
+                    <AuctionDetailModal
+                      handleModal={handleModal}
+                      isModalOpened={isModalOpened}
+                      smallImgRelatedItemId={singleProduct}
+                    />
+                  </AuctionOtherSuggestionItemContainer>
+                </InnerWrapper>
+              </OtherSuggestion>
+            );
+          })}
+      </ProductGroupListContainer>
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination

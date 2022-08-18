@@ -1,31 +1,28 @@
 import moment from 'moment';
 
-const timeLimitHandler = (time) => {
+const timeLimitHandler = (time, isEnded) => {
   const eventDate = moment(time);
   const todayDate = moment();
-  const res = eventDate.diff(todayDate, 'days');
+  const res = eventDate.diff(todayDate, 'hours');
 
-  if (res <= 0) return '종료';
-
-  switch (res) {
-    case 0:
-      return '당일 종료';
-    case 1:
-      return 'D - 2';
-    case 2:
-      return 'D - 3';
-    case 3:
-      return 'D - 4';
-    case 4:
-      return 'D - 5';
-    case 5:
-      return 'D - 6';
-    case 6:
-      return 'D - 7';
-    case 7:
-      return 'D - 8';
-    default:
-      return '당일종료';
+  if (res === 0) {
+    return '종료';
+  } else if (0 < res <= 24) {
+    return '당일 종료';
+  } else if (24 < res <= 48) {
+    return 'D - 2';
+  } else if (48 < res <= 72) {
+    return 'D - 3';
+  } else if (72 < res <= 96) {
+    return 'D - 4';
+  } else if (96 < res <= 120) {
+    return 'D - 5';
+  } else if (120 < res <= 148) {
+    return 'D - 6';
+  } else if (148 < res <= 172) {
+    return 'D - 7';
+  } else if (172 < res <= 196) {
+    return 'D - 8';
   }
 };
 

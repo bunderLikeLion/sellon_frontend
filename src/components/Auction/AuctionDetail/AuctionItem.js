@@ -1,5 +1,6 @@
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import styled from 'styled-components';
 import dealingTypeHandler from 'utils/dealingTypeHandler';
 import {
@@ -10,15 +11,14 @@ import timeLimitHandler from 'utils/timeLimitHandler';
 import { useState } from 'react';
 import AuctionDetailModal from './AuctionDetailModal';
 import { useParams } from 'react-router-dom';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 
-const Container = styled(Card)`
+const Container = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  height: ${(props) => (props.isInventoryOpened ? '92vh' : '63.5vh')};
   background: transparent !important;
 `;
 
@@ -42,7 +42,6 @@ const ItemImgContainer = styled.div`
 `;
 
 const ItemImg = styled(CardMedia)`
-  width: 95% !important;
   height: 100% !important;
   border-radius: 0.5rem;
   object-fit: cover !important;
@@ -50,56 +49,50 @@ const ItemImg = styled(CardMedia)`
   cursor: pointer;
 `;
 
-const ItemDurationContainer = styled.div`
+const AuctionSubDescriptionContainer = styled.div`
   position: absolute;
-  top: 3%;
-  right: 7%;
+  top: 1rem;
+  left: 1rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  width: 15%;
-  height: 8%;
+  gap: 0.2rem;
+`;
+
+const ItemDuration = styled.span`
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2rem;
   border-radius: 1rem;
+  width: fit-content;
+  padding: 0.2rem 1rem;
+  color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_background__success};
 `;
 
-const ItemDuration = styled.h1`
+const ExchangeWay = styled.span`
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.2;
-  color: ${(props) => props.theme.color_font__secondary};
-`;
-
-const ExchangeWayContainer = styled.div`
-  position: absolute;
-  top: 13%;
-  right: 7%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 15%;
-  height: 8%;
+  line-height: 1.2rem;
   border-radius: 1rem;
-  background: ${(props) => props.theme.color_background__success};
-`;
-
-const ExchangeWay = styled.h1`
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.2;
+  padding: 0.2rem 1rem;
   color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_background__success};
 `;
 
 const ItemContentContainer = styled.div`
   width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 `;
 
 const ItemNameContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 13%;
+  margin-bottom: 1rem;
 `;
 
 const ItemName = styled.h1`
@@ -109,17 +102,8 @@ const ItemName = styled.h1`
 `;
 
 const ItemDescriptionContainer = styled.div`
-  width: 80%;
-  @media (min-height: 300px) and (max-height: 800px) {
-    height: ${(props) => (props.isInventoryOpened ? '31vh' : '10vh')};
-  }
-  @media (min-height: 800px) and (max-height: 1000px) {
-    height: ${(props) => (props.isInventoryOpened ? '37vh' : '16vh')};
-  }
-  @media (min-height: 1000px) and (max-height: 1200px) {
-    height: ${(props) => (props.isInventoryOpened ? '44vh' : '24vh')};
-  }
   overflow-y: auto;
+  max-height: 20rem;
 `;
 
 const ItemDescription = styled.p`
@@ -127,6 +111,31 @@ const ItemDescription = styled.p`
   font-weight: 200;
   line-height: 1.6rem;
   color: #fff;
+`;
+
+const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
+  overflow: visible;
+  font-size: 2rem !important;
+
+  color: ${(props) =>
+    props.isInterested
+      ? props.theme.color_font__number
+      : props.theme.color_font__disabled};
+
+  & :hover {
+    transform: scale(1.2);
+    transform-origin: center;
+  }
+`;
+
+const InterestedButton = styled.button`
+  position: absolute !important;
+  right: 1rem;
+  top: 1rem;
+  border-radius: 50rem !important;
+  background: none;
+  border: none;
+  color: ${(props) => props.theme.color_white};
 `;
 
 const AuctionItem = (props) => {
@@ -142,47 +151,51 @@ const AuctionItem = (props) => {
 
   const handleModal = () => setIsModalOpened(!isModalOpened);
 
+  const pressHeartIconFunc = (isInterested) => {
+    isInterested
+      ? deleteInterestedAuction(relatedAuctionId)
+      : createInterestedAuction(relatedAuctionId);
+  };
+
   return (
-    <Container
-      sx={{ maxWidth: '100%' }}
-      isInventoryOpened={props.isInventoryOpened}
-    >
+    <Container>
       <ItemImgContainer>
         <ItemImg
           onClick={handleModal}
           component="img"
           image={props?.singleAuctionData?.product?.thumbnail?.file}
         />
-        {props?.singleAuctionData?.is_interested ? (
-          <Button onClick={() => deleteInterestedAuction(relatedAuctionId)}>
-            관심경매 삭제
-          </Button>
-        ) : (
-          <Button onClick={() => createInterestedAuction(relatedAuctionId)}>
-            관심경매 등록
-          </Button>
-        )}
+
+        <InterestedButton>
+          <StyledFavoriteBorderIcon
+            isInterested={props?.singleAuctionData?.is_interested}
+            onClick={() =>
+              pressHeartIconFunc(props?.singleAuctionData?.is_interested)
+            }
+          />
+        </InterestedButton>
+
         <AuctionDetailModal
           handleModal={handleModal}
           isModalOpened={isModalOpened}
           isTriggeredFromBigImg={true}
         />
-        <ItemDurationContainer>
-          <ItemDuration>
-            {timeLimitHandler(props?.singleAuctionData?.end_at)}
-          </ItemDuration>
-        </ItemDurationContainer>
-        <ExchangeWayContainer>
+        <AuctionSubDescriptionContainer>
           <ExchangeWay>
             {dealingTypeHandler(props?.singleAuctionData?.dealing_type)}
           </ExchangeWay>
-        </ExchangeWayContainer>
+          <ItemDuration>
+            {isAuctionFinishedHandler(props?.singleAuctionData?.end_at)
+              ? '종료'
+              : timeLimitHandler(props?.singleAuctionData?.end_at)}
+          </ItemDuration>
+        </AuctionSubDescriptionContainer>
       </ItemImgContainer>
       <ItemContentContainer>
         <ItemNameContainer>
           <ItemName>{props?.singleAuctionData?.title}</ItemName>
         </ItemNameContainer>
-        <ItemDescriptionContainer isInventoryOpened={props.isInventoryOpened}>
+        <ItemDescriptionContainer>
           <ItemDescription>
             {props?.singleAuctionData?.description}
           </ItemDescription>
