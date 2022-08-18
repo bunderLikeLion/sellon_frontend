@@ -234,6 +234,7 @@ const AuctionListItem = ({
 
       <PeriodLabel>{period}</PeriodLabel>
       <ConditionalLink to={linkTo} condition={linkCondition}>
+        {/*<ConditionalLink to={linkTo}>*/}
         <StyledCardMedia component="img" height="150" image={thumbnailUrl} />
         <CardHeader>
           <UserAvatar image={relatedUser?.avatar} />
