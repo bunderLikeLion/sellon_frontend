@@ -62,6 +62,7 @@ const ChatBoxButton = styled.button`
   border-radius: 0.7rem;
   font-weight: 700;
   background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_white};
 `;
 
 const ChatFinishButton = styled(ChatBoxButton)`
@@ -95,6 +96,8 @@ const ChatLists = ({
       />
       <ChatMessageText>
         <UserNickname>
+          {singleDeal?.completed_at && "[종료된 거래] "}
+
           {singleDeal?.product_group?.user?.id === userId
             ? singleDeal?.auction?.owner?.username
             : singleDeal?.product_group?.user?.username}
@@ -105,7 +108,6 @@ const ChatLists = ({
               detailDateFormatter(singleDeal?.last_message_sent_at)}
           </ChatTime>
         </ChatTimeContainer>
-        {singleDeal?.completed_at && <p>종료된 거래</p>}
         {singleDeal === selectedDeal && (
           <ChatButtonContainer>
             <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
