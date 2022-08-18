@@ -17,7 +17,7 @@ const useCreateDealingMutation = () => {
         toast.dismiss();
         toast.success(messages.dealing.create.success);
         queryClient.invalidateQueries(['auctionList']).then(() => {
-          navigate('/auction');
+          navigate('/mypage', { state: { tabNum: '5' } });
         });
       },
       onError: (res) => {
