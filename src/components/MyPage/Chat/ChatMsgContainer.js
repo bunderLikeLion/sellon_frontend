@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 const ChatContentContainer = styled.div`
   height: 100%;
   padding: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   min-height: 15rem;
 `;
 

@@ -234,6 +234,7 @@ const AuctionListItem = ({
 
       <PeriodLabel>{period}</PeriodLabel>
       <ConditionalLink to={linkTo} condition={linkCondition}>
+        {/*<ConditionalLink to={linkTo}>*/}
         <StyledCardMedia component="img" height="150" image={thumbnailUrl} />
         <CardHeader>
           <UserAvatar image={relatedUser?.avatar} />
@@ -248,18 +249,6 @@ const AuctionListItem = ({
         </CardFooter>
       </ConditionalLink>
       <FinishedCard isFinished={isFinished}>
-        {displayInterestedBtn && (
-          <OverLayIconBox>
-            {user && (
-              <InterestedButton>
-                <StyledFavoriteBorderIcon
-                  isInterested={isInterested}
-                  onClick={() => pressHeartIconFunc(isInterested)}
-                />
-              </InterestedButton>
-            )}
-          </OverLayIconBox>
-        )}
         <FinishedMessage>종료된 경매입니다.</FinishedMessage>
       </FinishedCard>
     </CardContainer>

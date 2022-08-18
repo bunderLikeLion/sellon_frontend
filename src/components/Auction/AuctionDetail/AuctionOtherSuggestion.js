@@ -13,7 +13,8 @@ const OtherSuggestionContainer = styled.div`
   width: 100%;
   height: ${(props) => (props.isInventoryOpened ? '105%' : '64%')};
   border-radius: 0.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+
   background: ${(props) => props.theme.color_background__primary};
 `;
 

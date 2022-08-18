@@ -21,7 +21,7 @@ const ModalContainer = styled(Box)`
   max-width: 60%;
   height: 80%;
   padding: 3rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__default};
@@ -116,7 +116,7 @@ export const StatusRadioBox = styled.div`
   padding: 0;
   font-size: 1rem;
   border: 3px solid transparent;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: #ffffff !important;
   background: ${(props) => props.theme.color_background__primary};
 `;
@@ -129,7 +129,7 @@ const CategoryRadioBox = styled.div`
   padding: 0;
   font-size: 1rem;
   border: 3px solid transparent;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   color: #ffffff !important;
   background: ${(props) => props.theme.color_background__primary};
 `;

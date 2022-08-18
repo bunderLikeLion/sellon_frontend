@@ -1,13 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import 'fonts/pretendard.css';
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
   * {
     box-sizing: border-box;
+    font-family: 'Pretendard NS-R' !important;
   }
   body{
-    font-family: 'NS-R';
     font-size: 15px;
     background: #232323;
 

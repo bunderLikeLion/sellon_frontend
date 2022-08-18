@@ -6,7 +6,7 @@ import queryKeys from 'utils/queryKeys';
 
 const useSingleAuctionQuery = (id) => {
   return useQuery(
-    [queryKeys.auctionInfo(id)],
+    ['auctionInfo', id],
     () => auctionRelatedAPI.getSingleAuctionInfo(id),
     {
       onError: (res) => {

@@ -20,7 +20,7 @@ const TextareaContainer = styled.div`
 `;
 
 const AuctionInfoContainer = styled.div`
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   height: 12rem;
   margin-top: 1rem;
@@ -77,7 +77,7 @@ const AuctionDetailContainers = styled.div`
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
-  const auctionData = queryClient.getQueryData([`auctionInfo${id}`]);
+  const auctionData = queryClient.getQueryData(['auctionInfo', id]);
 
   return (
     <Container>

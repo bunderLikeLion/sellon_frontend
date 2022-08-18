@@ -7,8 +7,6 @@ import dateFormatter from 'utils/dateFormatter';
 const HomeAuctionListCard = ({ isFinished, auctionData, isInterested }) => {
   const user = useRecoilValue(userAtom);
 
-  console.log(auctionData, 'asdasdsda');
-
   return (
     <AuctionListItem
       id={auctionData?.id}

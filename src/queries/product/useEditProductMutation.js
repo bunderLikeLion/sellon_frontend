@@ -13,7 +13,7 @@ const useEditProductMutation = (productId) => {
     {
       onSuccess: () => {
         toast.dismiss();
-        toast.success(messages.product.create.success);
+        toast.success(messages.product.edit.success);
         return queryClient.invalidateQueries(['singleItem', productId]);
       },
       onError: (res) => {

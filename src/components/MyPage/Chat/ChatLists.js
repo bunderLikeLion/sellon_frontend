@@ -86,11 +86,12 @@ const ChatLists = ({
   return (
     <ChatMessageListContainer onClick={() => setSelectedDeal(singleDeal)}>
       <UserProfileImg
-        image={
+        /*        image={
           singleDeal?.product_group?.user?.id === userId
             ? singleDeal?.auction?.owner?.avatar
             : singleDeal?.product_group?.user?.avatar
-        }
+        }*/
+        image={singleDeal?.product?.thumbnail?.file}
       />
       <ChatMessageText>
         <UserNickname>
@@ -108,7 +109,7 @@ const ChatLists = ({
         {singleDeal === selectedDeal && (
           <ChatButtonContainer>
             <ChatBoxButton onClick={handleDetailModal}>거래 보기</ChatBoxButton>
-            {!singleDeal?.is_evaluated && (
+            {!singleDeal?.is_evaluated && singleDeal?.completed_at && (
               <ChatBoxButton onClick={handleEvaluationModal}>
                 평가하기
               </ChatBoxButton>

@@ -15,7 +15,7 @@ const ModalContainer = styled(Box)`
   align-items: center;
   width: 60%;
   max-width: 1400px;
-  height: 35rem;
+  height: fit-content;
   padding: 2rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
@@ -23,6 +23,7 @@ const ModalContainer = styled(Box)`
 
   @media screen and (max-width: 1300px) {
     width: 70%;
+    height: 45rem;
     padding: 2rem 2rem;
   }
 
@@ -35,36 +36,36 @@ const ModalContainer = styled(Box)`
 
 const ContentContainer = styled.div`
   width: 80%;
-  height: 100%;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   align-items: center;
+  margin: 1.5rem 0;
   height: 12%;
-  margin-left: 1rem;
   justify-content: space-between;
 `;
 
 const Text = styled.h1`
   letter-spacing: 0.1rem;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 2rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ValidationCancelButton = styled(ClearIcon)`
+position: absolute;
+top: 1rem;
+right: 1.5rem;
   cursor: pointer;
   font-size: 2.5rem !important;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  color: ${(props) => props.theme.color_font__number};;
 `;
 
 const InventoryContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   max-height: 90%;
 `;
 

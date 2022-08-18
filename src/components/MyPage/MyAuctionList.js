@@ -1,15 +1,11 @@
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
-import { useMyProductsQuery } from 'queries/product';
 import AuctionListContainer from 'components/Shared/AuctionListContainer';
 import AuctionListItem from 'components/Shared/AuctionListItem';
-import { userAtom } from '../../states';
-import WrapContainer from '../../layouts/WrapContainer';
 import { useMyAuctionQuery } from 'queries/auction';
-import timeLimitHandler from '../../utils/timeLimitHandler';
-import isAuctionFinishedHandler from '../../utils/isAuctionFinishedHandler';
+import timeLimitHandler from 'utils/timeLimitHandler';
+import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -38,17 +34,13 @@ const Container = styled.div`
 
 const MyAuctionList = () => {
   const [pageNum, setPageNum] = useState(1);
-  const user = useRecoilValue(userAtom);
-
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
 
   const handleChange = (event, value) => {
     setPageNum(value);
   };
 
   const { data: myAuctionData, isSuccess: myAuctionFetched } =
-    useMyAuctionQuery(pageNum);
+    useMyAuctionQuery(pageNum, 12);
 
   return (
     <Container>
@@ -62,8 +54,8 @@ const MyAuctionList = () => {
                 participantCount={auction.product_groups_count}
                 startAt={auction.created_at.split('T')[0].replaceAll('-', '.')}
                 period={timeLimitHandler(auction.end_at)}
-                linkTo={`/auctions/${auction.id}`}
-                linkCondition={isAuctionFinishedHandler(auction.end_at)}
+                linkTo={`/auctioneer/${auction.id}/${auction.product.id}`}
+                linkCondition={!isAuctionFinishedHandler(auction.end_at)}
                 isFinished={isAuctionFinishedHandler(auction.end_at)}
               />
             );
@@ -72,7 +64,7 @@ const MyAuctionList = () => {
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination
-          count={myProductsData?.total_pages}
+          count={myAuctionData?.total_pages}
           page={pageNum}
           onChange={handleChange}
         />

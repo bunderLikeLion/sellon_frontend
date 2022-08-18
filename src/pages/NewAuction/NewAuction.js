@@ -23,13 +23,16 @@ export const Container = styled.div`
   }
 `;
 
-const ArrowBackIcon = styled(ArrowBackIosNewIcon)``;
+const ArrowBackIcon = styled(ArrowBackIosNewIcon)`
+margin-right: 1rem;
+`;
 
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
+  margin-top: 2rem;
 `;
 
 const InstructContainer = styled.div`
@@ -50,10 +53,10 @@ const BigContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  margin-top: 1rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 2.3rem;
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
@@ -84,7 +87,7 @@ const BtnContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 36rem;
+  height: 37rem;
   border-radius: 1rem;
   cursor: pointer;
   background: ${(props) => props.theme.color_background__primary};
@@ -101,6 +104,10 @@ const InventoryBtn = styled.button`
   background: ${(props) => props.theme.color_background__primary};
   color: ${(props) => props.theme.color_font__tertiary};
   border: none;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const ReselectBtn = styled.button`
@@ -121,11 +128,11 @@ const ReSelectBtnContainer = styled.div`
 
 const StyledButton = styled.button`
   float: right;
-  height: 3.5rem;
+  height: 2.7rem;
   width: 9rem;
-  margin: 1rem;
+  margin: 2rem 1rem;
   border: none;
-  border-radius: 1rem;
+  border-radius: 2rem;
   font-size: 1rem;
   font-weight: 700;
   background: ${(props) => props.theme.color_background__success};
