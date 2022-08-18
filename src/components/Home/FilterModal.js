@@ -185,8 +185,6 @@ const FilterModal = (props) => {
   });
 
   const closeModalFunc = () => {
-    // resetCat();
-    // resetHandleFilterKeyword();
     setAreaRestriction('1');
     props.handleFilterModal();
   };
@@ -195,7 +193,6 @@ const FilterModal = (props) => {
     props.setAreaRestriction(areaRestriction);
     props.setFilterKeyword(filterKeyword);
     props.setCat(cat);
-    // resetCat();
     props.handleFilterModal();
   };
 
