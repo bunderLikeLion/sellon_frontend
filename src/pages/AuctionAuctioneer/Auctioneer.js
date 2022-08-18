@@ -170,9 +170,7 @@ const Auctioneer = () => {
         {singleItemDataFetched && (
           <ItemContainer>
             <AuctioneerItem>
-              <AuctioneerContainer>
-                <p>Auctioneer</p>
-              </AuctioneerContainer>
+              <AuctioneerContainer />
               <ItemImageContainer
                 thumbnail={singleItemData?.thumbnail?.file}
                 images={singleItemData?.images}

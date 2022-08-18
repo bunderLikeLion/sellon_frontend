@@ -77,7 +77,7 @@ const AuctionDetailContainers = styled.div`
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
-  const auctionData = queryClient.getQueryData(['auctionInfo']);
+  const auctionData = queryClient.getQueryData(['auctionInfo', id]);
 
   return (
     <Container>
