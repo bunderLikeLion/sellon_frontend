@@ -97,13 +97,13 @@ const AuctionTitle = styled.span`
 `;
 
 const ProductThumbnail = styled.img`
-  width: 25rem !important;
+  width: 20rem !important;
+  height: 20rem !important;
   position: absolute !important;
   left: 50% !important;
   top: 1.6rem !important;
   border-radius: 6%;
   box-shadow: 0 0 6px ${(props) => props.theme.color_white};
-  height: 25rem !important;
   overflow: visible !important;
 `;
 
