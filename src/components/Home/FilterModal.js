@@ -44,9 +44,9 @@ const ModalContainer = styled(Box)`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
   max-height: 40%;
-  margin: 1rem 1rem 0.2rem 1rem;
+  margin: 1rem 1rem 0rem 1rem;
 `;
 
 const CloseBtn = styled(CloseIcon)`
@@ -62,13 +62,21 @@ const CloseBtn = styled(CloseIcon)`
 const GuideContainer = styled.div`
   display: flex;
   width: 100%;
+  margin-bottom: 1rem;
 `;
 
 const StyledLabel = styled.p`
   width: fit-content;
-  margin: 1rem 1rem 1rem 0.9rem;
+  margin: 1rem 0rem 1rem 0.6rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 0.5rem 0;
+  gap: 1.2rem;
 `;
 
 const SearchLabelContainer = styled.div`
@@ -78,7 +86,7 @@ const SearchLabelContainer = styled.div`
   justify-content: flex-start;
   padding: 1rem;
   gap: 1rem;
-  width: 50%;
+  width: 80%;
   height: 3.5rem;
   border: none;
   border-radius: 10px;
@@ -86,7 +94,7 @@ const SearchLabelContainer = styled.div`
 `;
 
 const TextContainer = styled.p`
-  padding-left: 0.4rem;
+  padding-left: 0.2rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -97,6 +105,9 @@ const InputArea = styled.input`
   padding: 0 0.5rem;
   font-size: 1rem;
   border: none;
+  :focus {
+    outline: none;
+  }
   color: ${(props) => props.theme.color_font__secondary};
   :focus-visible{
     outline: none;
@@ -128,7 +139,7 @@ const CategoryContentBox = styled.div`
   flex-wrap: wrap;
   width: 100%;
   gap: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.1rem;
 `;
 
 const SingleRadio = styled.span`
@@ -136,6 +147,7 @@ const SingleRadio = styled.span`
   justify-content: flex-start;
   align-items: center;
   min-width: 7rem;
+  max-width: 13rem;
   flex-basis: calc((100% - 7rem) / 4); //flex-basis: calc((100% - 3rem) / 4);
 
   @media screen and (max-width: 1000px) {
@@ -170,7 +182,7 @@ const ApplyButton = styled(Button)`
   padding: 1.1rem !important;
   border: none !important;
   border-radius: 10px !important;
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_button__delete};
 `;
@@ -182,7 +194,7 @@ const ResetButton = styled(Button)`
   padding: 1.1rem !important;
   border: none !important;
   border-radius: 10px !important;
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_button__ok};
 `;
@@ -339,7 +351,6 @@ const FilterModal = (props) => {
               </SmallCategoryRadioBox>
             </SmallCategoryWrapper>
           </FilterWrapper>
-          
           <ButtonContainer>
             <ResetButton onClick={resetFieldFunc}>필터 초기화</ResetButton>
             <ApplyButton
