@@ -55,12 +55,12 @@ const Text = styled.h1`
 `;
 
 const ValidationCancelButton = styled(ClearIcon)`
-position: absolute;
-top: 1rem;
-right: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
   cursor: pointer;
   font-size: 2.5rem !important;
-  color: ${(props) => props.theme.color_font__number};;
+  color: ${(props) => props.theme.color_font__number}; ;
 `;
 
 const InventoryContainer = styled.div`
@@ -101,7 +101,7 @@ const StyledPagination = styled(Pagination)`
 const OverFlowHiddenContainer = styled.div`
   height: 80%;
   overflow: hidden;
-`
+`;
 
 const AuctionPublishModal = (props) => {
   const { data: myProducts, isSuccess } = useMyProductsQuery(1, 30);
@@ -124,11 +124,7 @@ const AuctionPublishModal = (props) => {
               <ItemListContainer>
                 {isSuccess &&
                   myProducts.results
-                    .filter(
-                      (singleItem) =>
-                        singleItem.status !== 'dealing' ||
-                        singleItem.status !== 'dealed'
-                    )
+                    .filter((singleItem) => singleItem.status === 'hidden')
                     .map((singleItem) => {
                       return (
                         <InventoryItem

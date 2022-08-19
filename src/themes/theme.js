@@ -29,6 +29,7 @@ const theme = {
   color_white: '#ffffff',
   color_border__hover__light: '#A054D1',
   color_fill_start: '#ffd11e',
+  color_fill_interested: '#ff54B5',
 };
 
 export default theme;

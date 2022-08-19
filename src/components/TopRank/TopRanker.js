@@ -48,6 +48,7 @@ const TopDealerInfo = styled.div`
 const TopDealerTitle = styled.p`
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  font-weight: 700;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -110,6 +111,7 @@ const MonthlyChampionInfo = styled.div`
 
 const MonthlyTitle = styled.p`
   margin-bottom: 1rem;
+  font-weight: 700;
   font-size: 1.5rem;
   color: ${(props) => props.theme.color_font__primary};
 `;

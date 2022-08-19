@@ -126,9 +126,43 @@ const Button = styled.button`
   font-weight: 500;
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__secondary};
-  :last-child {
-    background: ${(props) => props.theme.color_button__ok};
-    color: ${(props) => props.theme.color_buttontext__ok};
+    background-size: 300% 100%;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  :hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #6253e1);
+    box-shadow: inset 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
+`;
+
+const SignUpButton = styled.button`
+  width: 8.4rem;
+  height: 2.6rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.color_font__secondary};
+  background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_buttontext__ok};
+`
+
+const RegisterLink = styled.button`
+  background: none;
+  color: ${(props) => props.theme.color_font__primary};
+  margin-top: 0.7rem;
+  border: none;
+  font-size: 1.1rem;
+
+  :hover {
+    text-decoration: underline;
   }
 `;
 
