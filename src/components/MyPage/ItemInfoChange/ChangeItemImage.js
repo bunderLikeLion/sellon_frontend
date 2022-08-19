@@ -6,7 +6,6 @@ import { useState } from 'react';
 import ThumbnailImageDragDrop from 'components/MyPage/ItemAddForm/ImageDragDrop/ThumbnailImageDragDrop';
 import CardMedia from '@mui/material/CardMedia';
 
-
 const AccordionContainer = styled.div`
   clear: both;
   width: 95%;
@@ -38,16 +37,12 @@ const StyledAccordionSummary = styled(AccordionSummary)`
     align-items: center;
   }
 `;
-const SubHeader = styled.div`
-  width: 9rem;
-`;
 
 const OriginalInfo = styled(CardMedia)`
   margin-left: 1rem;
   padding-left: 1rem;
   width: 4rem;
   height: 4rem;
-  background: red;
 `;
 
 const ModifyBtn = styled.button`
@@ -60,7 +55,6 @@ const ModifyBtn = styled.button`
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__delete};
 `;
-
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -88,6 +82,10 @@ const CancelButton = styled.button`
   font-size: 1rem;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__delete};
+`;
+
+const SubHeader = styled.div`
+  width: 9rem;
 `;
 
 const InsideContainer = styled.div`

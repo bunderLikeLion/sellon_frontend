@@ -44,7 +44,6 @@ const SubHeader = styled.div`
 
 const OriginalInfo = styled.div`
   margin-left: 1rem;
-  padding-left: 1rem;
 `;
 
 const ModifyBtn = styled.button`

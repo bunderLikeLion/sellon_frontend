@@ -14,8 +14,8 @@ const ModalContainer = styled(Box)`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: 55rem;
-  height: 45rem;
+  width: 70%;
+  height: 35rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -25,15 +25,15 @@ const ModalContainer = styled(Box)`
 `;
 
 const DealEvaluate = styled.p`
-  padding-bottom: 2rem;
   font-size: 1.6rem;
   font-weight: 600;
+  padding-top: 1rem;
   color: ${(props) => props.theme.color_white};
 `;
 
 const EvaluateContainer = styled.div`
   width: 100%;
-  height: 50%;
+  height: 70%;
   margin-bottom: 2rem;
   border-radius: 1rem;
   overflow: hidden;
@@ -71,6 +71,12 @@ const EvaluateBottomContainer = styled.div`
   height: 70%;
   padding: 0 2.5rem;
   background: ${(props) => props.theme.color_background__primary};
+  @media screen and (max-width: 920px) {
+    padding: 0 1rem;
+  }
+  @media screen and (max-width: 520px) {
+    padding: 0;
+  }
 `;
 
 const UserEvaluate = styled.p`
@@ -81,9 +87,14 @@ const UserEvaluate = styled.p`
 
 const StarRatingContainer = styled.div`
   width: 45%;
+  max-width: 25rem;
   height: 30%;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__third};
+  @media screen and (max-width: 920px) {
+    width: 100%;
+    min-width: 13rem;
+  }
 `;
 
 const StarRating = styled(Box)`
@@ -136,26 +147,30 @@ const ExtraIcon = styled(MoreHorizIcon)`
 
 const ConfirmButton = styled.button`
   position: absolute;
-  width: 5rem;
-  height: 1.7rem;
-  right: 8%;
-  bottom: 3%;
+  width: 8rem;
+  height: 2.2rem;
+  right: 4rem;
+  bottom: 6%;
   border: none;
   border-radius: 0.5rem;
-  color: ${(props) => props.theme.color_buttontext__ok};
+  font-size: 1.3rem;
+  font-weight: 600;
   background: ${(props) => props.theme.color_button__ok};
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const CancelButton = styled.button`
   position: absolute;
   width: 5rem;
-  height: 1.7rem;
-  right: 19%;
-  bottom: 3%;
+  height: 2.2rem;
+  right: 13.5rem;
+  bottom: 6%;
   border: none;
   border-radius: 0.5rem;
-  color: ${(props) => props.theme.color_buttontext__ok};
-  background: ${(props) => props.theme.color_button__ok};
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.color_font__primary};
+  background: ${(props) => props.theme.color_font__disabled};
 `;
 
 const StyledRating = withStyles({

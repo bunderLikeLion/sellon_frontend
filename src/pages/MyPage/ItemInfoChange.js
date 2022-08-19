@@ -40,8 +40,8 @@ const EntireContainer = styled.div`
 
 const GuideContainer = styled.div`
   display: flex;
-  align-items: flex-end;
-  width: 65%;
+  align-items: center;
+  width: 94%;
   height: 4rem;
   margin-bottom: 0.5rem;
 `;

@@ -49,7 +49,6 @@ const SubHeader = styled.div`
 const OriginalInfo = styled.div`
   width: 20rem;
   margin-left: 1rem;
-  padding-left: 1rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis !important;

@@ -12,25 +12,41 @@ const ModalContainer = styled(Box)`
   flex-wrap: wrap;
   justify-content: center;
   width: 50%;
+  padding: 1rem;
   height: 13rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__primary};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  @media screen and (max-width: 900px) {
+    width: 80%;
+  }
 `;
 
 const Text = styled.h1`
-  margin-top: 10%;
   font-weight: 600;
   font-size: 1.8rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
+const SubText = styled.h2`
+  font-size: 1.2rem;
+  color: ${(props) => props.theme.color_font__primary};
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+`
+
 const ValidationButton = styled.button`
-  position: absolute;
-  left: 32%;
-  bottom: 10%;
-  width: 15%;
-  height: 15%;
+  width: fit-content;
+  padding: 0.4rem 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -40,11 +56,8 @@ const ValidationButton = styled.button`
 `;
 
 const ValidationCancelButton = styled.button`
-  position: absolute;
-  right: 32%;
-  bottom: 10%;
-  width: 15%;
-  height: 15%;
+  width: fit-content;
+  padding: 0.4rem 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -57,6 +70,7 @@ const ValidationModal = ({
   handleModal,
   isModalOpened,
   mainText,
+  subText,
   btnText,
   relatedId,
   type,
@@ -93,10 +107,17 @@ const ValidationModal = ({
     >
       <ModalContainer>
         <Text>{mainText}</Text>
-        <ValidationButton onClick={clickBtnFunc}>{btnText}</ValidationButton>
-        <ValidationCancelButton onClick={handleModal}>
-          취소
-        </ValidationCancelButton>
+        {
+          subText && (
+            <SubText>{subText}</SubText>
+          )
+        }
+        <ButtonContainer>
+          <ValidationButton onClick={clickBtnFunc}>{btnText}</ValidationButton>
+          <ValidationCancelButton onClick={handleModal}>
+            취소
+          </ValidationCancelButton>
+        </ButtonContainer>
       </ModalContainer>
     </Modal>
   );
