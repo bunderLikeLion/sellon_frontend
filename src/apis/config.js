@@ -3,7 +3,7 @@ import { baseUrl } from '../constants/URLS';
 import { useEffect } from 'react';
 
 const createInstance = () => {
-  const timeout = 1000 * 10;
+  const timeout = 1000 * 30;
   const headers = {};
 
   return axios.create({
