@@ -16,7 +16,7 @@ import { Pagination } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useMyProductsQuery } from 'queries/product';
 import { useDealingHistoryQuery } from 'queries/dealing';
-import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
+import EmptyHistoryPlaceholder from 'components/Shared/EmptyHistoryPlaceholder';
 import { useRatingQuery, useDealingCountQuery } from 'queries/user';
 import dateFormatter from '../../utils/dateFormatter';
 import AuctionDetailModal from '../Auction/AuctionDetail/AuctionDetailModal';
@@ -471,14 +471,13 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              
-              <StyledLink to="/auction">
-                <EmptyListPlaceHolder
-                  message="아직 경매장에서 거래한 물건이 없습니다.🥺 한 번 경매장에 참여해볼까요?"
+              <>
+                <EmptyHistoryPlaceholder
+                  message="한 번 경매장에 참여해볼까요?"
                   margin="0"
                   backgroundColor="#252040"
                 />
-              </StyledLink>
+              </>
             )}
           </>
         )}
