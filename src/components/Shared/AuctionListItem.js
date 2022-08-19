@@ -156,7 +156,7 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   overflow: visible;
   color: ${(props) =>
     props.isInterested
-      ? props.theme.color_font__number
+      ? props.theme.color_fill_interested
       : props.theme.color_font__disabled};
 
   & :hover {
