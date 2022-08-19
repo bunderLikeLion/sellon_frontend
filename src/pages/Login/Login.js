@@ -152,6 +152,10 @@ const SignUpButton = styled.button`
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_buttontext__ok};
+  :hover {
+    transition: 0.5s;
+    border: 1px solid ${(props) => props.theme.color_border__bottomright} !important;
+  }
 `
 
 const RegisterLink = styled.button`

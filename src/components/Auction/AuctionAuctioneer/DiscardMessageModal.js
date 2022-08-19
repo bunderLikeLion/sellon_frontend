@@ -83,6 +83,10 @@ font-size: 1rem;
 font-weight: 600;
   color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_font__disabled};
+  :hover {
+    transition: 0.5s;
+    border: 1px solid ${(props) => props.theme.color_border__bottomright} !important;
+  }
 `;
 
 const DiscardMessageModal = ({ handleModal, isModalOpened }) => {
