@@ -27,7 +27,7 @@ const StyledWrapContainer = styled.div`
   width: 100%;
   height: 100%;
   gap: 2rem;
-
+  margin-top: 1rem;
   @media screen and (max-width: 1000px) {
     flex-direction: column-reverse;
   }
@@ -198,7 +198,7 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
+  margin-top: 0.6rem;
   @media screen and (max-width: 1000px) {
     flex-direction: row;
   }
@@ -247,7 +247,7 @@ const MyScopeInfo = styled(StarIcon)`
   }
 
   color: ${(props) =>
-    props.fill ? props.theme.color_fill_start : ''} !important;
+    props.fill ? props.theme.color_fill_start : '#7B749D'} !important;
 
   @media screen and (max-width: 1000px) {
     &.MuiSvgIcon-root {
@@ -471,7 +471,6 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              
               <StyledLink to="/auction">
                 <EmptyListPlaceHolder
                   message="아직 경매장에서 거래한 물건이 없습니다.🥺 한 번 경매장에 참여해볼까요?"
