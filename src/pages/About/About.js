@@ -146,8 +146,9 @@ const ServiceItem = styled.div`
 
 const ServiceTextContainer = styled.div`
   display: flex;
+  // 나중에 수정하기
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem;
   flex-grow: 1;
   flex-shrink: 1;
