@@ -166,6 +166,18 @@ const RegisterLink = styled.button`
   }
 `;
 
+const RegisterLink = styled.button`
+  background: none;
+  color: ${(props) => props.theme.color_font__primary};
+  margin-top: 0.7rem;
+  border: none;
+  font-size: 1.1rem;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
 const Img = styled.img`
   flex: 1;
   height: 100%;
@@ -185,9 +197,8 @@ const Img = styled.img`
 const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem
-;
-`
+  gap: 1rem;
+`;
 
 const Login = () => {
   const navigate = useNavigate();
