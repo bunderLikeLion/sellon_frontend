@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
-import AuctionListContainer from 'components/Shared/AuctionListContainer';
 import AuctionListItem from 'components/Shared/AuctionListItem';
 import { useMyAuctionQuery } from 'queries/auction';
 import timeLimitHandler from 'utils/timeLimitHandler';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import dateFormatter from '../../utils/dateFormatter';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
+
+const AuctionListContainer = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+`;
 
 const PaginationContainer = styled.div`
   display: flex;
@@ -31,7 +37,10 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-// TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
+const CountText = styled.div`
+  margin: 0.55rem 0 1.3rem 0 !important;
+`;
+
 
 const MyAuctionList = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -44,25 +53,33 @@ const MyAuctionList = () => {
     useMyAuctionQuery(pageNum, 12);
 
   return (
-    <Container>
       <AuctionListContainer>
-        {myAuctionFetched &&
-          myAuctionData?.results.map((auction) => {
-            return (
-              <AuctionListItem
-                title={auction.title}
-                thumbnailUrl={auction.product?.thumbnail?.file}
-                participantCount={auction.product_groups_count}
-                startAt={dateFormatter(auction.created_at)}
-                period={timeLimitHandler(auction.end_at)}
-                linkTo={`/auctioneer/${auction.id}/${auction.product.id}`}
-                linkCondition={!isAuctionFinishedHandler(auction.end_at)}
-                isFinished={isAuctionFinishedHandler(auction.end_at)}
-                relatedUser={auction?.owner}
-              />
-            );
-          })}
-      </AuctionListContainer>
+        {myAuctionFetched && (
+          <>
+            <CountText>총 {myAuctionData?.total_count}개</CountText>
+            {
+              myAuctionData?.total_count > 0 ? (
+                <>
+                  {myAuctionData?.results.map((auction) => (
+                    <AuctionListItem
+                      title={auction.title}
+                      thumbnailUrl={auction.product?.thumbnail?.file}
+                      participantCount={auction.product_groups_count}
+                      startAt={dateFormatter(auction.created_at)}
+                      period={timeLimitHandler(auction.end_at)}
+                      linkTo={`/auctioneer/${auction.id}/${auction.product.id}`}
+                      linkCondition={!isAuctionFinishedHandler(auction.end_at)}
+                      isFinished={isAuctionFinishedHandler(auction.end_at)}
+                      relatedUser={auction?.owner}
+                    />
+                  ))}
+                </>
+            ) : <EmptyListPlaceHolder
+            message="아직 경매를 열지 않았습니다. 경매를 열어보세요.😅" />
+            }
+          </>
+        )}
+        
       {/*Pagination*/}
       <PaginationContainer>
         <StyledPagination
@@ -71,7 +88,7 @@ const MyAuctionList = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-    </Container>
+    </AuctionListContainer>
   );
 };
 
