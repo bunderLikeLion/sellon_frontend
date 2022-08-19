@@ -166,14 +166,15 @@ const ParticipatedUserContainer = styled.div`
 const OverSpan = styled.span`
   position: absolute;
   z-index: 2;
-  left: 72%;
-  top: 35%;
+  left: 71%;
+  top: 37%;
   @media screen and (max-width: 800px) {
     left: 73.5%;
   }
   @media screen and (max-width: 600px) {
-    left: 77.5%;
+    left: 78.8%;
     top: 33%;
+    font-size: 0.7rem;
   }
 `;
 
