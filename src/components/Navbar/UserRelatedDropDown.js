@@ -14,6 +14,7 @@ import { userAtom } from 'states';
 import { Stack } from '@mui/material';
 import styled from 'styled-components';
 import messages from 'constants/messages';
+import GavelIcon from '@mui/icons-material/Gavel';
 
 const UserDropDownContainer = styled(Menu)`
   & .MuiMenu-list {
@@ -115,7 +116,7 @@ const UserRelatedDropDown = ({ openUserMenu, closeUserMenu, anchorElUser }) => {
               alignItems="center"
               spacing={1}
             >
-              <PersonIcon />
+              <GavelIcon />
               <Typography textAlign="center">진행중인 거래</Typography>
             </Stack>
           </Link>
