@@ -147,17 +147,6 @@ const Button = styled.button`
   }
 `;
 
-const SignUpButton = styled.button`
-  width: 8.4rem;
-  height: 2.6rem;
-  margin-bottom: 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__secondary};
-  background: ${(props) => props.theme.color_button__ok};
-  color: ${(props) => props.theme.color_buttontext__ok};
-`;
 
 const RegisterLink = styled.button`
   background: none;

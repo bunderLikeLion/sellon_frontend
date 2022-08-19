@@ -16,7 +16,7 @@ const FlexContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 2rem 2rem;
-  margin-top: 2rem;
+  margin-top: 1rem !important;
 `;
 
 const TopContainer = styled.div`
@@ -78,6 +78,9 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const ItemCardWrapper = styled.div`
+`;
+
 // TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
 
 const ItemList = () => {
@@ -102,29 +105,31 @@ const ItemList = () => {
           아이템 추가
         </AddProductItemButton>
       </TopContainer>
-      {myProductFetched &&
-        (myProductsData?.total_count > 0 ? (
-          <FlexContainer>
-            {myProductsData.results.map((productData) => {
-              return (
-                <ItemListCard key={productData.id} productData={productData} />
-              );
-            })}
-          </FlexContainer>
-        ) : (
-          <EmptyListPlaceHolder
-            message="아직 아이템이 없습니다 🥺"
-            margin="3rem 0"
+      <ItemCardWrapper>
+        {myProductFetched &&
+          (myProductsData?.total_count > 0 ? (
+            <FlexContainer>
+              {myProductsData.results.map((productData) => {
+                return (
+                  <ItemListCard key={productData.id} productData={productData} />
+                );
+              })}
+            </FlexContainer>
+          ) : (
+            <EmptyListPlaceHolder
+              message="아직 아이템이 없습니다 🥺"
+              margin="3rem 0"
+            />
+          ))}
+        <PaginationContainer>
+          <StyledPagination
+            count={myProductsData?.total_pages}
+            page={pageNum}
+            onChange={handleChange}
           />
-        ))}
-      <PaginationContainer>
-        <StyledPagination
-          count={myProductsData?.total_pages}
-          page={pageNum}
-          onChange={handleChange}
-        />
-      </PaginationContainer>
-      <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
+        </PaginationContainer>
+        <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
+      </ItemCardWrapper>
     </ItemListContainer>
   );
 };
