@@ -56,7 +56,6 @@ const InterestedAuctionList = () => {
     <ItemListContainer>
       {interestedAuctionListsFetched && (
         <>
-          {/*<p>총 {interestedAuctionLists?.total_count}개</p>*/}
           <CountText>총 {interestedAuctionLists?.total_count}개</CountText>
           {
             interestedAuctionLists?.total_count > 0 ? (

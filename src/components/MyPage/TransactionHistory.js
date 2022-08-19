@@ -268,7 +268,7 @@ const MyScopeInfo = styled(StarIcon)`
 
 const DealCountInfoContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   height: 2rem;
@@ -289,7 +289,7 @@ const DealCountInfo = styled.div`
 `;
 
 const DealCount = styled.p`
-  padding: 0 0.5rem 0 1rem;
+  padding: 0 1rem 0 1rem;
   font-size: 2rem;
 `;
 
@@ -475,7 +475,6 @@ const TransactionHistory = () => {
                 <EmptyListPlaceHolder
                   message="아직 경매장에서 거래한 물건이 없습니다.🥺 한 번 경매장에 참여해볼까요?"
                   margin="0"
-                  backgroundColor="#252040"
                 />
               </StyledLink>
             )}
