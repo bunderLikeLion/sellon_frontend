@@ -19,7 +19,7 @@ const ModalContainer = styled(Box)`
   max-height: 55%;
   top: 50%;
   left: 50%;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   overflow-y: auto;
