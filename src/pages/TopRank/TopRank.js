@@ -28,6 +28,7 @@ const NavContainer = styled.div`
   width: 100%;
   height: fit-content;
   padding: 1.2rem;
+  margin-bottom: 0.4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;

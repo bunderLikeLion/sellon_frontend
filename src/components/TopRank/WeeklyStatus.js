@@ -20,18 +20,11 @@ const WeeklyStatusContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-right: 1rem;
-  margin-bottom: 1rem;
 `;
 
 const WeeklyStatusTitle = styled.p`
-  padding: 1rem;
+  padding: 1rem 1rem 0rem 1rem;
   font-size: 1.4rem;
-`;
-
-const QuestionIcon = styled(HelpIcon)`
-  margin: 0;
-  font-size: 0.5rem;
-  cursor: pointer;
 `;
 
 const WeeklyStatusBottomContainer = styled.div`
@@ -40,21 +33,6 @@ const WeeklyStatusBottomContainer = styled.div`
   padding: 0.7rem;
   width: 100%;
 `;
-
-// const PaginationContainer = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 2rem;
-// `;
-//
-// const PaginationLeftIcon = styled(KeyboardArrowLeftIcon)`
-//   width: 2rem;
-// `;
-
-// const PaginationRightIcon = styled(KeyboardArrowRightIcon)`
-//   width: 2rem;
-// `;
 
 const WeeklyStatusUserContainer = styled.div`
   display: flex;
@@ -128,22 +106,6 @@ const OverSpan = styled.span`
     font-size: 0.5rem;
   }
 `;
-const StyledTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))({
-  [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: 168,
-    cursor: 'pointer',
-    color: '#DFDCEF',
-    backgroundColor: '#000000',
-    fontSize: '0.7rem',
-    lineHeight: '1rem',
-  },
-});
-
-const HoverMsg = `
-hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
-`;
 
 const WeeklyStatus = () => {
   const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
@@ -153,9 +115,6 @@ const WeeklyStatus = () => {
     <Container>
       <WeeklyStatusContainer>
         <WeeklyStatusTitle>실시간 인기 경매</WeeklyStatusTitle>
-        <StyledTooltip title={HoverMsg} arrow>
-          <QuestionIcon />
-        </StyledTooltip>
       </WeeklyStatusContainer>
       <WeeklyStatusBottomContainer>
         <WeeklyStatusUserContainer>
