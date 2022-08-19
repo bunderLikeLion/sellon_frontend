@@ -28,7 +28,8 @@ const auctionRelatedAPI = {
           product__product_category_id: cat === '전체' ? null : cat,
           search: filterKeyword,
           include_ended_auction: showAll === '1',
-          dealing_type: +dealingType,
+          // dealing_type:  +dealingType,
+          dealing_type: dealingType === '2' ? null : +dealingType,
         },
       })
       .then((res) => res.data);
