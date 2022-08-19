@@ -15,7 +15,7 @@ const ModalContainer = styled(Box)`
   display: flex;
   flex-wrap: wrap;
   width: fit-content;
-  height: 35rem;
+  height: 30rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -23,10 +23,6 @@ const ModalContainer = styled(Box)`
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
 
-  @media screen and (max-width: 700px) {
-    display: flex;
-    justify-content: center;
-  }
 `;
 
 const DealEvaluate = styled.p`
@@ -43,11 +39,6 @@ const EvaluateContainer = styled.div`
   border-radius: 1rem;
   overflow: hidden;
 
-  @media screen and (max-width: 700px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 `;
 
 const EvaluateTopContainer = styled.div`
@@ -57,10 +48,6 @@ const EvaluateTopContainer = styled.div`
   padding: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
 
-  @media screen and (max-width: 700px) {
-    width: 70%;
-    border-radius: 0.5rem;
-  }
 `;
 
 const MyItemImg = styled(CardMedia)`
@@ -88,13 +75,8 @@ const EvaluateBottomContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   height: 70%;
-  padding: 0 2.5rem;
   background: ${(props) => props.theme.color_background__primary};
 
-  @media screen and (max-width: 700px) {
-    padding: 0;
-    width: 70%;
-  }
 `;
 
 const UserEvaluate = styled.p`
@@ -104,9 +86,8 @@ const UserEvaluate = styled.p`
 `;
 
 const StarRatingContainer = styled.div`
-  width: 45%;
-  max-width: 25rem;
-  height: 30%;
+  width: 100%;
+  height: 100%;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__third};
   @media screen and (max-width: 700px) {
@@ -199,15 +180,15 @@ const CancelButton = styled.button`
 
 const StyledRating = withStyles({
   iconEmpty: {
-    fontSize: 40,
+    fontSize: 60,
   },
   iconFilled: {
     color: '#9454B5',
-    fontSize: 40,
+    fontSize: 60,
   },
   iconHover: {
     color: '#7B749D',
-    fontSize: 45,
+    fontSize: 65,
   },
 })(Rating);
 
