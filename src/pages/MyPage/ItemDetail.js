@@ -98,8 +98,9 @@ const StyledTooltip = styled(({ className, ...props }) => (
     cursor: 'pointer',
     color: '#DFDCEF',
     backgroundColor: '#000000',
-    fontSize: '0.7rem',
+    fontSize: '1rem',
     lineHeight: '1rem',
+    padding: '0.5rem'
   },
   [`& .${tooltipClasses.arrow}`]: {
     color: '#000',

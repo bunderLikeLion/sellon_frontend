@@ -49,7 +49,7 @@ const DetailSubHeader = styled.p`
 `;
 
 const AuctionDetailTitle = styled.div`
-  overflow: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
   height: 2.5rem;
