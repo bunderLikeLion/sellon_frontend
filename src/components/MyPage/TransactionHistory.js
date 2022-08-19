@@ -471,14 +471,14 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              <>
+  
                 <EmptyHistoryPlaceholder
                   message="한 번 경매장에 참여해볼까요?"
                   margin="0"
-              </>
+              
             )}
           </>
-        )}
+        )})
 
         {/*Pagination*/}
         <PaginationContainer>
