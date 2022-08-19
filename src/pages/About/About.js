@@ -81,11 +81,26 @@ const AuctionButton = styled.button`
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
   border: none;
-  padding: .7rem .8rem;
+  padding: .7rem 1.3rem;
   font-size: 1.1rem;
   width: fit-content;
   height: fit-content;
   border-radius: 10px;
+  background-size: 300% 100%;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+
+  :hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #6253e1);
+    box-shadow: inset 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
 `;
 
 const TopRankButton = styled.button`
@@ -327,6 +342,7 @@ const ParticipantButton = styled(AuctionButton)`
   }
   :hover {
     text-decoration: underline;
+    background: transparent;
   };
 `;
 
@@ -351,7 +367,7 @@ const About = () => {
             <AuctionButton>경매장으로 가기</AuctionButton>
           </Link>
           <Link to="/toprank">
-            <TopRankButton>지금까지의 거래 구경하러 가기</TopRankButton>
+            <TopRankButton>명예의 전당 구경하러 가기</TopRankButton>
           </Link>
         </MainIntroduceButtonContainer>
 
