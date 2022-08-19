@@ -48,7 +48,6 @@ const ContentContainer = styled.div`
   max-height: 40%;
   margin: 1rem 1rem 0.2rem 1rem;
 `;
-//gap: 1.3rem;
 
 const CloseBtn = styled(CloseIcon)`
   position: absolute;
