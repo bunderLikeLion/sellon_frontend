@@ -6,6 +6,7 @@ const PlaceHolder = styled.div`
   margin: ${(props) => props.margin || '1rem 1rem'};
   border-radius: ${(props) => props.borderRadius || '0.5rem'};
   font-size: ${(props) => props.fontSize || '1.1rem;'};
+  color: ${(props) => props.fontSize || 'white'};
   background-color: ${(props) => props.backgroundColor || props.theme.color_background__secondary};
 `;
 */
@@ -25,6 +26,7 @@ const EmptyListPlaceHolder = ({
   margin,
   borderRadius,
   fontSize,
+  color,
 }) => {
   return (
     <PlaceHolder
@@ -33,6 +35,7 @@ const EmptyListPlaceHolder = ({
       margin={margin}
       borderRadius={borderRadius}
       fontSize={fontSize}
+      color={color}
     >
       {message}
     </PlaceHolder>
