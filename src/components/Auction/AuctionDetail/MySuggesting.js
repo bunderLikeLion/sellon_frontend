@@ -54,7 +54,21 @@ const AllInButton = styled.button`
   border-radius: 0.5rem;
   padding: 0.4rem 1rem;
   color: ${(props) => props.theme.color_font__primary};
-  background: ${(props) => props.theme.color_background__warning};
+  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+  background-size: 300% 100%;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  :hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+    box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+  }
 `;
 
 const BeforeIcon = styled(NavigateBeforeIcon)`
