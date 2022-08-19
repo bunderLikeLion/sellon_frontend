@@ -27,19 +27,6 @@ const ModalContainer = styled(Box)`
   }
 `;
 
-/*
-const Text = styled.h1`
-  font-weight: 600;
-  font-size: 1.8rem;
-  color: ${(props) => props.theme.color_font__primary};
-`;
-
-const SubText = styled.h2`
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__primary};
-`;
-*/
-
 const Text = styled.h1`
   font-weight: 600;
   font-size: 1.8rem;
