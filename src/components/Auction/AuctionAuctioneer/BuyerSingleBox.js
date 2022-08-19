@@ -2,37 +2,15 @@ import styled from 'styled-components';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useState } from 'react';
 import CardMedia from '@mui/material/CardMedia';
-import AuctionDetailModal from '../AuctionDetail/AuctionDetailModal';
 
-const AccordionContainer = styled.div`
-  clear: both;
+const Container = styled.div`
+  display: flex;
   width: 100%;
-  margin: 1rem;
-
-  @media screen and (max-width: 700px) {
-    margin: 0.5rem;
-  }
-`;
-
-const StyledAccordion = styled(Accordion)`
+  margin: 1rem 0;
   border-radius: 1rem !important;
   background: ${(props) => props.theme.color_background__secondary} !important;
-`;
-
-const StyledAccordionDetails = styled(AccordionDetails)`
-  display: inline-flex;
-  width: 100%;
-  height: fit-content;
-`;
-
-const StyledAccordionSummary = styled(AccordionSummary)`
-  height: fit-content;
-  & .MuiAccordionSummary-content {
-    height: fit-content;
-  }
 `;
 
 const BuyerImageContainer = styled.div`
@@ -40,13 +18,13 @@ const BuyerImageContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 10rem;
-  height: 5rem;
+  height: 100%;
   margin: 0 auto;
 `;
 
 const BuyerImage = styled(CardMedia)`
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   margin: 0 auto;
   border-radius: 50%;
   background-position: center;
@@ -57,7 +35,6 @@ const BuyerImage = styled(CardMedia)`
 const DivisionLine = styled.div`
   width: 0.2rem;
   height: 90%;
-  margin: 0 1rem;
   background: ${(props) => props.theme.color_font__tertiary} !important;
 `;
 
@@ -66,17 +43,15 @@ const ItemListContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  padding-left: 1rem;
   flex-wrap: wrap;
-  gap: 1rem;
-`;
-
-const ItemDetailListContainer = styled(ItemListContainer)`
-  height: fit-content;
+  gap: 0 1rem;
 `;
 
 const ItemImage = styled.div`
   width: 4rem;
   height: 4rem;
+  margin: 1rem;
   border-radius: 1rem;
   background-size: cover;
   background-repeat: no-repeat;
@@ -86,10 +61,6 @@ const ItemImage = styled.div`
     width: 3rem;
     height: 3rem;
   }
-`;
-
-const EmptyBox = styled.div`
-  width: 1.9rem;
 `;
 
 const BuyerSingleBox = ({ singleGroup }) => {
@@ -111,60 +82,25 @@ const BuyerSingleBox = ({ singleGroup }) => {
   };
 
   return (
-    <AccordionContainer>
-      <StyledAccordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-      >
-        <StyledAccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <BuyerImageContainer>
-            <BuyerImage image={singleGroup?.user?.avatar} />
-            <DivisionLine />
-          </BuyerImageContainer>
+    <Container>
+      <BuyerImageContainer>
+        <BuyerImage image={singleGroup?.user?.avatar} />
+        <DivisionLine />
+      </BuyerImageContainer>
 
-          <ItemListContainer>
-            {singleGroup &&
-              singleGroup?.products.map((singleProduct, idx) => {
-                if (idx < 5)
-                  return (
-                    <ItemImage
-                      key={singleProduct?.id}
-                      onClick={() => clickImgFunc(singleProduct)}
-                      imgUrl={singleProduct?.thumbnail?.file}
-                    />
-                  );
-              })}
-          </ItemListContainer>
-        </StyledAccordionSummary>
-        {singleGroup && singleGroup?.products.length > 5 && (
-          <StyledAccordionDetails>
-            <ItemDetailListContainer>
-              {singleGroup?.products.map((singleProduct, idx) => {
-                if (idx > 4)
-                  return (
-                    <ItemImage
-                      key={singleProduct?.id}
-                      onClick={() => clickImgFunc(singleProduct)}
-                      imgUrl={singleProduct?.thumbnail?.file}
-                    />
-                  );
-              })}
-            </ItemDetailListContainer>
-
-            <EmptyBox />
-          </StyledAccordionDetails>
-        )}
-      </StyledAccordion>
-      <AuctionDetailModal
-        handleModal={handleModal}
-        isModalOpened={isModalOpened}
-        smallImgRelatedItemId={singleProduct}
-      />
-    </AccordionContainer>
+      <ItemListContainer>
+        {singleGroup &&
+          singleGroup?.products.map((singleProduct, idx) => {
+            return (
+              <ItemImage
+                key={singleProduct?.id}
+                onClick={() => clickImgFunc(singleProduct)}
+                imgUrl={singleProduct?.thumbnail?.file}
+              />
+            );
+        })}
+      </ItemListContainer>
+    </Container>
   );
 };
 
