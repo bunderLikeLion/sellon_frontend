@@ -137,11 +137,16 @@ const WeeklyStatus = () => {
                                 style={{ opacity: '0.7' }}
                                 src={user.avatar}
                               />
-                              <OverSpan>
-                                +
-                                {auctionItem.participants.length -
-                                  USER_MAX_COUNT}
-                              </OverSpan>
+
+                              {
+                                (auctionItem.participants.length - USER_MAX_COUNT > 0) && (
+                                  <OverSpan>
+                                    +
+                                    {auctionItem.participants.length -
+                                      USER_MAX_COUNT}
+                                  </OverSpan>
+                                )
+                              }
                             </LastImageBox>
                           );
                         }
