@@ -44,11 +44,11 @@ const ChatBox = styled.div`
 
 const SendByMeChatBox = styled(ChatBox)`
   margin: auto 0 0.4rem auto;
-`
+`;
 
 const EmptyChatPlaceHolder = styled.div`
   text-align: center;
-`
+`;
 
 const ChatMsgContainer = ({ opponent, selectedDeal }) => {
   const scrollRef = useRef();
@@ -75,24 +75,22 @@ const ChatMsgContainer = ({ opponent, selectedDeal }) => {
             if (singleMsg?.sender?.id === user?.id) {
               return <SendByMeChatBox>{singleMsg?.content}</SendByMeChatBox>;
             } else {
-              return (
-                <ChatBox>
-                  {singleMsg?.content}
-                </ChatBox>
-              );
+              return <ChatBox>{singleMsg?.content}</ChatBox>;
             }
           })
         ) : (
           <EmptyChatPlaceHolder>
             <p>아직 나눈 대화가 없습니다.</p>
           </EmptyChatPlaceHolder>
-          )
-        ): (
-          <EmptyChatPlaceHolder>
-            <p>진행중인 거래 목록에서 거래를 선택하여<br/> 메세지를 보낼 수 있습니다.</p>
-          </EmptyChatPlaceHolder>
-          )
-      }
+        )
+      ) : (
+        <EmptyChatPlaceHolder>
+          <p>
+            진행중인 거래 목록에서 거래를 선택하여
+            <br /> 메세지를 보낼 수 있습니다.
+          </p>
+        </EmptyChatPlaceHolder>
+      )}
     </ChatContentContainer>
   );
 };

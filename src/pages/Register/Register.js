@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { useSignInMutation } from 'queries/auth';
 import styled from 'styled-components';
-import SignPic from 'images/Sign_Img.jpeg';
+import LoginPic from 'images/LoginPic.jpeg';
 import toast from 'react-hot-toast';
 import useInput from 'hooks/useInput';
 
@@ -127,12 +127,11 @@ const Img = styled.img`
   }
 `;
 
-
 const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-`
+`;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -217,7 +216,7 @@ const Register = () => {
             </ButtonContainer>
           </InputsContainer>
         </Form>
-        <Img src={SignPic} />
+        <Img src={LoginPic} />
       </Card>
     </Container>
   );
