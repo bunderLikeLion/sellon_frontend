@@ -340,6 +340,9 @@ const BannerText = styled.h2`
 const ParticipantButton = styled(AuctionButton)`
   background: ${(props) => props.theme.color_button__ok};
   padding: 0.6rem 1.4rem;
+  :hover {
+    background: ${(props) => props.theme.color_button__ok};
+  }
 `;
 
 const ParticipantButtonContainer = styled.div`
