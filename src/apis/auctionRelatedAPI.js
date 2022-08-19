@@ -28,7 +28,7 @@ const auctionRelatedAPI = {
           product__product_category_id: cat === '전체' ? null : cat,
           search: filterKeyword,
           include_ended_auction: showAll === '1',
-          dealingType: +dealingType,
+          dealing_type: +dealingType,
         },
       })
       .then((res) => res.data);
