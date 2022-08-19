@@ -147,14 +147,12 @@ const Button = styled.button`
   }
 `;
 
-
 const RegisterLink = styled.button`
   background: none;
   color: ${(props) => props.theme.color_font__primary};
   margin-top: 0.7rem;
   border: none;
   font-size: 1.1rem;
-
   :hover {
     text-decoration: underline;
   }
