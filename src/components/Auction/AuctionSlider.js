@@ -22,6 +22,11 @@ const SlickItems = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 56.26%;
+  border-radius: 1rem;
+
+  >img {
+    border-radius: 1rem;
+  }
 
   img {
     position: absolute;
@@ -105,9 +110,6 @@ const AuctionTitleContainer = styled.div`
   top: 18.5rem;
   left: 10%;
   width: 37%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
   @media screen and (max-width: 800px) {
     top: 17rem;
   }
@@ -117,10 +119,13 @@ const AuctionTitleContainer = styled.div`
   }
 `;
 
-const AuctionTitle = styled.span`
+const AuctionTitle = styled.div`
   color: ${(props) => props.theme.color_white};
   font-size: 1.9rem;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   @media screen and (max-width: 700px) {
     font-size: 1.4rem;
   }
@@ -166,7 +171,7 @@ const ParticipantUserAvatar = styled.img`
 const ParticipatedUserContainer = styled.div`
   display: flex;
   position: absolute;
-  top: 21.5rem;
+  top: 22rem;
   left: 10%;
   height: fit-content;
   width: 55%;

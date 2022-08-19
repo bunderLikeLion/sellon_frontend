@@ -53,6 +53,7 @@ const BestAuctionContainer = styled.div`
 
 const BestAuctionTitle = styled.div`
   width: 100%;
+  margin-bottom: 0.5rem;
   font-size: 1.8rem;
   font-weight: bold;
   color: ${(props) => props.theme.color_font__primary};
