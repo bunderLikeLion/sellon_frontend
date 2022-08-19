@@ -75,6 +75,12 @@ export const StyledLabel = styled.p`
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
+const DescriptionLabel = styled.p`
+  font-size: 1rem;
+  padding-left: .4rem;
+  color: ${(props) => props.theme.color_font__tertiary};
+`;
+
 const StyledTextField = styled(TextField)`
   & label.Mui-focused {
     border: 3px solid transparent;
@@ -420,7 +426,7 @@ const AddItemModal = ({ handleModal, isModalOpened }) => {
         </ContainerBox>
 
         <DescriptionInputContainer>
-          <StyledLabel>아이템 설명 </StyledLabel>
+          <DescriptionLabel>아이템 설명</DescriptionLabel>
           <ItemTextarea
             ref={editorRef}
             onChange={handleItemDesc}

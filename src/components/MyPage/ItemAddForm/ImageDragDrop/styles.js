@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
-export const ThumbContainer = styled.aside``;
+export const ThumbContainer = styled.aside`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 25rem;
+`;
 
 export const MultiThumbContainer = styled.aside`
   display: flex;

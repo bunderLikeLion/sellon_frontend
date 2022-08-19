@@ -41,8 +41,12 @@ const SubHeader = styled.div`
 `;
 
 const OriginalInfo = styled.div`
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 20rem;
   margin-left: 1rem;
-  padding-left: 1rem;
 `;
 
 const ModifyBtn = styled.button`
@@ -140,7 +144,7 @@ const ChangeItemId = ({ givenName, editSingleField, imgToLeft }) => {
         {/* 아코디언 닫혔을 때 */}
         <StyledAccordionSummary>
           <SubHeader>아이템명</SubHeader>
-          <OriginalInfo>{givenName}</OriginalInfo>
+            <OriginalInfo>{givenName}</OriginalInfo>
           {!isShown && (
             <ModifyBtn onClick={handleClick}>아이템명 변경</ModifyBtn>
           )}
