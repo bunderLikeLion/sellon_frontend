@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import backgroundPic from 'images/profile_background.png';
+import background from 'images/ProfileBackground.jpeg';
 import { Container, UsernameText, CircleProfileImgContainer } from './styles';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
@@ -29,7 +29,7 @@ const ProfileBackground = () => {
 
   return (
     <Container>
-      <img src={backgroundPic} alt="" />
+      <img src={background} alt="" />
       <UsernameText>{user?.username}</UsernameText>
       <CircleProfileImgContainer>
         <img src={user?.avatar} alt="프로필 이미지"/>
