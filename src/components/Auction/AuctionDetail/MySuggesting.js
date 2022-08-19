@@ -183,6 +183,7 @@ const MySuggesting = () => {
         handleModal={handleModal}
         isModalOpened={isModalOpened}
         mainText="정말 올인하시겠습니까?"
+        subText="해당 경매장에 인벤토리에서 사용가능한 상품을 모두 올립니다."
         btnText="올인"
         relatedId={relatedAuctionId}
         type="allIn"
