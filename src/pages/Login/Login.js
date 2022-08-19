@@ -112,32 +112,37 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
- 
 `;
 
 //개별 버튼
 const Button = styled.button`
   width: 20rem;
   height: 3rem;
-  margin: .4rem 0 .7rem 0;
+  margin: 0.4rem 0 0.7rem 0;
   border-radius: 0.5rem;
   border: none;
   font-size: 1.3rem;
   font-weight: 500;
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__secondary};
-    background-size: 300% 100%;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+  background-size: 300% 100%;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   :hover {
     background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
-    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #6253e1);
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    background-image: linear-gradient(
+      to right,
+      #6253e1,
+      #852d91,
+      #a3a1ff,
+      #6253e1
+    );
     box-shadow: inset 0 4px 15px 0 rgba(126, 52, 161, 0.75);
   }
 `;
@@ -152,18 +157,6 @@ const SignUpButton = styled.button`
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_buttontext__ok};
-`
-
-const RegisterLink = styled.button`
-  background: none;
-  color: ${(props) => props.theme.color_font__primary};
-  margin-top: 0.7rem;
-  border: none;
-  font-size: 1.1rem;
-
-  :hover {
-    text-decoration: underline;
-  }
 `;
 
 const RegisterLink = styled.button`
