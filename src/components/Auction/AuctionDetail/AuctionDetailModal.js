@@ -94,8 +94,6 @@ const AuctionDetailModal = ({
         : smallImgRelatedItemId?.id
     );
 
-  console.log(singleItemInfo, 'single');
-
   return (
     <Modal
       open={isModalOpened}
