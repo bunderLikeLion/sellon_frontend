@@ -33,6 +33,7 @@ const messages = {
     },
     destroy: {
       success: '아이템을 삭제했습니다.',
+      error: '거래됐거나 경매에 올라간 아이템은 삭제할 수 없습니다.',
     },
     edit: {
       success: '아이템 정보를 수정했습니다.',
