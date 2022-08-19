@@ -15,7 +15,7 @@ const ModalContainer = styled(Box)`
   min-width: 50rem;
   max-width: 60%;
   height: fit-content;
-  min-height: 42rem;
+  min-height: 43rem;
   max-height: 55%;
   top: 50%;
   left: 50%;
@@ -44,7 +44,7 @@ const ModalContainer = styled(Box)`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.3rem;
+  gap: 1rem;
   max-height: 40%;
   margin: 1rem 1rem 0.2rem 1rem;
 `;
@@ -66,7 +66,7 @@ const GuideContainer = styled.div`
 
 const StyledLabel = styled.p`
   width: fit-content;
-  margin: 1rem 1rem 1rem 0.4rem;
+  margin: 1rem 1rem 1rem 0.9rem;
   font-size: 1.2rem;
   color: ${(props) => props.theme.color_font__tertiary};
 `;
@@ -97,8 +97,10 @@ const InputArea = styled.input`
   padding: 0 0.5rem;
   font-size: 1rem;
   border: none;
-  input:focus { outline: none !important; }
   color: ${(props) => props.theme.color_font__secondary};
+  :focus-visible{
+    outline: none;
+  }
   background: transparent; //window창 좁혔을 때 튀어나와서 투명처리
 `;
 
@@ -158,7 +160,7 @@ const StyledRadio = styled(Radio)`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: end;
-  gap: 0.7rem;
+  gap: 1.3rem;
 `;
 
 const ApplyButton = styled(Button)`
@@ -183,6 +185,13 @@ const ResetButton = styled(Button)`
   font-size: 1.2rem !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_button__ok};
+`;
+
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 1.2rem 0;
+  gap: 1.2rem;
 `;
 
 const FilterModal = (props) => {
@@ -270,64 +279,67 @@ const FilterModal = (props) => {
               필터 및 검색
             </Typography>
           </GuideContainer>
-          <SearchLabelContainer>
-            <TextContainer>상품명</TextContainer>
-            <InputArea value={filterKeyword} onChange={handleFilterKeyword} />
-          </SearchLabelContainer>
 
-          <CategoryRadioBox>
-            <StyledLabel>상품 카테고리</StyledLabel>
-            <CategoryContentBox>
-              <SingleRadio>
-                <StyledRadio {...catControlProps('전체')} />
-                <RadioLabel>전체</RadioLabel>
-              </SingleRadio>
-              {catFetched &&
-                catData.map((singleCat) => {
-                  return (
-                    <SingleRadio>
-                      <StyledRadio {...catControlProps(`${singleCat.id}`)} />
-                      <RadioLabel>{singleCat.name}</RadioLabel>
-                    </SingleRadio>
-                  );
-                })}
-            </CategoryContentBox>
-          </CategoryRadioBox>
+          <FilterWrapper>
+            <SearchLabelContainer>
+              <TextContainer>상품명</TextContainer>
+              <InputArea value={filterKeyword} onChange={handleFilterKeyword} />
+            </SearchLabelContainer>
 
-          <SmallCategoryWrapper>
-            <SmallCategoryRadioBox>
-              <StyledLabel>거래 방식</StyledLabel>
+            <CategoryRadioBox>
+              <StyledLabel>상품 카테고리</StyledLabel>
               <CategoryContentBox>
                 <SingleRadio>
-                  <StyledRadio {...dealingTypeControlProps('2')} />
+                  <StyledRadio {...catControlProps('전체')} />
                   <RadioLabel>전체</RadioLabel>
                 </SingleRadio>
-                <SingleRadio>
-                  <StyledRadio {...dealingTypeControlProps('0')} />
-                  <RadioLabel>직거래</RadioLabel>
-                </SingleRadio>
-                <SingleRadio>
-                  <StyledRadio {...dealingTypeControlProps('1')} />
-                  <RadioLabel>배송 거래</RadioLabel>
-                </SingleRadio>
+                {catFetched &&
+                  catData.map((singleCat) => {
+                    return (
+                      <SingleRadio>
+                        <StyledRadio {...catControlProps(`${singleCat.id}`)} />
+                        <RadioLabel>{singleCat.name}</RadioLabel>
+                      </SingleRadio>
+                    );
+                  })}
               </CategoryContentBox>
-            </SmallCategoryRadioBox>
+            </CategoryRadioBox>
 
-            <SmallCategoryRadioBox>
-              <StyledLabel>거래 불가능한 경매 포함</StyledLabel>
-              <CategoryContentBox>
-                <SingleRadio>
-                  <StyledRadio {...showAllControlProps('1')} />
-                  <RadioLabel>포함</RadioLabel>
-                </SingleRadio>
-                <SingleRadio>
-                  <StyledRadio {...showAllControlProps('2')} />
-                  <RadioLabel>미포함</RadioLabel>
-                </SingleRadio>
-              </CategoryContentBox>
-            </SmallCategoryRadioBox>
-          </SmallCategoryWrapper>
+            <SmallCategoryWrapper>
+              <SmallCategoryRadioBox>
+                <StyledLabel>거래 방식</StyledLabel>
+                <CategoryContentBox>
+                  <SingleRadio>
+                    <StyledRadio {...dealingTypeControlProps('2')} />
+                    <RadioLabel>전체</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio {...dealingTypeControlProps('0')} />
+                    <RadioLabel>직거래</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio {...dealingTypeControlProps('1')} />
+                    <RadioLabel>배송 거래</RadioLabel>
+                  </SingleRadio>
+                </CategoryContentBox>
+              </SmallCategoryRadioBox>
 
+              <SmallCategoryRadioBox>
+                <StyledLabel>거래 불가능한 경매 포함</StyledLabel>
+                <CategoryContentBox>
+                  <SingleRadio>
+                    <StyledRadio {...showAllControlProps('1')} />
+                    <RadioLabel>포함</RadioLabel>
+                  </SingleRadio>
+                  <SingleRadio>
+                    <StyledRadio {...showAllControlProps('2')} />
+                    <RadioLabel>미포함</RadioLabel>
+                  </SingleRadio>
+                </CategoryContentBox>
+              </SmallCategoryRadioBox>
+            </SmallCategoryWrapper>
+          </FilterWrapper>
+          
           <ButtonContainer>
             <ResetButton onClick={resetFieldFunc}>필터 초기화</ResetButton>
             <ApplyButton
