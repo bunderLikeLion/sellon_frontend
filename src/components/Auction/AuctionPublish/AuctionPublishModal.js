@@ -5,6 +5,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import InventoryItem from './InventoryItem';
 import useMyProductsQuery from 'queries/product/useMyProductsQuery';
 import { Pagination } from '@mui/material';
+import { useState, useEffect } from 'react';
+import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 
 const ModalContainer = styled(Box)`
   position: absolute;
@@ -105,6 +107,13 @@ const OverFlowHiddenContainer = styled.div`
 
 const AuctionPublishModal = (props) => {
   const { data: myProducts, isSuccess } = useMyProductsQuery(1, 30);
+  const [useableMyProducts, setUseableMyProducts] = useState([]);
+
+  useEffect(() => {
+    setUseableMyProducts(
+      myProducts.results.filter((singleItem) => singleItem.status === 'hidden')
+    )
+  }, [myProducts])
 
   return (
     <Modal
@@ -121,22 +130,27 @@ const AuctionPublishModal = (props) => {
           </TextContainer>
           <OverFlowHiddenContainer>
             <InventoryContainer>
-              <ItemListContainer>
                 {isSuccess &&
-                  myProducts.results
-                    .filter((singleItem) => singleItem.status === 'hidden')
-                    .map((singleItem) => {
-                      return (
-                        <InventoryItem
-                          key={singleItem.id}
-                          singleItem={singleItem}
-                          setSelectedItem={props.setSelectedItem}
-                          handleModal={props.handleModal}
-                          status={singleItem.status === 'in_auction'}
-                        />
-                      );
-                    })}
-              </ItemListContainer>
+                  (
+                    useableMyProducts.length > 0 ? (
+                      <ItemListContainer>
+                        {
+                          useableMyProducts.map((singleItem) => {
+                            return (
+                              <InventoryItem
+                                key={singleItem.id}
+                                singleItem={singleItem}
+                                setSelectedItem={props.setSelectedItem}
+                                handleModal={props.handleModal}
+                                status={singleItem.status === 'in_auction'}
+                              />
+                            );
+                          }
+                          )}
+                      </ItemListContainer>
+                    ) : (
+                    <EmptyListPlaceHolder message="아직 인벤토리에 등록한 물건이 없습니다" />
+                    ))}
               <PaginationContainer>
                 <StyledPagination />
               </PaginationContainer>
