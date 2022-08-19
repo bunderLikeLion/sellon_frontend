@@ -79,7 +79,7 @@ const SummarizeBottomContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 70%;
-  padding-left: 2.5rem;
+  padding: 2.5rem 0 2.5rem 2.5rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
 
