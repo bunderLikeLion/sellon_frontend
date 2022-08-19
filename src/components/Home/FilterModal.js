@@ -109,7 +109,7 @@ const InputArea = styled.input`
     outline: none;
   }
   color: ${(props) => props.theme.color_font__secondary};
-  :focus-visible{
+  :focus-visible {
     outline: none;
   }
   background: transparent; //window창 좁혔을 때 튀어나와서 투명처리
@@ -197,13 +197,6 @@ const ResetButton = styled(Button)`
   font-size: 1rem !important;
   color: ${(props) => props.theme.color_white} !important;
   background: ${(props) => props.theme.color_button__ok};
-`;
-
-const FilterWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0 1.2rem 0;
-  gap: 1.2rem;
 `;
 
 const FilterModal = (props) => {
