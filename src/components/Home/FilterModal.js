@@ -72,13 +72,6 @@ const StyledLabel = styled.p`
   color: ${(props) => props.theme.color_font__tertiary};
 `;
 
-const FilterWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0.5rem 0 0.5rem 0;
-  gap: 1.2rem;
-`;
-
 const SearchLabelContainer = styled.div`
   position: relative;
   display: flex;
@@ -203,7 +196,6 @@ const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0.5rem 0 0.5rem 0;
-  /* margin: 1rem 0 1.2rem 0; */
   gap: 1.2rem;
 `;
 
