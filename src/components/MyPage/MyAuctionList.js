@@ -58,6 +58,7 @@ const MyAuctionList = () => {
                 linkTo={`/auctioneer/${auction.id}/${auction.product.id}`}
                 linkCondition={!isAuctionFinishedHandler(auction.end_at)}
                 isFinished={isAuctionFinishedHandler(auction.end_at)}
+                relatedUser={auction?.owner}
               />
             );
           })}
