@@ -11,7 +11,7 @@ const ModalContainer = styled(Box)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50%;
+  width: 40rem;  //width: 50%;
   padding: 1rem;
   height: 13rem;
   border-radius: 1rem;
@@ -30,13 +30,15 @@ const ModalContainer = styled(Box)`
 const Text = styled.h1`
   font-weight: 600;
   font-size: 1.8rem;
+  margin: 0.8rem 0 0.4rem 0;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
 const SubText = styled.h2`
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__primary};
+  font-size: 1rem;
+  color: ${(props) => props.theme.color_font__secondary};
 `;
+
 
 const ButtonContainer = styled.div`
   display: flex;
