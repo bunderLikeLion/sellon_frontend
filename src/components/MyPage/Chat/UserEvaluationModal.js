@@ -14,14 +14,15 @@ const ModalContainer = styled(Box)`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
-  height: 35rem;
+  width: fit-content;
+  height: 30rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
+
 `;
 
 const DealEvaluate = styled.p`
@@ -37,6 +38,7 @@ const EvaluateContainer = styled.div`
   margin-bottom: 2rem;
   border-radius: 1rem;
   overflow: hidden;
+
 `;
 
 const EvaluateTopContainer = styled.div`
@@ -45,6 +47,7 @@ const EvaluateTopContainer = styled.div`
   height: 30%;
   padding: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
+
 `;
 
 const MyItemImg = styled(CardMedia)`
@@ -58,6 +61,9 @@ const MyItemImg = styled(CardMedia)`
 const ItemTitle = styled.p`
   margin-bottom: 0.5rem;
   color: ${(props) => props.theme.color_font__secondary};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const ItemUploadDate = styled.p`
@@ -69,14 +75,8 @@ const EvaluateBottomContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   height: 70%;
-  padding: 0 2.5rem;
   background: ${(props) => props.theme.color_background__primary};
-  @media screen and (max-width: 920px) {
-    padding: 0 1rem;
-  }
-  @media screen and (max-width: 520px) {
-    padding: 0;
-  }
+
 `;
 
 const UserEvaluate = styled.p`
@@ -86,14 +86,14 @@ const UserEvaluate = styled.p`
 `;
 
 const StarRatingContainer = styled.div`
-  width: 45%;
-  max-width: 25rem;
-  height: 30%;
+  width: 100%;
+  height: 100%;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__third};
-  @media screen and (max-width: 920px) {
+  @media screen and (max-width: 700px) {
     width: 100%;
-    min-width: 13rem;
+    height: 100%;
+    border-radius: 0.5rem;
   }
 `;
 
@@ -103,6 +103,11 @@ const StarRating = styled(Box)`
   align-items: center;
   width: 100%;
   height: 100%;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const DealSummarize = styled.p`
@@ -175,15 +180,15 @@ const CancelButton = styled.button`
 
 const StyledRating = withStyles({
   iconEmpty: {
-    fontSize: 40,
+    fontSize: 60,
   },
   iconFilled: {
     color: '#9454B5',
-    fontSize: 40,
+    fontSize: 60,
   },
   iconHover: {
     color: '#7B749D',
-    fontSize: 45,
+    fontSize: 65,
   },
 })(Rating);
 
@@ -204,7 +209,7 @@ const UserEvaluationModal = ({
   return (
     <Modal open={isEvaluationModalOpened} onClose={handleEvaluationModal}>
       <ModalContainer>
-        <DealEvaluate>이번 거래, 평가하기</DealEvaluate>
+        <DealEvaluate>{opponent?.username}님과의 거래를 평가하기.</DealEvaluate>
         <EvaluateContainer>
           <EvaluateTopContainer>
             <MyItemImg image={selectedDeal?.product?.thumbnail?.file} />
@@ -216,9 +221,6 @@ const UserEvaluationModal = ({
             </div>
           </EvaluateTopContainer>
           <EvaluateBottomContainer>
-            <UserEvaluate>
-              {opponent?.username}님과의 거래를 평가하기.
-            </UserEvaluate>
             <StarRatingContainer>
               <StarRating component="fieldset" mb={0} borderColor="transparent">
                 <StyledRating
@@ -234,23 +236,6 @@ const UserEvaluationModal = ({
             </StarRatingContainer>
           </EvaluateBottomContainer>
         </EvaluateContainer>
-        {/*        <DealSummarize>이번 거래, 요약하기</DealSummarize>
-        <DealSummarizeContainer>
-          <MyItemImgSummarize
-            image={selectedDeal?.auction?.product?.thumbnail?.file}
-          />
-          <ArrowIcon />
-          {selectedDeal?.product_group?.products.map((singleItem, idx) => {
-            if (idx < 5)
-              return (
-                <OpponentItemImg
-                  key={singleItem?.id}
-                  image={singleItem?.thumbnail?.file}
-                />
-              );
-          })}
-          {selectedDeal?.product_group?.products.length > 5 && <ExtraIcon />}
-        </DealSummarizeContainer>*/}
         <CancelButton onClick={handleEvaluationModal}>취소</CancelButton>
         <ConfirmButton onClick={endBtnClickFunc}>평가 등록</ConfirmButton>
       </ModalContainer>
