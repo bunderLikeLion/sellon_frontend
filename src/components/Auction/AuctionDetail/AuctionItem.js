@@ -93,12 +93,16 @@ const ItemNameContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  overflow: hidden;
 `;
 
 const ItemName = styled.h1`
   font-size: 2rem;
   font-weight: 350;
   color: #fff;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 const ItemDescriptionContainer = styled.div`
@@ -111,6 +115,8 @@ const ItemDescription = styled.p`
   font-weight: 200;
   line-height: 1.6rem;
   color: #fff;
+  word-wrap: break-word;
+
 `;
 
 const StyledFavoriteBorderIcon = styled(FavoriteIcon)`

@@ -34,6 +34,7 @@ const AuctionItemContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   min-height: 1rem;
+  max-width: 50%;
 `
 
 const SuggestionContainer = styled.div`
@@ -42,6 +43,7 @@ const SuggestionContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
   min-height: 1rem;
+  max-width: 50%;
 `;
 
 const AuctionDetail = () => {

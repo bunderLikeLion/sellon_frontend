@@ -58,7 +58,6 @@ const TextContainer = styled.div`
 
 const BigText = styled.div`
   width: 6rem;
-  margin: 0.5rem;
   font-size: 2rem;
   font-weight: 700;
   color: ${(props) => props.theme.color_font__primary};
@@ -67,7 +66,7 @@ const BigText = styled.div`
 const SmallText = styled.div`
   display: flex;
   align-items: flex-end;
-  margin: 0.5rem;
+  margin-left: 1rem;
   font-size: 1.2rem;
   font-weight: 700;
   color: ${(props) => props.theme.color_font__secondary};
@@ -102,7 +101,7 @@ const DiscardBtn = styled.button`
 const BuyerList = styled.div`
   clear: both;
   height: 100%;
-  margin: 1rem 0 1rem 1rem;
+  margin: 1rem;
 `;
 
 const PaginationContainer = styled.div`
@@ -130,12 +129,11 @@ const BuyerContainer = styled.div`
   width: 100%;
 `;
 
-const AuctioneerContainer = styled.div`
-  padding: 1rem;
-`;
+const AuctioneerContainer = styled.div``;
 
 const AuctioneerItem = styled.div`
   width: 50%;
+  padding: 1rem;
 
   @media screen and (max-width: 700px) {
     width: 100%;

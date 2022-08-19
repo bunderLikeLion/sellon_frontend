@@ -120,33 +120,63 @@ const StyledModal = styled(Box)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50%;
-  height: 13rem;
+  width: 40rem;
+  height: fit-content;
+  padding: 2rem 0;
   border-radius: 1rem;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.color_background__primary};
   color: ${(props) => props.theme.color_white};
+
+  @media screen and (max-width: 1300px) {
+    max-width: 40rem;
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    max-width: 30rem;
+    width: 70%;
+  }
 `;
 
-const Text = styled.h1`
+const InsideBox = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100%;
-  height: auto;
-  bottom: 40%;
-  margin-top: 17%;
+  height: 100%;
+`;
+
+const Text = styled.div`
+  height: fit-content;
+  margin: 1rem 0;
+  padding: 0 2rem;
   font-weight: 600;
   font-size: 1.8rem;
+  line-height: 2.3rem;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
+const SmallText = styled.div`
+  height: fit-content;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  white-space: pre-wrap;
+  color: ${(props) => props.theme.color_font__secondary};
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
 const DeleteButton = styled.button`
-  position: absolute;
-  width: 15%;
-  height: 15%;
-  left: 32%;
-  bottom: 10%;
-  margin-top: 2rem;
+  width: 25%;
+  height: 2.3rem;
+  margin: 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -156,11 +186,9 @@ const DeleteButton = styled.button`
 `;
 
 const DeleteCancelButton = styled.button`
-  position: absolute;
-  width: 15%;
-  height: 15%;
-  right: 32%;
-  bottom: 10%;
+  width: 25%;
+  height: 2.3rem;
+  margin: 1rem;
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -214,13 +242,15 @@ const ItemListCard = ({ productData }) => {
         aria-describedby="modal-modal-description"
       >
         <StyledModal>
-          <div>
+          <InsideBox>
             <Text>정말 '{productData.name}'을 삭제하시겠습니까?</Text>
-            <DeleteButton onClick={deleteHandler}>네</DeleteButton>
-            <DeleteCancelButton onClick={handleClose}>
-              아니요
-            </DeleteCancelButton>
-          </div>
+            <ButtonContainer>
+              <DeleteButton onClick={deleteHandler}>네</DeleteButton>
+              <DeleteCancelButton onClick={handleClose}>
+                아니요
+              </DeleteCancelButton>
+            </ButtonContainer>
+          </InsideBox>
         </StyledModal>
       </Modal>
     </Container>

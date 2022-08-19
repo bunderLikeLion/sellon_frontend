@@ -9,10 +9,12 @@ const useSingleAuctionQuery = (id) => {
     ['auctionInfo', id],
     () => auctionRelatedAPI.getSingleAuctionInfo(id),
     {
+      enabled: !!id,
       onError: (res) => {
         toast.dismiss();
         toast.error(errorMsgHandler(res));
       },
+      staleTime: 1000 * 60 * 3,
     }
   );
 };

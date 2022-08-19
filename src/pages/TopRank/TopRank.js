@@ -2,7 +2,6 @@ import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import { TopRanker, Ranking, WeeklyStatus } from 'components/TopRank/index';
 import { useTodayCompletedQuery } from 'queries/dealing';
-import { usePopularAuctionsQuery } from 'queries/auction';
 
 // TODO: tooltip에 삼각형 색깔 다름.
 
@@ -29,6 +28,7 @@ const NavContainer = styled.div`
   width: 100%;
   height: fit-content;
   padding: 1.2rem;
+  margin-bottom: 0.4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
 `;
@@ -75,9 +75,6 @@ const RightContainer = styled.div`
 const TopRank = () => {
   const { data: todayCompletedCnt, isSuccess: todayCompletedCntFetched } =
     useTodayCompletedQuery();
-
-  const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
-    usePopularAuctionsQuery();
 
   return (
     <WrapContainer>

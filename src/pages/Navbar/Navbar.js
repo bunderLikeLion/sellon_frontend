@@ -12,6 +12,7 @@ import { AnchorNav, UserRelatedDropDown } from 'components/Navbar';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
+import Logo from 'images/Sellon-Logo.png';
 
 const Navbar = styled(AppBar)`
   background: ${(props) => props.theme.color_background__primary} !important;
@@ -24,6 +25,10 @@ const LinkText = styled(Link)`
     color: ${(props) => props.theme.color_border__hover__light} !important;
   }
 `;
+
+const NavLogo = styled.img`
+  width: 10rem;
+`
 
 const LinkButton = styled(Button)`
   background-color: transparent !important;;
@@ -57,9 +62,9 @@ const ResponsiveAppBar = () => {
     <Navbar position="static" sx={{ height: '4rem', justifyContent: 'center' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Link to="/">
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          </Link>
+          {/*<Link to="/">*/}
+          {/*  <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
+          {/*</Link>*/}
           <Link to="/">
             <Typography
               variant="h6"
@@ -74,7 +79,7 @@ const ResponsiveAppBar = () => {
                 textDecoration: 'none',
               }}
             >
-              SELLON
+                <NavLogo src={Logo} alt=''/>
             </Typography>
           </Link>
           <AnchorNav
@@ -96,7 +101,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <LinkText to="/">SELLON</LinkText>
+            <LinkText to="/"><NavLogo src={Logo} alt=''/></LinkText>
           </Typography>
           <Box
             sx={{
