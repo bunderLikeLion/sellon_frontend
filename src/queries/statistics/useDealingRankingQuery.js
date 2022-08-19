@@ -12,6 +12,7 @@ const useDealingRankingQuery = () => {
         toast.dismiss();
         toast.error(errorMsgHandler(res));
       },
+      staleTime: 1000 * 60 * 5,
     }
   );
 };

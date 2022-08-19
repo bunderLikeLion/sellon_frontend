@@ -199,6 +199,14 @@ const ResetButton = styled(Button)`
   background: ${(props) => props.theme.color_button__ok};
 `;
 
+const FilterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0 0.5rem 0;
+  /* margin: 1rem 0 1.2rem 0; */
+  gap: 1.2rem;
+`;
+
 const FilterModal = (props) => {
   const [
     filterKeyword,

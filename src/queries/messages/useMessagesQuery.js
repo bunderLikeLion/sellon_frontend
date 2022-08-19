@@ -8,7 +8,7 @@ const useMessagesQuery = (dealingId) => {
     ['messages', dealingId],
     () => messagesRelatedAPI.getMessages(dealingId),
     {
-      refetchInterval: 1000 * 3,
+      refetchInterval: 1000 * 4,
       enabled: !!dealingId,
       onError: (res) => {
         toast.dismiss();
