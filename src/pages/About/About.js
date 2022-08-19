@@ -368,7 +368,7 @@ const About = () => {
                 물물 경매
               </SubLabel>
               <ItemTitle>
-                경매 , 이젠 물건으로
+                경매, 이젠 물건으로
               </ItemTitle>
               <ServiceDescription>
                 sellon에서 돈이 아닌 물건으로<br />
