@@ -197,7 +197,7 @@ const RightContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 
   @media screen and (max-width: 1000px) {
     flex-direction: row;
@@ -208,6 +208,7 @@ const RightSmallContainer = styled.div`
   position: relative;
   flex: 1;
   height: 6rem;
+  max-height: 6rem;
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
   border-radius: 0.5rem;
@@ -233,6 +234,10 @@ const MyScopeInfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 50%;
+
+  @media screen and (max-width: 1000px) {
+    justify-content: center;
+  }
 `;
 
 const MyScopeInfo = styled(StarIcon)`
