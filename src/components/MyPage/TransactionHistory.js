@@ -19,6 +19,7 @@ import { useDealingHistoryQuery } from 'queries/dealing';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
 import { useRatingQuery, useDealingCountQuery } from 'queries/user';
 import dateFormatter from '../../utils/dateFormatter';
+import AuctionDetailModal from '../Auction/AuctionDetail/AuctionDetailModal';
 
 //최상위 컨테이너
 const StyledWrapContainer = styled.div`
@@ -70,6 +71,7 @@ const StyledDetailItemImg = styled(CardMedia)`
   margin-right: 0.5rem;
   margin-bottom: 1rem;
   border-radius: 10%;
+  cursor: pointer;
 `;
 
 const SummaryContents = styled.div`
@@ -316,13 +318,16 @@ const HistoryContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-&:hover{
-  text-decoration: underline;
-}
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const TransactionHistory = () => {
   const [expanded, setExpanded] = useState(false);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isTriggeredFromBig, setIsTriggeredFromBig] = useState(null);
+  const [singleItemInfo, setSingleItemInfo] = useState(null);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -354,6 +359,8 @@ const TransactionHistory = () => {
     setPageNum(value);
   };
 
+  const handleModal = () => setIsModalOpened(!isModalOpened);
+
   return (
     <StyledWrapContainer>
       <StyledAccordionContainer>
@@ -376,6 +383,9 @@ const TransactionHistory = () => {
                         <SummaryImg
                           component="img"
                           image={historyData.auction.product.thumbnail?.file}
+                          onClick={() =>
+                            setSingleItemInfo(historyData?.auction?.product)
+                          }
                         />
                         <SummaryContents>
                           <SummaryTitle>
@@ -415,29 +425,40 @@ const TransactionHistory = () => {
                               </StyledTypography>
                             </StyledCardContent>
                             <StyledCardActions>
-                              <Link
+                              {/*                              <Link
                                 to={`/itemdetail/${historyData.auction.product.id}`}
+                              >*/}
+                              <StyledCardButton
+                                variant="contained"
+                                size="small"
+                                onClick={() => {
+                                  setSingleItemInfo(
+                                    historyData?.auction?.product
+                                  );
+                                  handleModal();
+                                }}
                               >
-                                <StyledCardButton
-                                  variant="contained"
-                                  size="small"
-                                >
-                                  상세보기
-                                </StyledCardButton>
-                              </Link>
+                                상세보기
+                              </StyledCardButton>
+                              {/*</Link>*/}
                             </StyledCardActions>
                           </StyledCard>
                         </DetailsLeftContainer>
                         <DetailsRightContainer>
-                          {historyData.auction.product.images.length > 0 &&
-                            historyData.auction.product.images.map((img) => {
+                          {historyData?.product_group?.products.map(
+                            (singleProduct) => {
                               return (
                                 <StyledDetailItemImg
                                   component="img"
-                                  image={img.file}
+                                  image={singleProduct?.thumbnail?.file}
+                                  onClick={() => {
+                                    setSingleItemInfo(singleProduct);
+                                    handleModal();
+                                  }}
                                 />
                               );
-                            })}
+                            }
+                          )}
                         </DetailsRightContainer>
                       </StyledAccordionDetails>
                     </StyledAccordion>
@@ -503,6 +524,14 @@ const TransactionHistory = () => {
 
         */}
       </RightContainer>
+      {/*detail modal*/}
+      <AuctionDetailModal
+        handleModal={handleModal}
+        isModalOpened={isModalOpened}
+        isTriggeredFromBigImg={isTriggeredFromBig && true}
+        smallImgRelatedItemId={!isTriggeredFromBig && singleItemInfo?.id}
+        singleItemInfo={singleItemInfo}
+      />
     </StyledWrapContainer>
   );
 };
