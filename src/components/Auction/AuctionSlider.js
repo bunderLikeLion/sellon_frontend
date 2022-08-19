@@ -59,7 +59,7 @@ const PrevButton = styled.button`
 
 const NextButton = styled.button`
   ${defaultButtonStyle};
-  right: 0;
+  right: 1rem;
 `;
 
 const defaultIconStyle = css`
@@ -74,10 +74,22 @@ const defaultIconStyle = css`
 
 const PrevIcon = styled(LeftOutlined)`
   ${defaultIconStyle}
+  display: flex;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-weight: bold !important;
 `;
 
 const NextIcon = styled(RightOutlined)`
   ${defaultIconStyle}
+  display: flex;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
 `;
 
 const AuctionItemContainer = styled.div`
@@ -166,15 +178,14 @@ const ParticipatedUserContainer = styled.div`
 const OverSpan = styled.span`
   position: absolute;
   z-index: 2;
-  left: 71%;
-  top: 37%;
+  left: 72%;
+  top: 35%;
   @media screen and (max-width: 800px) {
     left: 73.5%;
   }
   @media screen and (max-width: 600px) {
-    left: 78.8%;
+    left: 77.5%;
     top: 33%;
-    font-size: 0.7rem;
   }
 `;
 

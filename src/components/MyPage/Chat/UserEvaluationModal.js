@@ -14,7 +14,7 @@ const ModalContainer = styled(Box)`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: fit-content;
+  width: 50%;
   height: 30rem;
   top: 50%;
   left: 50%;
@@ -22,7 +22,15 @@ const ModalContainer = styled(Box)`
   padding: 2rem 4rem;
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__default};
-
+  @media screen and (max-width: 1300px) {
+    width: 75%;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 700px) {
+    width: 90%;
+  }
 `;
 
 const DealEvaluate = styled.p`
@@ -38,7 +46,6 @@ const EvaluateContainer = styled.div`
   margin-bottom: 2rem;
   border-radius: 1rem;
   overflow: hidden;
-
 `;
 
 const EvaluateTopContainer = styled.div`
@@ -47,7 +54,6 @@ const EvaluateTopContainer = styled.div`
   height: 30%;
   padding: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
-
 `;
 
 const MyItemImg = styled(CardMedia)`
@@ -76,7 +82,6 @@ const EvaluateBottomContainer = styled.div`
   justify-content: space-evenly;
   height: 70%;
   background: ${(props) => props.theme.color_background__primary};
-
 `;
 
 const UserEvaluate = styled.p`
@@ -209,7 +214,7 @@ const UserEvaluationModal = ({
   return (
     <Modal open={isEvaluationModalOpened} onClose={handleEvaluationModal}>
       <ModalContainer>
-        <DealEvaluate>{opponent?.username}님과의 거래를 평가하기.</DealEvaluate>
+        <DealEvaluate>{opponent?.username}님과의 거래를 평가하기</DealEvaluate>
         <EvaluateContainer>
           <EvaluateTopContainer>
             <MyItemImg image={selectedDeal?.product?.thumbnail?.file} />

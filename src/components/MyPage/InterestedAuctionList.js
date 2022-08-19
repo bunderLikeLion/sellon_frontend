@@ -36,6 +36,10 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const CountText = styled.div`
+  margin: 0.55rem 0 1.3rem 0 !important;
+`;
+
 const InterestedAuctionList = () => {
   const [pageNum, setPageNum] = useState(1);
 
@@ -52,7 +56,8 @@ const InterestedAuctionList = () => {
     <ItemListContainer>
       {interestedAuctionListsFetched && (
         <>
-          <p>총 {interestedAuctionLists?.total_count}개</p>
+          {/*<p>총 {interestedAuctionLists?.total_count}개</p>*/}
+          <CountText>총 {interestedAuctionLists?.total_count}개</CountText>
           {
             interestedAuctionLists?.total_count > 0 ? (
               <FlexContainer>

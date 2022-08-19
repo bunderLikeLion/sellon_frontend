@@ -81,7 +81,7 @@ const AuctionButton = styled.button`
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__primary};
   border: none;
-  padding: .7rem .8rem;
+  padding: .7rem 1.3rem;
   font-size: 1.1rem;
   width: fit-content;
   height: fit-content;
@@ -308,7 +308,7 @@ const AccordionContentFirst = styled(Typography)`
 `;
 
 const ParticipantBanner = styled.div`
-  padding: 2rem 5rem;
+  padding: 1.5rem 3rem;
   background: ${(props) => props.theme.color_button__delete} !important;
   border-radius: 10px;
   display: flex;
@@ -329,30 +329,27 @@ const BannerText = styled.h2`
   font-size: 1.4rem;
   line-height: 1.5rem;
   font-weight: 600;
+  white-space: nowrap;
   color: ${(props) => props.theme.color_font__primary};
-
-  @media screen and (max-width: 700px) {
-    font-size: 1.1rem;
-    width: 100%;
-  }
 `;
 
 const ParticipantButton = styled(AuctionButton)`
-  background: ${(props) => props.theme.color_button__ok};
-  padding: 0.6rem 1.4rem;
-  :hover {
-    background: ${(props) => props.theme.color_button__ok};
+  height: fit-content;
+  background: transparent;
+
+  @media screen and (max-width: 700px) {
+    padding: 1rem 0 0 0 ;
   }
+  :hover {
+    text-decoration: underline;
+    background: transparent;
+  };
 `;
 
 const ParticipantButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-
-  @media screen and (max-width: 700px) {
-    width: 100%;
-    justify-content: center;
-  }
+  white-space: nowrap;
 `;
 
 const About = () => {
@@ -370,7 +367,7 @@ const About = () => {
             <AuctionButton>경매장으로 가기</AuctionButton>
           </Link>
           <Link to="/toprank">
-            <TopRankButton>지금까지의 거래 구경하러 가기</TopRankButton>
+            <TopRankButton>명예의 전당 구경하러 가기</TopRankButton>
           </Link>
         </MainIntroduceButtonContainer>
 
@@ -568,7 +565,7 @@ const About = () => {
           </BannerText>
           <ParticipantButtonContainer>
             <Link to="/auction">
-              <ParticipantButton>참여하기</ParticipantButton>
+              <ParticipantButton>경매 참여하기&nbsp; →</ParticipantButton>
             </Link>
           </ParticipantButtonContainer>
         </ParticipantBanner>
