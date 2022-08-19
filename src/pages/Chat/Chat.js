@@ -20,6 +20,7 @@ const AlignContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  padding: 1rem;
 `;
 
 const ChatForm = styled.div`
@@ -28,7 +29,7 @@ const ChatForm = styled.div`
   width: 100%;
   min-height: 38rem;
   overflow: hidden;
-  gap: 2rem;
+  gap: 3rem;
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
@@ -39,10 +40,11 @@ const Chat_Left = styled.div`
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  padding: 1rem 1.5rem;
+  max-width: 27rem;
+  padding: 1rem 2rem;
   border-radius: 0.5rem;
   background: ${(props) => props.theme.color_background__primary};
-  max-height: 30rem;
+  max-height: 35rem;
 
   @media screen and (max-width: 1000px) {
     max-height: 20rem;
@@ -54,8 +56,9 @@ const Chat_Right = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+  max-width: 27rem;
   border-radius: 0.5rem;
-  max-height: 30rem;
+  max-height: 35rem;
 
   background: ${(props) => props.theme.color_background__primary};
 
@@ -64,7 +67,8 @@ const Chat_Right = styled.div`
   }
 `;
 
-const OnChatContainer = styled.div``;
+const OnChatContainer = styled.div`
+`;
 
 const MessageTitle = styled.div`
   margin: 1rem 0 0.5rem 0;
