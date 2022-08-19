@@ -14,7 +14,9 @@ const useEvaluateDealingMutation = () => {
       onSuccess: () => {
         toast.dismiss();
         toast.success(messages.evaluation.create.success);
-        return queryClient.invalidateQueries(['dealings']);
+        queryClient.invalidateQueries(['dealings']).then(() => {
+          return queryClient.invalidateQueries(['getDealingHistory']);
+        });
       },
       onError: (res) => {
         toast.dismiss();

@@ -13,14 +13,6 @@ export const queryClient = new QueryClient({
     queries: {
       retry: 0,
       suspense: true,
-      // useErrorBoundary: true,
-      onSuccess: () => console.log('yes'),
-      onError: () => console.log('no'),
-    },
-    mutations: {
-      // useErrorBoundary: true,
-      onSuccess: () => console.log('yes'),
-      onError: (res) => console.log(res, 'no'),
     },
   },
 });

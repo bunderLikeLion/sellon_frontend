@@ -16,7 +16,7 @@ const FlexContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 2rem 2rem;
-  margin-top: 2rem;
+  margin-top: 1rem !important;
 `;
 
 const TopContainer = styled.div`
@@ -52,6 +52,26 @@ const AddProductItemButton = styled.button`
   line-height: 2rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
+  background-size: 300% 100%;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  :hover {
+    background-position: 100% 0;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    background-image: linear-gradient(
+        to right,
+        #6253e1,
+        #852d91,
+        #a3a1ff,
+        #6253e1
+    );
+    box-shadow: inset 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
 `;
 
 const PlusBtn = styled(AddBoxIcon)`
@@ -78,6 +98,9 @@ const StyledPagination = styled(Pagination)`
   }
 `;
 
+const ItemCardWrapper = styled.div`
+`;
+
 // TODO: 목록이 비어있는 경우 EmptyListPlaceholder 추가하기
 
 const ItemList = () => {
@@ -102,29 +125,31 @@ const ItemList = () => {
           아이템 추가
         </AddProductItemButton>
       </TopContainer>
-      {myProductFetched &&
-        (myProductsData?.total_count > 0 ? (
-          <FlexContainer>
-            {myProductsData.results.map((productData) => {
-              return (
-                <ItemListCard key={productData.id} productData={productData} />
-              );
-            })}
-          </FlexContainer>
-        ) : (
-          <EmptyListPlaceHolder
-            message="아직 아이템이 없습니다 🥺"
-            margin="3rem 0"
+      <ItemCardWrapper>
+        {myProductFetched &&
+          (myProductsData?.total_count > 0 ? (
+            <FlexContainer>
+              {myProductsData.results.map((productData) => {
+                return (
+                  <ItemListCard key={productData.id} productData={productData} />
+                );
+              })}
+            </FlexContainer>
+          ) : (
+            <EmptyListPlaceHolder
+              message="아직 아이템이 없습니다 🥺"
+              margin="3rem 0"
+            />
+          ))}
+        <PaginationContainer>
+          <StyledPagination
+            count={myProductsData?.total_pages}
+            page={pageNum}
+            onChange={handleChange}
           />
-        ))}
-      <PaginationContainer>
-        <StyledPagination
-          count={myProductsData?.total_pages}
-          page={pageNum}
-          onChange={handleChange}
-        />
-      </PaginationContainer>
-      <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
+        </PaginationContainer>
+        <AddItemModal handleModal={handleModal} isModalOpened={isModalOpened} />
+      </ItemCardWrapper>
     </ItemListContainer>
   );
 };

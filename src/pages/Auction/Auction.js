@@ -53,6 +53,7 @@ const BestAuctionContainer = styled.div`
 
 const BestAuctionTitle = styled.div`
   width: 100%;
+  margin-bottom: 0.5rem;
   font-size: 1.8rem;
   font-weight: bold;
   color: ${(props) => props.theme.color_font__primary};
@@ -94,6 +95,22 @@ const SubmitAuctionButton = styled.button`
   font-size: 1rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
+
+  background-size: 300% 100%;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+
+  :hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #6253e1);
+    box-shadow: inset 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
 `;
 
 const DealComplete = styled.div`

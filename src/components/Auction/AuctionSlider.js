@@ -22,6 +22,11 @@ const SlickItems = styled.div`
   position: relative;
   width: 100%;
   padding-bottom: 56.26%;
+  border-radius: 1rem;
+
+  >img {
+    border-radius: 1rem;
+  }
 
   img {
     position: absolute;
@@ -59,7 +64,7 @@ const PrevButton = styled.button`
 
 const NextButton = styled.button`
   ${defaultButtonStyle};
-  right: 0;
+  right: 1rem;
 `;
 
 const defaultIconStyle = css`
@@ -74,10 +79,22 @@ const defaultIconStyle = css`
 
 const PrevIcon = styled(LeftOutlined)`
   ${defaultIconStyle}
+  display: flex;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding-left: 1rem;
+  font-size: 2rem;
+  font-weight: bold !important;
 `;
 
 const NextIcon = styled(RightOutlined)`
   ${defaultIconStyle}
+  display: flex;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
 `;
 
 const AuctionItemContainer = styled.div`
@@ -93,9 +110,6 @@ const AuctionTitleContainer = styled.div`
   top: 18.5rem;
   left: 10%;
   width: 37%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
   @media screen and (max-width: 800px) {
     top: 17rem;
   }
@@ -105,10 +119,13 @@ const AuctionTitleContainer = styled.div`
   }
 `;
 
-const AuctionTitle = styled.span`
+const AuctionTitle = styled.div`
   color: ${(props) => props.theme.color_white};
   font-size: 1.9rem;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   @media screen and (max-width: 700px) {
     font-size: 1.4rem;
   }
@@ -154,7 +171,7 @@ const ParticipantUserAvatar = styled.img`
 const ParticipatedUserContainer = styled.div`
   display: flex;
   position: absolute;
-  top: 21.5rem;
+  top: 22rem;
   left: 10%;
   height: fit-content;
   width: 55%;
@@ -166,15 +183,14 @@ const ParticipatedUserContainer = styled.div`
 const OverSpan = styled.span`
   position: absolute;
   z-index: 2;
-  left: 71%;
-  top: 37%;
+  left: 72%;
+  top: 35%;
   @media screen and (max-width: 800px) {
     left: 73.5%;
   }
   @media screen and (max-width: 600px) {
-    left: 78.8%;
+    left: 77.5%;
     top: 33%;
-    font-size: 0.7rem;
   }
 `;
 
@@ -195,7 +211,6 @@ const images = [
 
 const AuctionSlider = ({ items }) => {
   const slickRef = useRef(null);
-  console.log(items[0].participants[0].avatar);
   const settings = {
     centerMode: true,
     centerPadding: '0px',
