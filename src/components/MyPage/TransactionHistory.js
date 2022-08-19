@@ -247,7 +247,7 @@ const MyScopeInfo = styled(StarIcon)`
   }
 
   color: ${(props) =>
-    props.fill ? props.theme.color_fill_start : ''} !important;
+    props.fill ? props.theme.color_fill_start : '#7B749D'} !important;
 
   @media screen and (max-width: 1000px) {
     &.MuiSvgIcon-root {
@@ -471,7 +471,6 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
-              
               <StyledLink to="/auction">
                 <EmptyListPlaceHolder
                   message="아직 경매장에서 거래한 물건이 없습니다.🥺 한 번 경매장에 참여해볼까요?"
