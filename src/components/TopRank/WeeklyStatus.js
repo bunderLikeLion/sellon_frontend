@@ -24,6 +24,7 @@ const WeeklyStatusContainer = styled.div`
 
 const WeeklyStatusTitle = styled.p`
   padding: 1rem 1rem 0rem 1rem;
+  font-weight: 700;
   font-size: 1.4rem;
 `;
 
@@ -72,10 +73,11 @@ const UserNickname = styled.p`
 
 const UserBottomContainer = styled.div`
   display: flex;
-  position: relative;
   justify-content: center;
-  width: 100%;
   align-items: center;
+  position: relative;
+  width: 100%;
+  margin-top: 0.3rem;
 `;
 
 const ParticipantUserAvatar = styled.img`
@@ -86,9 +88,6 @@ const ParticipantUserAvatar = styled.img`
   position: relative !important;
   margin-right: 0.5rem;
   @media screen and (max-width: 700px) {
-    width: 1.5rem;
-    height: 1.5rem;
-    min-width: 1.5rem;
   }
 `;
 

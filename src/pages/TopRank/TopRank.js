@@ -9,7 +9,6 @@ const AlignContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 83vh;
 `;
 
 const Container = styled.div`
@@ -18,7 +17,7 @@ const Container = styled.div`
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  margin-top: 5rem;
+  margin-top: 4rem;
 `;
 
 const NavContainer = styled.div`

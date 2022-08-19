@@ -20,12 +20,14 @@ const CardHeader = styled.div`
 
 const RankingTitle = styled.div`
   font-size: 1.4rem;
+  font-weight: 700;
 `;
 
 const CardContent = styled.div`
   overflow-y: auto;
   width: 100%;
   height: 85%;
+  max-height: 25rem;
   border-radius: 0.5rem;
   padding-right: 0.7rem;
 `;

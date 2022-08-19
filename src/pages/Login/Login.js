@@ -5,6 +5,7 @@ import { userAtom } from 'states';
 import { useLoginMutation } from 'queries/auth';
 import styled from 'styled-components';
 import SignPic from 'images/Sign_Img.jpeg';
+import LoginPic from 'images/LoginPic.jpeg';
 import toast from 'react-hot-toast';
 import useInput from 'hooks/useInput';
 
@@ -43,7 +44,7 @@ const Form = styled.div`
   flex-wrap: wrap;
   padding: 2rem;
   align-content: center;
-  gap: 4rem;
+  gap: 3rem;
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
@@ -64,6 +65,7 @@ const GuideContainer = styled.div`
 
 const Guide = styled.h1`
   font-size: 2rem;
+  font-weight: 600;
   color: ${(props) => props.theme.color_font__primary};
 `;
 
@@ -108,19 +110,20 @@ const ErrorMsg = styled.div`
 //버튼 전체 컨테이너
 const ButtonContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
   justify-content: center;
+ 
 `;
 
 //개별 버튼
 const Button = styled.button`
-  width: 8.4rem;
-  height: 2.6rem;
-  margin-bottom: 1rem;
+  width: 20rem;
+  height: 3rem;
+  margin: .4rem 0 .7rem 0;
   border-radius: 0.5rem;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
   background: ${(props) => props.theme.color_background__success};
   color: ${(props) => props.theme.color_font__secondary};
     background-size: 300% 100%;
@@ -151,6 +154,18 @@ const SignUpButton = styled.button`
   color: ${(props) => props.theme.color_buttontext__ok};
 `
 
+const RegisterLink = styled.button`
+  background: none;
+  color: ${(props) => props.theme.color_font__primary};
+  margin-top: 0.7rem;
+  border: none;
+  font-size: 1.1rem;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
 const Img = styled.img`
   flex: 1;
   height: 100%;
@@ -170,7 +185,8 @@ const Img = styled.img`
 const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem
+;
 `
 
 const Login = () => {
@@ -228,12 +244,12 @@ const Login = () => {
             <ButtonContainer>
               <Button onClick={submit}>로그인</Button>
               <Link to="/register">
-                <SignUpButton>회원가입</SignUpButton>
+                <RegisterLink>아직 계정이 없으십니까?</RegisterLink>
               </Link>
             </ButtonContainer>
           </InputsContainer>
         </Form>
-        <Img src={SignPic} />
+        <Img src={LoginPic} />
       </Card>
     </Container>
   );
