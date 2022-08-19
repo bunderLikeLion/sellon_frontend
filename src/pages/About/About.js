@@ -17,6 +17,12 @@ const Wrap = styled.div`
   width: 50%;
   height: fit-content !important;
   margin-top: 1%;
+  @media screen and (max-width: 700px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 600px) {
+    width: 85%;
+  }
 `;
 const Container = styled.div`
   display: flex;
@@ -155,7 +161,7 @@ const ServiceItem = styled.div`
 
   @media screen and (max-width: 700px) {
     flex-direction: column;
-
+    align-items: center;
     &:nth-child(2) {
       flex-direction: column-reverse;
     }
@@ -381,12 +387,6 @@ const defaultButtonStyle = css`
   background: none;
   outline: none;
   cursor: pointer;
-  @media screen and (max-width: 700px) {
-    top: calc(50% - 4rem);
-  }
-  @media screen and (max-width: 600px) {
-    top: calc(50% - 7rem);
-  }
 `;
 const PrevButton = styled.button`
   ${defaultButtonStyle};
