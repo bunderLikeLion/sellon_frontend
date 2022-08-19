@@ -6,6 +6,7 @@ const PlaceHolder = styled.div`
   margin-top: 0.7rem;
   border-radius: ${(props) => props.borderRadius || '0.5rem'};
   font-size: ${(props) => props.fontSize || '1.1rem;'};
+  color: 'white' !important;
   background-color: ${(props) => props.backgroundColor || props.theme.color_background__secondary};
 `;
 

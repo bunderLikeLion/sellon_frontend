@@ -62,7 +62,7 @@ const ValidationCancelButton = styled(ClearIcon)`
   right: 1.5rem;
   cursor: pointer;
   font-size: 2.5rem !important;
-  color: ${(props) => props.theme.color_font__number}; ;
+  color: ${(props) => props.theme.color_font__number};
 `;
 
 const InventoryContainer = styled.div`
@@ -71,6 +71,7 @@ const InventoryContainer = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: auto;
+  color: ${(props) => props.theme.color_font__primary};
 `;
 
 const ItemListContainer = styled.div`
