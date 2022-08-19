@@ -179,7 +179,10 @@ const StyledCardButton = styled(Button)`
   overflow: hidden !important;
   font-weight: bold !important;
   color: black !important;
-  background: #d9d9d9 !important;
+
+  :hover {
+    box-shadow: 0 0.7em 0.7em -0.4em ${(props) => props.theme.color_background__default} !important;
+  }
 `;
 
 const DetailsRightContainer = styled(DetailsLeftContainer)`
