@@ -12,6 +12,8 @@ import { useState } from 'react';
 import AuctionDetailModal from './AuctionDetailModal';
 import { useParams } from 'react-router-dom';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+
 
 const Container = styled.div`
   position: relative;
@@ -145,6 +147,24 @@ const InterestedButton = styled.button`
   color: ${(props) => props.theme.color_white};
 `;
 
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 168,
+    cursor: 'pointer',
+    color: '#DFDCEF',
+    backgroundColor: '#000000',
+    fontSize: '1rem',
+    lineHeight: '1rem',
+    padding: '0.5rem'
+  },
+  [`& .${tooltipClasses.arrow}`]: {
+    color: '#000',
+  },
+});
+
+
 const AuctionItem = (props) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
@@ -200,7 +220,12 @@ const AuctionItem = (props) => {
       </ItemImgContainer>
       <ItemContentContainer>
         <ItemNameContainer>
-          <ItemName>{props?.singleAuctionData?.title}</ItemName>
+          <StyledTooltip
+            title={props?.singleAuctionData?.title}
+            arrow
+          >
+            <ItemName>{props?.singleAuctionData?.title}</ItemName>
+          </StyledTooltip>
         </ItemNameContainer>
         <ItemDescriptionContainer>
           <ItemDescription>
