@@ -394,6 +394,35 @@ const About = () => {
                 뜻밖의 기회에 원해왔던 물건을 찾을 수 있습니다.
               </ServiceDescription>
             </ServiceTextContainer>
+            <ServiceTextContainer>
+              <SubLabel>
+                개성 넘치는 경매
+              </SubLabel>
+              <ItemTitle>
+                경매, 일상 속의 물건으로
+              </ItemTitle>
+              <ServiceDescription>
+                sellon은 무거운 분위기의 경매장이 아닙니다.<br />
+                언제든지 개성 넘치는 물건들을 거래할 수 있습니다.
+              </ServiceDescription>
+            </ServiceTextContainer>
+          </ServiceItem>
+          {/*
+          <ServiceItem>
+            <ServiceTextContainer>
+              <SubLabel>
+                물물 경매
+              </SubLabel>
+              <ItemTitle>
+                경매, 이젠 물건으로
+              </ItemTitle>
+              <ServiceDescription>
+                sellon에서 돈이 아닌 물건으로<br />
+                경매를 열어보세요.<br />
+                <br />
+                뜻밖의 기회에 원해왔던 물건을 찾을 수 있습니다.
+              </ServiceDescription>
+            </ServiceTextContainer>
             <ServiceMediaContainer>
             </ServiceMediaContainer>
           </ServiceItem>
@@ -413,7 +442,7 @@ const About = () => {
                 언제든지 개성 넘치는 물건들을 거래할 수 있습니다.
               </ServiceDescription>
             </ServiceTextContainer>
-          </ServiceItem>
+          </ServiceItem>*/}
         </ServiceList>
       </ServiceIntroduceContainer>
 
