@@ -42,6 +42,8 @@ const EvaluateContainer = styled.div`
 const EvaluateTopContainer = styled.div`
   display: flex;
   align-items: center;
+  flex-basis: calc((100% - 3.5rem) / 5);
+  max-width: calc((100% - 3.5rem) / 5);
   height: 30%;
   padding: 1rem;
   background: ${(props) => props.theme.color_background__secondary};
