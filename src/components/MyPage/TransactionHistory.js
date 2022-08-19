@@ -198,7 +198,6 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 0.6rem;
   @media screen and (max-width: 1000px) {
     flex-direction: row;
   }
