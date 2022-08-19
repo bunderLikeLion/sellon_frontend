@@ -52,6 +52,26 @@ const AddProductItemButton = styled.button`
   line-height: 2rem;
   background: ${(props) => props.theme.color_button__ok};
   color: ${(props) => props.theme.color_font__secondary};
+  background-size: 300% 100%;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  :hover {
+    background-position: 100% 0;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    background-image: linear-gradient(
+        to right,
+        #6253e1,
+        #852d91,
+        #a3a1ff,
+        #6253e1
+    );
+    box-shadow: inset 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
 `;
 
 const PlusBtn = styled(AddBoxIcon)`

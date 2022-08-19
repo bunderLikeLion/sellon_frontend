@@ -160,8 +160,6 @@ const ChangeItemCategory = ({ givenCategory, editSingleField, imgToLeft }) => {
     setIsShown(!isShown);
   };
 
-  console.log(givenCategory, 'catttt');
-
   const catControlProps = (item) => ({
     checked: category === item,
     onChange: handleCategory,

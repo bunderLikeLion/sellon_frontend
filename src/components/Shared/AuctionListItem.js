@@ -162,6 +162,7 @@ const StyledFavoriteBorderIcon = styled(FavoriteIcon)`
   & :hover {
     transform: scale(1.2);
     transform-origin: center;
+    color: ${(props) => props.theme.color_fill_interested};
   }
 `;
 

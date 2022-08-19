@@ -64,6 +64,9 @@ const SuggestionButton = styled.button`
   border: 0.1px transparent;
   border-radius: 0.7rem;
   background: ${(props) => props.theme.color_button__ok};
+  :hover {
+    box-shadow: 0 0.5em 0.5em -0.4em ${(props) => props.theme.color_background__default};
+  }
 `;
 
 const ConfirmButtonContainer = styled.div`

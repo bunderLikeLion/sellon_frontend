@@ -211,7 +211,6 @@ const images = [
 
 const AuctionSlider = ({ items }) => {
   const slickRef = useRef(null);
-  console.log(items[0].participants[0].avatar);
   const settings = {
     centerMode: true,
     centerPadding: '0px',
