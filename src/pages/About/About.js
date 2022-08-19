@@ -268,7 +268,8 @@ const StyledAccordion = styled(Accordion)`
   background: ${(props) => props.theme.color_background__primary} !important;
   color: ${(props) => props.theme.color_white} !important;
   padding: .5rem !important;
-  border: 1px solid ${(props) => props.theme.color_border__topleft};
+  border-top: 1px solid ${(props) => props.theme.color_border__topleft};
+  box-shadow: none !important;
   svg {
     fill: ${(props) => props.theme.color_white} !important;
   }
