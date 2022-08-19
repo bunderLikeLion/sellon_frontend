@@ -7,8 +7,14 @@ import timeLimitHandler from 'utils/timeLimitHandler';
 import isAuctionFinishedHandler from 'utils/isAuctionFinishedHandler';
 import dateFormatter from '../../utils/dateFormatter';
 import EmptyListPlaceHolder from 'components/Shared/EmptyListPlaceholder';
+import AuctionListContainer from 'components/Shared/AuctionListContainer';
 
-const AuctionListContainer = styled.div`
+
+const FlexContainer = styled(AuctionListContainer)`
+  margin-top: 2rem;
+`;
+
+const ItemListContainer = styled.div`
   position: relative;
   width: 100%;
   min-height: 80vh;
@@ -53,13 +59,13 @@ const MyAuctionList = () => {
     useMyAuctionQuery(pageNum, 12);
 
   return (
-      <AuctionListContainer>
+      <ItemListContainer>
         {myAuctionFetched && (
           <>
             <CountText>총 {myAuctionData?.total_count}개</CountText>
             {
               myAuctionData?.total_count > 0 ? (
-                <>
+                <FlexContainer>
                   {myAuctionData?.results.map((auction) => (
                     <AuctionListItem
                       title={auction.title}
@@ -73,7 +79,7 @@ const MyAuctionList = () => {
                       relatedUser={auction?.owner}
                     />
                   ))}
-                </>
+                </FlexContainer>
             ) : <EmptyListPlaceHolder
             message="아직 경매를 열지 않았습니다. 경매를 열어보세요.😅" />
             }
@@ -88,7 +94,7 @@ const MyAuctionList = () => {
           onChange={handleChange}
         />
       </PaginationContainer>
-    </AuctionListContainer>
+    </ItemListContainer>
   );
 };
 
