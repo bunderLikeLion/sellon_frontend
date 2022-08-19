@@ -471,9 +471,10 @@ const TransactionHistory = () => {
                 })}
               </HistoryContainer>
             ) : (
+              
               <StyledLink to="/auction">
                 <EmptyListPlaceHolder
-                  message="아직 경매장에서 거래한 물건이 없습니다. 한번 경매장에 참여해볼까요?"
+                  message="아직 경매장에서 거래한 물건이 없습니다.🥺 한 번 경매장에 참여해볼까요?"
                   margin="0"
                   backgroundColor="#252040"
                 />

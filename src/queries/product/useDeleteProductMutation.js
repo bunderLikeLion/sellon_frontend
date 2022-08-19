@@ -18,7 +18,7 @@ const useDeleteProductMutation = () => {
       },
       onError: (res) => {
         toast.dismiss();
-        toast.error(errorMsgHandler(res));
+        toast.error(messages.product.destroy.error);
       },
     }
   );
