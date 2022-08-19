@@ -4,8 +4,6 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { useState } from 'react';
 import ValidationModal from '../../Shared/ValidationModal';
 import { useMyProductsQuery } from 'queries/product';
-import CardMedia from '@mui/material/CardMedia';
-import { queryClient } from 'index';
 import InventoryCard from './InventoryCard';
 import { useParams } from 'react-router-dom';
 
@@ -27,7 +25,7 @@ const TopWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding-bottom: 1rem;;
+  padding-bottom: 1rem;
   padding: 0rem 5rem 1rem 5rem;
 
   @media screen and (max-width: 1000px) {
@@ -58,7 +56,6 @@ const AllInButton = styled.button`
   color: ${(props) => props.theme.color_font__primary};
   background: ${(props) => props.theme.color_background__warning};
 `;
-
 
 const BeforeIcon = styled(NavigateBeforeIcon)`
   font-size: 4rem !important;

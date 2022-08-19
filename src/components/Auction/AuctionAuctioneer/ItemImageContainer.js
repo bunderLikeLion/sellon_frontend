@@ -36,7 +36,7 @@ const ItemExtraImageContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   float: left;
-  height: 8rem;
+  height: 50%;
   margin-top: 1rem;
   clear: both;
 `;

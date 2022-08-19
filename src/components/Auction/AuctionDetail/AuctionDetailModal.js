@@ -80,14 +80,21 @@ const AuctionDetailModal = ({
   isModalOpened,
   isTriggeredFromBigImg,
   smallImgRelatedItemId,
+  singleItemInfo,
 }) => {
   const { id } = useParams();
   const { data } = useSingleAuctionQuery(id);
 
   const { data: singleItemData, isSuccess: singleItemDataFetched } =
     useSingleProductQuery(
-      isTriggeredFromBigImg ? data?.product?.id : smallImgRelatedItemId?.id
+      singleItemInfo
+        ? null
+        : isTriggeredFromBigImg
+        ? data?.product?.id
+        : smallImgRelatedItemId?.id
     );
+
+  console.log(singleItemInfo, 'single');
 
   return (
     <Modal
@@ -110,12 +117,27 @@ const AuctionDetailModal = ({
                 />
               </>
             )}
+            {singleItemInfo && (
+              <>
+                <ItemTitle>{singleItemInfo.name}</ItemTitle>
+                <ItemImage
+                  singleItemData={singleItemInfo}
+                  isTriggeredFromModal={true}
+                />
+              </>
+            )}
           </UserUploadContainer>
           {/*우측 아이템 상태-카테고리-개수-메모 영역*/}
           <ItemDetailContainer>
             {singleItemDataFetched && (
               <ItemInfoContainer
                 singleItemData={singleItemData}
+                isTriggeredFromModal={true}
+              />
+            )}
+            {singleItemInfo && (
+              <ItemInfoContainer
+                singleItemData={singleItemInfo}
                 isTriggeredFromModal={true}
               />
             )}

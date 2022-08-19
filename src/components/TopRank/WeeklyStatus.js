@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-
+import { usePopularAuctionsQuery } from 'queries/auction';
 
 const Container = styled.div`
   flex: 1;
@@ -12,6 +10,9 @@ const Container = styled.div`
   border-radius: 1rem;
   background: ${(props) => props.theme.color_background__primary};
   padding: 1rem;
+  @media screen and (max-width: 700px) {
+    height: 50%;
+  }
 `;
 
 const WeeklyStatusContainer = styled.div`
@@ -19,52 +20,32 @@ const WeeklyStatusContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-right: 1rem;
-  margin-bottom: 1rem;
 `;
 
 const WeeklyStatusTitle = styled.p`
-  padding: 1rem;
+  padding: 1rem 1rem 0rem 1rem;
   font-size: 1.4rem;
-`;
-
-const QuestionIcon = styled(HelpIcon)`
-  margin: 0;
-  font-size: 0.5rem;
-  cursor: pointer;
 `;
 
 const WeeklyStatusBottomContainer = styled.div`
   display: inline-flex;
   justify-content: center;
-  margin-left: 1rem;
-`;
-
-const PaginationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-`;
-
-const PaginationLeftIcon = styled(KeyboardArrowLeftIcon)`
-  width: 2rem;
-`;
-
-const PaginationRightIcon = styled(KeyboardArrowRightIcon)`
-  width: 2rem;
+  padding: 0.7rem;
+  width: 100%;
 `;
 
 const WeeklyStatusUserContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  width: 33rem;
+  width: 100%;
   height: 75%;
 `;
 
-const UserContainer = styled.div`
-  display: block;
+const PopularAuctionCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-basis: 33%;
   align-items: center;
-  min-width: 10rem;
   height: 8rem;
   margin: 0.5rem;
   padding: 0.5rem;
@@ -91,123 +72,95 @@ const UserNickname = styled.p`
 
 const UserBottomContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const UserRecentWrapper = styled.div`
-  display: absolute;
-  margin-left: 1.5rem;
-`;
-
-const UserRankWrapper = styled.div`
-  display: absolute;
-`;
-
-const RecentRank = styled.div`
-  display: flex;
-  align-items: center;
+  position: relative;
   justify-content: center;
+  width: 100%;
+  align-items: center;
+`;
+
+const ParticipantUserAvatar = styled.img`
   width: 2rem;
   height: 2rem;
-  margin-left: 45%;
+  min-width: 2rem;
   border-radius: 50%;
-  box-shadow: 3px 3px 10px #171717;
-  background: ${(props) => props.theme.color_font__disabled};
+  position: relative !important;
+  margin-right: 0.5rem;
+  @media screen and (max-width: 700px) {
+    width: 1.5rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+  }
 `;
 
-const UserRank = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  box-shadow: 3px 3px 10px #171717;
-  background: ${(props) => props.theme.color_background__success};
+const LastImageBox = styled.div`
+  width: fit-content;
+  position: relative;
 `;
 
-const StyledTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))({
-  [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: 168,
-    cursor: 'pointer',
-    color: '#DFDCEF',
-    backgroundColor: '#000000',
-    fontSize: '0.7rem',
-    lineHeight: '1rem',
-  },
-});
-
-const HoverMsg = `
-hover Message 임시 작성 메시지 hover Message 임시 작성 메시지
+const OverSpan = styled.span`
+  position: absolute;
+  z-index: 2;
+  left: 15%;
+  top: 30%;
+  @media screen and (max-width: 700px) {
+    font-size: 0.5rem;
+  }
 `;
-
 
 const WeeklyStatus = () => {
+  const { data: popularAuctionList, isSuccess: popularAuctionListFetched } =
+    usePopularAuctionsQuery();
+  const USER_MAX_COUNT = 3;
   return (
     <Container>
       <WeeklyStatusContainer>
-        <WeeklyStatusTitle>이번 주의 신분상승</WeeklyStatusTitle>
-        <StyledTooltip title={HoverMsg} arrow>
-          <QuestionIcon />
-        </StyledTooltip>
+        <WeeklyStatusTitle>실시간 인기 경매</WeeklyStatusTitle>
       </WeeklyStatusContainer>
       <WeeklyStatusBottomContainer>
-        <PaginationContainer>
-          <PaginationLeftIcon />
-        </PaginationContainer>
         <WeeklyStatusUserContainer>
-        {/*UserContainer_01*/}
-        <UserContainer>
-          <UserTopContainer>
-            <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-            <UserNickname>양유진</UserNickname>
-          </UserTopContainer>
-          <UserBottomContainer>
-            <UserRecentWrapper>
-              <RecentRank>
-                <p>A</p>
-              </RecentRank>
-            </UserRecentWrapper>
-            <UserRankWrapper>
-              <UserRank>
-                <p>S</p>
-              </UserRank>
-            </UserRankWrapper>
-          </UserBottomContainer>
-        </UserContainer>
-        {/*UserContainer_02*/}
-        <UserContainer>
-          <UserTopContainer>
-            <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-            <UserNickname>양유진</UserNickname>
-          </UserTopContainer>
-          <UserBottomContainer>
-            <UserRecentWrapper>
-              <RecentRank>
-                <p>A</p>
-              </RecentRank>
-            </UserRecentWrapper>
-            <UserRankWrapper>
-              <UserRank>
-                <p>S</p>
-              </UserRank>
-            </UserRankWrapper>
-          </UserBottomContainer>
-        </UserContainer>
-        {/*UserContainer_03*/}
-        <UserContainer>
-          <UserTopContainer>
-            <UserImg image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnSxjpGHd2RItHLUQz5UDcSRXrN0Jsl-MH4w&usqp=CAU" />
-            <UserNickname>양유진</UserNickname>
-          </UserTopContainer>
-        </UserContainer>
-      </WeeklyStatusUserContainer>
-      <PaginationContainer>
-        <PaginationRightIcon />
-      </PaginationContainer>
+          {popularAuctionListFetched &&
+            popularAuctionList.map((auctionItem) => {
+              return (
+                <PopularAuctionCard>
+                  <UserTopContainer>
+                    <UserImg image={auctionItem.owner?.avatar} />
+                    <UserNickname>{auctionItem.owner?.username}</UserNickname>
+                  </UserTopContainer>
+                  <UserBottomContainer>
+                    {auctionItem.participants
+                      ?.slice(0, USER_MAX_COUNT)
+                      .map((user, index) => {
+                        if (index === USER_MAX_COUNT - 1) {
+                          return (
+                            <LastImageBox>
+                              <ParticipantUserAvatar
+                                style={{ opacity: '0.7' }}
+                                src={user.avatar}
+                              />
+
+                              {
+                                (auctionItem.participants.length - USER_MAX_COUNT > 0) && (
+                                  <OverSpan>
+                                    +
+                                    {auctionItem.participants.length -
+                                      USER_MAX_COUNT}
+                                  </OverSpan>
+                                )
+                              }
+                            </LastImageBox>
+                          );
+                        }
+                        return (
+                          <>
+                            <ParticipantUserAvatar src={user.avatar} />
+                          </>
+                        );
+                      })}
+                  </UserBottomContainer>
+                </PopularAuctionCard>
+              );
+            })}
+        </WeeklyStatusUserContainer>
       </WeeklyStatusBottomContainer>
     </Container>
   );

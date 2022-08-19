@@ -331,8 +331,9 @@ const ParticipantButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 700px) {
     width: 100%;
+    justify-content: center;
   }
 `;
 

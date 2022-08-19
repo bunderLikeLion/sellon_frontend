@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import HelpIcon from '@mui/icons-material/Help';
 import CardMedia from '@mui/material/CardMedia';
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { useDealingRankingQuery } from 'queries/statistics';
 
 const Container = styled.div`
@@ -24,16 +22,12 @@ const RankingTitle = styled.div`
   font-size: 1.4rem;
 `;
 
-const QuestionIcon = styled(HelpIcon)`
-  font-size: 1.4rem;
-  cursor: pointer;
-`;
-
 const CardContent = styled.div`
   overflow-y: auto;
   width: 100%;
   height: 85%;
   border-radius: 0.5rem;
+  padding-right: 0.7rem;
 `;
 
 const RankerList = styled.div`
@@ -60,7 +54,8 @@ const RankerContainerLeft = styled.div`
 `;
 
 const RankerNumber = styled.p`
-  margin: ${props => props.isLast ? 'auto 1rem auto 0.45rem' : 'auto 1rem auto 0.8rem'};
+  margin: ${(props) =>
+    props.isLast ? 'auto 1rem auto 0.45rem' : 'auto 1rem auto 0.8rem'};
 `;
 
 const RankerImg = styled(CardMedia)`
@@ -77,17 +72,6 @@ const RankerDealCount = styled.div`
   margin: 0.7rem;
 `;
 
-const StyledTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))({
-  [`& .${tooltipClasses.tooltip}`]: {
-    maxWidth: 168,
-    cursor: 'pointer',
-    color: '#DFDCEF',
-    backgroundColor: '#4E4166',
-  },
-});
-
 const Ranking = () => {
   const { data: RankingData, isSuccess: RankingDataFetched } =
     useDealingRankingQuery();
@@ -96,11 +80,6 @@ const Ranking = () => {
     <Container>
       <CardHeader>
         <RankingTitle>실시간 거래 랭킹</RankingTitle>
-        {/*
-          <StyledTooltip title={""} arrow>
-            <QuestionIcon />
-          </StyledTooltip>
-        */}
       </CardHeader>
       <CardContent>
         <RankerList>
@@ -109,7 +88,11 @@ const Ranking = () => {
               return (
                 <RankerItem>
                   <RankerContainerLeft>
-                    <RankerNumber isLast={index === RankingData.length - 1 && true} >{index + 1}</RankerNumber>
+                    <RankerNumber
+                      isLast={index === RankingData.length - 1 && true}
+                    >
+                      {index + 1}
+                    </RankerNumber>
                     <RankerImg image={item.avatar} />
                     <RankerNickname>{item.username}</RankerNickname>
                   </RankerContainerLeft>

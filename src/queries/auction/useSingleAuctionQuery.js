@@ -9,6 +9,7 @@ const useSingleAuctionQuery = (id) => {
     ['auctionInfo', id],
     () => auctionRelatedAPI.getSingleAuctionInfo(id),
     {
+      enabled: !!id,
       onError: (res) => {
         toast.dismiss();
         toast.error(errorMsgHandler(res));
