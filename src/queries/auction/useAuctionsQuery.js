@@ -27,7 +27,6 @@ const useAuctionsQuery = (
         toast.dismiss();
         toast.error(errorMsgHandler(res));
       },
-      staleTime: 1000 * 60 * 3,
     }
   );
 };
