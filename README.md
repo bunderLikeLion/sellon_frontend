@@ -28,6 +28,10 @@ https://github.com/bunderLikeLion/sellon_backend
 
 [//]: # (* `📼 Live Demo viodeo on Youtube:` <a href="https://www.youtube.com/watch?v=ONrU6ToIu9U&ab_channel=%EC%9D%B4%EC%8A%B9%ED%99%98" target="\_blank">https://www.youtube.com/watch?v=ONrU6ToIu9U&ab_channel=%EC%9D%B4%EC%8A%B9%ED%99%98 </a>)
 
+## 🕸 Infrastructure
+
+![](./public/readme/infra.png)
+
 
 ## 🎠 기능
 
