@@ -30,7 +30,7 @@ https://github.com/bunderLikeLion/sellon_backend
 
 ## 🕸 Infrastructure
 
-![](./public/readme/infra.png)
+<img src="./public/readme/infra.png" width="70%" height="60%">
 
 
 ## 🎠 기능
