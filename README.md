@@ -1,6 +1,6 @@
 # 👨🏼‍⚖️ Sellon (Frontend)
 
-![](../../../Downloads/deviceframes.png)
+![](./public/readme/deviceframes.png)
 
 ## 🙇‍♂️ contributors
 
