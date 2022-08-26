@@ -3,11 +3,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
-import { useForm } from 'react-hook-form';
-import registerValidation from 'validations/registerValidation';
-import { Link } from 'react-router-dom';
 import { Radio } from '@mui/material';
 import useInput from 'hooks/useInput';
 import statusHandler from '../../../utils/statusHandler';
@@ -60,31 +55,6 @@ const ModifyBtn = styled.button`
   font-weight: 700;
   color: ${(props) => props.theme.color_font__secondary};
   background: ${(props) => props.theme.color_button__delete};
-`;
-
-const ChangedInfoInput = styled.input.attrs((props) => ({
-  type: 'text',
-}))`
-  width: 20rem;
-  height: 3rem;
-  margin: 0 1rem;
-  padding: 0 1rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  opacity: 70%;
-  background: ${(props) => props.theme.color_background__secondary};
-  color: ${(props) => props.theme.color_white};
-  ::placeholder {
-    font-size: 1.2rem;
-    color: ${(props) => props.theme.color_font__secondary};
-  }
-  //자동완성 글씨, 배경 자동 변경 방지 설정
-  :-webkit-autofill {
-    -webkit-text-fill-color: ${(props) =>
-      props.theme.color_font__secondary} !important;
-    transition: background-color 5000s ease-in-out 0s;
-  }
 `;
 
 const ButtonContainer = styled.div`
@@ -155,7 +125,7 @@ export const StatusRadio = styled(SingleRadio)`
 `;
 
 const ChangeItemStatus = ({ givenQuality, editSingleField, imgToLeft }) => {
-  const [status, handleStatus, statusReset] = useInput(givenQuality.toString());
+  const [status, handleStatus] = useInput(givenQuality.toString());
 
   const [isShown, setIsShown] = useState(false);
 

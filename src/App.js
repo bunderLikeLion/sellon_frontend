@@ -10,7 +10,6 @@ import { AxiosInterceptor } from './apis/config';
 import { Toaster } from 'react-hot-toast';
 import { WaveLoading } from 'react-loadingg';
 import styled from 'styled-components';
-import UserInfoChange from 'pages/MyPage/UserInfoChange';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from './states';
 
@@ -94,16 +93,6 @@ const App = () => {
                   path="/auction/newauction"
                   element={
                     authChecker() ? <NewAuction /> : <Navigate to="/login/1" />
-                  }
-                />
-                <Route
-                  path="/mypage/infochange"
-                  element={
-                    authChecker() ? (
-                      <UserInfoChange />
-                    ) : (
-                      <Navigate to="/login/1" />
-                    )
                   }
                 />
                 <Route

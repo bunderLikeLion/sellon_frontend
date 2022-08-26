@@ -1,4 +1,3 @@
-import WrapContainer from 'layouts/WrapContainer';
 import styled from 'styled-components';
 import ChatLists from 'components/MyPage/Chat/ChatLists';
 import InputMessage from 'components/MyPage/Chat/InputMessage';
@@ -9,11 +8,10 @@ import UserEvaluationModal from 'components/MyPage/Chat/UserEvaluationModal';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import ChatMsgContainer from 'components/MyPage/Chat/ChatMsgContainer';
-import { useMyProductsQuery } from 'queries/product';
 
 const StyledWrapContainer = styled.div`
   height: fit-content;
-`
+`;
 
 const AlignContainer = styled.div`
   display: flex;
@@ -35,7 +33,7 @@ const ChatForm = styled.div`
     flex-direction: column;
   }
 `;
-const Chat_Left = styled.div`
+const ChatLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,7 +49,7 @@ const Chat_Left = styled.div`
   }
 `;
 
-const Chat_Right = styled.div`
+const ChatRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -67,8 +65,7 @@ const Chat_Right = styled.div`
   }
 `;
 
-const OnChatContainer = styled.div`
-`;
+const OnChatContainer = styled.div``;
 
 const MessageTitle = styled.div`
   margin: 1rem 0 0.5rem 0;
@@ -104,15 +101,6 @@ const Chat = () => {
   const handleEvaluationModal = () =>
     SetIsEvaluationModalOpened(!isEvaluationModalOpened);
 
-  const [pageNum, setPageNum] = useState(1);
-
-  const { data: myProductsData, isSuccess: myProductFetched } =
-    useMyProductsQuery(pageNum, 6);
-
-  const handleChangePagination = (event, value) => {
-    setPageNum(value);
-  };
-
   useEffect(() => {
     // 누를때 상대 정하기
     if (selectedDeal?.product_group?.user?.id === userId) {
@@ -120,14 +108,14 @@ const Chat = () => {
     } else {
       setOpponent(selectedDeal?.product_group?.user);
     }
-  }, [selectedDeal]);
+  }, [selectedDeal, userId]);
 
   return (
     <StyledWrapContainer>
       <AlignContainer>
         {dealingsFetched && (
           <ChatForm>
-            <Chat_Left>
+            <ChatLeft>
               <MessageTitle>진행중인 거래</MessageTitle>
               <ChatContainer>
                 {dealings?.map((singleDeal) => {
@@ -141,8 +129,8 @@ const Chat = () => {
                   );
                 })}
               </ChatContainer>
-            </Chat_Left>
-            <Chat_Right>
+            </ChatLeft>
+            <ChatRight>
               <OnChatContainer>
                 <OnChatUserProfile opponent={opponent} />
               </OnChatContainer>
@@ -153,7 +141,7 @@ const Chat = () => {
               <OnChatContainerBottom>
                 <InputMessage selectedDeal={selectedDeal} />
               </OnChatContainerBottom>
-            </Chat_Right>
+            </ChatRight>
           </ChatForm>
         )}
       </AlignContainer>

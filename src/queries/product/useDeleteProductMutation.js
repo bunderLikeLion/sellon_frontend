@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import productsRelatedAPI from 'apis/productsRelatredAPI';
-import errorMsgHandler from 'utils/errorMsgHandler';
 import { queryClient } from 'index';
 import messages from 'constants/messages';
 
@@ -16,7 +15,7 @@ const useDeleteProductMutation = () => {
         toast.success(messages.product.destroy.success);
         return queryClient.invalidateQueries(['myProductsData']);
       },
-      onError: (res) => {
+      onError: () => {
         toast.dismiss();
         toast.error(messages.product.destroy.error);
       },

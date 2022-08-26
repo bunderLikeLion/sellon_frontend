@@ -4,7 +4,6 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'states';
 import { useLoginMutation } from 'queries/auth';
 import styled from 'styled-components';
-import SignPic from 'images/Sign_Img.jpeg';
 import LoginPic from 'images/LoginPic.jpeg';
 import toast from 'react-hot-toast';
 import useInput from 'hooks/useInput';
@@ -100,13 +99,6 @@ const Input = styled.input`
   }
 `;
 
-//하단 에러 메세지
-const ErrorMsg = styled.div`
-  margin: 1rem 0 0.5rem 2rem;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__secondary};
-`;
-
 //버튼 전체 컨테이너
 const ButtonContainer = styled.div`
   display: flex;
@@ -194,7 +186,7 @@ const Login = () => {
     if (window.location.pathname.split('/').pop() === '1') {
       toast.error('해당 기능을 사용하려면 로그인을 해주세요 😭');
     }
-  }, []);
+  });
 
   const { mutate: loginMutate } = useLoginMutation();
 
@@ -203,7 +195,7 @@ const Login = () => {
   };
 
   const submit = () => {
-    loginMutate({ username: username, password: password });
+    loginMutate({ username, password });
   };
 
   return (

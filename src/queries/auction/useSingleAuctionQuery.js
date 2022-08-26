@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import errorMsgHandler from 'utils/errorMsgHandler';
 import auctionRelatedAPI from 'apis/auctionRelatedAPI';
-import queryKeys from 'utils/queryKeys';
 
 const useSingleAuctionQuery = (id) => {
   return useQuery(

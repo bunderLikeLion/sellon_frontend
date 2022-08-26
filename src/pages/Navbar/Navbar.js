@@ -5,8 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import AdbIcon from '@mui/icons-material/Adb';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { useState } from 'react';
 import { AnchorNav, UserRelatedDropDown } from 'components/Navbar';
 import { Link } from 'react-router-dom';
@@ -20,7 +18,7 @@ const Navbar = styled(AppBar)`
 
 const LinkText = styled(Link)`
   transition: 0.2s;
-  background-color: transparent !important;;
+  background-color: transparent !important;
   :hover {
     color: ${(props) => props.theme.color_border__hover__light} !important;
   }
@@ -28,10 +26,10 @@ const LinkText = styled(Link)`
 
 const NavLogo = styled.img`
   width: 10rem;
-`
+`;
 
 const LinkButton = styled(Button)`
-  background-color: transparent !important;;
+  background-color: transparent !important;
   transition: 0.2s !important;
   :hover {
     color: ${(props) => props.theme.color_border__hover__light} !important;
@@ -79,7 +77,7 @@ const ResponsiveAppBar = () => {
                 textDecoration: 'none',
               }}
             >
-                <NavLogo src={Logo} alt=''/>
+              <NavLogo src={Logo} alt="" />
             </Typography>
           </Link>
           <AnchorNav
@@ -101,7 +99,9 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            <LinkText to="/"><NavLogo src={Logo} alt=''/></LinkText>
+            <LinkText to="/">
+              <NavLogo src={Logo} alt="" />
+            </LinkText>
           </Typography>
           <Box
             sx={{

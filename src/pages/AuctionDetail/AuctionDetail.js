@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import AuctionItem from 'components/Auction/AuctionDetail/AuctionItem';
 import AuctionOtherSuggestion from 'components/Auction/AuctionDetail/AuctionOtherSuggestion';
 import Inventory from 'components/Auction/AuctionDetail/Inventory';
-import { useState } from 'react';
 import WrapContainer from 'layouts/WrapContainer';
 import { useSingleAuctionQuery } from 'queries/auction';
 import { useParams } from 'react-router-dom';
@@ -22,11 +21,11 @@ const AuctionInfoContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
-`
+`;
 
 const InventoryContainer = styled.div`
   flex: 0;
-`
+`;
 
 const AuctionItemContainer = styled.div`
   flex: 1 1 50%;
@@ -35,7 +34,7 @@ const AuctionItemContainer = styled.div`
   justify-content: flex-start;
   min-height: 1rem;
   max-width: 50%;
-`
+`;
 
 const SuggestionContainer = styled.div`
   flex: 1 1 50%;
@@ -58,15 +57,12 @@ const AuctionDetail = () => {
         <Container>
           <AuctionInfoContainer>
             <AuctionItemContainer>
-              <AuctionItem
-                singleAuctionData={singleAuctionData}
-              />
+              <AuctionItem singleAuctionData={singleAuctionData} />
             </AuctionItemContainer>
             <SuggestionContainer>
               <AuctionOtherSuggestion />
               <MySuggested />
             </SuggestionContainer>
-
           </AuctionInfoContainer>
           <InventoryContainer>
             <Inventory />

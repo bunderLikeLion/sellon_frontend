@@ -90,12 +90,6 @@ const Input = styled.input`
   }
 `;
 
-const ErrorMsg = styled.div`
-  margin: 1rem 0 0.5rem 6rem;
-  font-size: 1.2rem;
-  color: ${(props) => props.theme.color_font__secondary};
-`;
-
 const ButtonContainer = styled.div`
   width: 65%;
   margin-top: 1rem;
@@ -146,7 +140,7 @@ const Register = () => {
       toast.success('이미 로그인한 상태입니다. 👍');
       navigate('/');
     }
-  }, []);
+  });
 
   const { mutate: signInMutate } = useSignInMutation();
 

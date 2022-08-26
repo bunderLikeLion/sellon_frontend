@@ -4,11 +4,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useState, useRef } from 'react';
 import useInput from 'hooks/useInput';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from 'states';
-import { useForm } from 'react-hook-form';
-import registerValidation from 'validations/registerValidation';
-import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const AccordionContainer = styled.div`
