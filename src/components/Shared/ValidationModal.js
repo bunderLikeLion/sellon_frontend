@@ -11,7 +11,7 @@ const ModalContainer = styled(Box)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 40rem;  //width: 50%;
+  width: 40rem; //width: 50%;
   padding: 1rem;
   height: 13rem;
   border-radius: 1rem;
@@ -39,12 +39,11 @@ const SubText = styled.h2`
   color: ${(props) => props.theme.color_font__secondary};
 `;
 
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 2rem;
-`
+`;
 
 const ValidationButton = styled.button`
   width: fit-content;
@@ -68,6 +67,17 @@ const ValidationCancelButton = styled.button`
   background: ${(props) => props.theme.color_font__disabled};
 `;
 
+/*
+handleModal: 모달 open/close handler
+isModalOpened: 모달 open/close state(상태)
+mainText: 메인 글
+btnText: 기능을 수행할 버튼의 이름
+relatedId: 기능에 필요한 id
+type: 어떤 버튼인지
+      - allIn: 올인
+      - endDealing: 경매 종료
+*/
+
 const ValidationModal = ({
   handleModal,
   isModalOpened,
@@ -77,17 +87,6 @@ const ValidationModal = ({
   relatedId,
   type,
 }) => {
-  /*
-  handleModal: 모달 open/close handler
-  isModalOpened: 모달 open/close state(상태)
-  mainText: 메인 글
-  btnText: 기능을 수행할 버튼의 이름
-  relatedId: 기능에 필요한 id
-  type: 어떤 버튼인지
-        - allIn: 올인
-        - endDealing: 경매 종료
-  */
-
   const { mutate: allInFunc } = useAllInAuctionItemMutation(relatedId);
   const { mutate: endDealingFuc } = useEndDealingMutation(relatedId);
 
@@ -109,11 +108,7 @@ const ValidationModal = ({
     >
       <ModalContainer>
         <Text>{mainText}</Text>
-        {
-          subText && (
-            <SubText>{subText}</SubText>
-          )
-        }
+        {subText && <SubText>{subText}</SubText>}
         <ButtonContainer>
           <ValidationButton onClick={clickBtnFunc}>{btnText}</ValidationButton>
           <ValidationCancelButton onClick={handleModal}>
